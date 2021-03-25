@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File flamegpu_host_api.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File flamegpu_host_api.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_runtime_flamegpu_host_api.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-flamegpu-host-api-cu">
+<span id="program-listing-file-src-flamegpu-runtime-flamegpu-host-api-cu"></span><h1>Program Listing for File flamegpu_host_api.cu<a class="headerlink" href="#program-listing-for-file-flamegpu-host-api-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_runtime_flamegpu_host_api.cu.html#file-src-flamegpu-runtime-flamegpu-host-api-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/runtime/flamegpu_host_api.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/runtime/flamegpu_host_api.h&quot;
+#include &quot;flamegpu/runtime/flamegpu_host_agent_api.h&quot;
+#include &quot;flamegpu/model/ModelDescription.h&quot;
+#include &quot;flamegpu/sim/Simulation.h&quot;
+#include &quot;flamegpu/util/nvtx.h&quot;
+#include &quot;flamegpu/gpu/CUDASimulation.h&quot;
+
+FLAMEGPU_HOST_API::FLAMEGPU_HOST_API(CUDASimulation &amp;_agentModel,
+    RandomManager &amp;rng,
+    const AgentOffsetMap &amp;_agentOffsets,
+    AgentDataMap &amp;_agentData)
+    : random(rng)
+    , environment(_agentModel.getInstanceID())
+    , agentModel(_agentModel)
+    , d_cub_temp(nullptr)
+    , d_cub_temp_size(0)
+    , d_output_space(nullptr)
+    , d_output_space_size(0)
+    , agentOffsets(_agentOffsets)
+    , agentData(_agentData) { }
+
+FLAMEGPU_HOST_API::~FLAMEGPU_HOST_API() {
+    // @todo - cuda is not allowed in destructor
+    if (d_cub_temp) {
+        gpuErrchk(cudaFree(d_cub_temp));
+        d_cub_temp_size = 0;
+    }
+    if (d_output_space_size) {
+        gpuErrchk(cudaFree(d_output_space));
+        d_output_space_size = 0;
+    }
+}
+
+HostAgentInstance FLAMEGPU_HOST_API::agent(const std::string &amp;agent_name, const std::string &amp;stateName) {
+    return HostAgentInstance(*this, agentModel.getAgent(agent_name), stateName);
+}
+
+FLAMEGPU_HOST_NEW_AGENT_API FLAMEGPU_HOST_API::newAgent(const std::string &amp;agent_name) {
+    // Validation
+    auto &amp;model = agentModel.getModelDescription();
+    auto agent = model.agents.find(agent_name);
+    if (agent == model.agents.end()) {
+        THROW InvalidAgentName(&quot;Agent &#39;%s&#39; was not found within the model hierarchy, &quot;
+            &quot;in FLAMEGPU_HOST_API::newAgent()\n&quot;,
+            agent_name.c_str());
+    }
+    return newAgent(agent_name, agent-&gt;second-&gt;initial_state);
+}
+FLAMEGPU_HOST_NEW_AGENT_API FLAMEGPU_HOST_API::newAgent(const std::string &amp;agent_name, const std::string &amp;state) {
+    // Validation
+    auto &amp;model = agentModel.getModelDescription();
+    auto agent = model.agents.find(agent_name);
+    if (agent == model.agents.end()) {
+        THROW InvalidAgentName(&quot;Agent &#39;%s&#39; was not found within the model hierarchy, &quot;
+            &quot;in FLAMEGPU_HOST_API::newAgent()\n&quot;,
+            agent_name.c_str());
+    }
+    if (agent-&gt;second-&gt;states.find(state) == agent-&gt;second-&gt;states.end()) {
+        THROW InvalidStateName(&quot;Agent &#39;%s&#39; does not contain state &#39;%s&#39;, &quot;
+            &quot;in FLAMEGPU_HOST_API::newAgent()\n&quot;,
+            agent_name.c_str(), state.c_str());
+    }
+    // Create the agent in our backing data structure
+    NewAgentStorage t_agentData(agentOffsets.at(agent_name));
+    auto &amp;s = agentData.at(agent_name).at(state);
+    s.push_back(t_agentData);
+    // Point the returned object to the created agent
+    return FLAMEGPU_HOST_NEW_AGENT_API(s.back());
+}
+
+bool FLAMEGPU_HOST_API::tempStorageRequiresResize(const CUB_Config &amp;cc, const unsigned int &amp;items) {
+    auto lao = cub_largestAllocatedOp.find(cc);
+    if (lao != cub_largestAllocatedOp.end()) {
+        if (lao-&gt;second &lt; items)
+            return false;
+    }
+    return true;
+}
+void FLAMEGPU_HOST_API::resizeTempStorage(const CUB_Config &amp;cc, const unsigned int &amp;items, const size_t &amp;newSize) {
+    NVTX_RANGE(&quot;FLAMEGPU_HOST_API::resizeTempStorage&quot;);
+    if (newSize &gt; d_cub_temp_size) {
+        if (d_cub_temp) {
+            gpuErrchk(cudaFree(d_cub_temp));
+        }
+        gpuErrchk(cudaMalloc(&amp;d_cub_temp, newSize));
+        d_cub_temp_size = newSize;
+    }
+    assert(tempStorageRequiresResize(cc, items));
+    cub_largestAllocatedOp[cc] = items;
+}
+
+
+
+unsigned int FLAMEGPU_HOST_API::getStepCounter() const {
+    return agentModel.getStepCounter();
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

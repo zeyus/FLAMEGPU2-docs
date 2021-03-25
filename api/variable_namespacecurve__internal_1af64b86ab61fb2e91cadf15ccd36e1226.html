@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Variable curve_internal::d_lengths &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Variable curve_internal::d_sizes" href="variable_namespacecurve__internal_1a6808d90fd9ff3d28204abd66371bb63b.html" />
+    <link rel="prev" title="Variable curve_internal::d_hashes" href="variable_namespacecurve__internal_1a2b98e26d488ee6e17a086b4acb3b2f19.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#variables">Variables</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="variable_namespacecurve__internal_1a1557d7ec48bae62e389261109d4f4c28.html">Variable curve_internal::d_curve_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespacecurve__internal_1a2b98e26d488ee6e17a086b4acb3b2f19.html">Variable curve_internal::d_hashes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Variable curve_internal::d_lengths</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespacecurve__internal_1a6808d90fd9ff3d28204abd66371bb63b.html">Variable curve_internal::d_sizes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespacecurve__internal_1a0bb5c0c47b7a95957f0649efb00d1de5.html">Variable curve_internal::d_variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespacecurve__internal_1af97c840eddb1fa8ad68b17d1f90c08b5.html">Variable curve_internal::h_curve_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceflamegpu__internal_1a5e806b2770c8778490a8d426714c205e.html">Variable flamegpu_internal::c_envPropBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceflamegpu__internal_1a1097a63ee79251a9ed9e3ff38ab79431.html">Variable flamegpu_internal::standard_deviation_add</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceflamegpu__internal_1a27abe48e231d0497ce1a252583807eb0.html">Variable flamegpu_internal::STANDARD_DEVIATION_MEAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceflamegpu__internal_1a23c9359c32dab5b8b4f9092ba48bac8d.html">Variable flamegpu_internal::STANDARD_DEVIATION_MEAN_mutex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceflamegpu__internal_1a9425305a7eb6a32f9359988eab69a84c.html">Variable flamegpu_internal::standard_deviation_subtract_mean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Colors_1a6325dc19d99de50ace6e2dd05dfb54c8.html">Variable Stock::Colors::BLACK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Colors_1adf4030b7528a813da2cafce0f115afcd.html">Variable Stock::Colors::BLUE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Colors_1a31377c691cec4400dfa01f3b13d73a96.html">Variable Stock::Colors::GREEN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Colors_1a4b3e46e28521438379daffa43859a1d6.html">Variable Stock::Colors::RED</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Colors_1a47f719d56547e439d76eb37149801481.html">Variable Stock::Colors::WHITE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a80cf825471a2ba61a0db93108932aec6.html">Variable Stock::Palettes::DARK2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a9a3b0087a20eb20abfa4154337e79454.html">Variable Stock::Palettes::GREYS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a7c990d506d2e25cb5bfda4eba2a5287f.html">Variable Stock::Palettes::PASTEL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a3118415e116fa83a4223cce4c4f24efb.html">Variable Stock::Palettes::PIYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a580e6f370252c78512284b014a64375d.html">Variable Stock::Palettes::RDYLBU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1acdf8282cf624d63547784dea42dbcdd9.html">Variable Stock::Palettes::SET1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a71d953141257583648ee49682e5c18e4.html">Variable Stock::Palettes::SET2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1af17ab5423f0c7fe014cbb551b1d97474.html">Variable Stock::Palettes::YLGN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceStock_1_1Palettes_1a048a6887e1d3612f05e6150bcc2aab14.html">Variable Stock::Palettes::YLORRD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceutil_1_1nvtx_1a3bda57ce4f95863ebe35ea22c3e627f7.html">Variable util::nvtx::colourCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="variable_namespaceutil_1_1nvtx_1a0a23182a00ba580b23da2b26e23ee41c.html">Variable util::nvtx::palette</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Variable curve_internal::d_lengths</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/variable_namespacecurve__internal_1af64b86ab61fb2e91cadf15ccd36e1226.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="variable-curve-internal-d-lengths">
+<span id="exhale-variable-namespacecurve-internal-1af64b86ab61fb2e91cadf15ccd36e1226"></span><h1>Variable curve_internal::d_lengths<a class="headerlink" href="#variable-curve-internal-d-lengths" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_cuRVE_curve.h.html#file-include-flamegpu-runtime-curve-curve-h"><span class="std std-ref">File curve.h</span></a></p></li>
+</ul>
+<div class="section" id="variable-documentation">
+<h2>Variable Documentation<a class="headerlink" href="#variable-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp var">
+<dt id="_CPPv4N14curve_internal9d_lengthsE">
+<span id="_CPPv3N14curve_internal9d_lengthsE"></span><span id="_CPPv2N14curve_internal9d_lengthsE"></span><span id="curve_internal::d_lengths__unsigned-iA"></span><span class="target" id="namespacecurve__internal_1af64b86ab61fb2e91cadf15ccd36e1226"></span><span class="pre">__constant__</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-prename descclassname"><span class="pre">curve_internal</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">d_lengths</span></code><span class="pre">[</span><code class="sig-prename descclassname"><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">MAX_VARIABLES</span></code><span class="pre">]</span><a class="headerlink" href="#_CPPv4N14curve_internal9d_lengthsE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="variable_namespacecurve__internal_1a6808d90fd9ff3d28204abd66371bb63b.html" class="btn btn-neutral float-right" title="Variable curve_internal::d_sizes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="variable_namespacecurve__internal_1a2b98e26d488ee6e17a086b4acb3b2f19.html" class="btn btn-neutral float-left" title="Variable curve_internal::d_hashes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

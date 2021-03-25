@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDAAgentStateList.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDAAgentStateList.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_gpu_CUDAAgentStateList.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudaagentstatelist-cu">
+<span id="program-listing-file-src-flamegpu-gpu-cudaagentstatelist-cu"></span><h1>Program Listing for File CUDAAgentStateList.cu<a class="headerlink" href="#program-listing-for-file-cudaagentstatelist-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_gpu_CUDAAgentStateList.cu.html#file-src-flamegpu-gpu-cudaagentstatelist-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAAgentStateList.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/gpu/CUDAAgentStateList.h&quot;
+
+#include &lt;cuda_runtime.h&gt;
+#include &lt;device_launch_parameters.h&gt;
+
+#include &quot;flamegpu/gpu/CUDAAgent.h&quot;
+#include &quot;flamegpu/gpu/CUDAErrorChecking.h&quot;
+#include &quot;flamegpu/pop/AgentVector.h&quot;
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/gpu/CUDAScatter.h&quot;
+#include &quot;flamegpu/runtime/flamegpu_host_new_agent_api.h&quot;
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#pragma warning(disable : 4706 4834)
+#include &lt;cub/cub.cuh&gt;
+#pragma warning(pop)
+#else
+#include &lt;cub/cub.cuh&gt;
+#endif
+
+CUDAAgentStateList::CUDAAgentStateList(
+    const std::shared_ptr&lt;CUDAFatAgentStateList&gt; &amp;fat_list,
+    CUDAAgent&amp; cuda_agent,
+    const unsigned int &amp;_fat_index,
+    const AgentData&amp; description,
+    bool _isSubStateList)
+    : fat_index(_fat_index)
+    , agent(cuda_agent)
+    , parent_list(fat_list)
+    , isSubStateList(_isSubStateList) {
+    // For each agent variable, take a copy of the shared pointer, store it
+    for (auto var : description.variables) {
+        variables.emplace(var.first, fat_list-&gt;getVariableBuffer(fat_index, var.first));
+    }
+}
+CUDAAgentStateList::CUDAAgentStateList(
+    const std::shared_ptr&lt;CUDAFatAgentStateList&gt; &amp;fat_list,
+    CUDAAgent&amp; cuda_agent,
+    const unsigned int &amp;_fat_index,
+    const AgentData&amp; description,
+    bool _isSubStateList,
+    const SubAgentData::Mapping &amp;varMap)
+    : CUDAAgentStateList(fat_list, cuda_agent, _fat_index, description, _isSubStateList) {
+    // Build a list of variables not present in the mapping
+    // These are not mapped to parent agent, therefore they must be reset when CUDASimulation::simulate() is called
+    for (auto var : variables) {
+        if (varMap.find(var.first)== varMap.end()) {
+            unmappedBuffers.push_back(var.second);
+        }
+    }
+}
+void CUDAAgentStateList::resize(const unsigned int &amp;minimumSize, const bool &amp;retainData) {
+    parent_list-&gt;resize(minimumSize, retainData);
+}
+unsigned int CUDAAgentStateList::getSize() const {
+    return parent_list-&gt;getSize();
+}
+unsigned int CUDAAgentStateList::getAllocatedSize() const {
+    return parent_list-&gt;getAllocatedSize();
+}
+void *CUDAAgentStateList::getVariablePointer(const std::string &amp;variable_name) {
+    // check the cuda agent state map to find the correct state list for functions starting state
+    auto var = variables.find(variable_name);
+
+    if (var == variables.end()) {
+        THROW InvalidAgentVar(&quot;Error: Agent (&#39;%s&#39;) variable (&#39;%s&#39;) was not found &quot;
+            &quot;in CUDAAgentStateList::getVariablePointer()&quot;,
+            agent.getAgentDescription().name.c_str(), variable_name.c_str());
+    }
+
+    return var-&gt;second-&gt;data_condition;
+}
+void CUDAAgentStateList::setAgentData(const AgentVector&amp; population, CUDAScatter&amp; scatter, const unsigned int&amp; streamId, const cudaStream_t&amp; stream) {
+    // Validate AgentData matches
+    if (!population.matchesAgentType(agent.getAgentDescription())) {
+        THROW InvalidCudaAgentDesc(&quot;Agent description for agent &#39;%s&#39; does not match that of AgentVector, &quot;
+            &quot;in CUDAAgentStateList::setAgentData()&quot;,
+            population.getAgentName().c_str());
+    }
+    // Check our internal state matches or exceeds the size of the state in the agent pop
+    // This will return if list already correct size
+    const unsigned int data_count = population.size();
+    if (data_count) {
+        parent_list-&gt;resize(data_count, false);  // FALSE=Do not retain existing data
+        // Initialise any buffers in the fat_agent which aren&#39;t part of the agent description
+        std::set&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; exclusionSet;
+        for (auto&amp; a : variables)
+            exclusionSet.insert(a.second);
+        parent_list-&gt;initVariables(exclusionSet, data_count, 0, scatter, streamId, stream);
+        // Copy across the required data host-&gt;device
+        for (auto&amp; _var : variables) {
+            // get the variable size from agent description
+            const auto&amp; var = agent.getAgentDescription().variables.at(_var.first);
+            const size_t var_size = var.type_size;
+            const unsigned int  var_elements = var.elements;
+
+            // get pointer to vector data
+            const void* v_data = population.data(_var.first);
+
+            // copy the host data to the GPU
+            gpuErrchk(cudaMemcpyAsync(_var.second-&gt;data, v_data, var_elements * var_size * data_count, cudaMemcpyHostToDevice, stream));
+            gpuErrchk(cudaStreamSynchronize(stream));
+        }
+    }
+    // Update alive count etc
+    parent_list-&gt;setAgentCount(data_count);
+}
+void CUDAAgentStateList::getAgentData(AgentVector&amp; population) const {
+    // Validate AgentData matches
+    if (!population.matchesAgentType(agent.getAgentDescription())) {
+        THROW InvalidCudaAgentDesc(&quot;Agent description for agent &#39;%s&#39; does not match that of AgentVector, &quot;
+            &quot;in CUDAAgentStateList::setAgentData()&quot;,
+            population.getAgentName().c_str());
+    }
+    const unsigned int data_count = getSize();
+    if (data_count) {
+        population.resize(data_count, false);
+        // Copy across the required data device-&gt;host
+        for (auto&amp; _var : variables) {
+            // get the variable size from agent description
+            const auto&amp; var = agent.getAgentDescription().variables.at(_var.first);
+            const size_t var_size = var.type_size;
+            const unsigned int  var_elements = var.elements;
+
+            // get pointer to vector data
+            void* v_data = population.data(_var.first);
+
+            // copy the host data to the GPU
+            gpuErrchk(cudaMemcpy(v_data, _var.second-&gt;data, var_elements * var_size * data_count, cudaMemcpyDeviceToHost));
+        }
+    }
+    population._size = data_count;  // Private AgentVector::resize() does not update size
+}
+void CUDAAgentStateList::scatterHostCreation(const unsigned int&amp; newSize, char* const d_inBuff, const VarOffsetStruct &amp; offsets, CUDAScatter &amp; scatter, const unsigned int&amp; streamId, const cudaStream_t &amp; stream) {
+    // Resize agent list if required
+    parent_list-&gt;resize(parent_list-&gt;getSizeWithDisabled() + newSize, true);
+    // Build scatter data
+    std::vector&lt;CUDAScatter::ScatterData&gt; sd;
+    for (const auto &amp;v : variables) {
+        // In this case, in is the location of first variable, but we step by inOffsetData.totalSize
+        char *in_p = reinterpret_cast&lt;char*&gt;(d_inBuff) + offsets.vars.at(v.first).offset;
+        char *out_p = reinterpret_cast&lt;char*&gt;(v.second-&gt;data);
+        sd.push_back({ v.second-&gt;type_size * v.second-&gt;elements, in_p, out_p });
+    }
+    // Scatter to device
+    scatter.scatterNewAgents(streamId,
+        stream,
+        sd,
+        offsets.totalSize,
+        newSize,
+        parent_list-&gt;getSize());
+    // Initialise any buffers in the fat_agent which aren&#39;t part of the current agent description
+    // TODO: This does redundant inits, it only needs to initialise parent/master agent variables which are not mapped
+    //       Sub variables will already be init everytime the submodel is executed.
+    std::set&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; exclusionSet;
+    for (auto &amp;a : variables)
+        exclusionSet.insert(a.second);
+    parent_list-&gt;initVariables(exclusionSet, newSize, parent_list-&gt;getSize(), scatter, streamId, stream);
+    // Update number of alive agents
+    parent_list-&gt;setAgentCount(parent_list-&gt;getSize() + newSize);
+}
+void CUDAAgentStateList::scatterSort(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    parent_list-&gt;scatterSort(scatter, streamId, stream);
+}
+void CUDAAgentStateList::scatterNew(void * d_newBuff, const unsigned int &amp;newSize, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    if (newSize) {
+        CUDAScanCompactionConfig &amp;scanCfg = scatter.Scan().Config(CUDAScanCompaction::Type::AGENT_OUTPUT, streamId);
+        // Perform scan
+        if (newSize &gt; scanCfg.cub_temp_size_max_list_size) {
+            if (scanCfg.hd_cub_temp) {
+                gpuErrchk(cudaFree(scanCfg.hd_cub_temp));
+            }
+            scanCfg.cub_temp_size = 0;
+            gpuErrchk(cub::DeviceScan::ExclusiveSum(
+                nullptr,
+                scanCfg.cub_temp_size,
+                scanCfg.d_ptrs.scan_flag,
+                scanCfg.d_ptrs.position,
+                newSize + 1,
+                stream));
+            gpuErrchk(cudaStreamSynchronize(stream));
+            gpuErrchk(cudaMalloc(&amp;scanCfg.hd_cub_temp, scanCfg.cub_temp_size));
+            scanCfg.cub_temp_size_max_list_size = newSize;
+        }
+        gpuErrchk(cub::DeviceScan::ExclusiveSum(
+            scanCfg.hd_cub_temp,
+            scanCfg.cub_temp_size,
+            scanCfg.d_ptrs.scan_flag,
+            scanCfg.d_ptrs.position,
+            newSize + 1,
+            stream));
+        gpuErrchk(cudaStreamSynchronize(stream));
+        // Resize if necessary
+        // @todo? this could be improved by checking scan result for the actual size, rather than max size)
+        resize(parent_list-&gt;getSizeWithDisabled() + newSize, true);
+        // Build scatter data
+        char * d_var = static_cast&lt;char*&gt;(d_newBuff);
+
+        std::vector&lt;CUDAScatter::ScatterData&gt; scatterdata;
+        for (const auto &amp;v : variables) {
+            char *in_p = reinterpret_cast&lt;char*&gt;(d_var);
+            char *out_p = reinterpret_cast&lt;char*&gt;(v.second-&gt;data_condition);
+            scatterdata.push_back({ v.second-&gt;type_size * v.second-&gt;elements, in_p, out_p });
+            // Prep pointer for next var
+            d_var += v.second-&gt;type_size * v.second-&gt;elements * newSize;
+            // 64 bit align the new buffer start
+            if (reinterpret_cast&lt;size_t&gt;(d_var)%8) {
+                d_var += 8 - (reinterpret_cast&lt;size_t&gt;(d_var)%8);
+            }
+        }
+        // Perform scatter
+        const unsigned int new_births = scatter.scatter(
+            streamId,
+            stream,
+            CUDAScatter::Type::AGENT_OUTPUT,
+            scatterdata,
+            newSize, parent_list-&gt;getSizeWithDisabled());
+        if (new_births == 0) return;
+        // Initialise any buffers in the fat_agent which aren&#39;t part of the current agent description
+        // TODO: This does redundant inits, it only needs to initialise parent/master agent variables which are not mapped
+        //       Sub variables will already be init everytime the submodel is executed.
+        std::set&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; exclusionSet;
+        for (auto &amp;a : variables)
+            exclusionSet.insert(a.second);
+        parent_list-&gt;initVariables(exclusionSet, newSize, parent_list-&gt;getSize(), scatter, streamId, stream);
+        // Update number of alive agents
+        parent_list-&gt;setAgentCount(parent_list-&gt;getSize() + new_births);
+    }
+}
+bool CUDAAgentStateList::getIsSubStatelist() {
+    return isSubStateList;
+}
+void CUDAAgentStateList::initUnmappedVars(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    assert(parent_list-&gt;getSizeWithDisabled() == parent_list-&gt;getSize());
+    if (parent_list-&gt;getSize()) {
+        assert(isSubStateList);
+        // If unmappedBuffers is not empty, perform broadcast init
+        if (unmappedBuffers.size()) {
+            scatter.broadcastInit(streamId, stream, unmappedBuffers, parent_list-&gt;getSize(), 0);
+        }
+    }
+}
+void CUDAAgentStateList::clear() {
+    parent_list-&gt;setAgentCount(0, true);
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

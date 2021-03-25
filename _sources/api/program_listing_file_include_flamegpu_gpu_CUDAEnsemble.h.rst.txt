@@ -1,0 +1,67 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDAEnsemble.h:
+
+Program Listing for File CUDAEnsemble.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDAEnsemble.h>` (``include/flamegpu/gpu/CUDAEnsemble.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDAENSEMBLE_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDAENSEMBLE_H_
+   
+   #include <string>
+   #include <memory>
+   #include <set>
+   #include <vector>
+   
+   
+   struct ModelData;
+   class ModelDescription;
+   class RunPlanVec;
+   class LoggingConfig;
+   class StepLoggingConfig;
+   struct RunLog;
+   class CUDAEnsemble {
+    public:
+       struct EnsembleConfig {
+           // std::string in = "";
+           std::string out_directory = "";
+           std::string out_format = "json";
+           unsigned int concurrent_runs = 4;
+           std::set<int> devices;
+           bool silent = false;
+           bool timing = false;
+       };
+       explicit CUDAEnsemble(const ModelDescription& model, int argc = 0, const char** argv = nullptr);
+       ~CUDAEnsemble();
+   
+       void simulate(const RunPlanVec &plan);
+   
+       EnsembleConfig &Config() { return config; }
+       const EnsembleConfig &getConfig() const { return config; }
+       /*
+        * Override current config with args passed via CLI
+        * @note Config values not passed via CLI will remain as their current values (and not be reset to default)
+        */
+       void initialise(int argc, const char** argv);
+       void setStepLog(const StepLoggingConfig &stepConfig);
+       void setExitLog(const LoggingConfig &exitConfig);
+       float getEnsembleElapsedTime() const { return ensemble_elapsed_time; }
+       const std::vector<RunLog> &getLogs();
+   
+    private:
+       void printHelp(const char *executable);
+       int checkArgs(int argc, const char** argv);
+       EnsembleConfig config;
+       std::shared_ptr<const StepLoggingConfig> step_log_config;
+       std::shared_ptr<const LoggingConfig> exit_log_config;
+       std::vector<RunLog> run_logs;
+       const std::shared_ptr<const ModelData> model;
+       float ensemble_elapsed_time = 0.f;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDAENSEMBLE_H_

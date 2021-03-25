@@ -1,0 +1,1055 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class AgentFunctionDescription &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class AgentFunctionInput" href="classAgentFunctionInput.html" />
+    <link rel="prev" title="Class AgentDescription" href="classAgentDescription.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class AgentFunctionDescription</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurve.html">Class Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray.html">Class MsgArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class AgentFunctionDescription</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classAgentFunctionDescription.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-agentfunctiondescription">
+<span id="exhale-class-classagentfunctiondescription"></span><h1>Class AgentFunctionDescription<a class="headerlink" href="#class-agentfunctiondescription" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_AgentFunctionDescription.h.html#file-include-flamegpu-model-agentfunctiondescription-h"><span class="std std-ref">File AgentFunctionDescription.h</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv424AgentFunctionDescription">
+<span id="_CPPv324AgentFunctionDescription"></span><span id="_CPPv224AgentFunctionDescription"></span><span id="AgentFunctionDescription"></span><span class="target" id="classAgentFunctionDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentFunctionDescription</span></code><a class="headerlink" href="#_CPPv424AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Within the model hierarchy, this class represents an agent function for a FLAMEGPU model This class is used to configure external elements of agent functions, such as inputs and outputs <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classAgentDescription.html#classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"><span class="std std-ref">AgentDescription::newFunction(const std::string&amp;, AgentFunction)</span></a> For creating instances of this class </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription">
+<span id="_CPPv3NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::eq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1aa75630f27805b218978d2b8c0fef33c9"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> hierarchies are functionally the same <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True when agent functions are the same </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Instead compare pointers if you wish to check that they are the same instance </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription">
+<span id="_CPPv3NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::neq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1a70759501f547c54fe18b2578231da2fa"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> hierarchies are functionally different <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True when agent functions are not the same </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Instead compare pointers if you wish to check that they are not the same instance </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setInitialState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a480158930c2af96aaea5e54080b4bfa1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setInitialState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">initial_state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the initial state which agents must be in to execute this function <p>Accessors </p>
+<dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a43ab61b100d3d4233bd51cc8ee2e17de"><span class="std std-ref">AgentFunctionDescription::setEndState(const std::string &amp;)</span></a></p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">initial_state</span></code>: Name of the desired state </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidStateName.html#classInvalidStateName"><span class="std std-ref"><span class="pre">InvalidStateName</span></span></a></code>: If the named state is not found within the agent </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setEndState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a43ab61b100d3d4233bd51cc8ee2e17de"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setEndState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">end_state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the end state which agents enter after executing this function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a480158930c2af96aaea5e54080b4bfa1"><span class="std std-ref">AgentFunctionDescription::setInitialState(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">end_state</span></code>: Name of the desired state </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidStateName.html#classInvalidStateName"><span class="std std-ref"><span class="pre">InvalidStateName</span></span></a></code>: If the named state is not found within the agent </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageInput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageInput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the message type that can be read during this agent function This is optional, and only one type of message can be read per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageInput(MessageDescription &amp;) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">message_name</span></code>: Name of the message type to be input </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If a message with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If the same message is already bound to the message output of this agent function </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE">
+<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageInput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a110693f72e8441a68a16a6d488cac922"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageInput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the message type that can be read during this agent function This is optional, and only one type of message can be read per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">message</span></code>: Type of message to be input </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classDifferentModel.html#classDifferentModel"><span class="std std-ref"><span class="pre">DifferentModel</span></span></a></code>: If the message is not from this model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If a message with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If the same message is already bound to the message output of this agent function </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageOutput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the message type that can be output during this agent function This is optional, and only one type of message can be output per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageOutput(MessageDescription &amp;) </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1afff669730d0ac8a7c07d7f6790085d70"><span class="std std-ref">AgentFunctionDescription::setMessageOutputOptional(const bool &amp;)</span></a> To configure whether all agents must output messages </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">message_name</span></code>: Name of the message type to be output </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If a message with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If the same message is already bound to the message input of this agent function </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE">
+<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageOutput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a93e5aa0efcaf92ab77716920c6a46781"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the message type that can be output during this agent function This is optional, and only one type of message can be output per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1afff669730d0ac8a7c07d7f6790085d70"><span class="std std-ref">AgentFunctionDescription::setMessageOutputOptional(const bool &amp;)</span></a> To configure whether all agents must output messages </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">message</span></code>: Type of message to be output </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classDifferentModel.html#classDifferentModel"><span class="std std-ref"><span class="pre">DifferentModel</span></span></a></code>: If the message is not from this model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If a message with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidMessageName.html#classInvalidMessageName"><span class="std std-ref"><span class="pre">InvalidMessageName</span></span></a></code>: If the same message is already bound to the message input of this agent function </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb">
+<span id="_CPPv3N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="_CPPv2N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="AgentFunctionDescription::setMessageOutputOptional__bCR"></span><span class="target" id="classAgentFunctionDescription_1afff669730d0ac8a7c07d7f6790085d70"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutputOptional</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">output_is_optional</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures whether message output from this agent function is optional (e.g. whether all agents must output a message each time the function is called) If the function has no message output, this can be ignored <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Defaults to false </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">output_is_optional</span></code>: True if not all agents executing this function will output messages </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__ssCR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a580134fd28169871a239b664eae768b7"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentOutput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agent_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">state</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the agent type that can be output during this agent function This is optional, and only one type of agent can be output per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(AgentDescription &amp;) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agent_name</span></code>: Name of the agent type to be output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: The stage agents should be created in </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentName.html#classInvalidAgentName"><span class="std std-ref"><span class="pre">InvalidAgentName</span></span></a></code>: If an agent with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidStateName.html#classInvalidStateName"><span class="std std-ref"><span class="pre">InvalidStateName</span></span></a></code>: If the named agent does not contain the named state </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__AgentDescriptionR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a588c9857aed9cec6e91549f671caae88"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentOutput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">state</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the agent type that can be output during this agent function This is optional, and only one type of agent can be output per agent function <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(AgentDescription &amp;) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agent</span></code>: Type of agent to be output </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: The stage agents should be created in </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classDifferentModel.html#classDifferentModel"><span class="std std-ref"><span class="pre">DifferentModel</span></span></a></code>: If the agent is not from this model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentName.html#classInvalidAgentName"><span class="std std-ref"><span class="pre">InvalidAgentName</span></span></a></code>: If an agent with the same name is not found within the model’s hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidStateName.html#classInvalidStateName"><span class="std std-ref"><span class="pre">InvalidStateName</span></span></a></code>: If the named agent does not contain the named state </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb">
+<span id="_CPPv3N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="_CPPv2N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="AgentFunctionDescription::setAllowAgentDeath__bCR"></span><span class="target" id="classAgentFunctionDescription_1aa8e985fc79f09fcba2b6de4be510cb88"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAllowAgentDeath</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">has_death</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures whether agents can die during execution of this function (e.g. by returning FLAME_GPU_AGENT_STATUS::DEAD from the agent function) <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af684c97fb27e2ed871f2c62efeeeb7d3"><span class="std std-ref">AgentFunctionDescription::AllowAgentDeath()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"><span class="std std-ref">AgentFunctionDescription::getAllowAgentDeath()</span></a> </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Defaults to false </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">has_death</span></code>: True if some agents executing this agent function may die </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition">
+<span id="_CPPv3I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span id="_CPPv2I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">AgentFunctionCondition</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setFunctionCondition</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="AgentFunctionDescription::setFunctionCondition::AgentFunctionCondition"><span class="pre">AgentFunctionCondition</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the function condition for the agent function This is an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="AgentFunctionDescription::setRTCFunctionCondition__ss"></span><span class="target" id="classAgentFunctionDescription_1a858fd961778fd748171721e124c0ee0b"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setRTCFunctionCondition</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">func_cond_src</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the RTC function condition for the agent function This is string containing a definition of an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state. The string will be compiled at runtime. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription12MessageInputEv">
+<span id="_CPPv3N24AgentFunctionDescription12MessageInputEv"></span><span id="_CPPv2N24AgentFunctionDescription12MessageInputEv"></span><span id="AgentFunctionDescription::MessageInput"></span><span class="target" id="classAgentFunctionDescription_1a01c3a90cc70eb65a74a168445c206cf1"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription12MessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A mutable reference to the message input of this agent function </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a54e2403f53075e6a21f6cbcba2f352c3"><span class="std std-ref">AgentFunctionDescription::getMessageInput()</span></a> for the immutable version </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the message input has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription13MessageOutputEv">
+<span id="_CPPv3N24AgentFunctionDescription13MessageOutputEv"></span><span id="_CPPv2N24AgentFunctionDescription13MessageOutputEv"></span><span id="AgentFunctionDescription::MessageOutput"></span><span class="target" id="classAgentFunctionDescription_1a18e5a44be29bc0b6fa4cf87943f20e01"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription13MessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An mutable reference to the message output of this agent function </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a9699a047a9fe24f48fe994237cfeb86b"><span class="std std-ref">AgentFunctionDescription::getMessageOutput()</span></a> for the immutable version </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the message output has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv">
+<span id="_CPPv3N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="_CPPv2N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="AgentFunctionDescription::MessageOutputOptional"></span><span class="target" id="classAgentFunctionDescription_1acdb487efdbeb771f7c0d2b0c787b1f0a"></span><span class="pre">bool</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageOutputOptional</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A mutable reference to the message output optional configuration flag </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::getAgentOutputOptional() </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutputOptional(const bool &amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv">
+<span id="_CPPv3N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="_CPPv2N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="AgentFunctionDescription::AllowAgentDeath"></span><span class="target" id="classAgentFunctionDescription_1af684c97fb27e2ed871f2c62efeeeb7d3"></span><span class="pre">bool</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">AllowAgentDeath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A mutable reference to the allow agent death configuration flag </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"><span class="std std-ref">AgentFunctionDescription::getAllowAgentDeath()</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1aa8e985fc79f09fcba2b6de4be510cb88"><span class="std std-ref">AgentFunctionDescription::setAllowAgentDeath(const bool &amp;)</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription7getNameEv">
+<span id="_CPPv3NK24AgentFunctionDescription7getNameEv"></span><span id="_CPPv2NK24AgentFunctionDescription7getNameEv"></span><span id="AgentFunctionDescription::getNameC"></span><span class="target" id="classAgentFunctionDescription_1ab3ac63a88b229f784b02afed06a85a4f"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><p>Const Accessors </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The function’s name</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription15getInitialStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getInitialStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getInitialStateEv"></span><span id="AgentFunctionDescription::getInitialStateC"></span><span class="target" id="classAgentFunctionDescription_1ab0b5b858d7dab0102d4c3b60e36af12c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getInitialState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The state which agents must be in to execute this agent function </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription11getEndStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription11getEndStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription11getEndStateEv"></span><span id="AgentFunctionDescription::getEndStateC"></span><span class="target" id="classAgentFunctionDescription_1a1df2757e611b6642465cd68e358cb044"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getEndState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription11getEndStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The state which agents executing this function enter </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription15getMessageInputEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getMessageInputEv"></span><span id="AgentFunctionDescription::getMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1a54e2403f53075e6a21f6cbcba2f352c3"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getMessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An immutable reference to the message input of this agent function </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a01c3a90cc70eb65a74a168445c206cf1"><span class="std std-ref">AgentFunctionDescription::MessageInput()</span></a> for the mutable version </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the message input has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription16getMessageOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="AgentFunctionDescription::getMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a9699a047a9fe24f48fe994237cfeb86b"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getMessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16getMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An immutable reference to the message output of this agent function </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a18e5a44be29bc0b6fa4cf87943f20e01"><span class="std std-ref">AgentFunctionDescription::MessageOutput()</span></a> for the mutable version </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the message output has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv">
+<span id="_CPPv3NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="_CPPv2NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="AgentFunctionDescription::getMessageOutputOptionalC"></span><span class="target" id="classAgentFunctionDescription_1a8df897d6957e5f342c5a2803955afbda"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getMessageOutputOptional</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if message output from this agent function is optional </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription14getAgentOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="AgentFunctionDescription::getAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a325f5760d7c9d769029012c0c92d62eb"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgentOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An immutable reference to the agent output of this agent function </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the agent output has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="AgentFunctionDescription::getAgentOutputStateC"></span><span class="target" id="classAgentFunctionDescription_1a58f5c8e8db466847a88e7613e448e534"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getAgentOutputState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The state output agents will be output in </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: If the agent output has not been set </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv">
+<span id="_CPPv3NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="_CPPv2NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="AgentFunctionDescription::getAllowAgentDeathC"></span><span class="target" id="classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getAllowAgentDeath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if this agent function can kill agents </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription15hasMessageInputEv">
+<span id="_CPPv3NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="AgentFunctionDescription::hasMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1ac727bed80b21aff4587adaedf0124b3a"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasMessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15hasMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if <a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">setMessageInput()</span></a> has been called successfully </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageInput(MessageDescription &amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="AgentFunctionDescription::hasMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a6e8d353559faf5ab2641e7bb7d2467c2"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasMessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if <a class="reference internal" href="#classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"><span class="std std-ref">setMessageOutput()</span></a> has been called successfully </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"><span class="std std-ref">AgentFunctionDescription::setMessageOutput(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageOutput(MessageDescription &amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="AgentFunctionDescription::hasAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a54b7eb881ec7128fe888b620347672a3"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasAgentOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if <a class="reference internal" href="#classAgentFunctionDescription_1a580134fd28169871a239b664eae768b7"><span class="std std-ref">setAgentOutput()</span></a> has been called successfully </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(const std::string &amp;) </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(AgentDescription &amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv">
+<span id="_CPPv3NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="_CPPv2NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="AgentFunctionDescription::hasFunctionConditionC"></span><span class="target" id="classAgentFunctionDescription_1aaa9ccfa1438c5107e8044d01db3276ae"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasFunctionCondition</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if <a class="reference internal" href="#classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"><span class="std std-ref">setFunctionCondition()</span></a> has been called successfully </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"><span class="std std-ref">AgentFunctionDescription::setFunctionCondition(AgentFunctionCondition)</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv">
+<span id="_CPPv3NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="AgentFunctionDescription::getFunctionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a4923c52cf0fc5949911dd4c0f5cd6ced"></span><span class="pre">AgentFunctionWrapper</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getFunctionPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The cuda kernel entry point for executing the agent function </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription15getConditionPtrEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="AgentFunctionDescription::getConditionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a530fffbe21b575e9c401f846bd7aaffd"></span><span class="pre">AgentFunctionConditionWrapper</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getConditionPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getConditionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The cuda kernel entry point for executing the agent function condition </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK24AgentFunctionDescription5isRTCEv">
+<span id="_CPPv3NK24AgentFunctionDescription5isRTCEv"></span><span id="_CPPv2NK24AgentFunctionDescription5isRTCEv"></span><span id="AgentFunctionDescription::isRTCC"></span><span class="target" id="classAgentFunctionDescription_1ae6d110cb2a52533815a28baf78bbf7bf"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">isRTC</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription5isRTCEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if the function is a runtime time specified function </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classAgentFunctionInput.html" class="btn btn-neutral float-right" title="Class AgentFunctionInput" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classAgentDescription.html" class="btn btn-neutral float-left" title="Class AgentDescription" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

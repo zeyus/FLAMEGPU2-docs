@@ -1,0 +1,48 @@
+
+.. _program_listing_file_include_flamegpu_model_SubModelDescription.h:
+
+Program Listing for File SubModelDescription.h
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_SubModelDescription.h>` (``include/flamegpu/model/SubModelDescription.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_SUBMODELDESCRIPTION_H_
+   #define INCLUDE_FLAMEGPU_MODEL_SUBMODELDESCRIPTION_H_
+   #include <string>
+   #include <memory>
+   
+   #include "LayerDescription.h"
+   
+   class SubAgentDescription;
+   class SubEnvironmentDescription;
+   struct ModelData;
+   struct SubModelData;
+   
+   class SubModelDescription {
+       friend struct SubModelData;
+       friend void LayerDescription::addSubModel(const SubModelDescription &);
+       SubModelDescription(const std::shared_ptr<const ModelData> &_model, SubModelData *const _submodel);
+       SubModelDescription(const SubModelDescription &other_agent) = delete;
+       SubModelDescription(SubModelDescription &&other_agent) noexcept = delete;
+       SubModelDescription& operator=(const SubModelDescription &other_agent) = delete;
+       SubModelDescription& operator=(SubModelDescription &&other_agent) noexcept = delete;
+   
+    public:
+       SubAgentDescription &bindAgent(const std::string &sub_agent_name, const std::string &master_agent_name, bool auto_map_vars = false, bool auto_map_states = true);
+       SubAgentDescription &SubAgent(const std::string &sub_agent_name);
+       const SubAgentDescription &getSubAgent(const std::string &sub_agent_name) const;
+       SubEnvironmentDescription &SubEnvironment(bool auto_map_props = false);
+       const SubEnvironmentDescription &getSubEnvironment(bool auto_map_props = false) const;
+       void setMaxSteps(const unsigned int &max_steps);
+       unsigned int getMaxSteps() const;
+   
+    private:
+       const std::weak_ptr<const ModelData> model;
+       SubModelData *const data;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_SUBMODELDESCRIPTION_H_

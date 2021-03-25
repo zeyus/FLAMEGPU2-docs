@@ -1,0 +1,41 @@
+
+.. _program_listing_file_include_flamegpu_model_SubEnvironmentDescription.h:
+
+Program Listing for File SubEnvironmentDescription.h
+====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_SubEnvironmentDescription.h>` (``include/flamegpu/model/SubEnvironmentDescription.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDESCRIPTION_H_
+   #define INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDESCRIPTION_H_
+   
+   #include <memory>
+   #include <string>
+   
+   struct ModelData;
+   struct SubModelData;
+   struct SubEnvironmentData;
+   
+   class SubEnvironmentDescription {
+       friend struct SubEnvironmentData;
+       SubEnvironmentDescription(const std::shared_ptr<const ModelData> &model, SubEnvironmentData *const data);
+       SubEnvironmentDescription(const SubEnvironmentDescription &other_agent) = delete;
+       SubEnvironmentDescription(SubEnvironmentDescription &&other_agent) noexcept = delete;
+       SubEnvironmentDescription& operator=(const SubEnvironmentDescription &other_agent) = delete;
+       SubEnvironmentDescription& operator=(SubEnvironmentDescription &&other_agent) noexcept = delete;
+   
+    public:
+       void autoMapProperties();
+       void mapProperty(const std::string &sub_property_name, const std::string &master_property_name);
+       std::string getPropertyMapping(const std::string &sub_property_name);
+   
+    private:
+       const std::weak_ptr<const ModelData> model;
+       SubEnvironmentData *const data;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDESCRIPTION_H_

@@ -1,0 +1,1189 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class MsgArray &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class MsgArray2D" href="classMsgArray2D.html" />
+    <link rel="prev" title="Class ModelDescription" href="classModelDescription.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurve.html">Class Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class MsgArray</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class MsgArray</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classMsgArray.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-msgarray">
+<span id="exhale-class-classmsgarray"></span><h1>Class MsgArray<a class="headerlink" href="#class-msgarray" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Array.h.html#file-include-flamegpu-runtime-messaging-array-h"><span class="std std-ref">File Array.h</span></a></p></li>
+</ul>
+<div class="section" id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html#exhale-class-classmsgarray-1-1cudamodelhandler"><span class="std std-ref">Class MsgArray::CUDAModelHandler</span></a></p></li>
+<li><p><a class="reference internal" href="structMsgArray_1_1Data.html#exhale-struct-structmsgarray-1-1data"><span class="std std-ref">Struct MsgArray::Data</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1Description.html#exhale-class-classmsgarray-1-1description"><span class="std std-ref">Class MsgArray::Description</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1In.html#exhale-class-classmsgarray-1-1in"><span class="std std-ref">Class MsgArray::In</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html#exhale-class-classmsgarray-1-1in-1-1filter"><span class="std std-ref">Class In::Filter</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html#exhale-class-classmsgarray-1-1in-1-1filter-1-1message"><span class="std std-ref">Class Filter::Message</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html#exhale-class-classmsgarray-1-1in-1-1filter-1-1iterator"><span class="std std-ref">Class Filter::iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html#exhale-class-classmsgarray-1-1in-1-1message"><span class="std std-ref">Class In::Message</span></a></p></li>
+<li><p><a class="reference internal" href="structMsgArray_1_1MetaData.html#exhale-struct-structmsgarray-1-1metadata"><span class="std std-ref">Struct MsgArray::MetaData</span></a></p></li>
+<li><p><a class="reference internal" href="classMsgArray_1_1Out.html#exhale-class-classmsgarray-1-1out"><span class="std std-ref">Class MsgArray::Out</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv48MsgArray">
+<span id="_CPPv38MsgArray"></span><span id="_CPPv28MsgArray"></span><span id="MsgArray"></span><span class="target" id="classMsgArray"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">MsgArray</span></code><a class="headerlink" href="#_CPPv48MsgArray" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Array messaging functionality</p>
+<p>Like an array, each message is assigned an index within a known range Only one message may exist at each index Agent functions can access individual messages by requesting them with their index</p>
+<p>Algorithm: Every agent outputs a message to the array based on their thread index They also set the __index variable with the intended output bin When buildIndex() is called, messages are sorted and errors (multiple messages per bin) are detected </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp type">
+<dt id="_CPPv4N8MsgArray9size_typeE">
+<span id="_CPPv3N8MsgArray9size_typeE"></span><span id="_CPPv2N8MsgArray9size_typeE"></span><span id="MsgArray::size_type"></span><span class="target" id="classMsgArray_1a63b5065eb3168e3bf3b6ca867023ca93"></span><em class="property"><span class="pre">typedef</span> </em><a class="reference internal" href="classMsgNone.html#_CPPv47MsgNone" title="MsgNone"><span class="pre">MsgNone</span></a><span class="pre">::</span><a class="reference internal" href="classMsgNone.html#_CPPv4N7MsgNone9size_typeE" title="MsgNone::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N8MsgArray9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Common size type </p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandlerE">
+<span id="_CPPv3N8MsgArray16CUDAModelHandlerE"></span><span id="_CPPv2N8MsgArray16CUDAModelHandlerE"></span><span id="MsgArray::CUDAModelHandler"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">CUDAModelHandler</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgSpecialisationHandler.html#_CPPv424MsgSpecialisationHandler" title="MsgSpecialisationHandler"><span class="pre">MsgSpecialisationHandler</span></a><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandlerE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Blank handler, brute force requires no index or special allocations Only stores the length on device </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">
+<span id="_CPPv3N8MsgArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage"></span><span id="_CPPv2N8MsgArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage"></span><span id="MsgArray::CUDAModelHandler::CUDAModelHandler__CUDAMessageR"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a851f0bd921bf2f6f02e5eef7535d48ca"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">CUDAModelHandler</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAMessage.html#_CPPv411CUDAMessage" title="CUDAMessage"><span class="pre">CUDAMessage</span></a> <span class="pre">&amp;</span><em><span class="pre">a</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor Allocates memory on device for message list length <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>: Parent <a class="reference internal" href="classCUDAMessage.html#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a>, used to access message settings, data ptrs etc </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandlerD0Ev">
+<span id="_CPPv3N8MsgArray16CUDAModelHandlerD0Ev"></span><span id="_CPPv2N8MsgArray16CUDAModelHandlerD0Ev"></span><span id="MsgArray::CUDAModelHandler::~CUDAModelHandler"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a23686fa69f5398d581bfe83c399a0697"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">~CUDAModelHandler</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandlerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Destructor. Should free any local host memory (device memory cannot be freed in destructors) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandler4initER11CUDAScatterRKj">
+<span id="_CPPv3N8MsgArray16CUDAModelHandler4initER11CUDAScatterRKj"></span><span id="_CPPv2N8MsgArray16CUDAModelHandler4initER11CUDAScatterRKj"></span><span id="MsgArray::CUDAModelHandler::init__CUDAScatterR.unsigned-iCR"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a85e3a73f298f84162cdac714f7d21158"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandler4initER11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allocates memory for the constructed index. Allocates message buffers, and memsets data to 0 <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: Index of stream specific structures used </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N8MsgArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N8MsgArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="MsgArray::CUDAModelHandler::buildIndex__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a728492c61ddc496443545d04f111d406"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">buildIndex</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sort messages according to index Detect and report any duplicate indicies/gaps <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: Index of stream specific structures used </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandler25allocateMetaDataDevicePtrEv">
+<span id="_CPPv3N8MsgArray16CUDAModelHandler25allocateMetaDataDevicePtrEv"></span><span id="_CPPv2N8MsgArray16CUDAModelHandler25allocateMetaDataDevicePtrEv"></span><span id="MsgArray::CUDAModelHandler::allocateMetaDataDevicePtr"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a760d38eac8a3c6766ac806eb884f80de"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">allocateMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandler25allocateMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allocates memory for the constructed index. The memory allocation is checked by build index. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray16CUDAModelHandler21freeMetaDataDevicePtrEv">
+<span id="_CPPv3N8MsgArray16CUDAModelHandler21freeMetaDataDevicePtrEv"></span><span id="_CPPv2N8MsgArray16CUDAModelHandler21freeMetaDataDevicePtrEv"></span><span id="MsgArray::CUDAModelHandler::freeMetaDataDevicePtr"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1a8135e2f35dba7b47646b75cb3f317c8d"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">freeMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N8MsgArray16CUDAModelHandler21freeMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Releases memory for the constructed index. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray16CUDAModelHandler20getMetaDataDevicePtrEv">
+<span id="_CPPv3NK8MsgArray16CUDAModelHandler20getMetaDataDevicePtrEv"></span><span id="_CPPv2NK8MsgArray16CUDAModelHandler20getMetaDataDevicePtrEv"></span><span id="MsgArray::CUDAModelHandler::getMetaDataDevicePtrC"></span><span class="target" id="classMsgArray_1_1CUDAModelHandler_1af3e98eed1583c913cf01476076292f13"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray16CUDAModelHandler20getMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a pointer to the metadata struct, this is required for reading the message data </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N8MsgArray4DataE">
+<span id="_CPPv3N8MsgArray4DataE"></span><span id="_CPPv2N8MsgArray4DataE"></span><span id="MsgArray::Data"></span><span class="target" id="structMsgArray_1_1Data"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Data</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="pre">Data</span></a><a class="headerlink" href="#_CPPv4N8MsgArray4DataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Internal data representation of Array messages within model description hierarchy <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classMsgArray_1_1Description.html#classMsgArray_1_1Description"><span class="std std-ref">Description</span></a> </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray4DataD0Ev">
+<span id="_CPPv3N8MsgArray4DataD0Ev"></span><span id="_CPPv2N8MsgArray4DataD0Ev"></span><span id="MsgArray::Data::~Data"></span><span class="target" id="structMsgArray_1_1Data_1a51fa3424cbfdc178140d4c952da58df9"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~Data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">default</span><a class="headerlink" href="#_CPPv4N8MsgArray4DataD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray4Data23getSpecialisationHanderER11CUDAMessage">
+<span id="_CPPv3NK8MsgArray4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="_CPPv2NK8MsgArray4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="MsgArray::Data::getSpecialisationHander__CUDAMessageRC"></span><span class="target" id="structMsgArray_1_1Data_1ad893ea31b5b95ee4959d2a9869b965d3"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classMsgSpecialisationHandler.html#_CPPv424MsgSpecialisationHandler" title="MsgSpecialisationHandler"><span class="pre">MsgSpecialisationHandler</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getSpecialisationHander</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAMessage.html#_CPPv411CUDAMessage" title="CUDAMessage"><span class="pre">CUDAMessage</span></a> <span class="pre">&amp;</span><em><span class="pre">owner</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray4Data23getSpecialisationHanderER11CUDAMessage" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray4Data7getTypeEv">
+<span id="_CPPv3NK8MsgArray4Data7getTypeEv"></span><span id="_CPPv2NK8MsgArray4Data7getTypeEv"></span><span id="MsgArray::Data::getTypeC"></span><span class="target" id="structMsgArray_1_1Data_1ab94b1ccb1de1dbd143821e779ec8a5ef"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">getType</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray4Data7getTypeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Used internally to validate that the corresponding Msg type is attached via the agent function shim. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The std::type_index of the Msg type which must be used. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N8MsgArray4Data6lengthE">
+<span id="_CPPv3N8MsgArray4Data6lengthE"></span><span id="_CPPv2N8MsgArray4Data6lengthE"></span><span id="MsgArray::Data::length__size_type"></span><span class="target" id="structMsgArray_1_1Data_1aa93d875ad7b8e6bbd548500e6e456829"></span><a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">length</span></code><a class="headerlink" href="#_CPPv4N8MsgArray4Data6lengthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Protected Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">
+<span id="_CPPv3N8MsgArray4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N8MsgArray4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="MsgArray::Data::clone__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="structMsgArray_1_1Data_1a6d87706695281d41b938fa4e9d1bcde7"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray4DataE" title="MsgArray::Data"><span class="pre">Data</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">newParent</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N8MsgArray4Data5cloneERKNSt10shared_ptrIK9ModelDataEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">
+<span id="_CPPv3N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="_CPPv2N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="MsgArray::Data::Data__std::shared_ptr:ModelDataC:CR.DataCR"></span><span class="target" id="structMsgArray_1_1Data_1a7bacd70c150f33f184e4c73feb7d2a88"></span><code class="sig-name descname"><span class="pre">Data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span><span class="pre">&amp;</span>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data" title="MsgArray::Data::Data"><span class="pre">Data</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor This is unsafe, should only be used internally, use <a class="reference internal" href="structMsgArray_1_1Data.html#structMsgArray_1_1Data_1a6d87706695281d41b938fa4e9d1bcde7"><span class="std std-ref">clone()</span></a> instead </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">
+<span id="_CPPv3N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="_CPPv2N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="MsgArray::Data::Data__std::shared_ptr:ModelDataC:CR.ssCR"></span><span class="target" id="structMsgArray_1_1Data_1a6d5f20cd79c78690a81b00c3506bfc0d"></span><code class="sig-name descname"><span class="pre">Data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span><span class="pre">&amp;</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Normal constructor, only to be called by <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Friends</p>
+<dl class="friendclass">
+<dt>
+<em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">ModelDescription</span></dt>
+</dl>
+
+<dl class="friendclass">
+<dt>
+<em class="property"><span class="pre">friend</span> <span class="pre">struct</span></em> <span class="pre">ModelData</span></dt>
+</dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray11DescriptionE">
+<span id="_CPPv3N8MsgArray11DescriptionE"></span><span id="_CPPv2N8MsgArray11DescriptionE"></span><span id="MsgArray::Description"></span><span class="target" id="classMsgArray_1_1Description"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Description</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a><a class="headerlink" href="#_CPPv4N8MsgArray11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>User accessible interface to Array messages within mode description hierarchy <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="structMsgArray_1_1Data.html#structMsgArray_1_1Data"><span class="std std-ref">Data</span></a> </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11Description9setLengthERK9size_type">
+<span id="_CPPv3N8MsgArray11Description9setLengthERK9size_type"></span><span id="_CPPv2N8MsgArray11Description9setLengthERK9size_type"></span><span id="MsgArray::Description::setLength__size_typeCR"></span><span class="target" id="classMsgArray_1_1Description_1af9e8b9bce3d3ebcc8a1eee5641eb8ca9"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setLength</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">len</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray11Description9setLengthERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray11Description9getLengthEv">
+<span id="_CPPv3NK8MsgArray11Description9getLengthEv"></span><span id="_CPPv2NK8MsgArray11Description9getLengthEv"></span><span id="MsgArray::Description::getLengthC"></span><span class="target" id="classMsgArray_1_1Description_1a063e28bf50da07cf03d622110cf3e904"></span><a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getLength</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray11Description9getLengthEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Protected Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data">
+<span id="_CPPv3N8MsgArray11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="_CPPv2N8MsgArray11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="MsgArray::Description::Description__std::shared_ptr:ModelDataC:CR.DataPC"></span><span class="target" id="classMsgArray_1_1Description_1a3c61e8e2ce280983e58448af76641944"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">_model</span></em>, <a class="reference internal" href="#_CPPv4N8MsgArray4DataE" title="MsgArray::Data"><span class="pre">Data</span></a> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <em><span class="pre">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructors </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11Description11DescriptionERK11Description">
+<span id="_CPPv3N8MsgArray11Description11DescriptionERK11Description"></span><span id="_CPPv2N8MsgArray11Description11DescriptionERK11Description"></span><span id="MsgArray::Description::Description__DescriptionCR"></span><span class="target" id="classMsgArray_1_1Description_1ac06244b9de9107f4f86a18ef10b1df6b"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray11Description11DescriptionERK11Description" title="MsgArray::Description::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N8MsgArray11Description11DescriptionERK11Description" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default copy constructor, not implemented </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11Description11DescriptionERR11Description">
+<span id="_CPPv3N8MsgArray11Description11DescriptionERR11Description"></span><span id="_CPPv2N8MsgArray11Description11DescriptionERR11Description"></span><span id="MsgArray::Description::Description__DescriptionRR"></span><span class="target" id="classMsgArray_1_1Description_1ad23df21808129d78108504b17da2997b"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N8MsgArray11Description11DescriptionERR11Description" title="MsgArray::Description::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N8MsgArray11Description11DescriptionERR11Description" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default move constructor, not implemented </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11DescriptionaSERK11Description">
+<span id="_CPPv3N8MsgArray11DescriptionaSERK11Description"></span><span id="_CPPv2N8MsgArray11DescriptionaSERK11Description"></span><span id="MsgArray::Description::assign-operator__DescriptionCR"></span><span class="target" id="classMsgArray_1_1Description_1a15c647dd95715ad369855a46bbf03a2c"></span><a class="reference internal" href="#_CPPv4N8MsgArray11DescriptionE" title="MsgArray::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray11DescriptionE" title="MsgArray::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N8MsgArray11DescriptionaSERK11Description" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default copy assignment, not implemented </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray11DescriptionaSERR11Description">
+<span id="_CPPv3N8MsgArray11DescriptionaSERR11Description"></span><span id="_CPPv2N8MsgArray11DescriptionaSERR11Description"></span><span id="MsgArray::Description::assign-operator__DescriptionRR"></span><span class="target" id="classMsgArray_1_1Description_1a5b92a673d8fe8a02117f688d388c5c9a"></span><a class="reference internal" href="#_CPPv4N8MsgArray11DescriptionE" title="MsgArray::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N8MsgArray11DescriptionE" title="MsgArray::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N8MsgArray11DescriptionaSERR11Description" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default move assignment, not implemented </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Friends</p>
+<dl class="friendclass">
+<dt>
+<em class="property"><span class="pre">friend</span> <span class="pre">struct</span></em> <span class="pre">MsgArray::Data</span></dt>
+</dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray2InE">
+<span id="_CPPv3N8MsgArray2InE"></span><span id="_CPPv2N8MsgArray2InE"></span><span id="MsgArray::In"></span><span class="target" id="classMsgArray_1_1In"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">In</span></code><a class="headerlink" href="#_CPPv4N8MsgArray2InE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv">
+<span id="_CPPv3N8MsgArray2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="_CPPv2N8MsgArray2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="MsgArray::In::In__Curve::NamespaceHash.Curve::NamespaceHash.voidCP"></span><span class="target" id="classMsgArray_1_1In_1a3a17c020223041b93ac11dc2e58a671f"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">In</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">agentfn_hash</span></em>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">msg_hash</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">metadata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructer Initialises member variables <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agentfn_hash</span></code>: Added to msg_hash to produce combined_hash </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msg_hash</span></code>: Added to agentfn_hash to produce combined_hash </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">metadata</span></code>: Reinterpreted as type <a class="reference internal" href="structMsgArray_1_1MetaData.html#structMsgArray_1_1MetaData"><span class="std std-ref">MsgArray::MetaData</span></a> to extract length </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2InclERK9size_typeRK9size_type">
+<span id="_CPPv3NK8MsgArray2InclERK9size_typeRK9size_type"></span><span id="_CPPv2NK8MsgArray2InclERK9size_typeRK9size_type"></span><span id="MsgArray::In::call-operator__size_typeCR.size_typeCRC"></span><span class="target" id="classMsgArray_1_1In_1a5986eb0da21560989e0d85dc945af0c7"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="pre">Filter</span></a> <code class="sig-name descname"><span class="pre">operator()</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">x</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">radius</span></em> <span class="pre">=</span> <span class="pre">1</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2InclERK9size_typeRK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a <a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html#classMsgArray_1_1In_1_1Filter"><span class="std std-ref">Filter</span></a> object which provides access to message iterator for iterating a subset of messages including those within the radius of the search origin this excludes the message at the search origin</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>radius 1 is 2 cells </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>radius 2 is 4 cells </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>If radius is &gt;= half of the array dimensions, cells will be doubly read </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>radius of 0 is unsupported </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: Search origin x coord </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">radius</span></code>: Search radius </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In4sizeEv">
+<span id="_CPPv3NK8MsgArray2In4sizeEv"></span><span id="_CPPv2NK8MsgArray2In4sizeEv"></span><span id="MsgArray::In::size__voidC"></span><span class="target" id="classMsgArray_1_1In_1a2dd58f9f0148603ccdb87e4e191b9c2a"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the length of the message list. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In2atERK9size_type">
+<span id="_CPPv3NK8MsgArray2In2atERK9size_type"></span><span id="_CPPv2NK8MsgArray2In2atERK9size_type"></span><span id="MsgArray::In::at__size_typeCRC"></span><span class="target" id="classMsgArray_1_1In_1a1e08059c770f1f98aa53fd8e037527a0"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In7MessageE" title="MsgArray::In::Message"><span class="pre">Message</span></a> <code class="sig-name descname"><span class="pre">at</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In2atERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray2In6FilterE">
+<span id="_CPPv3N8MsgArray2In6FilterE"></span><span id="_CPPv2N8MsgArray2In6FilterE"></span><span id="MsgArray::In::Filter"></span><span class="target" id="classMsgArray_1_1In_1_1Filter"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Filter</span></code><a class="headerlink" href="#_CPPv4N8MsgArray2In6FilterE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class is created when a search origin is provided to MsgArray::In::operator()(size_type, size_type, size_type = 1) It provides iterator access to a subset of the full message list, according to the provided search origin and radius</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>MsgArray::In::operator()(size_type, size_type) </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter6FilterERK9size_typeRKN5Curve13NamespaceHashERK9size_typeRK9size_type">
+<span id="_CPPv3N8MsgArray2In6Filter6FilterERK9size_typeRKN5Curve13NamespaceHashERK9size_typeRK9size_type"></span><span id="_CPPv2N8MsgArray2In6Filter6FilterERK9size_typeRKN5Curve13NamespaceHashERK9size_typeRK9size_type"></span><span id="MsgArray::In::Filter::Filter__size_typeCR.Curve::NamespaceHashCR.size_typeCR.size_typeCR"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1a382ee763a32e24b49c51fdf39b8279f2"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Filter</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_length</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <span class="pre">&amp;</span><em><span class="pre">_combined_hash</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">x</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_radius</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter6FilterERK9size_typeRKN5Curve13NamespaceHashERK9size_typeRK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor, takes the search parameters requried <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_length</span></code>: Pointer to message list length </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_combined_hash</span></code>: agentfn+message hash for accessing message data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code>: Search origin x coord </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_radius</span></code>: Search radius </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter5beginEv">
+<span id="_CPPv3NK8MsgArray2In6Filter5beginEv"></span><span id="_CPPv2NK8MsgArray2In6Filter5beginEv"></span><span id="MsgArray::In::Filter::begin__voidC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1ac7707a259a8a96bf3fa9a8fe47473c38"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">begin</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns an iterator to the start of the message list subset about the search origin </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter3endEv">
+<span id="_CPPv3NK8MsgArray2In6Filter3endEv"></span><span id="_CPPv2NK8MsgArray2In6Filter3endEv"></span><span id="MsgArray::In::Filter::end__voidC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1a5eeee65b45ca2cf6da6bf34faa649c47"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">end</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns an iterator to the position beyond the end of the message list subset <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This iterator is the same for all message list subsets </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray2In6Filter8iteratorE">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorE"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorE"></span><span id="MsgArray::In::Filter::iterator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">iterator</span></code><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stock iterator for iterating <a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html#classMsgSpatial3D_1_1In_1_1Filter_1_1Message"><span class="std std-ref">MsgSpatial3D::In::Filter::Message</span></a> objects </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi">
+<span id="_CPPv3N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="_CPPv2N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="MsgArray::In::Filter::iterator::iterator__FilterCR.iCR"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ada4920a7779a8da59cb718fca7f48b6e"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor This iterator is constructed by <a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html#classMsgArray_1_1In_1_1Filter_1ac7707a259a8a96bf3fa9a8fe47473c38"><span class="std std-ref">MsgArray::In::Filter::begin()</span></a>(size_type, size_type) <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>MsgArray::In::Operator()(<a class="reference internal" href="#classMsgArray_1a63b5065eb3168e3bf3b6ca867023ca93"><span class="std std-ref">size_type</span></a>, <a class="reference internal" href="#classMsgArray_1a63b5065eb3168e3bf3b6ca867023ca93"><span class="std std-ref">size_type</span></a>) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter8iteratorppEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEv"></span><span id="MsgArray::In::Filter::iterator::inc-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a45b1a8c72fc164f41591944af104338d"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Moves to the next message (Prefix increment operator) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter8iteratorppEi">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEi"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEi"></span><span id="MsgArray::In::Filter::iterator::inc-operator__i"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a4f8bb66cfe0fb744703165c62b8f6dd9"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Moves to the next message (Postfix increment operator, returns value prior to increment) </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter8iteratoreqERK8iterator">
+<span id="_CPPv3NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="MsgArray::In::Filter::iterator::eq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a93087498a5be9dcf1effd53d13dcca5c"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter8iteratoreqERK8iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator Compares message </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter8iteratorneERK8iterator">
+<span id="_CPPv3NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="MsgArray::In::Filter::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ab32adec4f33bd926415b1047157a8cf5"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter8iteratorneERK8iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inequality operator Compares message </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter8iteratormlEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratormlEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratormlEv"></span><span id="MsgArray::In::Filter::iterator::mul-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a3681e041746a1ab27ea1d51ed130f9a5"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter8iteratorptEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorptEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorptEv"></span><span id="MsgArray::In::Filter::iterator::pointer-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a14fb954e6132a4e0eca34f2a3f249905"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">operator-&gt;</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter8iteratorptEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray2In6Filter7MessageE">
+<span id="_CPPv3N8MsgArray2In6Filter7MessageE"></span><span id="_CPPv2N8MsgArray2In6Filter7MessageE"></span><span id="MsgArray::In::Filter::Message"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Message</span></code><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Provides access to a specific message Returned by the iterator <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html#classMsgArray_1_1In_1_1Filter_1_1iterator"><span class="std std-ref">In::Filter::iterator</span></a> </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter7Message7MessageERK6FilterRKi">
+<span id="_CPPv3N8MsgArray2In6Filter7Message7MessageERK6FilterRKi"></span><span id="_CPPv2N8MsgArray2In6Filter7Message7MessageERK6FilterRKi"></span><span id="MsgArray::In::Filter::Message::Message__FilterCR.iCR"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1af09842060a780cabbc224b2392d4d88b"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter7Message7MessageERK6FilterRKi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs a message and directly initialises all of it’s member variables <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>See member variable documentation for their purposes </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter7MessageeqERK7Message">
+<span id="_CPPv3NK8MsgArray2In6Filter7MessageeqERK7Message"></span><span id="_CPPv2NK8MsgArray2In6Filter7MessageeqERK7Message"></span><span id="MsgArray::In::Filter::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1a5b1bc688c21dd3f17f4364bf5ea32e0a"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter7MessageeqERK7Message" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator Compares all internal member vars for equality <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Does not compare _parent </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter7MessageneERK7Message">
+<span id="_CPPv3NK8MsgArray2In6Filter7MessageneERK7Message"></span><span id="_CPPv2NK8MsgArray2In6Filter7MessageneERK7Message"></span><span id="MsgArray::In::Filter::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1a4a52b8d6fcfac0c9769f42adf442ba95"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter7MessageneERK7Message" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inequality operator Returns inverse of equality operator <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>operator==(const Message&amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In6Filter7MessageppEv">
+<span id="_CPPv3N8MsgArray2In6Filter7MessageppEv"></span><span id="_CPPv2N8MsgArray2In6Filter7MessageppEv"></span><span id="MsgArray::In::Filter::Message::inc-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1af9e01ec5fc7468538f871e5d3dda5798"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In6Filter7MessageppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Updates the message to return variables from the next cell in the Moore neighbourhood <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns itself </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In6Filter7Message4getXEv">
+<span id="_CPPv3NK8MsgArray2In6Filter7Message4getXEv"></span><span id="_CPPv2NK8MsgArray2In6Filter7Message4getXEv"></span><span id="MsgArray::In::Filter::Message::getXC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1aca5e5e831810049e9110c2f563347d7f"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getX</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In6Filter7Message4getXEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns x array index of message </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jENK8MsgArray2In6Filter7Message11getVariableE1TRA1N_Kc">
+<span id="_CPPv3I0_jENK8MsgArray2In6Filter7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jENK8MsgArray2In6Filter7Message11getVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1Message_1a243c07b707b2de29b2e33c01e986d208"></span><span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0_jENK8MsgArray2In6Filter7Message11getVariableE1TRA1N_Kc" title="MsgArray::In::Filter::Message::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_jENK8MsgArray2In6Filter7Message11getVariableE1TRA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the value for the current message attached to the named variable <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The specified variable, else 0x0 if an error occurs </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_name</span></code>: Name of the variable </p></li>
+</ul>
+</dd>
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: type of the variable </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Length of variable name (this should be implicit if a string literal is passed to variable name) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray2In7MessageE">
+<span id="_CPPv3N8MsgArray2In7MessageE"></span><span id="_CPPv2N8MsgArray2In7MessageE"></span><span id="MsgArray::In::Message"></span><span class="target" id="classMsgArray_1_1In_1_1Message"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Message</span></code><a class="headerlink" href="#_CPPv4N8MsgArray2In7MessageE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Provides access to a specific message Returned by In::at(size_type) <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>In::at(size_type) </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray2In7Message7MessageERKN8MsgArray2InERK9size_type">
+<span id="_CPPv3N8MsgArray2In7Message7MessageERKN8MsgArray2InERK9size_type"></span><span id="_CPPv2N8MsgArray2In7Message7MessageERKN8MsgArray2InERK9size_type"></span><span id="MsgArray::In::Message::Message__MsgArray::InCR.size_typeCR"></span><span class="target" id="classMsgArray_1_1In_1_1Message_1aad234a54ea1a97c9aed38501f95863bb"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv48MsgArray" title="MsgArray"><span class="pre">MsgArray</span></a><span class="pre">::</span><a class="reference internal" href="#_CPPv4N8MsgArray2InE" title="MsgArray::In"><span class="pre">In</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray2In7Message7MessageERKN8MsgArray2InERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs a message and directly initialises all of it’s member variables index is always init to 0 <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>See member variable documentation for their purposes </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In7MessageeqERK7Message">
+<span id="_CPPv3NK8MsgArray2In7MessageeqERK7Message"></span><span id="_CPPv2NK8MsgArray2In7MessageeqERK7Message"></span><span id="MsgArray::In::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Message_1a9cf655f3824b7515dc9ae565bf0e4a82"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In7MessageE" title="MsgArray::In::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In7MessageeqERK7Message" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator Compares all internal member vars for equality <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Does not compare _parent </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In7MessageneERK7Message">
+<span id="_CPPv3NK8MsgArray2In7MessageneERK7Message"></span><span id="_CPPv2NK8MsgArray2In7MessageneERK7Message"></span><span id="MsgArray::In::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Message_1a026dd50d8789b77bc8841b960a12f9f9"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray2In7MessageE" title="MsgArray::In::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In7MessageneERK7Message" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inequality operator Returns inverse of equality operator <dl class="simple">
+<dt><strong>See</strong></dt><dd><p>operator==(const Message&amp;) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray2In7Message8getIndexEv">
+<span id="_CPPv3NK8MsgArray2In7Message8getIndexEv"></span><span id="_CPPv2NK8MsgArray2In7Message8getIndexEv"></span><span id="MsgArray::In::Message::getIndexC"></span><span class="target" id="classMsgArray_1_1In_1_1Message_1ac2b91f4c2a44533f6ad29f11e850f12e"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getIndex</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray2In7Message8getIndexEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the index of the message within the full message list </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jENK8MsgArray2In7Message11getVariableE1TRA1N_Kc">
+<span id="_CPPv3I0_jENK8MsgArray2In7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jENK8MsgArray2In7Message11getVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classMsgArray_1_1In_1_1Message_1aaaeeb92172058bf5f2d2e7d2529795ae"></span><span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0_jENK8MsgArray2In7Message11getVariableE1TRA1N_Kc" title="MsgArray::In::Message::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_jENK8MsgArray2In7Message11getVariableE1TRA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the value for the current message attached to the named variable <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The specified variable, else 0x0 if an error occurs </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_name</span></code>: Name of the variable </p></li>
+</ul>
+</dd>
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: type of the variable </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Length of variable name (this should be implicit if a string literal is passed to variable name) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv4N8MsgArray8MetaDataE">
+<span id="_CPPv3N8MsgArray8MetaDataE"></span><span id="_CPPv2N8MsgArray8MetaDataE"></span><span id="MsgArray::MetaData"></span><span class="target" id="structMsgArray_1_1MetaData"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">MetaData</span></code><a class="headerlink" href="#_CPPv4N8MsgArray8MetaDataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="structMsgArray_1_1MetaData.html#structMsgArray_1_1MetaData"><span class="std std-ref">MetaData</span></a> required by brute force during message reads </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Members</p>
+<dl class="cpp var">
+<dt id="_CPPv4N8MsgArray8MetaData6lengthE">
+<span id="_CPPv3N8MsgArray8MetaData6lengthE"></span><span id="_CPPv2N8MsgArray8MetaData6lengthE"></span><span id="MsgArray::MetaData::length__size_type"></span><span class="target" id="structMsgArray_1_1MetaData_1a61a2af5372885b0d3ccf847edbf9c1d7"></span><a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">length</span></code><a class="headerlink" href="#_CPPv4N8MsgArray8MetaData6lengthE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Length </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N8MsgArray3OutE">
+<span id="_CPPv3N8MsgArray3OutE"></span><span id="_CPPv2N8MsgArray3OutE"></span><span id="MsgArray::Out"></span><span class="target" id="classMsgArray_1_1Out"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Out</span></code><a class="headerlink" href="#_CPPv4N8MsgArray3OutE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This class is accessible via <a class="reference internal" href="classFLAMEGPU__DEVICE__API.html#classFLAMEGPU__DEVICE__API_1a527543c95f60f58442aef2f06af34d42"><span class="std std-ref">FLAMEGPU_DEVICE_API.message_out</span></a> if <a class="reference internal" href="#classMsgArray"><span class="std std-ref">MsgArray</span></a> is specified in FLAMEGPU_AGENT_FUNCTION It gives access to functionality for outputting array messages </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N8MsgArray3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj">
+<span id="_CPPv3N8MsgArray3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj"></span><span id="_CPPv2N8MsgArray3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj"></span><span id="MsgArray::Out::Out__Curve::NamespaceHash.Curve::NamespaceHash.voidCP.unsigned-iP"></span><span class="target" id="classMsgArray_1_1Out_1a455b3b3e8c3ae4b46000f0975d90c66b"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Out</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">agentfn_hash</span></em>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">msg_hash</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_metadata</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">*</span><em><span class="pre">scan_flag_messageOutput</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8MsgArray3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructer Initialises member variables <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agentfn_hash</span></code>: Added to msg_hash to produce combined_hash </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msg_hash</span></code>: Added to agentfn_hash to produce combined_hash </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scan_flag_messageOutput</span></code>: Scan flag array for optional message output </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK8MsgArray3Out8setIndexERK9size_type">
+<span id="_CPPv3NK8MsgArray3Out8setIndexERK9size_type"></span><span id="_CPPv2NK8MsgArray3Out8setIndexERK9size_type"></span><span id="MsgArray::Out::setIndex__size_typeCRC"></span><span class="target" id="classMsgArray_1_1Out_1af8079becb0c83c05c28e6aaea9e719ac"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setIndex</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray9size_typeE" title="MsgArray::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8MsgArray3Out8setIndexERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the array index to store the message in </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jENK8MsgArray3Out11setVariableEvRA1N_Kc1T">
+<span id="_CPPv3I0_jENK8MsgArray3Out11setVariableERA1N_Kc1T"></span><span id="_CPPv2I0_jENK8MsgArray3Out11setVariableERAN_Kc1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classMsgArray_1_1Out_1a872bb180f76160510a4f23a338e1aae2"></span><span class="pre">__device__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4I0_jENK8MsgArray3Out11setVariableEvRA1N_Kc1T" title="MsgArray::Out::setVariable::T"><span class="pre">T</span></a> <em><span class="pre">value</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_jENK8MsgArray3Out11setVariableEvRA1N_Kc1T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the specified variable for this agents message <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The specified variable, else 0x0 if an error occurs </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_name</span></code>: Name of the variable </p></li>
+</ul>
+</dd>
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: type of the variable </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Length of variable name (this should be implicit if a string literal is passed to variable name) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Protected Attributes</p>
+<dl class="cpp var">
+<dt id="_CPPv4N8MsgArray3Out13combined_hashE">
+<span id="_CPPv3N8MsgArray3Out13combined_hashE"></span><span id="_CPPv2N8MsgArray3Out13combined_hashE"></span><span id="MsgArray::Out::combined_hash__Curve::NamespaceHash"></span><span class="target" id="classMsgArray_1_1Out_1a7fee351ae42bf4fd64ac2de93176c52a"></span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <code class="sig-name descname"><span class="pre">combined_hash</span></code><a class="headerlink" href="#_CPPv4N8MsgArray3Out13combined_hashE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CURVE hash for accessing message data agentfn_hash + msg_hash </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N8MsgArray3Out9scan_flagE">
+<span id="_CPPv3N8MsgArray3Out9scan_flagE"></span><span id="_CPPv2N8MsgArray3Out9scan_flagE"></span><span id="MsgArray::Out::scan_flag__unsigned-iP"></span><span class="target" id="classMsgArray_1_1Out_1a457a99e5db30cb3b25dccf1115029500"></span><span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">scan_flag</span></code><a class="headerlink" href="#_CPPv4N8MsgArray3Out9scan_flagE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scan flag array for optional message output </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N8MsgArray3Out8metadataE">
+<span id="_CPPv3N8MsgArray3Out8metadataE"></span><span id="_CPPv2N8MsgArray3Out8metadataE"></span><span id="MsgArray::Out::metadata__MetaDataCPC"></span><span class="target" id="classMsgArray_1_1Out_1ac94dad4f13a7272bea65c9ea1684b0f2"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N8MsgArray8MetaDataE" title="MsgArray::MetaData"><span class="pre">MetaData</span></a> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <code class="sig-name descname"><span class="pre">metadata</span></code><a class="headerlink" href="#_CPPv4N8MsgArray3Out8metadataE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Metadata struct for accessing messages </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classMsgArray2D.html" class="btn btn-neutral float-right" title="Class MsgArray2D" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classModelDescription.html" class="btn btn-neutral float-left" title="Class ModelDescription" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

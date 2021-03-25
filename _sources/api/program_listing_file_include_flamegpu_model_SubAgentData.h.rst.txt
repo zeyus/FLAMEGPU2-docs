@@ -1,0 +1,46 @@
+
+.. _program_listing_file_include_flamegpu_model_SubAgentData.h:
+
+Program Listing for File SubAgentData.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_SubAgentData.h>` (``include/flamegpu/model/SubAgentData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_SUBAGENTDATA_H_
+   #define INCLUDE_FLAMEGPU_MODEL_SUBAGENTDATA_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   
+   #include "flamegpu/model/SubModelData.h"
+   
+   struct AgentData;
+   
+   class SubAgentDescription;
+   
+   struct SubAgentData : std::enable_shared_from_this<SubAgentData> {
+       friend class SubAgentDescription;
+       friend class SubModelDescription;
+       friend struct ModelData;
+       std::weak_ptr<AgentData> subAgent;
+       std::weak_ptr<AgentData> masterAgent;
+       typedef std::unordered_map<std::string, std::string> Mapping;
+       Mapping variables;
+       Mapping states;
+       std::weak_ptr<SubModelData> parent;
+       std::shared_ptr<SubAgentDescription> description;
+       bool operator==(const SubAgentData& rhs) const;
+       bool operator!=(const SubAgentData& rhs) const;
+       SubAgentData(const SubAgentData &other) = delete;
+   
+    protected:
+       explicit SubAgentData(const std::shared_ptr<const ModelData> &model, const std::shared_ptr<SubModelData> &parent, const SubAgentData &other);
+       explicit SubAgentData(const std::shared_ptr<const ModelData> &model, const std::shared_ptr<SubModelData> &_parent, const std::shared_ptr<AgentData> &subAgent, const std::shared_ptr<AgentData> &masterAgent);
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_SUBAGENTDATA_H_

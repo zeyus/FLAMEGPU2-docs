@@ -1,0 +1,175 @@
+
+.. _program_listing_file_include_flamegpu_model_ModelDescription.h:
+
+Program Listing for File ModelDescription.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_ModelDescription.h>` (``include/flamegpu/model/ModelDescription.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_MODELDESCRIPTION_H_
+   #define INCLUDE_FLAMEGPU_MODEL_MODELDESCRIPTION_H_
+   
+   #include <map>
+   #include <memory>
+   #include <set>
+   #include <string>
+   
+   
+   #include "flamegpu/gpu/CUDAEnsemble.h"
+   #include "flamegpu/model/ModelData.h"
+   #include "flamegpu/gpu/CUDASimulation.h"
+   #include "flamegpu/runtime/messaging/BruteForce/BruteForceHost.h"
+   
+   class AgentDescription;
+   class LayerDescription;
+   class SubModelDescription;
+   struct ModelData;
+   
+   class ModelDescription {
+       friend CUDASimulation::CUDASimulation(const ModelDescription& _model, int argc, const char** argv);
+       friend CUDAEnsemble::CUDAEnsemble(const ModelDescription& model, int argc, const char** argv);
+       friend class RunPlanVec;
+       friend class RunPlan;
+       friend class LoggingConfig;
+    public:
+       explicit ModelDescription(const std::string &model_name);
+       ModelDescription(const ModelDescription &other_model) = delete;
+       ModelDescription(ModelDescription &&other_model) noexcept = delete;
+       ModelDescription& operator=(const ModelDescription &other_model) = delete;
+       ModelDescription& operator=(ModelDescription &&other_model) noexcept = delete;
+       bool operator==(const ModelDescription& rhs) const;
+       bool operator!=(const ModelDescription& rhs) const;
+   
+       AgentDescription& newAgent(const std::string &agent_name);
+       AgentDescription& Agent(const std::string &agent_name);
+   
+       template<typename MsgType>
+       typename MsgType::Description& newMessage(const std::string &message_name) {
+           if (!hasMessage<MsgType>(message_name)) {
+               auto rtn = std::shared_ptr<typename MsgType::Data>(new typename MsgType::Data(model, message_name));
+               model->messages.emplace(message_name, rtn);
+               return *reinterpret_cast<typename MsgType::Description*>(rtn->description.get());
+           }
+           THROW InvalidMessageName("Message with name '%s' already exists, "
+               "in ModelDescription::newMessage().",
+               message_name.c_str());
+       }
+       MsgBruteForce::Description& newMessage(const std::string &message_name);
+       template<typename MsgType>
+       typename MsgType::Description& Message(const std::string &message_name) {
+           auto rtn = model->messages.find(message_name);
+           if (rtn != model->messages.end()) {
+               if (auto r = std::dynamic_pointer_cast<typename MsgType::Data>(rtn->second)) {
+                   return *reinterpret_cast<typename MsgType::Description*>(r->description.get());
+               }
+               THROW InvalidMessageName("Message ('%s') is not of correct type, "
+                   "in ModelDescription::Message().",
+                   message_name.c_str());
+           }
+           THROW InvalidMessageName("Message ('%s') was not found, "
+               "in ModelDescription::Message().",
+               message_name.c_str());
+       }
+       MsgBruteForce::Description& Message(const std::string &message_name);
+       EnvironmentDescription& Environment();
+       SubModelDescription &newSubModel(const std::string &submodel_name, const ModelDescription &submodel_description);
+       SubModelDescription &SubModel(const std::string &submodel_name);
+   
+       LayerDescription& newLayer(const std::string &name = "");
+       LayerDescription& Layer(const std::string &name);
+       LayerDescription& Layer(const ModelData::size_type &layer_index);
+   
+       void addInitFunction(FLAMEGPU_INIT_FUNCTION_POINTER func_p);
+       void addStepFunction(FLAMEGPU_STEP_FUNCTION_POINTER func_p);
+       void addExitFunction(FLAMEGPU_EXIT_FUNCTION_POINTER func_p);
+   #ifdef SWIG
+   
+       inline void addInitFunctionCallback(HostFunctionCallback *func_callback);
+       inline void addStepFunctionCallback(HostFunctionCallback *func_callback);
+       inline void addExitFunctionCallback(HostFunctionCallback *func_callback);
+   #endif
+   
+       void addExitCondition(FLAMEGPU_EXIT_CONDITION_POINTER func_p);
+   #ifdef SWIG
+   
+       inline void addExitConditionCallback(HostFunctionConditionCallback *func_callback);
+   #endif
+   
+       std::string getName() const;
+       const AgentDescription& getAgent(const std::string &agent_name) const;
+       template<typename MsgType>
+       const typename MsgType::Description& getMessage(const std::string &message_name) const {
+           auto rtn = model->messages.find(message_name);
+           if (rtn != model->messages.end()) {
+               if (auto r = std::dynamic_pointer_cast<typename MsgType::Data>(rtn->second)) {
+                   return *reinterpret_cast<typename MsgType::Description*>(r->description.get());
+               }
+               THROW InvalidMessageType("Message ('%s') is not of correct type, "
+                   "in ModelDescription::getMessage().",
+                   message_name.c_str());
+           }
+           THROW InvalidMessageName("Message ('%s') was not found, "
+               "in ModelDescription::getMessage().",
+               message_name.c_str());
+       }
+       const MsgBruteForce::Description& getMessage(const std::string &message_name) const;
+       const SubModelDescription& getSubModel(const std::string &submodel_name) const;
+       const EnvironmentDescription& getEnvironment() const;
+       const LayerDescription& getLayer(const std::string &name) const;
+       const LayerDescription& getLayer(const ModelData::size_type &layer_index) const;
+   
+       bool hasAgent(const std::string &agent_name) const;
+       template<typename MsgType>
+       bool hasMessage(const std::string &message_name) const {
+           auto a = model->messages.find(message_name);
+           if (a != model->messages.end()) {
+               if (std::dynamic_pointer_cast<typename MsgType::Data>(a->second))
+                   return true;
+           }
+           return false;
+       }
+       bool hasMessage(const std::string &message_name) const;
+       bool hasLayer(const std::string &name) const;
+       bool hasLayer(const ModelData::size_type &layer_index) const;
+       bool hasSubModel(const std::string &submodel_name) const;
+   
+       ModelData::size_type getAgentsCount() const;
+       ModelData::size_type getMessagesCount() const;
+       ModelData::size_type getLayersCount() const;
+   
+    private:
+        std::shared_ptr<ModelData> model;
+   };
+   
+   #ifdef SWIG
+   void ModelDescription::addInitFunctionCallback(HostFunctionCallback* func_callback) {
+       if (!model->initFunctionCallbacks.insert(func_callback).second) {
+               THROW InvalidHostFunc("Attempted to add same init function callback twice,"
+                   "in ModelDescription::addInitFunctionCallback()");
+           }
+   }
+   void ModelDescription::addStepFunctionCallback(HostFunctionCallback* func_callback) {
+       if (!model->stepFunctionCallbacks.insert(func_callback).second) {
+               THROW InvalidHostFunc("Attempted to add same step function callback twice,"
+                   "in ModelDescription::addStepFunctionCallback()");
+           }
+   }
+   void ModelDescription::addExitFunctionCallback(HostFunctionCallback* func_callback) {
+       if (!model->exitFunctionCallbacks.insert(func_callback).second) {
+               THROW InvalidHostFunc("Attempted to add same exit function callback twice,"
+                   "in ModelDescription::addExitFunctionCallback()");
+           }
+   }
+   void ModelDescription::addExitConditionCallback(HostFunctionConditionCallback *func_callback) {
+       if (!model->exitConditionCallbacks.insert(func_callback).second) {
+               THROW InvalidHostFunc("Attempted to add same exit condition callback twice,"
+                   "in ModelDescription::addExitConditionCallback()");
+           }
+   }
+   #endif
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_MODELDESCRIPTION_H_

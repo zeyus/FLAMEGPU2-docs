@@ -1,0 +1,103 @@
+
+.. _program_listing_file_include_flamegpu_visualiser_AgentVis.h:
+
+Program Listing for File AgentVis.h
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_visualiser_AgentVis.h>` (``include/flamegpu/visualiser/AgentVis.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_VISUALISER_AGENTVIS_H_
+   #define INCLUDE_FLAMEGPU_VISUALISER_AGENTVIS_H_
+   #ifdef VISUALISATION
+   
+   // #include <glm/mat4x4.hpp>
+   #include <unordered_map>
+   #include <memory>
+   #include <string>
+   #include <map>
+   
+   #include "flamegpu/visualiser/AgentStateVis.h"
+   #include "config/AgentStateConfig.h"
+   #include "config/Stock.h"
+   #include "config/TexBufferConfig.h"
+   
+   struct Palette;
+   struct AgentData;
+   class CUDAAgent;
+   class FLAMEGPU_Visualisation;
+   class ColorFunction;
+   struct Color;
+   class AutoPalette;
+   
+   class AgentVis {
+       friend class ModelVis;
+       friend class AgentStateVis;
+   
+    public:
+       explicit AgentVis(CUDAAgent &agent, const std::shared_ptr<AutoPalette> &autopalette = nullptr);
+       AgentStateVis &State(const std::string &state_name);
+   
+       void setXVariable(const std::string &var_name);
+       void setYVariable(const std::string &var_name);
+       void setZVariable(const std::string &var_name);
+       void setForwardXVariable(const std::string& var_name);
+       void setForwardYVariable(const std::string& var_name);
+       void setForwardZVariable(const std::string& var_name);
+       void setUpXVariable(const std::string& var_name);
+       void setUpYVariable(const std::string& var_name);
+       void setUpZVariable(const std::string& var_name);
+       void setYawVariable(const std::string& var_name);
+       void setPitchVariable(const std::string& var_name);
+       void setRollVariable(const std::string& var_name);
+       void clearXVariable();
+       void clearYVariable();
+       void clearZVariable();
+       void clearForwardXVariable();
+       void clearForwardYVariable();
+       void clearForwardZVariable();
+       void clearUpXVariable();
+       void clearUpYVariable();
+       void clearUpZVariable();
+       void clearYawVariable();
+       void clearPitchVariable();
+       void clearRollVariable();
+       std::string getXVariable() const;
+       std::string getYVariable() const;
+       std::string getZVariable() const;
+       std::string getForwardXVariable() const;
+       std::string getForwardYVariable() const;
+       std::string getForwardZVariable() const;
+       std::string getUpXVariable() const;
+       std::string getUpYVariable() const;
+       std::string getUpZVariable() const;
+       std::string getYawVariable() const;
+       std::string getPitchVariable() const;
+       std::string getRollVariable() const;
+   
+       void setModel(const std::string &modelPath, const std::string &texturePath = "");
+       void setModel(const Stock::Models::Model &model);
+       void setModelScale(float xLen, float yLen, float zLen);
+       void setModelScale(float maxLen);
+       void setAutoPalette(const Palette& ap);
+       void setColor(const ColorFunction &cf);
+       void clearColor();
+   
+    private:
+       void initBindings(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
+       void requestBufferResizes(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
+       void updateBuffers(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
+       std::weak_ptr<AutoPalette> auto_palette;
+       std::shared_ptr<AutoPalette> owned_auto_palette;
+       AgentStateConfig defaultConfig;
+       std::unordered_map<std::string, AgentStateVis> states;
+       CUDAAgent &agent;
+       const AgentData &agentData;
+       std::map<TexBufferConfig::Function, TexBufferConfig> core_tex_buffers;
+   };
+   
+   #endif  // VISUALISATION
+   #endif  // INCLUDE_FLAMEGPU_VISUALISER_AGENTVIS_H_

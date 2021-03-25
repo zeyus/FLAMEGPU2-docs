@@ -1,0 +1,93 @@
+
+.. _program_listing_file_include_flamegpu_runtime_utility_AgentRandom.cuh:
+
+Program Listing for File AgentRandom.cuh
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_utility_AgentRandom.cuh>` (``include/flamegpu/runtime/utility/AgentRandom.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_
+   
+   #include <curand_kernel.h>
+   #include <cassert>
+   
+   #include "flamegpu/exception/FGPUStaticAssert.h"
+   #include "flamegpu/exception/FGPUDeviceException.h"
+   
+   class AgentRandom {
+    public:
+       typedef unsigned int size_type;
+       __forceinline__ __device__ AgentRandom(curandState *d_rng);
+       template<typename T>
+       __forceinline__ __device__ T uniform() const;
+       template<typename T>
+       __forceinline__ __device__ T normal() const;
+       template<typename T>
+       __forceinline__ __device__ T logNormal(const T& mean, const T& stddev) const;
+       template<typename T>
+       __forceinline__ __device__ T uniform(const T& min, const T& max) const;
+   
+    private:
+       curandState *d_random_state;
+   };
+   
+   __forceinline__ __device__ AgentRandom::AgentRandom(curandState *d_rng) : d_random_state(d_rng) { }
+   template<>
+   __forceinline__ __device__ float AgentRandom::uniform() const {
+       return curand_uniform(d_random_state);
+   }
+   template<>
+   __forceinline__ __device__ double AgentRandom::uniform() const {
+       return curand_uniform_double(d_random_state);
+   }
+   
+   template<>
+   __forceinline__ __device__ float AgentRandom::normal() const {
+       return curand_normal(d_random_state);
+   }
+   template<>
+   __forceinline__ __device__ double AgentRandom::normal() const {
+       return curand_normal_double(d_random_state);
+   }
+   template<>
+   __forceinline__ __device__ float AgentRandom::logNormal(const float& mean, const float& stddev) const {
+       return curand_log_normal(d_random_state, mean, stddev);
+   }
+   template<>
+   __forceinline__ __device__ double AgentRandom::logNormal(const double& mean, const double& stddev) const {
+       return curand_log_normal_double(d_random_state, mean, stddev);
+   }
+   template<typename T>
+   __forceinline__ __device__ T AgentRandom::uniform(const T& min, const T& max) const {
+       static_assert(FGPU_SA::_Is_IntType<T>::value, "Invalid template argument for AgentRandom::uniform(const T& lowerBound, const T& max)");
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (min > max) {
+           DTHROW("Invalid arguments passed to AgentRandom::uniform(), %lld > %lld\n", static_cast<int64_t>(min), static_cast<int64_t>(max));
+       }
+   #endif
+       return static_cast<T>(min + (max - min) * uniform<float>());
+   }
+   template<>
+   __forceinline__ __device__ int64_t AgentRandom::uniform(const int64_t& min, const int64_t& max) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (min > max) {
+           DTHROW("Invalid arguments passed to AgentRandom::uniform(), %lld > %lld\n", static_cast<int64_t>(min), static_cast<int64_t>(max));
+       }
+   #endif
+       return static_cast<int64_t>(min + (max - min) * uniform<double>());
+   }
+   template<>
+   __forceinline__ __device__ uint64_t AgentRandom::uniform(const uint64_t& min, const uint64_t& max) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (min > max) {
+           DTHROW("Invalid arguments passed to AgentRandom::uniform(), %lld > %lld\n", static_cast<int64_t>(min), static_cast<int64_t>(max));
+       }
+   #endif
+       return static_cast<uint64_t>(min + (max - min) * uniform<double>());
+   }
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_

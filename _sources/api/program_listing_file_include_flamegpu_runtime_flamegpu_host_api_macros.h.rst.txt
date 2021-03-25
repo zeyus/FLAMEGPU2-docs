@@ -1,0 +1,43 @@
+
+.. _program_listing_file_include_flamegpu_runtime_flamegpu_host_api_macros.h:
+
+Program Listing for File flamegpu_host_api_macros.h
+===================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_flamegpu_host_api_macros.h>` (``include/flamegpu/runtime/flamegpu_host_api_macros.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_FLAMEGPU_HOST_API_MACROS_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_FLAMEGPU_HOST_API_MACROS_H_
+   
+   class FLAMEGPU_HOST_API;
+   
+   typedef void (*FLAMEGPU_HOST_FUNCTION_POINTER)(FLAMEGPU_HOST_API *api);
+   
+   typedef FLAMEGPU_HOST_FUNCTION_POINTER FLAMEGPU_INIT_FUNCTION_POINTER;
+   typedef FLAMEGPU_HOST_FUNCTION_POINTER FLAMEGPU_STEP_FUNCTION_POINTER;
+   typedef FLAMEGPU_HOST_FUNCTION_POINTER FLAMEGPU_EXIT_FUNCTION_POINTER;
+   #define FLAMEGPU_INIT_FUNCTION(funcName) FLAMEGPU_HOST_FUNCTION(funcName)
+   #define FLAMEGPU_STEP_FUNCTION(funcName) FLAMEGPU_HOST_FUNCTION(funcName)
+   #define FLAMEGPU_EXIT_FUNCTION(funcName) FLAMEGPU_HOST_FUNCTION(funcName)
+   
+   #define FLAMEGPU_HOST_FUNCTION(funcName) \
+   void funcName ## _impl(FLAMEGPU_HOST_API* FLAMEGPU); \
+   FLAMEGPU_HOST_FUNCTION_POINTER funcName = funcName ## _impl;\
+   void funcName ## _impl(FLAMEGPU_HOST_API* FLAMEGPU)
+   
+   enum FLAME_GPU_CONDITION_RESULT { CONTINUE, EXIT };
+   typedef FLAME_GPU_CONDITION_RESULT (*FLAMEGPU_HOST_CONDITION_POINTER)(FLAMEGPU_HOST_API *api);
+   
+   typedef FLAMEGPU_HOST_CONDITION_POINTER FLAMEGPU_EXIT_CONDITION_POINTER;
+   #define FLAMEGPU_EXIT_CONDITION(funcName) FLAMEGPU_HOST_CONDITION(funcName)
+   
+   #define FLAMEGPU_HOST_CONDITION(funcName) \
+   FLAME_GPU_CONDITION_RESULT funcName ## _impl(FLAMEGPU_HOST_API* FLAMEGPU); \
+   FLAMEGPU_HOST_CONDITION_POINTER funcName = funcName ## _impl;\
+   FLAME_GPU_CONDITION_RESULT funcName ## _impl(FLAMEGPU_HOST_API* FLAMEGPU)
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_FLAMEGPU_HOST_API_MACROS_H_

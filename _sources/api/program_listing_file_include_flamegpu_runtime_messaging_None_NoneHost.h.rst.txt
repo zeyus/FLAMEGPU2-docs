@@ -1,0 +1,42 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_None_NoneHost.h:
+
+Program Listing for File NoneHost.h
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_None_NoneHost.h>` (``include/flamegpu/runtime/messaging/None/NoneHost.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_NONE_NONEHOST_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_NONE_NONEHOST_H_
+   
+   #include "flamegpu/runtime/cuRVE/curve.h"
+   #include "flamegpu/runtime/messaging/None.h"
+   
+   class CUDAMessage;
+   class CUDAScatter;
+   class MsgSpecialisationHandler {
+    public:
+       MsgSpecialisationHandler() { }
+       virtual ~MsgSpecialisationHandler() { }
+       virtual void init(CUDAScatter &scatter, const unsigned int &streamId) = 0;
+       virtual void buildIndex(CUDAScatter &, const unsigned int &streamId, const cudaStream_t &stream) { }
+       virtual void allocateMetaDataDevicePtr() { }
+       virtual void freeMetaDataDevicePtr() { }
+       virtual const void *getMetaDataDevicePtr() const { return nullptr; }
+   };
+   
+   class MsgNone::CUDAModelHandler : public MsgSpecialisationHandler {
+    public:
+       explicit CUDAModelHandler(CUDAMessage &a)
+           : MsgSpecialisationHandler()
+           , sim_message(a)
+       { }
+       CUDAMessage &sim_message;
+   };
+   
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_NONE_NONEHOST_H_

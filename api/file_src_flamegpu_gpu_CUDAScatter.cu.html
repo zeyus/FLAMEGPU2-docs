@@ -1,0 +1,268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>File CUDAScatter.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>File CUDAScatter.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/file_src_flamegpu_gpu_CUDAScatter.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-cudascatter-cu">
+<span id="file-src-flamegpu-gpu-cudascatter-cu"></span><h1>File CUDAScatter.cu<a class="headerlink" href="#file-cudascatter-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_src_flamegpu_gpu.html#dir-src-flamegpu-gpu"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-src-flamegpu-gpu-cudascatter-cu" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAScatter.cu</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#functions" id="id3">Functions</a></p></li>
+</ul>
+</div>
+<div class="section" id="definition-src-flamegpu-gpu-cudascatter-cu">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAScatter.cu</span></code>)<a class="headerlink" href="#definition-src-flamegpu-gpu-cudascatter-cu" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_src_flamegpu_gpu_CUDAScatter.cu.html">Program Listing for File CUDAScatter.cu</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cassert</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cub/cub.cuh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cuda_runtime.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAErrorChecking.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAErrorChecking.h.html#file-include-flamegpu-gpu-cudaerrorchecking-h"><span class="std std-ref">File CUDAErrorChecking.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAFatAgentStateList.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAFatAgentStateList.h.html#file-include-flamegpu-gpu-cudafatagentstatelist-h"><span class="std std-ref">File CUDAFatAgentStateList.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAScanCompaction.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAScanCompaction.h.html#file-include-flamegpu-gpu-cudascancompaction-h"><span class="std std-ref">File CUDAScanCompaction.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAScatter.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAScatter.h.html#file-include-flamegpu-gpu-cudascatter-h"><span class="std std-ref">File CUDAScatter.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1ad0e5df29e2ccfd3cb38281a371923445.html#exhale-function-cudascatter-8cu-1ad0e5df29e2ccfd3cb38281a371923445"><span class="std std-ref">Function broadcastInitKernel</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1a13522c49050946627280ac04aa09795b.html#exhale-function-cudascatter-8cu-1a13522c49050946627280ac04aa09795b"><span class="std std-ref">Function pbm_reorder_generic</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1ac49fa3a26bbff100b30564b2417ed22e.html#exhale-function-cudascatter-8cu-1ac49fa3a26bbff100b30564b2417ed22e"><span class="std std-ref">Function reorder_array_messages</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1ae13865bf77aeb6ede3c43564ea56506e.html#exhale-function-cudascatter-8cu-1ae13865bf77aeb6ede3c43564ea56506e"><span class="std std-ref">Function scatter_all_generic</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1a7587b3d33af84140618de16979717ef1.html#exhale-function-cudascatter-8cu-1a7587b3d33af84140618de16979717ef1"><span class="std std-ref">Template Function scatter_generic</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1a729b3009453012fe7380fdf0237032ac.html#exhale-function-cudascatter-8cu-1a729b3009453012fe7380fdf0237032ac"><span class="std std-ref">Function scatter_new_agents</span></a></p></li>
+<li><p><a class="reference internal" href="function_CUDAScatter_8cu_1abbaf5ae15e636b12fc79b11287d4ac02.html#exhale-function-cudascatter-8cu-1abbaf5ae15e636b12fc79b11287d4ac02"><span class="std std-ref">Function scatter_position_generic</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

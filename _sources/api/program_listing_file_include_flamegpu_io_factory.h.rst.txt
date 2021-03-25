@@ -1,0 +1,120 @@
+
+.. _program_listing_file_include_flamegpu_io_factory.h:
+
+Program Listing for File factory.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_factory.h>` (``include/flamegpu/io/factory.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_FACTORY_H_
+   #define INCLUDE_FLAMEGPU_IO_FACTORY_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   #include <utility>
+   #include <algorithm>
+   
+   #include "flamegpu/io/statereader.h"
+   #include "flamegpu/io/statewriter.h"
+   #include "flamegpu/io/xmlReader.h"
+   #include "flamegpu/io/xmlWriter.h"
+   #include "flamegpu/io/jsonReader.h"
+   #include "flamegpu/io/jsonWriter.h"
+   #include "flamegpu/io/jsonLogger.h"
+   #include "flamegpu/io/xmlLogger.h"
+   #include "flamegpu/util/StringPair.h"
+   
+   class AgentVector;
+   
+   //  move later
+   inline std::string getFileExt(const std::string& s) {
+       // Find the last position of '.' in given string
+       size_t i = s.rfind('.', s.length());
+       if (i != std::string::npos) {
+           return(s.substr(i + 1, s.length() - i));
+       }
+       // In case of no extension return empty string
+       return("");
+   }
+   
+   class ReaderFactory {
+    public:
+       static StateReader* createReader(
+           const std::string& model_name,
+           const std::unordered_map<std::string, EnvironmentDescription::PropData>& env_desc,
+           std::unordered_map<std::pair<std::string, unsigned int>, Any>& env_init,
+           StringPairUnorderedMap<std::shared_ptr<AgentVector>>& model_state,
+           const std::string& input,
+           Simulation* sim_instance) {
+           const std::string extension = getFileExt(input);
+   
+           if (extension == "xml") {
+               return new xmlReader(model_name, env_desc, env_init, model_state, input, sim_instance);
+           } else if (extension == "json") {
+               return new jsonReader(model_name, env_desc, env_init, model_state, input, sim_instance);
+           }
+           /*
+           if (extension == "bin") {
+               return new xmlReader(model_state, input);
+           }
+           */
+           THROW UnsupportedFileType("File '%s' is not a type which can be read "
+               "by ReaderFactory::createReader().",
+               input.c_str());
+       }
+   };
+   
+   class WriterFactory {
+    public:
+       static StateWriter* createWriter(
+           const std::string& model_name,
+           const unsigned int& sim_instance_id,
+           const StringPairUnorderedMap<std::shared_ptr<AgentVector>>& model_state,
+           const unsigned int& iterations,
+           const std::string& output_file,
+           const Simulation* sim_instance) {
+           const std::string extension = getFileExt(output_file);
+   
+           if (extension == "xml") {
+               return new xmlWriter(model_name, sim_instance_id, model_state, iterations, output_file, sim_instance);
+           } else if (extension == "json") {
+               return new jsonWriter(model_name, sim_instance_id, model_state, iterations, output_file, sim_instance);
+           }
+           THROW UnsupportedFileType("File '%s' is not a type which can be written "
+               "by WriterFactory::createWriter().",
+               output_file.c_str());
+       }
+       static std::string detectSupportedFileExt(const std::string &user_file_ext) {
+           std::string rtn = user_file_ext;
+           // Move entire string to lower case
+           std::transform(rtn.begin(), rtn.end(), rtn.begin(), [](unsigned char c) { return std::use_facet< std::ctype<char>>(std::locale()).tolower(c); });
+           // Strip first character if it is '.'
+           if (rtn[0] == '.')
+             rtn = rtn.substr(1);
+           // Compare against supported formats
+           if (rtn == "xml" ||
+               rtn == "json") {
+               return rtn;
+           }
+           return "";
+       }
+       static std::unique_ptr<Logger> createLogger(const std::string &output_path, bool prettyPrint, bool truncateFile = true) {
+           const std::string extension = getFileExt(output_path);
+   
+           if (extension == "xml") {
+               return std::make_unique<xmlLogger>(output_path, prettyPrint, truncateFile);
+           } else if (extension == "json") {
+               return std::make_unique<jsonLogger>(output_path, prettyPrint, truncateFile);
+           }
+           THROW UnsupportedFileType("File '%s' is not a type which can be written "
+               "by WriterFactory::createLogger().",
+               output_path.c_str());
+       }
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_FACTORY_H_

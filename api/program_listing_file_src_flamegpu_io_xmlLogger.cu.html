@@ -1,0 +1,486 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File xmlLogger.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File xmlLogger.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_io_xmlLogger.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-xmllogger-cu">
+<span id="program-listing-file-src-flamegpu-io-xmllogger-cu"></span><h1>Program Listing for File xmlLogger.cu<a class="headerlink" href="#program-listing-for-file-xmllogger-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_io_xmlLogger.cu.html#file-src-flamegpu-io-xmllogger-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/io/xmlLogger.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/io/xmlLogger.h&quot;
+
+#include &lt;sstream&gt;
+
+#include &quot;tinyxml2/tinyxml2.h&quot;              // downloaded from https:// github.com/leethomason/tinyxml2, the list of xml parsers : http:// lars.ruoff.free.fr/xmlcpp/
+
+#include &quot;flamegpu/sim/RunPlan.h&quot;
+#include &quot;flamegpu/sim/LogFrame.h&quot;
+
+#ifndef XMLCheckResult
+#define XMLCheckResult(a_eResult) if (a_eResult != tinyxml2::XML_SUCCESS) { FGPUException::setLocation(__FILE__, __LINE__);\
+    switch (a_eResult) { \
+    case tinyxml2::XML_ERROR_FILE_NOT_FOUND : \
+    case tinyxml2::XML_ERROR_FILE_COULD_NOT_BE_OPENED : \
+        throw InvalidInputFile(&quot;TinyXML error: File could not be opened.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_FILE_READ_ERROR : \
+        throw InvalidInputFile(&quot;TinyXML error: File could not be read.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_PARSING_ELEMENT : \
+    case tinyxml2::XML_ERROR_PARSING_ATTRIBUTE : \
+    case tinyxml2::XML_ERROR_PARSING_TEXT : \
+    case tinyxml2::XML_ERROR_PARSING_CDATA : \
+    case tinyxml2::XML_ERROR_PARSING_COMMENT : \
+    case tinyxml2::XML_ERROR_PARSING_DECLARATION : \
+    case tinyxml2::XML_ERROR_PARSING_UNKNOWN : \
+    case tinyxml2::XML_ERROR_PARSING : \
+        throw TinyXMLError(&quot;TinyXML error: Error parsing file.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_EMPTY_DOCUMENT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_EMPTY_DOCUMENT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_MISMATCHED_ELEMENT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_MISMATCHED_ELEMENT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_CAN_NOT_CONVERT_TEXT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_CAN_NOT_CONVERT_TEXT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_NO_TEXT_NODE : \
+        throw TinyXMLError(&quot;TinyXML error: XML_NO_TEXT_NODE\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ELEMENT_DEPTH_EXCEEDED : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ELEMENT_DEPTH_EXCEEDED\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_COUNT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_COUNT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_NO_ATTRIBUTE: \
+        throw TinyXMLError(&quot;TinyXML error: XML_NO_ATTRIBUTE\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_WRONG_ATTRIBUTE_TYPE : \
+        throw TinyXMLError(&quot;TinyXML error: XML_WRONG_ATTRIBUTE_TYPE\n Error code: %d&quot;, a_eResult); \
+    default: \
+        throw TinyXMLError(&quot;TinyXML error: Unrecognised error code\n Error code: %d&quot;, a_eResult); \
+    } \
+}
+#endif
+
+xmlLogger::xmlLogger(const std::string &amp;outPath, bool _prettyPrint, bool _truncateFile)
+    : out_path(outPath)
+    , prettyPrint(_prettyPrint)
+    , truncateFile(_truncateFile) { }
+
+void xmlLogger::log(const RunLog &amp;log, const RunPlan &amp;plan, bool logSteps, bool logExit) const {
+  logCommon(log, &amp;plan, false, logSteps, logExit);
+}
+void xmlLogger::log(const RunLog &amp;log, bool logConfig, bool logSteps, bool logExit) const {
+  logCommon(log, nullptr, logConfig, logSteps, logExit);
+}
+
+void xmlLogger::logCommon(const RunLog &amp;log, const RunPlan *plan, bool doLogConfig, bool doLogSteps, bool doLogExit) const {
+    tinyxml2::XMLDocument doc;
+
+    tinyxml2::XMLNode * pRoot = doc.NewElement(&quot;log&quot;);
+    doc.InsertFirstChild(pRoot);
+
+    // Log config
+    if (plan) {
+        pRoot-&gt;InsertEndChild(logConfig(doc, *plan));
+    } else if (doLogConfig) {
+        pRoot-&gt;InsertEndChild(logConfig(doc, log));
+    }
+
+    // Log step log
+    if (doLogSteps) {
+        pRoot-&gt;InsertEndChild(logSteps(doc, log));
+    }
+
+    // Log exit log
+    if (doLogExit) {
+        pRoot-&gt;InsertEndChild(logExit(doc, log));
+    }
+    // export
+    FILE *fptr = fopen(out_path.c_str(), truncateFile ? &quot;w&quot; : &quot;a&quot;);
+    if (fptr == nullptr) {
+        THROW TinyXMLError(&quot;Unable to open file &#39;%s&#39; for writing\n&quot;, out_path.c_str());
+    }
+    XMLCheckResult(doc.SaveFile(fptr, !prettyPrint));
+    fwrite(&quot;\n&quot;, sizeof(char), 1, fptr);
+    fclose(fptr);
+}
+
+tinyxml2::XMLNode *xmlLogger::logConfig(tinyxml2::XMLDocument &amp;doc, const RunLog &amp;log) const {
+    tinyxml2::XMLElement *pConfigElement = doc.NewElement(&quot;config&quot;);
+    {
+        tinyxml2::XMLElement *pListElement;
+        pListElement = doc.NewElement(&quot;random_seed&quot;);
+        pListElement-&gt;SetText(log.getRandomSeed());
+        pConfigElement-&gt;InsertEndChild(pListElement);
+    }
+    return pConfigElement;
+}
+tinyxml2::XMLNode *xmlLogger::logConfig(tinyxml2::XMLDocument &amp;doc, const RunPlan &amp;plan) const {
+    tinyxml2::XMLElement *pConfigElement = doc.NewElement(&quot;config&quot;);
+    {
+        tinyxml2::XMLElement *pListElement;
+        // Add static items
+        pListElement = doc.NewElement(&quot;random_seed&quot;);
+        pListElement-&gt;SetText(plan.getRandomSimulationSeed());
+        pConfigElement-&gt;InsertEndChild(pListElement);
+        pListElement = doc.NewElement(&quot;steps&quot;);
+        pListElement-&gt;SetText(plan.getSteps());
+        pConfigElement-&gt;InsertEndChild(pListElement);
+        // Add dynamic environment overrides
+        tinyxml2::XMLElement *pEnvElement = doc.NewElement(&quot;environment&quot;);
+        {
+            for (const auto &amp;prop : plan.property_overrides) {
+                const EnvironmentDescription::PropData &amp;env_prop = plan.environment-&gt;at(prop.first);
+                pListElement = doc.NewElement(prop.first.c_str());
+                writeAny(pListElement, prop.second, env_prop.data.elements);
+                pEnvElement-&gt;InsertEndChild(pListElement);
+            }
+        }
+        pConfigElement-&gt;InsertEndChild(pEnvElement);
+    }
+    return pConfigElement;
+}
+tinyxml2::XMLNode *xmlLogger::logSteps(tinyxml2::XMLDocument &amp;doc, const RunLog &amp;log) const {
+    tinyxml2::XMLElement *pStepsElement = doc.NewElement(&quot;steps&quot;);
+    {
+        for (const auto &amp;step : log.getStepLog()) {
+            pStepsElement-&gt;InsertEndChild(writeLogFrame(doc, step));
+        }
+    }
+    return pStepsElement;
+}
+tinyxml2::XMLNode *xmlLogger::logExit(tinyxml2::XMLDocument &amp;doc, const RunLog &amp;log) const {
+    tinyxml2::XMLElement *pExitElement = doc.NewElement(&quot;exit&quot;);
+    pExitElement-&gt;InsertEndChild(writeLogFrame(doc, log.getExitLog()));
+    return pExitElement;
+}
+
+tinyxml2::XMLNode *xmlLogger::writeLogFrame(tinyxml2::XMLDocument &amp;doc, const LogFrame &amp;frame) const {
+    tinyxml2::XMLElement *pFrameElement = doc.NewElement(&quot;step&quot;);
+    {
+        tinyxml2::XMLElement *pListElement;
+        // Add static items
+        pListElement = doc.NewElement(&quot;step_index&quot;);
+        pListElement-&gt;SetText(frame.getStepCount());
+        pFrameElement-&gt;InsertEndChild(pListElement);
+        // Add dynamic environment values
+        if (frame.getEnvironment().size()) {
+            tinyxml2::XMLElement *pEnvElement = doc.NewElement(&quot;environment&quot;);
+            {
+                for (const auto &amp;prop : frame.getEnvironment()) {
+                    pListElement = doc.NewElement(prop.first.c_str());
+                    writeAny(pListElement, prop.second, prop.second.elements);
+                    pEnvElement-&gt;InsertEndChild(pListElement);
+                }
+            }
+            pFrameElement-&gt;InsertEndChild(pEnvElement);
+        }
+
+        if (frame.getAgents().size()) {
+            // Add dynamic agent values
+            tinyxml2::XMLElement *pAgentsElement = doc.NewElement(&quot;agents&quot;);
+            {
+                // This assumes that sort order places all agents of same name, different state consecutively
+                std::string current_agent;
+                tinyxml2::XMLElement *pAgentsItemElement = nullptr;
+                for (const auto &amp;agent : frame.getAgents()) {
+                    // Start/end new agent
+                    if (current_agent != agent.first.first) {
+                        if (!current_agent.empty())
+                            pAgentsElement-&gt;InsertEndChild(pAgentsItemElement);
+                        current_agent = agent.first.first;
+                        pAgentsItemElement = doc.NewElement(current_agent.c_str());
+                    }
+                    // Start new state
+                    tinyxml2::XMLElement *pStateElement = doc.NewElement(agent.first.second.c_str());
+                    {
+                        // Log agent count if provided
+                        if (agent.second.second != UINT_MAX) {
+                            tinyxml2::XMLElement *pCountElement = doc.NewElement(&quot;count&quot;);
+                            pCountElement-&gt;SetText(agent.second.second);
+                            pStateElement-&gt;InsertEndChild(pCountElement);
+                        }
+                        if (agent.second.first.size()) {
+                            tinyxml2::XMLElement *pVariablesBlock = doc.NewElement(&quot;variables&quot;);
+                            // This assumes that sort order places all variables of same name, different reduction consecutively
+                            std::string current_variable;
+                            tinyxml2::XMLElement *pVariableElement = nullptr;
+                            // Log each reduction
+                            for (auto &amp;var : agent.second.first) {
+                                // Start/end new variable
+                                if (current_variable != var.first.name) {
+                                    if (!current_variable.empty())
+                                        pVariablesBlock-&gt;InsertEndChild(pVariableElement);
+                                    current_variable = var.first.name;
+                                    pVariableElement = doc.NewElement(current_variable.c_str());
+                                }
+                                // Build name key for the variable &amp; log value
+                                tinyxml2::XMLElement *pValueElement = doc.NewElement(LoggingConfig::toString(var.first.reduction));
+                                writeAny(pValueElement, var.second, 1);
+                                pVariableElement-&gt;InsertEndChild(pValueElement);
+                            }
+                            if (!current_variable.empty())
+                                pVariablesBlock-&gt;InsertEndChild(pVariableElement);
+                            pStateElement-&gt;InsertEndChild(pVariablesBlock);
+                        }
+                    }
+                    pAgentsItemElement-&gt;InsertEndChild(pStateElement);
+                }
+                if (!current_agent.empty())
+                    pAgentsElement-&gt;InsertEndChild(pAgentsItemElement);
+            }
+            pFrameElement-&gt;InsertEndChild(pAgentsElement);
+        }
+    }
+    return pFrameElement;
+}
+
+void xmlLogger::writeAny(tinyxml2::XMLElement *pElement, const Any &amp;value, const unsigned int &amp;elements) const {
+    std::stringstream ss;
+    // Loop through elements, to construct csv string
+    for (unsigned int el = 0; el &lt; elements; ++el) {
+        if (value.type == std::type_index(typeid(float))) {
+            ss &lt;&lt; static_cast&lt;const float*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(double))) {
+             ss &lt;&lt; static_cast&lt;const double*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(int64_t))) {
+            ss &lt;&lt; static_cast&lt;const int64_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(uint64_t))) {
+             ss &lt;&lt; static_cast&lt;const uint64_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(int32_t))) {
+            ss &lt;&lt; static_cast&lt;const int32_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(uint32_t))) {
+             ss &lt;&lt; static_cast&lt;const uint32_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(int16_t))) {
+             ss &lt;&lt; static_cast&lt;const int16_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(uint16_t))) {
+             ss &lt;&lt; static_cast&lt;const uint16_t*&gt;(value.ptr)[el];
+        } else if (value.type == std::type_index(typeid(int8_t))) {
+            ss &lt;&lt; static_cast&lt;int32_t&gt;(static_cast&lt;const int8_t*&gt;(value.ptr)[el]);  // Char outputs weird if being used as an integer
+        } else if (value.type == std::type_index(typeid(uint8_t))) {
+            ss &lt;&lt; static_cast&lt;uint32_t&gt;(static_cast&lt;const uint8_t*&gt;(value.ptr)[el]);  // Char outputs weird if being used as an integer
+        } else if (value.type == std::type_index(typeid(char))) {
+            ss &lt;&lt; static_cast&lt;int32_t&gt;(static_cast&lt;const char*&gt;(value.ptr)[el]);  // Char outputs weird if being used as an integer
+        } else {
+            THROW TinyXMLError(&quot;Attempting to export value of unsupported type &#39;%s&#39;, &quot;
+                &quot;in xmlLogger::writeAny()\n&quot;, value.type.name());
+       }
+        if (el + 1 != elements)
+            ss &lt;&lt; &quot;,&quot;;
+    }
+    pElement-&gt;SetText(ss.str().c_str());
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

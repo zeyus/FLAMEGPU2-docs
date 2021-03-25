@@ -1,0 +1,1312 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class AgentVector &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class AgentVector::const_iterator" href="classAgentVector_1_1const__iterator.html" />
+    <link rel="prev" title="Class AgentStateDescription" href="classAgentStateDescription.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class AgentVector</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nested-relationships">Nested Relationships</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurve.html">Class Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray.html">Class MsgArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class AgentVector</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classAgentVector.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-agentvector">
+<span id="exhale-class-classagentvector"></span><h1>Class AgentVector<a class="headerlink" href="#class-agentvector" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_pop_AgentVector.h.html#file-include-flamegpu-pop-agentvector-h"><span class="std std-ref">File AgentVector.h</span></a></p></li>
+</ul>
+<div class="section" id="nested-relationships">
+<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="nested-types">
+<h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="classAgentVector_1_1const__iterator.html#exhale-class-classagentvector-1-1const-iterator"><span class="std std-ref">Class AgentVector::const_iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html#exhale-class-classagentvector-1-1const-reverse-iterator"><span class="std std-ref">Class AgentVector::const_reverse_iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classAgentVector_1_1iterator.html#exhale-class-classagentvector-1-1iterator"><span class="std std-ref">Class AgentVector::iterator</span></a></p></li>
+<li><p><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html#exhale-class-classagentvector-1-1reverse-iterator"><span class="std std-ref">Class AgentVector::reverse_iterator</span></a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv411AgentVector">
+<span id="_CPPv311AgentVector"></span><span id="_CPPv211AgentVector"></span><span id="AgentVector"></span><span class="target" id="classAgentVector"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentVector</span></code><a class="headerlink" href="#_CPPv411AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp type">
+<dt id="_CPPv4N11AgentVector9size_typeE">
+<span id="_CPPv3N11AgentVector9size_typeE"></span><span id="_CPPv2N11AgentVector9size_typeE"></span><span id="AgentVector::size_type"></span><span class="target" id="classAgentVector_1aee666a78bf09ab753e516254ed3480b7"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N11AgentVector9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N11AgentVector5AgentE">
+<span id="_CPPv3N11AgentVector5AgentE"></span><span id="_CPPv2N11AgentVector5AgentE"></span><span id="AgentVector::Agent"></span><span class="target" id="classAgentVector_1a2b94b0dd6c887d620a1bab5e6f3b9501"></span><em class="property"><span class="pre">typedef</span> </em><a class="reference internal" href="classAgentVector__Agent.html#_CPPv417AgentVector_Agent" title="AgentVector_Agent"><span class="pre">AgentVector_Agent</span></a> <code class="sig-name descname"><span class="pre">Agent</span></code><a class="headerlink" href="#_CPPv4N11AgentVector5AgentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>View into the <a class="reference internal" href="#classAgentVector"><span class="std std-ref">AgentVector</span></a> to provide mutable access to a specific Agent’s data </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N11AgentVector6CAgentE">
+<span id="_CPPv3N11AgentVector6CAgentE"></span><span id="_CPPv2N11AgentVector6CAgentE"></span><span id="AgentVector::CAgent"></span><span class="target" id="classAgentVector_1a44aa9ba3a124c433c5c82015d9a507f8"></span><em class="property"><span class="pre">typedef</span> </em><a class="reference internal" href="classAgentVector__CAgent.html#_CPPv418AgentVector_CAgent" title="AgentVector_CAgent"><span class="pre">AgentVector_CAgent</span></a> <code class="sig-name descname"><span class="pre">CAgent</span></code><a class="headerlink" href="#_CPPv4N11AgentVector6CAgentE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>View into the <a class="reference internal" href="#classAgentVector"><span class="std std-ref">AgentVector</span></a> to provide immutable access to a specific Agent’s data </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N11AgentVector12AgentDataMapE">
+<span id="_CPPv3N11AgentVector12AgentDataMapE"></span><span id="_CPPv2N11AgentVector12AgentDataMapE"></span><span id="AgentVector::AgentDataMap"></span><span class="target" id="classAgentVector_1a60ce191c666c802e08b6cfbd07978197"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classGenericMemoryVector.html#_CPPv419GenericMemoryVector" title="GenericMemoryVector"><span class="pre">GenericMemoryVector</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentDataMap</span></code><a class="headerlink" href="#_CPPv4N11AgentVector12AgentDataMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector11AgentVectorERK16AgentDescription9size_type">
+<span id="_CPPv3N11AgentVector11AgentVectorERK16AgentDescription9size_type"></span><span id="_CPPv2N11AgentVector11AgentVectorERK16AgentDescription9size_type"></span><span id="AgentVector::AgentVector__AgentDescriptionCR.size_type"></span><span class="target" id="classAgentVector_1af84a461ff4eb233f68715bc79937b8e1"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">AgentVector</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">agent_desc</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector11AgentVectorERK16AgentDescription9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructs the container with count copies of the agent described by agent_desc initialised with the default values specified by agent_desc. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agent_desc</span></code>: agent_desc Agent description specifying the agent variables to be represented </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: The size of the container </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector11AgentVectorERK11AgentVector">
+<span id="_CPPv3N11AgentVector11AgentVectorERK11AgentVector"></span><span id="_CPPv2N11AgentVector11AgentVectorERK11AgentVector"></span><span id="AgentVector::AgentVector__AgentVectorCR"></span><span class="target" id="classAgentVector_1ab7ad2cf0317173e4dd54b3d274675eea"></span><code class="sig-name descname"><span class="pre">AgentVector</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector11AgentVectorERK11AgentVector" title="AgentVector::AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector11AgentVectorERK11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy constructor. Constructs the container with the copy of the contents of other <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>: another container to be used as source to initialize the elements of the container with </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector11AgentVectorERR11AgentVector">
+<span id="_CPPv3N11AgentVector11AgentVectorERR11AgentVector"></span><span id="_CPPv2N11AgentVector11AgentVectorERR11AgentVector"></span><span id="AgentVector::AgentVector__AgentVectorRR"></span><span class="target" id="classAgentVector_1ad79ac45af06654b6f900dd253ed54eb3"></span><code class="sig-name descname"><span class="pre">AgentVector</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector11AgentVectorERR11AgentVector" title="AgentVector::AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector11AgentVectorERR11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Move constructor Constructs the container with the contents of other using move semantics. other is left in an empty but functional state. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">other</span></code>: another container to be used as source to initialize the elements of the container with </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVectoraSERK11AgentVector">
+<span id="_CPPv3N11AgentVectoraSERK11AgentVector"></span><span id="_CPPv2N11AgentVectoraSERK11AgentVector"></span><span id="AgentVector::assign-operator__AgentVectorCR"></span><span class="target" id="classAgentVector_1a28fc2d58c29534f857d38762a067d1bc"></span><a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVectoraSERK11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy assignment operator. Replaces the contents with a copy of the contents of other </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVectoraSERR11AgentVector">
+<span id="_CPPv3N11AgentVectoraSERR11AgentVector"></span><span id="_CPPv2N11AgentVectoraSERR11AgentVector"></span><span id="AgentVector::assign-operator__AgentVectorRR"></span><span class="target" id="classAgentVector_1aca173c351a330fc1c0a8a404703c7915"></span><a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVectoraSERR11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Move assignment operator. Replaces the contents with those of other using move semantics (i.e. the data in other is moved from other into this container). other is left in an empty but functional state. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector2atE9size_type">
+<span id="_CPPv3N11AgentVector2atE9size_type"></span><span id="_CPPv2N11AgentVector2atE9size_type"></span><span id="AgentVector::at__size_type"></span><span class="target" id="classAgentVector_1a91e85714512e3bc481afc41352b9b472"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">at</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector2atE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access specified element with bounds checking <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Reference to the requested element. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: position of the element to return </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::out_of_range</span></code>: if <code class="docutils literal notranslate"><span class="pre">!(pos</span> <span class="pre">&lt;</span> <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref"><span class="pre">size()</span></span></a><span class="pre">)</span></code> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector2atE9size_type">
+<span id="_CPPv3NK11AgentVector2atE9size_type"></span><span id="_CPPv2NK11AgentVector2atE9size_type"></span><span id="AgentVector::at__size_typeC"></span><span class="target" id="classAgentVector_1a5292bce2d97c095e4e5259b43a7b3c78"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">at</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector2atE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVectorixE9size_type">
+<span id="_CPPv3N11AgentVectorixE9size_type"></span><span id="_CPPv2N11AgentVectorixE9size_type"></span><span id="AgentVector::subscript-operator__size_type"></span><span class="target" id="classAgentVector_1ada8872f944cf7e8ffa276a14e53a3239"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">operator[]</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVectorixE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a reference to the element at specified location pos. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Reference to the requested element. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: position of the element to return </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::out_of_range</span></code>: if <code class="docutils literal notranslate"><span class="pre">!(pos</span> <span class="pre">&lt;</span> <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref"><span class="pre">size()</span></span></a><span class="pre">)</span></code> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVectorixE9size_type">
+<span id="_CPPv3NK11AgentVectorixE9size_type"></span><span id="_CPPv2NK11AgentVectorixE9size_type"></span><span id="AgentVector::subscript-operator__size_typeC"></span><span class="target" id="classAgentVector_1a97e7f6c8ae57167fddf46b91412ff98a"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">operator[]</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVectorixE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5frontEv">
+<span id="_CPPv3N11AgentVector5frontEv"></span><span id="_CPPv2N11AgentVector5frontEv"></span><span id="AgentVector::front"></span><span class="target" id="classAgentVector_1aea49d4cb3a366618f09842872a927868"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">front</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5frontEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a reference to the first element in the container. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Reference to the first element </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::out_of_range</span></code>: if <code class="docutils literal notranslate"><a class="reference internal" href="#classAgentVector_1a7b428f800b686cae9abf07987eb6ec2d"><span class="std std-ref"><span class="pre">empty()</span></span></a></code> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector5frontEv">
+<span id="_CPPv3NK11AgentVector5frontEv"></span><span id="_CPPv2NK11AgentVector5frontEv"></span><span id="AgentVector::frontC"></span><span class="target" id="classAgentVector_1a2189b07841c1fa0840d9aeec7d2d0163"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">front</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector5frontEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector4backEv">
+<span id="_CPPv3N11AgentVector4backEv"></span><span id="_CPPv2N11AgentVector4backEv"></span><span id="AgentVector::back"></span><span class="target" id="classAgentVector_1a66b200456cd49bf1e2ff21094e41e23b"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">back</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector4backEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns a reference to the last element in the container. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Reference to the last element </p>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::out_of_range</span></code>: if <code class="docutils literal notranslate"><a class="reference internal" href="#classAgentVector_1a7b428f800b686cae9abf07987eb6ec2d"><span class="std std-ref"><span class="pre">empty()</span></span></a></code> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector4backEv">
+<span id="_CPPv3NK11AgentVector4backEv"></span><span id="_CPPv2NK11AgentVector4backEv"></span><span id="AgentVector::backC"></span><span class="target" id="classAgentVector_1a134194afa8709418507f214f380acb7b"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">back</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector4backEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN11AgentVector4dataEP1TRKNSt6stringE">
+<span id="_CPPv3I0EN11AgentVector4dataERKNSt6stringE"></span><span id="_CPPv2I0EN11AgentVector4dataERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector_1a491bd15a654fc2ace9017a747ebd46f7"></span><a class="reference internal" href="#_CPPv4I0EN11AgentVector4dataEP1TRKNSt6stringE" title="AgentVector::data::T"><span class="pre">T</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN11AgentVector4dataEP1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns pointer to the underlying array serving as element storage for the named variable. <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Returns nullptr if vector is has not yet allocated buffers. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_name</span></code>: Name of the variable array to return </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentVar.html#classInvalidAgentVar"><span class="std std-ref"><span class="pre">InvalidAgentVar</span></span></a></code>: Agent does not contain variable variable_name </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidVarType.html#classInvalidVarType"><span class="std std-ref"><span class="pre">InvalidVarType</span></span></a></code>: Agent variable variable_name is not of type T </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0ENK11AgentVector4dataEPK1TRKNSt6stringE">
+<span id="_CPPv3I0ENK11AgentVector4dataERKNSt6stringE"></span><span id="_CPPv2I0ENK11AgentVector4dataERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector_1a58c4b49e3f13f96f9f167bbcaeb3d9b6"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK11AgentVector4dataEPK1TRKNSt6stringE" title="AgentVector::data::T"><span class="pre">T</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK11AgentVector4dataEPK1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector4dataERKNSt6stringE">
+<span id="_CPPv3N11AgentVector4dataERKNSt6stringE"></span><span id="_CPPv2N11AgentVector4dataERKNSt6stringE"></span><span id="AgentVector::data__ssCR"></span><span class="target" id="classAgentVector_1a0ea2b81843741c22a3cf3b7e6c1656b0"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector4dataERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector4dataERKNSt6stringE">
+<span id="_CPPv3NK11AgentVector4dataERKNSt6stringE"></span><span id="_CPPv2NK11AgentVector4dataERKNSt6stringE"></span><span id="AgentVector::data__ssCRC"></span><span class="target" id="classAgentVector_1aec578d818154b1396ded15dfe8c3b67e"></span><em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector4dataERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5beginEv">
+<span id="_CPPv3N11AgentVector5beginEv"></span><span id="_CPPv2N11AgentVector5beginEv"></span><span id="AgentVector::begin"></span><span class="target" id="classAgentVector_1a23b77b9efac726f6f54f13c84424ec8d"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">begin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector5beginEv">
+<span id="_CPPv3NK11AgentVector5beginEv"></span><span id="_CPPv2NK11AgentVector5beginEv"></span><span id="AgentVector::beginC"></span><span class="target" id="classAgentVector_1aa3d82f4dfd7581b6aa0e4b93a6cf753e"></span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">begin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector6cbeginEv">
+<span id="_CPPv3NK11AgentVector6cbeginEv"></span><span id="_CPPv2NK11AgentVector6cbeginEv"></span><span id="AgentVector::cbeginC"></span><span class="target" id="classAgentVector_1a82e48d30a6c715ab21f306ca1f904dad"></span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">cbegin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector6cbeginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector3endEv">
+<span id="_CPPv3N11AgentVector3endEv"></span><span id="_CPPv2N11AgentVector3endEv"></span><span id="AgentVector::end"></span><span class="target" id="classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector3endEv">
+<span id="_CPPv3NK11AgentVector3endEv"></span><span id="_CPPv2NK11AgentVector3endEv"></span><span id="AgentVector::endC"></span><span class="target" id="classAgentVector_1a11f2fbfe87ad541e3ede2b2993a361d7"></span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector4cendEv">
+<span id="_CPPv3NK11AgentVector4cendEv"></span><span id="_CPPv2NK11AgentVector4cendEv"></span><span id="AgentVector::cendC"></span><span class="target" id="classAgentVector_1aa57a419d9a63f5843133f957f7bf3ca0"></span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">cend</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector4cendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6rbeginEv">
+<span id="_CPPv3N11AgentVector6rbeginEv"></span><span id="_CPPv2N11AgentVector6rbeginEv"></span><span id="AgentVector::rbegin"></span><span class="target" id="classAgentVector_1a9a0f6ad476015aadc2a71428e350695d"></span><a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">rbegin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector6rbeginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector6rbeginEv">
+<span id="_CPPv3NK11AgentVector6rbeginEv"></span><span id="_CPPv2NK11AgentVector6rbeginEv"></span><span id="AgentVector::rbeginC"></span><span class="target" id="classAgentVector_1a4b8fec62aa7de57ad41aabcb6374e71f"></span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">rbegin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector6rbeginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector7crbeginEv">
+<span id="_CPPv3NK11AgentVector7crbeginEv"></span><span id="_CPPv2NK11AgentVector7crbeginEv"></span><span id="AgentVector::crbeginC"></span><span class="target" id="classAgentVector_1abf336da760b55ea7ad9f542e059b02db"></span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">crbegin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector7crbeginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector4rendEv">
+<span id="_CPPv3N11AgentVector4rendEv"></span><span id="_CPPv2N11AgentVector4rendEv"></span><span id="AgentVector::rend"></span><span class="target" id="classAgentVector_1a81bcb1eb75fb5129cb754053b9a91b0c"></span><a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">rend</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector4rendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector4rendEv">
+<span id="_CPPv3NK11AgentVector4rendEv"></span><span id="_CPPv2NK11AgentVector4rendEv"></span><span id="AgentVector::rendC"></span><span class="target" id="classAgentVector_1aef73e1a48f745ab78fafe06b4f74dec0"></span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">rend</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector4rendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector5crendEv">
+<span id="_CPPv3NK11AgentVector5crendEv"></span><span id="_CPPv2NK11AgentVector5crendEv"></span><span id="AgentVector::crendC"></span><span class="target" id="classAgentVector_1ad9c09e3849356ea62c3ae55d474b2e6c"></span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">crend</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector5crendEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector5emptyEv">
+<span id="_CPPv3NK11AgentVector5emptyEv"></span><span id="_CPPv2NK11AgentVector5emptyEv"></span><span id="AgentVector::emptyC"></span><span class="target" id="classAgentVector_1a7b428f800b686cae9abf07987eb6ec2d"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">empty</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector5emptyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks if the container has no elements, i.e. whether <a class="reference internal" href="#classAgentVector_1a23b77b9efac726f6f54f13c84424ec8d"><span class="std std-ref">begin()</span></a> == <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">true</span></code> if the container is empty, <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector4sizeEv">
+<span id="_CPPv3NK11AgentVector4sizeEv"></span><span id="_CPPv2NK11AgentVector4sizeEv"></span><span id="AgentVector::sizeC"></span><span class="target" id="classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"></span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of elements in the container, i.e. std::distance(<a class="reference internal" href="#classAgentVector_1a23b77b9efac726f6f54f13c84424ec8d"><span class="std std-ref">begin()</span></a>, <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a>) <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The number of elements in the container. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector7reserveE9size_type">
+<span id="_CPPv3N11AgentVector7reserveE9size_type"></span><span id="_CPPv2N11AgentVector7reserveE9size_type"></span><span id="AgentVector::reserve__size_type"></span><span class="target" id="classAgentVector_1aa77c1366f24c6c74cd452e97a356d43c"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">reserve</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">new_cap</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector7reserveE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Increase the capacity of the vector to a value that’s greater or equal to new_cap. If new_cap is greater than the current <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>, new storage is allocated, otherwise the method does nothing.</p>
+<p><a class="reference internal" href="#classAgentVector_1aa77c1366f24c6c74cd452e97a356d43c"><span class="std std-ref">reserve()</span></a> does not change the size of the vector.</p>
+<p>If new_cap is greater than <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>, all iterators, including the past-the-end iterator, and all AgentViews are invalidated. Otherwise, no iterators or references are invalidated. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">new_cap</span></code>: new capacity of the vector </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">std::length_error</span></code>: if new_cap &gt; <a class="reference internal" href="#classAgentVector_1ab6dc7b6620691b15bf1fcdf3eb1fd072"><span class="std std-ref">max_size()</span></a>. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector8capacityEv">
+<span id="_CPPv3NK11AgentVector8capacityEv"></span><span id="_CPPv2NK11AgentVector8capacityEv"></span><span id="AgentVector::capacityC"></span><span class="target" id="classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"></span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">capacity</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector8capacityEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of elements that the container has currently allocated space for.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Capacity of the currently allocated storage. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector13shrink_to_fitEv">
+<span id="_CPPv3N11AgentVector13shrink_to_fitEv"></span><span id="_CPPv2N11AgentVector13shrink_to_fitEv"></span><span id="AgentVector::shrink_to_fit"></span><span class="target" id="classAgentVector_1a21ed5735c0e7be882fe9e3107861f7e5"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">shrink_to_fit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector13shrink_to_fitEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Requests the removal of unused capacity.</p>
+<p>If reallocation occurs, all iterators, including the past the end iterator, and all references to the elements are invalidated. If no reallocation takes place, no iterators or references are invalidated. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5clearEv">
+<span id="_CPPv3N11AgentVector5clearEv"></span><span id="_CPPv2N11AgentVector5clearEv"></span><span id="AgentVector::clear"></span><span class="target" id="classAgentVector_1a2beba22b5ed9826bea7552a1ae8ed21a"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">clear</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5clearEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Erases all elements from the container. After this call, <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> returns zero.</p>
+<p>Invalidates any references, pointers, or iterators referring to contained elements. <a class="reference internal" href="structAny.html#structAny"><span class="std std-ref">Any</span></a> past-the-end iterators are also invalidated.</p>
+<p>Leaves the <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a> of the vector unchanged </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE14const_iteratorRK13AgentInstance">
+<span id="_CPPv3N11AgentVector6insertE14const_iteratorRK13AgentInstance"></span><span id="_CPPv2N11AgentVector6insertE14const_iteratorRK13AgentInstance"></span><span id="AgentVector::insert__const_iterator.AgentInstanceCR"></span><span class="target" id="classAgentVector_1a675ea5e5fd6a3dc113e51eae1b06f3c9"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentInstance.html#_CPPv413AgentInstance" title="AgentInstance"><span class="pre">AgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE14const_iteratorRK13AgentInstance" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inserts elements at the specified location in the container Inserts value before pos</p>
+<p>Causes reallocation if the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than the old <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>. If the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>, all iterators and references are invalidated. Otherwise, only the iterators and references before the insertion point remain valid. The past-the-end iterator is also invalidated.</p>
+<p><dl class="simple">
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgent.html#classInvalidAgent"><span class="std std-ref"><span class="pre">InvalidAgent</span></span></a></code>: If agent type of value does not match </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE9size_typeRK13AgentInstance">
+<span id="_CPPv3N11AgentVector6insertE9size_typeRK13AgentInstance"></span><span id="_CPPv2N11AgentVector6insertE9size_typeRK13AgentInstance"></span><span id="AgentVector::insert__size_type.AgentInstanceCR"></span><span class="target" id="classAgentVector_1aced137015418602281606706b93b68e5"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentInstance.html#_CPPv413AgentInstance" title="AgentInstance"><span class="pre">AgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE9size_typeRK13AgentInstance" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE14const_iteratorRK5Agent">
+<span id="_CPPv3N11AgentVector6insertE14const_iteratorRK5Agent"></span><span id="_CPPv2N11AgentVector6insertE14const_iteratorRK5Agent"></span><span id="AgentVector::insert__const_iterator.AgentCR"></span><span class="target" id="classAgentVector_1a9daa6d524ec7f4832a7e1ac718bb7d41"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE14const_iteratorRK5Agent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE9size_typeRK5Agent">
+<span id="_CPPv3N11AgentVector6insertE9size_typeRK5Agent"></span><span id="_CPPv2N11AgentVector6insertE9size_typeRK5Agent"></span><span id="AgentVector::insert__size_type.AgentCR"></span><span class="target" id="classAgentVector_1a4bbe497ec9c9b98c0fc3a3fc939c5f15"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE9size_typeRK5Agent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE14const_iterator9size_typeRK13AgentInstance">
+<span id="_CPPv3N11AgentVector6insertE14const_iterator9size_typeRK13AgentInstance"></span><span id="_CPPv2N11AgentVector6insertE14const_iterator9size_typeRK13AgentInstance"></span><span id="AgentVector::insert__const_iterator.size_type.AgentInstanceCR"></span><span class="target" id="classAgentVector_1aa9c14186b5461aee310296138ac0f21a"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentInstance.html#_CPPv413AgentInstance" title="AgentInstance"><span class="pre">AgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE14const_iterator9size_typeRK13AgentInstance" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inserts elements at the specified location in the container Inserts count copies of the value before pos</p>
+<p>Causes reallocation if the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than the old <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>. If the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>, all iterators and references are invalidated. Otherwise, only the iterators and references before the insertion point remain valid. The past-the-end iterator is also invalidated.</p>
+<p><dl class="simple">
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgent.html#classInvalidAgent"><span class="std std-ref"><span class="pre">InvalidAgent</span></span></a></code>: If agent type of value does not match </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE9size_type9size_typeRK13AgentInstance">
+<span id="_CPPv3N11AgentVector6insertE9size_type9size_typeRK13AgentInstance"></span><span id="_CPPv2N11AgentVector6insertE9size_type9size_typeRK13AgentInstance"></span><span id="AgentVector::insert__size_type.size_type.AgentInstanceCR"></span><span class="target" id="classAgentVector_1a97b7b0dee3b74ba1055ee4c33c68dec7"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentInstance.html#_CPPv413AgentInstance" title="AgentInstance"><span class="pre">AgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE9size_type9size_typeRK13AgentInstance" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE14const_iterator9size_typeRK5Agent">
+<span id="_CPPv3N11AgentVector6insertE14const_iterator9size_typeRK5Agent"></span><span id="_CPPv2N11AgentVector6insertE14const_iterator9size_typeRK5Agent"></span><span id="AgentVector::insert__const_iterator.size_type.AgentCR"></span><span class="target" id="classAgentVector_1a40fc8a2545fc6a3a1882bfe0eb38862c"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE14const_iterator9size_typeRK5Agent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6insertE9size_type9size_typeRK5Agent">
+<span id="_CPPv3N11AgentVector6insertE9size_type9size_typeRK5Agent"></span><span id="_CPPv2N11AgentVector6insertE9size_type9size_typeRK5Agent"></span><span id="AgentVector::insert__size_type.size_type.AgentCR"></span><span class="target" id="classAgentVector_1aa68e705d8795bf3c801734f548a8f431"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6insertE9size_type9size_typeRK5Agent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN11AgentVector6insertE8iterator14const_iterator7InputIt7InputIt">
+<span id="_CPPv3I0EN11AgentVector6insertE14const_iterator7InputIt7InputIt"></span><span id="_CPPv2I0EN11AgentVector6insertE14const_iterator7InputIt7InputIt"></span><span class="pre">template&lt;</span><span class="pre">class</span> <code class="sig-name descname"><span class="pre">InputIt</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector_1afd6c00cf2bb56b6cca3adcc1680f32d3"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4I0EN11AgentVector6insertE8iterator14const_iterator7InputIt7InputIt" title="AgentVector::insert::InputIt"><span class="pre">InputIt</span></a> <em><span class="pre">first</span></em>, <a class="reference internal" href="#_CPPv4I0EN11AgentVector6insertE8iterator14const_iterator7InputIt7InputIt" title="AgentVector::insert::InputIt"><span class="pre">InputIt</span></a> <em><span class="pre">last</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN11AgentVector6insertE8iterator14const_iterator7InputIt7InputIt" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inserts elements at the specified location in the container Inserts elements from range [first, last) before pos. The behavior is undefined if first and last are iterators into *this</p>
+<p>Causes reallocation if the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than the old <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>. If the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a>, all iterators and references are invalidated. Otherwise, only the iterators and references before the insertion point remain valid. The past-the-end iterator is also invalidated.</p>
+<p><dl class="simple">
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgent.html#classInvalidAgent"><span class="std std-ref"><span class="pre">InvalidAgent</span></span></a></code>: If agent type of first or last does not match </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN11AgentVector6insertE8iterator9size_type7InputIt7InputIt">
+<span id="_CPPv3I0EN11AgentVector6insertE9size_type7InputIt7InputIt"></span><span id="_CPPv2I0EN11AgentVector6insertE9size_type7InputIt7InputIt"></span><span class="pre">template&lt;</span><span class="pre">class</span> <code class="sig-name descname"><span class="pre">InputIt</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector_1a23018c92e69c2d6d206c818969dc99a0"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">insert</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em>, <a class="reference internal" href="#_CPPv4I0EN11AgentVector6insertE8iterator9size_type7InputIt7InputIt" title="AgentVector::insert::InputIt"><span class="pre">InputIt</span></a> <em><span class="pre">first</span></em>, <a class="reference internal" href="#_CPPv4I0EN11AgentVector6insertE8iterator9size_type7InputIt7InputIt" title="AgentVector::insert::InputIt"><span class="pre">InputIt</span></a> <em><span class="pre">last</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN11AgentVector6insertE8iterator9size_type7InputIt7InputIt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5eraseE14const_iterator">
+<span id="_CPPv3N11AgentVector5eraseE14const_iterator"></span><span id="_CPPv2N11AgentVector5eraseE14const_iterator"></span><span id="AgentVector::erase__const_iterator"></span><span class="target" id="classAgentVector_1a0bf7d1984c9dcaeccf82a51d94e88070"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">erase</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5eraseE14const_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Erases the specified elements from the container. Removes the element at pos.</p>
+<p>Invalidates iterators and references at or after the point of the erase, including the <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator.</p>
+<p>The iterator pos must be valid and dereferenceable. Thus the <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator (which is valid, but is not dereferenceable) cannot be used as a value for pos.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Iterator following the last removed element </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>If pos refers to the last element, then the <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator is returned </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pos</span></code>: iterator to the element to remove</p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: pos &gt;= <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5eraseE9size_type">
+<span id="_CPPv3N11AgentVector5eraseE9size_type"></span><span id="_CPPv2N11AgentVector5eraseE9size_type"></span><span id="AgentVector::erase__size_type"></span><span class="target" id="classAgentVector_1abe494a2cdad5c127e251b0cc78f86803"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">erase</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5eraseE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5eraseE14const_iterator14const_iterator">
+<span id="_CPPv3N11AgentVector5eraseE14const_iterator14const_iterator"></span><span id="_CPPv2N11AgentVector5eraseE14const_iterator14const_iterator"></span><span id="AgentVector::erase__const_iterator.const_iterator"></span><span class="target" id="classAgentVector_1adcc6c8bfc449fb9734b45dce036cd2cc"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">erase</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">first</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">last</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5eraseE14const_iterator14const_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Erases the specified elements from the container. Removes the elements in the range [first, last).</p>
+<p>Invalidates iterators and references at or after the point of the erase, including the <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator.</p>
+<p>The iterator first does not need to be dereferenceable if first==last: erasing an empty range is a no-op.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Iterator following the last removed element </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>if last==<a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> prior to removal,then the updated <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator is returned. </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>if [first, last) is an empty range, then last is returned </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">first</span></code>: Iterator to the first item of the range of elements to remove </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">last</span></code>: Iterator to after the last item of the range of elements to remove</p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: first &gt;= <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: last &gt; <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector5eraseE9size_type9size_type">
+<span id="_CPPv3N11AgentVector5eraseE9size_type9size_type"></span><span id="_CPPv2N11AgentVector5eraseE9size_type9size_type"></span><span id="AgentVector::erase__size_type.size_type"></span><span class="target" id="classAgentVector_1a8c48d0bb37d418c5cb0f591641e8c912"></span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">erase</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">first</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">last</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector5eraseE9size_type9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector9push_backERK13AgentInstance">
+<span id="_CPPv3N11AgentVector9push_backERK13AgentInstance"></span><span id="_CPPv2N11AgentVector9push_backERK13AgentInstance"></span><span id="AgentVector::push_back__AgentInstanceCR"></span><span class="target" id="classAgentVector_1adb81124dbb9e286f38ff2f24e939aae3"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">push_back</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentInstance.html#_CPPv413AgentInstance" title="AgentInstance"><span class="pre">AgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector9push_backERK13AgentInstance" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends the given element value to the end of the container. The new element is initialized as a copy of value</p>
+<p>If the new <a class="reference internal" href="#classAgentVector_1a0c036ef4f5530ddf2c8cda1577a67974"><span class="std std-ref">size()</span></a> is greater than <a class="reference internal" href="#classAgentVector_1a55b80c1262d2de50f6dfca823f0cb892"><span class="std std-ref">capacity()</span></a> then all iterators and references (including the past-the-end iterator) are invalidated. Otherwise only the past-the-end iterator is invalidated.</p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: the value of the element to append</p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgent.html#classInvalidAgent"><span class="std std-ref"><span class="pre">InvalidAgent</span></span></a></code>: If the agent type of the <a class="reference internal" href="classAgentInstance.html#classAgentInstance"><span class="std std-ref">AgentInstance</span></a> doesn’t match the agent type of the <a class="reference internal" href="#classAgentVector"><span class="std std-ref">AgentVector</span></a> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector9push_backEv">
+<span id="_CPPv3N11AgentVector9push_backEv"></span><span id="_CPPv2N11AgentVector9push_backEv"></span><span id="AgentVector::push_back"></span><span class="target" id="classAgentVector_1a6dcc496f5653f23988106f797c7b9009"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">push_back</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector9push_backEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Appends a default initialised element to the end of the container </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector8pop_backEv">
+<span id="_CPPv3N11AgentVector8pop_backEv"></span><span id="_CPPv2N11AgentVector8pop_backEv"></span><span id="AgentVector::pop_back"></span><span class="target" id="classAgentVector_1ad4225d78f276861a71057bf7f546cce6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">pop_back</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector8pop_backEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Removes the last element of the container. Calling pop_back on an empty container results in undefined behavior. Iterators and references to the last element, as well as the <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a> iterator, are invalidated. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector6resizeE9size_type">
+<span id="_CPPv3N11AgentVector6resizeE9size_type"></span><span id="_CPPv2N11AgentVector6resizeE9size_type"></span><span id="AgentVector::resize__size_type"></span><span class="target" id="classAgentVector_1a86feb6c4d670dc0c304fce5eec5843e9"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector6resizeE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resizes the container to contain count elements.</p>
+<p>If the current size is greater than count, the container is reduced to its first count elements.</p>
+<p>If the current size is less than count, additional default agents are appended <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: size of the container </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector4swapER11AgentVector">
+<span id="_CPPv3N11AgentVector4swapER11AgentVector"></span><span id="_CPPv2N11AgentVector4swapER11AgentVector"></span><span id="AgentVector::swap__AgentVectorR"></span><span class="target" id="classAgentVector_1a2c71b60fb3a3701928cad73b76f8bb0d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">swap</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4N11AgentVector4swapER11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Exchanges the contents of the container with those of other. Does not invoke any move, copy, or swap operations on individual elements. All iterators and references remain valid. The past-the-end iterator is invalidated. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVectoreqERK11AgentVector">
+<span id="_CPPv3NK11AgentVectoreqERK11AgentVector"></span><span id="_CPPv2NK11AgentVectoreqERK11AgentVector"></span><span id="AgentVector::eq-operator__AgentVectorCRC"></span><span class="target" id="classAgentVector_1a07f3d6d7c4d90ac6f316ae0eb8f78bd3"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVectoreqERK11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks if the contents of lhs and rhs are equal, that is, they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVectorneERK11AgentVector">
+<span id="_CPPv3NK11AgentVectorneERK11AgentVector"></span><span id="_CPPv2NK11AgentVectorneERK11AgentVector"></span><span id="AgentVector::neq-operator__AgentVectorCRC"></span><span class="target" id="classAgentVector_1a4ae3857196ee3377aeb34d020065e41b"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVectorneERK11AgentVector" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector12getAgentNameEv">
+<span id="_CPPv3NK11AgentVector12getAgentNameEv"></span><span id="_CPPv2NK11AgentVector12getAgentNameEv"></span><span id="AgentVector::getAgentNameC"></span><span class="target" id="classAgentVector_1abf34866273747cee2a0130ef807e602d"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getAgentName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector12getAgentNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the agent name from the internal agent description </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16matchesAgentTypeERK9AgentData">
+<span id="_CPPv3NK11AgentVector16matchesAgentTypeERK9AgentData"></span><span id="_CPPv2NK11AgentVector16matchesAgentTypeERK9AgentData"></span><span id="AgentVector::matchesAgentType__AgentDataCRC"></span><span class="target" id="classAgentVector_1abd5e2e033d99e11e7df13bf3fa23f383"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">matchesAgentType</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16matchesAgentTypeERK9AgentData" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns true, if the provided agent description matches the internal agent description of the vector </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16matchesAgentTypeERK16AgentDescription">
+<span id="_CPPv3NK11AgentVector16matchesAgentTypeERK16AgentDescription"></span><span id="_CPPv2NK11AgentVector16matchesAgentTypeERK16AgentDescription"></span><span id="AgentVector::matchesAgentType__AgentDescriptionCRC"></span><span class="target" id="classAgentVector_1a36b34e9ca8c1f60c4e0fc5816672090e"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">matchesAgentType</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16matchesAgentTypeERK16AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector15getVariableTypeERKNSt6stringE">
+<span id="_CPPv3NK11AgentVector15getVariableTypeERKNSt6stringE"></span><span id="_CPPv2NK11AgentVector15getVariableTypeERKNSt6stringE"></span><span id="AgentVector::getVariableType__ssCRC"></span><span class="target" id="classAgentVector_1a68ceed67516a6f13feb70554ce9dc6b1"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">getVariableType</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector15getVariableTypeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the type_index of the named variable <dl class="simple">
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentVar.html#classInvalidAgentVar"><span class="std std-ref"><span class="pre">InvalidAgentVar</span></span></a></code>: When variable_name is not valid </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector19getVariableMetaDataEv">
+<span id="_CPPv3NK11AgentVector19getVariableMetaDataEv"></span><span id="_CPPv2NK11AgentVector19getVariableMetaDataEv"></span><span id="AgentVector::getVariableMetaDataC"></span><span class="target" id="classAgentVector_1a7b3f9dbe8943bec70afede3788caa568"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Variable_8h_1a9bd1d63e1e37008939c3f6ddd1e813d9.html#_CPPv411VariableMap" title="VariableMap"><span class="pre">VariableMap</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getVariableMetaData</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector19getVariableMetaDataEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the full map of variable metadata from the internal agent description </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector15getInitialStateEv">
+<span id="_CPPv3NK11AgentVector15getInitialStateEv"></span><span id="_CPPv2NK11AgentVector15getInitialStateEv"></span><span id="AgentVector::getInitialStateC"></span><span class="target" id="classAgentVector_1a592fab234fc4ed39907c11304e680960"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getInitialState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the initial state of the internal agent description </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector8max_sizeEv">
+<span id="_CPPv3N11AgentVector8max_sizeEv"></span><span id="_CPPv2N11AgentVector8max_sizeEv"></span><span id="AgentVector::max_size"></span><span class="target" id="classAgentVector_1ab6dc7b6620691b15bf1fcdf3eb1fd072"></span><em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">max_size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector8max_sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the maximum number of elements the container is able to hold due to system or library implementation limitations, i.e. std::distance(<a class="reference internal" href="#classAgentVector_1a23b77b9efac726f6f54f13c84424ec8d"><span class="std std-ref">begin()</span></a>, <a class="reference internal" href="#classAgentVector_1ad9fa7f0c426c55497f5c08714ebe8c36"><span class="std std-ref">end()</span></a>) for the largest container. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Maximum number of elements. </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This value typically reflects the theoretical limit on the size of the container, at most <code class="docutils literal notranslate"><span class="pre">std::numeric_limits&lt;difference_type&gt;::max()</span></code>. At runtime, the size of the container may be limited to a value smaller than <a class="reference internal" href="#classAgentVector_1ab6dc7b6620691b15bf1fcdf3eb1fd072"><span class="std std-ref">max_size()</span></a> by the amount of RAM available. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp class">
+<dt id="_CPPv4N11AgentVector14const_iteratorE">
+<span id="_CPPv3N11AgentVector14const_iteratorE"></span><span id="_CPPv2N11AgentVector14const_iteratorE"></span><span id="AgentVector::const_iterator"></span><span class="target" id="classAgentVector_1_1const__iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">const_iterator</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">iterator</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">input_iterator_tag</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">*</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N11AgentVector14const_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector14const_iterator14const_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type">
+<span id="_CPPv3N11AgentVector14const_iterator14const_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="_CPPv2N11AgentVector14const_iterator14const_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="AgentVector::const_iterator::const_iterator__std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentDataMap:.size_type"></span><span class="target" id="classAgentVector_1_1const__iterator_1acf04213cd2feebc434f66ebbf3bddf13"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">const_iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <em><span class="pre">data</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector14const_iterator14const_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector14const_iteratorppEv">
+<span id="_CPPv3N11AgentVector14const_iteratorppEv"></span><span id="_CPPv2N11AgentVector14const_iteratorppEv"></span><span id="AgentVector::const_iterator::inc-operator"></span><span class="target" id="classAgentVector_1_1const__iterator_1aee372ba7f507a5a8a463ca0d224cf55a"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector14const_iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector14const_iteratorppEi">
+<span id="_CPPv3N11AgentVector14const_iteratorppEi"></span><span id="_CPPv2N11AgentVector14const_iteratorppEi"></span><span id="AgentVector::const_iterator::inc-operator__i"></span><span class="target" id="classAgentVector_1_1const__iterator_1afb3889b7b23bd2da31142cdf34807c99"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector14const_iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector14const_iteratoreqE14const_iterator">
+<span id="_CPPv3NK11AgentVector14const_iteratoreqE14const_iterator"></span><span id="_CPPv2NK11AgentVector14const_iteratoreqE14const_iterator"></span><span id="AgentVector::const_iterator::eq-operator__const_iteratorC"></span><span class="target" id="classAgentVector_1_1const__iterator_1a756085beecc3706bfd018e310c15e097"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector14const_iteratoreqE14const_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector14const_iteratorneE14const_iterator">
+<span id="_CPPv3NK11AgentVector14const_iteratorneE14const_iterator"></span><span id="_CPPv2NK11AgentVector14const_iteratorneE14const_iterator"></span><span id="AgentVector::const_iterator::neq-operator__const_iteratorC"></span><span class="target" id="classAgentVector_1_1const__iterator_1a7a463dbdba6233aa1802ca6c20fdd438"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector14const_iteratorE" title="AgentVector::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector14const_iteratorneE14const_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector14const_iteratormlEv">
+<span id="_CPPv3NK11AgentVector14const_iteratormlEv"></span><span id="_CPPv2NK11AgentVector14const_iteratormlEv"></span><span id="AgentVector::const_iterator::mul-operatorC"></span><span class="target" id="classAgentVector_1_1const__iterator_1a5d1a80b1a284a7549f9035404dc26acc"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector14const_iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N11AgentVector22const_reverse_iteratorE">
+<span id="_CPPv3N11AgentVector22const_reverse_iteratorE"></span><span id="_CPPv2N11AgentVector22const_reverse_iteratorE"></span><span id="AgentVector::const_reverse_iterator"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">const_reverse_iterator</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">iterator</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">input_iterator_tag</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">*</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector22const_reverse_iterator22const_reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type">
+<span id="_CPPv3N11AgentVector22const_reverse_iterator22const_reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="_CPPv2N11AgentVector22const_reverse_iterator22const_reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="AgentVector::const_reverse_iterator::const_reverse_iterator__std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentDataMap:.size_type"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1af687ebf9c054285ec19047659935c695"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">const_reverse_iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <em><span class="pre">data</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector22const_reverse_iterator22const_reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector22const_reverse_iteratorppEv">
+<span id="_CPPv3N11AgentVector22const_reverse_iteratorppEv"></span><span id="_CPPv2N11AgentVector22const_reverse_iteratorppEv"></span><span id="AgentVector::const_reverse_iterator::inc-operator"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1aaf1d50a75297a0d6814c60c179d17706"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector22const_reverse_iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector22const_reverse_iteratorppEi">
+<span id="_CPPv3N11AgentVector22const_reverse_iteratorppEi"></span><span id="_CPPv2N11AgentVector22const_reverse_iteratorppEi"></span><span id="AgentVector::const_reverse_iterator::inc-operator__i"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1a1b103cb48ab7a825b9675bfa72bb1ede"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector22const_reverse_iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector22const_reverse_iteratoreqE22const_reverse_iterator">
+<span id="_CPPv3NK11AgentVector22const_reverse_iteratoreqE22const_reverse_iterator"></span><span id="_CPPv2NK11AgentVector22const_reverse_iteratoreqE22const_reverse_iterator"></span><span id="AgentVector::const_reverse_iterator::eq-operator__const_reverse_iteratorC"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1a0edd1fa9b785fad966cf1b5db6fe8a97"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector22const_reverse_iteratoreqE22const_reverse_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector22const_reverse_iteratorneE22const_reverse_iterator">
+<span id="_CPPv3NK11AgentVector22const_reverse_iteratorneE22const_reverse_iterator"></span><span id="_CPPv2NK11AgentVector22const_reverse_iteratorneE22const_reverse_iterator"></span><span id="AgentVector::const_reverse_iterator::neq-operator__const_reverse_iteratorC"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1abac40c7cff516b9647aa6b3e631839fd"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector22const_reverse_iteratorE" title="AgentVector::const_reverse_iterator"><span class="pre">const_reverse_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector22const_reverse_iteratorneE22const_reverse_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector22const_reverse_iteratormlEv">
+<span id="_CPPv3NK11AgentVector22const_reverse_iteratormlEv"></span><span id="_CPPv2NK11AgentVector22const_reverse_iteratormlEv"></span><span id="AgentVector::const_reverse_iterator::mul-operatorC"></span><span class="target" id="classAgentVector_1_1const__reverse__iterator_1a9e85a6bb1da092bdbeeb736d0ae3b826"></span><a class="reference internal" href="#_CPPv4N11AgentVector6CAgentE" title="AgentVector::CAgent"><span class="pre">CAgent</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector22const_reverse_iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N11AgentVector8iteratorE">
+<span id="_CPPv3N11AgentVector8iteratorE"></span><span id="_CPPv2N11AgentVector8iteratorE"></span><span id="AgentVector::iterator"></span><span class="target" id="classAgentVector_1_1iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">iterator</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">iterator</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">input_iterator_tag</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">*</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N11AgentVector8iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector8iteratorcvN11AgentVector14const_iteratorEEv">
+<span id="_CPPv3NK11AgentVector8iteratorcvN11AgentVector14const_iteratorEEv"></span><span id="_CPPv2NK11AgentVector8iteratorcvN11AgentVector14const_iteratorEEv"></span><span id="AgentVector::iterator::castto-AgentVector::const_iterator-operatorC"></span><span class="target" id="classAgentVector_1_1iterator_1adbbc9efea23d0cf42a1fa90e9d16d59f"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">operator</span> <span class="pre">AgentVector::const_iterator</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector8iteratorcvN11AgentVector14const_iteratorEEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector8iterator8iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type">
+<span id="_CPPv3N11AgentVector8iterator8iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="_CPPv2N11AgentVector8iterator8iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="AgentVector::iterator::iterator__std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentDataMap:.size_type"></span><span class="target" id="classAgentVector_1_1iterator_1a5c60be9dcba5dc688a3075673a18f5b0"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <em><span class="pre">data</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector8iterator8iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector8iteratorppEv">
+<span id="_CPPv3N11AgentVector8iteratorppEv"></span><span id="_CPPv2N11AgentVector8iteratorppEv"></span><span id="AgentVector::iterator::inc-operator"></span><span class="target" id="classAgentVector_1_1iterator_1a146951f127afa5c49ea091d9a59a5542"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector8iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector8iteratorppEi">
+<span id="_CPPv3N11AgentVector8iteratorppEi"></span><span id="_CPPv2N11AgentVector8iteratorppEi"></span><span id="AgentVector::iterator::inc-operator__i"></span><span class="target" id="classAgentVector_1_1iterator_1a867beaa81818de63e23c7bf78376b707"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector8iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector8iteratoreqE8iterator">
+<span id="_CPPv3NK11AgentVector8iteratoreqE8iterator"></span><span id="_CPPv2NK11AgentVector8iteratoreqE8iterator"></span><span id="AgentVector::iterator::eq-operator__iteratorC"></span><span class="target" id="classAgentVector_1_1iterator_1a91797e795a71556bc171eec83ca50268"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector8iteratoreqE8iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector8iteratorneE8iterator">
+<span id="_CPPv3NK11AgentVector8iteratorneE8iterator"></span><span id="_CPPv2NK11AgentVector8iteratorneE8iterator"></span><span id="AgentVector::iterator::neq-operator__iteratorC"></span><span class="target" id="classAgentVector_1_1iterator_1af1678e394627cae47d7ab251bcb90d7c"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector8iteratorE" title="AgentVector::iterator"><span class="pre">iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector8iteratorneE8iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector8iteratormlEv">
+<span id="_CPPv3NK11AgentVector8iteratormlEv"></span><span id="_CPPv2NK11AgentVector8iteratormlEv"></span><span id="AgentVector::iterator::mul-operatorC"></span><span class="target" id="classAgentVector_1_1iterator_1a6d3708223fd9bf41eee757f1e4a2f6a7"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector8iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt id="_CPPv4N11AgentVector16reverse_iteratorE">
+<span id="_CPPv3N11AgentVector16reverse_iteratorE"></span><span id="_CPPv2N11AgentVector16reverse_iteratorE"></span><span id="AgentVector::reverse_iterator"></span><span class="target" id="classAgentVector_1_1reverse__iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">reverse_iterator</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">iterator</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">input_iterator_tag</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">*</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16reverse_iteratorcvN11AgentVector22const_reverse_iteratorEEv">
+<span id="_CPPv3NK11AgentVector16reverse_iteratorcvN11AgentVector22const_reverse_iteratorEEv"></span><span id="_CPPv2NK11AgentVector16reverse_iteratorcvN11AgentVector22const_reverse_iteratorEEv"></span><span id="AgentVector::reverse_iterator::castto-AgentVector::const_reverse_iterator-operatorC"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1a2f69d7a1f20d28ee4dc0f5b424fbd726"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">operator</span> <span class="pre">AgentVector::const_reverse_iterator</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16reverse_iteratorcvN11AgentVector22const_reverse_iteratorEEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector16reverse_iterator16reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type">
+<span id="_CPPv3N11AgentVector16reverse_iterator16reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="_CPPv2N11AgentVector16reverse_iterator16reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type"></span><span id="AgentVector::reverse_iterator::reverse_iterator__std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentDataMap:.size_type"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1a02b8196c9365e404f11ae3ba06a162dc"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">reverse_iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <em><span class="pre">data</span></em>, <a class="reference internal" href="#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector16reverse_iterator16reverse_iteratorERKNSt10shared_ptrIK9AgentDataEENSt8weak_ptrI12AgentDataMapEE9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector16reverse_iteratorppEv">
+<span id="_CPPv3N11AgentVector16reverse_iteratorppEv"></span><span id="_CPPv2N11AgentVector16reverse_iteratorppEv"></span><span id="AgentVector::reverse_iterator::inc-operator"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1a73a89953c6e6684fcfdcebc4796e0542"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector16reverse_iteratorppEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N11AgentVector16reverse_iteratorppEi">
+<span id="_CPPv3N11AgentVector16reverse_iteratorppEi"></span><span id="_CPPv2N11AgentVector16reverse_iteratorppEi"></span><span id="AgentVector::reverse_iterator::inc-operator__i"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1a32f0d7b45f38e5e2b6459d23ed52fce0"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentVector16reverse_iteratorppEi" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16reverse_iteratoreqE16reverse_iterator">
+<span id="_CPPv3NK11AgentVector16reverse_iteratoreqE16reverse_iterator"></span><span id="_CPPv2NK11AgentVector16reverse_iteratoreqE16reverse_iterator"></span><span id="AgentVector::reverse_iterator::eq-operator__reverse_iteratorC"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1a3bc9f132c4ba56867bb8d03486d308f6"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16reverse_iteratoreqE16reverse_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16reverse_iteratorneE16reverse_iterator">
+<span id="_CPPv3NK11AgentVector16reverse_iteratorneE16reverse_iterator"></span><span id="_CPPv2NK11AgentVector16reverse_iteratorneE16reverse_iterator"></span><span id="AgentVector::reverse_iterator::neq-operator__reverse_iteratorC"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1ae0f32b802b0f2fa90c886cb26c5b8fad"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N11AgentVector16reverse_iteratorE" title="AgentVector::reverse_iterator"><span class="pre">reverse_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16reverse_iteratorneE16reverse_iterator" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK11AgentVector16reverse_iteratormlEv">
+<span id="_CPPv3NK11AgentVector16reverse_iteratormlEv"></span><span id="_CPPv2NK11AgentVector16reverse_iteratormlEv"></span><span id="AgentVector::reverse_iterator::mul-operatorC"></span><span class="target" id="classAgentVector_1_1reverse__iterator_1ac7c18f95204b853a16fca81e3031de83"></span><a class="reference internal" href="#_CPPv4N11AgentVector5AgentE" title="AgentVector::Agent"><span class="pre">Agent</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11AgentVector16reverse_iteratormlEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classAgentVector_1_1const__iterator.html" class="btn btn-neutral float-right" title="Class AgentVector::const_iterator" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classAgentStateDescription.html" class="btn btn-neutral float-left" title="Class AgentStateDescription" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

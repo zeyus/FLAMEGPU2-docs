@@ -1,0 +1,83 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_Bucket_BucketHost.h:
+
+Program Listing for File BucketHost.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_Bucket_BucketHost.h>` (``include/flamegpu/runtime/messaging/Bucket/BucketHost.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_BUCKETHOST_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_BUCKETHOST_H_
+   
+   #include <string>
+   #include <memory>
+   
+   #include "flamegpu/model/Variable.h"
+   #include "flamegpu/runtime/messaging/Bucket.h"
+   #include "flamegpu/runtime/messaging/BruteForce/BruteForceHost.h"
+   
+   class MsgBucket::CUDAModelHandler : public MsgSpecialisationHandler {
+    public:
+       explicit CUDAModelHandler(CUDAMessage &a);
+       ~CUDAModelHandler() override;
+       void init(CUDAScatter &scatter, const unsigned int &streamId) override;
+       void buildIndex(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream) override;
+       void allocateMetaDataDevicePtr() override;
+       void freeMetaDataDevicePtr() override;
+       const void *getMetaDataDevicePtr() const override { return d_data; }
+   
+    private:
+       void resizeCubTemp();
+       void resizeKeysVals(const unsigned int &newSize);
+       unsigned int bucketCount;
+       size_t d_CUB_temp_storage_bytes = 0;
+       unsigned int *d_CUB_temp_storage = nullptr;
+       unsigned int *d_histogram = nullptr;
+       unsigned int *d_keys = nullptr, *d_vals = nullptr;
+       size_t d_keys_vals_storage_bytes = 0;
+       MetaData hd_data;
+       MetaData *d_data = nullptr;
+       CUDAMessage &sim_message;
+   };
+   
+   struct MsgBucket::Data : public MsgBruteForce::Data {
+       friend class ModelDescription;
+       friend struct ModelData;
+       IntT lowerBound;
+       IntT upperBound;
+       virtual ~Data() = default;
+   
+       std::unique_ptr<MsgSpecialisationHandler> getSpecialisationHander(CUDAMessage &owner) const override;
+   
+       std::type_index getType() const override;
+   
+    protected:
+       Data *clone(const std::shared_ptr<const ModelData> &newParent) override;
+       Data(const std::shared_ptr<const ModelData> &, const Data &other);
+       Data(const std::shared_ptr<const ModelData> &, const std::string &message_name);
+   };
+   
+   
+   class MsgBucket::Description : public MsgBruteForce::Description {
+       friend struct Data;
+   
+    protected:
+       Description(const std::shared_ptr<const ModelData> &_model, Data *const data);
+       Description(const Description &other_message) = delete;
+       Description(Description &&other_message) noexcept = delete;
+       Description& operator=(const Description &other_message) = delete;
+       Description& operator=(Description &&other_message) noexcept = delete;
+   
+    public:
+       void setLowerBound(const IntT &key);
+       void setUpperBound(const IntT &key);
+       void setBounds(const IntT &min, const IntT &max);
+       IntT getLowerBound() const;
+       IntT getUpperBound() const;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_BUCKETHOST_H_

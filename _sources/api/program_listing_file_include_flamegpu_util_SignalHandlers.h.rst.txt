@@ -1,0 +1,32 @@
+
+.. _program_listing_file_include_flamegpu_util_SignalHandlers.h:
+
+Program Listing for File SignalHandlers.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_SignalHandlers.h>` (``include/flamegpu/util/SignalHandlers.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_SIGNALHANDLERS_H_
+   #define INCLUDE_FLAMEGPU_UTIL_SIGNALHANDLERS_H_
+   #include <stdlib.h>
+   #include <csignal>
+   
+   class SignalHandlers {
+    private:
+   static void handleSIGINT(int signum) {
+       // Potentially do some graceful cleanup here. Not needed for now.
+       // Close the application with the appropriate signal.
+       std::exit(signum);
+   }
+    public:
+   static void registerSignalHandlers(){
+       // Register the handler method for SIGINT
+       std::signal(SIGINT, handleSIGINT);
+   }
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_SIGNALHANDLERS_H_

@@ -1,0 +1,33 @@
+
+.. _program_listing_file_include_flamegpu_visualiser_LineVis.h:
+
+Program Listing for File LineVis.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_visualiser_LineVis.h>` (``include/flamegpu/visualiser/LineVis.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_VISUALISER_LINEVIS_H_
+   #define INCLUDE_FLAMEGPU_VISUALISER_LINEVIS_H_
+   #ifdef VISUALISATION
+   
+   #include <memory>
+   
+   #include "config/LineConfig.h"
+   
+   class LineVis {
+    public:
+       LineVis(std::shared_ptr<LineConfig> l, float r, float g, float b, float a);
+       void setColor(float r, float g, float b, float a = 1.0f);
+       void addVertex(float x, float y, float z = 0.0f);
+   
+    private:
+       float currentColor[4];
+       std::shared_ptr<LineConfig> l;
+   };
+   
+   #endif  // VISUALISATION
+   #endif  // INCLUDE_FLAMEGPU_VISUALISER_LINEVIS_H_

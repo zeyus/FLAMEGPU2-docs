@@ -1,0 +1,418 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File LogFrame.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File LogFrame.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_sim_LogFrame.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-logframe-h">
+<span id="program-listing-file-include-flamegpu-sim-logframe-h"></span><h1>Program Listing for File LogFrame.h<a class="headerlink" href="#program-listing-for-file-logframe-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_sim_LogFrame.h.html#file-include-flamegpu-sim-logframe-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/sim/LogFrame.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_SIM_LOGFRAME_H_
+#define INCLUDE_FLAMEGPU_SIM_LOGFRAME_H_
+
+#include &quot;AgentLoggingConfig.h&quot;
+
+#include &lt;map&gt;
+#include &lt;list&gt;
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;vector&gt;
+
+#include &quot;flamegpu/sim/LoggingConfig.h&quot;
+#include &quot;flamegpu/util/Any.h&quot;
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+
+struct AgentLogFrame;
+
+struct LogFrame {
+    friend class CUDASimulation;
+    LogFrame();
+    LogFrame(const std::map&lt;std::string, Any&gt; &amp;&amp;_environment,
+    const std::map&lt;LoggingConfig::NameStatePair, std::pair&lt;std::map&lt;LoggingConfig::NameReductionFn, Any&gt;, unsigned int&gt;&gt; &amp;&amp;_agents,
+    const unsigned int &amp;_step_count);
+    unsigned int getStepCount() const { return step_count; }
+    bool hasEnvironmentProperty(const std::string &amp;property_name) const;
+    template&lt;typename T&gt;
+    T getEnvironmentProperty(const std::string &amp;property_name) const;
+    template&lt;typename T, unsigned int N&gt;
+    std::array&lt;T, N&gt; getEnvironmentProperty(const std::string &amp;property_name) const;
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    std::vector&lt;T&gt; getEnvironmentPropertyArray(const std::string &amp;property_name) const;
+#endif
+
+    AgentLogFrame getAgent(const std::string &amp;agent_name, const std::string &amp;state_name = ModelData::DEFAULT_STATE) const;
+    const std::map&lt;std::string, Any&gt; &amp;getEnvironment() const { return environment; }
+    const std::map&lt;LoggingConfig::NameStatePair, std::pair&lt;std::map&lt;LoggingConfig::NameReductionFn, Any&gt;, unsigned int&gt;&gt; &amp;getAgents() const { return agents; }
+
+ private:
+    std::map&lt;std::string, Any&gt; environment;
+    std::map&lt;LoggingConfig::NameStatePair, std::pair&lt;std::map&lt;LoggingConfig::NameReductionFn, Any&gt;, unsigned int&gt;&gt; agents;
+    unsigned int step_count;
+};
+
+struct RunLog {
+    friend class CUDASimulation;
+    RunLog() { }
+    RunLog(const LogFrame &amp;_exit, const std::list&lt;LogFrame&gt; &amp;_step)
+        : exit(_exit)
+        , step(_step) { }
+
+    const LogFrame &amp;getExitLog() const { return exit; }
+    const std::list&lt;LogFrame&gt; &amp;getStepLog() const {return step; }
+    unsigned int getRandomSeed() const { return random_seed; }
+
+ private:
+    LogFrame exit;
+    std::list&lt;LogFrame&gt; step;
+    unsigned int random_seed = 0;
+    unsigned int step_log_frequency = 0;
+};
+struct AgentLogFrame {
+    explicit AgentLogFrame(const std::map&lt;LoggingConfig::NameReductionFn, Any&gt; &amp;data, const unsigned int &amp;count);
+    unsigned int getCount() const;
+    template&lt;typename T&gt;
+    T getMin(const std::string &amp;variable_name) const;
+    template&lt;typename T&gt;
+    T getMax(const std::string &amp;variable_name) const;
+    template&lt;typename T&gt;
+    typename sum_input_t&lt;T&gt;::result_t getSum(const std::string &amp;variable_name) const;
+    double getMean(const std::string &amp;variable_name) const;
+    double getStandardDev(const std::string &amp;variable_name) const;
+
+ private:
+    const std::map&lt;LoggingConfig::NameReductionFn, Any&gt; &amp;data;
+    const unsigned int &amp;count;
+};
+
+template&lt;typename T&gt;
+T LogFrame::getEnvironmentProperty(const std::string &amp;property_name) const {
+    const auto &amp;it = environment.find(property_name);
+    if (it == environment.end()) {
+      THROW InvalidEnvProperty(&quot;Environment property &#39;%s&#39; was not found in the log, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(T))) {
+      THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; has type %s, but requested type %s, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.elements != 1) {
+      THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array, use alternate function with array interface, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    return *static_cast&lt;T*&gt;(it-&gt;second.ptr);
+}
+template&lt;typename T, unsigned int N&gt;
+std::array&lt;T, N&gt; LogFrame::getEnvironmentProperty(const std::string &amp;property_name) const {
+    const auto &amp;it = environment.find(property_name);
+    if (it == environment.end()) {
+      THROW InvalidEnvProperty(&quot;Environment property &#39;%s&#39; was not found in the log, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(T))) {
+      THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; has type %s, but requested type %s, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.elements != N) {
+      THROW InvalidEnvPropertyType(&quot;Environment property array &#39;%s&#39; has %u elements, but requested array with %u, &quot;
+          &quot;in LogFrame::getEnvironmentProperty()\n&quot;,
+          property_name.c_str(), it-&gt;second.elements, N);
+    }
+    std::array&lt;T, N&gt; rtn;
+    memcpy(rtn.data(), it-&gt;second.ptr, it-&gt;second.length);
+    return rtn;
+}
+#ifdef SWIG
+template&lt;typename T&gt;
+std::vector&lt;T&gt; LogFrame::getEnvironmentPropertyArray(const std::string&amp; property_name) const {
+    const auto &amp;it = environment.find(property_name);
+    if (it == environment.end()) {
+      THROW InvalidEnvProperty(&quot;Environment property &#39;%s&#39; was not found in the log, &quot;
+          &quot;in LogFrame::getEnvironmentPropertyArray()\n&quot;,
+          property_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(T))) {
+      THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; has type %s, but requested type %s, &quot;
+          &quot;in LogFrame::getEnvironmentPropertyArray()\n&quot;,
+          property_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    // Copy old data to return
+    std::vector&lt;T&gt; rtn(static_cast&lt;size_t&gt;(it-&gt;second.elements));
+    memcpy(rtn.data(), it-&gt;second.ptr, it-&gt;second.length);
+    return rtn;
+}
+#endif
+
+template&lt;typename T&gt;
+T AgentLogFrame::getMin(const std::string &amp;variable_name) const {
+    const auto &amp;it = data.find({variable_name, LoggingConfig::Min});
+    if (it == data.end()) {
+        THROW InvalidAgentVar(&quot;Min of agent variable &#39;%s&#39; was not found in the log, &quot;
+            &quot;in AgentLogFrame::getMin()\n&quot;,
+            variable_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(T))) {
+      THROW InvalidVarType(&quot;Agent variable &#39;%s&#39; has type %s, but requested type %s, &quot;
+          &quot;in AgentLogFrame::getMin()\n&quot;,
+          variable_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    return *static_cast&lt;T *&gt;(it-&gt;second.ptr);
+}
+template&lt;typename T&gt;
+T AgentLogFrame::getMax(const std::string &amp;variable_name) const {
+    const auto &amp;it = data.find({variable_name, LoggingConfig::Max});
+    if (it == data.end()) {
+        THROW InvalidAgentVar(&quot;Max of agent variable &#39;%s&#39; was not found in the log, &quot;
+            &quot;in AgentLogFrame::getMax()\n&quot;,
+            variable_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(T))) {
+      THROW InvalidVarType(&quot;Agent variable &#39;%s&#39; has type %s, but requested type %s, &quot;
+          &quot;in AgentLogFrame::getMax()\n&quot;,
+          variable_name.c_str(), it-&gt;second.type.name(), std::type_index(typeid(T)).name());
+    }
+    return *static_cast&lt;T *&gt;(it-&gt;second.ptr);
+}
+template&lt;typename T&gt;
+typename sum_input_t&lt;T&gt;::result_t AgentLogFrame::getSum(const std::string &amp;variable_name) const {
+    const auto &amp;it = data.find({variable_name, LoggingConfig::Sum});
+    if (it == data.end()) {
+        THROW InvalidAgentVar(&quot;Sum of agent variable &#39;%s&#39; was not found in the log, &quot;
+            &quot;in AgentLogFrame::getSum()\n&quot;,
+            variable_name.c_str());
+    }
+    if (it-&gt;second.type != std::type_index(typeid(typename sum_input_t&lt;T&gt;::result_t))) {
+      THROW InvalidVarType(&quot;Agent variable is not of type &#39;%s&#39;, but requested type %s, &quot;
+          &quot;in AgentLogFrame::getSum()\n&quot;,
+          variable_name.c_str(), std::type_index(typeid(T)).name());
+    }
+    return *static_cast&lt;typename sum_input_t&lt;T&gt;::result_t *&gt;(it-&gt;second.ptr);
+}
+
+#endif  // INCLUDE_FLAMEGPU_SIM_LOGFRAME_H_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

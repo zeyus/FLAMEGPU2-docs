@@ -1,0 +1,73 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDAFatAgent.h:
+
+Program Listing for File CUDAFatAgent.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDAFatAgent.h>` (``include/flamegpu/gpu/CUDAFatAgent.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDAFATAGENT_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDAFATAGENT_H_
+   
+   #include <memory>
+   #include <unordered_map>
+   #include <set>
+   #include <mutex>
+   #include <string>
+   
+   
+   #include "flamegpu/gpu/CUDAAgentStateList.h"
+   #include "flamegpu/gpu/CUDAFatAgentStateList.h"
+   #include "flamegpu/model/SubAgentData.h"
+   
+   class CUDAFatAgent {
+       struct AgentState{
+           const unsigned int agent;
+           const std::string state;
+           bool operator==(const AgentState &other) const {
+               return (agent == other.agent && state == other.state);
+           }
+       };
+       struct AgentState_hash {
+           std::size_t operator()(const AgentState& k) const noexcept {
+               return ((std::hash<unsigned int>()(k.agent)
+                   ^ (std::hash<std::string>()(k.state) << 1)) >> 1);
+           }
+       };
+   
+    public:
+       explicit CUDAFatAgent(const AgentData& description);
+       ~CUDAFatAgent();
+       void addSubAgent(
+         const AgentData &description,
+         const unsigned int &master_fat_index,
+         const std::shared_ptr<SubAgentData> &mapping);
+       std::unordered_map<std::string, std::shared_ptr<CUDAFatAgentStateList>> getStateMap(const unsigned int &fat_index);
+       void processDeath(const unsigned int &agent_fat_id, const std::string &state_name, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void transitionState(const unsigned int &agent_fat_id, const std::string &_src, const std::string &_dest, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void processFunctionCondition(const unsigned int &agent_fat_id, const std::string &state_name, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void setConditionState(const unsigned int &agent_fat_id, const std::string &state_name, const unsigned int numberOfDisabled);
+       void *allocNewBuffer(const size_t &total_agent_size, const unsigned int &new_agents, const size_t &varCount);
+       void freeNewBuffer(void *buff);
+       unsigned int getMappedAgentCount() const;
+   
+    private:
+       std::unordered_map<AgentState, std::shared_ptr<CUDAFatAgentStateList>, AgentState_hash> states;
+       std::set<std::shared_ptr<CUDAFatAgentStateList>> states_unique;
+   
+       struct NewBuffer {
+           size_t size;
+           void *data;
+           bool in_use;
+           bool operator<(const NewBuffer &other) const { return size < other.size; }
+       };
+       std::multiset<NewBuffer> d_newLists;
+       std::mutex d_newLists_mutex;
+       unsigned int mappedAgentCount;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDAFATAGENT_H_

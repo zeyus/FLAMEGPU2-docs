@@ -1,0 +1,414 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDASimulation.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDASimulation.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_gpu_CUDASimulation.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudasimulation-h">
+<span id="program-listing-file-include-flamegpu-gpu-cudasimulation-h"></span><h1>Program Listing for File CUDASimulation.h<a class="headerlink" href="#program-listing-for-file-cudasimulation-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_gpu_CUDASimulation.h.html#file-include-flamegpu-gpu-cudasimulation-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/gpu/CUDASimulation.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_</span>
+<span class="cp">#define INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_</span>
+<span class="cp">#include</span> <span class="cpf">&lt;atomic&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/exception/FGPUDeviceException.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/sim/Simulation.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDAScatter.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDAEnsemble.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/utility/RandomManager.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/flamegpu_host_new_agent_api.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/visualiser/ModelVis.h&quot;</span><span class="cp"></span>
+
+<span class="cp">#ifdef _MSC_VER</span>
+<span class="cp">#pragma warning(push, 2)</span>
+<span class="cp">#include</span> <span class="cpf">&quot;jitify/jitify.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#pragma warning(pop)</span>
+<span class="cp">#else</span>
+<span class="cp">#include</span> <span class="cpf">&quot;jitify/jitify.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#endif</span>
+
+<span class="k">class</span> <span class="nc">AgentVector</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">CUDAAgent</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">CUDAMessage</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">LoggingConfig</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">StepLoggingConfig</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">RunLog</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CUDASimulation</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Simulation</span> <span class="p">{</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">HostAgentInstance</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">SimRunner</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">CUDAAgent</span><span class="o">&gt;&gt;</span> <span class="n">CUDAAgentMap</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">CUDAMessage</span><span class="o">&gt;&gt;</span> <span class="n">CUDAMessageMap</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">CUDASimulation</span><span class="o">&gt;&gt;</span> <span class="n">CUDASubModelMap</span><span class="p">;</span>
+
+ <span class="k">public</span><span class="o">:</span>
+    <span class="k">struct</span> <span class="nc">Config</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">device_id</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kt">bool</span> <span class="n">inLayerConcurrency</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">};</span>
+    <span class="k">explicit</span> <span class="nf">CUDASimulation</span><span class="p">(</span><span class="k">const</span> <span class="n">ModelDescription</span><span class="o">&amp;</span> <span class="n">model</span><span class="p">,</span> <span class="kt">int</span> <span class="n">argc</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">);</span>
+
+ <span class="k">private</span><span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">CUDASimulation</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">);</span>
+    <span class="n">CUDASimulation</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">SubModelData</span><span class="o">&gt;&amp;</span> <span class="n">submodel_desc</span><span class="p">,</span> <span class="n">CUDASimulation</span> <span class="o">*</span><span class="n">master_model</span><span class="p">);</span>
+
+ <span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">CUDASimulation</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">initFunctions</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nf">step</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">exitFunctions</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">simulate</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">setPopulationData</span><span class="p">(</span><span class="n">AgentVector</span><span class="o">&amp;</span> <span class="n">population</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">state_name</span> <span class="o">=</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">DEFAULT_STATE</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">getPopulationData</span><span class="p">(</span><span class="n">AgentVector</span><span class="o">&amp;</span> <span class="n">population</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">state_name</span> <span class="o">=</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">DEFAULT_STATE</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+    <span class="n">CUDAAgent</span><span class="o">&amp;</span> <span class="nf">getCUDAAgent</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">agent_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">AgentInterface</span> <span class="o">&amp;</span><span class="nf">getAgent</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+    <span class="n">CUDAMessage</span><span class="o">&amp;</span> <span class="nf">getCUDAMessage</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">message_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">Config</span> <span class="o">&amp;</span><span class="nf">CUDAConfig</span><span class="p">();</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getStepCounter</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">resetStepCounter</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">Config</span> <span class="o">&amp;</span><span class="n">getCUDAConfig</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">setStepLog</span><span class="p">(</span><span class="k">const</span> <span class="n">StepLoggingConfig</span> <span class="o">&amp;</span><span class="n">stepConfig</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">setExitLog</span><span class="p">(</span><span class="k">const</span> <span class="n">LoggingConfig</span> <span class="o">&amp;</span><span class="n">exitConfig</span><span class="p">);</span>
+    <span class="k">const</span> <span class="n">RunLog</span> <span class="o">&amp;</span><span class="n">getRunLog</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="cp">#ifdef VISUALISATION</span>
+
+    <span class="n">ModelVis</span> <span class="o">&amp;</span><span class="nf">getVisualisation</span><span class="p">();</span>
+<span class="cp">#endif</span>
+
+    <span class="kt">void</span> <span class="nf">RTCSafeCudaMemcpyToSymbol</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">symbol</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">rtc_symbol_name</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">RTCSafeCudaMemcpyToSymbolAddress</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">rtc_symbol_name</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="nf">getElapsedTimeRTCInitialisation</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="nf">getElapsedTimeSimulation</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="nf">getElapsedTimeInitFunctions</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">float</span> <span class="nf">getElapsedTimeExitFunctions</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">getElapsedTimeSteps</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+
+    <span class="kt">float</span> <span class="nf">getElapsedTimeStep</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">step</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="k">using</span> <span class="n">Simulation</span><span class="o">::</span><span class="n">getInstanceID</span><span class="p">;</span>
+
+ <span class="k">protected</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">reset</span><span class="p">(</span><span class="kt">bool</span> <span class="n">submodelReset</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">applyConfig_derived</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nf">checkArgs_derived</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">**</span> <span class="n">argv</span><span class="p">,</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">printHelp_derived</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">resetDerivedConfig</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+
+ <span class="k">private</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">reseed</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">seed</span><span class="p">);</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">step_count</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">elapsedMillisecondsSimulation</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">elapsedMillisecondsInitFunctions</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">elapsedMillisecondsExitFunctions</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">elapsedMillisecondsRTCInitialisation</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">elapsedMillisecondsPerStep</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">incrementStepCounter</span><span class="p">();</span>
+    <span class="n">CUDAAgentMap</span> <span class="n">agent_map</span><span class="p">;</span>
+    <span class="n">Config</span> <span class="n">config</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">StepLoggingConfig</span><span class="o">&gt;</span> <span class="n">step_log_config</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">LoggingConfig</span><span class="o">&gt;</span> <span class="n">exit_log_config</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">RunLog</span><span class="o">&gt;</span> <span class="n">run_log</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">resetLog</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">processStepLog</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">processExitLog</span><span class="p">();</span>
+    <span class="n">CUDAMessageMap</span> <span class="n">message_map</span><span class="p">;</span>
+    <span class="n">CUDASubModelMap</span> <span class="n">submodel_map</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cudaStream_t</span><span class="o">&gt;</span> <span class="n">streams</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">createStreams</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">nStreams</span><span class="p">);</span>
+
+    <span class="n">cudaStream_t</span> <span class="nf">getStream</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">destroyStreams</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="nf">synchronizeAllStreams</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="nf">stepLayer</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">LayerData</span><span class="o">&gt;&amp;</span> <span class="n">layer</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">layerIndex</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">layerHostFunctions</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">LayerData</span><span class="o">&gt;&amp;</span> <span class="n">layer</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">layerIndex</span><span class="p">);</span>
+
+    <span class="kt">void</span> <span class="nf">stepStepFunctions</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="nf">stepExitConditions</span><span class="p">();</span>
+
+
+    <span class="k">struct</span> <span class="nc">Singletons</span> <span class="p">{</span>
+      <span class="n">Curve</span> <span class="o">&amp;</span><span class="n">curve</span><span class="p">;</span>
+      <span class="n">RandomManager</span> <span class="n">rng</span><span class="p">;</span>
+      <span class="n">CUDAScatter</span> <span class="n">scatter</span><span class="p">;</span>
+      <span class="n">EnvironmentManager</span> <span class="o">&amp;</span><span class="n">environment</span><span class="p">;</span>
+<span class="cp">#if !defined(SEATBELTS) || SEATBELTS</span>
+
+      <span class="n">DeviceExceptionManager</span> <span class="n">exception</span><span class="p">;</span>
+<span class="cp">#endif</span>
+      <span class="n">Singletons</span><span class="p">(</span><span class="n">Curve</span> <span class="o">&amp;</span><span class="n">curve</span><span class="p">,</span> <span class="n">EnvironmentManager</span> <span class="o">&amp;</span><span class="n">environment</span><span class="p">)</span> <span class="o">:</span> <span class="n">curve</span><span class="p">(</span><span class="n">curve</span><span class="p">),</span> <span class="n">environment</span><span class="p">(</span><span class="n">environment</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+    <span class="p">}</span> <span class="o">*</span> <span class="n">singletons</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">initEnvironmentMgr</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">singletonsInitialised</span><span class="p">;</span>
+
+    <span class="kt">bool</span> <span class="n">rtcInitialised</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">deviceInitialised</span> <span class="o">=</span> <span class="mi">-1</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">initialiseSingletons</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">initialiseRTC</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">FLAMEGPU_HOST_API</span><span class="o">&gt;</span> <span class="n">host_api</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">processHostAgentCreation</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">streamId</span><span class="p">);</span>
+
+ <span class="k">public</span><span class="o">:</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;</span> <span class="n">AgentDataBuffer</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">AgentDataBuffer</span><span class="o">&gt;</span> <span class="n">AgentDataBufferStateMap</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">VarOffsetStruct</span><span class="o">&gt;</span> <span class="n">AgentOffsetMap</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">AgentDataBufferStateMap</span><span class="o">&gt;</span> <span class="n">AgentDataMap</span><span class="p">;</span>
+
+ <span class="k">private</span><span class="o">:</span>
+    <span class="n">AgentOffsetMap</span> <span class="n">agentOffsets</span><span class="p">;</span>
+    <span class="n">AgentDataMap</span> <span class="n">agentData</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="nf">initOffsetsAndMap</span><span class="p">();</span>
+<span class="cp">#ifdef VISUALISATION</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">ModelVis</span><span class="o">&gt;</span> <span class="n">visualisation</span><span class="p">;</span>
+<span class="cp">#endif</span>
+
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">active_instances</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span> <span class="n">active_device_instances</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span><span class="o">&gt;</span> <span class="n">active_device_mutex</span><span class="p">;</span>
+    <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_timed_mutex</span> <span class="n">active_device_maps_mutex</span><span class="p">;</span>
+
+ <span class="k">public</span><span class="o">:</span>
+    <span class="k">static</span> <span class="kt">bool</span> <span class="n">AUTO_CUDA_DEVICE_RESET</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

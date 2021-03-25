@@ -1,0 +1,484 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File xmlWriter.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File xmlWriter.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_io_xmlWriter.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-xmlwriter-cpp">
+<span id="program-listing-file-src-flamegpu-io-xmlwriter-cpp"></span><h1>Program Listing for File xmlWriter.cpp<a class="headerlink" href="#program-listing-for-file-xmlwriter-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_io_xmlWriter.cpp.html#file-src-flamegpu-io-xmlwriter-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/io/xmlWriter.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/io/xmlWriter.h&quot;
+#include &lt;sstream&gt;
+#include &quot;tinyxml2/tinyxml2.h&quot;              // downloaded from https:// github.com/leethomason/tinyxml2, the list of xml parsers : http:// lars.ruoff.free.fr/xmlcpp/
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/gpu/CUDASimulation.h&quot;
+#include &quot;flamegpu/pop/AgentVector.h&quot;
+
+#ifndef XMLCheckResult
+#define XMLCheckResult(a_eResult) if (a_eResult != tinyxml2::XML_SUCCESS) { FGPUException::setLocation(__FILE__, __LINE__);\
+    switch (a_eResult) { \
+    case tinyxml2::XML_ERROR_FILE_NOT_FOUND : \
+    case tinyxml2::XML_ERROR_FILE_COULD_NOT_BE_OPENED : \
+        throw InvalidInputFile(&quot;TinyXML error: File could not be opened.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_FILE_READ_ERROR : \
+        throw InvalidInputFile(&quot;TinyXML error: File could not be read.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_PARSING_ELEMENT : \
+    case tinyxml2::XML_ERROR_PARSING_ATTRIBUTE : \
+    case tinyxml2::XML_ERROR_PARSING_TEXT : \
+    case tinyxml2::XML_ERROR_PARSING_CDATA : \
+    case tinyxml2::XML_ERROR_PARSING_COMMENT : \
+    case tinyxml2::XML_ERROR_PARSING_DECLARATION : \
+    case tinyxml2::XML_ERROR_PARSING_UNKNOWN : \
+    case tinyxml2::XML_ERROR_PARSING : \
+        throw TinyXMLError(&quot;TinyXML error: Error parsing file.\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_EMPTY_DOCUMENT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_EMPTY_DOCUMENT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_MISMATCHED_ELEMENT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_MISMATCHED_ELEMENT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_CAN_NOT_CONVERT_TEXT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_CAN_NOT_CONVERT_TEXT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_NO_TEXT_NODE : \
+        throw TinyXMLError(&quot;TinyXML error: XML_NO_TEXT_NODE\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ELEMENT_DEPTH_EXCEEDED : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ELEMENT_DEPTH_EXCEEDED\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_ERROR_COUNT : \
+        throw TinyXMLError(&quot;TinyXML error: XML_ERROR_COUNT\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_NO_ATTRIBUTE: \
+        throw TinyXMLError(&quot;TinyXML error: XML_NO_ATTRIBUTE\n Error code: %d&quot;, a_eResult); \
+    case tinyxml2::XML_WRONG_ATTRIBUTE_TYPE : \
+        throw TinyXMLError(&quot;TinyXML error: XML_WRONG_ATTRIBUTE_TYPE\n Error code: %d&quot;, a_eResult); \
+    default: \
+        throw TinyXMLError(&quot;TinyXML error: Unrecognised error code\n Error code: %d&quot;, a_eResult); \
+    } \
+}
+#endif
+
+xmlWriter::xmlWriter(
+    const std::string &amp;model_name,
+    const unsigned int &amp;sim_instance_id,
+    const StringPairUnorderedMap&lt;std::shared_ptr&lt;AgentVector&gt;&gt; &amp;model,
+    const unsigned int &amp;iterations,
+    const std::string &amp;output_file,
+    const Simulation *_sim_instance)
+    : StateWriter(model_name, sim_instance_id, model, iterations, output_file, _sim_instance) {}
+
+int xmlWriter::writeStates(bool prettyPrint) {
+    tinyxml2::XMLDocument doc;
+
+    tinyxml2::XMLNode * pRoot = doc.NewElement(&quot;states&quot;);
+    doc.InsertFirstChild(pRoot);
+
+    // Redundant for FLAMEGPU1 backwards compatibility
+    tinyxml2::XMLElement * pElement = doc.NewElement(&quot;itno&quot;);
+    pElement-&gt;SetText(iterations);
+    pRoot-&gt;InsertEndChild(pElement);
+
+    // Output config elements
+    pElement = doc.NewElement(&quot;config&quot;);
+    {
+        // Sim config
+        tinyxml2::XMLElement *pSimCfg = doc.NewElement(&quot;simulation&quot;);
+        {
+            const auto &amp;sim_cfg = sim_instance-&gt;getSimulationConfig();
+            tinyxml2::XMLElement *pListElement = nullptr;
+            // Input file
+            pListElement = doc.NewElement(&quot;input_file&quot;);
+            pListElement-&gt;SetText(sim_cfg.input_file.c_str());
+            pSimCfg-&gt;InsertEndChild(pListElement);
+            // Steps
+            pListElement = doc.NewElement(&quot;steps&quot;);
+            pListElement-&gt;SetText(sim_cfg.steps);
+            pSimCfg-&gt;InsertEndChild(pListElement);
+            // Timing Output
+            pListElement = doc.NewElement(&quot;timing&quot;);
+            pListElement-&gt;SetText(sim_cfg.timing);
+            pSimCfg-&gt;InsertEndChild(pListElement);
+            // Random seed
+            pListElement = doc.NewElement(&quot;random_seed&quot;);
+            pListElement-&gt;SetText(sim_cfg.random_seed);
+            pSimCfg-&gt;InsertEndChild(pListElement);
+            // Verbose output
+            pListElement = doc.NewElement(&quot;verbose&quot;);
+            pListElement-&gt;SetText(sim_cfg.verbose);
+            pSimCfg-&gt;InsertEndChild(pListElement);
+            // Verbose output
+            pListElement = doc.NewElement(&quot;console_mode&quot;);
+            pListElement-&gt;SetText(sim_cfg.console_mode);
+            pSimCfg-&gt;InsertEndChild(pListElement);
+        }
+        pElement-&gt;InsertEndChild(pSimCfg);
+
+        // Cuda config
+        if (auto *cudamodel_instance = dynamic_cast&lt;const CUDASimulation*&gt;(sim_instance)) {
+            tinyxml2::XMLElement *pCUDACfg = doc.NewElement(&quot;cuda&quot;);
+            {
+                const auto &amp;cuda_cfg = cudamodel_instance-&gt;getCUDAConfig();
+                tinyxml2::XMLElement *pListElement = nullptr;
+                // Input file
+                pListElement = doc.NewElement(&quot;device_id&quot;);
+                pListElement-&gt;SetText(cuda_cfg.device_id);
+                pCUDACfg-&gt;InsertEndChild(pListElement);
+            }
+            pElement-&gt;InsertEndChild(pCUDACfg);
+        }
+    }
+    pRoot-&gt;InsertEndChild(pElement);
+
+    // Output stats elements
+    pElement = doc.NewElement(&quot;stats&quot;);
+    {
+        tinyxml2::XMLElement *pListElement = nullptr;
+        // Input file
+        pListElement = doc.NewElement(&quot;step_count&quot;);
+        pListElement-&gt;SetText(iterations);
+        pElement-&gt;InsertEndChild(pListElement);
+    }
+    pRoot-&gt;InsertEndChild(pElement);
+
+    pElement = doc.NewElement(&quot;environment&quot;);
+    // for each environment property
+    EnvironmentManager &amp;env_manager = EnvironmentManager::getInstance();
+    auto lock = env_manager.getSharedLock();
+    const char *env_buffer = reinterpret_cast&lt;const char *&gt;(env_manager.getHostBuffer());
+    for (auto &amp;a : env_manager.getPropertiesMap()) {
+        // If it is from this model
+        if (a.first.first == sim_instance_id) {
+            tinyxml2::XMLElement* pListElement = doc.NewElement(a.first.second.c_str());
+            pListElement-&gt;SetAttribute(&quot;type&quot;, a.second.type.name());
+                // Output properties
+                std::stringstream ss;
+                // Loop through elements, to construct csv string
+                for (unsigned int el = 0; el &lt; a.second.elements; ++el) {
+                    if (a.second.type == std::type_index(typeid(float))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const float*&gt;(env_buffer + a.second.offset + (el * sizeof(float)));
+                    } else if (a.second.type == std::type_index(typeid(double))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const double*&gt;(env_buffer + a.second.offset + (el * sizeof(double)));
+                    } else if (a.second.type == std::type_index(typeid(int64_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const int64_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int64_t)));
+                    } else if (a.second.type == std::type_index(typeid(uint64_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const uint64_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint64_t)));
+                    } else if (a.second.type == std::type_index(typeid(int32_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const int32_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int32_t)));
+                    } else if (a.second.type == std::type_index(typeid(uint32_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const uint32_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint32_t)));
+                    } else if (a.second.type == std::type_index(typeid(int16_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const int16_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int16_t)));
+                    } else if (a.second.type == std::type_index(typeid(uint16_t))) {
+                        ss &lt;&lt; *reinterpret_cast&lt;const uint16_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint16_t)));
+                    } else if (a.second.type == std::type_index(typeid(int8_t))) {
+                        ss &lt;&lt; static_cast&lt;int32_t&gt;(*reinterpret_cast&lt;const int8_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int8_t))));  // Char outputs weird if being used as an integer
+                    } else if (a.second.type == std::type_index(typeid(uint8_t))) {
+                        ss &lt;&lt; static_cast&lt;uint32_t&gt;(*reinterpret_cast&lt;const uint8_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint8_t))));  // Char outputs weird if being used as an integer
+                    } else {
+                        THROW TinyXMLError(&quot;Model contains environment property &#39;%s&#39; of unsupported type &#39;%s&#39;, &quot;
+                            &quot;in xmlWriter::writeStates()\n&quot;, a.first.second.c_str(), a.second.type.name());
+                    }
+                    if (el + 1 != a.second.elements)
+                        ss &lt;&lt; &quot;,&quot;;
+                }
+            pListElement-&gt;SetText(ss.str().c_str());
+            pElement-&gt;InsertEndChild(pListElement);
+        }
+    }
+    pRoot-&gt;InsertEndChild(pElement);
+
+    unsigned int populationSize;
+
+    // for each agent types
+    for (const auto &amp;agent : model_state) {
+        // For each agent state
+        const std::string &amp;agent_name = agent.first.first;
+        const std::string &amp;state_name = agent.first.second;
+
+        populationSize = agent.second-&gt;size();
+        if (populationSize) {
+            for (unsigned int i = 0; i &lt; populationSize; ++i) {
+                // Create vars block
+                tinyxml2::XMLElement * pXagentElement = doc.NewElement(&quot;xagent&quot;);
+
+                AgentVector::Agent instance = agent.second-&gt;at(i);
+                const VariableMap &amp;mm = agent.second-&gt;getVariableMetaData();
+
+                // Add agent&#39;s name to block
+                tinyxml2::XMLElement * pXagentNameElement = doc.NewElement(&quot;name&quot;);
+                pXagentNameElement-&gt;SetText(agent_name.c_str());
+                pXagentElement-&gt;InsertEndChild(pXagentNameElement);
+                // Add state&#39;s name to block
+                tinyxml2::XMLElement * pStateNameElement = doc.NewElement(&quot;state&quot;);
+                pStateNameElement-&gt;SetText(state_name.c_str());
+                pXagentElement-&gt;InsertEndChild(pStateNameElement);
+
+                // for each variable
+                for (auto iter_mm = mm.begin(); iter_mm != mm.end(); ++iter_mm) {
+                    const std::string variable_name = iter_mm-&gt;first;
+
+                    tinyxml2::XMLElement* pListElement = doc.NewElement(variable_name.c_str());
+                    if (i == 0)
+                        pListElement-&gt;SetAttribute(&quot;type&quot;, iter_mm-&gt;second.type.name());
+
+                    // Output properties
+                    std::stringstream ss;
+                    // Loop through elements, to construct csv string
+                    for (unsigned int el = 0; el &lt; iter_mm-&gt;second.elements; ++el) {
+                        if (iter_mm-&gt;second.type == std::type_index(typeid(float))) {
+                            ss &lt;&lt; instance.getVariable&lt;float&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(double))) {
+                            ss &lt;&lt; instance.getVariable&lt;double&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(int64_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;int64_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(uint64_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;uint64_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(int32_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;int32_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(uint32_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;uint32_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(int16_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;int16_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(uint16_t))) {
+                            ss &lt;&lt; instance.getVariable&lt;uint16_t&gt;(variable_name, el);
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(int8_t))) {
+                            ss &lt;&lt; static_cast&lt;int32_t&gt;(instance.getVariable&lt;int8_t&gt;(variable_name, el));  // Char outputs weird if being used as an integer
+                        } else if (iter_mm-&gt;second.type == std::type_index(typeid(uint8_t))) {
+                            ss &lt;&lt; static_cast&lt;uint32_t&gt;(instance.getVariable&lt;uint8_t&gt;(variable_name, el));  // Char outputs weird if being used as an integer
+                        } else {
+                            THROW TinyXMLError(&quot;Agent &#39;%s&#39; contains variable &#39;%s&#39; of unsupported type &#39;%s&#39;, &quot;
+                                &quot;in xmlWriter::writeStates()\n&quot;, agent_name.c_str(), variable_name.c_str(), iter_mm-&gt;second.type.name());
+                        }
+                        if (el + 1 != iter_mm-&gt;second.elements)
+                            ss &lt;&lt; &quot;,&quot;;
+                    }
+                    pListElement-&gt;SetText(ss.str().c_str());
+                    pXagentElement-&gt;InsertEndChild(pListElement);
+                }
+                // Insert xagent block into doc root
+                pRoot-&gt;InsertEndChild(pXagentElement);
+            }
+        }  // if state has agents
+    }
+
+    tinyxml2::XMLError errorId = doc.SaveFile(outputFile.c_str(), !prettyPrint);
+    XMLCheckResult(errorId);
+
+    return tinyxml2::XML_SUCCESS;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

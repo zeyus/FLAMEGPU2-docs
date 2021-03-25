@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File HSVInterpolation.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File HSVInterpolation.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_visualiser_color_HSVInterpolation.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-hsvinterpolation-cpp">
+<span id="program-listing-file-src-flamegpu-visualiser-color-hsvinterpolation-cpp"></span><h1>Program Listing for File HSVInterpolation.cpp<a class="headerlink" href="#program-listing-for-file-hsvinterpolation-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_visualiser_color_HSVInterpolation.cpp.html#file-src-flamegpu-visualiser-color-hsvinterpolation-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/visualiser/color/HSVInterpolation.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/visualiser/color/HSVInterpolation.h&quot;
+
+#include &lt;sstream&gt;
+
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+
+HSVInterpolation HSVInterpolation::REDGREEN(const std::string&amp; variable_name, const float&amp; _min_bound, const float&amp; _max_bound) {
+    auto rtn = HSVInterpolation(variable_name, 0.0f, 100.0f, 1.0f, 0.88f);
+    rtn.setBounds(_min_bound, _max_bound);
+    return rtn;
+}
+HSVInterpolation HSVInterpolation::GREENRED(const std::string&amp; variable_name, const float&amp; _min_bound, const float&amp; _max_bound) {
+    auto rtn = HSVInterpolation(variable_name, 100.0f, 0.0f, 1.0f, 0.88f);
+    rtn.setBounds(_min_bound, _max_bound);
+    return rtn;
+}
+
+HSVInterpolation::HSVInterpolation(const std::string &amp;_variable_name, const float&amp; hMin, const float&amp; hMax, const float&amp; s, const float&amp; v)
+    : hue_min(hMin)
+    , hue_max(hMax)
+    , saturation(s)
+    , val(v)
+    , variable_name(_variable_name) {
+    if (hue_min &lt; 0.0f || hue_min &gt; 360.0f) {
+        THROW InvalidArgument(&quot;%f is not a valid hue value, hue components must be in the inclusive range [0.0, 360.0], &quot;
+        &quot;in HSVInterpolation::HSVInterpolation()\n&quot;, hue_min);
+    }
+    if (hue_max &lt; 0.0f || hue_max &gt; 360.0f) {
+        THROW InvalidArgument(&quot;%f is not a valid hue value, hue components must be in the inclusive range [0.0, 360.0], &quot;
+        &quot;in HSVInterpolation::HSVInterpolation()\n&quot;, hue_max);
+    }
+    if (hue_max == hue_min) {
+        THROW InvalidArgument(&quot;hue_min and _hue_max must differ, &quot;
+        &quot;in HSVInterpolation::HSVInterpolation()\n&quot;, hue_max);
+    }
+    if (saturation &lt; 0.0f || saturation &gt; 1.0f) {
+        THROW InvalidArgument(&quot;%f is not a valid saturation, saturation must be in the inclusive range [0.0, 1.0], &quot;
+        &quot;in HSVInterpolation::HSVInterpolation()\n&quot;, saturation);
+    }
+    if (val &lt; 0.0f || val &gt; 1.0f) {
+        THROW InvalidArgument(&quot;%f is not a valid val, val must be in the inclusive range [0.0, 1.0], &quot;
+        &quot;in HSVInterpolation::HSVInterpolation()\n&quot;, val);
+    }
+}
+HSVInterpolation&amp; HSVInterpolation::setBounds(const float&amp; _min_bound, const float&amp; _max_bound) {
+    if (_min_bound &gt;= _max_bound) {
+        THROW InvalidArgument(&quot;max_bound (%f) must be greater than min_bound (%f), &quot;
+            &quot;in HSVInterpolation::setBounds()\n&quot;,
+            _max_bound, _min_bound);
+    }
+    min_bound = _min_bound;
+    max_bound = _max_bound;
+    return *this;
+}
+HSVInterpolation&amp; HSVInterpolation::setWrapHue(const bool&amp; _wrapHue) {
+    wrap_hue = _wrapHue;
+    return *this;
+}
+std::string HSVInterpolation::getSrc() const {
+static const char* HEADER = R&quot;###(
+uniform samplerBuffer color_arg;
+//hsv(0-360,0-1,0-1)
+vec3 hsv2rgb(vec3 hsv) {
+  if(hsv.g==0)//Grey
+    return vec3(hsv.b);
+
+  float h = hsv.r/60;
+  int i = int(floor(h));
+  float f = h-i;
+  float p = hsv.b * (1-hsv.g);
+  float q = hsv.b * (1-hsv.g * f);
+  float t = hsv.b * (1-hsv.g * (1-f));
+  switch(i) {
+    case 0:
+      return vec3(hsv.b,t,p);
+    case 1:
+      return vec3(q,hsv.b,p);
+    case 2:
+      return vec3(p,hsv.b,p);
+    case 3:
+      return vec3(p,q,hsv.b);
+    case 4:
+      return vec3(t,p,hsv.b);
+    default: //case 5
+      return vec3(hsv.b,p,q);
+  }
+}
+)###&quot;;
+    std::stringstream ss;
+    ss &lt;&lt; HEADER;
+    ss &lt;&lt; &quot;vec4 calculateColor() {&quot; &lt;&lt; &quot;\n&quot;;
+    // Fetch the modifier from texture cache
+    ss &lt;&lt; &quot;    float modifier = texelFetch(color_arg, gl_InstanceID).x;&quot; &lt;&lt; &quot;\n&quot;;
+    // Clamp the modifier to bounds
+    ss &lt;&lt; &quot;    modifier = clamp(modifier, &quot; &lt;&lt; min_bound &lt;&lt; &quot;, &quot; &lt;&lt; max_bound &lt;&lt; &quot;);&quot; &lt;&lt; &quot;\n&quot;;
+    // Scale modifier to range [0.0, 1.0]
+    ss &lt;&lt; &quot;    modifier = (modifier - &quot; &lt;&lt; min_bound &lt;&lt; &quot;) / &quot; &lt;&lt; (max_bound - min_bound) &lt;&lt; &quot;;&quot; &lt;&lt; &quot;\n&quot;;
+    // Apply HSV interpolation
+    if (wrap_hue) {
+        // Calculate hue
+        if (hue_min &gt; hue_max) {
+            ss &lt;&lt; &quot;    modifier = &quot; &lt;&lt; hue_min &lt;&lt; &quot; + (modifier * &quot; &lt;&lt; (360.0f + hue_max - hue_min) &lt;&lt; &quot;);&quot; &lt;&lt; &quot;\n&quot;;
+        } else {
+            ss &lt;&lt; &quot;    modifier = &quot; &lt;&lt; hue_min &lt;&lt; &quot; + (modifier * &quot; &lt;&lt; -(360.0f - (hue_max - hue_min)) &lt;&lt; &quot;);&quot; &lt;&lt; &quot;\n&quot;;
+        }
+        // Wrap hue
+        ss &lt;&lt; &quot;    modifier = modifier &lt; 0.0 ? modifier + 360.0 : modifier;&quot; &lt;&lt; &quot;\n&quot;;  // Only required by hue_min &gt; hue_max?
+        ss &lt;&lt; &quot;    modifier = modifier &gt; 360.0 ? modifier - 360.0 : modifier;&quot; &lt;&lt; &quot;\n&quot;;  // Only required by hue_max &gt; hue_min?
+        ss &lt;&lt; &quot;    return vec4(hsv2rgb(vec3(modifier, &quot; &lt;&lt; saturation &lt;&lt; &quot;, &quot; &lt;&lt; val &lt;&lt; &quot;)), 1.0);&quot; &lt;&lt; &quot;\n&quot;;
+    } else {
+        if (hue_min &lt; hue_max) {
+            ss &lt;&lt; &quot;    return vec4(hsv2rgb(vec3(&quot; &lt;&lt; hue_min &lt;&lt; &quot; + (modifier * &quot; &lt;&lt; (hue_max - hue_min) &lt;&lt; &quot;), &quot; &lt;&lt; saturation &lt;&lt; &quot;, &quot; &lt;&lt; val &lt;&lt; &quot;)), 1.0);&quot; &lt;&lt; &quot;\n&quot;;
+        } else {
+            ss &lt;&lt; &quot;    modifier = 1.0 - modifier;&quot; &lt;&lt; &quot;\n&quot;;
+            ss &lt;&lt; &quot;    return vec4(hsv2rgb(vec3(&quot; &lt;&lt; hue_max &lt;&lt; &quot; + (modifier * &quot; &lt;&lt; (hue_min - hue_max) &lt;&lt; &quot;), &quot; &lt;&lt; saturation &lt;&lt; &quot;, &quot; &lt;&lt; val &lt;&lt; &quot;)), 1.0);&quot; &lt;&lt; &quot;\n&quot;;
+        }
+    }
+    ss &lt;&lt; &quot;}&quot; &lt;&lt; &quot;\n&quot;;
+    return ss.str();
+}
+std::string HSVInterpolation::getSamplerName() const {
+    return &quot;color_arg&quot;;
+}
+std::string HSVInterpolation::getAgentVariableName() const {
+    return variable_name;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

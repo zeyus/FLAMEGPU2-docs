@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class LayerDescription &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class Logger" href="classLogger.html" />
+    <link rel="prev" title="Class jsonWriter" href="classjsonWriter.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurve.html">Class Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class LayerDescription</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray.html">Class MsgArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class LayerDescription</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classLayerDescription.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-layerdescription">
+<span id="exhale-class-classlayerdescription"></span><h1>Class LayerDescription<a class="headerlink" href="#class-layerdescription" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_LayerDescription.h.html#file-include-flamegpu-model-layerdescription-h"><span class="std std-ref">File LayerDescription.h</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv416LayerDescription">
+<span id="_CPPv316LayerDescription"></span><span id="_CPPv216LayerDescription"></span><span id="LayerDescription"></span><span class="target" id="classLayerDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">LayerDescription</span></code><a class="headerlink" href="#_CPPv416LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Within the model hierarchy, this class represents an execution layer for a FLAMEGPU model This class is used to configure which agent and host functions execute at a stage of the model’s execution <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classModelDescription.html#classModelDescription_1a15fbf56ae07b0559abd4f20c9862b90d"><span class="std std-ref">ModelDescription::newLayer(const std::string&amp;)</span></a> For creating instances of this class </p>
+</dd>
+</dl>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescriptioneqERK16LayerDescription">
+<span id="_CPPv3NK16LayerDescriptioneqERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptioneqERK16LayerDescription"></span><span id="LayerDescription::eq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a2b2bee5c2a0dd97a276f8e2a035edb6d"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="pre">LayerDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescriptioneqERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator, checks whether <a class="reference internal" href="#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> hierarchies are functionally the same <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True when layers are the same </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Instead compare pointers if you wish to check that they are the same instance </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescriptionneERK16LayerDescription">
+<span id="_CPPv3NK16LayerDescriptionneERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptionneERK16LayerDescription"></span><span id="LayerDescription::neq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a6ee2ce15d52b6a58988591c5ddf46c47"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="pre">LayerDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescriptionneERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Equality operator, checks whether <a class="reference internal" href="#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> hierarchies are functionally different <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True when layers are not the same </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Instead compare pointers if you wish to check that they are not the same instance </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction">
+<span id="_CPPv3I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span id="_CPPv2I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">AgentFunction</span></code><span class="pre">&gt;</span><br /><span class="target" id="classLayerDescription_1a83d2177c22b8dce5ca4be98a726782d7"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="pre">AgentFunction</span></a> <em><span class="pre">a</span></em> <span class="pre">=</span> <a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="pre">AgentFunction</span></a><span class="pre">(</span><span class="pre">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The agent function must first be added to an Agent </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classAgentDescription.html#classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"><span class="std std-ref">AgentDescription::newFunction(const std::string &amp;, AgentFunction)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">a</span></code>: Agent function as defined using FLAMEGPU_AGENT_FUNCTION notation </p></li>
+</ul>
+</dd>
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AgentFunction</span></code>: Struct containing agent function definition </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function does not exist within the model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function has already been added to the layer </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains a SubModel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="LayerDescription::addAgentFunction__AgentFunctionDescriptionCR"></span><span class="target" id="classLayerDescription_1afc157f7a448b8a0816b92b0490dc2015"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">afd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">afd</span></code>: Agent function description to execute during this layer </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function does not exist within the model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function has already been added to the layer </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains a SubModel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="LayerDescription::addAgentFunction__ssCR.ssCR"></span><span class="target" id="classLayerDescription_1a7fd856f7015a111daf9996e00263cac1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agentName</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">functionName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agentName</span></code>: Name of the agent which owns the function to execute during this layer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">functionName</span></code>: Name of the agent function description to execute during this layer </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function does not exist within the model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function has already been added to the layer </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains a SubModel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="LayerDescription::addAgentFunction__cCP.cCP"></span><span class="target" id="classLayerDescription_1a831d70bef6eede39d0fc60c855bc82cd"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">agentName</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">functionName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution <p>Template magic means that the implicit cast doesn’t occur as normal </p>
+<dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This version exists because the template overload was preventing implicit cast to std::string</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agentName</span></code>: Name of the agent which owns the function to execute during this layer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">functionName</span></code>: Name of the agent function description to execute during this layer </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function does not exist within the model hierarchy </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: If the agent function has already been added to the layer </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains a SubModel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER">
+<span id="_CPPv3N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="_CPPv2N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="LayerDescription::addHostFunction__FLAMEGPU_HOST_FUNCTION_POINTER"></span><span class="target" id="classLayerDescription_1a780789162f4b44b48fed28e87aa1bf1b"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addHostFunction</span></code><span class="sig-paren">(</span><a class="reference internal" href="typedef_flamegpu__host__api__macros_8h_1a970bf6edf1ef24caec0743b53054271b.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></a> <em><span class="pre">func_p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds a host function to this layer The host function will be called during this stage of model execution <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>There is no guarantee on the order in which multiple host functions in the same layer will be executed </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func_p</span></code>: Function pointer to the host function declared using FLAMEGPU_HOST_FUNCTION notation </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidHostFunc.html#classInvalidHostFunc"><span class="std std-ref"><span class="pre">InvalidHostFunc</span></span></a></code>: If the function has already been added to the layer </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains a SubModel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription11addSubModelERKNSt6stringE">
+<span id="_CPPv3N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="LayerDescription::addSubModel__ssCR"></span><span class="target" id="classLayerDescription_1af2195bc3f6e28cae6b0539c249117628"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addSubModel</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds a submodel to a layer If layer contains a submodel, it may contain nothing else <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a50691cd9a5c471be53182d28e5f33d82"><span class="std std-ref">addSubModel(const SubModelDescription &amp;)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the submodel (passed to <a class="reference internal" href="classModelDescription.html#classModelDescription_1ab0b6a45a88f7671be1e9ea6c1910b346"><span class="std std-ref">ModelDescription::newSubModel()</span></a> was called) </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains any agent functions or host functions </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidSubModel.html#classInvalidSubModel"><span class="std std-ref"><span class="pre">InvalidSubModel</span></span></a></code>: If the layer already contains a submodel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription">
+<span id="_CPPv3N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="_CPPv2N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="LayerDescription::addSubModel__SubModelDescriptionCR"></span><span class="target" id="classLayerDescription_1a50691cd9a5c471be53182d28e5f33d82"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addSubModel</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classSubModelDescription.html#_CPPv419SubModelDescription" title="SubModelDescription"><span class="pre">SubModelDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">submodel</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Adds a submodel to a layer If layer contains a submodel, it may contain nothing else <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1af2195bc3f6e28cae6b0539c249117628"><span class="std std-ref">addSubModel(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">submodel</span></code>: SubModel description of the layer to be bound </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidLayerMember.html#classInvalidLayerMember"><span class="std std-ref"><span class="pre">InvalidLayerMember</span></span></a></code>: If the layer already contains any agent functions or host functions </p></li>
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidSubModel.html#classInvalidSubModel"><span class="std std-ref"><span class="pre">InvalidSubModel</span></span></a></code>: If the layer already contains a submodel </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription7getNameEv">
+<span id="_CPPv3NK16LayerDescription7getNameEv"></span><span id="_CPPv2NK16LayerDescription7getNameEv"></span><span id="LayerDescription::getNameC"></span><span class="target" id="classLayerDescription_1a9e8e1bfe768b020b4f12d896dec9248b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The layer’s name </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription8getIndexEv">
+<span id="_CPPv3NK16LayerDescription8getIndexEv"></span><span id="_CPPv2NK16LayerDescription8getIndexEv"></span><span id="LayerDescription::getIndexC"></span><span class="target" id="classLayerDescription_1a5da204e0b1798d06881e0f01f56130d1"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getIndex</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription8getIndexEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The index of the layer within the model’s execution </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription22getAgentFunctionsCountEv">
+<span id="_CPPv3NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="LayerDescription::getAgentFunctionsCountC"></span><span class="target" id="classLayerDescription_1a4ca6f32af7c4a48017e7a2ff3aaf33e7"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getAgentFunctionsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription22getAgentFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The total number of agent functions within the layer </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription21getHostFunctionsCountEv">
+<span id="_CPPv3NK16LayerDescription21getHostFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription21getHostFunctionsCountEv"></span><span id="LayerDescription::getHostFunctionsCountC"></span><span class="target" id="classLayerDescription_1a3c913a7cc71476a1ba2f3a8f6dccc243"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getHostFunctionsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription21getHostFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The total number of host functions within the layer </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription16getAgentFunctionEj">
+<span id="_CPPv3NK16LayerDescription16getAgentFunctionEj"></span><span id="_CPPv2NK16LayerDescription16getAgentFunctionEj"></span><span id="LayerDescription::getAgentFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1a1ba246a17872c1f7600f49e243956013"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgentFunction</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription16getAgentFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An immutable reference to the agent function at the provided index </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a4ca6f32af7c4a48017e7a2ff3aaf33e7"><span class="std std-ref">LayerDescription::getAgentFunctionsCount()</span></a> </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Functions are stored in a set, so order may change as new functions are added </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the function to return </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: When index exceeds number of agent functions in the layer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK16LayerDescription15getHostFunctionEj">
+<span id="_CPPv3NK16LayerDescription15getHostFunctionEj"></span><span id="_CPPv2NK16LayerDescription15getHostFunctionEj"></span><span id="LayerDescription::getHostFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1ae458be51d081203809f72aa5d03b301e"></span><a class="reference internal" href="typedef_flamegpu__host__api__macros_8h_1a970bf6edf1ef24caec0743b53054271b.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></a> <code class="sig-name descname"><span class="pre">getHostFunction</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription15getHostFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A function pointer to the host function at the provided index </p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a3c913a7cc71476a1ba2f3a8f6dccc243"><span class="std std-ref">LayerDescription::getHostFunctionsCount()</span></a> </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Functions are stored in a set, so order may change as new functions are added </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: Index of the function to return </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classOutOfBoundsException.html#classOutOfBoundsException"><span class="std std-ref"><span class="pre">OutOfBoundsException</span></span></a></code>: When index exceeds number of host functions in the layer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classLogger.html" class="btn btn-neutral float-right" title="Class Logger" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classjsonWriter.html" class="btn btn-neutral float-left" title="Class jsonWriter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

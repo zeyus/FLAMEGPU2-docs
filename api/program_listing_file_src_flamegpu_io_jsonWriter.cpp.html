@@ -1,0 +1,460 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File jsonWriter.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File jsonWriter.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_io_jsonWriter.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-jsonwriter-cpp">
+<span id="program-listing-file-src-flamegpu-io-jsonwriter-cpp"></span><h1>Program Listing for File jsonWriter.cpp<a class="headerlink" href="#program-listing-for-file-jsonwriter-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_io_jsonWriter.cpp.html#file-src-flamegpu-io-jsonwriter-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/io/jsonWriter.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/io/jsonWriter.h&quot;
+
+#include &lt;rapidjson/writer.h&gt;
+#include &lt;rapidjson/prettywriter.h&gt;
+#include &lt;rapidjson/stringbuffer.h&gt;
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/pop/AgentVector.h&quot;
+#include &quot;flamegpu/gpu/CUDASimulation.h&quot;
+#include &quot;flamegpu/util/StringPair.h&quot;
+
+jsonWriter::jsonWriter(
+    const std::string &amp;model_name,
+    const unsigned int &amp;sim_instance_id,
+    const StringPairUnorderedMap&lt;std::shared_ptr&lt;AgentVector&gt;&gt;&amp;model,
+    const unsigned int &amp;iterations,
+    const std::string &amp;output_file,
+    const Simulation *_sim_instance)
+    : StateWriter(model_name, sim_instance_id, model, iterations, output_file, _sim_instance) {}
+
+template&lt;typename T&gt;
+void jsonWriter::doWrite(T &amp;writer) {
+    // Begin json output object
+    writer.StartObject();
+
+    // General simulation config/properties
+    writer.Key(&quot;config&quot;);
+    writer.StartObject();
+    {
+        // Simulation config
+        if (sim_instance) {
+            writer.Key(&quot;simulation&quot;);
+            writer.StartObject();
+            {
+                const auto &amp;sim_cfg = sim_instance-&gt;getSimulationConfig();
+                // Input file
+                writer.Key(&quot;input_file&quot;);
+                writer.String(sim_cfg.input_file.c_str());
+                // Steps
+                writer.Key(&quot;steps&quot;);
+                writer.Uint(sim_cfg.steps);
+                // Timing Output
+                writer.Key(&quot;timing&quot;);
+                writer.Bool(sim_cfg.timing);
+                // Random seed
+                writer.Key(&quot;random_seed&quot;);
+                writer.Uint(sim_cfg.random_seed);
+                // Verbose output
+                writer.Key(&quot;verbose&quot;);
+                writer.Bool(sim_cfg.verbose);
+                // Console mode
+                writer.Key(&quot;console_mode&quot;);
+                writer.Bool(sim_cfg.console_mode);
+            }
+            writer.EndObject();
+        }
+
+        // CUDA config
+        if (auto *cudamodel_instance = dynamic_cast&lt;const CUDASimulation*&gt;(sim_instance)) {
+            writer.Key(&quot;cuda&quot;);
+            writer.StartObject();
+            {
+                const auto &amp;cuda_cfg = cudamodel_instance-&gt;getCUDAConfig();
+                // device_id
+                writer.Key(&quot;device_id&quot;);
+                writer.Uint(cuda_cfg.device_id);
+            }
+            writer.EndObject();
+        }
+    }
+    writer.EndObject();
+
+    // General runtime stats (e.g. we could add timing data in future)
+    writer.Key(&quot;stats&quot;);
+    writer.StartObject();
+    {
+        // Steps
+        writer.Key(&quot;step_count&quot;);
+        writer.Uint(iterations);
+        // in future could also support random seed, run args etc
+    }
+    writer.EndObject();
+
+    // Environment properties
+    writer.Key(&quot;environment&quot;);
+    writer.StartObject();
+    {
+        // for each environment property
+        EnvironmentManager &amp;env_manager = EnvironmentManager::getInstance();
+        auto lock = env_manager.getSharedLock();
+        const char *env_buffer = reinterpret_cast&lt;const char *&gt;(env_manager.getHostBuffer());
+        for (auto &amp;a : env_manager.getPropertiesMap()) {
+            // If it is from this model
+            if (a.first.first == sim_instance_id) {
+                // Set name
+                writer.Key(a.first.second.c_str());
+                // Output value
+                if (a.second.elements &gt; 1) {
+                    // Value is an array
+                    writer.StartArray();
+                }
+                // Loop through elements, to construct array
+                for (unsigned int el = 0; el &lt; a.second.elements; ++el) {
+                    if (a.second.type == std::type_index(typeid(float))) {
+                        writer.Double(*reinterpret_cast&lt;const float*&gt;(env_buffer + a.second.offset + (el * sizeof(float))));
+                    } else if (a.second.type == std::type_index(typeid(double))) {
+                        writer.Double(*reinterpret_cast&lt;const double*&gt;(env_buffer + a.second.offset + (el * sizeof(double))));
+                    } else if (a.second.type == std::type_index(typeid(int64_t))) {
+                        writer.Int64(*reinterpret_cast&lt;const int64_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int64_t))));
+                    } else if (a.second.type == std::type_index(typeid(uint64_t))) {
+                        writer.Uint64(*reinterpret_cast&lt;const uint64_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint64_t))));
+                    } else if (a.second.type == std::type_index(typeid(int32_t))) {
+                        writer.Int(*reinterpret_cast&lt;const int32_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int32_t))));
+                    } else if (a.second.type == std::type_index(typeid(uint32_t))) {
+                        writer.Uint(*reinterpret_cast&lt;const uint32_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint32_t))));
+                    } else if (a.second.type == std::type_index(typeid(int16_t))) {
+                        writer.Int(*reinterpret_cast&lt;const int16_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int16_t))));
+                    } else if (a.second.type == std::type_index(typeid(uint16_t))) {
+                        writer.Uint(*reinterpret_cast&lt;const uint16_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint16_t))));
+                    } else if (a.second.type == std::type_index(typeid(int8_t))) {
+                        writer.Int(static_cast&lt;int32_t&gt;(*reinterpret_cast&lt;const int8_t*&gt;(env_buffer + a.second.offset + (el * sizeof(int8_t)))));  // Char outputs weird if being used as an integer
+                    } else if (a.second.type == std::type_index(typeid(uint8_t))) {
+                        writer.Uint(static_cast&lt;uint32_t&gt;(*reinterpret_cast&lt;const uint8_t*&gt;(env_buffer + a.second.offset + (el * sizeof(uint8_t)))));  // Char outputs weird if being used as an integer
+                    } else {
+                        THROW RapidJSONError(&quot;Model contains environment property &#39;%s&#39; of unsupported type &#39;%s&#39;, &quot;
+                            &quot;in jsonWriter::writeStates()\n&quot;, a.first.second.c_str(), a.second.type.name());
+                    }
+                }
+                if (a.second.elements &gt; 1) {
+                    // Value is an array
+                    writer.EndArray();
+                }
+            }
+        }
+    }
+    writer.EndObject();
+
+    // AgentStates
+    writer.Key(&quot;agents&quot;);
+    writer.StartObject();
+    for (const auto &amp;agent : model_state) {
+        const std::string &amp;agent_name = agent.first.first;
+        const std::string &amp;state_name = agent.first.second;
+        writer.Key(agent_name.c_str());
+        writer.StartObject();
+        const VariableMap &amp;agent_vars = agent.second-&gt;getVariableMetaData();
+        // States
+        const unsigned int populationSize = agent.second-&gt;size();
+        // Only log states with agents
+        if (populationSize) {
+            writer.Key(state_name.c_str());
+            writer.StartArray();
+            for (unsigned int i = 0; i &lt; populationSize; ++i) {
+                writer.StartObject();
+                AgentVector::Agent instance = agent.second-&gt;at(i);
+                // for each variable
+                for (auto var : agent_vars) {
+                    // Set name
+                    const std::string variable_name = var.first;
+                    writer.Key(variable_name.c_str());
+                    // Output value
+                    if (var.second.elements &gt; 1) {
+                        // Value is an array
+                        writer.StartArray();
+                    }
+                    // Loop through elements, to construct array
+                    for (unsigned int el = 0; el &lt; var.second.elements; ++el) {
+                        if (var.second.type == std::type_index(typeid(float))) {
+                            writer.Double(instance.getVariable&lt;float&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(double))) {
+                            writer.Double(instance.getVariable&lt;double&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(int64_t))) {
+                            writer.Int64(instance.getVariable&lt;int64_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(uint64_t))) {
+                            writer.Uint64(instance.getVariable&lt;uint64_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(int32_t))) {
+                            writer.Int(instance.getVariable&lt;int32_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(uint32_t))) {
+                            writer.Uint(instance.getVariable&lt;uint32_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(int16_t))) {
+                            writer.Int(instance.getVariable&lt;int16_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(uint16_t))) {
+                            writer.Uint(instance.getVariable&lt;uint16_t&gt;(variable_name, el));
+                        } else if (var.second.type == std::type_index(typeid(int8_t))) {
+                            writer.Int(instance.getVariable&lt;int8_t&gt;(variable_name, el));  // Char outputs weird if being used as an integer
+                        } else if (var.second.type == std::type_index(typeid(uint8_t))) {
+                            writer.Uint(instance.getVariable&lt;uint8_t&gt;(variable_name, el));  // Char outputs weird if being used as an integer
+                        } else {
+                            THROW RapidJSONError(&quot;Agent &#39;%s&#39; contains variable &#39;%s&#39; of unsupported type &#39;%s&#39;, &quot;
+                                &quot;in jsonWriter::writeStates()\n&quot;, agent.first.first.c_str(), variable_name.c_str(), var.second.type.name());
+                        }
+                    }
+                    if (var.second.elements &gt; 1) {
+                        // Value is an array
+                        writer.EndArray();
+                    }
+                }
+                writer.EndObject();
+            }
+            writer.EndArray();
+        }
+        writer.EndObject();
+    }
+    writer.EndObject();
+
+    // End Json file
+    writer.EndObject();
+}
+
+int jsonWriter::writeStates(bool prettyPrint) {
+    rapidjson::StringBuffer s;
+    if (prettyPrint) {
+        rapidjson::PrettyWriter&lt;rapidjson::StringBuffer&gt; writer = rapidjson::PrettyWriter&lt;rapidjson::StringBuffer&gt;(s);
+        writer.SetIndent(&#39;\t&#39;, 1);
+        doWrite(writer);
+    } else {
+        rapidjson::Writer&lt;rapidjson::StringBuffer&gt; writer = rapidjson::Writer&lt;rapidjson::StringBuffer&gt;(s);
+        doWrite(writer);
+    }
+
+    // Perform output
+    std::ofstream out(outputFile);
+    out &lt;&lt; s.GetString();
+    out.close();
+
+    return 0;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

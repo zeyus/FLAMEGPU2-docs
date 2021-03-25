@@ -1,0 +1,75 @@
+
+.. _program_listing_file_include_flamegpu_util_JitifyCache.h:
+
+Program Listing for File JitifyCache.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_JitifyCache.h>` (``include/flamegpu/util/JitifyCache.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_JITIFYCACHE_H_
+   #define INCLUDE_FLAMEGPU_UTIL_JITIFYCACHE_H_
+   
+   #include <map>
+   #include <mutex>
+   #include <memory>
+   #include <string>
+   #include <vector>
+   
+   #ifdef _MSC_VER
+   #pragma warning(push, 2)
+   #include "jitify/jitify.hpp"
+   #pragma warning(pop)
+   #else
+   #include "jitify/jitify.hpp"
+   #endif
+   
+   using jitify::experimental::KernelInstantiation;
+   
+   class JitifyCache {
+       struct CachedProgram {
+           // dynamic header concatenated to kernel
+           // We check this is an exact match before loading from cache
+           std::string long_reference;
+           std::string serialised_kernelinst;
+       };
+   
+    public:
+       std::unique_ptr<KernelInstantiation> loadKernel(
+           const std::string &func_name,
+           const std::vector<std::string> &template_args,
+           const std::string &kernel_src,
+           const std::string &dynamic_header);
+       void useMemoryCache(bool yesno);
+       bool useMemoryCache() const;
+       void clearMemoryCache();
+       void useDiskCache(bool yesno);
+       bool useDiskCache() const;
+       void clearDiskCache();
+   
+    private:
+       static std::unique_ptr<KernelInstantiation> compileKernel(
+       const std::string &func_name,
+       const std::vector<std::string> &template_args,
+       const std::string &kernel_src,
+       const std::string &dynamic_header);
+   
+       std::map<std::string, CachedProgram> cache{};
+       mutable std::mutex cache_mutex;
+   
+       bool use_memory_cache;
+       bool use_disk_cache;
+   
+       JitifyCache();
+       static std::mutex instance_mutex;
+   
+    public:
+       static JitifyCache& getInstance();
+       // Public deleted creates better compiler errors
+       JitifyCache(JitifyCache const&) = delete;
+       void operator=(JitifyCache const&) = delete;
+   };
+   #endif  // INCLUDE_FLAMEGPU_UTIL_JITIFYCACHE_H_

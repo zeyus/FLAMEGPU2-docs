@@ -1,0 +1,843 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File EnvironmentManager.cuh &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File EnvironmentManager.cuh</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_runtime_utility_EnvironmentManager.cuh.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-environmentmanager-cuh">
+<span id="program-listing-file-include-flamegpu-runtime-utility-environmentmanager-cuh"></span><h1>Program Listing for File EnvironmentManager.cuh<a class="headerlink" href="#program-listing-for-file-environmentmanager-cuh" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_runtime_utility_EnvironmentManager.cuh.html#file-include-flamegpu-runtime-utility-environmentmanager-cuh"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/runtime/utility/EnvironmentManager.cuh</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_
+#define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_
+
+#include &lt;cuda_runtime.h&gt;
+
+#include &lt;cstddef&gt;
+#include &lt;unordered_map&gt;
+#include &lt;array&gt;
+#include &lt;string&gt;
+#include &lt;type_traits&gt;
+#include &lt;list&gt;
+#include &lt;utility&gt;
+#include &lt;typeindex&gt;
+#include &lt;set&gt;
+#include &lt;vector&gt;
+#include &lt;mutex&gt;
+#include &lt;shared_mutex&gt;
+#include &lt;map&gt;
+#include &lt;functional&gt;
+#include &lt;memory&gt;
+
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+#include &quot;flamegpu/gpu/CUDAErrorChecking.h&quot;
+#include &quot;flamegpu/runtime/cuRVE/curve.h&quot;
+#include &quot;flamegpu/util/Any.h&quot;
+
+struct SubEnvironmentData;
+class EnvironmentDescription;
+class CUDASimulation;
+class CUDAAgent;
+
+class EnvironmentManager {
+    friend class CUDAAgent;
+    friend class CUDASimulation;
+    friend class HostEnvironment;
+    friend class DefragProp;
+    friend class xmlWriter;
+    friend class xmlReader;
+    friend class jsonWriter;
+    friend class jsonReader;
+    friend class jsonReader_impl;
+    typedef std::pair&lt;unsigned int, std::string&gt; NamePair;
+    struct NamePairHash {
+        size_t operator()(const NamePair&amp; k) const {
+            return std::hash&lt;unsigned int&gt;()(k.first) ^
+                (std::hash&lt;std::string&gt;()(k.second) &lt;&lt; 1);
+        }
+    };
+
+ public:
+    static const size_t MAX_BUFFER_SIZE = 10 * 1024;  // 10KB
+    typedef unsigned int size_type;
+    typedef std::pair&lt;ptrdiff_t, size_t&gt; OffsetLen;
+    enum OL {
+        OFFSET = 0,
+        LEN = 1,
+    };
+    struct EnvProp {
+        EnvProp(const ptrdiff_t &amp;_offset, const size_t &amp;_length, const bool &amp;_isConst, const size_type &amp;_elements, const std::type_index &amp;_type, const ptrdiff_t &amp;_rtc_offset = 0)
+            : offset(_offset),
+            length(_length),
+            isConst(_isConst),
+            elements(_elements),
+            type(_type),
+            rtc_offset(_rtc_offset) {}
+        ptrdiff_t offset;
+        size_t length;
+        bool isConst;
+        size_type elements;
+        const std::type_index type;
+        ptrdiff_t rtc_offset;  // This is set by buildRTCOffsets();
+    };
+    struct MappedProp {
+        MappedProp(const NamePair &amp;_masterProp, const bool &amp;_isConst)
+            : masterProp(_masterProp),
+            isConst(_isConst) {}
+        const NamePair masterProp;
+        const bool isConst;
+    };
+    struct DefragProp {
+        explicit DefragProp(const EnvProp &amp;ep)
+            :data(EnvironmentManager::getInstance().hc_buffer + ep.offset),
+            length(ep.length),
+            isConst(ep.isConst),
+            elements(ep.elements),
+            type(ep.type),
+            rtc_offset(ep.rtc_offset) { }
+        DefragProp(void *_data, const size_t &amp;_length, const bool &amp;_isConst, const size_type &amp;_elements, const std::type_index &amp;_type, const ptrdiff_t &amp;_rtc_offset = 0)
+            : data(_data),
+            length(_length),
+            isConst(_isConst),
+            elements(_elements),
+            type(_type),
+            rtc_offset(_rtc_offset) { }
+        void *data;
+        size_t length;
+        bool isConst;
+        size_type elements;
+        const std::type_index type;
+        ptrdiff_t rtc_offset;
+    };
+    struct RTCEnvPropCache {
+        char hc_buffer[MAX_BUFFER_SIZE];
+        ptrdiff_t nextFree = 0;
+    };
+    friend bool operator&lt;(const std::pair&lt;size_t, const NamePair&gt;&amp; fk, const size_t&amp; lk) { return fk.first &lt; lk; }
+    friend bool operator&lt;(const size_t&amp; lk, const std::pair&lt;size_t, const NamePair&gt;&amp; fk) { return lk &lt; fk.first; }
+    friend bool operator&lt;(const std::pair&lt;size_t, const NamePair&gt;&amp; fk1, const std::pair&lt;size_t, const NamePair&gt;&amp; fk2) {
+        if (fk1.first == fk2.first) {
+            // If size equal, order by instance_id
+            if (fk1.second.first == fk2.second.first) {
+                // If instance id is equal, order by name
+                return fk1.second.second &lt; fk2.second.second;
+            }
+            return fk1.second.first &lt; fk2.second.first;
+        }
+        return fk1.first &lt; fk2.first;
+    }
+    typedef std::multimap&lt;std::pair&lt;size_t, const NamePair&gt;, DefragProp, std::less&lt;&gt;&gt; DefragMap;
+    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc);
+    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc, const unsigned int &amp;master_instance_id, const SubEnvironmentData &amp;mapping);
+    void initRTC(const CUDASimulation &amp;cuda_model);
+    void free(Curve &amp;curve, const unsigned int &amp;instance_id);
+    template&lt;typename T&gt;
+    void newProperty(const NamePair &amp;name, const T &amp;value, const bool &amp;isConst = false);
+    template&lt;typename T&gt;
+    void newProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const T &amp;value, const bool &amp;isConst = false);
+    template&lt;typename T, size_type N&gt;
+    void newProperty(const NamePair &amp;name, const std::array&lt;T, N&gt; &amp;value, const bool &amp;isConst = false);
+    template&lt;typename T, size_type N&gt;
+    void newProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const std::array&lt;T, N&gt; &amp;value, const bool &amp;isConst = false);
+    template&lt;typename T&gt;
+    T setProperty(const NamePair &amp;name, const T &amp;value);
+    template&lt;typename T&gt;
+    T setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const T &amp;value);
+    template&lt;typename T, size_type N&gt;
+    std::array&lt;T, N&gt; setProperty(const NamePair &amp;name, const std::array&lt;T, N&gt; &amp;value);
+    template&lt;typename T, size_type N&gt;
+    std::array&lt;T, N&gt; setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const std::array&lt;T, N&gt; &amp;value);
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    std::vector&lt;T&gt; setPropertyArray(const NamePair &amp;name, const std::vector&lt;T&gt; &amp;value);
+#endif
+
+    template&lt;typename T&gt;
+    T setProperty(const NamePair &amp;name, const size_type &amp;index, const T &amp;value);
+    template&lt;typename T&gt;
+    T setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const size_type &amp;index, const T &amp;value);
+    template&lt;typename T&gt;
+    T getProperty(const NamePair &amp;name);
+    template&lt;typename T&gt;
+    T getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name);
+    template&lt;typename T, size_type N&gt;
+    std::array&lt;T, N&gt; getProperty(const NamePair &amp;name);
+    template&lt;typename T, size_type N&gt;
+    std::array&lt;T, N&gt; getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name);
+    template&lt;typename T&gt;
+    T getProperty(const NamePair &amp;name, const size_type &amp;index);
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    std::vector&lt;T&gt; getPropertyArray(const NamePair&amp; name);
+#endif
+
+    template&lt;typename T&gt;
+    T getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const size_type &amp;index);
+    Any getPropertyAny(const unsigned int &amp;instance_id, const std::string &amp;var_name) const;
+    void removeProperty(const NamePair &amp;name);
+    void removeProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name);
+    void resetModel(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc);
+    inline bool containsProperty(const NamePair &amp;name) const {
+        std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+        return properties.find(name) != properties.end() || mapped_properties.find(name) != mapped_properties.end();
+    }
+    inline bool containsProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name) const { return containsProperty(toName(instance_id, var_name)); }
+    inline bool isConst(const NamePair &amp;name) const {
+        std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+        const auto a = properties.find(name);
+        if (a != properties.end())
+            return a-&gt;second.isConst;
+        const auto b = mapped_properties.find(name);
+        if (b != mapped_properties.end()) {
+            return b-&gt;second.isConst;
+        }
+        THROW InvalidEnvProperty(&quot;Environmental property with name &#39;%u:%s&#39; does not exist, &quot;
+            &quot;in EnvironmentManager::isConst().&quot;,
+            name.first, name.second.c_str());
+    }
+    inline bool isConst(const unsigned int &amp;instance_id, const std::string &amp;var_name) const { return isConst(toName(instance_id, var_name)); }
+    inline size_type length(const NamePair &amp;name) const {
+        std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+        auto a = properties.find(name);
+        if (a != properties.end())
+            return a-&gt;second.elements;
+        const auto b = mapped_properties.find(name);
+        if (b != mapped_properties.end()) {
+            a = properties.find(b-&gt;second.masterProp);
+            if (a != properties.end())
+                return a-&gt;second.elements;
+            THROW InvalidEnvProperty(&quot;Mapped environmental property with name &#39;%u:%s&#39; maps to missing property with name &#39;%u:%s&#39;, &quot;
+                &quot;in EnvironmentManager::length().&quot;,
+                name.first, name.second.c_str(), b-&gt;second.masterProp.first, b-&gt;second.masterProp.second.c_str());
+        }
+        THROW InvalidEnvProperty(&quot;Environmental property with name &#39;%u:%s&#39; does not exist, &quot;
+            &quot;in EnvironmentManager::length().&quot;,
+            name.first, name.second.c_str());
+    }
+    inline size_type length(const unsigned int &amp;instance_id, const std::string &amp;var_name) const { return length(toName(instance_id, var_name)); }
+    inline std::type_index type(const NamePair &amp;name) const {
+        std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+        auto a = properties.find(name);
+        if (a != properties.end())
+            return a-&gt;second.type;
+        const auto b = mapped_properties.find(name);
+        if (b != mapped_properties.end()) {
+            a = properties.find(b-&gt;second.masterProp);
+            if (a != properties.end())
+                return a-&gt;second.type;
+            THROW InvalidEnvProperty(&quot;Mapped environmental property with name &#39;%u:%s&#39; maps to missing property with name &#39;%u:%s&#39;, &quot;
+                &quot;in EnvironmentManager::type().&quot;,
+                name.first, name.second.c_str(), b-&gt;second.masterProp.first, b-&gt;second.masterProp.second.c_str());
+        }
+        THROW InvalidEnvProperty(&quot;Environmental property with name &#39;%u:%s&#39; does not exist, &quot;
+            &quot;in EnvironmentManager::type().&quot;,
+            name.first, name.second.c_str());
+    }
+    inline std::type_index type(const unsigned int &amp;instance_id, const std::string &amp;var_name) const { return type(toName(instance_id, var_name)); }
+    inline size_t freeSpace() const { std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex); return m_freeSpace; }
+    static const char CURVE_NAMESPACE_STRING[23];
+    const Curve::NamespaceHash CURVE_NAMESPACE_HASH;
+    const std::unordered_map&lt;NamePair, EnvProp, NamePairHash&gt; &amp;getPropertiesMap() const {
+        return properties;
+    }
+    const std::unordered_map&lt;NamePair, MappedProp, NamePairHash&gt; &amp;getMappedProperties() const {
+        return mapped_properties;
+    }
+    const void * getHostBuffer() const {
+        return hc_buffer;
+    }
+    void updateDevice(const unsigned int &amp;instance_id);
+
+ private:
+    static NamePair toName(const unsigned int &amp;instance_id, const std::string &amp;var_name);
+    Curve::VariableHash toHash(const NamePair &amp;name) const;
+    void newProperty(const NamePair &amp;name, const char *ptr, const size_t &amp;len, const bool &amp;isConst, const size_type &amp;elements, const std::type_index &amp;type);
+    void defragment(Curve &amp;curve, const DefragMap * mergeProps = nullptr, std::set&lt;NamePair&gt; newmaps = {});
+    void buildRTCOffsets(const unsigned int &amp;instance_id, const unsigned int &amp;master_instance_id, const DefragMap &amp;mergeProperties);
+    char* getRTCCache(const unsigned int&amp; instance_id);
+    void addRTCOffset(const NamePair &amp;name);
+    const char *c_buffer;
+    char hc_buffer[MAX_BUFFER_SIZE];
+    ptrdiff_t nextFree;
+    size_t m_freeSpace;
+    std::list&lt;OffsetLen&gt; freeFragments;
+    std::unordered_map&lt;NamePair, EnvProp, NamePairHash&gt; properties;
+    std::unordered_map&lt;NamePair, MappedProp, NamePairHash&gt; mapped_properties;
+    std::unordered_map&lt;unsigned int, const CUDASimulation&amp;&gt; cuda_agent_models;
+    std::unordered_map&lt;unsigned int, std::shared_ptr&lt;RTCEnvPropCache&gt;&gt; rtc_caches;
+    bool deviceInitialised;
+    /*
+     * Convenience fn for managing deviceRequiresUpdate
+     * @param instance_id Sim instance id, UINT_MAX sets all
+     */
+    void setDeviceRequiresUpdateFlag(const unsigned int &amp;instance_id = UINT_MAX);
+    struct EnvUpdateFlags {
+        bool c_update_required = true;
+        bool rtc_update_required = true;
+        bool curve_registration_required = false;
+    };
+    std::unordered_map&lt;unsigned int, EnvUpdateFlags&gt; deviceRequiresUpdate;
+    void initialiseDevice();
+    mutable std::shared_timed_mutex mutex;
+    std::shared_lock&lt;std::shared_timed_mutex&gt; getSharedLock() const { return std::shared_lock&lt;std::shared_timed_mutex&gt;(mutex); }
+    std::unique_lock&lt;std::shared_timed_mutex&gt; getUniqueLock() const { return std::unique_lock&lt;std::shared_timed_mutex&gt;(mutex); }
+    mutable std::shared_timed_mutex device_mutex;
+    std::shared_lock&lt;std::shared_timed_mutex&gt; getDeviceSharedLock() const { return std::shared_lock&lt;std::shared_timed_mutex&gt;(device_mutex); }
+    std::unique_lock&lt;std::shared_timed_mutex&gt; getDeviceUniqueLock() const { return std::unique_lock&lt;std::shared_timed_mutex&gt;(device_mutex); }
+    mutable std::shared_timed_mutex deviceRequiresUpdate_mutex;
+    EnvironmentManager();
+    void purge();
+
+ protected:
+    static EnvironmentManager&amp; getInstance();
+    static std::mutex instance_mutex;
+
+    const CUDASimulation&amp; getCUDASimulation(const unsigned int &amp;instance_id);
+    void updateRTCValue(const NamePair &amp;name);
+
+ public:
+    // Public deleted creates better compiler errors
+    EnvironmentManager(EnvironmentManager const&amp;) = delete;
+    void operator=(EnvironmentManager const&amp;) = delete;
+};
+
+template&lt;typename T&gt;
+void EnvironmentManager::newProperty(const NamePair &amp;name, const T &amp;value, const bool &amp;isConst) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    if (containsProperty(name)) {
+        THROW DuplicateEnvProperty(&quot;Environmental property with name &#39;%u:%s&#39; already exists, &quot;
+            &quot;in EnvironmentManager::add().&quot;,
+            name.first, name.second.c_str());
+    }
+    newProperty(name, reinterpret_cast&lt;const char*&gt;(&amp;value), sizeof(T), isConst, 1, typeid(T));
+}
+template&lt;typename T&gt;
+void EnvironmentManager::newProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const T &amp;value, const bool &amp;isConst) {
+    newProperty&lt;T&gt;(toName(instance_id, var_name), value, isConst);
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+void EnvironmentManager::newProperty(const NamePair &amp;name, const std::array&lt;T, N&gt; &amp;value, const bool &amp;isConst) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    if (containsProperty(name)) {
+        THROW DuplicateEnvProperty(&quot;Environmental property with name &#39;%u:%s&#39; already exists, &quot;
+            &quot;in EnvironmentManager::add().&quot;,
+            name.first, name.second.c_str());
+    }
+    newProperty(name, reinterpret_cast&lt;const char*&gt;(value.data()), N * sizeof(T), isConst, N, typeid(T));
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+void EnvironmentManager::newProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const std::array&lt;T, N&gt; &amp;value, const bool &amp;isConst) {
+    newProperty&lt;T, N&gt;(toName(instance_id, var_name), value, isConst);
+}
+
+template&lt;typename T&gt;
+T EnvironmentManager::setProperty(const NamePair &amp;name, const T &amp;value) {
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    if (isConst(name)) {
+        THROW ReadOnlyEnvProperty(&quot;Environmental property (&#39;%u:%s&#39;) is marked as const and cannot be changed, &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str());
+    }
+    // Copy old data to return
+    T rtn = getProperty&lt;T&gt;(name);
+    std::unique_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Find property offset
+    ptrdiff_t buffOffset = 0;
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        buffOffset = a-&gt;second.offset;
+    } else {
+        buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
+    }
+    // Store data
+    memcpy(hc_buffer + buffOffset, &amp;value, sizeof(T));
+    // Do rtc too
+    updateRTCValue(name);
+    // Set device update flag
+    setDeviceRequiresUpdateFlag(name.first);
+
+    return rtn;
+}
+template&lt;typename T&gt;
+T EnvironmentManager::setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const T &amp;value) {
+    return setProperty&lt;T&gt;(toName(instance_id, var_name), value);
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+std::array&lt;T, N&gt; EnvironmentManager::setProperty(const NamePair &amp;name, const std::array&lt;T, N&gt; &amp;value) {
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    if (isConst(name)) {
+        THROW ReadOnlyEnvProperty(&quot;Environmental property array (&#39;%u:%s&#39;) is marked as const and cannot be changed, &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str());
+    }
+    const size_type array_len = length(name);
+    if (array_len != N) {
+        THROW OutOfBoundsException(&quot;Length of named environmental property array (%u) does not match template argument N (%u)! &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            array_len, N);
+    }
+    // Copy old data to return
+    std::array&lt;T, N&gt; rtn = getProperty&lt;T, N&gt;(name);
+    std::unique_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Find property offset
+    ptrdiff_t buffOffset = 0;
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        buffOffset = a-&gt;second.offset;
+    } else {
+        buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
+    }
+    // Store data
+    memcpy(hc_buffer + buffOffset, value.data(), N * sizeof(T));
+    // Do rtc too
+    updateRTCValue(name);
+    // Set device update flag
+    setDeviceRequiresUpdateFlag(name.first);
+
+    return rtn;
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+std::array&lt;T, N&gt; EnvironmentManager::setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const std::array&lt;T, N&gt; &amp;value) {
+    return setProperty&lt;T, N&gt;(toName(instance_id, var_name), value);
+}
+#ifdef SWIG
+template&lt;typename T&gt;
+std::vector&lt;T&gt; EnvironmentManager::setPropertyArray(const NamePair&amp; name, const std::vector&lt;T&gt;&amp; value) {
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    if (isConst(name)) {
+        THROW ReadOnlyEnvProperty(&quot;Environmental property array (&#39;%u:%s&#39;) is marked as const and cannot be changed, &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str());
+    }
+    const size_type array_len = length(name);
+    if (array_len != value.size()) {
+        THROW OutOfBoundsException(&quot;Length of named environmental property array (%u) does not match length of provided array (%llu)! &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            array_len, value.size());
+    }
+    std::unique_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Find property offset
+    ptrdiff_t buffOffset = 0;
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        buffOffset = a-&gt;second.offset;
+    } else {
+        buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
+    }
+    // Copy old data to return
+    std::vector&lt;T&gt; rtn(value.size());
+    if (a != properties.end()) {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + buffOffset), array_len * sizeof(T));
+    } else {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + buffOffset), array_len * sizeof(T));
+    }
+    // Store data
+    memcpy(hc_buffer + buffOffset, value.data(), value.size() * sizeof(T));
+    // Do rtc too
+    updateRTCValue(name);
+    // Set device update flag
+    setDeviceRequiresUpdateFlag(name.first);
+
+    return rtn;
+}
+#endif
+template&lt;typename T&gt;
+T EnvironmentManager::setProperty(const NamePair &amp;name, const size_type &amp;index, const T &amp;value) {
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    if (isConst(name)) {
+        THROW ReadOnlyEnvProperty(&quot;Environmental property array (&#39;%u:%s&#39;) is marked as const and cannot be changed, &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            name.first, name.second.c_str());
+    }
+    const size_type array_len = length(name);
+    if (index &gt;= array_len) {
+        THROW OutOfBoundsException(&quot;Index(%u) exceeds named environmental property array&#39;s length (%u), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            index, array_len);
+    }
+    std::unique_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Find property offset
+    ptrdiff_t buffOffset = 0;
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        buffOffset = a-&gt;second.offset + index * sizeof(T);
+    } else {
+        const auto &amp;master_name = mapped_properties.at(name).masterProp;
+        buffOffset = properties.at(master_name).offset + index * sizeof(T);
+    }
+    // Copy old data to return
+    T rtn = *reinterpret_cast&lt;T*&gt;(hc_buffer + buffOffset);
+    // Store data
+    memcpy(hc_buffer + buffOffset, &amp;value, sizeof(T));
+    // Do rtc too
+    updateRTCValue(name);
+    // Set device update flag
+    setDeviceRequiresUpdateFlag(name.first);
+
+    return rtn;
+}
+template&lt;typename T&gt;
+T EnvironmentManager::setProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const size_type &amp;index, const T &amp;value) {
+    return setProperty&lt;T&gt;(toName(instance_id, var_name), index, value);
+}
+
+template&lt;typename T&gt;
+T EnvironmentManager::getProperty(const NamePair &amp;name) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::get().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Copy old data to return
+    const auto a = properties.find(name);
+    if (a != properties.end())
+        return *reinterpret_cast&lt;T*&gt;(hc_buffer + a-&gt;second.offset);
+    return *reinterpret_cast&lt;T*&gt;(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset);
+}
+template&lt;typename T&gt;
+T EnvironmentManager::getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name) {
+    return getProperty&lt;T&gt;(toName(instance_id, var_name));
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+std::array&lt;T, N&gt; EnvironmentManager::getProperty(const NamePair &amp;name) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::get().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    const size_type array_len = length(name);
+    if (array_len != N) {
+        THROW OutOfBoundsException(&quot;Length of named environmental property array (%u) does not match template argument N (%u)! &quot;
+            &quot;in EnvironmentManager::get().&quot;,
+            array_len, N);
+    }
+    // Copy old data to return
+    std::array&lt;T, N&gt; rtn;
+    std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + a-&gt;second.offset), N * sizeof(T));
+    } else {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset), N * sizeof(T));
+    }
+    return rtn;
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+std::array&lt;T, N&gt; EnvironmentManager::getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name) {
+    return getProperty&lt;T, N&gt;(toName(instance_id, var_name));
+}
+template&lt;typename T&gt;
+T EnvironmentManager::getProperty(const NamePair &amp;name, const size_type &amp;index) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::get().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    const size_type array_len = length(name);
+    if (index &gt;= array_len) {
+        THROW OutOfBoundsException(&quot;Index(%u) exceeds named environmental property array&#39;s length (%u), &quot;
+            &quot;in EnvironmentManager::set().&quot;,
+            index, array_len);
+    }
+    std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    // Copy old data to return
+    const auto a = properties.find(name);
+    if (a != properties.end())
+        return *reinterpret_cast&lt;T*&gt;(hc_buffer + a-&gt;second.offset + index * sizeof(T));
+    return *reinterpret_cast&lt;T*&gt;(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset + index * sizeof(T));
+}
+#ifdef SWIG
+template&lt;typename T&gt;
+std::vector&lt;T&gt; EnvironmentManager::getPropertyArray(const NamePair&amp; name) {
+    // Limited to Arithmetic types
+    // Compound types would allow host pointers inside structs to be passed
+    static_assert(std::is_arithmetic&lt;T&gt;::value || std::is_enum&lt;T&gt;::value,
+        &quot;Only arithmetic types can be used as environmental properties&quot;);
+    const std::type_index typ_id = type(name);
+    if (typ_id != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environmental property array (&#39;%u:%s&#39;) type (%s) does not match template argument T (%s), &quot;
+            &quot;in EnvironmentManager::get().&quot;,
+            name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+    }
+    const size_type array_len = length(name);
+    // Copy old data to return
+    std::vector&lt;T&gt; rtn(static_cast&lt;size_t&gt;(array_len));
+    std::shared_lock&lt;std::shared_timed_mutex&gt; lock(mutex);
+    const auto a = properties.find(name);
+    if (a != properties.end()) {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + a-&gt;second.offset), array_len * sizeof(T));
+    } else {
+        memcpy(rtn.data(), reinterpret_cast&lt;T*&gt;(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset), array_len * sizeof(T));
+    }
+    return rtn;
+}
+#endif
+template&lt;typename T&gt;
+T EnvironmentManager::getProperty(const unsigned int &amp;instance_id, const std::string &amp;var_name, const size_type &amp;index) {
+    return getProperty&lt;T&gt;(toName(instance_id, var_name), index);
+}
+
+#endif  // INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

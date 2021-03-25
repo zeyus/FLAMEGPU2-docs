@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class CUDAAgent &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class CUDAAgentStateList" href="classCUDAAgentStateList.html" />
+    <link rel="prev" title="Class ColorFunction" href="classColorFunction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class CUDAAgent</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#inheritance-relationships">Inheritance Relationships</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurve.html">Class Curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray.html">Class MsgArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class CUDAAgent</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classCUDAAgent.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-cudaagent">
+<span id="exhale-class-classcudaagent"></span><h1>Class CUDAAgent<a class="headerlink" href="#class-cudaagent" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_gpu_CUDAAgent.h.html#file-include-flamegpu-gpu-cudaagent-h"><span class="std std-ref">File CUDAAgent.h</span></a></p></li>
+</ul>
+<div class="section" id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">AgentInterface</span></code> (<a class="reference internal" href="classAgentInterface.html#exhale-class-classagentinterface"><span class="std std-ref">Class AgentInterface</span></a>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv49CUDAAgent">
+<span id="_CPPv39CUDAAgent"></span><span id="_CPPv29CUDAAgent"></span><span id="CUDAAgent"></span><span class="target" id="classCUDAAgent"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">CUDAAgent</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classAgentInterface.html#_CPPv414AgentInterface" title="AgentInterface"><span class="pre">AgentInterface</span></a><a class="headerlink" href="#_CPPv49CUDAAgent" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This is the regular <a class="reference internal" href="#classCUDAAgent"><span class="std std-ref">CUDAAgent</span></a> It provides access to the device buffers representing the states of a particular agent However it does not own these buffers, they are owned by it’s parent <a class="reference internal" href="classCUDAFatAgent.html#classCUDAFatAgent"><span class="std std-ref">CUDAFatAgent</span></a>, as buffers are shared with all mapped agents too. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp type">
+<dt id="_CPPv4N9CUDAAgent14CUDARTCFuncMapE">
+<span id="_CPPv3N9CUDAAgent14CUDARTCFuncMapE"></span><span id="_CPPv2N9CUDAAgent14CUDARTCFuncMapE"></span><span id="CUDAAgent::CUDARTCFuncMap"></span><span class="target" id="classCUDAAgent_1a88fdf2a6888119028b1a31314947dc30"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><span class="pre">jitify</span><span class="pre">::</span><span class="pre">experimental</span><span class="pre">::</span><span class="pre">KernelInstantiation</span><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">CUDARTCFuncMap</span></code><a class="headerlink" href="#_CPPv4N9CUDAAgent14CUDARTCFuncMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>map of agent function name to RTC function instance </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N9CUDAAgent16CUDARTCHeaderMapE">
+<span id="_CPPv3N9CUDAAgent16CUDARTCHeaderMapE"></span><span id="_CPPv2N9CUDAAgent16CUDARTCHeaderMapE"></span><span id="CUDAAgent::CUDARTCHeaderMap"></span><span class="target" id="classCUDAAgent_1a2db1a61dbe6a824f2fef6775ac09d4df"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classCurveRTCHost.html#_CPPv412CurveRTCHost" title="CurveRTCHost"><span class="pre">CurveRTCHost</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">CUDARTCHeaderMap</span></code><a class="headerlink" href="#_CPPv4N9CUDAAgent16CUDARTCHeaderMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N9CUDAAgent18CUDARTCFuncMapPairE">
+<span id="_CPPv3N9CUDAAgent18CUDARTCFuncMapPairE"></span><span id="_CPPv2N9CUDAAgent18CUDARTCFuncMapPairE"></span><span id="CUDAAgent::CUDARTCFuncMapPair"></span><span class="target" id="classCUDAAgent_1a1550ffe31e740b7a7c9bba52f49be33f"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">pair</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><span class="pre">jitify</span><span class="pre">::</span><span class="pre">experimental</span><span class="pre">::</span><span class="pre">KernelInstantiation</span><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">CUDARTCFuncMapPair</span></code><a class="headerlink" href="#_CPPv4N9CUDAAgent18CUDARTCFuncMapPairE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Element type of CUDARTCFuncMap </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulation">
+<span id="_CPPv3N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulation"></span><span id="_CPPv2N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulation"></span><span id="CUDAAgent::CUDAAgent__AgentDataCR.CUDASimulationCR"></span><span class="target" id="classCUDAAgent_1a26cb1b96d9ca75b5a2659cf4cd22eb5e"></span><code class="sig-name descname"><span class="pre">CUDAAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a> <span class="pre">&amp;</span><em><span class="pre">description</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">&amp;</span><em><span class="pre">_cuda_model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulation" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Normal constructor <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: Agent description of the agent </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_cuda_model</span></code>: Parent <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> of the agent </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulationRKNSt10unique_ptrI9CUDAAgentEERKNSt10shared_ptrI12SubAgentDataEE">
+<span id="_CPPv3N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulationRKNSt10unique_ptrI9CUDAAgentEERKNSt10shared_ptrI12SubAgentDataEE"></span><span id="_CPPv2N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulationRKNSt10unique_ptrI9CUDAAgentEERKNSt10shared_ptrI12SubAgentDataEE"></span><span id="CUDAAgent::CUDAAgent__AgentDataCR.CUDASimulationCR.std::unique_ptr:CUDAAgent:CR.std::shared_ptr:SubAgentData:CR"></span><span class="target" id="classCUDAAgent_1a79379dcd3053cc8bb0de4fdc5deac72a"></span><code class="sig-name descname"><span class="pre">CUDAAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a> <span class="pre">&amp;</span><em><span class="pre">description</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">&amp;</span><em><span class="pre">_cuda_model</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulationRKNSt10unique_ptrI9CUDAAgentEERKNSt10shared_ptrI12SubAgentDataEE" title="CUDAAgent::CUDAAgent"><span class="pre">CUDAAgent</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">master_agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubAgentData.html#_CPPv412SubAgentData" title="SubAgentData"><span class="pre">SubAgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">mapping</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent9CUDAAgentERK9AgentDataRK14CUDASimulationRKNSt10unique_ptrI9CUDAAgentEERKNSt10shared_ptrI12SubAgentDataEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Subagent form constructor, used when creating a <a class="reference internal" href="#classCUDAAgent"><span class="std std-ref">CUDAAgent</span></a> for a mapped agent within a submodel <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code>: Agent description of the agent </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_cuda_model</span></code>: Parent <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> of the agent </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">master_agent</span></code>: The (parent) agent which this is agent is mapped to </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mapping</span></code>: Mapping definition for how this agent is connected with its master agent. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent19mapRuntimeVariablesERK17AgentFunctionDataRKj">
+<span id="_CPPv3NK9CUDAAgent19mapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="_CPPv2NK9CUDAAgent19mapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="CUDAAgent::mapRuntimeVariables__AgentFunctionDataCR.unsigned-iCRC"></span><span class="target" id="classCUDAAgent_1ac37feb9cecaf4a01e71312823bd2630d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">mapRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent19mapRuntimeVariablesERK17AgentFunctionDataRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uses the cuRVE runtime to map the variables used by the agent function to the cuRVE library so that can be accessed by name within a n agent function <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>TODO: This could be improved by iterating the variable list within the state_list, rather than individually looking up vars (the two lists should have all the same vars) </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This should probably be addressed when curve is updated to not use individual memcpys </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instance_id</span></code>: The <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> instance_id of the parent instance. This is added to the hash, to differentiate instances </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent21unmapRuntimeVariablesERK17AgentFunctionDataRKj">
+<span id="_CPPv3NK9CUDAAgent21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="_CPPv2NK9CUDAAgent21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="CUDAAgent::unmapRuntimeVariables__AgentFunctionDataCR.unsigned-iCRC"></span><span class="target" id="classCUDAAgent_1a909f8c4ee688fa2e24f12254e231bd8a"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">unmapRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent21unmapRuntimeVariablesERK17AgentFunctionDataRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uses the cuRVE runtime to unmap the variables used by the agent function to the cuRVE library so that they are unavailable to be accessed by name within an agent function. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instance_id</span></code>: The <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> instance_id of the parent instance. This is added to the hash, to differentiate instances </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent17setPopulationDataERK11AgentVectorRKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent17setPopulationDataERK11AgentVectorRKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent17setPopulationDataERK11AgentVectorRKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::setPopulationData__AgentVectorCR.ssCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1a68557977adf996319dca325944883742"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setPopulationData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">population</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent17setPopulationDataERK11AgentVectorRKNSt6stringER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copies population data from the provided host object To the device buffers held by this object (overwriting any existing agent data) Also updates population size, clears disabled agents <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Scatter is required for initialising submodel vars </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">population</span></code>: An <a class="reference internal" href="classAgentVector.html#classAgentVector"><span class="std std-ref">AgentVector</span></a> object with the same internal <a class="reference internal" href="structAgentData.html#structAgentData"><span class="std std-ref">AgentData</span></a> description, to provide the input data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state_name</span></code>: The agent state to add the agents to </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stream</span></code>: The stream to perform the memcpys over </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent17getPopulationDataER11AgentVectorRKNSt6stringE">
+<span id="_CPPv3NK9CUDAAgent17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="_CPPv2NK9CUDAAgent17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="CUDAAgent::getPopulationData__AgentVectorR.ssCRC"></span><span class="target" id="classCUDAAgent_1a4b0aec46ff02b7b8733f4fc43a32cc1e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">getPopulationData</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">population</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent17getPopulationDataER11AgentVectorRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copies population data the device buffers held by this object To the hosts object (overwriting any existing agent data) <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">population</span></code>: An <a class="reference internal" href="classAgentVector.html#classAgentVector"><span class="std std-ref">AgentVector</span></a> object with the same internal <a class="reference internal" href="structAgentData.html#structAgentData"><span class="std std-ref">AgentData</span></a> description, to receive the output data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state_name</span></code>: The agent state to get the agents from </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent12getStateSizeERKNSt6stringE">
+<span id="_CPPv3NK9CUDAAgent12getStateSizeERKNSt6stringE"></span><span id="_CPPv2NK9CUDAAgent12getStateSizeERKNSt6stringE"></span><span id="CUDAAgent::getStateSize__ssCRC"></span><span class="target" id="classCUDAAgent_1aadf3f8c3e8170d15ed078d045af42f55"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStateSize</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent12getStateSizeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of alive and active agents in the named state  The state to return information about</p>
+<p>Returns the number of alive and active agents in the named state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent21getStateAllocatedSizeERKNSt6stringE">
+<span id="_CPPv3NK9CUDAAgent21getStateAllocatedSizeERKNSt6stringE"></span><span id="_CPPv2NK9CUDAAgent21getStateAllocatedSizeERKNSt6stringE"></span><span id="CUDAAgent::getStateAllocatedSize__ssCRC"></span><span class="target" id="classCUDAAgent_1a96e34325e45d76f392237ea503602584"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStateAllocatedSize</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent21getStateAllocatedSizeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the number of alive and active agents in the named state  The state to return information about</p>
+<p>Returns the number of alive and active agents in the named state </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent19getAgentDescriptionEv">
+<span id="_CPPv3NK9CUDAAgent19getAgentDescriptionEv"></span><span id="_CPPv2NK9CUDAAgent19getAgentDescriptionEv"></span><span id="CUDAAgent::getAgentDescriptionC"></span><span class="target" id="classCUDAAgent_1a4952bb09470bf9c8fb4f1e6d7ca01332"></span><em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgentDescription</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent19getAgentDescriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Agent description which this <a class="reference internal" href="#classCUDAAgent"><span class="std std-ref">CUDAAgent</span></a> represents. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent19getStateVariablePtrERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N9CUDAAgent19getStateVariablePtrERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N9CUDAAgent19getStateVariablePtrERKNSt6stringERKNSt6stringE"></span><span id="CUDAAgent::getStateVariablePtr__ssCR.ssCR"></span><span class="target" id="classCUDAAgent_1a24164d23922852a784e7ef44b5925e90"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getStateVariablePtr</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent19getStateVariablePtrERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the device pointer to the buffer for the associated state and variable <dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This returns data_condition, such that the buffer does not include disabled agents </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::processDeath__AgentFunctionDataCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1ae7fe2255284d34eafc1f13ec420e2cc6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">processDeath</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered <p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered </p>
+<dl class="simple">
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processDeath(const unsigned int &amp;, const std::string &amp;, const unsigned int &amp;)</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processDeath(const unsigned int &amp;, const std::string &amp;, const unsigned int &amp;) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function condition being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function condition being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::transitionState__ssCR.ssCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1ae12b92cc2c3947d9d69026cd1c87cf47"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">transitionState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">_src</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">_dest</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transitions all active agents from the source state to the destination state <p>Transitions all active agents from the source state to the destination state </p>
+<dl class="simple">
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::transitionState(const unsigned int &amp;, const std::string &amp;, const std::string &amp;, const unsigned int &amp;)</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::transitionState(const unsigned int &amp;, const std::string &amp;, const std::string &amp;, const unsigned int &amp;) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_src</span></code>: The source state </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_dest</span></code>: The destination state </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_src</span></code>: The source state </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_dest</span></code>: The destination state </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::processFunctionCondition__AgentFunctionDataCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1a424b622815dc7241350e221ebb7bfa2d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">processFunctionCondition</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scattered to after the disabled agents <p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scatterd to after the disabled agents </p>
+<dl class="simple">
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processFunctionCondition(const unsigned int &amp;, const unsigned int &amp;) </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Named state must not already contain disabled agents </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The disabled agents are re-enabled using <a class="reference internal" href="#classCUDAAgent_1a3e27362f7e173772f39852cc57b180c9"><span class="std std-ref">clearFunctionCondition(const std::string &amp;)</span></a></p>
+</dd>
+<dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processFunctionCondition(const unsigned int &amp;, const unsigned int &amp;) </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Named state must not already contain disabled agents </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The disabled agents are re-enabled using <a class="reference internal" href="#classCUDAAgent_1a3e27362f7e173772f39852cc57b180c9"><span class="std std-ref">clearFunctionCondition(const std::string &amp;)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function condition being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The index of the agent function within the current layer </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent19scatterHostCreationERKNSt6stringERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent19scatterHostCreationERKNSt6stringERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent19scatterHostCreationERKNSt6stringERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::scatterHostCreation__ssCR.unsigned-iCR.cPC.VarOffsetStructCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1aa839ee188a6884d4105a58decd023309"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">scatterHostCreation</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">newSize</span></em>, <span class="pre">char</span> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <em><span class="pre">d_inBuff</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structVarOffsetStruct.html#_CPPv415VarOffsetStruct" title="VarOffsetStruct"><span class="pre">VarOffsetStruct</span></a> <span class="pre">&amp;</span><em><span class="pre">offsets</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent19scatterHostCreationERKNSt6stringERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scatters agents from the provided device buffer, this is used for host agent creation The device buffer must be packed according to the param offsets <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state_name</span></code>: The state agents are scattered into </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newSize</span></code>: The number of new agents </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_inBuff</span></code>: The device buffer containing the new agents </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offsets</span></code>: This defines how the memory is laid out within d_inBuff </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: This is required for scan compaction arrays and async </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent11scatterSortERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent11scatterSortERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent11scatterSortERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::scatterSort__ssCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1ab97a946045f248e9c2b45af7603754db"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">scatterSort</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent11scatterSortERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sorts all agent variables according to the positions stored inside Message Output scan buffer <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classHostAgentInstance.html#classHostAgentInstance_1aa2790d810678d867e5ed1c2b21f3ecbb"><span class="std std-ref">HostAgentInstance::sort(const std::string &amp;, HostAgentInstance::Order, int, int)</span></a> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state_name</span></code>: The state agents are scattered into </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: The stream in which the corresponding agent function has executed </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent22mapNewRuntimeVariablesERK9CUDAAgentRK17AgentFunctionDataRKjR11CUDAScatterRKjRKj">
+<span id="_CPPv3N9CUDAAgent22mapNewRuntimeVariablesERK9CUDAAgentRK17AgentFunctionDataRKjR11CUDAScatterRKjRKj"></span><span id="_CPPv2N9CUDAAgent22mapNewRuntimeVariablesERK9CUDAAgentRK17AgentFunctionDataRKjR11CUDAScatterRKjRKj"></span><span id="CUDAAgent::mapNewRuntimeVariables__CUDAAgentCR.AgentFunctionDataCR.unsigned-iCR.CUDAScatterR.unsigned-iCR.unsigned-iCR"></span><span class="target" id="classCUDAAgent_1a7f0f68e6f10373b3e99e2ef18464a5c2"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">mapNewRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49CUDAAgent" title="CUDAAgent"><span class="pre">CUDAAgent</span></a> <span class="pre">&amp;</span><em><span class="pre">func_agent</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">maxLen</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent22mapNewRuntimeVariablesERK9CUDAAgentRK17AgentFunctionDataRKjR11CUDAScatterRKjRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allocates a buffer for storing new agents into and uses the cuRVE runtime to map variables for use with an agent function that has device agent birth <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func_agent</span></code>: The Cuda agent which the agent function belongs to (required so that RTC function instances can be obtained) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxLen</span></code>: The maximum number of new agents (this will be the size of the agent state executing func) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instance_id</span></code>: The <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> instance_id of the parent instance. This is added to the hash, to differentiate instances </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: This is required for scan compaction arrays and async </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent24unmapNewRuntimeVariablesERK17AgentFunctionDataRKj">
+<span id="_CPPv3N9CUDAAgent24unmapNewRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="_CPPv2N9CUDAAgent24unmapNewRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="CUDAAgent::unmapNewRuntimeVariables__AgentFunctionDataCR.unsigned-iCR"></span><span class="target" id="classCUDAAgent_1a2fc8c7413bd7d44a5e4f354b67c1218f"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">unmapNewRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent24unmapNewRuntimeVariablesERK17AgentFunctionDataRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uses the cuRVE runtime to unmap the variables used by agent birth and releases the buffer that was storing the data <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instance_id</span></code>: The <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> instance_id of the parent instance. This is added to the hash, to differentiate instances </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent10scatterNewERK17AgentFunctionDataRKjR11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent10scatterNewERK17AgentFunctionDataRKjR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent10scatterNewERK17AgentFunctionDataRKjR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::scatterNew__AgentFunctionDataCR.unsigned-iCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1a0eb10207d79929d4568855ca995295d8"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">scatterNew</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">newSize</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent10scatterNewERK17AgentFunctionDataRKjR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Scatters agents from the currently assigned device agent birth buffer (see member variable newBuffs) The device buffer must be packed in the same format as mapNewRuntimeVariables(const AgentFunctionData&amp;, const unsigned int &amp;, const unsigned int &amp;) <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">func</span></code>: The agent function being processed </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newSize</span></code>: The maximum number of new agents (this will be the size of the agent state executing func) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: This is required for scan compaction arrays and async </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent22clearFunctionConditionERKNSt6stringE">
+<span id="_CPPv3N9CUDAAgent22clearFunctionConditionERKNSt6stringE"></span><span id="_CPPv2N9CUDAAgent22clearFunctionConditionERKNSt6stringE"></span><span id="CUDAAgent::clearFunctionCondition__ssCR"></span><span class="target" id="classCUDAAgent_1a3e27362f7e173772f39852cc57b180c9"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">clearFunctionCondition</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent22clearFunctionConditionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reenables all disabled agents within the named state <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: The named state to enable all agents within </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent26addInstantitateRTCFunctionERK17AgentFunctionDatab">
+<span id="_CPPv3N9CUDAAgent26addInstantitateRTCFunctionERK17AgentFunctionDatab"></span><span id="_CPPv2N9CUDAAgent26addInstantitateRTCFunctionERK17AgentFunctionDatab"></span><span id="CUDAAgent::addInstantitateRTCFunction__AgentFunctionDataCR.b"></span><span class="target" id="classCUDAAgent_1adcab86b6449fa26feb7ac29be144d5e3"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addInstantitateRTCFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <span class="pre">bool</span> <em><span class="pre">function_condition</span></em> <span class="pre">=</span> <span class="pre">false</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent26addInstantitateRTCFunctionERK17AgentFunctionDatab" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Instatiates a RTC Agent function from agent function data description containing the agent function source. If function_condition variable is true then this function will instantiate a function condition rather than an agent function Uses Jitify to create an instantiation of the program. <a class="reference internal" href="structAny.html#structAny"><span class="std std-ref">Any</span></a> compilation errors in the user provided agent function will be reported here. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel_cache</span></code>: The JitCache to use (probably CUDASimulation::rtc_kernel_cache) </p></li>
+</ul>
+</dd>
+<dt><strong>Exceptions</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref"><span class="pre">InvalidAgentFunc</span></span></a></code>: thrown if the user supplied agent function has compilation errors </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent19getRTCInstantiationERKNSt6stringE">
+<span id="_CPPv3NK9CUDAAgent19getRTCInstantiationERKNSt6stringE"></span><span id="_CPPv2NK9CUDAAgent19getRTCInstantiationERKNSt6stringE"></span><span id="CUDAAgent::getRTCInstantiation__ssCRC"></span><span class="target" id="classCUDAAgent_1a909a92f300c4b379617a1d7a085f2f9f"></span><em class="property"><span class="pre">const</span></em> <span class="pre">jitify</span><span class="pre">::</span><span class="pre">experimental</span><span class="pre">::</span><span class="pre">KernelInstantiation</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getRTCInstantiation</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent19getRTCInstantiationERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the jitify kernel instantiation of the agent function. Will throw an <a class="reference internal" href="classInvalidAgentFunc.html#classInvalidAgentFunc"><span class="std std-ref">InvalidAgentFunc</span></a> excpetion if the function name does not have a valid instantiation <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">function_name</span></code>: the name of the RTC agent function or the agent function name suffixed with condition (if it is a function condition) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent12getRTCHeaderERKNSt6stringE">
+<span id="_CPPv3NK9CUDAAgent12getRTCHeaderERKNSt6stringE"></span><span id="_CPPv2NK9CUDAAgent12getRTCHeaderERKNSt6stringE"></span><span id="CUDAAgent::getRTCHeader__ssCRC"></span><span class="target" id="classCUDAAgent_1afbcdce161752c9f6ffad897b2e474895"></span><a class="reference internal" href="classCurveRTCHost.html#_CPPv412CurveRTCHost" title="CurveRTCHost"><span class="pre">CurveRTCHost</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getRTCHeader</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent12getRTCHeaderERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK9CUDAAgent15getRTCFunctionsEv">
+<span id="_CPPv3NK9CUDAAgent15getRTCFunctionsEv"></span><span id="_CPPv2NK9CUDAAgent15getRTCFunctionsEv"></span><span id="CUDAAgent::getRTCFunctionsC"></span><span class="target" id="classCUDAAgent_1a01656d2b0899903e75727ca8803983c5"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N9CUDAAgent14CUDARTCFuncMapE" title="CUDAAgent::CUDARTCFuncMap"><span class="pre">CUDARTCFuncMap</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getRTCFunctions</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9CUDAAgent15getRTCFunctionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the CUDARTCFuncMap </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N9CUDAAgent16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::initUnmappedVars__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1a53a10620726db14e40f46f4779d13592"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">initUnmappedVars</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the number of agents in any unmapped statelists to 0 They count as unmapped if they are not mapped to a master state, sub mappings will be reset <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">scatter</span></code>: Scatter instance and scan arrays to be used (CUDASimulation::singletons-&gt;scatter) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">streamId</span></code>: This is required for scan compaction arrays and async </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent13cullAllStatesEv">
+<span id="_CPPv3N9CUDAAgent13cullAllStatesEv"></span><span id="_CPPv2N9CUDAAgent13cullAllStatesEv"></span><span id="CUDAAgent::cullAllStates"></span><span class="target" id="classCUDAAgent_1a775fbfc83298451f8b810354f4146df0"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">cullAllStates</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent13cullAllStatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the number of agents in every statelist to 0 </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N9CUDAAgent18cullUnmappedStatesEv">
+<span id="_CPPv3N9CUDAAgent18cullUnmappedStatesEv"></span><span id="_CPPv2N9CUDAAgent18cullUnmappedStatesEv"></span><span id="CUDAAgent::cullUnmappedStates"></span><span class="target" id="classCUDAAgent_1aaf800fe34fb63b6c29a44d7d9d0a24ad"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">cullUnmappedStates</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent18cullUnmappedStatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the number of agents in any unmapped statelists to 0 They count as unmapped if they are not mapped to a master state, sub mappings will be reset </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classCUDAAgentStateList.html" class="btn btn-neutral float-right" title="Class CUDAAgentStateList" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classColorFunction.html" class="btn btn-neutral float-left" title="Class ColorFunction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

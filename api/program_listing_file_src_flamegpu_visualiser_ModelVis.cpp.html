@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File ModelVis.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File ModelVis.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_visualiser_ModelVis.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-modelvis-cpp">
+<span id="program-listing-file-src-flamegpu-visualiser-modelvis-cpp"></span><h1>Program Listing for File ModelVis.cpp<a class="headerlink" href="#program-listing-for-file-modelvis-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_visualiser_ModelVis.cpp.html#file-src-flamegpu-visualiser-modelvis-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/visualiser/ModelVis.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/visualiser/ModelVis.h&quot;
+
+#include &quot;flamegpu/gpu/CUDASimulation.h&quot;
+#include &quot;flamegpu/model/AgentData.h&quot;
+
+ModelVis::ModelVis(const CUDASimulation &amp;_model)
+    : modelCfg(_model.getModelDescription().name.c_str())
+    , autoPalette(std::make_shared&lt;AutoPalette&gt;(Stock::Palettes::DARK2))
+    , model(_model)
+    , modelData(_model.getModelDescription()) { }
+
+void ModelVis::setAutoPalette(const Palette&amp; palette) {
+    autoPalette = std::make_shared&lt;AutoPalette&gt;(palette);
+}
+void ModelVis::clearAutoPalette() {
+    autoPalette = nullptr;
+}
+AgentVis &amp;ModelVis::addAgent(const std::string &amp;agent_name) {
+    // If agent exists
+    if (modelData.agents.find(agent_name) != modelData.agents.end()) {
+        // If agent is not already in vis map
+        auto visAgent = agents.find(agent_name);
+        if (visAgent == agents.end()) {
+            // Create new vis agent
+            return agents.emplace(agent_name, AgentVis(model.getCUDAAgent(agent_name), autoPalette)).first-&gt;second;
+        }
+        return visAgent-&gt;second;
+    }
+    THROW InvalidAgentName(&quot;Agent name &#39;%s&#39; was not found within the model description hierarchy, &quot;
+        &quot;in ModelVis::addAgent()\n&quot;,
+        agent_name.c_str());
+}
+
+AgentVis &amp;ModelVis::Agent(const std::string &amp;agent_name) {
+    // If agent exists
+    if (modelData.agents.find(agent_name) != modelData.agents.end()) {
+        // If agent is not already in vis map
+        auto visAgent = agents.find(agent_name);
+        if (visAgent != agents.end()) {
+            // Create new vis agent
+            return visAgent-&gt;second;
+        }
+        THROW InvalidAgentName(&quot;Agent name &#39;%s&#39; has not been marked for visualisation, ModelVis::addAgent() must be called first, &quot;
+            &quot;in ModelVis::Agent()\n&quot;,
+            agent_name.c_str());
+    }
+    THROW InvalidAgentName(&quot;Agent name &#39;%s&#39; was not found within the model description hierarchy, &quot;
+        &quot;in ModelVis::Agent()\n&quot;,
+        agent_name.c_str());
+}
+
+// Below methods are related to executing the visualiser
+void ModelVis::activate() {
+    // Only execute if background thread is not active
+    if ((!visualiser || !visualiser-&gt;isRunning()) &amp;&amp; !model.getSimulationConfig().console_mode) {
+        // Init visualiser
+        visualiser = std::make_unique&lt;FLAMEGPU_Visualisation&gt;(modelCfg);  // Window resolution
+        for (auto &amp;agent : agents) {
+            // If x and y aren&#39;t set, throw exception
+            if (agent.second.core_tex_buffers.find(TexBufferConfig::Position_x) == agent.second.core_tex_buffers.end() &amp;&amp;
+                agent.second.core_tex_buffers.find(TexBufferConfig::Position_y) == agent.second.core_tex_buffers.end() &amp;&amp;
+                agent.second.core_tex_buffers.find(TexBufferConfig::Position_z) == agent.second.core_tex_buffers.end()) {
+                THROW VisualisationException(&quot;Agent &#39;%s&#39; has not had x, y or z variables set, agent requires location to render, &quot;
+                    &quot;in ModelVis::activate()\n&quot;,
+                    agent.second.agentData.name.c_str());
+            }
+            agent.second.initBindings(visualiser);
+        }
+        visualiser-&gt;start();
+    }
+}
+
+void ModelVis::deactivate() {
+    if (visualiser &amp;&amp; visualiser-&gt;isRunning()) {
+        visualiser-&gt;stop();
+        join();
+        visualiser.reset();
+    }
+}
+
+void ModelVis::join() {
+    if (visualiser) {
+        visualiser-&gt;join();
+        visualiser.reset();
+    }
+}
+
+bool ModelVis::isRunning() const {
+    return visualiser ? visualiser-&gt;isRunning() : false;
+}
+
+void ModelVis::updateBuffers(const unsigned int &amp;sc) {
+    if (visualiser) {
+        for (auto &amp;a : agents) {
+            a.second.requestBufferResizes(visualiser);
+        }
+        // wait for lock visualiser (its probably executing render loop in separate thread) This might not be 100% safe. RequestResize might need extra thread safety.
+        visualiser-&gt;lockMutex();
+        if (sc != UINT_MAX) {
+            visualiser-&gt;setStepCount(sc);
+        }
+        for (auto &amp;a : agents) {
+            a.second.updateBuffers(visualiser);
+        }
+        visualiser-&gt;releaseMutex();
+    }
+}
+
+void ModelVis::setWindowTitle(const std::string&amp; title) {
+    ModelConfig::setString(&amp;modelCfg.windowTitle, title);
+}
+
+void ModelVis::setWindowDimensions(const unsigned int&amp; width, const unsigned int&amp; height) {
+    modelCfg.windowDimensions[0] = width;
+    modelCfg.windowDimensions[1] = height;
+}
+
+void ModelVis::setClearColor(const float&amp; red, const float&amp; green, const float&amp; blue) {
+    modelCfg.clearColor[0] = red;
+    modelCfg.clearColor[1] = green;
+    modelCfg.clearColor[2] = blue;
+}
+
+void ModelVis::setFPSVisible(const bool&amp; showFPS) {
+    modelCfg.fpsVisible = showFPS;
+}
+
+void ModelVis::setFPSColor(const float&amp; red, const float&amp; green, const float&amp; blue) {
+    modelCfg.fpsColor[0] = red;
+    modelCfg.fpsColor[1] = green;
+    modelCfg.fpsColor[2] = blue;
+}
+
+void ModelVis::setInitialCameraLocation(const float &amp;x, const float &amp;y, const float &amp;z) {
+    modelCfg.cameraLocation[0] = x;
+    modelCfg.cameraLocation[1] = y;
+    modelCfg.cameraLocation[2] = z;
+}
+
+void ModelVis::setInitialCameraTarget(const float &amp;x, const float &amp;y, const float &amp;z) {
+    modelCfg.cameraTarget[0] = x;
+    modelCfg.cameraTarget[1] = y;
+    modelCfg.cameraTarget[2] = z;
+}
+
+void ModelVis::setCameraSpeed(const float &amp;speed, const float &amp;shiftMultiplier) {
+    modelCfg.cameraSpeed[0] = speed;
+    modelCfg.cameraSpeed[1] = shiftMultiplier;
+}
+
+void ModelVis::setViewClips(const float &amp;nearClip, const float &amp;farClip) {
+    modelCfg.nearFarClip[0] = nearClip;
+    modelCfg.nearFarClip[1] = farClip;
+}
+
+void ModelVis::setStepVisible(const bool&amp; showStep) {
+    modelCfg.stepVisible = showStep;
+}
+
+void ModelVis::setSimulationSpeed(const unsigned int&amp; _stepsPerSecond) {
+    modelCfg.stepsPerSecond = _stepsPerSecond;
+}
+
+void ModelVis::setBeginPaused(const bool&amp; beginPaused) {
+    modelCfg.beginPaused = beginPaused;
+}
+
+StaticModelVis ModelVis::addStaticModel(const std::string &amp;modelPath, const std::string &amp;texturePath) {
+    // Create ModelConfig::StaticModel
+    auto m = std::make_shared&lt;ModelConfig::StaticModel&gt;();
+    // set modelPath, texturePath
+    m-&gt;path = modelPath;
+    m-&gt;texture = texturePath;
+    // add to ModelConfig.staticModels
+    modelCfg.staticModels.push_back(m);
+    // Create return type
+    return StaticModelVis(modelCfg.staticModels.back());
+}
+
+LineVis ModelVis::newLineSketch(float r, float g, float b, float a) {
+    auto m = std::make_shared&lt;LineConfig&gt;(LineConfig::Type::Lines);
+    modelCfg.lines.push_back(m);
+    return LineVis(m, r, g, b, a);
+}
+
+LineVis ModelVis::newPolylineSketch(float r, float g, float b, float a) {
+    auto m = std::make_shared&lt;LineConfig&gt;(LineConfig::Type::Polyline);
+    modelCfg.lines.push_back(m);
+    return LineVis(m, r, g, b, a);
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

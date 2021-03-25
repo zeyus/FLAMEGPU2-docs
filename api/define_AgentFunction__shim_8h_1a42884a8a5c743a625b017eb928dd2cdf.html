@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Define FLAMEGPU_AGENT_FUNCTION &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Define FLAMEGPU_AGENT_FUNCTION_CONDITION" href="define_AgentFunctionCondition__shim_8h_1a18080498fb1ee3218b8b0ff14d7ec1af.html" />
+    <link rel="prev" title="Define FGPUDEVICEEXCEPTION_CU" href="define_FGPUDeviceException_8cu_1a96dcc0e66b5ec05a34889f9f83bdf229.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#defines">Defines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="define_file__system_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_JitifyCache_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_curve_8h_1a65913a099138ca7c1844b1da4def3ddb.html">Define curveReportErrors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_curve_8h_1a40329bd9e97fb45c462321345e02ea02.html">Define curveReportLastDeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_curve_8h_1a27fc522e716dfb5ea551582a801d9b51.html">Define curveReportLastHostError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_FGPUException_8h_1a1342c66503b70a694d9ac2d962bf40cd.html">Define DERIVED_FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_FGPUDeviceException__device_8h_1a6fa64d3ebe64a9559b967c5aed92ca0d.html">Define DTHROW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_FGPUDeviceException_8cu_1a96dcc0e66b5ec05a34889f9f83bdf229.html">Define FGPUDEVICEEXCEPTION_CU</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Define FLAMEGPU_AGENT_FUNCTION</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#define-documentation">Define Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="define_AgentFunctionCondition__shim_8h_1a18080498fb1ee3218b8b0ff14d7ec1af.html">Define FLAMEGPU_AGENT_FUNCTION_CONDITION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__agent__api_8h_1ad9d5573357effdcf7430c6c2024becc4.html">Define FLAMEGPU_CUSTOM_REDUCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__agent__api_8h_1a64629b6c7aa246731d1657c3ad70996a.html">Define FLAMEGPU_CUSTOM_TRANSFORM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_AgentFunction__shim_8h_1a76f5ec2c762f0289e11d150131b80ef9.html">Define FLAMEGPU_DEVICE_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1a4a4750514dd45f70b587b29543fe7a27.html">Define FLAMEGPU_EXIT_CONDITION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1a1c604c9eb863599998429b48b31fe671.html">Define FLAMEGPU_EXIT_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1a1682b3b663340523820b7b1dc35ef180.html">Define FLAMEGPU_HOST_CONDITION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_AgentFunction__shim_8h_1a92ddd2311e736cc418e2ed1092485ca1.html">Define FLAMEGPU_HOST_DEVICE_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1afd0f16608253df0496b74c78500282c5.html">Define FLAMEGPU_HOST_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1a45ad84203a419b7833ef1f21484648c8.html">Define FLAMEGPU_INIT_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_flamegpu__host__api__macros_8h_1a779541ca72e6a0019460ace6d0a9d1ab.html">Define FLAMEGPU_STEP_FUNCTION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_CUDAErrorChecking_8h_1a3f6ea8e9ef58125936d50d7e1181aa7a.html">Define gpuErrchk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_CUDAErrorChecking_8h_1a05a1b794ed7313e0763388e626530d99.html">Define gpuErrchkDriverAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_CUDAErrorChecking_8h_1aab94d05ca41ffb1aec281d2fee3014a5.html">Define gpuErrchkLaunch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_AgentRandom_8cuh_1acd7f782648ca5a41ae070fcd10411190.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_DeviceEnvironment_8cuh_1a70778256e5045fe5a8a73595d04ce1db.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_EnvironmentManager_8cuh_1a35e4d0576f837bbd5d6ae21c4024f9eb.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_HostEnvironment_8cuh_1a3e67960203739446d72ad966a9f0d710.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTENVIRONMENT_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_HostRandom_8cuh_1a057dabfe55bd607fde69100834c1a29c.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTRANDOM_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_RandomManager_8cuh_1abdc3446320e64bb468b1c7d563ce0521.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_RANDOMMANAGER_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_AgentLoggingConfig__Reductions_8cuh_1a7f05530c5c7a13f8de36eb4cd1271788.html">Define INCLUDE_FLAMEGPU_SIM_AGENTLOGGINGCONFIG_REDUCTIONS_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_compute__capability_8cuh_1af735d71a7ca4539b9f7faa9f772e1091.html">Define INCLUDE_FLAMEGPU_UTIL_COMPUTE_CAPABILITY_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_CUDAEventTimer_8cuh_1af1cdb7618fdf4d45cdcdf7a07287ec52.html">Define INCLUDE_FLAMEGPU_UTIL_CUDAEVENTTIMER_CUH_</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_nvtx_8h_1a27e6e9154344b5ec41e9b55b177d8e17.html">Define NVTX_POP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_nvtx_8h_1ad9715a7b8d8ac1584097a1d664dba054.html">Define NVTX_PUSH</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_nvtx_8h_1af9a6ff0a3f4236d36762228e06b84c51.html">Define NVTX_RANGE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_FGPUException_8h_1ac900f7f4cbb8ade051915b56180eb89d.html">Define THROW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_xmlLogger_8cu_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_xmlReader_8cpp_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+<li class="toctree-l3"><a class="reference internal" href="define_xmlWriter_8cpp_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Define FLAMEGPU_AGENT_FUNCTION</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/define_AgentFunction__shim_8h_1a42884a8a5c743a625b017eb928dd2cdf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="define-flamegpu-agent-function">
+<span id="exhale-define-agentfunction-shim-8h-1a42884a8a5c743a625b017eb928dd2cdf"></span><h1>Define FLAMEGPU_AGENT_FUNCTION<a class="headerlink" href="#define-flamegpu-agent-function" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_AgentFunction_shim.h.html#file-include-flamegpu-runtime-agentfunction-shim-h"><span class="std std-ref">File AgentFunction_shim.h</span></a></p></li>
+</ul>
+<div class="section" id="define-documentation">
+<h2>Define Documentation<a class="headerlink" href="#define-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp macro">
+<dt id="c.FLAMEGPU_AGENT_FUNCTION">
+<span class="target" id="AgentFunction__shim_8h_1a42884a8a5c743a625b017eb928dd2cdf"></span><code class="sig-name descname"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code><span class="sig-paren">(</span><em><span class="pre">funcName</span></em>, <em><span class="pre">msg_in</span></em>, <em><span class="pre">msg_out</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.FLAMEGPU_AGENT_FUNCTION" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro for defining agent transition functions with the correct input. Must always be a device function to be called by CUDA.</p>
+<p>struct SomeAgentFunction { // User Implemented agent function behaviour <strong>device</strong> <strong>forceinline</strong> FLAME_GPU_AGENT_STATUS operator()(FLAMEGPU_DEVICE_API&lt;msg_in, msg_out&gt; *FLAMEGPU) const { // do something return 0; } // Returns a function pointer to the agent function wrapper for this function // Including it here, force instantiates the template, without requiring the user to specify the template args elsewhere static constexpr AgentFunctionWrapper *fnPtr() { return &amp;agent_function_wrapper&lt;SomeAgentFunction, msg_in, msg_out&gt;; } // These are used to validate that the bound message description matches the specified type static constexpr std::type_index inType() { return std::type_index(typeid(msg_in)); } static constexpr std::type_index outType() { return std::type_index(typeid(msg_out)); } }; } </p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="define_AgentFunctionCondition__shim_8h_1a18080498fb1ee3218b8b0ff14d7ec1af.html" class="btn btn-neutral float-right" title="Define FLAMEGPU_AGENT_FUNCTION_CONDITION" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="define_FGPUDeviceException_8cu_1a96dcc0e66b5ec05a34889f9f83bdf229.html" class="btn btn-neutral float-left" title="Define FGPUDEVICEEXCEPTION_CU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

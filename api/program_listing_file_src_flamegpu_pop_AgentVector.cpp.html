@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File AgentVector.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File AgentVector.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_pop_AgentVector.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-agentvector-cpp">
+<span id="program-listing-file-src-flamegpu-pop-agentvector-cpp"></span><h1>Program Listing for File AgentVector.cpp<a class="headerlink" href="#program-listing-for-file-agentvector-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_pop_AgentVector.cpp.html#file-src-flamegpu-pop-agentvector-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/pop/AgentVector.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/pop/AgentVector.h&quot;
+
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+
+#include &quot;flamegpu/pop/AgentVector_Agent.h&quot;
+
+#ifdef max
+#undef max  // Unclear where this definition is leaking from
+#endif
+
+const float AgentVector::RESIZE_FACTOR = 1.5f;
+
+AgentVector::AgentVector(const AgentDescription&amp; agent_desc, size_type count)
+    : agent(agent_desc.agent-&gt;clone())
+    , _size(0)
+    , _capacity(0)
+    , _data(std::make_shared&lt;AgentDataMap&gt;()) {
+    resize(count);
+}
+
+AgentVector::AgentVector(const AgentVector&amp; other)
+    : agent(other.agent-&gt;clone())
+    , _size(0)
+    , _capacity(0)
+    , _data(std::make_shared&lt;AgentDataMap&gt;()) {
+    clear();
+    *this = other;
+}
+
+AgentVector::AgentVector(AgentVector&amp;&amp; other) noexcept
+    : agent(other.agent-&gt;clone())
+    , _size(other._size)
+    , _capacity(other._capacity)
+    , _data(std::make_shared&lt;AgentDataMap&gt;()) {
+    // Purge our data
+    _data-&gt;clear();
+    // Swap data
+    std::swap(*_data, *other._data);  // Not 100% sure this will work as intended
+    // Purge other
+    other._size = 0;
+    other._capacity = 0;
+}
+
+AgentVector&amp; AgentVector::operator=(const AgentVector&amp; other) {
+    // Self assignment
+    if (this == &amp;other)
+        return *this;
+    if (*agent != *other.agent) {
+        throw std::exception();  // AgentVectors are for different AgentDescriptions
+    }
+    // Copy size
+    resize(other.size(), false);
+    _size = other.size();
+    if (_size) {
+        // Copy data
+        for (const auto&amp; v : agent-&gt;variables) {
+            auto &amp;this_it = _data-&gt;at(v.first);
+            const auto &amp;other_it = other._data-&gt;at(v.first);
+            memcpy(this_it-&gt;getDataPtr(), other_it-&gt;getReadOnlyDataPtr(), _size * v.second.type_size * v.second.elements);
+        }
+    }
+    return *this;
+}
+AgentVector&amp; AgentVector::operator=(AgentVector&amp;&amp; other) noexcept {
+    agent = other.agent-&gt;clone();
+    _size = other._size;
+    _capacity = other._capacity;
+    // Purge our data
+    _data-&gt;clear();
+    // Swap data
+    std::swap(*_data, *other._data);  // Not 100% sure this will work as intended
+    // Purge other
+    other._size = 0;
+    other._capacity = 0;
+    return *this;
+}
+
+AgentVector::Agent AgentVector::at(size_type pos) {
+    if (pos &gt;= size()) {
+        THROW OutOfBoundsException(&quot;pos (%u) exceeds length of vector (%u) in AgentVector::at()&quot;, pos, size());
+    }
+    // Return the agent instance
+    return Agent(agent, _data, pos);
+}
+AgentVector::CAgent AgentVector::at(size_type pos) const {
+    if (pos &gt;= size()) {
+        THROW OutOfBoundsException(&quot;pos (%u) exceeds length of vector (%u) in AgentVector::at()&quot;, pos, size());
+    }
+    return CAgent(agent, _data, pos);
+}
+
+AgentVector::Agent AgentVector::operator[](size_type pos) {
+    return at(pos);
+}
+AgentVector::CAgent AgentVector::operator[](size_type pos) const {
+    return at(pos);
+}
+
+AgentVector::Agent AgentVector::front() {
+    return at(0);
+}
+AgentVector::CAgent AgentVector::front() const {
+    return at(0);
+}
+AgentVector::Agent AgentVector::back() {
+    return at(_size - 1);
+}
+AgentVector::CAgent AgentVector::back() const {
+    return at(_size - 1);
+}
+
+void* AgentVector::data(const std::string&amp; variable_name) {
+    // Is variable name found
+    const auto&amp; var = agent-&gt;variables.find(variable_name);
+    if (var == agent-&gt;variables.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), agent-&gt;name.c_str());
+    }
+    // Does the map have a vector
+    const auto&amp; map_it = _data-&gt;find(variable_name);
+    if (map_it != _data-&gt;end())
+        return map_it-&gt;second-&gt;getDataPtr();
+    return nullptr;
+}
+const void* AgentVector::data(const std::string&amp; variable_name) const {
+    // Is variable name found
+    const auto&amp; var = agent-&gt;variables.find(variable_name);
+    if (var == agent-&gt;variables.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), agent-&gt;name.c_str());
+    }
+    // Does the map have a vector
+    const auto&amp; map_it = _data-&gt;find(variable_name);
+    if (map_it != _data-&gt;end())
+        return map_it-&gt;second-&gt;getDataPtr();
+    return nullptr;
+}
+
+AgentVector::iterator AgentVector::begin() noexcept {
+    return iterator(agent, _data, 0);
+}
+AgentVector::const_iterator AgentVector::begin() const noexcept {
+    return const_iterator(agent, _data, 0);
+}
+AgentVector::const_iterator AgentVector::cbegin() const noexcept {
+    return const_iterator(agent, _data, 0);
+}
+AgentVector::iterator AgentVector::end() noexcept {
+    return iterator(agent, _data, _size);
+}
+AgentVector::const_iterator AgentVector::end() const noexcept {
+    return const_iterator(agent, _data, _size);
+}
+AgentVector::const_iterator AgentVector::cend() const noexcept {
+    return const_iterator(agent, _data, _size);
+}
+AgentVector::reverse_iterator AgentVector::rbegin() noexcept {
+    return reverse_iterator(agent, _data, _size - 1);
+}
+AgentVector::const_reverse_iterator AgentVector::rbegin() const noexcept {
+    return const_reverse_iterator(agent, _data, _size-1);
+}
+AgentVector::const_reverse_iterator AgentVector::crbegin() const noexcept {
+    return const_reverse_iterator(agent, _data, _size-1);
+}
+AgentVector::reverse_iterator AgentVector::rend() noexcept {
+    return reverse_iterator(agent, _data, std::numeric_limits&lt;size_type&gt;::max());
+}
+AgentVector::const_reverse_iterator AgentVector::rend() const noexcept {
+    return const_reverse_iterator(agent, _data, std::numeric_limits&lt;size_type&gt;::max());
+}
+AgentVector::const_reverse_iterator AgentVector::crend() const noexcept {
+    return const_reverse_iterator(agent, _data, std::numeric_limits&lt;size_type&gt;::max());
+}
+
+bool AgentVector::empty() const { return _size == 0; }
+AgentVector::size_type AgentVector::size() const { return _size; }
+AgentVector::size_type AgentVector::max_size() { return std::numeric_limits&lt;size_type&gt;::max() - 1; }
+void AgentVector::reserve(size_type new_cap) {
+    if (new_cap &gt; _capacity) {
+        resize(new_cap, true);
+    }
+}
+AgentVector::size_type AgentVector::capacity() const { return _capacity; }
+void AgentVector::shrink_to_fit() {
+    if (_size &gt; _capacity) {
+        resize(_size, false);
+    }
+}
+void AgentVector::clear() {
+    // Re initialise all variables
+    if (_capacity) {
+        for (const auto&amp; v : agent-&gt;variables) {
+            const auto it = _data-&gt;find(v.first);
+            const size_t variable_size = v.second.type_size * v.second.elements;
+            char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+            for (unsigned int i = 0; i &lt; _size; ++i) {
+                memcpy(t_data + i * variable_size, v.second.default_value, variable_size);
+            }
+        }
+    }
+    _size = 0;
+}
+
+AgentVector::iterator AgentVector::insert(const_iterator pos, const AgentInstance&amp; value) {
+    return insert(pos, 1, value);
+}
+AgentVector::iterator AgentVector::insert(size_type pos, const AgentInstance&amp; value) {
+    return insert(pos, 1, value);
+}
+AgentVector::iterator AgentVector::insert(const_iterator pos, const Agent&amp; value) {
+    return insert(pos, 1, value);
+}
+AgentVector::iterator AgentVector::insert(size_type pos, const Agent&amp; value) {
+    return insert(pos, 1, value);
+}
+AgentVector::iterator AgentVector::insert(const_iterator pos, size_type count, const AgentInstance&amp; value) {
+    return insert(pos._pos, count, value);
+}
+AgentVector::iterator AgentVector::insert(size_type pos, size_type count, const AgentInstance&amp; value) {
+    if (count == 0)
+        return iterator(agent, _data, pos);
+    // Confirm they are for the same agent type
+    if (value._agent != agent &amp;&amp; *value._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            value._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    // Expand capacity if required
+    {
+        size_type new_capacity = _capacity;
+        assert((_capacity * RESIZE_FACTOR) + 1 &gt; _capacity);
+        while (_size + count &gt; new_capacity) {
+            new_capacity = static_cast&lt;size_type&gt;(new_capacity * RESIZE_FACTOR) + 1;
+        }
+        resize(new_capacity, true);
+    }
+    // Get first index;
+    const size_type insert_index = pos;
+    // Fix each variable
+    for (const auto&amp; v : agent-&gt;variables) {
+        const auto it = _data-&gt;find(v.first);
+        char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+        const size_t variable_size = v.second.type_size * v.second.elements;
+        // Move all items after this index backwards count places
+        for (unsigned int i = _size - 1; i &gt;= insert_index; --i) {
+            // Copy items individually, incase the src and destination overlap
+            memcpy(t_data + (i + count) * variable_size, t_data + i * variable_size, variable_size);
+        }
+        // Copy across item data
+        const auto other_it = value._data.find(v.first);
+        for (unsigned int i = insert_index; i &lt; insert_index + count; ++i) {
+            memcpy(t_data + i * variable_size, other_it-&gt;second.ptr, variable_size);
+        }
+    }
+    // Increase size
+    _size += count;
+    // Return iterator to first inserted item
+    return iterator(agent, _data, insert_index);
+}
+AgentVector::iterator AgentVector::insert(const_iterator pos, size_type count, const Agent&amp; value) {
+    return insert(pos._pos, count, value);
+}
+AgentVector::iterator AgentVector::insert(size_type pos, size_type count, const Agent&amp; value) {
+    if (count == 0)
+        return iterator(agent, _data, pos);
+    // Confirm they are for the same agent type
+    if (value._agent != agent &amp;&amp; *value._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            value._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    // Expand capacity if required
+    {
+        size_type new_capacity = _capacity;
+        assert((_capacity * RESIZE_FACTOR) + 1 &gt; _capacity);
+        while (_size + count &gt; new_capacity) {
+            new_capacity = static_cast&lt;size_type&gt;(new_capacity * RESIZE_FACTOR) + 1;
+        }
+        resize(new_capacity, true);
+    }
+    // Get first index;
+    const size_type insert_index = pos;
+    // Fix each variable
+    auto value_data = value._data.lock();
+    if (!value_data) {
+        THROW ExpiredWeakPtr(&quot;The AgentVector which owns the passed AgentVector::Agent has been deallocated, &quot;
+            &quot;in AgentVector::insert().\n&quot;);
+    }
+    for (const auto&amp; v : agent-&gt;variables) {
+        const auto it = _data-&gt;find(v.first);
+        char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+        const size_t variable_size = v.second.type_size * v.second.elements;
+        // Move all items after this index backwards count places
+        for (unsigned int i = _size - 1; i &gt;= insert_index; --i) {
+            // Copy items individually, incase the src and destination overlap
+            memcpy(t_data + (i + count) * variable_size, t_data + i * variable_size, variable_size);
+        }
+        // Copy across item data
+        const auto other_it = value_data-&gt;find(v.first);
+        char* src_data = static_cast&lt;char*&gt;(other_it-&gt;second-&gt;getDataPtr());
+        for (unsigned int i = insert_index; i &lt; insert_index + count; ++i) {
+            memcpy(t_data + i * variable_size, src_data + value.index * variable_size, variable_size);
+        }
+    }
+    // Increase size
+    _size += count;
+    // Return iterator to first inserted item
+    return iterator(agent, _data, insert_index);
+}
+AgentVector::iterator AgentVector::erase(const_iterator pos) {
+    const auto first = pos++;
+    return erase(first._pos, pos._pos);
+}
+AgentVector::iterator AgentVector::erase(size_type pos) {
+    const auto first = pos++;
+    return erase(first, pos);
+}
+AgentVector::iterator AgentVector::erase(const_iterator first, const_iterator last) {
+    // Confirm they are for the same agent type
+    if (first._agent != agent &amp;&amp; *first._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            first._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    if (last._agent != agent &amp;&amp; *last._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            last._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    return erase(first._pos, last._pos);
+}
+AgentVector::iterator AgentVector::erase(size_type first, size_type last) {
+    if (first == last)
+        return iterator(agent, _data, last);
+    // Get first index;
+    const size_type first_remove_index = first&lt; last ? first : last;
+    const size_type first_move_index = first &lt; last ? last : first;
+    const size_type erase_count = first_move_index - first_remove_index;
+    const size_type first_empty_index = _size - erase_count;
+    const size_type last_empty_index = _size;
+    // Ensure indicies are in bounds
+    if (first_remove_index &gt;= _size) {
+        THROW OutOfBoundsException(&quot;%u is not a valid index into the vector, &quot;
+          &quot;in AgentVector::erase()\n&quot;, first_remove_index);
+    } else if (first_move_index &gt; _size) {
+        THROW OutOfBoundsException(&quot;%u is not a valid index to the end of a range of vector items, &quot;
+            &quot;it must point to after the final selected item, &quot;
+            &quot;in AgentVector::erase()\n&quot;, first_move_index);
+    }
+    // Fix each variable
+    for (const auto&amp; v : agent-&gt;variables) {
+        const auto it = _data-&gt;find(v.first);
+        char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+        const size_t variable_size = v.second.type_size * v.second.elements;
+        // Move all items after this index forwards count places
+        for (unsigned int i = first_move_index; i &lt; _size; ++i) {
+            // Copy items individually, incase the src and destination overlap
+            memcpy(t_data + (i - erase_count) * variable_size, t_data + i * variable_size, variable_size);
+        }
+        // Initialise newly empty variables
+        for (unsigned int i = first_empty_index; i &lt; last_empty_index; ++i) {
+            memcpy(t_data + i * variable_size, v.second.default_value, variable_size);
+        }
+    }
+    // Decrease size
+    _size -= erase_count;
+    // Return iterator following the last removed element
+    return iterator(agent, _data, first_remove_index + 1);
+}
+void AgentVector::push_back(const AgentInstance&amp; value) {
+    insert(cend(), value);
+}
+void AgentVector::push_back() {
+    // Expand capacity if required
+    {
+        size_type new_capacity = _capacity;
+        assert((_capacity * RESIZE_FACTOR) + 1 &gt; _capacity);
+        while (_size + 1 &gt; new_capacity) {
+            new_capacity = static_cast&lt;size_type&gt;(_capacity * RESIZE_FACTOR) + 1;
+        }
+        resize(new_capacity, true);
+    }
+    ++_size;
+}
+void AgentVector::pop_back() {
+    if (_size) {
+        --_size;
+        // Reset removed item to default value
+        for (const auto&amp; v : agent-&gt;variables) {
+            const auto it = _data-&gt;find(v.first);
+            const size_t variable_size = v.second.type_size * v.second.elements;
+            char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+            memcpy(t_data + _size * variable_size, v.second.default_value, variable_size);
+        }
+    }
+}
+void AgentVector::resize(size_type count) {
+    resize(count, true);
+    _size = count;
+}
+void AgentVector::resize(size_type count, bool init) {
+    if (count == _capacity)
+        return;
+    for (const auto&amp; v : agent-&gt;variables) {
+        // For each variable inside agent, add it to the map or replace it in the map
+        const auto it = _data-&gt;find(v.first);
+        const size_t variable_size = v.second.type_size * v.second.elements;
+        if (it == _data-&gt;end()) {
+            // Need to create the variable&#39;s vector
+            auto t = std::unique_ptr&lt;GenericMemoryVector&gt;(v.second.memory_vector-&gt;clone());
+            t-&gt;resize(count);
+            // Default init all new elements
+            if (init) {
+                char* t_data = static_cast&lt;char*&gt;(t-&gt;getDataPtr());
+                for (unsigned int i = 0; i &lt; count; ++i) {
+                    memcpy(t_data + i * variable_size, v.second.default_value, variable_size);
+                }
+            }
+            _data-&gt;emplace(v.first, std::move(t));
+        } else {
+            // Need to resize the variables vector
+            it-&gt;second-&gt;resize(count);
+            // Default init all new elements
+            if (init) {
+                char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+                for (unsigned int i = _capacity; i &lt; count; ++i) {
+                    memcpy(t_data + i * variable_size, v.second.default_value, variable_size);
+                }
+            }
+        }
+    }
+    _capacity = count;
+}
+void AgentVector::swap(AgentVector&amp; other) noexcept {
+    std::swap(_data, other._data);
+    std::swap(_capacity, other._capacity);
+    std::swap(_size, other._size);
+    std::swap(agent, other.agent);
+}
+
+bool AgentVector::operator==(const AgentVector&amp; other) const {
+    if (_size != other._size)
+        return false;
+    if (*agent != *other.agent)
+        return false;
+    for (const auto&amp; v : agent-&gt;variables) {
+        const auto it_a = _data-&gt;find(v.first);
+        const auto it_b = other._data-&gt;find(v.first);
+        const char* data_a = static_cast&lt;const char*&gt;(it_a-&gt;second-&gt;getReadOnlyDataPtr());
+        const char* data_b = static_cast&lt;const char*&gt;(it_b-&gt;second-&gt;getReadOnlyDataPtr());
+        for (size_type i = 0; i &lt; _size; ++i)
+            if (data_a[i] != data_b[i])
+                return false;
+    }
+    return true;
+}
+bool AgentVector::operator!=(const AgentVector&amp; other) const {
+    return !((*this) == other);
+}
+
+
+bool AgentVector::matchesAgentType(const AgentData&amp; other) const { return *agent == other; }
+bool AgentVector::matchesAgentType(const AgentDescription&amp; other) const { return *agent == *other.agent; }
+std::type_index AgentVector::getVariableType(const std::string &amp;variable_name) const {
+    const auto &amp;it = agent-&gt;variables.find(variable_name);
+    if (it == agent-&gt;variables.end()) {
+        THROW InvalidAgentVar(&quot;Agent &#39;%s&#39; does not contain variable with name &#39;%s&#39;, &quot;
+            &quot;in AgentVector::getVariableType()\n&quot;,
+            agent-&gt;name.c_str(), variable_name.c_str());
+    }
+    return it-&gt;second.type;
+}
+const VariableMap&amp; AgentVector::getVariableMetaData() const {
+    return agent-&gt;variables;
+}
+std::string AgentVector::getInitialState() const {
+    return agent-&gt;initial_state;
+}
+
+AgentVector::Agent AgentVector::iterator::operator*() const {
+    return Agent(_agent, _data, _pos);
+}
+AgentVector::CAgent AgentVector::const_iterator::operator*() const {
+    return CAgent(_agent, _data, _pos);
+}
+AgentVector::Agent AgentVector::reverse_iterator::operator*() const {
+    return Agent(_agent, _data, _pos);
+}
+AgentVector::CAgent AgentVector::const_reverse_iterator::operator*() const {
+    return CAgent(_agent, _data, _pos);
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File AgentDescription.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File AgentDescription.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_model_AgentDescription.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-agentdescription-h">
+<span id="program-listing-file-include-flamegpu-model-agentdescription-h"></span><h1>Program Listing for File AgentDescription.h<a class="headerlink" href="#program-listing-for-file-agentdescription-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_model_AgentDescription.h.html#file-include-flamegpu-model-agentdescription-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/model/AgentDescription.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_</span>
+<span class="cp">#define INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/Variable.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/ModelDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/pop/AgentVector.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/pop/AgentInstance.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/AgentData.h&quot;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">AgentFunctionDescription</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AgentDescription</span> <span class="p">{</span>
+    <span class="k">friend</span> <span class="k">struct</span> <span class="nc">AgentData</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="k">struct</span> <span class="nc">AgentFunctionData</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">AgentVector</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">agent_desc</span><span class="p">,</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">size_type</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">AgentInstance</span><span class="o">::</span><span class="n">AgentInstance</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">agent_desc</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="kt">bool</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">matchesAgentType</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="k">class</span> <span class="nc">AgentFunctionDescription</span><span class="p">;</span>
+    <span class="k">friend</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">ModelDescription</span><span class="o">::</span><span class="n">newAgent</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="p">);</span>
+
+    <span class="n">AgentDescription</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="n">_model</span><span class="p">,</span> <span class="n">AgentData</span> <span class="o">*</span><span class="k">const</span> <span class="n">data</span><span class="p">);</span>
+    <span class="n">AgentDescription</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">other_agent</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">AgentDescription</span><span class="p">(</span><span class="n">AgentDescription</span> <span class="o">&amp;&amp;</span><span class="n">other_agent</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">other_agent</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">AgentDescription</span> <span class="o">&amp;&amp;</span><span class="n">other_agent</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+
+ <span class="k">public</span><span class="o">:</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentDescription</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="nf">newState</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">state_name</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">setInitialState</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">initial_state</span><span class="p">);</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">,</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">N</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">newVariable</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">default_value</span> <span class="o">=</span> <span class="p">{});</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">newVariable</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="n">default_value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+<span class="cp">#ifdef SWIG</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
+    <span class="kt">void</span> <span class="n">newVariableArray</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="o">&amp;</span><span class="n">length</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span><span class="n">default_value</span> <span class="o">=</span> <span class="p">{});</span>
+<span class="cp">#endif</span>
+
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">AgentFunction</span><span class="o">&gt;</span>
+    <span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="n">newFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">function_name</span><span class="p">,</span> <span class="n">AgentFunction</span> <span class="n">a</span> <span class="o">=</span> <span class="n">AgentFunction</span><span class="p">());</span>
+    <span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="nf">newRTCFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">function_name</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">func_src</span><span class="p">);</span>
+    <span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="nf">Function</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">function_name</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getName</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getStatesCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getInitialState</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">type_index</span> <span class="o">&amp;</span><span class="n">getVariableType</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">size_t</span> <span class="nf">getVariableSize</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getVariableLength</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getVariablesCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">const</span> <span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="n">getFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">function_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getFunctionsCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getAgentOutputsCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nf">hasState</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">state_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nf">hasVariable</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="nf">hasFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">function_name</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="cm">/*</span>
+<span class="cm">     * @return True if any agent functions, with the model hierarchy, create new agents of this type</span>
+<span class="cm">     * @see AgentDescription::getAgentOutputsCount()</span>
+<span class="cm">     */</span>
+    <span class="kt">bool</span> <span class="nf">isOutputOnDevice</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="cm">/*</span>
+<span class="cm">     * @return An immutable reference to the set of states agents of this type can enter</span>
+<span class="cm">     */</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">getStates</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+ <span class="k">private</span><span class="o">:</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="n">model</span><span class="p">;</span>
+    <span class="n">AgentData</span> <span class="o">*</span><span class="k">const</span> <span class="n">agent</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">,</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">AgentDescription</span><span class="o">::</span><span class="n">newVariable</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">default_value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">variable_name</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">variable_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">ReservedName</span><span class="p">(</span><span class="s">&quot;Agent variable names cannot begin with &#39;_&#39;, this is reserved for internal usage, &quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">lower_variable_name</span> <span class="o">=</span> <span class="n">variable_name</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">lower_variable_name</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tolower</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">lower_variable_name</span> <span class="o">==</span> <span class="s">&quot;name&quot;</span> <span class="o">||</span> <span class="n">lower_variable_name</span> <span class="o">==</span> <span class="s">&quot;state&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">ReservedName</span><span class="p">(</span><span class="s">&quot;Agent variables cannot be named &#39;name&#39; or &#39;state&#39;, these are reserved for backwards compatibility reasons, &quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// Array length 0 makes no sense</span>
+    <span class="k">static_assert</span><span class="p">(</span><span class="n">N</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&quot;A variable cannot have 0 elements.&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span> <span class="o">==</span> <span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">Variable</span><span class="p">(</span><span class="n">default_value</span><span class="p">));</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">THROW</span> <span class="n">InvalidAgentVar</span><span class="p">(</span><span class="s">&quot;Agent (&#39;%s&#39;) already contains variable &#39;%s&#39;, &quot;</span>
+        <span class="s">&quot;in AgentDescription::newVariable().&quot;</span><span class="p">,</span>
+        <span class="n">agent</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">variable_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">AgentDescription</span><span class="o">::</span><span class="n">newVariable</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">default_value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">newVariable</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="p">{</span> <span class="n">default_value</span> <span class="p">});</span>
+<span class="p">}</span>
+<span class="cp">#ifdef SWIG</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">AgentDescription</span><span class="o">::</span><span class="n">newVariableArray</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">variable_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span><span class="o">&amp;</span> <span class="n">length</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">default_value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">variable_name</span><span class="p">.</span><span class="n">empty</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">variable_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;_&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">ReservedName</span><span class="p">(</span><span class="s">&quot;Agent variable names cannot begin with &#39;_&#39;, this is reserved for internal usage, &quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">lower_variable_name</span> <span class="o">=</span> <span class="n">variable_name</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">c</span> <span class="p">:</span> <span class="n">lower_variable_name</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">tolower</span><span class="p">(</span><span class="n">c</span><span class="p">));</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">lower_variable_name</span> <span class="o">==</span> <span class="s">&quot;name&quot;</span> <span class="o">||</span> <span class="n">lower_variable_name</span> <span class="o">==</span> <span class="s">&quot;state&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">ReservedName</span><span class="p">(</span><span class="s">&quot;Agent variables cannot be named &#39;name&#39; or &#39;state&#39;, these are reserved for backwards compatibility reasons, &quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">InvalidAgentVar</span><span class="p">(</span><span class="s">&quot;Agent variable arrays must have a length greater than 0.&quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">default_value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="n">default_value</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">THROW</span> <span class="nf">InvalidAgentVar</span><span class="p">(</span><span class="s">&quot;Agent variable array length specified as %d, but default value provided with %llu elements, &quot;</span>
+            <span class="s">&quot;in AgentDescription::newVariable()</span><span class="p">.</span><span class="s">&quot;,</span>
+            <span class="n">length</span><span class="p">,</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">default_value</span><span class="p">.</span><span class="n">size</span><span class="p">()));</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span> <span class="o">==</span> <span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">default_value</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">temp</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">length</span><span class="p">));</span>
+            <span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">Variable</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">temp</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">agent</span><span class="o">-&gt;</span><span class="n">variables</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">variable_name</span><span class="p">,</span> <span class="n">Variable</span><span class="p">(</span><span class="n">length</span><span class="p">,</span> <span class="n">default_value</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">THROW</span> <span class="n">InvalidAgentVar</span><span class="p">(</span><span class="s">&quot;Agent (&#39;%s&#39;) already contains variable &#39;%s&#39;, &quot;</span>
+        <span class="s">&quot;in AgentDescription::newVariable().&quot;</span><span class="p">,</span>
+        <span class="n">agent</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">variable_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+<span class="c1">// Found in &quot;flamegpu/model/AgentFunctionDescription.h&quot;</span>
+<span class="c1">// template&lt;typename AgentFunction&gt;</span>
+<span class="c1">// AgentFunctionDescription &amp;AgentDescription::newFunction(const std::string &amp;function_name, AgentFunction)</span>
+
+<span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

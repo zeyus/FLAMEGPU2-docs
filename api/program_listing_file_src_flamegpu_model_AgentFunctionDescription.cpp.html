@@ -1,0 +1,715 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File AgentFunctionDescription.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File AgentFunctionDescription.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_model_AgentFunctionDescription.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-agentfunctiondescription-cpp">
+<span id="program-listing-file-src-flamegpu-model-agentfunctiondescription-cpp"></span><h1>Program Listing for File AgentFunctionDescription.cpp<a class="headerlink" href="#program-listing-for-file-agentfunctiondescription-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_model_AgentFunctionDescription.cpp.html#file-src-flamegpu-model-agentfunctiondescription-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/model/AgentFunctionDescription.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &lt;nvrtc.h&gt;
+#include &lt;cuda.h&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;regex&gt;
+
+#include &quot;flamegpu/model/AgentFunctionDescription.h&quot;
+
+
+AgentFunctionDescription::AgentFunctionDescription(const std::shared_ptr&lt;const ModelData&gt; &amp;_model, AgentFunctionData *const description)
+    : model(_model)
+    , function(description) { }
+
+bool AgentFunctionDescription::operator==(const AgentFunctionDescription&amp; rhs) const {
+    return *this-&gt;function == *rhs.function;  // Compare content is functionally the same
+}
+bool AgentFunctionDescription::operator!=(const AgentFunctionDescription&amp; rhs) const {
+    return !(*this == rhs);
+}
+
+void AgentFunctionDescription::setInitialState(const std::string &amp;init_state) {
+    if (auto p = function-&gt;parent.lock()) {
+        if (p-&gt;description-&gt;hasState(init_state)) {
+            // Check if this agent function is already in a layer
+            auto mdl = model.lock();
+            if (!mdl) {
+                THROW ExpiredWeakPtr();
+            }
+            for (const auto &amp;l : mdl-&gt;layers) {
+                for (const auto &amp;f : l-&gt;agent_functions) {
+                    // Agent fn is in layer
+                    if (f-&gt;name == this-&gt;function-&gt;name) {
+                        // search all functions in that layer
+                        for (const auto &amp;f2 : l-&gt;agent_functions) {
+                            if (const auto &amp;a2 = f2-&gt;parent.lock()) {
+                                if (const auto &amp;a1 = this-&gt;function-&gt;parent.lock()) {
+                                    // Same agent
+                                    if (a2-&gt;name == a1-&gt;name) {
+                                        // Skip ourself
+                                        if (f2-&gt;name == this-&gt;function-&gt;name)
+                                            continue;
+                                        if (f2-&gt;initial_state == init_state ||
+                                            f2-&gt;end_state == init_state) {
+                                            THROW InvalidAgentFunc(&quot;Agent functions&#39;s &#39;%s&#39; and &#39;%s&#39;, within the same layer &quot;
+                                                &quot;cannot share any input or output states, this is not permitted, &quot;
+                                                &quot;in AgentFunctionDescription::setInitialState().&quot;,
+                                                f2-&gt;name.c_str(), this-&gt;function-&gt;name.c_str());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Checks passed, make change
+            this-&gt;function-&gt;initial_state = init_state;
+        } else {
+            THROW InvalidStateName(&quot;Agent (&#39;%s&#39;) does not contain state &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setInitialState().&quot;,
+                p-&gt;name.c_str(), init_state.c_str());
+        }
+    } else {
+        THROW InvalidParent(&quot;Agent parent has expired, &quot;
+            &quot;in AgentFunctionDescription::setInitialState().&quot;);
+    }
+}
+void AgentFunctionDescription::setEndState(const std::string &amp;exit_state) {
+    if (auto p = function-&gt;parent.lock()) {
+        if (p-&gt;description-&gt;hasState(exit_state)) {
+            // Check if this agent function is already in a layer
+            auto mdl = model.lock();
+            if (!mdl) {
+                THROW ExpiredWeakPtr();
+            }
+            for (const auto &amp;l : mdl-&gt;layers) {
+                for (const auto &amp;f : l-&gt;agent_functions) {
+                    // Agent fn is in layer
+                    if (f-&gt;name == this-&gt;function-&gt;name) {
+                        // search all functions in that layer
+                        for (const auto &amp;f2 : l-&gt;agent_functions) {
+                            if (const auto &amp;a2 = f2-&gt;parent.lock()) {
+                                if (const auto &amp;a1 = this-&gt;function-&gt;parent.lock()) {
+                                    // Same agent
+                                    if (a2-&gt;name == a1-&gt;name) {
+                                        // Skip ourself
+                                        if (f2-&gt;name == this-&gt;function-&gt;name)
+                                            continue;
+                                        if (f2-&gt;initial_state == exit_state ||
+                                            f2-&gt;end_state == exit_state) {
+                                            THROW InvalidAgentFunc(&quot;Agent functions&#39;s &#39;%s&#39; and &#39;%s&#39;, within the same layer &quot;
+                                                &quot;cannot share any input or output states, this is not permitted, &quot;
+                                                &quot;in AgentFunctionDescription::setEndState().&quot;,
+                                                f2-&gt;name.c_str(), this-&gt;function-&gt;name.c_str());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            // Checks passed, make change
+            this-&gt;function-&gt;end_state = exit_state;
+        } else {
+            THROW InvalidStateName(&quot;Agent (&#39;%s&#39;) does not contain state &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setEndState().&quot;,
+                p-&gt;name.c_str(), exit_state.c_str());
+        }
+    } else {
+        THROW InvalidParent(&quot;Agent parent has expired, &quot;
+            &quot;in AgentFunctionDescription::setEndState().&quot;);
+    }
+}
+void AgentFunctionDescription::setMessageInput(const std::string &amp;message_name) {
+    if (auto other = function-&gt;message_output.lock()) {
+        if (message_name == other-&gt;name) {
+            THROW InvalidMessageName(&quot;Message &#39;%s&#39; is already bound as message output in agent function %s, &quot;
+                &quot;the same message cannot be input and output by the same function, &quot;
+                &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+                message_name.c_str(), function-&gt;name.c_str());
+        }
+    }
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;messages.find(message_name);
+    if (a != mdl-&gt;messages.end()) {
+        if (this-&gt;function-&gt;msg_in_type == CurveRTCHost::demangle(a-&gt;second-&gt;getType())) {
+            this-&gt;function-&gt;message_input = a-&gt;second;
+        } else {
+            THROW InvalidMessageType(&quot;Message (&#39;%s&#39;) type &#39;%s&#39; does not match type &#39;%s&#39; applied to FLAMEGPU_AGENT_FUNCTION, &quot;
+                &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+                message_name.c_str(), CurveRTCHost::demangle(a-&gt;second-&gt;getType()).c_str(), this-&gt;function-&gt;msg_in_type.c_str());
+        }
+    } else {
+        THROW InvalidMessageName(&quot;Model (&#39;%s&#39;) does not contain message &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+            mdl-&gt;name.c_str(), message_name.c_str());
+    }
+}
+void AgentFunctionDescription::setMessageInput(MsgBruteForce::Description &amp;message) {
+    if (message.model.lock() != function-&gt;description-&gt;model.lock()) {
+        THROW DifferentModel(&quot;Attempted to use agent description from a different model, &quot;
+            &quot;in AgentFunctionDescription::setAgentOutput().&quot;);
+    }
+    if (auto other = function-&gt;message_output.lock()) {
+        if (message.getName() == other-&gt;name) {
+            THROW InvalidMessageName(&quot;Message &#39;%s&#39; is already bound as message output in agent function %s, &quot;
+                &quot;the same message cannot be input and output by the same function, &quot;
+                &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+                message.getName().c_str(), function-&gt;name.c_str());
+        }
+    }
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;messages.find(message.getName());
+    if (a != mdl-&gt;messages.end()) {
+        if (a-&gt;second-&gt;description.get() == &amp;message) {
+            if (this-&gt;function-&gt;msg_in_type == CurveRTCHost::demangle(a-&gt;second-&gt;getType())) {
+                this-&gt;function-&gt;message_input = a-&gt;second;
+            } else {
+                THROW InvalidMessageType(&quot;Message (&#39;%s&#39;) type &#39;%s&#39; does not match type &#39;%s&#39; applied to FLAMEGPU_AGENT_FUNCTION, &quot;
+                    &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+                    a-&gt;second-&gt;name.c_str(), CurveRTCHost::demangle(a-&gt;second-&gt;getType()).c_str(), this-&gt;function-&gt;msg_in_type.c_str());
+            }
+        } else {
+            THROW InvalidMessage(&quot;Message &#39;%s&#39; is not from Model &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+                message.getName().c_str(), mdl-&gt;name.c_str());
+        }
+    } else {
+        THROW InvalidMessageName(&quot;Model (&#39;%s&#39;) does not contain message &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setMessageInput().&quot;,
+            mdl-&gt;name.c_str(), message.getName().c_str());
+    }
+}
+void AgentFunctionDescription::setMessageOutput(const std::string &amp;message_name) {
+    if (auto other = function-&gt;message_input.lock()) {
+        if (message_name == other-&gt;name) {
+            THROW InvalidMessageName(&quot;Message &#39;%s&#39; is already bound as message input in agent function %s, &quot;
+                &quot;the same message cannot be input and output by the same function, &quot;
+                &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+                message_name.c_str(), function-&gt;name.c_str());
+        }
+    }
+    // Clear old value
+    if (this-&gt;function-&gt;message_output_optional) {
+        if (auto b = this-&gt;function-&gt;message_output.lock()) {
+            b-&gt;optional_outputs--;
+        }
+    }
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;messages.find(message_name);
+    if (a != mdl-&gt;messages.end()) {
+        if (this-&gt;function-&gt;msg_out_type == CurveRTCHost::demangle(a-&gt;second-&gt;getType())) {
+            this-&gt;function-&gt;message_output = a-&gt;second;
+            if (this-&gt;function-&gt;message_output_optional) {
+                a-&gt;second-&gt;optional_outputs++;
+            }
+        } else {
+            THROW InvalidMessageType(&quot;Message (&#39;%s&#39;) type &#39;%s&#39; does not match type &#39;%s&#39; applied to FLAMEGPU_AGENT_FUNCTION, &quot;
+                &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+                message_name.c_str(), CurveRTCHost::demangle(a-&gt;second-&gt;getType()).c_str(), this-&gt;function-&gt;msg_in_type.c_str());
+        }
+    } else {
+        THROW InvalidMessageName(&quot;Model (&#39;%s&#39;) does not contain message &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+            mdl-&gt;name.c_str(), message_name.c_str());
+    }
+}
+void AgentFunctionDescription::setMessageOutput(MsgBruteForce::Description &amp;message) {
+    if (message.model.lock() != function-&gt;description-&gt;model.lock()) {
+        THROW DifferentModel(&quot;Attempted to use agent description from a different model, &quot;
+            &quot;in AgentFunctionDescription::setAgentOutput().&quot;);
+    }
+    if (auto other = function-&gt;message_input.lock()) {
+        if (message.getName() == other-&gt;name) {
+            THROW InvalidMessageName(&quot;Message &#39;%s&#39; is already bound as message input in agent function %s, &quot;
+                &quot;the same message cannot be input and output by the same function, &quot;
+                &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+                message.getName().c_str(), function-&gt;name.c_str());
+        }
+    }
+    // Clear old value
+    if (this-&gt;function-&gt;message_output_optional) {
+        if (auto b = this-&gt;function-&gt;message_output.lock()) {
+            b-&gt;optional_outputs--;
+        }
+    }
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;messages.find(message.getName());
+    if (a != mdl-&gt;messages.end()) {
+        if (a-&gt;second-&gt;description.get() == &amp;message) {
+            if (this-&gt;function-&gt;msg_out_type == CurveRTCHost::demangle(a-&gt;second-&gt;getType())) {
+                this-&gt;function-&gt;message_output = a-&gt;second;
+                if (this-&gt;function-&gt;message_output_optional) {
+                    a-&gt;second-&gt;optional_outputs++;
+                }
+            } else {
+                THROW InvalidMessageType(&quot;Message (&#39;%s&#39;) type &#39;%s&#39; does not match type &#39;%s&#39; applied to FLAMEGPU_AGENT_FUNCTION, &quot;
+                    &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+                    a-&gt;second-&gt;name.c_str(), CurveRTCHost::demangle(a-&gt;second-&gt;getType()).c_str(), this-&gt;function-&gt;msg_in_type.c_str());
+            }
+        } else {
+            THROW InvalidMessage(&quot;Message &#39;%s&#39; is not from Model &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setMessageOutput().&quot;,
+                message.getName().c_str(), mdl-&gt;name.c_str());
+        }
+    } else {
+        THROW InvalidMessageName(&quot;Model (&#39;%s&#39;) does not contain message &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setMessageOutput()\n&quot;,
+            mdl-&gt;name.c_str(), message.getName().c_str());
+    }
+}
+void AgentFunctionDescription::setMessageOutputOptional(const bool &amp;output_is_optional) {
+    if (output_is_optional != this-&gt;function-&gt;message_output_optional) {
+        this-&gt;function-&gt;message_output_optional = output_is_optional;
+        if (auto b = this-&gt;function-&gt;message_output.lock()) {
+            if (output_is_optional)
+                b-&gt;optional_outputs++;
+            else
+                b-&gt;optional_outputs--;
+        }
+    }
+}
+void AgentFunctionDescription::setAgentOutput(const std::string &amp;agent_name, const std::string state) {
+    // Set new
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;agents.find(agent_name);
+    if (a != mdl-&gt;agents.end()) {
+        // Check agent state is valid
+        if (a-&gt;second-&gt;states.find(state)!= a-&gt;second-&gt;states.end()) {    // Clear old value
+            if (auto b = this-&gt;function-&gt;agent_output.lock()) {
+                b-&gt;agent_outputs--;
+            }
+            this-&gt;function-&gt;agent_output = a-&gt;second;
+            this-&gt;function-&gt;agent_output_state = state;
+            a-&gt;second-&gt;agent_outputs++;  // Mark inside agent that we are using it as an output
+        } else {
+            THROW InvalidStateName(&quot;Agent (&#39;%s&#39;) does not contain state &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setAgentOutput().&quot;,
+                agent_name.c_str(), state.c_str());
+        }
+    } else {
+        THROW InvalidAgentName(&quot;Model (&#39;%s&#39;) does not contain agent &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setAgentOutput().&quot;,
+            mdl-&gt;name.c_str(), agent_name.c_str());
+    }
+}
+void AgentFunctionDescription::setAgentOutput(AgentDescription &amp;agent, const std::string state) {
+    if (agent.model.lock() != function-&gt;description-&gt;model.lock()) {
+        THROW DifferentModel(&quot;Attempted to use agent description from a different model, &quot;
+            &quot;in AgentFunctionDescription::setAgentOutput().&quot;);
+    }
+    // Set new
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    auto a = mdl-&gt;agents.find(agent.getName());
+    if (a != mdl-&gt;agents.end()) {
+        if (a-&gt;second-&gt;description.get() == &amp;agent) {
+            // Check agent state is valid
+            if (a-&gt;second-&gt;states.find(state) != a-&gt;second-&gt;states.end()) {
+                // Clear old value
+                if (auto b = this-&gt;function-&gt;agent_output.lock()) {
+                    b-&gt;agent_outputs--;
+                }
+                this-&gt;function-&gt;agent_output = a-&gt;second;
+                this-&gt;function-&gt;agent_output_state = state;
+                a-&gt;second-&gt;agent_outputs++;  // Mark inside agent that we are using it as an output
+            } else {
+                THROW InvalidStateName(&quot;Agent (&#39;%s&#39;) does not contain state &#39;%s&#39;, &quot;
+                    &quot;in AgentFunctionDescription::setAgentOutput().&quot;,
+                    agent.getName().c_str(), state.c_str());
+            }
+        } else {
+            THROW InvalidMessage(&quot;Agent &#39;%s&#39; is not from Model &#39;%s&#39;, &quot;
+                &quot;in AgentFunctionDescription::setAgentOutput().&quot;,
+                agent.getName().c_str(), mdl-&gt;name.c_str());
+        }
+    } else {
+        THROW InvalidMessageName(&quot;Model (&#39;%s&#39;) does not contain agent &#39;%s&#39;, &quot;
+            &quot;in AgentFunctionDescription::setAgentOutput().&quot;,
+            mdl-&gt;name.c_str(), agent.getName().c_str());
+    }
+}
+void AgentFunctionDescription::setAllowAgentDeath(const bool &amp;has_death) {
+    function-&gt;has_agent_death = has_death;
+}
+
+void AgentFunctionDescription::setRTCFunctionCondition(std::string func_cond_src) {
+    // Use Regex to get agent function name
+    std::regex rgx(R&quot;###(.*FLAMEGPU_AGENT_FUNCTION_CONDITION\([ \t]*(\w+)[ \t]*)###&quot;);
+    std::smatch match;
+    std::string func_cond_name;
+    if (std::regex_search(func_cond_src, match, rgx)) {
+        if (match.size() == 2) {
+            func_cond_name = match[1];
+            // set the runtime agent function condition source in agent function data
+            function-&gt;rtc_func_condition_name = func_cond_name;
+            function-&gt;rtc_condition_source = func_cond_src;
+            // TODO: Does this need emplacing in CUDAAgent?
+        } else {
+            THROW InvalidAgentFunc(&quot;Runtime agent function condition is missing FLAMEGPU_AGENT_FUNCTION_CONDITION arguments e.g. &#39;FLAMEGPU_AGENT_FUNCTION_CONDITION(func_name)&#39;, &quot;
+                &quot;in AgentDescription::setRTCFunctionCondition().&quot;);
+        }
+    } else {
+        THROW InvalidAgentFunc(&quot;Runtime agent function(&#39;%s&#39;) is missing FLAMEGPU_AGENT_FUNCTION_CONDITION, &quot;
+            &quot;in AgentDescription::setRTCFunctionCondition().&quot;);
+    }
+
+    // append jitify program string and include
+    std::string func_cond_src_str = std::string(func_cond_name + &quot;_program\n&quot;).append(&quot;#include \&quot;flamegpu/runtime/flamegpu_device_api.h\&quot;\n&quot;).append(func_cond_src);
+
+    // update the agent function data
+    function-&gt;rtc_func_condition_name = func_cond_name;
+    function-&gt;rtc_condition_source = func_cond_src_str;
+}
+
+MsgBruteForce::Description &amp;AgentFunctionDescription::MessageInput() {
+    if (auto m = function-&gt;message_input.lock())
+        return *m-&gt;description;
+    THROW OutOfBoundsException(&quot;Message input has not been set, &quot;
+        &quot;in AgentFunctionDescription::MessageInput().&quot;);
+}
+MsgBruteForce::Description &amp;AgentFunctionDescription::MessageOutput() {
+    if (auto m = function-&gt;message_output.lock())
+        return *m-&gt;description;
+    THROW OutOfBoundsException(&quot;Message output has not been set, &quot;
+        &quot;in AgentFunctionDescription::MessageOutput().&quot;);
+}
+bool &amp;AgentFunctionDescription::MessageOutputOptional() {
+    return function-&gt;message_output_optional;
+}
+bool &amp;AgentFunctionDescription::AllowAgentDeath() {
+    return function-&gt;has_agent_death;
+}
+
+std::string AgentFunctionDescription::getName() const {
+    return function-&gt;name;
+}
+std::string AgentFunctionDescription::getInitialState() const {
+    return function-&gt;initial_state;
+}
+std::string AgentFunctionDescription::getEndState() const {
+    return function-&gt;end_state;
+}
+const MsgBruteForce::Description &amp;AgentFunctionDescription::getMessageInput() const {
+    if (auto m = function-&gt;message_input.lock())
+        return *m-&gt;description;
+    THROW OutOfBoundsException(&quot;Message input has not been set, &quot;
+        &quot;in AgentFunctionDescription::getMessageInput().&quot;);
+}
+const MsgBruteForce::Description &amp;AgentFunctionDescription::getMessageOutput() const {
+    if (auto m = function-&gt;message_output.lock())
+        return *m-&gt;description;
+    THROW OutOfBoundsException(&quot;Message output has not been set, &quot;
+        &quot;in AgentFunctionDescription::getMessageOutput().&quot;);
+}
+bool AgentFunctionDescription::getMessageOutputOptional() const {
+    return this-&gt;function-&gt;message_output_optional;
+}
+const AgentDescription &amp;AgentFunctionDescription::getAgentOutput() const {
+    if (auto a = function-&gt;agent_output.lock())
+        return *a-&gt;description;
+    THROW OutOfBoundsException(&quot;Agent output has not been set, &quot;
+        &quot;in AgentFunctionDescription::getAgentOutput().&quot;);
+}
+std::string AgentFunctionDescription::getAgentOutputState() const {
+    if (auto a = function-&gt;agent_output.lock())
+        return function-&gt;agent_output_state;
+    THROW OutOfBoundsException(&quot;Agent output has not been set, &quot;
+        &quot;in AgentFunctionDescription::getAgentOutputState().&quot;);
+}
+bool AgentFunctionDescription::getAllowAgentDeath() const {
+    return function-&gt;has_agent_death;
+}
+
+bool AgentFunctionDescription::hasMessageInput() const {
+    return function-&gt;message_input.lock() != nullptr;
+}
+bool AgentFunctionDescription::hasMessageOutput() const {
+    return function-&gt;message_output.lock() != nullptr;
+}
+bool AgentFunctionDescription::hasAgentOutput() const {
+    return function-&gt;agent_output.lock() != nullptr;
+}
+bool AgentFunctionDescription::hasFunctionCondition() const {
+    return function-&gt;condition != nullptr;
+}
+AgentFunctionWrapper *AgentFunctionDescription::getFunctionPtr() const {
+    return function-&gt;func;
+}
+AgentFunctionConditionWrapper *AgentFunctionDescription::getConditionPtr() const {
+    return function-&gt;condition;
+}
+
+bool AgentFunctionDescription::isRTC() const {
+    return !function-&gt;rtc_source.empty();
+}
+
+AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string&amp; function_name, const char* func_src) {
+    if (agent-&gt;functions.find(function_name) == agent-&gt;functions.end()) {
+        // append jitify program string and include
+        std::string func_src_str = std::string(function_name + &quot;_program\n&quot;).append(&quot;#include \&quot;flamegpu/runtime/flamegpu_device_api.h\&quot;\n&quot;).append(func_src);
+        // Use Regex to get agent function name, and input/output message type
+        std::regex rgx(R&quot;###(.*FLAMEGPU_AGENT_FUNCTION\([ \t]*(\w+),[ \t]*(\w+),[ \t]*(\w+)[ \t]*\))###&quot;);
+        std::smatch match;
+        if (std::regex_search(func_src_str, match, rgx)) {
+            if (match.size() == 4) {
+                std::string code_func_name = match[1];  // not yet clear if this is required
+                std::string in_type_name = match[2];
+                std::string out_type_name = match[3];
+                // set the runtime agent function source in agent function data
+                auto rtn = std::shared_ptr&lt;AgentFunctionData&gt;(new AgentFunctionData(this-&gt;agent-&gt;shared_from_this(), function_name, func_src_str, in_type_name, out_type_name, code_func_name));
+                agent-&gt;functions.emplace(function_name, rtn);
+                return *rtn-&gt;description;
+            } else {
+                THROW InvalidAgentFunc(&quot;Runtime agent function(&#39;%s&#39;) is missing FLAMEGPU_AGENT_FUNCTION arguments e.g. (func_name, message_input_type, message_output_type), &quot;
+                    &quot;in AgentDescription::newRTCFunction().&quot;,
+                    agent-&gt;name.c_str());
+            }
+        } else {
+            THROW InvalidAgentFunc(&quot;Runtime agent function(&#39;%s&#39;) is missing FLAMEGPU_AGENT_FUNCTION, &quot;
+                &quot;in AgentDescription::newRTCFunction().&quot;,
+                agent-&gt;name.c_str());
+        }
+    }
+    THROW InvalidAgentFunc(&quot;Agent (&#39;%s&#39;) already contains function &#39;%s&#39;, &quot;
+        &quot;in AgentDescription::newFunction().&quot;,
+        agent-&gt;name.c_str(), function_name.c_str());
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+
+.. _program_listing_file_include_flamegpu_runtime_HostFunctionCallback.h:
+
+Program Listing for File HostFunctionCallback.h
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_HostFunctionCallback.h>` (``include/flamegpu/runtime/HostFunctionCallback.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_HOSTFUNCTIONCALLBACK_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_HOSTFUNCTIONCALLBACK_H_
+   
+   // class FLAMEGPU_HOST_API;
+   
+   class HostFunctionCallback {
+    public:
+       virtual void run(FLAMEGPU_HOST_API*) = 0;
+       virtual ~HostFunctionCallback() {}
+   };
+   
+   class HostFunctionConditionCallback {
+    public:
+       virtual FLAME_GPU_CONDITION_RESULT run(FLAMEGPU_HOST_API*) = 0;
+       virtual ~HostFunctionConditionCallback() {}
+   };
+   
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_HOSTFUNCTIONCALLBACK_H_

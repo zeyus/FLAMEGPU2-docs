@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File RunPlanVec.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File RunPlanVec.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_sim_RunPlanVec.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-runplanvec-h">
+<span id="program-listing-file-include-flamegpu-sim-runplanvec-h"></span><h1>Program Listing for File RunPlanVec.h<a class="headerlink" href="#program-listing-for-file-runplanvec-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_sim_RunPlanVec.h.html#file-include-flamegpu-sim-runplanvec-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/sim/RunPlanVec.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_SIM_RUNPLANVEC_H_
+#define INCLUDE_FLAMEGPU_SIM_RUNPLANVEC_H_
+
+#include &lt;random&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+#include &lt;string&gt;
+#include &lt;memory&gt;
+
+#include &quot;flamegpu/sim/RunPlan.h&quot;
+#include &quot;flamegpu/exception/FGPUStaticAssert.h&quot;
+
+class ModelDescription;
+class EnvironmentDescription;
+
+class RunPlanVec : private std::vector&lt;RunPlan&gt;  {
+    friend class RunPlan;
+    friend class SimRunner;
+    friend void CUDAEnsemble::simulate(const RunPlanVec &amp;plans);
+
+ public:
+    explicit RunPlanVec(const ModelDescription &amp;model, unsigned int initial_length);
+    void setRandomSimulationSeed(const unsigned int &amp;initial_seed, const unsigned int &amp;step = 0);
+    void setSteps(const unsigned int &amp;steps);
+    void setOutputSubdirectory(const std::string &amp;subdir);
+    template&lt;typename T&gt;
+    void setProperty(const std::string &amp;name, const T &amp;value);
+    template&lt;typename T, EnvironmentManager::size_type N&gt;
+    void setProperty(const std::string &amp;name, const std::array&lt;T, N&gt; &amp;value);
+    template&lt;typename T&gt;
+    void setProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;value);
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    void setPropertyArray(const std::string &amp;name, const EnvironmentManager::size_type &amp;length, const std::vector&lt;T&gt; &amp;value);
+#endif
+
+    template&lt;typename T&gt;
+    void setPropertyUniformDistribution(const std::string &amp;name, const T &amp;min, const T &amp;max);
+    template&lt;typename T&gt;
+    void setPropertyUniformDistribution(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;min, const T &amp;max);
+    void setRandomPropertySeed(const unsigned int &amp;seed);
+    template&lt;typename T&gt;
+    void setPropertyUniformRandom(const std::string &amp;name, const T &amp;min, const T &amp;max);
+    template&lt;typename T&gt;
+    void setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;min, const T &amp;max);
+    template&lt;typename T&gt;
+    void setPropertyNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev);
+    template&lt;typename T&gt;
+    void setPropertyNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev);
+    template&lt;typename T&gt;
+    void setPropertyLogNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev);
+    template&lt;typename T&gt;
+    void setPropertyLogNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev);
+    template&lt;typename T, typename rand_dist&gt;
+    void setPropertyRandom(const std::string &amp;name, rand_dist &amp;distribution);
+    template&lt;typename T, typename rand_dist&gt;
+    void setPropertyRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, rand_dist &amp;distribution);
+
+#ifndef SWIG
+    using std::vector&lt;RunPlan&gt;::begin;
+    using std::vector&lt;RunPlan&gt;::end;
+    using std::vector&lt;RunPlan&gt;::size;
+    using std::vector&lt;RunPlan&gt;::operator[];
+    using std::vector&lt;RunPlan&gt;::insert;
+#else
+    // Can&#39;t get SWIG %import to use std::vector&lt;RunPlan&gt; so manually implement the required items
+    size_t size() const { return std::vector&lt;RunPlan&gt;::size(); }
+    RunPlan&amp; operator[] (const size_t _Pos) { return std::vector&lt;RunPlan&gt;::operator[](_Pos); }
+#endif
+
+    RunPlanVec operator+(const RunPlan&amp; rhs) const;
+    RunPlanVec operator+(const RunPlanVec&amp; rhs) const;
+    RunPlanVec&amp; operator+=(const RunPlan&amp; rhs);
+    RunPlanVec&amp; operator+=(const RunPlanVec&amp; rhs);
+    RunPlanVec&amp; operator*=(const unsigned int&amp; rhs);
+    RunPlanVec operator*(const unsigned int&amp; rhs) const;
+
+ private:
+    RunPlanVec(const std::shared_ptr&lt;const std::unordered_map&lt;std::string, EnvironmentDescription::PropData&gt;&gt; &amp;environment, const bool &amp;allow_0_steps);
+    std::mt19937 rand;
+    std::shared_ptr&lt;const std::unordered_map&lt;std::string, EnvironmentDescription::PropData&gt;&gt; environment;
+    const bool allow_0_steps;
+};
+
+template&lt;typename T&gt;
+void RunPlanVec::setProperty(const std::string &amp;name, const T &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements == 1) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array with %u elements, array method should be used, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements);
+    }
+    for (auto &amp;i : *this) {
+        i.setProperty&lt;T&gt;(name, value);
+    }
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+void RunPlanVec::setProperty(const std::string &amp;name, const std::array&lt;T, N&gt; &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != N) {
+        THROW InvalidEnvPropertyType(&quot;Environment property array &#39;%s&#39; length mismatch %u != %u &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements, N);
+    }
+    for (auto &amp;i : *this) {
+        i.setProperty&lt;T, N&gt;(name, value);
+    }
+}
+template&lt;typename T&gt;
+void RunPlanVec::setProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements &gt;= index) {
+        throw std::out_of_range(&quot;Environment property array index out of bounds &quot;
+            &quot;in RunPlan::setProperty()\n&quot;);
+    }
+    for (auto &amp;i : *this) {
+        i.setProperty&lt;T&gt;(name, index, value);
+    }
+}
+#ifdef SWIG
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyArray(const std::string &amp;name, const EnvironmentManager::size_type &amp;N, const std::vector&lt;T&gt; &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != N) {
+        THROW InvalidEnvPropertyType(&quot;Environment property array &#39;%s&#39; length mismatch %u != %u &quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements, N);
+    }
+    if (value.size() != N) {
+        THROW InvalidEnvProperty(&quot;Environment property array length does not match the value provided, %u != %llu,&quot;
+            &quot;in RunPlanVec::setProperty()\n&quot;,
+            name.c_str(), value.size(), N);
+    }
+    for (auto &amp;i : *this) {
+        i.setPropertyArray&lt;T&gt;(name, N, value);
+    }
+}
+#endif
+
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyUniformDistribution(const std::string &amp;name, const T &amp;min, const T &amp;max) {
+    // Validation
+    if (this-&gt;size() &lt; 2) {
+        THROW std::out_of_range(&quot;Unable to apply a property distribution a vector with less than 2 elements, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;);
+    }
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != 1) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array with %u elements, array method should be used, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements);
+    }
+    unsigned int ct = 0;
+    for (auto &amp;i : *this) {
+        const double a = static_cast&lt;double&gt;(ct++) / (this-&gt;size() - 1);
+        const T lerp = static_cast&lt;T&gt;(round(min * (1.0 - a) + max * a));
+        i.setProperty&lt;T&gt;(name, lerp);
+    }
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyUniformDistribution(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;min, const T &amp;max) {
+    // Validation
+    if (this-&gt;size() &lt; 2) {
+        THROW std::out_of_range(&quot;Unable to apply a property distribution a vector with less than 2 elements, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;);
+    }
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements &gt;= index) {
+        throw std::out_of_range(&quot;Environment property array index out of bounds &quot;
+            &quot;in RunPlan::setPropertyUniformDistribution()\n&quot;);
+    }
+    unsigned int ct = 0;
+    for (auto &amp;i : *this) {
+        const double a = static_cast&lt;double&gt;(ct++) / (this-&gt;size() - 1);
+        const T lerp = static_cast&lt;T&gt;(round(min * (1.0 - a) + max * a));
+        i.setProperty&lt;T&gt;(name, index, lerp);
+    }
+}
+
+template&lt;typename T, typename rand_dist&gt;
+void RunPlanVec::setPropertyRandom(const std::string &amp;name, rand_dist &amp;distribution) {
+    // Validation
+    if (this-&gt;size() &lt; 2) {
+        THROW std::out_of_range(&quot;Unable to apply a property distribution a vector with less than 2 elements, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;);
+    }
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != 1) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array with %u elements, array method should be used, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements);
+    }
+    for (auto &amp;i : *this) {
+        i.setProperty&lt;T&gt;(name, static_cast&lt;T&gt;(distribution(this-&gt;rand)));
+    }
+}
+template&lt;typename T, typename rand_dist&gt;
+void RunPlanVec::setPropertyRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, rand_dist &amp;distribution) {
+    // Validation
+    if (this-&gt;size() &lt; 2) {
+        THROW std::out_of_range(&quot;Unable to apply a property distribution a vector with less than 2 elements, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;);
+    }
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlanVec::setPropertyUniformDistribution()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements &gt;= index) {
+        throw std::out_of_range(&quot;Environment property array index out of bounds &quot;
+            &quot;in RunPlan::setPropertyUniformDistribution()\n&quot;);
+    }
+    for (auto &amp;i : *this) {
+        i.setProperty&lt;T&gt;(name, index, static_cast&lt;T&gt;(distribution(this-&gt;rand)));
+    }
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const T &amp;min, const T &amp;max) {
+    static_assert(FGPU_SA::_Is_IntType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const T &amp;min, const T&amp;max)&quot;);
+    std::uniform_int_distribution&lt;T&gt; dist(min, max);
+    setPropertyRandom&lt;T&gt;(name, dist);
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;min, const T &amp;max) {
+    static_assert(FGPU_SA::_Is_IntType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;min, const T&amp;max)&quot;);
+    std::uniform_int_distribution&lt;T&gt; dist(min, max);
+    setPropertyRandom&lt;T&gt;(name, index, dist);
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev) {
+    static_assert(FGPU_SA::_Is_RealType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev)&quot;);
+    std::normal_distribution&lt;T&gt; dist(mean, stddev);
+    setPropertyRandom&lt;T&gt;(name, dist);
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev) {
+    static_assert(FGPU_SA::_Is_RealType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev)&quot;);
+    std::normal_distribution&lt;T&gt; dist(mean, stddev);
+    setPropertyRandom&lt;T&gt;(name, index, dist);
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyLogNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev) {
+    static_assert(FGPU_SA::_Is_RealType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyLogNormalRandom(const std::string &amp;name, const T &amp;mean, const T &amp;stddev)&quot;);
+    std::lognormal_distribution&lt;T&gt; dist(mean, stddev);
+    setPropertyRandom&lt;T&gt;(name, dist);
+}
+template&lt;typename T&gt;
+void RunPlanVec::setPropertyLogNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev) {
+    static_assert(FGPU_SA::_Is_RealType&lt;T&gt;::value, &quot;Invalid template argument for RunPlanVec::setPropertyLogNormalRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;mean, const T &amp;stddev)&quot;);
+    std::lognormal_distribution&lt;T&gt; dist(mean, stddev);
+    setPropertyRandom&lt;T&gt;(name, index, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const float &amp;min, const float &amp;max) {
+    std::uniform_real_distribution&lt;float&gt; dist(min, max);
+    setPropertyRandom&lt;float&gt;(name, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const float &amp;min, const float &amp;max) {
+    std::uniform_real_distribution&lt;float&gt; dist(min, max);
+    setPropertyRandom&lt;float&gt;(name, index, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const double &amp;min, const double &amp;max) {
+    std::uniform_real_distribution&lt;double&gt; dist(min, max);
+    setPropertyRandom&lt;double&gt;(name, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const double &amp;min, const double &amp;max) {
+    std::uniform_real_distribution&lt;double&gt; dist(min, max);
+    setPropertyRandom&lt;double&gt;(name, index, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const char &amp;min, const char &amp;max) {
+    std::uniform_int_distribution&lt;int16_t&gt; dist(min, max);
+    setPropertyRandom&lt;char&gt;(name, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const char &amp;min, const char &amp;max) {
+    std::uniform_int_distribution&lt;int16_t&gt; dist(min, max);
+    setPropertyRandom&lt;char&gt;(name, index, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const unsigned char &amp;min, const unsigned char &amp;max) {
+    std::uniform_int_distribution&lt;uint16_t&gt; dist(min, max);
+    setPropertyRandom&lt;unsigned char&gt;(name, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const unsigned char &amp;min, const unsigned char &amp;max) {
+    std::uniform_int_distribution&lt;uint16_t&gt; dist(min, max);
+    setPropertyRandom&lt;unsigned char&gt;(name, index, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const signed char &amp;min, const signed char &amp;max) {
+    std::uniform_int_distribution&lt;int16_t&gt; dist(min, max);
+    setPropertyRandom&lt;signed char&gt;(name, dist);
+}
+template&lt;&gt;
+inline void RunPlanVec::setPropertyUniformRandom(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const signed char &amp;min, const signed char &amp;max) {
+    std::uniform_int_distribution&lt;int16_t&gt; dist(min, max);
+    setPropertyRandom&lt;signed char&gt;(name, index, dist);
+}
+#endif  // INCLUDE_FLAMEGPU_SIM_RUNPLANVEC_H_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

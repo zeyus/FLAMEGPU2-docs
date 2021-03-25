@@ -1,0 +1,37 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_Array2D.h:
+
+Program Listing for File Array2D.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_Array2D.h>` (``include/flamegpu/runtime/messaging/Array2D.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_ARRAY2D_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_ARRAY2D_H_
+   
+   #include "flamegpu/runtime/messaging/BruteForce.h"
+   
+   class MsgArray2D {
+    public:
+       typedef MsgNone::size_type size_type;
+   
+       // Host
+       struct Data;        // Forward declare inner classes
+       class Description;  // Forward declare inner classes
+       class CUDAModelHandler;
+   
+       // Device
+       class In;
+       class Out;
+   
+       struct MetaData {
+           size_type dimensions[2];
+           size_type length;
+       };
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_ARRAY2D_H_

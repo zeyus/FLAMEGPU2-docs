@@ -1,0 +1,51 @@
+
+.. _program_listing_file_include_flamegpu_model_AgentData.h:
+
+Program Listing for File AgentData.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_AgentData.h>` (``include/flamegpu/model/AgentData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_AGENTDATA_H_
+   #define INCLUDE_FLAMEGPU_MODEL_AGENTDATA_H_
+   
+   #include <memory>
+   #include <unordered_map>
+   #include <set>
+   #include <string>
+   
+   #include "flamegpu/model/Variable.h"
+   #include "flamegpu/model/ModelData.h"
+   
+   class AgentDescription;
+   struct AgentFunctionData;
+   
+   struct AgentData : std::enable_shared_from_this<AgentData> {
+       friend class ModelDescription;
+       friend struct ModelData;
+       typedef std::unordered_map<std::string, std::shared_ptr<AgentFunctionData>> FunctionMap;
+   
+       FunctionMap functions;
+       VariableMap variables;
+       std::set<std::string> states;
+       std::string initial_state;
+       unsigned int agent_outputs;
+       std::shared_ptr<AgentDescription> description;
+       std::string name;
+       bool keepDefaultState;
+       bool isOutputOnDevice() const;
+       bool operator==(const AgentData &rhs) const;
+       bool operator!=(const AgentData &rhs) const;
+       AgentData(const AgentData &other) = delete;
+       std::shared_ptr<const AgentData> clone() const;
+   
+    protected:
+       AgentData(std::shared_ptr<const ModelData> model, const AgentData &other);
+       AgentData(std::shared_ptr<const ModelData> model, const std::string &agent_name);
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_AGENTDATA_H_

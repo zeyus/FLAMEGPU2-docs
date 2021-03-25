@@ -1,0 +1,801 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDAAgent.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDAAgent.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_gpu_CUDAAgent.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudaagent-cu">
+<span id="program-listing-file-src-flamegpu-gpu-cudaagent-cu"></span><h1>Program Listing for File CUDAAgent.cu<a class="headerlink" href="#program-listing-for-file-cudaagent-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_gpu_CUDAAgent.cu.html#file-src-flamegpu-gpu-cudaagent-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAAgent.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/gpu/CUDAAgent.h&quot;
+
+#include &lt;cuda_runtime.h&gt;
+#include &lt;device_launch_parameters.h&gt;
+#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#include &lt;string&gt;
+// If MSVC earlier than VS 2019
+#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1920
+#include &lt;filesystem&gt;
+using std::tr2::sys::exists;
+using std::tr2::sys::path;
+#else
+// VS2019 requires this macro, as building pre c++17 cant use std::filesystem
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#include &lt;experimental/filesystem&gt;
+using std::experimental::filesystem::v1::exists;
+using std::experimental::filesystem::v1::path;
+#endif
+
+#include &quot;flamegpu/version.h&quot;
+#include &quot;flamegpu/gpu/CUDAFatAgent.h&quot;
+#include &quot;flamegpu/gpu/CUDAAgentStateList.h&quot;
+#include &quot;flamegpu/gpu/CUDAErrorChecking.h&quot;
+#include &quot;flamegpu/gpu/CUDASimulation.h&quot;
+
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/model/AgentFunctionDescription.h&quot;
+#include &quot;flamegpu/runtime/cuRVE/curve.h&quot;
+#include &quot;flamegpu/runtime/cuRVE/curve_rtc.h&quot;
+#include &quot;flamegpu/gpu/CUDAScatter.h&quot;
+#include &quot;flamegpu/util/compute_capability.cuh&quot;
+#include &quot;flamegpu/util/nvtx.h&quot;
+
+CUDAAgent::CUDAAgent(const AgentData&amp; description, const CUDASimulation &amp;_cuda_model)
+    : agent_description(description)  // This is a master agent, so it must create a new fat_agent
+    , fat_agent(std::make_shared&lt;CUDAFatAgent&gt;(agent_description))  // if we create fat agent, we&#39;re index 0
+    , fat_index(0)
+    , cuda_model(_cuda_model)
+    , TOTAL_AGENT_VARIABLE_SIZE(calcTotalVarSize(description)) {
+    // Generate state map from fat_agent
+    auto fatstate_map = fat_agent-&gt;getStateMap(fat_index);
+    for (auto &amp;state : description.states) {
+        // Find correct fat state
+        auto fatstate = fatstate_map.at(state);
+        // Construct a regular state map from this
+        auto slimstate = std::make_shared&lt;CUDAAgentStateList&gt;(fatstate, *this, fat_index, agent_description);
+        // Store in our map
+        state_map.emplace(state, slimstate);
+    }
+}
+CUDAAgent::CUDAAgent(
+    const AgentData &amp;description,
+    const CUDASimulation &amp;_cuda_model,
+    const std::unique_ptr&lt;CUDAAgent&gt; &amp;master_agent,
+    const std::shared_ptr&lt;SubAgentData&gt; &amp;mapping)
+    : agent_description(description)
+    , fat_agent(master_agent-&gt;getFatAgent())
+    , fat_index(fat_agent-&gt;getMappedAgentCount())
+    , cuda_model(_cuda_model)
+    , TOTAL_AGENT_VARIABLE_SIZE(calcTotalVarSize(description)) {
+    // This is next agent to be added to fat_agent, so it takes existing count
+    // Pass required info, so fat agent can generate new buffers and mappings
+    fat_agent-&gt;addSubAgent(agent_description, master_agent-&gt;getFatIndex(), mapping);
+    // Generate state map from fat_agent
+    auto fatstate_map = fat_agent-&gt;getStateMap(fat_index);
+    for (auto &amp;state : agent_description.states) {
+        // Find correct fat state
+        auto fatstate = fatstate_map.at(state);
+        // Construct a regular state map from this
+        auto slimstate = std::make_shared&lt;CUDAAgentStateList&gt;(fatstate, *this, fat_index, agent_description, mapping-&gt;states.find(state) != mapping-&gt;states.end(), mapping-&gt;variables);
+        // Store in our map
+        state_map.emplace(state, slimstate);
+    }
+}
+
+void CUDAAgent::mapRuntimeVariables(const AgentFunctionData&amp; func, const unsigned int &amp;instance_id) const {
+    // check the cuda agent state map to find the correct state list for functions starting state
+    auto sm = state_map.find(func.initial_state);
+
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
+            &quot;in CUDAAgent::mapRuntimeVariables()&quot;,
+            agent_description.name.c_str(), func.initial_state.c_str());
+    }
+
+    const Curve::VariableHash agent_hash = Curve::variableRuntimeHash(agent_description.name.c_str());
+    const Curve::VariableHash func_hash = Curve::variableRuntimeHash(func.name.c_str());
+    auto &amp;curve = Curve::getInstance();
+    const unsigned int agent_count = this-&gt;getStateSize(func.initial_state);
+    // loop through the agents variables to map each variable name using cuRVE
+    for (const auto &amp;mmp : agent_description.variables) {
+        // get a device pointer for the agent variable name
+        void* d_ptr = sm-&gt;second-&gt;getVariablePointer(mmp.first);
+
+        // map using curve
+        const Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+
+        // get the agent variable size
+        const size_t type_size = mmp.second.type_size * mmp.second.elements;
+
+        // maximum population num
+        if (func.func || func.condition) {
+#ifdef _DEBUG
+            const Curve::Variable cv = curve.registerVariableByHash(var_hash + agent_hash + func_hash + instance_id, d_ptr, type_size, agent_count);
+            if (cv != static_cast&lt;int&gt;((var_hash + agent_hash + func_hash + instance_id)%Curve::MAX_VARIABLES)) {
+                fprintf(stderr, &quot;Curve Warning: Agent Function &#39;%s&#39; Variable &#39;%s&#39; has a collision and may work improperly.\n&quot;, func.name.c_str(), mmp.first.c_str());
+            }
+#else
+            curve.registerVariableByHash(var_hash + agent_hash + func_hash + instance_id, d_ptr, type_size, agent_count);
+#endif
+        }
+        // Map RTC variables to agent function (these must be mapped before each function execution as the runtime pointer may have changed to the swapping)
+        if (!func.rtc_func_name.empty()) {
+            // Copy data to rtc header cache
+            auto&amp; rtc_header = getRTCHeader(func.name);
+            memcpy(rtc_header.getAgentVariableCachePtr(mmp.first.c_str()), &amp;d_ptr, sizeof(void*));
+        }
+
+        // Map RTC variables to agent function conditions (these must be mapped before each function execution as the runtime pointer may have changed to the swapping)
+        if (!func.rtc_func_condition_name.empty()) {
+            // Copy data to rtc header cache
+            std::string func_name = func.name + &quot;_condition&quot;;
+            auto&amp; rtc_header = getRTCHeader(func_name);
+            memcpy(rtc_header.getAgentVariableCachePtr(mmp.first.c_str()), &amp;d_ptr, sizeof(void*));
+        }
+    }
+}
+
+void CUDAAgent::unmapRuntimeVariables(const AgentFunctionData&amp; func, const unsigned int &amp;instance_id) const {
+    // Skip if RTC
+    if (!(func.func || func.condition))
+        return;
+    // check the cuda agent state map to find the correct state list for functions starting state
+    const auto &amp;sm = state_map.find(func.initial_state);
+
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
+            &quot;in CUDAAgent::unmapRuntimeVariables()&quot;,
+            agent_description.name.c_str(), func.initial_state.c_str());
+    }
+
+    const Curve::VariableHash agent_hash = Curve::variableRuntimeHash(agent_description.name.c_str());
+    const Curve::VariableHash func_hash = Curve::variableRuntimeHash(func.name.c_str());
+    // loop through the agents variables to map each variable name using cuRVE
+    for (const auto &amp;mmp : agent_description.variables) {
+        // get a device pointer for the agent variable name
+        // void* d_ptr = sm-&gt;second-&gt;getAgentListVariablePointer(mmp.first);
+
+        // unmap using curve
+        const Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+        Curve::getInstance().unregisterVariableByHash(var_hash + agent_hash + func_hash + instance_id);
+    }
+
+    // No current need to unmap RTC variables as they are specific to the agent functions and thus do not persist beyond the scope of a single function
+}
+
+void CUDAAgent::setPopulationData(const AgentVector&amp; population, const std::string&amp; state_name, CUDAScatter&amp; scatter, const unsigned int&amp; streamId, const cudaStream_t&amp; stream) {
+    // Validate agent state
+    auto our_state = state_map.find(state_name);
+    if (our_state == state_map.end()) {
+        if (state_name == ModelData::DEFAULT_STATE) {
+            THROW InvalidAgentState(&quot;Agent &#39;%s&#39; does not use the default state, so the state must be passed explicitly, &quot;
+                &quot;in CUDAAgent::setPopulationData()&quot;,
+                state_name.c_str(), population.getAgentName().c_str());
+        } else {
+            THROW InvalidAgentState(&quot;State &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+                &quot;in CUDAAgent::setPopulationData()&quot;,
+                state_name.c_str(), population.getAgentName().c_str());
+        }
+    }
+    // Copy population data
+    // This call hierarchy validates agent desc matches
+    our_state-&gt;second-&gt;setAgentData(population, scatter, streamId, stream);
+}
+void CUDAAgent::getPopulationData(AgentVector&amp; population, const std::string&amp; state_name) const {
+    // Validate agent state
+    auto our_state = state_map.find(state_name);
+    if (our_state == state_map.end()) {
+        if (state_name == ModelData::DEFAULT_STATE) {
+            THROW InvalidAgentState(&quot;Agent &#39;%s&#39; does not use the default state, so the state must be passed explicitly, &quot;
+                &quot;in CUDAAgent::getPopulationData()&quot;,
+                state_name.c_str(), population.getAgentName().c_str());
+        } else {
+            THROW InvalidAgentState(&quot;State &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+                &quot;in CUDAAgent::getPopulationData()&quot;,
+                state_name.c_str(), population.getAgentName().c_str());
+        }
+    }
+    // Copy population data
+    // This call hierarchy validates agent desc matches
+    our_state-&gt;second-&gt;getAgentData(population);
+}
+unsigned int CUDAAgent::getStateSize(const std::string &amp;state) const {
+    // check the cuda agent state map to find the correct state list for functions starting state
+    const auto &amp;sm = state_map.find(state);
+
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found, &quot;
+            &quot;in CUDAAgent::getStateSize()&quot;,
+            agent_description.name.c_str(), state.c_str());
+    }
+    return sm-&gt;second-&gt;getSize();
+}
+unsigned int CUDAAgent::getStateAllocatedSize(const std::string &amp;state) const {
+    // check the cuda agent state map to find the correct state list for functions starting state
+    const auto &amp;sm = state_map.find(state);
+
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found, &quot;
+            &quot;in CUDAAgent::getStateAllocatedSize()&quot;,
+            agent_description.name.c_str(), state.c_str());
+    }
+    return sm-&gt;second-&gt;getAllocatedSize();
+}
+const AgentData &amp;CUDAAgent::getAgentDescription() const {
+    return agent_description;
+}
+void *CUDAAgent::getStateVariablePtr(const std::string &amp;state_name, const std::string &amp;variable_name) {
+    // check the cuda agent state map to find the correct state list for functions starting state
+    const auto &amp;sm = state_map.find(state_name);
+
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found, &quot;
+            &quot;in CUDAAgent::getStateVariablePtr()&quot;,
+            agent_description.name.c_str(), state_name.c_str());
+    }
+    return sm-&gt;second-&gt;getVariablePointer(variable_name);
+}
+void CUDAAgent::processDeath(const AgentFunctionData&amp; func, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // Optionally process agent death
+    if (func.has_agent_death) {
+        // Agent death operates on all mapped vars, so handled by fat agent
+        fat_agent-&gt;processDeath(fat_index, func.initial_state, scatter, streamId, stream);
+    }
+}
+void CUDAAgent::transitionState(const std::string &amp;_src, const std::string &amp;_dest, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // All mapped vars need to transition too, so handled by fat agent
+    fat_agent-&gt;transitionState(fat_index, _src, _dest, scatter, streamId, stream);
+}
+void CUDAAgent::processFunctionCondition(const AgentFunctionData&amp; func, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // Optionally process function condition
+    if ((func.condition) || (!func.rtc_func_condition_name.empty())) {
+        // Agent function condition operates on all mapped vars, so handled by fat agent
+        fat_agent-&gt;processFunctionCondition(fat_index, func.initial_state, scatter, streamId, stream);
+    }
+}
+void CUDAAgent::scatterHostCreation(const std::string &amp;state_name, const unsigned int &amp;newSize, char *const d_inBuff, const VarOffsetStruct &amp;offsets, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    auto sm = state_map.find(state_name);
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
+            &quot;in CUDAAgent::scatterHostCreation()&quot;,
+            agent_description.name.c_str(), state_name.c_str());
+    }
+    sm-&gt;second-&gt;scatterHostCreation(newSize, d_inBuff, offsets, scatter, streamId, stream);
+}
+void CUDAAgent::scatterSort(const std::string &amp;state_name, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    auto sm = state_map.find(state_name);
+    if (sm == state_map.end()) {
+        THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
+            &quot;in CUDAAgent::scatterHostCreation()&quot;,
+            agent_description.name.c_str(), state_name.c_str());
+    }
+    sm-&gt;second-&gt;scatterSort(scatter, streamId, stream);
+}
+void CUDAAgent::mapNewRuntimeVariables(const CUDAAgent&amp; func_agent, const AgentFunctionData&amp; func, const unsigned int &amp;maxLen, CUDAScatter &amp;scatter, const unsigned int &amp;instance_id, const unsigned int &amp;streamId) {
+    // Confirm agent output is set
+    if (auto oa = func.agent_output.lock()) {
+        // check the cuda agent state map to find the correct state list for functions starting state
+        auto sm = state_map.find(func.agent_output_state);
+
+        if (sm == state_map.end()) {
+            THROW InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
+                &quot;in CUDAAgent::mapNewRuntimeVariables()&quot;,
+                agent_description.name.c_str(), func.agent_output_state.c_str());
+        }
+        // Notify scan flag that it might need resizing
+        // We need a 3rd array, because a function might combine agent birth, agent death and message output
+        scatter.Scan().resize(maxLen, CUDAScanCompaction::AGENT_OUTPUT, streamId);
+        // Ensure the scan flag is zeroed
+        scatter.Scan().zero(CUDAScanCompaction::AGENT_OUTPUT, streamId);
+
+        // Request a buffer for new
+        char *d_new_buffer = static_cast&lt;char*&gt;(fat_agent-&gt;allocNewBuffer(TOTAL_AGENT_VARIABLE_SIZE, maxLen, agent_description.variables.size()));
+
+        // Store buffer so we can release it later
+        {
+            std::lock_guard&lt;std::mutex&gt; guard(newBuffsMutex);
+            const auto rtn = newBuffs.emplace(func.initial_state, d_new_buffer);
+            if (!rtn.second) {
+                assert(false);  // Insertion happened (false if element already exists)
+            }
+        }
+
+        // Init the buffer to default values for variables
+        scatter.broadcastInit(
+            streamId,
+            0,
+            agent_description.variables,
+            d_new_buffer,
+            maxLen, 0);
+
+        // Map variables to curve
+        const Curve::VariableHash _agent_birth_hash = Curve::variableRuntimeHash(&quot;_agent_birth&quot;);
+        const Curve::VariableHash func_hash = Curve::variableRuntimeHash(func.name.c_str());
+        auto &amp;curve = Curve::getInstance();
+        // loop through the agents variables to map each variable name using cuRVE
+        for (const auto &amp;mmp : agent_description.variables) {
+            // map using curve
+            const Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+
+            // get the agent variable size
+            const size_t type_size = mmp.second.type_size * mmp.second.elements;
+
+            // get a device pointer for the agent variable name
+            void* d_ptr = d_new_buffer;
+
+            // Move the pointer along for next variable
+            d_new_buffer += type_size * maxLen;
+
+            // 64 bit align the new buffer start
+            if (reinterpret_cast&lt;size_t&gt;(d_new_buffer)%8) {
+                d_new_buffer += 8 - (reinterpret_cast&lt;size_t&gt;(d_new_buffer)%8);
+            }
+
+            // maximum population num
+            if (func.func) {
+#ifdef _DEBUG
+                const Curve::Variable cv = curve.registerVariableByHash(var_hash + (_agent_birth_hash ^ func_hash) + instance_id, d_ptr, type_size, maxLen);
+                if (cv != static_cast&lt;int&gt;((var_hash + (_agent_birth_hash ^ func_hash) + instance_id)%Curve::MAX_VARIABLES)) {
+                    fprintf(stderr, &quot;Curve Warning: Agent Function &#39;%s&#39; New Agent Variable &#39;%s&#39; has a collision and may work improperly.\n&quot;, func.name.c_str(), mmp.first.c_str());
+                }
+#else
+                curve.registerVariableByHash(var_hash + (_agent_birth_hash ^ func_hash) + instance_id, d_ptr, type_size, maxLen);
+#endif
+            } else  {
+                // Map RTC variables (these must be mapped before each function execution as the runtime pointer may have changed to the swapping)
+                // Copy data to rtc header cache
+                auto&amp; rtc_header = func_agent.getRTCHeader(func.name);
+                memcpy(rtc_header.getNewAgentVariableCachePtr(mmp.first.c_str()), &amp;d_ptr, sizeof(void*));
+            }
+        }
+    }
+}
+void CUDAAgent::unmapNewRuntimeVariables(const AgentFunctionData&amp; func, const unsigned int &amp;instance_id) {
+    // Confirm agent output is set
+    if (auto oa = func.agent_output.lock()) {
+        // Release new buffer
+        {
+            std::lock_guard&lt;std::mutex&gt; guard(newBuffsMutex);
+            const auto d_buff = newBuffs.find(func.initial_state);
+            if (d_buff != newBuffs.end()) {
+                fat_agent-&gt;freeNewBuffer(d_buff-&gt;second);
+                newBuffs.erase(d_buff);
+            } else {
+                assert(false);  // We don&#39;t have a new buffer reserved???
+            }
+        }
+        // Skip if RTC
+        if (!func.func)
+            return;
+        // Unmap curve
+        const Curve::VariableHash _agent_birth_hash = Curve::variableRuntimeHash(&quot;_agent_birth&quot;);
+        const Curve::VariableHash func_hash = Curve::variableRuntimeHash(func.name.c_str());
+        auto &amp;curve = Curve::getInstance();
+        // loop through the agents variables to map each variable name using cuRVE
+        for (const auto &amp;mmp : agent_description.variables) {
+            // unmap using curve
+            const Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+            curve.unregisterVariableByHash(var_hash + (_agent_birth_hash ^ func_hash) + instance_id);
+
+            // no need to unmap RTC variables
+        }
+    }
+}
+
+void CUDAAgent::scatterNew(const AgentFunctionData&amp; func, const unsigned int &amp;newSize, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // Confirm agent output is set
+    if (auto oa = func.agent_output.lock()) {
+        auto sm = state_map.find(func.agent_output_state);
+        if (sm == state_map.end()) {
+            THROW InvalidStateName(&quot;Agent &#39;%s&#39; does not contain state &#39;%s&#39;, &quot;
+                &quot;in CUDAAgent::scatterNew()\n&quot;,
+                agent_description.name.c_str(), func.agent_output_state.c_str());
+        }
+        // Find new buffer
+        void *newBuff = nullptr;
+        {
+            std::lock_guard&lt;std::mutex&gt; guard(newBuffsMutex);
+            const auto d_buff = newBuffs.find(func.initial_state);
+            if (d_buff != newBuffs.end()) {
+                newBuff = d_buff-&gt;second;
+            }
+        }
+        if (!newBuff) {
+            THROW InvalidAgentFunc(&quot;New buffer not present for function within init state: %s,&quot;
+                &quot; in CUDAAgent::scatterNew()\n&quot;,
+                func.initial_state.c_str());
+        }
+        sm-&gt;second-&gt;scatterNew(newBuff, newSize, scatter, streamId, stream);
+    }
+}
+void CUDAAgent::clearFunctionCondition(const std::string &amp;state) {
+    fat_agent-&gt;setConditionState(fat_index, state, 0);
+}
+
+void CUDAAgent::addInstantitateRTCFunction(const AgentFunctionData&amp; func, bool function_condition) {
+    // Generate the dynamic curve header
+    CurveRTCHost &amp;curve_header = *rtc_header_map.emplace(function_condition ? func.name + &quot;_condition&quot; : func.name, std::make_unique&lt;CurveRTCHost&gt;()).first-&gt;second;
+    // agent function hash
+    Curve::NamespaceHash agentname_hash = Curve::variableRuntimeHash(this-&gt;getAgentDescription().name.c_str());
+    Curve::NamespaceHash funcname_hash = Curve::variableRuntimeHash(func.name.c_str());
+    Curve::NamespaceHash agent_func_name_hash = agentname_hash + funcname_hash;
+
+    // set agent function variables in rtc curve
+    for (const auto&amp; mmp : func.parent.lock()-&gt;variables) {
+        curve_header.registerAgentVariable(mmp.first.c_str(), agent_func_name_hash, mmp.second.type.name(), mmp.second.type_size, mmp.second.elements);
+    }
+
+    // for normal agent function (e.g. not an agent function condition) append messages and agent outputs
+    if (!function_condition) {
+        // Set input message variables in curve
+        if (auto im = func.message_input.lock()) {
+            // get the message input hash
+            Curve::NamespaceHash msg_in_hash = Curve::variableRuntimeHash(im-&gt;name.c_str());
+            for (auto msg_in_var : im-&gt;variables) {
+                // register message variables using combined hash
+                curve_header.registerMessageInVariable(msg_in_var.first.c_str(), msg_in_hash + agent_func_name_hash,
+                msg_in_var.second.type.name(), msg_in_var.second.type_size, msg_in_var.second.elements, true, false);
+            }
+        }
+        // Set output message variables in curve
+        if (auto om = func.message_output.lock()) {
+            // get the message input hash
+            Curve::NamespaceHash msg_out_hash = Curve::variableRuntimeHash(om-&gt;name.c_str());
+            for (auto msg_out_var : om-&gt;variables) {
+                // register message variables using combined hash
+                curve_header.registerMessageOutVariable(msg_out_var.first.c_str(), msg_out_hash + agent_func_name_hash,
+                msg_out_var.second.type.name(), msg_out_var.second.type_size, msg_out_var.second.elements, false, true);
+            }
+        }
+        // Set agent output variables in curve
+        if (auto ao = func.agent_output.lock()) {
+            // get the message input hash
+            Curve::NamespaceHash agent_out_hash = Curve::variableRuntimeHash(&quot;_agent_birth&quot;);
+            for (auto agent_out_var : ao-&gt;variables) {
+                // register message variables using combined hash
+                curve_header.registerNewAgentVariable(agent_out_var.first.c_str(), agent_out_hash + funcname_hash,
+                agent_out_var.second.type.name(), agent_out_var.second.type_size, agent_out_var.second.elements, false, true);
+            }
+        }
+    }
+
+    // Set Environment variables in curve
+    {
+        // Scope the mutex
+        auto lock = EnvironmentManager::getInstance().getSharedLock();
+        const auto &amp;prop_map = EnvironmentManager::getInstance().getPropertiesMap();
+        for (auto p : prop_map) {
+            if (p.first.first == cuda_model.getInstanceID()) {
+                const char* variableName = p.first.second.c_str();
+                const char* type = p.second.type.name();
+                unsigned int elements = p.second.elements;
+                ptrdiff_t offset = p.second.rtc_offset;
+                curve_header.registerEnvVariable(variableName, cuda_model.getInstanceID(), offset, type, p.second.length/elements, elements);
+            }
+        }
+        // Set mapped environment variables in curve
+        for (const auto mp : EnvironmentManager::getInstance().getMappedProperties()) {
+            if (mp.first.first == cuda_model.getInstanceID()) {
+                auto p = prop_map.at(mp.second.masterProp);
+                const char* variableName = mp.second.masterProp.second.c_str();
+                const char* type = p.type.name();
+                unsigned int elements = p.elements;
+                ptrdiff_t offset = p.rtc_offset;
+                curve_header.registerEnvVariable(variableName, cuda_model.getInstanceID(), offset, type, p.length/elements, elements);
+            }
+        }
+    }
+
+    // get the dynamically generated header from curve rtc
+    std::string curve_dynamic_header = curve_header.getDynamicHeader();
+
+    // output to disk if OUTPUT_RTC_DYNAMIC_FILES macro is set
+#ifdef OUTPUT_RTC_DYNAMIC_FILES
+        // create string for agent function implementation
+        std::string func_impl = std::string(func.rtc_func_name).append(&quot;_impl&quot;);
+        // curve
+        std::ofstream file_curve_rtc_header;
+        std::string file_curve_rtc_header_filename = func_impl.c_str();
+        if (function_condition)
+            file_curve_rtc_header_filename.append(&quot;_condition&quot;);
+        file_curve_rtc_header_filename.append(&quot;_curve_rtc_dynamic.h&quot;);
+        file_curve_rtc_header.open(file_curve_rtc_header_filename);
+        // Remove first line as it is the filename, which misaligns profiler
+        std::string out_s = curve_dynamic_header;
+        out_s.erase(0, out_s.find(&quot;\n&quot;) + 1);
+        file_curve_rtc_header &lt;&lt; out_s;
+        file_curve_rtc_header.close();
+        // agent function
+        std::ofstream agent_function_file;
+        std::string agent_function_filename = func_impl.c_str();
+        if (function_condition)
+            agent_function_filename.append(&quot;_condition&quot;);
+        agent_function_filename.append(&quot;.cu&quot;);
+        agent_function_file.open(agent_function_filename);
+        // Remove first line as it is the filename, which misaligns profiler
+        out_s = func.rtc_source;
+        out_s.erase(0, out_s.find(&quot;\n&quot;) + 1);
+        agent_function_file &lt;&lt; out_s;
+        agent_function_file.close();
+#endif
+
+    JitifyCache &amp;jitify = JitifyCache::getInstance();
+    // switch between normal agent function and agent function condition
+    if (!function_condition) {
+        const std::string t_func_impl = std::string(func.rtc_func_name).append(&quot;_impl&quot;);
+        const std::vector&lt;std::string&gt; template_args = { t_func_impl.c_str(), func.msg_in_type.c_str(), func.msg_out_type.c_str() };
+        auto kernel_inst = jitify.loadKernel(func.rtc_func_name, template_args, func.rtc_source, curve_dynamic_header);
+        // add kernel instance to map
+        rtc_func_map.insert(CUDARTCFuncMap::value_type(func.name, std::move(kernel_inst)));
+    } else {
+        const std::string t_func_impl = std::string(func.rtc_func_condition_name).append(&quot;_cdn_impl&quot;);
+        const std::vector&lt;std::string&gt; template_args = { t_func_impl.c_str() };
+        auto kernel_inst = jitify.loadKernel(func.rtc_func_name + &quot;_condition&quot;, template_args, func.rtc_condition_source, curve_dynamic_header);
+        // add kernel instance to map
+        rtc_func_map.insert(CUDARTCFuncMap::value_type(func.name + &quot;_condition&quot;, std::move(kernel_inst)));
+    }
+}
+
+const jitify::experimental::KernelInstantiation&amp; CUDAAgent::getRTCInstantiation(const std::string &amp;function_name) const {
+    CUDARTCFuncMap::const_iterator mm = rtc_func_map.find(function_name);
+    if (mm == rtc_func_map.end()) {
+        THROW InvalidAgentFunc(&quot;Function name &#39;%s&#39; is not a runtime compiled agent function in agent &#39;%s&#39;, &quot;
+            &quot;in CUDAAgent::getRTCInstantiation()\n&quot;,
+            function_name.c_str(), agent_description.name.c_str());
+    }
+
+    return *mm-&gt;second;
+}
+CurveRTCHost&amp; CUDAAgent::getRTCHeader(const std::string&amp; function_name) const {
+    CUDARTCHeaderMap::const_iterator mm = rtc_header_map.find(function_name);
+    if (mm == rtc_header_map.end()) {
+        THROW InvalidAgentFunc(&quot;Function name &#39;%s&#39; is not a runtime compiled agent function in agent &#39;%s&#39;, &quot;
+            &quot;in CUDAAgent::getRTCHeader()\n&quot;,
+            function_name.c_str(), agent_description.name.c_str());
+    }
+
+    return *mm-&gt;second;
+}
+
+const CUDAAgent::CUDARTCFuncMap&amp; CUDAAgent::getRTCFunctions() const {
+    return rtc_func_map;
+}
+
+void CUDAAgent::initUnmappedVars(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    for (auto &amp;s : state_map) {
+        s.second-&gt;initUnmappedVars(scatter, streamId, stream);
+    }
+}
+void CUDAAgent::cullUnmappedStates() {
+    for (auto &amp;s : state_map) {
+        if (!s.second-&gt;getIsSubStatelist()) {
+            s.second-&gt;clear();
+        }
+    }
+}
+void CUDAAgent::cullAllStates() {
+    for (auto &amp;s : state_map) {
+        s.second-&gt;clear();
+    }
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

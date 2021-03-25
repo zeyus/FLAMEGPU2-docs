@@ -1,0 +1,56 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDAMessageList.h:
+
+Program Listing for File CUDAMessageList.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDAMessageList.h>` (``include/flamegpu/gpu/CUDAMessageList.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDAMESSAGELIST_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDAMESSAGELIST_H_
+   
+   #include <string>
+   #include <map>
+   #include <utility>
+   
+   class CUDAScatter;
+   class CUDAMessage;
+   
+   // #define UNIFIED_GPU_MEMORY
+   
+   typedef std::map <std::string, void*> CUDAMsgMap;
+   typedef std::pair <std::string, void*> CUDAMsgMapPair;
+   
+   class CUDAMessageList {
+    public:
+       explicit CUDAMessageList(CUDAMessage& cuda_message, CUDAScatter &scatter, const unsigned int &streamId);
+       virtual ~CUDAMessageList();
+   
+       void cleanupAllocatedData();
+       void* getReadMessageListVariablePointer(std::string variable_name);
+       void* getWriteMessageListVariablePointer(std::string variable_name);
+   
+       void zeroMessageData();
+       virtual void swap();
+       virtual unsigned int scatter(const unsigned int &newCount, CUDAScatter &scatter, const unsigned int &streamId, const bool &append);
+       virtual unsigned int scatterAll(const unsigned int &newCount, CUDAScatter &scatter, const unsigned int &streamId);
+       const CUDAMsgMap &getReadList() { return d_list; }
+       const CUDAMsgMap &getWriteList() { return d_swap_list; }
+   
+    protected:
+        void allocateDeviceMessageList(CUDAMsgMap &Message_list);
+        void releaseDeviceMessageList(CUDAMsgMap &Message_list);
+        void zeroDeviceMessageList(CUDAMsgMap &Message_list);
+   
+    private:
+       CUDAMsgMap d_list;
+       CUDAMsgMap d_swap_list;
+       const CUDAMessage& message;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDAMESSAGELIST_H_

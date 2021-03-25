@@ -1,0 +1,509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File RunPlan.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File RunPlan.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_sim_RunPlan.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-runplan-h">
+<span id="program-listing-file-include-flamegpu-sim-runplan-h"></span><h1>Program Listing for File RunPlan.h<a class="headerlink" href="#program-listing-for-file-runplan-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_sim_RunPlan.h.html#file-include-flamegpu-sim-runplan-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/sim/RunPlan.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_SIM_RUNPLAN_H_
+#define INCLUDE_FLAMEGPU_SIM_RUNPLAN_H_
+
+#include &lt;unordered_map&gt;
+#include &lt;string&gt;
+#include &lt;typeinfo&gt;
+#include &lt;vector&gt;
+#include &lt;memory&gt;
+
+#include &quot;flamegpu/model/EnvironmentDescription.h&quot;
+#include &quot;flamegpu/util/Any.h&quot;
+#include &quot;flamegpu/gpu/CUDAEnsemble.h&quot;
+
+
+class ModelDescription;
+class RunPlanVec;
+class RunPlan {
+    friend class RunPlanVec;
+    friend class SimRunner;
+    friend class jsonLogger;
+    friend class xmlLogger;
+
+ public:
+    explicit RunPlan(const ModelDescription &amp;environment);
+    RunPlan&amp; operator=(const RunPlan&amp; other);
+
+    void setRandomSimulationSeed(const unsigned int &amp;random_seed);
+    void setSteps(const unsigned int &amp;steps);
+    void setOutputSubdirectory(const std::string &amp;subdir);
+    template&lt;typename T&gt;
+    void setProperty(const std::string &amp;name, const T&amp;value);
+    template&lt;typename T, EnvironmentManager::size_type N&gt;
+    void setProperty(const std::string &amp;name, const std::array&lt;T, N&gt; &amp;value);
+    template&lt;typename T&gt;
+    void setProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;value);
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    void setPropertyArray(const std::string &amp;name, const EnvironmentManager::size_type &amp;length, const std::vector&lt;T&gt; &amp;value);
+#endif
+
+    unsigned int getRandomSimulationSeed() const;
+    unsigned int getSteps() const;
+    std::string getOutputSubdirectory() const;
+
+    template&lt;typename T&gt;
+    T getProperty(const std::string &amp;name) const;
+    template&lt;typename T, EnvironmentManager::size_type N&gt;
+    std::array&lt;T, N&gt; getProperty(const std::string &amp;name) const;
+    template&lt;typename T&gt;
+    T getProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index) const;
+#ifdef SWIG
+
+    template&lt;typename T&gt;
+    std::vector&lt;T&gt; getPropertyArray(const std::string &amp;name);
+#endif
+
+    RunPlanVec operator+(const RunPlan&amp; rhs) const;
+    RunPlanVec operator+(const RunPlanVec&amp; rhs) const;
+    RunPlanVec operator*(const unsigned int&amp; rhs) const;
+
+ private:
+    explicit RunPlan(const std::shared_ptr&lt;const std::unordered_map&lt;std::string, EnvironmentDescription::PropData&gt;&gt; &amp;environment, const bool &amp;allow_0);
+    unsigned int random_seed;
+    unsigned int steps;
+    std::string output_subdirectory;
+    std::unordered_map&lt;std::string, Any&gt; property_overrides;
+    // This needs to be shared_ptr, reference goes out of scope, otherwise have a copy of the map per RunPlan
+    std::shared_ptr&lt;const std::unordered_map&lt;std::string, EnvironmentDescription::PropData&gt;&gt; environment;
+    bool allow_0_steps;
+};
+
+template&lt;typename T&gt;
+void RunPlan::setProperty(const std::string &amp;name, const T&amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != 1) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array with %u elements, array method should be used, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements);
+    }
+    // Store property
+    property_overrides.emplace(name, Any(&amp;value, sizeof(T), typeid(T), 1));
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+void RunPlan::setProperty(const std::string &amp;name, const std::array&lt;T, N&gt; &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != N) {
+        THROW InvalidEnvPropertyType(&quot;Environment property array &#39;%s&#39; length mismatch %u != %u &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements, N);
+    }
+    // Store property
+    property_overrides.emplace(name, Any(value.data(), sizeof(T) * N, typeid(T), N));
+}
+template&lt;typename T&gt;
+void RunPlan::setProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index, const T &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements &gt;= index) {
+        throw std::out_of_range(&quot;Environment property array index out of bounds &quot;
+            &quot;in RunPlan::setProperty()\n&quot;);
+    }
+    // Check whether array already exists in property overrides
+    auto it2 = property_overrides.find(name);
+    if (it2 == property_overrides.end()) {
+        // Clone default property first
+        it2 = property_overrides.emplace(name, it-&gt;second.data).first;
+    }
+    // Store property
+    memcpy(static_cast&lt;T*&gt;(it2-&gt;second.ptr) + index, &amp;value, sizeof(T));
+}
+#ifdef SWIG
+template&lt;typename T&gt;
+void RunPlan::setPropertyArray(const std::string &amp;name, const EnvironmentManager::size_type &amp;N, const std::vector&lt;T&gt; &amp;value) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != N) {
+        THROW InvalidEnvProperty(&quot;Environment property array &#39;%s&#39; length mismatch %u != %u, &quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements, N);
+    }
+    if (value.size() != N) {
+        THROW InvalidEnvProperty(&quot;Environment property array length does not match the value provided, %u != %llu,&quot;
+            &quot;in RunPlan::setProperty()\n&quot;,
+            name.c_str(), value.size(), N);
+    }
+    // Store property
+    property_overrides.emplace(name, Any(value.data(), sizeof(T) * N, typeid(T), N));
+}
+#endif
+
+template&lt;typename T&gt;
+T RunPlan::getProperty(const std::string &amp;name) const {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != 1) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; is an array with %u elements, array method should be used, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements);
+    }
+    // Check whether property already exists in property overrides
+    const auto it2 = property_overrides.find(name);
+    if (it2 == property_overrides.end())
+      return *static_cast&lt;T *&gt;(it2-&gt;second.ptr);
+    return *static_cast&lt;T *&gt;(it-&gt;second.data.ptr);
+}
+template&lt;typename T, EnvironmentManager::size_type N&gt;
+std::array&lt;T, N&gt; RunPlan::getProperty(const std::string &amp;name) const {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements != N) {
+        THROW InvalidEnvPropertyType(&quot;Environment property array &#39;%s&#39; length mismatch %u != %u &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.elements, N);
+    }
+    // Check whether array already exists in property overrides
+    const auto it2 = property_overrides.find(name);
+    std::array&lt;T, N&gt; rtn;
+    if (it2 == property_overrides.end()) {
+        memcpy(rtn.data(), it2-&gt;second.ptr, it2-&gt;second.length);
+    } else {
+        memcpy(rtn.data(), it-&gt;second.data.ptr, it-&gt;second.data.length);
+    }
+    return rtn;
+}
+template&lt;typename T&gt;
+T RunPlan::getProperty(const std::string &amp;name, const EnvironmentManager::size_type &amp;index) const {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    if (it-&gt;second.data.elements &gt;= index) {
+        throw std::out_of_range(&quot;Environment property array index out of bounds &quot;
+            &quot;in RunPlan::getProperty()\n&quot;);
+    }
+    // Check whether property already exists in property overrides
+    const auto it2 = property_overrides.find(name);
+    if (it2 == property_overrides.end())
+      return static_cast&lt;T *&gt;(it2-&gt;second.ptr)[index];
+    return static_cast&lt;T *&gt;(it-&gt;second.data.ptr)[index];
+}
+#ifdef SWIG
+
+template&lt;typename T&gt;
+std::vector&lt;T&gt; RunPlan::getPropertyArray(const std::string &amp;name) {
+    // Validation
+    const auto it = environment-&gt;find(name);
+    if (it == environment-&gt;end()) {
+        THROW InvalidEnvProperty(&quot;Environment description does not contain property &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str());
+    }
+    if (it-&gt;second.data.type != std::type_index(typeid(T))) {
+        THROW InvalidEnvPropertyType(&quot;Environment property &#39;%s&#39; type mismatch &#39;%s&#39; != &#39;%s&#39;, &quot;
+            &quot;in RunPlan::getProperty()\n&quot;,
+            name.c_str(), it-&gt;second.data.type.name(), std::type_index(typeid(T)).name());
+    }
+    // Check whether array already exists in property overrides
+    const auto it2 = property_overrides.find(name);
+    std::vector&lt;T&gt; rtn(it-&gt;second.data.elements);
+    if (it2 == property_overrides.end()) {
+        memcpy(rtn.data(), it2-&gt;second.ptr, it2-&gt;second.length);
+    } else {
+        memcpy(rtn.data(), it-&gt;second.data.ptr, it-&gt;second.data.length);
+    }
+    return rtn;
+}
+#endif
+
+#endif  // INCLUDE_FLAMEGPU_SIM_RUNPLAN_H_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

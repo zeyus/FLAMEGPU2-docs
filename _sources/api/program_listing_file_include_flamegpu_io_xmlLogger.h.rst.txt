@@ -1,0 +1,52 @@
+
+.. _program_listing_file_include_flamegpu_io_xmlLogger.h:
+
+Program Listing for File xmlLogger.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_xmlLogger.h>` (``include/flamegpu/io/xmlLogger.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_XMLLOGGER_H_
+   #define INCLUDE_FLAMEGPU_IO_XMLLOGGER_H_
+   
+   #include <string>
+   #include <typeindex>
+   
+   #include "flamegpu/io/Logger.h"
+   #include "flamegpu/util/Any.h"
+   
+   struct Any;
+   struct RunLog;
+   struct LogFrame;
+   class RunPlan;
+   namespace tinyxml2 {
+   class XMLNode;
+   class XMLDocument;
+   class XMLElement;
+   }  // namespace tinyxml2
+   
+   class xmlLogger : public Logger{
+    public:
+       xmlLogger(const std::string &outPath, bool prettyPrint, bool truncateFile);
+       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true) const override;
+       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true) const override;
+   
+    private:
+       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       tinyxml2::XMLNode *logConfig(tinyxml2::XMLDocument &doc, const RunLog &log) const;
+       tinyxml2::XMLNode *logConfig(tinyxml2::XMLDocument &doc, const RunPlan &plan) const;
+       tinyxml2::XMLNode *logSteps(tinyxml2::XMLDocument &doc, const RunLog &log) const;
+       tinyxml2::XMLNode *logExit(tinyxml2::XMLDocument &doc, const RunLog &log) const;
+       tinyxml2::XMLNode *writeLogFrame(tinyxml2::XMLDocument &doc, const LogFrame &log) const;
+       void writeAny(tinyxml2::XMLElement *element, const Any &value, const unsigned int &elements = 1) const;
+   
+       std::string out_path;
+       bool prettyPrint;
+       bool truncateFile;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_XMLLOGGER_H_

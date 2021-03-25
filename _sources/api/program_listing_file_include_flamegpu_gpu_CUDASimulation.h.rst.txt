@@ -1,0 +1,197 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDASimulation.h:
+
+Program Listing for File CUDASimulation.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDASimulation.h>` (``include/flamegpu/gpu/CUDASimulation.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_
+   #include <atomic>
+   #include <memory>
+   #include <vector>
+   #include <string>
+   #include <unordered_map>
+   #include <map>
+   
+   #include "flamegpu/exception/FGPUDeviceException.h"
+   #include "flamegpu/sim/Simulation.h"
+   
+   #include "flamegpu/gpu/CUDAScatter.h"
+   #include "flamegpu/gpu/CUDAEnsemble.h"
+   #include "flamegpu/runtime/utility/RandomManager.cuh"
+   #include "flamegpu/runtime/flamegpu_host_new_agent_api.h"
+   #include "flamegpu/visualiser/ModelVis.h"
+   
+   #ifdef _MSC_VER
+   #pragma warning(push, 2)
+   #include "jitify/jitify.hpp"
+   #pragma warning(pop)
+   #else
+   #include "jitify/jitify.hpp"
+   #endif
+   
+   class AgentVector;
+   class CUDAAgent;
+   class CUDAMessage;
+   class LoggingConfig;
+   class StepLoggingConfig;
+   
+   struct RunLog;
+   
+   class CUDASimulation : public Simulation {
+       friend class HostAgentInstance;
+       friend class SimRunner;
+       typedef std::unordered_map<std::string, std::unique_ptr<CUDAAgent>> CUDAAgentMap;
+       typedef std::unordered_map<std::string, std::unique_ptr<CUDAMessage>> CUDAMessageMap;
+       typedef std::map<std::string, std::unique_ptr<CUDASimulation>> CUDASubModelMap;
+   
+    public:
+       struct Config {
+           int device_id = 0;
+           bool inLayerConcurrency = true;
+       };
+       explicit CUDASimulation(const ModelDescription& model, int argc = 0, const char** argv = nullptr);
+   
+    private:
+       explicit CUDASimulation(const std::shared_ptr<const ModelData> &model);
+       CUDASimulation(const std::shared_ptr<SubModelData>& submodel_desc, CUDASimulation *master_model);
+   
+    public:
+       virtual ~CUDASimulation();
+       void initFunctions() override;
+       bool step() override;
+       void exitFunctions() override;
+       void simulate() override;
+       void setPopulationData(AgentVector& population, const std::string &state_name = ModelData::DEFAULT_STATE) override;
+       void getPopulationData(AgentVector& population, const std::string& state_name = ModelData::DEFAULT_STATE) override;
+       CUDAAgent& getCUDAAgent(const std::string &agent_name) const;
+       AgentInterface &getAgent(const std::string &name) override;
+       CUDAMessage& getCUDAMessage(const std::string &message_name) const;
+       Config &CUDAConfig();
+       unsigned int getStepCounter() override;
+       void resetStepCounter() override;
+       const Config &getCUDAConfig() const;
+       void setStepLog(const StepLoggingConfig &stepConfig);
+       void setExitLog(const LoggingConfig &exitConfig);
+       const RunLog &getRunLog() const;
+   #ifdef VISUALISATION
+   
+       ModelVis &getVisualisation();
+   #endif
+   
+       void RTCSafeCudaMemcpyToSymbol(const void* symbol, const char* rtc_symbol_name, const void* src, size_t count, size_t offset = 0) const;
+   
+       void RTCSafeCudaMemcpyToSymbolAddress(void* ptr, const char* rtc_symbol_name, const void* src, size_t count, size_t offset = 0) const;
+   
+       float getElapsedTimeRTCInitialisation() const;
+   
+       float getElapsedTimeSimulation() const;
+   
+       float getElapsedTimeInitFunctions() const;
+   
+       float getElapsedTimeExitFunctions() const;
+   
+       std::vector<float> getElapsedTimeSteps() const;
+   
+   
+       float getElapsedTimeStep(unsigned int step) const;
+   
+       using Simulation::getInstanceID;
+   
+    protected:
+       void reset(bool submodelReset) override;
+       void applyConfig_derived() override;
+       bool checkArgs_derived(int argc, const char** argv, int &i) override;
+       void printHelp_derived() override;
+       void resetDerivedConfig() override;
+   
+    private:
+       void reseed(const unsigned int &seed);
+       unsigned int step_count;
+       float elapsedMillisecondsSimulation;
+       float elapsedMillisecondsInitFunctions;
+       float elapsedMillisecondsExitFunctions;
+       float elapsedMillisecondsRTCInitialisation;
+   
+       std::vector<float> elapsedMillisecondsPerStep;
+       void incrementStepCounter();
+       CUDAAgentMap agent_map;
+       Config config;
+       std::shared_ptr<const StepLoggingConfig> step_log_config;
+       std::shared_ptr<const LoggingConfig> exit_log_config;
+       std::unique_ptr<RunLog> run_log;
+       void resetLog();
+       void processStepLog();
+       void processExitLog();
+       CUDAMessageMap message_map;
+       CUDASubModelMap submodel_map;
+       std::vector<cudaStream_t> streams;
+   
+       void createStreams(const unsigned int nStreams);
+   
+       cudaStream_t getStream(const unsigned int n);
+   
+       void destroyStreams();
+   
+       void synchronizeAllStreams();
+   
+       void stepLayer(const std::shared_ptr<LayerData>& layer, const unsigned int layerIndex);
+       void layerHostFunctions(const std::shared_ptr<LayerData>& layer, const unsigned int layerIndex);
+   
+       void stepStepFunctions();
+       bool stepExitConditions();
+   
+   
+       struct Singletons {
+         Curve &curve;
+         RandomManager rng;
+         CUDAScatter scatter;
+         EnvironmentManager &environment;
+   #if !defined(SEATBELTS) || SEATBELTS
+   
+         DeviceExceptionManager exception;
+   #endif
+         Singletons(Curve &curve, EnvironmentManager &environment) : curve(curve), environment(environment) { }
+       } * singletons;
+       void initEnvironmentMgr();
+       bool singletonsInitialised;
+   
+       bool rtcInitialised;
+       int deviceInitialised = -1;
+   
+       void initialiseSingletons();
+       void initialiseRTC();
+       std::unique_ptr<FLAMEGPU_HOST_API> host_api;
+       void processHostAgentCreation(const unsigned int &streamId);
+   
+    public:
+       typedef std::vector<NewAgentStorage> AgentDataBuffer;
+       typedef std::unordered_map<std::string, AgentDataBuffer> AgentDataBufferStateMap;
+       typedef std::unordered_map<std::string, VarOffsetStruct> AgentOffsetMap;
+       typedef std::unordered_map<std::string, AgentDataBufferStateMap> AgentDataMap;
+   
+    private:
+       AgentOffsetMap agentOffsets;
+       AgentDataMap agentData;
+       void initOffsetsAndMap();
+   #ifdef VISUALISATION
+   
+       std::unique_ptr<ModelVis> visualisation;
+   #endif
+   
+       static std::atomic<int> active_instances;
+       static std::map<int, std::atomic<int>> active_device_instances;
+       static std::map<int, std::shared_timed_mutex> active_device_mutex;
+       static std::shared_timed_mutex active_device_maps_mutex;
+   
+    public:
+       static bool AUTO_CUDA_DEVICE_RESET;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDASIMULATION_H_

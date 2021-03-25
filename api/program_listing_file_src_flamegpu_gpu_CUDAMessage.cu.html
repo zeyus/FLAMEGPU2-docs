@@ -1,0 +1,495 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDAMessage.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDAMessage.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_gpu_CUDAMessage.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudamessage-cu">
+<span id="program-listing-file-src-flamegpu-gpu-cudamessage-cu"></span><h1>Program Listing for File CUDAMessage.cu<a class="headerlink" href="#program-listing-for-file-cudamessage-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_gpu_CUDAMessage.cu.html#file-src-flamegpu-gpu-cudamessage-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAMessage.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &lt;cuda_runtime.h&gt;
+#include &lt;device_launch_parameters.h&gt;
+
+#include &quot;flamegpu/gpu/CUDAMessage.h&quot;
+#include &quot;flamegpu/gpu/CUDAAgent.h&quot;
+#include &quot;flamegpu/gpu/CUDAMessageList.h&quot;
+#include &quot;flamegpu/gpu/CUDAErrorChecking.h&quot;
+#include &quot;flamegpu/gpu/CUDAScatter.h&quot;
+
+#include &quot;flamegpu/runtime/messaging/BruteForce.h&quot;
+#include &quot;flamegpu/model/AgentFunctionDescription.h&quot;
+#include &quot;flamegpu/runtime/cuRVE/curve.h&quot;
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/runtime/messaging.h&quot;
+
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#pragma warning(disable : 4706 4834)
+#include &lt;cub/cub.cuh&gt;
+#pragma warning(pop)
+#else
+#include &lt;cub/cub.cuh&gt;
+#endif
+
+CUDAMessage::CUDAMessage(const MsgBruteForce::Data&amp; description, const CUDASimulation&amp; cuda_model)
+    : message_description(description)
+    , message_count(0)
+    , max_list_size(0)
+    , truncate_messagelist_flag(true)
+    , pbm_construction_required(false)
+    , specialisation_handler(description.getSpecialisationHander(*this))
+    , cuda_model(cuda_model) {
+    // resize(0); // Think this call is redundant
+}
+
+CUDAMessage::~CUDAMessage(void) {
+    // @todo - this should not be done in a destructor, rather an explicit cleanup method.
+    specialisation_handler-&gt;freeMetaDataDevicePtr();
+}
+
+const MsgBruteForce::Data&amp; CUDAMessage::getMessageDescription() const {
+    return message_description;
+}
+
+void CUDAMessage::resize(unsigned int newSize, CUDAScatter &amp;scatter, const unsigned int &amp;streamId) {
+    // Only grow currently
+    if (newSize &gt; max_list_size) {
+        max_list_size = std::max&lt;unsigned int&gt;(max_list_size, 2u);
+        while (max_list_size &lt; newSize) {
+            max_list_size = static_cast&lt;unsigned int&gt;(max_list_size * 1.5);
+        }
+        // This drops old message data
+        message_list = std::unique_ptr&lt;CUDAMessageList&gt;(new CUDAMessageList(*this, scatter, streamId));
+        scatter.Scan().resize(max_list_size, CUDAScanCompaction::MESSAGE_OUTPUT, streamId);
+
+// #ifdef _DEBUG
+        zeroAllMessageData();
+// #endif
+    }
+}
+
+
+unsigned int CUDAMessage::getMaximumListSize() const {
+    return max_list_size;
+}
+unsigned int CUDAMessage::getMessageCount() const {
+    return message_count;
+}
+void CUDAMessage::setMessageCount(const unsigned int &amp;_message_count) {
+    if (_message_count &gt; max_list_size) {
+        THROW OutOfBoundsException(&quot;message count exceeds allocated message list size (%u &gt; %u) in CUDAMessage::setMessageCount().&quot;, _message_count, max_list_size);
+    }
+    message_count = _message_count;
+}
+void CUDAMessage::init(CUDAScatter &amp;scatter, const unsigned int &amp;streamId) {
+    specialisation_handler-&gt;init(scatter, streamId);
+}
+void CUDAMessage::zeroAllMessageData() {
+    if (!message_list) {
+        THROW InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
+    }
+    message_list-&gt;zeroMessageData();
+}
+
+void CUDAMessage::mapReadRuntimeVariables(const AgentFunctionData&amp; func, const CUDAAgent&amp; cuda_agent, const unsigned int &amp;instance_id) const {
+    // check that the message list has been allocated
+    if (!message_list) {
+        if (getMessageCount() == 0) {
+            return;  // Message list is empty, this should be safe
+        }
+        THROW InvalidMessageData(&quot;Error: Initial message list for message &#39;%s&#39; has not been allocated, &quot;
+            &quot;in CUDAMessage::mapRuntimeVariables()&quot;,
+            message_description.name.c_str());
+    }
+
+    const std::string message_name = message_description.name;
+
+    const Curve::VariableHash message_hash = Curve::getInstance().variableRuntimeHash(message_name.c_str());
+    const Curve::VariableHash agent_hash = Curve::getInstance().variableRuntimeHash(func.parent.lock()-&gt;name.c_str());
+    const Curve::VariableHash func_hash = Curve::getInstance().variableRuntimeHash(func.name.c_str());
+    auto &amp;curve = Curve::getInstance();
+    // loop through the message variables to map each variable name using cuRVE
+    for (const auto &amp;mmp : message_description.variables) {
+        // get a device pointer for the message variable name
+        void* d_ptr = message_list-&gt;getReadMessageListVariablePointer(mmp.first);
+
+        // map using curve
+        Curve::VariableHash var_hash = Curve::getInstance().variableRuntimeHash(mmp.first.c_str());
+
+        // get the message variable size
+        size_t size = mmp.second.type_size;
+
+        if (func.func) {
+            // maximum population size
+            unsigned int length = this-&gt;getMessageCount();  // check to see if it is equal to pop
+#ifdef _DEBUG
+            const Curve::Variable cv = curve.registerVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id, d_ptr, size, length);
+            if (cv != static_cast&lt;int&gt;((var_hash + agent_hash + func_hash + message_hash + instance_id)%Curve::MAX_VARIABLES)) {
+                fprintf(stderr, &quot;Curve Warning: Agent Function &#39;%s&#39; Message In Variable &#39;%s&#39; has a collision and may work improperly.\n&quot;, message_name.c_str(), mmp.first.c_str());
+            }
+#else
+            curve.registerVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id, d_ptr, size, length);
+#endif
+        } else {
+            // Map RTC variables (these must be mapped before each function execution as the runtime pointer may have changed to the swapping)
+            // Copy data to rtc header cache
+            auto &amp;rtc_header = cuda_agent.getRTCHeader(func.name);
+            memcpy(rtc_header.getMessageInVariableCachePtr(mmp.first.c_str()), &amp;d_ptr, sizeof(void*));
+        }
+    }
+}
+
+void *CUDAMessage::getReadPtr(const std::string &amp;var_name) {
+    if (!message_list) {
+        THROW InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
+    }
+    return message_list-&gt;getReadMessageListVariablePointer(var_name);
+}
+void CUDAMessage::mapWriteRuntimeVariables(const AgentFunctionData&amp; func, const CUDAAgent&amp; cuda_agent, const unsigned int &amp;writeLen, const unsigned int &amp;instance_id) const {
+    // check that the message list has been allocated
+    if (!message_list) {
+        THROW InvalidMessageData(&quot;Error: Initial message list for message &#39;%s&#39; has not been allocated, &quot;
+            &quot;in CUDAMessage::mapRuntimeVariables()&quot;,
+            message_description.name.c_str());
+    }
+
+    const std::string message_name = message_description.name;
+
+    const Curve::VariableHash message_hash = Curve::getInstance().variableRuntimeHash(message_name.c_str());
+    const Curve::VariableHash agent_hash = Curve::getInstance().variableRuntimeHash(func.parent.lock()-&gt;name.c_str());
+    const Curve::VariableHash func_hash = Curve::getInstance().variableRuntimeHash(func.name.c_str());
+    auto &amp;curve = Curve::getInstance();
+    // loop through the message variables to map each variable name using cuRVE
+    for (const auto &amp;mmp : message_description.variables) {
+        // get a device pointer for the message variable name
+        void* d_ptr = message_list-&gt;getWriteMessageListVariablePointer(mmp.first);
+
+        // map using curve
+        Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+
+        // get the message variable size
+        size_t size = mmp.second.type_size;
+
+        if (func.func) {
+            // maximum population size
+            unsigned int length = writeLen;  // check to see if it is equal to pop
+#ifdef _DEBUG
+            const Curve::Variable cv = curve.registerVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id, d_ptr, size, length);
+            if (cv != static_cast&lt;int&gt;((var_hash + agent_hash + func_hash + message_hash + instance_id)%Curve::MAX_VARIABLES)) {
+                fprintf(stderr, &quot;Curve Warning: Agent Function &#39;%s&#39; Message &#39;%s&#39; Out? Variable &#39;%s&#39; has a collision and may work improperly.\n&quot;, func.name.c_str(), message_name.c_str(), mmp.first.c_str());
+            }
+#else
+            curve.registerVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id, d_ptr, size, length);
+#endif
+        } else {
+            // Map RTC variables (these must be mapped before each function execution as the runtime pointer may have changed to the swapping)
+            // Copy data to rtc header cache
+            auto&amp; rtc_header = cuda_agent.getRTCHeader(func.name);
+            memcpy(rtc_header.getMessageOutVariableCachePtr(mmp.first.c_str()), &amp;d_ptr, sizeof(void*));
+        }
+    }
+
+    // Allocate the metadata if required. (This call should now be redundant)
+    specialisation_handler-&gt;allocateMetaDataDevicePtr();
+}
+
+void CUDAMessage::unmapRuntimeVariables(const AgentFunctionData&amp; func, const unsigned int &amp;instance_id) const {
+    // Skip if RTC
+    if (!func.func)
+        return;
+    if (!message_list) {
+      if (getMessageCount() == 0) {
+          return;  // Message list is empty, this should be safe
+      }
+    }
+    const std::string message_name = message_description.name;
+
+    const Curve::VariableHash message_hash = Curve::getInstance().variableRuntimeHash(message_name.c_str());
+    const Curve::VariableHash agent_hash = Curve::getInstance().variableRuntimeHash(func.parent.lock()-&gt;name.c_str());
+    const Curve::VariableHash func_hash = Curve::getInstance().variableRuntimeHash(func.name.c_str());
+    auto &amp;curve = Curve::getInstance();
+    // loop through the message variables to map each variable name using cuRVE
+    for (const auto &amp;mmp : message_description.variables) {
+        // unmap using curve
+        Curve::VariableHash var_hash = Curve::variableRuntimeHash(mmp.first.c_str());
+        curve.unregisterVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id);
+    }
+}
+void CUDAMessage::swap(bool isOptional, const unsigned int &amp;newMsgCount, CUDAScatter &amp;scatter, const unsigned int &amp;streamId) {
+    if (!message_list) {
+        THROW InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
+    }
+    if (isOptional &amp;&amp; message_description.optional_outputs &gt; 0) {
+        CUDAScanCompactionConfig &amp;scanCfg = scatter.Scan().Config(CUDAScanCompaction::Type::MESSAGE_OUTPUT, streamId);
+        if (newMsgCount &gt; scanCfg.cub_temp_size_max_list_size) {
+            if (scanCfg.hd_cub_temp) {
+                gpuErrchk(cudaFree(scanCfg.hd_cub_temp));
+            }
+            scanCfg.cub_temp_size = 0;
+            gpuErrchk(cub::DeviceScan::ExclusiveSum(
+                nullptr,
+                scanCfg.cub_temp_size,
+                scanCfg.d_ptrs.scan_flag,
+                scanCfg.d_ptrs.position,
+                max_list_size + 1));
+            gpuErrchk(cudaMalloc(&amp;scanCfg.hd_cub_temp,
+                scanCfg.cub_temp_size));
+            scanCfg.cub_temp_size_max_list_size = max_list_size;
+        }
+        gpuErrchk(cub::DeviceScan::ExclusiveSum(
+            scanCfg.hd_cub_temp,
+            scanCfg.cub_temp_size,
+            scanCfg.d_ptrs.scan_flag,
+            scanCfg.d_ptrs.position,
+            newMsgCount + 1));
+        // Scatter
+        // Update count
+        message_count = message_list-&gt;scatter(newMsgCount, scatter, streamId, !this-&gt;truncate_messagelist_flag);
+    } else {
+        if (this-&gt;truncate_messagelist_flag) {
+            message_count = newMsgCount;
+            message_list-&gt;swap();
+        } else {
+            assert(message_count + newMsgCount &lt;= max_list_size);
+            // We&#39;re appending so use our scatter kernel
+            message_count = message_list-&gt;scatterAll(newMsgCount, scatter, streamId);
+        }
+    }
+}
+void CUDAMessage::swap() {
+    if (!message_list) {
+        THROW InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
+    }
+    message_list-&gt;swap();
+}
+
+void CUDAMessage::buildIndex(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // Build the index if required.
+    if (pbm_construction_required) {
+        specialisation_handler-&gt;buildIndex(scatter, streamId, stream);
+        pbm_construction_required = false;
+    }
+}
+const void *CUDAMessage::getMetaDataDevicePtr() const {
+    return specialisation_handler-&gt;getMetaDataDevicePtr();
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

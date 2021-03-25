@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Template Function getAgentVariableMaxFunc &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Template Function getAgentVariableMeanFunc" href="function_AgentLoggingConfig_8h_1a11ad436cfc3112d166ca711efdcfce03.html" />
+    <link rel="prev" title="Function broadcastInitKernel" href="function_CUDAScatter_8cu_1ad0e5df29e2ccfd3cb38281a371923445.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#functions">Functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="function_AgentFunctionCondition_8h_1a47ca54a2b2a1a4ff01b59853d468f174.html">Template Function agent_function_condition_wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_AgentFunction_8h_1aa6252c4f539ff392b6d6565fa02b5dee.html">Template Function agent_function_wrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Bucket_8cu_1ad411a9b52a39b3482c88d6bc5005c2e8.html">Function atomicHistogram1D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial2D_8cu_1a4803ff49ef6c51bb86449015a0b29416.html">Function atomicHistogram2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial3D_8cu_1a79dec89e9f73adf8ab65f61f192af71d.html">Function atomicHistogram3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1ad0e5df29e2ccfd3cb38281a371923445.html">Function broadcastInitKernel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Template Function getAgentVariableMaxFunc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="function_AgentLoggingConfig_8h_1a11ad436cfc3112d166ca711efdcfce03.html">Template Function getAgentVariableMeanFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_AgentLoggingConfig_8h_1a6cce1bf751029688bf51c82794b1efa9.html">Template Function getAgentVariableMinFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_AgentLoggingConfig_8h_1a6979908886d53b7db4d4cb865a080be0.html">Template Function getAgentVariableStandardDevFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_AgentLoggingConfig_8h_1a5eae13fa168bf6042e32126c1576718f.html">Template Function getAgentVariableSumFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_factory_8h_1a81afe063354c59f6060cea591f6f8621.html">Function getFileExt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial2DDevice_8h_1af19d2ddcac610705837ad4ebe8bff200.html">Function getGridPosition2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial3DDevice_8h_1acda3573e9fb88178f3a3057ad219623a.html">Function getGridPosition3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial2DDevice_8h_1a2dbcbaeb346dca849039e10c8055ba71.html">Function getHash2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_Spatial3DDevice_8h_1a3c2d1d054ece42f4d60fa984cfe03997.html">Function getHash3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAErrorChecking_8h_1a0206fcbc81bf3b47462cf403fa946f76.html">Function gpuAssert(cudaError_t, const char *, int)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAErrorChecking_8h_1ae55389b3d60309e15ffc1bb038f7c633.html">Function gpuAssert(CUresult, const char *, int)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAErrorChecking_8h_1ad2c0e3fd76075313ead702b90f2edc98.html">Function gpuLaunchAssert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_RandomManager_8cu_1aeb94b8e6943e94f673bc4e241afc8b1d.html">Function init_curand</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_flamegpu__host__agent__api_8cu_1ad54e4c7c40bfdcdff9030f5b10821cb1.html">Function initToThreadIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1a13522c49050946627280ac04aa09795b.html">Function pbm_reorder_generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1ac49fa3a26bbff100b30564b2417ed22e.html">Function reorder_array_messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1ae13865bf77aeb6ede3c43564ea56506e.html">Function scatter_all_generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1a7587b3d33af84140618de16979717ef1.html">Template Function scatter_generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1a729b3009453012fe7380fdf0237032ac.html">Function scatter_new_agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_CUDAScatter_8cu_1abbaf5ae15e636b12fc79b11287d4ac02.html">Function scatter_position_generic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_flamegpu__host__agent__api_8cu_1a1894bf1c1cfb340011a627b584b58e99.html">Function sortBuffer_kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1compute__capability_1a6a0c6a9af734476948a1069fdfb4fcc4.html">Function util::compute_capability::checkComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1compute__capability_1a085432763085b2326c37b44bdf362d24.html">Function util::compute_capability::getComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1compute__capability_1a5f06f5158e6fd6daeb99851bb35a486a.html">Function util::compute_capability::minimumCompiledComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1filesystem_1a3721296c546b8b84635a9c2827604472.html">Function util::filesystem::recursive_create_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1nvtx_1ae3a1d4b608a45b8101ff2d42b40fff6a.html">Function util::nvtx::pop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="function_namespaceutil_1_1nvtx_1a7c313eda59f1d526521ee1fcd2acbc64.html">Function util::nvtx::push</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Template Function getAgentVariableMaxFunc</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/function_AgentLoggingConfig_8h_1ad3447966ce7917e4e57260422ce84153.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="template-function-getagentvariablemaxfunc">
+<span id="exhale-function-agentloggingconfig-8h-1ad3447966ce7917e4e57260422ce84153"></span><h1>Template Function getAgentVariableMaxFunc<a class="headerlink" href="#template-function-getagentvariablemaxfunc" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_sim_AgentLoggingConfig.h.html#file-include-flamegpu-sim-agentloggingconfig-h"><span class="std std-ref">File AgentLoggingConfig.h</span></a></p></li>
+</ul>
+<div class="section" id="function-documentation">
+<h2>Function Documentation<a class="headerlink" href="#function-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp function">
+<dt id="_CPPv4I0E23getAgentVariableMaxFunc3AnyR17HostAgentInstanceRKNSt6stringE">
+<span id="_CPPv3I0E23getAgentVariableMaxFuncR17HostAgentInstanceRKNSt6stringE"></span><span id="_CPPv2I0E23getAgentVariableMaxFuncR17HostAgentInstanceRKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="AgentLoggingConfig_8h_1ad3447966ce7917e4e57260422ce84153"></span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a> <code class="sig-name descname"><span class="pre">getAgentVariableMaxFunc</span></code><span class="sig-paren">(</span><a class="reference internal" href="classHostAgentInstance.html#_CPPv417HostAgentInstance" title="HostAgentInstance"><span class="pre">HostAgentInstance</span></a> <span class="pre">&amp;</span><em><span class="pre">ai</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0E23getAgentVariableMaxFunc3AnyR17HostAgentInstanceRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="function_AgentLoggingConfig_8h_1a11ad436cfc3112d166ca711efdcfce03.html" class="btn btn-neutral float-right" title="Template Function getAgentVariableMeanFunc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="function_CUDAScatter_8cu_1ad0e5df29e2ccfd3cb38281a371923445.html" class="btn btn-neutral float-left" title="Function broadcastInitKernel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File AgentVector.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File AgentVector.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_pop_AgentVector.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-agentvector-h">
+<span id="program-listing-file-include-flamegpu-pop-agentvector-h"></span><h1>Program Listing for File AgentVector.h<a class="headerlink" href="#program-listing-for-file-agentvector-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_pop_AgentVector.h.html#file-include-flamegpu-pop-agentvector-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/pop/AgentVector.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_POP_AGENTVECTOR_H_
+#define INCLUDE_FLAMEGPU_POP_AGENTVECTOR_H_
+
+#include &lt;string&gt;
+#include &lt;utility&gt;
+#include &lt;memory&gt;
+#include &lt;map&gt;
+
+#include &quot;flamegpu/pop/MemoryVector.h&quot;
+#include &quot;flamegpu/model/AgentData.h&quot;
+
+class AgentInstance;
+class AgentDescription;
+class AgentVector_CAgent;
+class AgentVector_Agent;
+
+class AgentVector {
+    static const float RESIZE_FACTOR;
+    friend class CUDAAgentStateList;
+
+ public:
+    typedef unsigned int size_type;
+    typedef AgentVector_Agent Agent;
+    typedef AgentVector_CAgent CAgent;
+    typedef std::map&lt;std::string, std::unique_ptr&lt;GenericMemoryVector&gt;&gt; AgentDataMap;
+
+    // member typedefs provided through inheriting from std::iterator
+    // They might all be wrong
+    class const_iterator;
+    class const_reverse_iterator;
+    class iterator : public std::iterator&lt;
+        std::input_iterator_tag,  // iterator_category
+        Agent,                    // value_type
+        size_type,                // difference_type
+        const Agent*,             // pointer
+        Agent                     // reference
+    &gt; {
+        friend class AgentVector;
+        const std::shared_ptr&lt;const AgentData&gt;&amp; _agent;
+        const std::weak_ptr&lt;AgentDataMap&gt; _data;
+        size_type _pos;
+     public:
+        operator AgentVector::const_iterator() const {
+            return const_iterator(_agent, _data, _pos);
+        }
+        iterator(const std::shared_ptr&lt;const AgentData&gt;&amp; agent, std::weak_ptr&lt;AgentDataMap&gt; data, size_type pos = 0)
+            : _agent(agent), _data(std::move(data)), _pos(pos) { }
+        iterator&amp; operator++() { ++_pos; return *this; }
+        iterator operator++(int) { iterator retval = *this; ++(*this); return retval; }
+        bool operator==(iterator other) const { return _pos == other._pos &amp;&amp;
+            (_data.lock() == other._data.lock() || (_data.lock() &amp;&amp; other._data.lock() &amp;&amp; *_data.lock() == *other._data.lock()));
+        }
+        bool operator!=(iterator other) const { return !(*this == other); }
+        Agent operator*() const;
+    };
+    class const_iterator : public std::iterator&lt;
+        std::input_iterator_tag,  // iterator_category
+        CAgent,                   // value_type
+        size_type,                // difference_type
+        const CAgent*,            // pointer
+        CAgent                    // reference
+    &gt; {
+        friend class AgentVector;
+        const std::shared_ptr&lt;const AgentData&gt; &amp;_agent;
+        const std::weak_ptr&lt;AgentDataMap&gt; _data;
+        size_type _pos;
+     public:
+        const_iterator(const std::shared_ptr&lt;const AgentData&gt;&amp; agent, std::weak_ptr&lt;AgentDataMap&gt; data, size_type pos = 0)
+            : _agent(agent), _data(std::move(data)), _pos(pos) { }
+        const_iterator&amp; operator++() { ++_pos; return *this; }
+        const_iterator operator++(int) { const_iterator retval = *this; ++(*this); return retval; }
+        bool operator==(const_iterator other) const { return _pos == other._pos &amp;&amp;
+            (_data.lock() == other._data.lock() || (_data.lock() &amp;&amp; other._data.lock() &amp;&amp; *_data.lock() == *other._data.lock()));
+        }
+        bool operator!=(const_iterator other) const { return !(*this == other); }
+        CAgent operator*() const;
+    };
+    class reverse_iterator : public std::iterator&lt;
+        std::input_iterator_tag,  // iterator_category
+        Agent,                    // value_type
+        size_type,                // difference_type
+        const Agent*,             // pointer
+        Agent                     // reference
+    &gt; {
+        friend class AgentVector;
+        const std::shared_ptr&lt;const AgentData&gt; &amp;_agent;
+        const std::weak_ptr&lt;AgentDataMap&gt; _data;
+        size_type _pos;
+     public:
+        operator AgentVector::const_reverse_iterator() const {
+            return const_reverse_iterator(_agent, _data, _pos);
+        }
+        explicit reverse_iterator(const std::shared_ptr&lt;const AgentData&gt;&amp; agent, std::weak_ptr&lt;AgentDataMap&gt; data, size_type pos = 0)
+            : _agent(agent), _data(std::move(data)), _pos(pos) { }
+        reverse_iterator&amp; operator++() { --_pos; return *this; }
+        reverse_iterator operator++(int) { reverse_iterator retval = *this; ++(*this); return retval; }
+        bool operator==(reverse_iterator other) const { return _pos == other._pos &amp;&amp;
+            (_data.lock() == other._data.lock() || (_data.lock() &amp;&amp; other._data.lock() &amp;&amp; *_data.lock() == *other._data.lock()));
+        }
+        bool operator!=(reverse_iterator other) const { return !(*this == other); }
+        Agent operator*() const;
+    };
+    class const_reverse_iterator : public std::iterator&lt;
+        std::input_iterator_tag,  // iterator_category
+        CAgent,                   // value_type
+        size_type,                // difference_type
+        const CAgent*,            // pointer
+        CAgent                    // reference
+    &gt; {
+        friend class AgentVector;
+        const std::shared_ptr&lt;const AgentData&gt;&amp; _agent;
+        const std::weak_ptr&lt;AgentDataMap&gt; _data;
+        size_type _pos;
+     public:
+        explicit const_reverse_iterator(const std::shared_ptr&lt;const AgentData&gt;&amp; agent, std::weak_ptr&lt;AgentDataMap&gt; data, size_type pos = 0)
+            : _agent(agent), _data(std::move(data)), _pos(pos) { }
+        const_reverse_iterator&amp; operator++() { --_pos; return *this; }
+        const_reverse_iterator operator++(int) { const_reverse_iterator retval = *this; ++(*this); return retval; }
+        bool operator==(const_reverse_iterator other) const { return _pos == other._pos &amp;&amp;
+            (_data.lock() == other._data.lock() || (_data.lock() &amp;&amp; other._data.lock() &amp;&amp; *_data.lock() == *other._data.lock()));
+        }
+        bool operator!=(const_reverse_iterator other) const { return !(*this == other); }
+        CAgent operator*() const;
+    };
+    explicit AgentVector(const AgentDescription &amp;agent_desc, size_type count = 0);
+    AgentVector(const AgentVector &amp;other);
+    AgentVector(AgentVector &amp;&amp;other) noexcept;
+    AgentVector&amp; operator=(const AgentVector &amp;other);
+    AgentVector&amp; operator=(AgentVector &amp;&amp;other) noexcept;
+
+    // Element access
+    Agent at(size_type pos);
+    CAgent at(size_type pos) const;
+    Agent operator[](size_type pos);
+    CAgent operator[](size_type pos) const;
+    Agent front();
+    CAgent front() const;
+    Agent back();
+    CAgent back() const;
+    template&lt;typename T&gt;
+    T *data(const std::string &amp;variable_name);
+    template&lt;typename T&gt;
+    const T* data(const std::string &amp;variable_name) const;
+    void* data(const std::string&amp; variable_name);
+    const void* data(const std::string&amp; variable_name) const;
+
+    // Iterators
+    iterator begin() noexcept;
+    const_iterator begin() const noexcept;
+    const_iterator cbegin() const noexcept;
+    iterator end() noexcept;
+    const_iterator end() const noexcept;
+    const_iterator cend() const noexcept;
+    reverse_iterator rbegin() noexcept;
+    const_reverse_iterator rbegin() const noexcept;
+    const_reverse_iterator crbegin() const noexcept;
+    reverse_iterator rend() noexcept;
+    const_reverse_iterator rend() const noexcept;
+    const_reverse_iterator crend() const noexcept;
+
+    // Capacity
+    bool empty() const;
+    size_type size() const;
+    static size_type max_size();
+    void reserve(size_type new_cap);
+    size_type capacity() const;
+    void shrink_to_fit();
+
+    // Modifiers
+    void clear();
+
+    iterator insert(const_iterator pos, const AgentInstance&amp; value);
+    iterator insert(size_type pos, const AgentInstance&amp; value);
+    iterator insert(const_iterator pos, const Agent&amp; value);
+    iterator insert(size_type pos, const Agent&amp; value);
+#ifdef SWIG
+    void py_insert(size_type pos, const AgentInstance&amp; value);
+    void py_insert(size_type pos, const Agent&amp; value);
+#endif
+
+    iterator insert(const_iterator pos, size_type count, const AgentInstance&amp; value);
+    iterator insert(size_type pos, size_type count, const AgentInstance&amp; value);
+    iterator insert(const_iterator pos, size_type count, const Agent&amp; value);
+    iterator insert(size_type pos, size_type count, const Agent&amp; value);
+#ifdef SWIG
+    void py_insert(size_type pos, size_type count, const AgentInstance&amp; value);
+    void py_insert(size_type pos, size_type count, const Agent&amp; value);
+#endif
+
+    template&lt;class InputIt&gt;
+    iterator insert(const_iterator pos, InputIt first, InputIt last);
+    template&lt;class InputIt&gt;
+    iterator insert(size_type pos, InputIt first, InputIt last);
+    iterator erase(const_iterator pos);
+    iterator erase(size_type pos);
+#ifdef SWIG
+    void py_erase(size_type pos);
+#endif
+
+    iterator erase(const_iterator first, const_iterator last);
+    iterator erase(size_type first, size_type last);
+#ifdef SWIG
+    void py_erase(size_type first, size_type last);
+#endif
+
+    void push_back(const AgentInstance&amp; value);
+    void push_back();
+    void pop_back();
+    void resize(size_type count);
+    void swap(AgentVector&amp; other) noexcept;
+    bool operator==(const AgentVector &amp;other) const;
+    bool operator!=(const AgentVector &amp;other) const;
+
+    // Util
+    std::string getAgentName() const { return agent-&gt;name; }
+    bool matchesAgentType(const AgentData &amp;other) const;
+    bool matchesAgentType(const AgentDescription&amp; other) const;
+    std::type_index getVariableType(const std::string&amp; variable_name) const;
+    const VariableMap &amp;getVariableMetaData() const;
+    std::string getInitialState() const;
+
+ private:
+    void resize(size_type count, bool init);
+    std::shared_ptr&lt;const AgentData&gt; agent;
+    size_type _size;
+    size_type _capacity;
+    std::shared_ptr&lt;AgentDataMap&gt; _data;
+};
+
+#include &quot;flamegpu/pop/AgentVector_Agent.h&quot;
+
+template&lt;typename T&gt;
+T* AgentVector::data(const std::string&amp; variable_name) {
+    // Is variable name found
+    const auto &amp;var = agent-&gt;variables.find(variable_name);
+    if (var == agent-&gt;variables.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), agent-&gt;name.c_str());
+    }
+    if (std::type_index(typeid(T)) != var-&gt;second.type) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), var-&gt;second.type.name(), typeid(T).name());
+    }
+    // Does the map have a vector
+    const auto&amp; map_it = _data-&gt;find(variable_name);
+    if (map_it != _data-&gt;end())
+        return static_cast&lt;T*&gt;(map_it-&gt;second-&gt;getDataPtr());
+    return nullptr;
+}
+template&lt;typename T&gt;
+const T* AgentVector::data(const std::string&amp; variable_name) const {
+    // Is variable name found
+    const auto&amp; var = agent-&gt;variables.find(variable_name);
+    if (var == agent-&gt;variables.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent &#39;%s&#39;, &quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), agent-&gt;name.c_str());
+    }
+    if (std::type_index(typeid(T)) != var-&gt;second.type) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentVector::data().&quot;,
+            variable_name.c_str(), var-&gt;second.type.name(), typeid(T).name());
+    }
+    // Does the map have a vector
+    const auto&amp; map_it = _data-&gt;find(variable_name);
+    if (map_it != _data-&gt;end())
+        return static_cast&lt;T*&gt;(map_it-&gt;second-&gt;getDataPtr());
+    return nullptr;
+}
+
+template&lt;class InputIt&gt;
+AgentVector::iterator AgentVector::insert(const_iterator pos, InputIt first, InputIt last) {
+    if (pos._agent != agent &amp;&amp; *pos._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided to pos, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            last._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    return insert(pos._pos, first, last);
+}
+
+template&lt;class InputIt&gt;
+AgentVector::iterator AgentVector::insert(size_type pos, InputIt first, InputIt last) {
+    // Insert elements inrange first-last before pos
+    if (first == last)
+        return iterator(agent, _data, pos);
+    // Confirm they are for the same agent type
+    if (first._agent != agent &amp;&amp; *first._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided to first, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            first._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    if (last._agent != agent &amp;&amp; *last._agent != *agent) {
+        THROW InvalidAgent(&quot;Agent description mismatch, &#39;%&#39; provided to last, &#39;%&#39; required, &quot;
+            &quot;in AgentVector::push_back().\n&quot;,
+            last._agent-&gt;name.c_str(), agent-&gt;name.c_str());
+    }
+    // Expand capacity if required
+    const size_type first_copy_index = first._pos &lt; last._pos ? first._pos : last._pos;
+    const size_type end_copy_index = first._pos &lt; last._pos ? last._pos : first._pos;
+    const size_type copy_count = end_copy_index - first_copy_index;
+    {
+        size_type new_capacity = _capacity;
+        assert((_capacity * RESIZE_FACTOR) + 1 &gt; _capacity);
+        while (_size + copy_count &gt; new_capacity) {
+            new_capacity = static_cast&lt;size_type&gt;(new_capacity * RESIZE_FACTOR) + 1;
+        }
+        resize(new_capacity, true);
+    }
+    // Get first index;
+    const size_type insert_index = pos;
+    // Fix each variable
+    auto first_data = first._data.lock();
+    if (!first_data) {
+        THROW ExpiredWeakPtr(&quot;The AgentVector which owns the passed iterators has been deallocated, &quot;
+            &quot;in AgentVector::insert().\n&quot;);
+    }
+    for (const auto&amp; v : agent-&gt;variables) {
+        const auto it = _data-&gt;find(v.first);
+        char* t_data = static_cast&lt;char*&gt;(it-&gt;second-&gt;getDataPtr());
+        const size_t variable_size = v.second.type_size * v.second.elements;
+        // Move all items after this index backwards count places
+        for (unsigned int i = _size - 1; i &gt;= insert_index; --i) {
+            // Copy items individually, incase the src and destination overlap
+            memcpy(t_data + (i + copy_count) * variable_size, t_data + i * variable_size, variable_size);
+        }
+        // Copy across item data
+        const auto other_it = first_data-&gt;find(v.first);
+        const char* o_data = static_cast&lt;const char*&gt;(other_it-&gt;second-&gt;getReadOnlyDataPtr());
+        memcpy(t_data + insert_index * variable_size, o_data + first_copy_index * variable_size, copy_count * variable_size);
+    }
+    // Increase size
+    _size += copy_count;
+    // Return iterator to first inserted item
+    return iterator(agent, _data, insert_index);
+}
+
+#ifdef SWIG
+void AgentVector::py_insert(size_type pos, const AgentInstance&amp; value) {
+    insert(pos, value);
+}
+void AgentVector::py_insert(size_type pos, const Agent&amp; value) {
+    insert(pos, value);
+}
+void AgentVector::py_insert(size_type pos, size_type count, const AgentInstance&amp; value) {
+    insert(pos, count, value);
+}
+void AgentVector::py_insert(size_type pos, size_type count, const Agent&amp; value) {
+    insert(pos, count, value);
+}
+void AgentVector::py_erase(size_type pos) {
+    erase(pos);
+}
+void AgentVector::py_erase(size_type first, size_type last) {
+    erase(first, last);
+}
+#endif
+#endif  // INCLUDE_FLAMEGPU_POP_AGENTVECTOR_H_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

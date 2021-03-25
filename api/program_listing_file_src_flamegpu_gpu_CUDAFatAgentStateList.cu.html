@@ -1,0 +1,478 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDAFatAgentStateList.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDAFatAgentStateList.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_gpu_CUDAFatAgentStateList.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudafatagentstatelist-cu">
+<span id="program-listing-file-src-flamegpu-gpu-cudafatagentstatelist-cu"></span><h1>Program Listing for File CUDAFatAgentStateList.cu<a class="headerlink" href="#program-listing-for-file-cudafatagentstatelist-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_gpu_CUDAFatAgentStateList.cu.html#file-src-flamegpu-gpu-cudafatagentstatelist-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAFatAgentStateList.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/gpu/CUDAFatAgentStateList.h&quot;
+#include &quot;flamegpu/gpu/CUDAScatter.h&quot;
+
+CUDAFatAgentStateList::CUDAFatAgentStateList(const AgentData&amp; description)
+    : aliveAgents(0)
+    , disabledAgents(0)
+    , bufferLen(0) {
+    // Initial statelist, must be from agent index 0
+    // State lists begin unallocated, allocated on first use
+    for (const auto &amp;v : description.variables) {
+        AgentVariable variable = {0u, v.first};
+        variables.emplace(variable, std::make_shared&lt;VariableBuffer&gt;(v.second.type, v.second.type_size, v.second.default_value, v.second.elements));
+    }
+    // All initial variables are unique
+    for (const auto &amp;s : variables)
+        variables_unique.push_back(s.second);
+}
+CUDAFatAgentStateList::CUDAFatAgentStateList(const CUDAFatAgentStateList&amp; other)
+    : aliveAgents(other.aliveAgents)
+    , disabledAgents(other.disabledAgents)
+    , bufferLen(0) {
+    assert(other.bufferLen == 0);
+    std::unordered_map&lt;void*, std::shared_ptr&lt;VariableBuffer&gt;&gt; var_map;
+    // Copy all unique variables, create a temporary map of old unique var to new unique var
+    for (const auto &amp;v : other.variables_unique) {
+        assert(v-&gt;data == nullptr);
+        // Ensure that copy constructor is used
+        auto t_var = std::make_shared&lt;VariableBuffer&gt;(*v.get());
+        variables_unique.push_back(t_var);
+        var_map.emplace(v.get(), t_var);
+    }
+    // Using var map, solve variable pairings
+    for (const auto &amp;v : other.variables) {
+        variables.emplace(v.first, var_map.at(v.second.get()));
+    }
+}
+CUDAFatAgentStateList::~CUDAFatAgentStateList() {
+    for (const auto &amp;buff : variables_unique) {
+        gpuErrchk(cudaFree(buff-&gt;data));
+        gpuErrchk(cudaFree(buff-&gt;data_swap));
+    }
+}
+void CUDAFatAgentStateList::addSubAgentVariables(
+  const AgentData &amp;description,
+  const unsigned int &amp;master_fat_index,
+  const unsigned int &amp;sub_fat_index,
+  const std::shared_ptr&lt;SubAgentData&gt; &amp;mapping) {
+    for (const auto &amp;v : description.variables) {
+        const auto &amp;mapped = mapping-&gt;variables.find(v.first);
+        AgentVariable sub_var = {sub_fat_index, v.first};
+        if (mapped != mapping-&gt;variables.end()) {
+            // Variable is mapped, so use existing variable
+            AgentVariable master_var = {master_fat_index, mapped-&gt;second};
+            variables.emplace(sub_var, variables.at(master_var));
+        } else {
+            // Variable is not mapped, so create new variable
+            auto t_buff = std::make_shared&lt;VariableBuffer&gt;(v.second.type, v.second.type_size, v.second.default_value, v.second.elements);
+            variables.emplace(sub_var, t_buff);
+            variables_unique.push_back(t_buff);
+        }
+    }
+}
+std::shared_ptr&lt;VariableBuffer&gt; CUDAFatAgentStateList::getVariableBuffer(const unsigned int &amp;fat_index, const std::string &amp;name) {
+    const AgentVariable variable = {fat_index, name};
+    return variables.at(variable);
+}
+void CUDAFatAgentStateList::resize(const unsigned int &amp;minSize, const bool &amp;retainData) {
+    // If already big enough return
+    if (minSize &lt;= bufferLen)
+        return;
+
+    // else, decide new size
+    unsigned int newSize = bufferLen &gt; 1024 ? bufferLen : 1024;
+    while (newSize &lt; minSize)
+        newSize = static_cast&lt;unsigned int&gt;(newSize * 1.25f);
+
+    // Resize all buffers in fat state list
+    for (auto &amp;buff : variables_unique) {
+        const size_t var_size = buff-&gt;type_size * buff-&gt;elements;
+        const size_t buff_size = var_size * newSize;
+        // Free old swap buffer
+        gpuErrchk(cudaFree(buff-&gt;data_swap));
+        // Allocate new buffer to swap
+        gpuErrchk(cudaMalloc(&amp;buff-&gt;data_swap, buff_size));
+        // Copy old data to new buffer in swap
+        if (retainData &amp;&amp; buff-&gt;data) {
+            const size_t active_len = aliveAgents * var_size;
+            // const size_t inactive_len = (newSize - aliveAgents) * var_size;
+            // Copy across old data (TODO: We could improve this by doing a scatter for all variables at once)
+            gpuErrchk(cudaMemcpy(buff-&gt;data_swap, buff-&gt;data, active_len, cudaMemcpyDeviceToDevice));
+            // Zero remaining new data (This will be overwritten before use, so redundant)
+            // gpuErrchk(cudaMemset(reinterpret_cast&lt;char*&gt;(buff-&gt;data_swap) + active_len, 0, inactive_len));
+        } else {
+            // Zero remaining new data (This will be overwritten before use, so redundant)
+            // gpuErrchk(cudaMemset(buff-&gt;data_swap, 0, buff_size));
+        }
+        // Swap buffers
+        std::swap(buff-&gt;data_swap, buff-&gt;data);
+        // Free old swap buffer
+        gpuErrchk(cudaFree(buff-&gt;data_swap));
+        // Allocate new buffer to swap
+        gpuErrchk(cudaMalloc(&amp;buff-&gt;data_swap, buff_size));
+        // Update condition list
+        assert(disabledAgents == 0);
+        buff-&gt;data_condition = buff-&gt;data;
+    }
+
+    // Update buffer len
+    bufferLen = newSize;
+
+    // Clear count
+    if (!retainData) {
+        aliveAgents = 0;
+        disabledAgents = 0;
+    }
+}
+unsigned int CUDAFatAgentStateList::getSize() const {
+    return aliveAgents - disabledAgents;
+}
+unsigned int CUDAFatAgentStateList::getSizeWithDisabled() const {
+    return aliveAgents;
+}
+unsigned int CUDAFatAgentStateList::getAllocatedSize() const {
+    return bufferLen;
+}
+void CUDAFatAgentStateList::setAgentCount(const unsigned int &amp;newCount, const bool &amp;resetDisabled) {
+    if ((resetDisabled &amp;&amp; newCount &gt; bufferLen) || (!resetDisabled &amp;&amp; (newCount + disabledAgents&gt; bufferLen))) {
+        THROW InvalidMemoryCapacity(&quot;Agent count will exceed allocated buffer size, &quot;
+        &quot;in CUDAFatAgentStateList::setAgentCount()\n&quot;);
+    }
+    if (resetDisabled) {
+        disabledAgents = 0;
+    }
+    aliveAgents = disabledAgents + newCount;
+}
+unsigned int CUDAFatAgentStateList::scatterDeath(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // Build scatter data
+    std::vector&lt;CUDAScatter::ScatterData&gt; sd;
+    for (const auto &amp;v : variables_unique) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(v-&gt;data);
+        char *out_p = reinterpret_cast&lt;char*&gt;(v-&gt;data_swap);
+        sd.push_back({ v-&gt;type_size * v-&gt;elements, in_p, out_p });
+        // Pre swap stored pointers
+        std::swap(v-&gt;data, v-&gt;data_swap);
+        // Pre update data_condition
+        v-&gt;data_condition = out_p + (disabledAgents * v-&gt;type_size * v-&gt;elements);
+    }
+    // Perform scatter
+    const unsigned int living_agents = scatter.scatter(
+        streamId,
+        stream,
+        CUDAScatter::Type::AGENT_DEATH, sd,
+        aliveAgents, 0, false, disabledAgents);
+    // Update size
+    assert(living_agents &lt;= bufferLen);
+    aliveAgents = living_agents;
+
+    return living_agents;
+}
+unsigned int CUDAFatAgentStateList::scatterAgentFunctionConditionFalse(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // This makes no sense if we have disabled agents (it&#39;s supposed to reorder to create disabled agents)
+    assert(disabledAgents == 0);
+    // Build scatter data
+    std::vector&lt;CUDAScatter::ScatterData&gt; sd;
+    for (const auto &amp;v : variables_unique) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(v-&gt;data);
+        char *out_p = reinterpret_cast&lt;char*&gt;(v-&gt;data_swap);
+        sd.push_back({ v-&gt;type_size * v-&gt;elements, in_p, out_p });
+    }
+    // Perform scatter
+    const unsigned int scattered_agents = scatter.scatter(streamId,
+        stream,
+        CUDAScatter::Type::AGENT_DEATH, sd,
+        aliveAgents, 0, false, disabledAgents);
+    return scattered_agents;
+}
+unsigned int CUDAFatAgentStateList::scatterAgentFunctionConditionTrue(const unsigned int &amp;conditionFailCount, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // This makes no sense if we have disabled agents (it&#39;s suppose to reorder to create disabled agents)
+    assert(disabledAgents == 0);
+    // Build scatter data
+    std::vector&lt;CUDAScatter::ScatterData&gt; sd;
+    for (const auto &amp;v : variables_unique) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(v-&gt;data);
+        char *out_p = reinterpret_cast&lt;char*&gt;(v-&gt;data_swap);
+        sd.push_back({ v-&gt;type_size * v-&gt;elements, in_p, out_p });
+        // Pre swap stored pointers
+        std::swap(v-&gt;data, v-&gt;data_swap);
+        // Pre update data_condition
+        v-&gt;data_condition = out_p + (conditionFailCount * v-&gt;type_size * v-&gt;elements);
+    }
+    // Perform scatter
+    const unsigned int scattered_agents = scatter.scatter(streamId,
+        stream,
+        CUDAScatter::Type::AGENT_DEATH, sd,
+        aliveAgents, conditionFailCount, true, disabledAgents);
+    // Update disabled agents count
+    disabledAgents = conditionFailCount;
+    return scattered_agents;
+}
+void CUDAFatAgentStateList::setDisabledAgents(const unsigned int &amp;numberOfDisabled) {
+    assert(numberOfDisabled &lt;= aliveAgents);
+    disabledAgents = numberOfDisabled;
+    // update data_condition for each unique variable
+    for (const auto &amp;v : variables_unique) {
+        char *data_p = reinterpret_cast&lt;char*&gt;(v-&gt;data);
+        v-&gt;data_condition = data_p + (numberOfDisabled * v-&gt;type_size * v-&gt;elements);
+    }
+}
+void CUDAFatAgentStateList::scatterSort(CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    // This is not designed to run when there are disabled agents
+    assert(disabledAgents == 0);
+    // Build scatter data
+    std::vector&lt;CUDAScatter::ScatterData&gt; sd;
+    for (const auto &amp;v : variables_unique) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(v-&gt;data);
+        char *out_p = reinterpret_cast&lt;char*&gt;(v-&gt;data_swap);
+        sd.push_back({ v-&gt;type_size * v-&gt;elements, in_p, out_p });
+        // Pre swap stored pointers
+        std::swap(v-&gt;data, v-&gt;data_swap);
+        // Pre update data_condition
+        v-&gt;data_condition = out_p;
+    }
+    scatter.scatterPosition(streamId, stream, CUDAScatter::Type::MESSAGE_OUTPUT, sd, aliveAgents);
+}
+void CUDAFatAgentStateList::initVariables(std::set&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; &amp;exclusionSet, const unsigned int initCount, const unsigned initOffset, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+    if (initCount &amp;&amp; exclusionSet.size()) {
+        assert(initCount + initOffset &lt;= bufferLen);
+        std::list&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; initVars;
+        // Build list of init vars (to save repeating this process), and calculate memory requirements
+        for (const auto &amp;v : variables_unique) {
+            if (exclusionSet.find(v) == exclusionSet.end()) {
+                initVars.push_back(v);
+            }
+        }
+        // Perform scatter
+        scatter.broadcastInit(streamId, stream, initVars, initCount, initOffset);
+    }
+}
+
+std::list&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; &amp;CUDAFatAgentStateList::getUniqueVariables() { return variables_unique; }
+
+void CUDAFatAgentStateList::swap(CUDAFatAgentStateList*other) {
+    std::swap(aliveAgents, other-&gt;aliveAgents);
+    std::swap(disabledAgents, other-&gt;disabledAgents);
+    std::swap(bufferLen, other-&gt;bufferLen);
+    for (auto a = variables_unique.begin(), b=other-&gt;variables_unique.begin(); a != variables_unique.end() &amp;&amp; b != other-&gt;variables_unique.end(); ++a, ++b) {
+        (*a)-&gt;swap(b-&gt;get());
+    }
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

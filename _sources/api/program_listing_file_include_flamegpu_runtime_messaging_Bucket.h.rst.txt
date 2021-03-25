@@ -1,0 +1,48 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_Bucket.h:
+
+Program Listing for File Bucket.h
+=================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_Bucket.h>` (``include/flamegpu/runtime/messaging/Bucket.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_H_
+   
+   #ifndef __CUDACC_RTC__
+   #include <memory>
+   #include <string>
+   
+   #include "flamegpu/runtime/cuRVE/curve.h"
+   #endif  // __CUDACC_RTC__
+   
+   #include "flamegpu/runtime/messaging/None.h"
+   #include "flamegpu/runtime/messaging/BruteForce.h"
+   
+   typedef int IntT;
+   
+   class MsgBucket {
+    public:
+       typedef MsgNone::size_type size_type;
+   
+       // Host
+       struct Data;
+       class Description;
+       class CUDAModelHandler;
+   
+       // Device
+       class In;
+       class Out;
+   
+       struct MetaData {
+           IntT min;
+           IntT max;
+           unsigned int *PBM;
+       };
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_BUCKET_H_

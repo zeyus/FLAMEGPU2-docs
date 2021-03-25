@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File AgentInstance.h &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File AgentInstance.h</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_include_flamegpu_pop_AgentInstance.h.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-agentinstance-h">
+<span id="program-listing-file-include-flamegpu-pop-agentinstance-h"></span><h1>Program Listing for File AgentInstance.h<a class="headerlink" href="#program-listing-for-file-agentinstance-h" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_include_flamegpu_pop_AgentInstance.h.html#file-include-flamegpu-pop-agentinstance-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/pop/AgentInstance.h</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_POP_AGENTINSTANCE_H_
+#define INCLUDE_FLAMEGPU_POP_AGENTINSTANCE_H_
+
+#include &lt;memory&gt;
+#include &lt;map&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+
+#include &quot;flamegpu/model/AgentData.h&quot;
+#include &quot;flamegpu/pop/AgentVector.h&quot;
+
+class AgentDescription;
+
+class AgentInstance {
+    friend AgentVector::iterator AgentVector::insert(AgentVector::const_iterator pos, AgentVector::size_type count, const AgentInstance&amp; value);
+    friend AgentVector::iterator AgentVector::insert(AgentVector::size_type pos, AgentVector::size_type count, const AgentInstance&amp; value);
+
+ public:
+    explicit AgentInstance(const AgentDescription &amp;agent_desc);
+
+    AgentInstance(const AgentInstance&amp; other);
+    explicit AgentInstance(const AgentVector::CAgent&amp; other);
+
+    AgentInstance(AgentInstance&amp;&amp; other) noexcept;
+
+    AgentInstance&amp; operator=(const AgentInstance&amp; other);
+    AgentInstance&amp; operator=(const AgentVector::CAgent&amp; other);
+    AgentInstance&amp; operator=(AgentInstance&amp;&amp; other) noexcept;
+
+    template &lt;typename T&gt;
+    T getVariable(const std::string&amp; variable_name) const;
+    template &lt;typename T, unsigned int N&gt;
+    std::array&lt;T, N&gt; getVariable(const std::string&amp; variable_name) const;
+    template &lt;typename T&gt;
+    T getVariable(const std::string&amp; variable_name, const unsigned int&amp; index) const;
+#ifdef SWIG
+    template &lt;typename T&gt;
+    std::vector&lt;T&gt; getVariableArray(const std::string&amp; variable_name) const;
+#endif
+
+    template &lt;typename T&gt;
+    void setVariable(const std::string&amp; variable_name, const T&amp; value);
+    template &lt;typename T, unsigned int N&gt;
+    void setVariable(const std::string&amp; variable_name, const std::array&lt;T, N&gt;&amp; value);
+    template &lt;typename T&gt;
+    void setVariable(const std::string&amp; variable_name, const unsigned int&amp; index, const T&amp; value);
+#ifdef SWIG
+    template &lt;typename T&gt;
+    void setVariableArray(const std::string&amp; variable_name, const std::vector&lt;T&gt;&amp; value);
+#endif
+
+ private:
+    std::map&lt;std::string, Any&gt; _data;
+    std::shared_ptr&lt;const AgentData&gt; _agent;
+};
+
+
+template &lt;typename T&gt;
+T AgentInstance::getVariable(const std::string&amp; variable_name) const {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str());
+    }
+    const auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.elements != 1) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is an array variable, use the array method instead, &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str());
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    return *static_cast&lt;const T*&gt;(v_buff.ptr);
+}
+template &lt;typename T, unsigned int N&gt;
+std::array&lt;T, N&gt; AgentInstance::getVariable(const std::string&amp; variable_name) const {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str());
+    }
+    const auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.elements != N) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; has &#39;%u&#39; elements, but an array of length %u was passed, &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str(), v_buff.elements, N);
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    std::array&lt;T, N&gt; rtn;
+    memcpy(rtn.data(), v_buff.ptr, sizeof(T) * N);
+    return rtn;
+}
+template &lt;typename T&gt;
+T AgentInstance::getVariable(const std::string&amp; variable_name, const unsigned int&amp; index) const {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str());
+    }
+    const auto&amp; v_buff = v_it-&gt;second;
+    if (index &gt;= v_buff.elements) {
+        THROW OutOfBoundsException(&quot;Index &#39;%u&#39; exceeds array bounds [0-%u) of variable &#39;%s&#39;,  &quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            index, v_buff.elements, variable_name.c_str());
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::getVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    return static_cast&lt;T*&gt;(v_buff.ptr)[index];
+}
+#ifdef SWIG
+template &lt;typename T&gt;
+std::vector&lt;T&gt; AgentInstance::getVariableArray(const std::string&amp; variable_name) const {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::getVariableArray().&quot;,
+            variable_name.c_str());
+    }
+    const auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::getVariableArray().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    std::vector&lt;T&gt; rtn(static_cast&lt;size_t&gt;(v_buff.elements));
+    memcpy(rtn.data(), static_cast&lt;T*&gt;(v_buff.ptr), sizeof(T) * v_buff.elements);
+    return rtn;
+}
+#endif
+template &lt;typename T&gt;
+void AgentInstance::setVariable(const std::string&amp; variable_name, const T&amp; value) {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str());
+    }
+    auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.elements != 1) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is an array variable, use the array method instead, &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str());
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    // do the replace
+    *static_cast&lt;T*&gt;(v_buff.ptr) = value;
+}
+template &lt;typename T, unsigned int N&gt;
+void AgentInstance::setVariable(const std::string&amp; variable_name, const std::array&lt;T, N&gt;&amp; value) {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str());
+    }
+    auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.elements != N) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; has &#39;%u&#39; elements, but an array of length %u was passed, &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str(), v_buff.elements, N);
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    memcpy(static_cast&lt;T*&gt;(v_buff.ptr), value.data(), sizeof(T) * N);
+}
+template &lt;typename T&gt;
+void AgentInstance::setVariable(const std::string&amp; variable_name, const unsigned int&amp; index, const T&amp; value) {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str());
+    }
+    auto&amp; v_buff = v_it-&gt;second;
+    if (index &gt;= v_buff.elements) {
+        THROW OutOfBoundsException(&quot;Index &#39;%u&#39; exceeds array bounds [0-%u) of variable &#39;%s&#39;,  &quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            index, v_buff.elements, variable_name.c_str());
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::setVariable().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    static_cast&lt;T*&gt;(v_buff.ptr)[index] = value;
+}
+#ifdef SWIG
+template &lt;typename T&gt;
+void AgentInstance::setVariableArray(const std::string&amp; variable_name, const std::vector&lt;T&gt;&amp; value) {
+    const auto v_it = _data.find(variable_name);
+    if (v_it == _data.end()) {
+        THROW InvalidAgentVar(&quot;Variable with name &#39;%s&#39; was not found in agent, &quot;
+            &quot;in AgentInstance::setVariableArray().&quot;,
+            variable_name.c_str());
+    }
+    auto&amp; v_buff = v_it-&gt;second;
+    if (v_buff.elements != value.size()) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; has &#39;%u&#39; elements, but an array of length %u was passed, &quot;
+            &quot;in AgentInstance::setVariableArray().&quot;,
+            variable_name.c_str(), v_buff.elements, value.size());
+    }
+    if (v_buff.type != std::type_index(typeid(T))) {
+        THROW InvalidVarType(&quot;Variable &#39;%s&#39; is of a different type. &quot;
+            &quot;&#39;%s&#39; was expected, but &#39;%s&#39; was requested,&quot;
+            &quot;in AgentInstance::setVariableArray().&quot;,
+            variable_name.c_str(), v_buff.type.name(), typeid(T).name());
+    }
+    memcpy(static_cast&lt;T*&gt;(v_buff.ptr), value.data(), sizeof(T) * v_buff.elements);
+}
+#endif
+
+#endif  // INCLUDE_FLAMEGPU_POP_AGENTINSTANCE_H_
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

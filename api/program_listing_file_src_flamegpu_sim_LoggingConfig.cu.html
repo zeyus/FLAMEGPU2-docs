@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File LoggingConfig.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File LoggingConfig.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_sim_LoggingConfig.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-loggingconfig-cu">
+<span id="program-listing-file-src-flamegpu-sim-loggingconfig-cu"></span><h1>Program Listing for File LoggingConfig.cu<a class="headerlink" href="#program-listing-for-file-loggingconfig-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_sim_LoggingConfig.cu.html#file-src-flamegpu-sim-loggingconfig-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/sim/LoggingConfig.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/sim/LoggingConfig.h&quot;
+
+#include &quot;flamegpu/sim/AgentLoggingConfig.h&quot;
+#include &quot;flamegpu/model/ModelDescription.h&quot;
+#include &quot;flamegpu/model/ModelData.h&quot;
+#include &quot;flamegpu/model/AgentData.h&quot;
+
+LoggingConfig::LoggingConfig(const ModelDescription &amp;_model)
+    :model(_model.model-&gt;clone()) { }
+LoggingConfig::LoggingConfig(const ModelData &amp;_model)
+    :model(_model.clone()) { }
+LoggingConfig::LoggingConfig(const LoggingConfig &amp;other)
+    : model(other.model-&gt;clone())
+    , environment(other.environment)
+    , agents(other.agents) { }
+AgentLoggingConfig LoggingConfig::agent(const std::string &amp;agent_name, const std::string &amp;agent_state) {
+    // Validate the agent state combination exists
+    auto model_agent_it = model-&gt;agents.find(agent_name);
+    if (model_agent_it == model-&gt;agents.end()) {
+        THROW InvalidAgentName(&quot;Agent &#39;%s&#39; was not found in the model description, &quot;
+            &quot;in LoggingConfig::agent()\n&quot;,
+            agent_name.c_str());
+    }
+    if (model_agent_it-&gt;second-&gt;states.find(agent_state) == model_agent_it-&gt;second-&gt;states.end()) {
+        THROW InvalidAgentState(&quot;State &#39;%s&#39; was not found within agent &#39;%s&#39; in the model description, &quot;
+            &quot;in LoggingConfig::agent()\n&quot;,
+            agent_state.c_str(), agent_name.c_str());
+    }
+    NameStatePair name = std::make_pair(agent_name, agent_state);
+    auto agent_it = agents.find(name);
+    if (agent_it== agents.end())
+        agent_it = agents.emplace(name, std::make_pair(std::make_shared&lt;std::set&lt;NameReductionFn&gt;&gt;(), false)).first;
+    return AgentLoggingConfig(model_agent_it-&gt;second, agent_it-&gt;second);
+}
+
+void LoggingConfig::logEnvironment(const std::string &amp;property_name) {
+    // Validate the environment property exists
+    auto env_map = model-&gt;environment-&gt;getPropertiesMap();
+    if (env_map.find(property_name) == env_map.end()) {
+        THROW InvalidEnvProperty(&quot;Environment property &#39;%s&#39; was not found in the model description, &quot;
+            &quot;in LoggingConfig::logEnvironment()\n&quot;,
+            property_name.c_str());
+    }
+    // Log the property
+    if (!environment.emplace(property_name).second) {
+        THROW InvalidEnvProperty(&quot;Environment property &#39;%s&#39; has already been marked for logging, &quot;
+            &quot;in LoggingConfig::logEnvironment()\n&quot;,
+            property_name.c_str());
+    }
+}
+StepLoggingConfig::StepLoggingConfig(const ModelDescription &amp;model)
+    : LoggingConfig(model)
+    , frequency(1) { }
+StepLoggingConfig::StepLoggingConfig(const ModelData &amp;model)
+    : LoggingConfig(model)
+    , frequency(1) { }
+StepLoggingConfig::StepLoggingConfig(const StepLoggingConfig &amp;other)
+    : LoggingConfig(other)
+    , frequency(other.frequency) { }
+StepLoggingConfig::StepLoggingConfig(const LoggingConfig &amp;other)
+    : LoggingConfig(other)
+    , frequency(1) { }
+void StepLoggingConfig::setFrequency(const unsigned int &amp;steps) {
+    frequency = steps;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

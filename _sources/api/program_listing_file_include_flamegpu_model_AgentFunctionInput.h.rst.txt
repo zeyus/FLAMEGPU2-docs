@@ -1,0 +1,32 @@
+
+.. _program_listing_file_include_flamegpu_model_AgentFunctionInput.h:
+
+Program Listing for File AgentFunctionInput.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_AgentFunctionInput.h>` (``include/flamegpu/model/AgentFunctionInput.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONINPUT_H_
+   #define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONINPUT_H_
+   
+   #include <string>
+   
+   class AgentFunctionInput {
+    public:
+       explicit AgentFunctionInput(const std::string input_message_name);
+       virtual ~AgentFunctionInput();
+   
+       const std::string getMessageName() const;
+   
+    private:
+       const std::string message_name;
+   
+   // input type (single or optional)
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONINPUT_H_

@@ -1,0 +1,44 @@
+
+.. _program_listing_file_include_flamegpu_model_SubEnvironmentData.h:
+
+Program Listing for File SubEnvironmentData.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_SubEnvironmentData.h>` (``include/flamegpu/model/SubEnvironmentData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDATA_H_
+   #define INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDATA_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   
+   struct ModelData;
+   struct SubModelData;
+   class EnvironmentDescription;
+   class SubEnvironmentDescription;
+   
+   struct SubEnvironmentData : std::enable_shared_from_this<SubEnvironmentData> {
+       friend class SubEnvironmentDescription;
+       friend class SubModelDescription;
+       friend struct ModelData;
+       std::weak_ptr<EnvironmentDescription> subEnvironment;
+       std::weak_ptr<EnvironmentDescription> masterEnvironment;
+       typedef std::unordered_map<std::string, std::string> Mapping;
+       Mapping properties;
+       std::weak_ptr<SubModelData> parent;
+       std::shared_ptr<SubEnvironmentDescription> description;
+       bool operator==(const SubEnvironmentData& rhs) const;
+       bool operator!=(const SubEnvironmentData& rhs) const;
+       SubEnvironmentData(const SubEnvironmentData &other) = delete;
+   
+    protected:
+       explicit SubEnvironmentData(const std::shared_ptr<const ModelData> &model, const std::shared_ptr<SubModelData> &parent, const SubEnvironmentData &other);
+       explicit SubEnvironmentData(const std::shared_ptr<const ModelData> &model, const std::shared_ptr<SubModelData> &_parent, const std::shared_ptr<EnvironmentDescription> &subEnv);
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_SUBENVIRONMENTDATA_H_

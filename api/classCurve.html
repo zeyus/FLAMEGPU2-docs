@@ -1,0 +1,1214 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Class Curve &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class CurveException" href="classCurveException.html" />
+    <link rel="prev" title="Class CUDASimulation" href="classCUDASimulation.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="unabridged_api.html">Full API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="unabridged_api.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="structAgentData.html">Struct AgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structAny.html">Struct Any</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structColor.html">Struct Color</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCEnvVariableProperties.html">Struct CurveRTCHost::RTCEnvVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveRTCHost_1_1RTCVariableProperties.html">Struct CurveRTCHost::RTCVariableProperties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash.html">Template Struct CurveStringHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structCurveStringHash_3_01N_00_011_01_4.html">Template Struct CurveStringHash&lt; N, 1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structDeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structEnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Cat__base.html">Template Struct _Cat_base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__IntType.html">Template Struct _Is_IntType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1__Is__RealType.html">Template Struct _Is_RealType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1integral__constant.html">Template Struct integral_constant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same.html">Template Struct is_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFGPU__SA_1_1is__same_3_01__Ty1_00_01__Ty1_01_4.html">Template Struct is_same&lt; _Ty1, _Ty1 &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structFLAMEGPU__HOST__API_1_1key__hash.html">Struct FLAMEGPU_HOST_API::key_hash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl.html">Struct standard_deviation_add_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__add__impl_1_1binary__function.html">Template Struct standard_deviation_add_impl::binary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl.html">Struct standard_deviation_subtract_mean_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structflamegpu__internal_1_1standard__deviation__subtract__mean__impl_1_1unary__function.html">Template Struct standard_deviation_subtract_mean_impl::unary_function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structJitifyCache_1_1CachedProgram.html">Struct JitifyCache::CachedProgram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLayerData.html">Struct LayerData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structLoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structModelData.html">Struct ModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1Data.html">Struct MsgArray2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray2D_1_1MetaData.html">Struct MsgArray2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1Data.html">Struct MsgArray3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray3D_1_1MetaData.html">Struct MsgArray3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1Data.html">Struct MsgArray::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgArray_1_1MetaData.html">Struct MsgArray::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1Data.html">Struct MsgBruteForce::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBruteForce_1_1MetaData.html">Struct MsgBruteForce::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1Data.html">Struct MsgBucket::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgBucket_1_1MetaData.html">Struct MsgBucket::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1Data.html">Struct MsgSpatial2D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1GridPos2D.html">Struct MsgSpatial2D::GridPos2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial2D_1_1MetaData.html">Struct MsgSpatial2D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1Data.html">Struct MsgSpatial3D::Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1GridPos3D.html">Struct MsgSpatial3D::GridPos3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structMsgSpatial3D_1_1MetaData.html">Struct MsgSpatial3D::MetaData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structNewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structPalette.html">Struct Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structRunLog.html">Struct RunLog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSimulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01AgentVariable_01_4.html">Template Struct hash&lt; AgentVariable &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structstd_1_1hash_3_01std_1_1pair_3_01std_1_1string_00_01unsigned_01int_01_4_01_4.html">Template Struct hash&lt; std::pair&lt; std::string, unsigned int &gt; &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structStringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structSubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structsum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariable.html">Struct Variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionInput.html">Class AgentFunctionInput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentFunctionOutput.html">Class AgentFunctionOutput</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentStateDescription.html">Class AgentStateDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classAutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Class Curve</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveException.html">Class CurveException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classCurveRTCHost.html">Class CurveRTCHost</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classDuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classEnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFGPUException.html">Class FGPUException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API.html">Template Class FLAMEGPU_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__DEVICE__API_1_1AgentOut.html">Class FLAMEGPU_DEVICE_API::AgentOut</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__API.html">Class FLAMEGPU_HOST_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__HOST__NEW__AGENT__API.html">Class FLAMEGPU_HOST_NEW_AGENT_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classFLAMEGPU__READ__ONLY__DEVICE__API.html">Class FLAMEGPU_READ_ONLY_DEVICE_API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classGenericMemoryVector.html">Class GenericMemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostAgentInstance.html">Class HostAgentInstance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classHSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHashList.html">Class InvalidHashList</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMapEntry.html">Class InvalidMapEntry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageSize.html">Class InvalidMessageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidPopulationData.html">Class InvalidPopulationData</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classInvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classJitifyCache.html">Class JitifyCache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonLogger.html">Class jsonLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader.html">Class jsonReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__agentsize__counter.html">Class jsonReader_agentsize_counter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonReader__impl.html">Class jsonReader_impl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classjsonWriter.html">Class jsonWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLogger.html">Class Logger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classLoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMemoryVector.html">Template Class MemoryVector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray.html">Class MsgArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D.html">Class MsgArray2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html">Class MsgArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Description.html">Class MsgArray2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In.html">Class MsgArray2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray2D_1_1Out.html">Class MsgArray2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D.html">Class MsgArray3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html">Class MsgArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Description.html">Class MsgArray3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In.html">Class MsgArray3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray3D_1_1Out.html">Class MsgArray3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1CUDAModelHandler.html">Class MsgArray::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Description.html">Class MsgArray::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In.html">Class MsgArray::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgArray_1_1Out.html">Class MsgArray::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce.html">Class MsgBruteForce</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1CUDAModelHandler.html">Class MsgBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Description.html">Class MsgBruteForce::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In.html">Class MsgBruteForce::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBruteForce_1_1Out.html">Class MsgBruteForce::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket.html">Class MsgBucket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1CUDAModelHandler.html">Class MsgBucket::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Description.html">Class MsgBucket::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In.html">Class MsgBucket::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgBucket_1_1Out.html">Class MsgBucket::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone.html">Class MsgNone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1CUDAModelHandler.html">Class MsgNone::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1In.html">Class MsgNone::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgNone_1_1Out.html">Class MsgNone::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D.html">Class MsgSpatial2D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html">Class MsgSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Description.html">Class MsgSpatial2D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In.html">Class MsgSpatial2D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial2D_1_1Out.html">Class MsgSpatial2D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D.html">Class MsgSpatial3D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html">Class MsgSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Description.html">Class MsgSpatial3D::Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In.html">Class MsgSpatial3D::In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpatial3D_1_1Out.html">Class MsgSpatial3D::Out</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classMsgSpecialisationHandler.html">Class MsgSpecialisationHandler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classOutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classPalette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReaderFactory.html">Class ReaderFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classRunPlanVec.html">Class RunPlanVec</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSignalHandlers.html">Class SignalHandlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSimulation.html">Class Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateReader.html">Class StateReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classStepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classSubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classTinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classUnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1CUDAEventTimer.html">Class CUDAEventTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classutil_1_1SteadyClockTimer.html">Class SteadyClockTimer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classViridisInterpolation.html">Class ViridisInterpolation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classVisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classWriterFactory.html">Class WriterFactory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlLogger.html">Class xmlLogger</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlReader.html">Class xmlReader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="classxmlWriter.html">Class xmlWriter</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#defines">Defines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unabridged_api.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="library_root.html">Library API</a> &raquo;</li>
+        
+      <li>Class Curve</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/classCurve.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="class-curve">
+<span id="exhale-class-classcurve"></span><h1>Class Curve<a class="headerlink" href="#class-curve" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_cuRVE_curve.h.html#file-include-flamegpu-runtime-curve-curve-h"><span class="std std-ref">File curve.h</span></a></p></li>
+</ul>
+<div class="section" id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="cpp class">
+<dt id="_CPPv45Curve">
+<span id="_CPPv35Curve"></span><span id="_CPPv25Curve"></span><span id="Curve"></span><span class="target" id="classCurve"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Curve</span></code><a class="headerlink" href="#_CPPv45Curve" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A cuRVE instance. </p>
+<p>cuRVE is a C library and this singleton class acts as a mechanism to ensure that any reference to the library is handled correctly. For example multiple objects may which to request that curve is initialised. This class will ensure that this function call is only made once the first time that a cuRVEInstance is required. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Types</p>
+<dl class="cpp enum">
+<dt id="_CPPv4N5Curve11DeviceErrorE">
+<span id="_CPPv3N5Curve11DeviceErrorE"></span><span id="_CPPv2N5Curve11DeviceErrorE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-name descname"><span class="pre">DeviceError</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceErrorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enumerator for GPU device error code which may be raised by CUDA kernels </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve11DeviceError22DEVICE_ERROR_NO_ERRORSE">
+<span id="_CPPv3N5Curve11DeviceError22DEVICE_ERROR_NO_ERRORSE"></span><span id="_CPPv2N5Curve11DeviceError22DEVICE_ERROR_NO_ERRORSE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4acd3401c0b16b0293803dcc53643cd63e"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEVICE_ERROR_NO_ERRORS</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceError22DEVICE_ERROR_NO_ERRORSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve11DeviceError29DEVICE_ERROR_UNKNOWN_VARIABLEE">
+<span id="_CPPv3N5Curve11DeviceError29DEVICE_ERROR_UNKNOWN_VARIABLEE"></span><span id="_CPPv2N5Curve11DeviceError29DEVICE_ERROR_UNKNOWN_VARIABLEE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4accb04933320b7c18c8c446fc440056cf"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEVICE_ERROR_UNKNOWN_VARIABLE</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceError29DEVICE_ERROR_UNKNOWN_VARIABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve11DeviceError30DEVICE_ERROR_VARIABLE_DISABLEDE">
+<span id="_CPPv3N5Curve11DeviceError30DEVICE_ERROR_VARIABLE_DISABLEDE"></span><span id="_CPPv2N5Curve11DeviceError30DEVICE_ERROR_VARIABLE_DISABLEDE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4af297126727fded7e03bbff8d61d3cc00"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEVICE_ERROR_VARIABLE_DISABLED</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceError30DEVICE_ERROR_VARIABLE_DISABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve11DeviceError25DEVICE_ERROR_UNKNOWN_TYPEE">
+<span id="_CPPv3N5Curve11DeviceError25DEVICE_ERROR_UNKNOWN_TYPEE"></span><span id="_CPPv2N5Curve11DeviceError25DEVICE_ERROR_UNKNOWN_TYPEE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4a637f291b39cdfba7dc41297257a9f82a"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEVICE_ERROR_UNKNOWN_TYPE</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceError25DEVICE_ERROR_UNKNOWN_TYPEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve11DeviceError27DEVICE_ERROR_UNKNOWN_LENGTHE">
+<span id="_CPPv3N5Curve11DeviceError27DEVICE_ERROR_UNKNOWN_LENGTHE"></span><span id="_CPPv2N5Curve11DeviceError27DEVICE_ERROR_UNKNOWN_LENGTHE"></span><span class="target" id="classCurve_1a1a1167b8509941c3935b029c8349aca4abba3aee5d79590bcdd6893a43d3ecd9a"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">DEVICE_ERROR_UNKNOWN_LENGTH</span></code><a class="headerlink" href="#_CPPv4N5Curve11DeviceError27DEVICE_ERROR_UNKNOWN_LENGTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv4N5Curve9HostErrorE">
+<span id="_CPPv3N5Curve9HostErrorE"></span><span id="_CPPv2N5Curve9HostErrorE"></span><span class="target" id="classCurve_1aff05286b1dd90c06bfcba1c4d02b14fc"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-name descname"><span class="pre">HostError</span></code><a class="headerlink" href="#_CPPv4N5Curve9HostErrorE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enumerator for cuRVE host error codes which may be raised by cuRVE API function calls </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve9HostError15ERROR_NO_ERRORSE">
+<span id="_CPPv3N5Curve9HostError15ERROR_NO_ERRORSE"></span><span id="_CPPv2N5Curve9HostError15ERROR_NO_ERRORSE"></span><span class="target" id="classCurve_1aff05286b1dd90c06bfcba1c4d02b14fcae4d67c3f7fd82f5c3ea1c2d6575285a6"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ERROR_NO_ERRORS</span></code><a class="headerlink" href="#_CPPv4N5Curve9HostError15ERROR_NO_ERRORSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve9HostError22ERROR_UNKNOWN_VARIABLEE">
+<span id="_CPPv3N5Curve9HostError22ERROR_UNKNOWN_VARIABLEE"></span><span id="_CPPv2N5Curve9HostError22ERROR_UNKNOWN_VARIABLEE"></span><span class="target" id="classCurve_1aff05286b1dd90c06bfcba1c4d02b14fcae9963f3cf89c41f6d5bfdc1676388597"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ERROR_UNKNOWN_VARIABLE</span></code><a class="headerlink" href="#_CPPv4N5Curve9HostError22ERROR_UNKNOWN_VARIABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N5Curve9HostError24ERROR_TOO_MANY_VARIABLESE">
+<span id="_CPPv3N5Curve9HostError24ERROR_TOO_MANY_VARIABLESE"></span><span id="_CPPv2N5Curve9HostError24ERROR_TOO_MANY_VARIABLESE"></span><span class="target" id="classCurve_1aff05286b1dd90c06bfcba1c4d02b14fca87cb7015fb6e07fb119fdf2aec151421"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">ERROR_TOO_MANY_VARIABLES</span></code><a class="headerlink" href="#_CPPv4N5Curve9HostError24ERROR_TOO_MANY_VARIABLESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N5Curve8VariableE">
+<span id="_CPPv3N5Curve8VariableE"></span><span id="_CPPv2N5Curve8VariableE"></span><span id="Curve::Variable"></span><span class="target" id="classCurve_1a9194ab2c33121b35c02415f505a8b1fa"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">int</span> <code class="sig-name descname"><span class="pre">Variable</span></code><a class="headerlink" href="#_CPPv4N5Curve8VariableE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N5Curve12VariableHashE">
+<span id="_CPPv3N5Curve12VariableHashE"></span><span id="_CPPv2N5Curve12VariableHashE"></span><span id="Curve::VariableHash"></span><span class="target" id="classCurve_1a792e94e439af1a26d168741e9d396228"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">VariableHash</span></code><a class="headerlink" href="#_CPPv4N5Curve12VariableHashE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv4N5Curve13NamespaceHashE">
+<span id="_CPPv3N5Curve13NamespaceHashE"></span><span id="_CPPv2N5Curve13NamespaceHashE"></span><span id="Curve::NamespaceHash"></span><span class="target" id="classCurve_1abfe6bb16d4da83815a98772e93ab476e"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">NamespaceHash</span></code><a class="headerlink" href="#_CPPv4N5Curve13NamespaceHashE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve17getVariableHandleE12VariableHash">
+<span id="_CPPv3N5Curve17getVariableHandleE12VariableHash"></span><span id="_CPPv2N5Curve17getVariableHandleE12VariableHash"></span><span id="Curve::getVariableHandle__VariableHash"></span><span class="target" id="classCurve_1a72e8a7426807ffc92855edf2a42a177e"></span><span class="pre">__host__</span> <a class="reference internal" href="#_CPPv4N5Curve8VariableE" title="Curve::Variable"><span class="pre">Variable</span></a> <code class="sig-name descname"><span class="pre">getVariableHandle</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve17getVariableHandleE12VariableHash" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Function for getting a handle (hash table index) to a cuRVE variable from a variable string hash Function performs hash collision avoidance using linear probing. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="structVariable.html#structVariable"><span class="std std-ref">Variable</span></a> Handle for the cuRVE variable. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from variableHash. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve22registerVariableByHashE12VariableHashPv6size_tj">
+<span id="_CPPv3N5Curve22registerVariableByHashE12VariableHashPv6size_tj"></span><span id="_CPPv2N5Curve22registerVariableByHashE12VariableHashPv6size_tj"></span><span id="Curve::registerVariableByHash__VariableHash.voidP.s.unsigned-i"></span><span class="target" id="classCurve_1a98956b11f9f7fa6875e1424790456795"></span><span class="pre">__host__</span> <a class="reference internal" href="#_CPPv4N5Curve8VariableE" title="Curve::Variable"><span class="pre">Variable</span></a> <code class="sig-name descname"><span class="pre">registerVariableByHash</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">d_ptr</span></em>, <span class="pre">size_t</span> <em><span class="pre">size</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve22registerVariableByHashE12VariableHashPv6size_tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Function for registering a variable by a VariableHash Registers a variable by insertion in a hash table. Recommend using the provided registerVariable template function. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="structVariable.html#structVariable"><span class="std std-ref">Variable</span></a> Handle of registered variable or UNKNOWN_VARIABLE if an error is encountered. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from variableHash. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ptr</span></code>: a pointer to the vector which holds the hashed variable of give name </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I_j0EN5Curve16registerVariableE8VariableRA1N_KcPvj">
+<span id="_CPPv3I_j0EN5Curve16registerVariableERA1N_KcPvj"></span><span id="_CPPv2I_j0EN5Curve16registerVariableERAN_KcPvj"></span><span class="pre">template&lt;</span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a0547bf2480dc1cc7f151d4e7167c245e"></span><span class="pre">__host__</span> <a class="reference internal" href="#_CPPv4N5Curve8VariableE" title="Curve::Variable"><span class="pre">Variable</span></a> <code class="sig-name descname"><span class="pre">registerVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">d_ptr</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_j0EN5Curve16registerVariableE8VariableRA1N_KcPvj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Template function for registering a constant string Registers a constant string variable name by hashing and then inserting into a hash table. </p>
+<p><p>Host side template class implementation </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><a class="reference internal" href="structVariable.html#structVariable"><span class="std std-ref">Variable</span></a> Handle of registered variable or UNKNOWN_VARIABLE if an error is encountered.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variableName</span></code>: A constant char array (C string) variable name. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">d_ptr</span></code>: a pointer to the vector which holds the variable of give name </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4NK5Curve4sizeEv">
+<span id="_CPPv3NK5Curve4sizeEv"></span><span id="_CPPv2NK5Curve4sizeEv"></span><span id="Curve::sizeC"></span><span class="target" id="classCurve_1acb65e63234cc1339aa49145b12e2c27c"></span><span class="pre">__host__</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5Curve4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check how many items are in the hash table </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve12updateDeviceEv">
+<span id="_CPPv3N5Curve12updateDeviceEv"></span><span id="_CPPv2N5Curve12updateDeviceEv"></span><span id="Curve::updateDevice"></span><span class="target" id="classCurve_1a09d9394f5aeb93ec360a3a5647ea77af"></span><span class="pre">__host__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">updateDevice</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve12updateDeviceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Copy host structures to device </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve24unregisterVariableByHashE12VariableHash">
+<span id="_CPPv3N5Curve24unregisterVariableByHashE12VariableHash"></span><span id="_CPPv2N5Curve24unregisterVariableByHashE12VariableHash"></span><span id="Curve::unregisterVariableByHash__VariableHash"></span><span class="target" id="classCurve_1aaaab1d5f5c2be1d071e21d3d1dc5b1d8"></span><span class="pre">__host__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">unregisterVariableByHash</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve24unregisterVariableByHashE12VariableHash" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Function for un-registering a variable by a VariableHash Un-registers a variable by removal from a hash table. Recommend using the provided unregisterVariable template function. </p>
+<p><p>TODO: Does un-registering imply that other variable with collisions will no longer be found. I.e. do you need to re-register all other variable when one is removed. </p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from variableHash.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I_jEN5Curve18unregisterVariableEvRA1N_Kc">
+<span id="_CPPv3I_jEN5Curve18unregisterVariableERA1N_Kc"></span><span id="_CPPv2I_jEN5Curve18unregisterVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a08105bfb13b55cc244c3146fa0eebda9"></span><span class="pre">__host__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">unregisterVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_jEN5Curve18unregisterVariableEvRA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Template function for un-registering a constant string Un-registers a constant string variable name by hashing and then removing from the hash table. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variableName</span></code>: A constant char array (C string) variable name. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve18printLastHostErrorEPKcPKcKi">
+<span id="_CPPv3N5Curve18printLastHostErrorEPKcPKcKi"></span><span id="_CPPv2N5Curve18printLastHostErrorEPKcPKcKi"></span><span id="Curve::printLastHostError__cCP.cCP.iC"></span><span class="target" id="classCurve_1ab0c75b48e2dbe7580a22154b8219a1d0"></span><span class="pre">void</span> <span class="pre">__host__</span> <code class="sig-name descname"><span class="pre">printLastHostError</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">file</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">function</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <em><span class="pre">line</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve18printLastHostErrorEPKcPKcKi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host API function for printing the last host error Prints the last host API error using the provided source location information. The preferred method for printing is to use the curveReportLastHostError macro which inserts source location information. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: A constant string filename. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function</span></code>: A constant string function name. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line</span></code>: A constant integer line number. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve11printErrorsEPKcPKcKi">
+<span id="_CPPv3N5Curve11printErrorsEPKcPKcKi"></span><span id="_CPPv2N5Curve11printErrorsEPKcPKcKi"></span><span id="Curve::printErrors__cCP.cCP.iC"></span><span class="target" id="classCurve_1ab696cfc8feb6293f6dcf78950afca9bf"></span><span class="pre">void</span> <span class="pre">__host__</span> <code class="sig-name descname"><span class="pre">printErrors</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">file</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">function</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <em><span class="pre">line</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve11printErrorsEPKcPKcKi" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host API function for printing the last host or device error Prints the last device or host API error (or both) using the provided source location information. The preferred method for printing is to use the curveReportErrors macro which inserts source location information. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: A constant string filename. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function</span></code>: A constant string function name. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line</span></code>: A constant integer line number. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve18getHostErrorStringE9HostError">
+<span id="_CPPv3N5Curve18getHostErrorStringE9HostError"></span><span id="_CPPv2N5Curve18getHostErrorStringE9HostError"></span><span id="Curve::getHostErrorString__HostError"></span><span class="target" id="classCurve_1a2095e87a0ba710f4c1eba60d433adc10"></span><span class="pre">__host__</span> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getHostErrorString</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5Curve9HostErrorE" title="Curve::HostError"><span class="pre">HostError</span></a> <em><span class="pre">error_code</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve18getHostErrorStringE9HostError" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host API function for returning a constant string error description Returns an error description given a HostError error code. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>constant A string error description </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error_code</span></code>: A HostError error code. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve16getLastHostErrorEv">
+<span id="_CPPv3N5Curve16getLastHostErrorEv"></span><span id="_CPPv2N5Curve16getLastHostErrorEv"></span><span id="Curve::getLastHostError"></span><span class="target" id="classCurve_1a50cdb3a84128025ad721b168a926c0fe"></span><span class="pre">__host__</span> <a class="reference internal" href="#_CPPv4N5Curve9HostErrorE" title="Curve::HostError"><span class="pre">HostError</span></a> <code class="sig-name descname"><span class="pre">getLastHostError</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve16getLastHostErrorEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host API function for returning the last reported error code. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A HostError error code </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve11clearErrorsEv">
+<span id="_CPPv3N5Curve11clearErrorsEv"></span><span id="_CPPv2N5Curve11clearErrorsEv"></span><span id="Curve::clearErrors"></span><span class="target" id="classCurve_1ab57eba0110d178b849d0c75cdde9f811"></span><span class="pre">__host__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">clearErrors</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve11clearErrorsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host API function for clearing both the device and host error codes. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve23checkHowManyMappedItemsEv">
+<span id="_CPPv3N5Curve23checkHowManyMappedItemsEv"></span><span id="_CPPv2N5Curve23checkHowManyMappedItemsEv"></span><span id="Curve::checkHowManyMappedItems"></span><span class="target" id="classCurve_1a8de07f1ff2fc9b1952681833dcf86ebd"></span><span class="pre">__host__</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">checkHowManyMappedItems</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve23checkHowManyMappedItemsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I_jEN5Curve12variableHashEN5Curve12VariableHashERA1N_Kc">
+<span id="_CPPv3I_jEN5Curve12variableHashERA1N_Kc"></span><span id="_CPPv2I_jEN5Curve12variableHashERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a2e72edcd8552ce7d2c0cf3478daa7e33"></span><span class="pre">__device__</span> <span class="pre">__host__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <code class="sig-name descname"><span class="pre">variableHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">str</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_jEN5Curve12variableHashEN5Curve12VariableHashERA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN5Curve17getVariableByHashE1TK12VariableHashj">
+<span id="_CPPv3I0EN5Curve17getVariableByHashEK12VariableHashj"></span><span id="_CPPv2I0EN5Curve17getVariableByHashEK12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a8b598cb5259d354272ccbc325c44c0a2"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0EN5Curve17getVariableByHashE1TK12VariableHashj" title="Curve::getVariableByHash::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariableByHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Curve17getVariableByHashE1TK12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN5Curve21getVariableByHash_ldgE1TK12VariableHashj">
+<span id="_CPPv3I0EN5Curve21getVariableByHash_ldgEK12VariableHashj"></span><span id="_CPPv2I0EN5Curve21getVariableByHash_ldgEK12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a8bbaf129b69c10d128e2dcc2b35e8103"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0EN5Curve21getVariableByHash_ldgE1TK12VariableHashj" title="Curve::getVariableByHash_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariableByHash_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Curve21getVariableByHash_ldgE1TK12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve22getArrayVariableByHashE1TK12VariableHashjj">
+<span id="_CPPv3I0_jEN5Curve22getArrayVariableByHashEK12VariableHashjj"></span><span id="_CPPv2I0_jEN5Curve22getArrayVariableByHashEK12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a2d352ff91561efa45e53f40d408214b7"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve22getArrayVariableByHashE1TK12VariableHashjj" title="Curve::getArrayVariableByHash::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getArrayVariableByHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve22getArrayVariableByHashE1TK12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve26getArrayVariableByHash_ldgE1TK12VariableHashjj">
+<span id="_CPPv3I0_jEN5Curve26getArrayVariableByHash_ldgEK12VariableHashjj"></span><span id="_CPPv2I0_jEN5Curve26getArrayVariableByHash_ldgEK12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a30d9a5b732a632753e03c0c6ef16d64b"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve26getArrayVariableByHash_ldgE1TK12VariableHashjj" title="Curve::getArrayVariableByHash_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getArrayVariableByHash_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve26getArrayVariableByHash_ldgE1TK12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve16getAgentVariableE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve16getAgentVariableERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve16getAgentVariableERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a5272f413380fd3cd3ed2fce0959579e2"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve16getAgentVariableE1TRA1N_Kc12VariableHashj" title="Curve::getAgentVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getAgentVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve16getAgentVariableE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve18getMessageVariableE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve18getMessageVariableERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve18getMessageVariableERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1ae0c3360bb30c2a5d0a0ad2287f7cae7b"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve18getMessageVariableE1TRA1N_Kc12VariableHashj" title="Curve::getMessageVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getMessageVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve18getMessageVariableE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve11getVariableE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve11getVariableERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve11getVariableERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1af6366108fc8708c2f130ddd682415006"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve11getVariableE1TRA1N_Kc12VariableHashj" title="Curve::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve11getVariableE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve20getAgentVariable_ldgE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve20getAgentVariable_ldgERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve20getAgentVariable_ldgERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1adfa36da35a802de77d00dec0dc0d492a"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve20getAgentVariable_ldgE1TRA1N_Kc12VariableHashj" title="Curve::getAgentVariable_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getAgentVariable_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve20getAgentVariable_ldgE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve22getMessageVariable_ldgE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve22getMessageVariable_ldgERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve22getMessageVariable_ldgERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1ad628ee55c68b9448385306325d385598"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve22getMessageVariable_ldgE1TRA1N_Kc12VariableHashj" title="Curve::getMessageVariable_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getMessageVariable_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve22getMessageVariable_ldgE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve15getVariable_ldgE1TRA1N_Kc12VariableHashj">
+<span id="_CPPv3I0_jEN5Curve15getVariable_ldgERA1N_Kc12VariableHashj"></span><span id="_CPPv2I0_jEN5Curve15getVariable_ldgERAN_Kc12VariableHashj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1af3f63755a00b8b8533c62ad002ecbb5d"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_jEN5Curve15getVariable_ldgE1TRA1N_Kc12VariableHashj" title="Curve::getVariable_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve15getVariable_ldgE1TRA1N_Kc12VariableHashj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve21getAgentArrayVariableE1TRA1M_Kc12VariableHashjj">
+<span id="_CPPv3I0_j_jEN5Curve21getAgentArrayVariableERA1M_Kc12VariableHashjj"></span><span id="_CPPv2I0_j_jEN5Curve21getAgentArrayVariableERAM_Kc12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a5813e7b53d13133bd85a85c6f14f1a61"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve21getAgentArrayVariableE1TRA1M_Kc12VariableHashjj" title="Curve::getAgentArrayVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getAgentArrayVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve21getAgentArrayVariableE1TRA1M_Kc12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve16getArrayVariableE1TRA1M_Kc12VariableHashjj">
+<span id="_CPPv3I0_j_jEN5Curve16getArrayVariableERA1M_Kc12VariableHashjj"></span><span id="_CPPv2I0_j_jEN5Curve16getArrayVariableERAM_Kc12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1ae121bebb1758346d085860a3232ae782"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve16getArrayVariableE1TRA1M_Kc12VariableHashjj" title="Curve::getArrayVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getArrayVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve16getArrayVariableE1TRA1M_Kc12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve25getAgentArrayVariable_ldgE1TRA1M_Kc12VariableHashjj">
+<span id="_CPPv3I0_j_jEN5Curve25getAgentArrayVariable_ldgERA1M_Kc12VariableHashjj"></span><span id="_CPPv2I0_j_jEN5Curve25getAgentArrayVariable_ldgERAM_Kc12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a084247aab0001778232cd527ea48e7c5"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve25getAgentArrayVariable_ldgE1TRA1M_Kc12VariableHashjj" title="Curve::getAgentArrayVariable_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getAgentArrayVariable_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve25getAgentArrayVariable_ldgE1TRA1M_Kc12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve20getArrayVariable_ldgE1TRA1M_Kc12VariableHashjj">
+<span id="_CPPv3I0_j_jEN5Curve20getArrayVariable_ldgERA1M_Kc12VariableHashjj"></span><span id="_CPPv2I0_j_jEN5Curve20getArrayVariable_ldgERAM_Kc12VariableHashjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a325191c93399437d96b2a0668f558726"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve20getArrayVariable_ldgE1TRA1M_Kc12VariableHashjj" title="Curve::getArrayVariable_ldg::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getArrayVariable_ldg</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve20getArrayVariable_ldgE1TRA1M_Kc12VariableHashjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0EN5Curve17setVariableByHashEvK12VariableHash1Tj">
+<span id="_CPPv3I0EN5Curve17setVariableByHashEK12VariableHash1Tj"></span><span id="_CPPv2I0EN5Curve17setVariableByHashEK12VariableHash1Tj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a00220e3085e7a8168821c37a5f2291bf"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setVariableByHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <a class="reference internal" href="#_CPPv4I0EN5Curve17setVariableByHashEvK12VariableHash1Tj" title="Curve::setVariableByHash::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN5Curve17setVariableByHashEvK12VariableHash1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve22setArrayVariableByHashEvK12VariableHash1Tjj">
+<span id="_CPPv3I0_jEN5Curve22setArrayVariableByHashEK12VariableHash1Tjj"></span><span id="_CPPv2I0_jEN5Curve22setArrayVariableByHashEK12VariableHash1Tjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a4e951d16e540433f3d8feef24186b1d4"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setArrayVariableByHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_jEN5Curve22setArrayVariableByHashEvK12VariableHash1Tjj" title="Curve::setArrayVariableByHash::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve22setArrayVariableByHashEvK12VariableHash1Tjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve16setAgentVariableEvRA1N_Kc12VariableHash1Tj">
+<span id="_CPPv3I0_jEN5Curve16setAgentVariableERA1N_Kc12VariableHash1Tj"></span><span id="_CPPv2I0_jEN5Curve16setAgentVariableERAN_Kc12VariableHash1Tj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a4b7bf1e8698a69c8c62f401b22348ad2"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_jEN5Curve16setAgentVariableEvRA1N_Kc12VariableHash1Tj" title="Curve::setAgentVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve16setAgentVariableEvRA1N_Kc12VariableHash1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve18setMessageVariableEvRA1N_Kc12VariableHash1Tj">
+<span id="_CPPv3I0_jEN5Curve18setMessageVariableERA1N_Kc12VariableHash1Tj"></span><span id="_CPPv2I0_jEN5Curve18setMessageVariableERAN_Kc12VariableHash1Tj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a04889217fd7e5db85d0eabf2b16c8b1b"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_jEN5Curve18setMessageVariableEvRA1N_Kc12VariableHash1Tj" title="Curve::setMessageVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve18setMessageVariableEvRA1N_Kc12VariableHash1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve19setNewAgentVariableEvRA1N_Kc12VariableHash1Tj">
+<span id="_CPPv3I0_jEN5Curve19setNewAgentVariableERA1N_Kc12VariableHash1Tj"></span><span id="_CPPv2I0_jEN5Curve19setNewAgentVariableERAN_Kc12VariableHash1Tj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a9b4b2303c7c45ed62c97b5e9a9fd79b2"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setNewAgentVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_jEN5Curve19setNewAgentVariableEvRA1N_Kc12VariableHash1Tj" title="Curve::setNewAgentVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve19setNewAgentVariableEvRA1N_Kc12VariableHash1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_jEN5Curve11setVariableEvRA1N_Kc12VariableHash1Tj">
+<span id="_CPPv3I0_jEN5Curve11setVariableERA1N_Kc12VariableHash1Tj"></span><span id="_CPPv2I0_jEN5Curve11setVariableERAN_Kc12VariableHash1Tj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a3b376d82e3b055f9eb1cc8002e55f5b6"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_jEN5Curve11setVariableEvRA1N_Kc12VariableHash1Tj" title="Curve::setVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN5Curve11setVariableEvRA1N_Kc12VariableHash1Tj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve21setAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj">
+<span id="_CPPv3I0_j_jEN5Curve21setAgentArrayVariableERA1M_Kc12VariableHash1Tjj"></span><span id="_CPPv2I0_j_jEN5Curve21setAgentArrayVariableERAM_Kc12VariableHash1Tjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a3bf281d644eb09e9a1e3e5e252689f3a"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentArrayVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve21setAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Curve::setAgentArrayVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve21setAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve24setNewAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj">
+<span id="_CPPv3I0_j_jEN5Curve24setNewAgentArrayVariableERA1M_Kc12VariableHash1Tjj"></span><span id="_CPPv2I0_j_jEN5Curve24setNewAgentArrayVariableERAM_Kc12VariableHash1Tjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a593814e21e5f792d9db08ac9e843a9db"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setNewAgentArrayVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve24setNewAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Curve::setNewAgentArrayVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve24setNewAgentArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4I0_j_jEN5Curve16setArrayVariableEvRA1M_Kc12VariableHash1Tjj">
+<span id="_CPPv3I0_j_jEN5Curve16setArrayVariableERA1M_Kc12VariableHash1Tjj"></span><span id="_CPPv2I0_j_jEN5Curve16setArrayVariableERAM_Kc12VariableHash1Tjj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1aa8c68c3c25dc315da2464ad8348a07fc"></span><span class="pre">__device__</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setArrayVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">namespace_hash</span></em>, <a class="reference internal" href="#_CPPv4I0_j_jEN5Curve16setArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Curve::setArrayVariable::T"><span class="pre">T</span></a> <em><span class="pre">variable</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">agent_index</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">array_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN5Curve16setArrayVariableEvRA1M_Kc12VariableHash1Tjj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve19variableRuntimeHashEPKc">
+<span id="_CPPv3N5Curve19variableRuntimeHashEPKc"></span><span id="_CPPv2N5Curve19variableRuntimeHashEPKc"></span><span id="Curve::variableRuntimeHash__cCP"></span><span class="target" id="classCurve_1a231628ebe39fb48e0c2f104e72a4e184"></span><span class="pre">__host__</span> <em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <code class="sig-name descname"><span class="pre">variableRuntimeHash</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve19variableRuntimeHashEPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Main cuRVE variable hashing function for strings of length determined at runtime and not compile time Should only be used for registered variables as this will be much slower than the compile time alternative. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>a 32 bit cuRVE string variable hash. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve19variableRuntimeHashEj">
+<span id="_CPPv3N5Curve19variableRuntimeHashEj"></span><span id="_CPPv2N5Curve19variableRuntimeHashEj"></span><span id="Curve::variableRuntimeHash__unsigned-i"></span><span class="target" id="classCurve_1a2b93295dce2d61c74bb694998e8498cc"></span><span class="pre">__host__</span> <em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <code class="sig-name descname"><span class="pre">variableRuntimeHash</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">num</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve19variableRuntimeHashEj" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1ae41bc47cefb5680402c645010a94de03"></span><code class="sig-name descname"><span class="pre">template&lt;unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">__host__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">VariableHash</span> <span class="pre">variableHash</span> <span class="pre">(const</span> <span class="pre">char(&amp;str)[N])</span></code></dt>
+<dd><p>Main cuRVE variable hashing function Calls recursive hashing functions. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>a 32 bit cuRVE string variable hash. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1ad936cd606ab46cecb9fd2c9d3456e012"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">Variable</span> <span class="pre">getVariable</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash)</span></code></dt>
+<dd><p>Returns the index of the hashed variable within the hash table</p>
+<p>Device side class implementation </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a964c272cc052445930d925bfedf12b94"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">size_t</span> <span class="pre">getVariableSize</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash)</span></code></dt>
+<dd><p>Gets the size of the cuRVE variable type given the variable hash Gets the size of the cuRVE variable type given the variable hash. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A size_t which is the size of the variable or 0 otherwise </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from VariableHash. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a4d187e05db7e5a0ea2d73f15949eb132"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">getVariableLength</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash)</span></code></dt>
+<dd><p>Gets the length of the cuRVE variable given the variable hash Gets the length of the cuRVE variable given the variable hash This will be 1 unless the variable is an array. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>An unsigned int which is the number of elements within the curve variable (1 unless it’s an array) </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from VariableHash. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a8e400404b60c0862dff726e643ace77f"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">*</span> <span class="pre">getVariablePtrByHash</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">size_t</span> <span class="pre">offset)</span></code></dt>
+<dd><p>Device function for getting a pointer to a variable of given name Returns a generic pointer to a variable of given name at a specific offset in bytes from the start of the variable array. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A generic pointer to the variable value. Will be nullptr if there is an error. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from VariableHash. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: an offset into the variable array in bytes (offset is variable index * sizeof(variable type)) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1af31a03fb3976d959700dd3a8e646814d"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getVariableByHash</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd><p>Device function for getting a single typed value from a VariableHash at a given index Returns a single value of specified type from a variableHash using the given index position. Note: No runtime type checking is done. TODO: Add runtime type checking for debug modes. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>T A value of given type at the given index for the variable with the provided hash. Will return 0 if an error is raised. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from VariableHash. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: The index of the variable in the named variable vector. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a3f07bf3c48c38a8bc480f03df4f75fe3"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getVariableByHash_ldg</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a487b708b267ea24beffc99d54786db2d"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getArrayVariableByHash</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">agent_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd><p><dl class="simple">
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: Type of variable array </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Length of variable array </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a1bff15c10e07ecc42d17796e20247133"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getArrayVariableByHash_ldg</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">agent_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a5e6941c570fc58ef1867c3701167d143"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getAgentVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd><p>These methods all forward to <a class="reference internal" href="#classCurve_1ad936cd606ab46cecb9fd2c9d3456e012"><span class="std std-ref">getVariable()</span></a> This allows RTC to selectively remove a branch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1ab8b7c6af2248fd3f3d56bf79e5f2f57a"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getMessageVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1aec86d115c9d509fc2af1760f4ee40a42"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getAgentVariable_ldg</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a4560f5c11a47e2c8c6db995dd873ca22"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getMessageVariable_ldg</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1aede9933894f3b91ecc642ea4bfc907eb"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">M&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getAgentArrayVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[M],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">variable_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd><p>These methods all forward to getArrayVariable() This allows RTC to selectively remove a branch Note: Currently messages do not support array variables </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a1567e38a444ae77dfed5cc8c9132d0fc"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">M&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">T</span> <span class="pre">getAgentArrayVariable_ldg</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[M],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">variable_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a11787389965bc96916b55cb932deefdb"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setVariableByHash</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">T</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd><p>Device function for setting a single typed value from a VariableHash Sets a single value from a variableHash using the given index position. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable_hash</span></code>: A cuRVE variable string hash from VariableHash. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: The index of the variable in the named variable vector. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: The typed value to set at the given index. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1aad520e079451154be80f3415623c9a50"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setArrayVariableByHash</span> <span class="pre">(const</span> <span class="pre">VariableHash</span> <span class="pre">variable_hash,</span> <span class="pre">T</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">agent_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd><p><dl class="simple">
+<dt><strong>Template Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">T</span></code>: Type of variable array </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">N</span></code>: Length of variable array </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1ac614a77da8ce73a9878243e752a243c9"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setAgentVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">T</span> <span class="pre">variable,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd><p>These methods all forward to setArrayVariable() This allows RTC to selectively remove a branch </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a3a37a59379f1359dd19289ce294a8713"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setMessageVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">T</span> <span class="pre">variable,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1aae242d9c3ec912cf7ad78709a77175f1"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setNewAgentVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[N],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">T</span> <span class="pre">variable,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a116053a4457784d6d27670f1a01940d4"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">M&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setAgentArrayVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[M],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">T</span> <span class="pre">variable,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">variable_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd><p>These methods all forward to setArrayVariable() This allows RTC to selectively remove a branch Note: Currently messages do not support array variables </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1aad8d8c4700d2fa48b96e5c99bb6b7a07"></span><code class="sig-name descname"><span class="pre">template&lt;typename</span> <span class="pre">T,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">N,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">M&gt;</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">setNewAgentArrayVariable</span> <span class="pre">(const</span> <span class="pre">char(&amp;variableName)[M],</span> <span class="pre">VariableHash</span> <span class="pre">namespace_hash,</span> <span class="pre">T</span> <span class="pre">variable,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">variable_index,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">array_index)</span></code></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a3f90e98a5bb5fb4bed7ed216316088ac"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">void</span> <span class="pre">printLastDeviceError</span> <span class="pre">(const</span> <span class="pre">char</span> <span class="pre">*file,</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*function,</span> <span class="pre">const</span> <span class="pre">int</span> <span class="pre">line)</span></code></dt>
+<dd><p>Device function for printing the last device error Prints the last device error using the provided source location information. The preferred method for printing is to use the curveReportLastDeviceError macro which inserts source location information. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">file</span></code>: A constant string filename. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">function</span></code>: A constant string function name. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">line</span></code>: A constant integer line number. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a0d7e545abd811d8c398d15924b0160ad"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">__host__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">const</span> <span class="pre">char</span> <span class="pre">*</span> <span class="pre">getDeviceErrorString</span> <span class="pre">(DeviceError</span> <span class="pre">error_code)</span></code></dt>
+<dd><p>Device API function for returning a constant string error description Returns an error description given a <a class="reference internal" href="classDeviceError.html#classDeviceError"><span class="std std-ref">DeviceError</span></a> error code. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>constant A string error description </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error_code</span></code>: A <a class="reference internal" href="classDeviceError.html#classDeviceError"><span class="std std-ref">DeviceError</span></a> error code. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt>
+<span class="target" id="classCurve_1a1ef91baff5160aa8812f0e86e0ebb20f"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">static</span> <span class="pre">__forceinline__</span> <span class="pre">DeviceError</span> <span class="pre">getLastDeviceError</span> <span class="pre">()</span></code></dt>
+<dd><p>Device API function for returning the last reported error code. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A <a class="reference internal" href="classDeviceError.html#classDeviceError"><span class="std std-ref">DeviceError</span></a> error code </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve11getInstanceEv">
+<span id="_CPPv3N5Curve11getInstanceEv"></span><span id="_CPPv2N5Curve11getInstanceEv"></span><span id="Curve::getInstance"></span><span class="target" id="classCurve_1a691a3697c0634a1505e0472e0b989509"></span><em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getInstance</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve11getInstanceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the instance. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>A new instance if this is the first request for an instance otherwise an existing instance. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Public Static Attributes</p>
+<dl class="cpp var">
+<dt id="_CPPv4N5Curve16UNKNOWN_VARIABLEE">
+<span id="_CPPv3N5Curve16UNKNOWN_VARIABLEE"></span><span id="_CPPv2N5Curve16UNKNOWN_VARIABLEE"></span><span id="Curve::UNKNOWN_VARIABLE__iC"></span><span class="target" id="classCurve_1ab8a73aa20ac9255eeb982e5e64af2da4"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">UNKNOWN_VARIABLE</span></code> <span class="pre">=</span> <span class="pre">-</span><span class="pre">1</span><a class="headerlink" href="#_CPPv4N5Curve16UNKNOWN_VARIABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Curve13MAX_VARIABLESE">
+<span id="_CPPv3N5Curve13MAX_VARIABLESE"></span><span id="_CPPv2N5Curve13MAX_VARIABLESE"></span><span id="Curve::MAX_VARIABLES__iC"></span><span class="target" id="classCurve_1a4016a6daba2171f9b8e41c9d2b8a5bf7"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">MAX_VARIABLES</span></code> <span class="pre">=</span> <span class="pre">1024</span><a class="headerlink" href="#_CPPv4N5Curve13MAX_VARIABLESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Curve10EMPTY_FLAGE">
+<span id="_CPPv3N5Curve10EMPTY_FLAGE"></span><span id="_CPPv2N5Curve10EMPTY_FLAGE"></span><span id="Curve::EMPTY_FLAG__VariableHashC"></span><span class="target" id="classCurve_1abebadc7a038b2bb13de9747ead49ca7c"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <code class="sig-name descname"><span class="pre">EMPTY_FLAG</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N5Curve10EMPTY_FLAGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Curve12DELETED_FLAGE">
+<span id="_CPPv3N5Curve12DELETED_FLAGE"></span><span id="_CPPv2N5Curve12DELETED_FLAGE"></span><span id="Curve::DELETED_FLAG__VariableHashC"></span><span class="target" id="classCurve_1a042109096e803e582de9d7d52d0abe80"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <code class="sig-name descname"><span class="pre">DELETED_FLAG</span></code> <span class="pre">=</span> <span class="pre">1</span><a class="headerlink" href="#_CPPv4N5Curve12DELETED_FLAGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv4N5Curve14instance_mutexE">
+<span id="_CPPv3N5Curve14instance_mutexE"></span><span id="_CPPv2N5Curve14instance_mutexE"></span><span id="Curve::instance_mutex__std::mutex"></span><span class="target" id="classCurve_1a129142aaa3ef97a4b5d3f436818b1abb"></span><em class="property"><span class="pre">static</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">mutex</span> <code class="sig-name descname"><span class="pre">instance_mutex</span></code><a class="headerlink" href="#_CPPv4N5Curve14instance_mutexE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Protected Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv4N5Curve5CurveEv">
+<span id="_CPPv3N5Curve5CurveEv"></span><span id="_CPPv2N5Curve5CurveEv"></span><span id="Curve::Curve"></span><span class="target" id="classCurve_1ae798bf8c0104059eb5f33efaa01b4bcb"></span><code class="sig-name descname"><span class="pre">Curve</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve5CurveEv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Default constructor. </p>
+<p>Private destructor to prevent this singleton being created more than once. Classes requiring a cuRVEInstance object should instead use the <a class="reference internal" href="#classCurve_1a691a3697c0634a1505e0472e0b989509"><span class="std std-ref">getInstance()</span></a> method. This ensure that curveInit is only ever called once by the program. This will initialise the internal storage used for hash tables. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="classCurveException.html" class="btn btn-neutral float-right" title="Class CurveException" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="classCUDASimulation.html" class="btn btn-neutral float-left" title="Class CUDASimulation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File JitifyCache.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File JitifyCache.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_util_JitifyCache.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-jitifycache-cu">
+<span id="program-listing-file-src-flamegpu-util-jitifycache-cu"></span><h1>Program Listing for File JitifyCache.cu<a class="headerlink" href="#program-listing-for-file-jitifycache-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_util_JitifyCache.cu.html#file-src-flamegpu-util-jitifycache-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/util/JitifyCache.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/util/JitifyCache.h&quot;
+
+#include &lt;cassert&gt;
+
+
+#include &quot;flamegpu/version.h&quot;
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+#include &quot;flamegpu/util/compute_capability.cuh&quot;
+#include &quot;flamegpu/util/nvtx.h&quot;
+
+// If MSVC earlier than VS 2019
+#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1920
+#include &lt;filesystem&gt;
+using std::tr2::sys::temp_directory_path;
+using std::tr2::sys::exists;
+using std::tr2::sys::path;
+using std::tr2::sys::directory_iterator;
+#else
+// VS2019 requires this macro, as building pre c++17 cant use std::filesystem
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+#include &lt;experimental/filesystem&gt;
+using std::experimental::filesystem::v1::temp_directory_path;
+using std::experimental::filesystem::v1::exists;
+using std::experimental::filesystem::v1::path;
+using std::experimental::filesystem::v1::directory_iterator;
+#endif
+
+using jitify::detail::hash_combine;
+using jitify::detail::hash_larson64;
+
+namespace {
+path getTMP() {
+    static path result;
+    if (result.empty()) {
+        path tmp =  std::getenv(&quot;FLAMEGPU2_TMP_DIR&quot;) ? std::getenv(&quot;FLAMEGPU2_TMP_DIR&quot;) : temp_directory_path();
+        // Create the $tmp/fgpu2/jitifycache(/debug) folder hierarchy
+        if (!::exists(tmp) &amp;&amp; !create_directory(tmp)) {
+            THROW InvalidFilePath(&quot;Directory &#39;%s&#39; does not exist and cannot be created by JitifyCache.&quot;, tmp.generic_string().c_str());
+        }
+        if (!std::getenv(&quot;FLAMEGPU2_TMP_DIR&quot;)) {
+            tmp /= &quot;fgpu2&quot;;
+            if (!::exists(tmp)) {
+                create_directory(tmp);
+            }
+        }
+        tmp /= &quot;jitifycache&quot;;
+        if (!::exists(tmp)) {
+            create_directory(tmp);
+        }
+#ifdef _DEBUG
+        tmp /= &quot;debug&quot;;
+        if (!::exists(tmp)) {
+            create_directory(tmp);
+        }
+#endif
+        result = tmp;
+    }
+    return result;
+}
+std::string loadFile(const path &amp;filepath) {
+    std::ifstream ifs;
+    ifs.open(filepath, std::ifstream::binary);
+    if (!ifs)
+    return &quot;&quot;;
+    // get length of file
+    ifs.seekg(0, ifs.end);
+    const std::streamoff length = ifs.tellg();
+    ifs.seekg(0, ifs.beg);
+    std::string rtn;
+    rtn.resize(length);
+    char *buffer = &amp;rtn[0];
+    ifs.read(buffer, length);
+    ifs.close();
+    return rtn;
+}
+};  // namespace
+
+std::mutex JitifyCache::instance_mutex;
+
+std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::compileKernel(const std::string &amp;func_name, const std::vector&lt;std::string&gt; &amp;template_args, const std::string &amp;kernel_src, const std::string &amp;dynamic_header) {
+    NVTX_RANGE(&quot;JitifyCache::compileKernel&quot;);
+    // Init runtime compilation constants
+    static std::string env_inc_fgp2 = std::getenv(&quot;FLAMEGPU2_INC_DIR&quot;) ? std::getenv(&quot;FLAMEGPU2_INC_DIR&quot;) : &quot;&quot;;
+    static bool header_version_confirmed = false;
+    static std::string env_cuda_path = std::getenv(&quot;CUDA_PATH&quot;);
+    if (env_inc_fgp2.empty()) {
+        // Var is not set, attempt to use default arrangement
+        path test_include(&quot;&quot;);
+        // Try 5 levels of directory, to see if we can find flame_api.h
+        for (int i = 0; i &lt; 5; ++i) {
+            path check_file = test_include;
+            check_file/= &quot;include/flamegpu/version.h&quot;;
+            if (exists(check_file)) {
+                test_include/= &quot;include&quot;;
+                env_inc_fgp2 = test_include.string();
+                break;
+            }
+            // Go up a level for next iteration
+            test_include/= &quot;..&quot;;
+        }
+        if (env_inc_fgp2.empty()) {
+            THROW InvalidAgentFunc(&quot;Error compiling runtime agent function: Unable to automatically determine include directory and FLAMEGPU2_INC_DIR environment variable does not exist, &quot;
+                &quot;in JitifyCache::buildProgram().&quot;);
+        }
+    }
+    if (!header_version_confirmed) {
+        std::string fileHash;
+        // Open version.h
+        path version_file = env_inc_fgp2;
+        version_file/= &quot;flamegpu/version.h&quot;;
+        std::ifstream vFile(version_file);
+        if (vFile.is_open()) {
+            // Read the first line
+            std::string line;
+            if (getline(vFile, line)) {
+                // If characters 3-onwards match programatic hash we have success, else fail
+                fileHash = line.substr(3, std::string::npos);
+            }
+            vFile.close();
+        }
+        if (fileHash == flamegpu_internal::getCommitHash()) {
+            header_version_confirmed = true;
+        } else {
+            THROW VersionMismatch(&quot;RTC header version (%s) does not match version flamegpu2 library was built with (%s). Set the environment variable FLAMEGPU2_INC_DIR to the correct include directory.\n&quot;,
+                fileHash.c_str(), flamegpu_internal::getCommitHash().c_str());
+        }
+    }
+    if (env_cuda_path.empty()) {
+        THROW InvalidAgentFunc(&quot;Error compiling runtime agent function: CUDA_PATH environment variable does not exist, &quot;
+            &quot;in CUDAAgent::addInstantitateRTCFunction().&quot;);
+    }
+    // If the last char is a / or \, remove it. Only removes a single slash.
+    if ((env_cuda_path.back() == &#39;/&#39; || env_cuda_path.back() == &#39;\\&#39;)) {
+        env_cuda_path.pop_back();
+    }
+
+     // vector of compiler options for jitify
+    std::vector&lt;std::string&gt; options;
+    std::vector&lt;std::string&gt; headers;
+
+    // fpgu include directory
+    options.push_back(std::string(&quot;-I&quot; + std::string(env_inc_fgp2)));
+
+    // cuda include directory (via CUDA_PATH)
+    options.push_back(std::string(&quot;-I&quot; + env_cuda_path + &quot;/include&quot;));
+
+    // Set the compilation architecture target if it was successfully detected.
+    int currentDeviceIdx = 0;
+    cudaError_t status = cudaGetDevice(&amp;currentDeviceIdx);
+    if (status == cudaSuccess) {
+        int arch = util::compute_capability::getComputeCapability(currentDeviceIdx);
+        options.push_back(std::string(&quot;--gpu-architecture=compute_&quot; + std::to_string(arch)));
+    }
+
+    // If CUDA is compiled with -G (--device-debug) forward it to the compiler, otherwise forward lineinfo for profiling.
+#if defined(__CUDACC_DEBUG__)
+    options.push_back(&quot;--device-debug&quot;);
+#else
+    options.push_back(&quot;--generate-line-info&quot;);
+#endif
+
+    // If DEBUG is defined, forward it
+#if defined(DEBUG)
+    options.push_back(&quot;-DDEBUG&quot;);
+#endif
+
+    // If NDEBUG is defined, forward it, this should disable asserts in device code.
+#if defined(NDEBUG)
+    options.push_back(&quot;-DNDEBUG&quot;);
+#endif
+
+    // pass the c++14 language dialect if detected successfully.
+#if defined(__cplusplus) &amp;&amp; __cplusplus &gt; 201400L
+    options.push_back(&quot;--std=c++14&quot;);
+#endif
+
+    // If SEATBELTS is defined and false, forward it as off, otherwise forward it as on.
+#if !defined(SEATBELTS) || SEATBELTS
+    options.push_back(&quot;--define-macro=SEATBELTS=1&quot;);
+#else
+    options.push_back(&quot;--define-macro=SEATBELTS=0&quot;);
+#endif
+
+    // cuda.h
+    std::string include_cuda_h;
+    include_cuda_h = &quot;--pre-include=&quot; + env_cuda_path + &quot;/include/cuda.h&quot;;
+    options.push_back(include_cuda_h);
+
+    // get the dynamically generated header from curve rtc
+    headers.push_back(dynamic_header);
+
+    // cassert header (to remove remaining warnings) TODO: Ask Jitify to implement safe version of this
+    std::string cassert_h = &quot;cassert\n&quot;;
+    headers.push_back(cassert_h);
+
+    // jitify to create program (with compilation settings)
+    try {
+        auto program = jitify::experimental::Program(kernel_src, headers, options);
+        assert(template_args.size() == 1 || template_args.size() == 3);  // Add this assertion incase template args change
+        auto kernel = program.kernel(template_args.size() &gt; 1 ? &quot;agent_function_wrapper&quot; : &quot;agent_function_condition_wrapper&quot;);
+        return std::make_unique&lt;KernelInstantiation&gt;(kernel, template_args);
+    } catch (std::runtime_error const&amp;) {
+        // jitify does not have a method for getting compile logs so rely on JITIFY_PRINT_LOG defined in cmake
+        THROW InvalidAgentFunc(&quot;Error compiling runtime agent function (or function condition) (&#39;%s&#39;): function had compilation errors (see std::cout), &quot;
+            &quot;in JitifyCache::buildProgram().&quot;,
+            func_name.c_str());
+    }
+}
+
+std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::loadKernel(const std::string &amp;func_name, const std::vector&lt;std::string&gt; &amp;template_args, const std::string &amp;kernel_src, const std::string &amp;dynamic_header) {
+    NVTX_RANGE(&quot;JitifyCache::loadKernel&quot;);
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    // Detect current compute capability=
+    int currentDeviceIdx = 0;
+    cudaError_t status = cudaGetDevice(&amp;currentDeviceIdx);
+    const std::string arch = std::to_string((status == cudaSuccess) ? util::compute_capability::getComputeCapability(currentDeviceIdx) : 0);
+    status = cudaRuntimeGetVersion(&amp;currentDeviceIdx);
+    const std::string cuda_version = std::to_string((status == cudaSuccess) ? currentDeviceIdx : 0);
+    const std::string seatbelts = std::to_string(SEATBELTS);
+    // Cat kernel, dynamic header, header version
+    const std::string long_reference = kernel_src + dynamic_header;  // Don&#39;t need to include rest, they are explicit in short reference/filename
+    // Generate short reference string
+    // Would prefer to use a proper hash, e.g. md5(reference_string), but that requires extra dependencies
+    const std::string short_reference =
+        cuda_version + &quot;_&quot; +
+        arch + &quot;_&quot; +
+        seatbelts + &quot;_&quot; +
+        flamegpu_internal::getCommitHash() + &quot;_&quot; +
+        // Use jitify hash methods for consistent hashing between OSs
+        std::to_string(hash_combine(hash_larson64(kernel_src.c_str()), hash_larson64(dynamic_header.c_str())));
+    // Does a copy with the right reference exist in memory?
+    if (use_memory_cache) {
+        const auto it = cache.find(short_reference);
+        if (it != cache.end()) {
+            // Check long reference
+            if (it-&gt;second.long_reference == long_reference) {
+                return std::make_unique&lt;KernelInstantiation&gt;(KernelInstantiation::deserialize(it-&gt;second.serialised_kernelinst));
+            }
+        }
+    }
+    // Does a copy with the right reference exist on disk?
+    const path cache_file = getTMP() / short_reference;
+    const path reference_file = path(cache_file).replace_extension(&quot;.ref&quot;);
+    if (use_disk_cache &amp;&amp; exists(cache_file)) {
+        // Load the long reference for the cache file
+        const std::string file_long_reference = loadFile(reference_file);
+        if (file_long_reference == long_reference) {
+            // Load the cache file
+            const std::string serialised_kernelinst = loadFile(cache_file);
+            if (!serialised_kernelinst.empty()) {
+                // Add it to cache for later loads
+                cache.emplace(short_reference, CachedProgram{long_reference, serialised_kernelinst});
+                // Deserialize and return program
+                return std::make_unique&lt;KernelInstantiation&gt;(KernelInstantiation::deserialize(serialised_kernelinst));
+            }
+        }
+    }
+    // Kernel has not yet been cached
+    {
+        // Build kernel
+        auto kernelinst = compileKernel(func_name, template_args, kernel_src, dynamic_header);
+        // Add it to cache for later loads
+        const std::string serialised_kernelinst = use_memory_cache || use_disk_cache ? kernelinst-&gt;serialize() : &quot;&quot;;
+        if (use_memory_cache) {
+            cache.emplace(short_reference, CachedProgram{long_reference, serialised_kernelinst});
+        }
+        // Save it to disk
+        if (use_disk_cache) {
+            std::ofstream ofs(cache_file, std::ofstream::out | std::ofstream::binary | std::ofstream::trunc);
+            if (ofs) {
+                ofs &lt;&lt; serialised_kernelinst;
+                ofs.close();
+            }
+            ofs = std::ofstream(reference_file, std::ofstream::out | std::ofstream::binary | std::ofstream::trunc);
+            if (ofs) {
+                ofs &lt;&lt; long_reference;
+                ofs.close();
+            }
+        }
+        return kernelinst;
+    }
+}
+void JitifyCache::useMemoryCache(bool yesno) {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    use_memory_cache = yesno;
+}
+void JitifyCache::useDiskCache(bool yesno) {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    use_disk_cache = yesno;
+}
+bool JitifyCache::useMemoryCache() const {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    return use_memory_cache;
+}
+bool JitifyCache::useDiskCache() const {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    return use_disk_cache;
+}
+void JitifyCache::clearMemoryCache() {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    cache.clear();
+}
+void JitifyCache::clearDiskCache() {
+    std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
+    const path tmp_dir = getTMP();
+    for (const auto &amp; entry : directory_iterator(tmp_dir)) {
+        if (is_regular_file(entry.path())) {
+            remove(entry.path());
+        }
+    }
+}
+JitifyCache::JitifyCache()
+    : use_memory_cache(true)
+#ifndef DISABLE_RTC_DISK_CACHE
+    , use_disk_cache(true) { }
+#else
+    , use_disk_cache(false) { }
+#endif
+JitifyCache&amp; JitifyCache::getInstance() {
+    auto lock = std::unique_lock&lt;std::mutex&gt;(instance_mutex);  // Mutex to protect from two threads triggering the static instantiation concurrently
+    static JitifyCache instance;  // Instantiated on first use.
+    return instance;
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

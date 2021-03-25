@@ -1,0 +1,47 @@
+
+.. _program_listing_file_include_flamegpu_runtime_AgentFunction_shim.h:
+
+Program Listing for File AgentFunction_shim.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_AgentFunction_shim.h>` (``include/flamegpu/runtime/AgentFunction_shim.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_H_
+   
+   // #include "flamegpu/runtime/AgentFunction.h"
+   
+   
+   
+   template<typename MsgIn, typename MsgOut>
+   class FLAMEGPU_DEVICE_API;
+   
+   #ifndef __CUDACC_RTC__
+   #define FLAMEGPU_AGENT_FUNCTION(funcName, msg_in, msg_out)\
+   struct funcName ## _impl {\
+       __device__ __forceinline__ FLAME_GPU_AGENT_STATUS operator()(FLAMEGPU_DEVICE_API<msg_in, msg_out> *FLAMEGPU) const;\
+       static constexpr AgentFunctionWrapper *fnPtr() { return &agent_function_wrapper<funcName ## _impl, msg_in, msg_out>; }\
+       static std::type_index inType() { return std::type_index(typeid(msg_in)); }\
+       static std::type_index outType() { return std::type_index(typeid(msg_out)); }\
+   };\
+   funcName ## _impl funcName;\
+   __device__ __forceinline__ FLAME_GPU_AGENT_STATUS funcName ## _impl::operator()(FLAMEGPU_DEVICE_API<msg_in, msg_out> *FLAMEGPU) const
+   #else
+   #define FLAMEGPU_AGENT_FUNCTION(funcName, msg_in, msg_out)\
+   struct funcName ## _impl {\
+       __device__ __forceinline__ FLAME_GPU_AGENT_STATUS operator()(FLAMEGPU_DEVICE_API<msg_in, msg_out> *FLAMEGPU) const;\
+       static constexpr AgentFunctionWrapper *fnPtr() { return &agent_function_wrapper<funcName ## _impl, msg_in, msg_out>; }\
+   }; \
+   funcName ## _impl funcName; \
+   __device__ __forceinline__ FLAME_GPU_AGENT_STATUS funcName ## _impl::operator()(FLAMEGPU_DEVICE_API<msg_in, msg_out> *FLAMEGPU) const
+   #endif
+   
+   #define FLAMEGPU_DEVICE_FUNCTION __device__ __forceinline__
+   
+   #define FLAMEGPU_HOST_DEVICE_FUNCTION __host__ FLAMEGPU_DEVICE_FUNCTION
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_H_

@@ -1,0 +1,811 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File CUDAScatter.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File CUDAScatter.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_gpu_CUDAScatter.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-cudascatter-cu">
+<span id="program-listing-file-src-flamegpu-gpu-cudascatter-cu"></span><h1>Program Listing for File CUDAScatter.cu<a class="headerlink" href="#program-listing-for-file-cudascatter-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_gpu_CUDAScatter.cu.html#file-src-flamegpu-gpu-cudascatter-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDAScatter.cu</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/gpu/CUDAScatter.h&quot;
+
+#include &lt;cuda_runtime.h&gt;
+#include &lt;vector&gt;
+#include &lt;cassert&gt;
+
+#include &quot;flamegpu/gpu/CUDAErrorChecking.h&quot;
+#include &quot;flamegpu/gpu/CUDAFatAgentStateList.h&quot;
+#include &quot;flamegpu/gpu/CUDAScanCompaction.h&quot;
+
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#pragma warning(disable : 4706 4834)
+#include &lt;cub/cub.cuh&gt;
+#pragma warning(pop)
+#else
+#include &lt;cub/cub.cuh&gt;
+#endif
+
+// @todo - Make _async variants of functions which launch kernels. This can be called by the non async version and immediately sync.
+
+CUDAScatter::StreamData::StreamData()
+    : d_data(nullptr)
+    , data_len(0) {
+}
+CUDAScatter::StreamData::~StreamData() {
+    /* @note - Do not clear cuda memory in the destructor of singletons.
+     This is because order of static destruction in c++ is undefined
+     So the cuda driver is not guaranteed to still exist when the static is destroyed.
+     As this is only ever destroyed at exit time, it&#39;s not a real memory leak either.
+    */
+    if (d_data) {
+        gpuErrchk(cudaFree(d_data));
+    }
+    d_data = nullptr;
+    data_len = 0;
+}
+void CUDAScatter::StreamData::purge() {
+    d_data = nullptr;
+    data_len = 0;
+}
+void CUDAScatter::StreamData::resize(const unsigned int &amp;newLen) {
+    if (newLen &gt; data_len) {
+        if (d_data) {
+            gpuErrchk(cudaFree(d_data));
+        }
+        gpuErrchk(cudaMalloc(&amp;d_data, newLen * sizeof(ScatterData)));
+        data_len = newLen;
+    }
+}
+
+void CUDAScatter::purge() {
+    for (auto &amp;s : streamResources) {
+        s.purge();
+    }
+    scan.purge();
+}
+
+
+template &lt;typename T&gt;
+__global__ void scatter_generic(
+    unsigned int threadCount,
+    T scan_flag,
+    unsigned int *position,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len,
+    const unsigned int out_index_offset = 0,
+    const unsigned int scatter_all_count = 0) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    // if optional message is to be written
+    if (index &lt; scatter_all_count || scan_flag[index - scatter_all_count] == 1) {
+        int output_index = index &lt; scatter_all_count ? index : scatter_all_count + position[index - scatter_all_count];
+        for (unsigned int i = 0; i &lt; scatter_len; ++i) {
+            memcpy(scatter_data[i].out + ((out_index_offset + output_index) * scatter_data[i].typeLen), scatter_data[i].in + (index * scatter_data[i].typeLen), scatter_data[i].typeLen);
+        }
+    }
+}
+__global__ void scatter_position_generic(
+    unsigned int threadCount,
+    unsigned int *position,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    // if optional message is to be written
+    int input_index = position[index];
+    for (unsigned int i = 0; i &lt; scatter_len; ++i) {
+        memcpy(scatter_data[i].out + (index * scatter_data[i].typeLen), scatter_data[i].in + (input_index * scatter_data[i].typeLen), scatter_data[i].typeLen);
+    }
+}
+__global__ void scatter_all_generic(
+    unsigned int threadCount,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len,
+    const unsigned int out_index_offset = 0) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+    for (unsigned int i = 0; i &lt; scatter_len; ++i) {
+        memcpy(scatter_data[i].out + ((out_index_offset + index) * scatter_data[i].typeLen), scatter_data[i].in + (index * scatter_data[i].typeLen), scatter_data[i].typeLen);
+    }
+}
+
+unsigned int CUDAScatter::scatter(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const Type &amp;messageOrAgent,
+    const VariableMap &amp;vars,
+    const std::map&lt;std::string, void*&gt; &amp;in,
+    const std::map&lt;std::string, void*&gt; &amp;out,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;out_index_offset,
+    const bool &amp;invert_scan_flag,
+    const unsigned int &amp;scatter_all_count) {
+    std::vector&lt;ScatterData&gt; scatterData;
+    for (const auto &amp;v : vars) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(in.at(v.first));
+        char *out_p = reinterpret_cast&lt;char*&gt;(out.at(v.first));
+        scatterData.push_back({ v.second.type_size * v.second.elements, in_p, out_p });
+    }
+    return scatter(streamResourceId, stream, messageOrAgent, scatterData, itemCount, out_index_offset, invert_scan_flag, scatter_all_count);
+}
+unsigned int CUDAScatter::scatter(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const Type &amp;messageOrAgent,
+    const std::vector&lt;ScatterData&gt; &amp;sd,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;out_index_offset,
+    const bool &amp;invert_scan_flag,
+    const unsigned int &amp;scatter_all_count) {
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+    // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, scatter_generic&lt;unsigned int*&gt;, 0, itemCount));
+    gridSize = (itemCount + blockSize - 1) / blockSize;
+    // Make sure we have enough space to store scatterdata
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    if (invert_scan_flag) {
+        scatter_generic &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+            itemCount,
+            InversionIterator(scan.Config(messageOrAgent, streamResourceId).d_ptrs.scan_flag),
+            scan.Config(messageOrAgent, streamResourceId).d_ptrs.position,
+            streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()),
+            out_index_offset, scatter_all_count);
+    } else {
+        scatter_generic &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+            itemCount,
+            scan.Config(messageOrAgent, streamResourceId).d_ptrs.scan_flag,
+            scan.Config(messageOrAgent, streamResourceId).d_ptrs.position,
+            streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()),
+            out_index_offset, scatter_all_count);
+    }
+    gpuErrchkLaunch();
+    // Update count of live agents
+    unsigned int rtn = 0;
+    gpuErrchk(cudaMemcpyAsync(&amp;rtn, scan.Config(messageOrAgent, streamResourceId).d_ptrs.position + itemCount - scatter_all_count, sizeof(unsigned int), cudaMemcpyDeviceToHost, stream));
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+    return rtn + scatter_all_count;
+}
+void CUDAScatter::scatterPosition(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const Type &amp;messageOrAgent,
+    const std::vector&lt;ScatterData&gt; &amp;sd,
+    const unsigned int &amp;itemCount) {
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+    // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, scatter_position_generic, 0, itemCount));
+    gridSize = (itemCount + blockSize - 1) / blockSize;
+    // Make sure we have enough space to store scatterdata
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    scatter_position_generic &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+        itemCount,
+        scan.Config(messageOrAgent, streamResourceId).d_ptrs.position,
+        streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()));
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+}
+unsigned int CUDAScatter::scatterCount(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const Type &amp;messageOrAgent,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;scatter_all_count) {
+    unsigned int rtn = 0;
+    gpuErrchk(cudaMemcpy(&amp;rtn, scan.Config(messageOrAgent, streamResourceId).d_ptrs.position + itemCount - scatter_all_count, sizeof(unsigned int), cudaMemcpyDeviceToHost));
+    return rtn;
+}
+
+unsigned int CUDAScatter::scatterAll(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const std::vector&lt;ScatterData&gt; &amp;sd,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;out_index_offset) {
+    if (!itemCount)
+        return itemCount;  // No work to do
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+
+                       // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, scatter_all_generic, 0, itemCount));
+    gridSize = (itemCount + blockSize - 1) / blockSize;
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    scatter_all_generic &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+        itemCount,
+        streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()),
+        out_index_offset);
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+    // Update count of live agents
+    return itemCount;
+}
+unsigned int CUDAScatter::scatterAll(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const VariableMap &amp;vars,
+    const std::map&lt;std::string, void*&gt; &amp;in,
+    const std::map&lt;std::string, void*&gt; &amp;out,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;out_index_offset) {
+    std::vector&lt;ScatterData&gt; scatterData;
+    for (const auto &amp;v : vars) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(in.at(v.first));
+        char *out_p = reinterpret_cast&lt;char*&gt;(out.at(v.first));
+        scatterData.push_back({ v.second.type_size * v.second.elements, in_p, out_p });
+    }
+    return scatterAll(streamResourceId, stream, scatterData, itemCount, out_index_offset);
+}
+
+__global__ void pbm_reorder_generic(
+    const unsigned int threadCount,
+    const unsigned int * __restrict__ bin_index,
+    const unsigned int * __restrict__ bin_sub_index,
+    const unsigned int * __restrict__ pbm,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    const unsigned int sorted_index = pbm[bin_index[index]] + bin_sub_index[index];
+
+    // if optional message is to be written
+    for (unsigned int i = 0; i &lt; scatter_len; ++i) {
+        memcpy(scatter_data[i].out + (sorted_index * scatter_data[i].typeLen), scatter_data[i].in + (index * scatter_data[i].typeLen), scatter_data[i].typeLen);
+    }
+}
+
+void CUDAScatter::pbm_reorder(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const VariableMap &amp;vars,
+    const std::map&lt;std::string, void*&gt; &amp;in,
+    const std::map&lt;std::string, void*&gt; &amp;out,
+    const unsigned int &amp;itemCount,
+    const unsigned int *d_bin_index,
+    const unsigned int *d_bin_sub_index,
+    const unsigned int *d_pbm) {
+    // If itemCount is 0, then there is no work to be done.
+    if (itemCount == 0) {
+        return;
+    }
+
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+
+                       // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, pbm_reorder_generic, 0, itemCount));
+    gridSize = (itemCount + blockSize - 1) / blockSize;
+    // for each variable, scatter from swap to regular
+    std::vector&lt;ScatterData&gt; sd;
+    for (const auto &amp;v : vars) {
+        char *in_p = reinterpret_cast&lt;char*&gt;(in.at(v.first));
+        char *out_p = reinterpret_cast&lt;char*&gt;(out.at(v.first));
+        sd.push_back({ v.second.type_size * v.second.elements, in_p, out_p });
+    }
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    pbm_reorder_generic &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+            itemCount,
+            d_bin_index,
+            d_bin_sub_index,
+            d_pbm,
+            streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()));
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+}
+
+__global__ void scatter_new_agents(
+    const unsigned int threadCount,
+    const unsigned int agent_size,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len,
+    const unsigned int out_index_offset) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    // Which variable are we outputting
+    const unsigned int var_out = index % scatter_len;
+    const unsigned int agent_index = index / scatter_len;
+
+    // if optional message is to be written
+    char * const in_ptr = scatter_data[var_out].in + (agent_index * agent_size);
+    char * const out_ptr = scatter_data[var_out].out + ((out_index_offset + agent_index) * scatter_data[var_out].typeLen);
+    memcpy(out_ptr, in_ptr, scatter_data[var_out].typeLen);
+}
+void CUDAScatter::scatterNewAgents(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const std::vector&lt;ScatterData&gt; &amp;sd,
+    const size_t &amp;totalAgentSize,
+    const unsigned int &amp;inCount,
+    const unsigned int &amp;outIndexOffset) {
+    // 1 thread per agent variable
+    const unsigned int threadCount = static_cast&lt;unsigned int&gt;(sd.size()) * inCount;
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+
+    // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, scatter_new_agents, 0, threadCount));
+    gridSize = (threadCount + blockSize - 1) / blockSize;
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    scatter_new_agents &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+        threadCount,
+        static_cast&lt;unsigned int&gt;(totalAgentSize),
+        streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()),
+        outIndexOffset);
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+}
+__global__ void broadcastInitKernel(
+    const unsigned int threadCount,
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len,
+    const unsigned int out_index_offset) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    // Which variable are we outputting
+    const unsigned int var_out = index % scatter_len;
+    const unsigned int agent_index = index / scatter_len;
+    const unsigned int type_len = scatter_data[var_out].typeLen;
+    // if optional message is to be written
+    char * const in_ptr = scatter_data[var_out].in;
+    char * const out_ptr = scatter_data[var_out].out + ((out_index_offset + agent_index) * type_len);
+    memcpy(out_ptr, in_ptr, type_len);
+}
+void CUDAScatter::broadcastInit(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const std::list&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; &amp;vars,
+    const unsigned int &amp;inCount,
+    const unsigned int outIndexOffset) {
+    // No variables means no work to do
+    if (vars.size() == 0) return;
+    // 1 thread per agent variable
+    const unsigned int threadCount = static_cast&lt;unsigned int&gt;(vars.size()) * inCount;
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+
+    // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, broadcastInitKernel, 0, threadCount));
+    gridSize = (threadCount + blockSize - 1) / blockSize;
+    // Calculate memory usage (crudely in multiples of ScatterData)
+    ptrdiff_t offset = 0;
+    for (const auto &amp;v : vars) {
+        offset += v-&gt;type_size * v-&gt;elements;
+    }
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(offset + vars.size() * sizeof(ScatterData)));
+    // Build scatter data structure and init data
+    std::vector&lt;ScatterData&gt; sd;
+    char *default_data = reinterpret_cast&lt;char*&gt;(malloc(offset));
+    offset = 0;
+    for (const auto &amp;v : vars) {
+        // Scatter data
+        char *in_p = reinterpret_cast&lt;char*&gt;(streamResources[streamResourceId].d_data) + offset;
+        char *out_p = reinterpret_cast&lt;char*&gt;(v-&gt;data_condition);
+        sd.push_back({ v-&gt;type_size * v-&gt;elements, in_p, out_p });
+        // Init data
+        memcpy(default_data + offset, v-&gt;default_value, v-&gt;type_size * v-&gt;elements);
+        // Update offset
+        offset += v-&gt;type_size * v-&gt;elements;
+    }
+    // Important that sd.size() is used here, as allocated len would exceed 2nd memcpy
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, default_data, offset, cudaMemcpyHostToDevice, stream));
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data + offset, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    ::free(default_data);
+    broadcastInitKernel &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+        threadCount,
+        streamResources[streamResourceId].d_data + offset, static_cast&lt;unsigned int&gt;(sd.size()),
+        outIndexOffset);
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+}
+void CUDAScatter::broadcastInit(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const VariableMap &amp;vars,
+    void * const d_newBuff,
+    const unsigned int &amp;inCount,
+    const unsigned int outIndexOffset) {
+    // 1 thread per agent variable
+    const unsigned int threadCount = static_cast&lt;unsigned int&gt;(vars.size()) * inCount;
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+
+    // calculate the grid block size for main agent function
+    gpuErrchk(cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, broadcastInitKernel, 0, threadCount));
+    gridSize = (threadCount + blockSize - 1) / blockSize;
+    // Calculate memory usage (crudely in multiples of ScatterData)
+    std::vector&lt;ScatterData&gt; sd;
+    ptrdiff_t offset = 0;
+    for (const auto &amp;v : vars) {
+        offset += v.second.type_size * v.second.elements;
+    }
+    char *default_data = reinterpret_cast&lt;char*&gt;(malloc(offset));
+    streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(offset + vars.size() * sizeof(ScatterData)));
+    // Build scatter data structure
+    offset = 0;
+    char * d_var = static_cast&lt;char*&gt;(d_newBuff);
+    for (const auto &amp;v : vars) {
+        // In this case, in is the location of first variable, but we step by inOffsetData.totalSize
+        char *in_p = reinterpret_cast&lt;char*&gt;(streamResources[streamResourceId].d_data) + offset;
+        char *out_p = d_var;
+        sd.push_back({ v.second.type_size * v.second.elements, in_p, out_p });
+        // Build init data
+        memcpy(default_data + offset, v.second.default_value, v.second.type_size * v.second.elements);
+        // Prep pointer for next var
+        d_var += v.second.type_size * v.second.elements * inCount;
+        // Update offset
+        offset += v.second.type_size * v.second.elements;
+    }
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, default_data, offset, cudaMemcpyHostToDevice, stream));
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data + offset, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    ::free(default_data);
+    broadcastInitKernel &lt;&lt;&lt;gridSize, blockSize, 0, stream&gt;&gt;&gt; (
+        threadCount,
+        streamResources[streamResourceId].d_data + offset, static_cast&lt;unsigned int&gt;(sd.size()),
+        outIndexOffset);
+    gpuErrchkLaunch();
+    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
+}
+__global__ void reorder_array_messages(
+    const unsigned int threadCount,
+    const unsigned int array_length,
+    const unsigned int *d_position,
+#if !defined(SEATBELTS) || SEATBELTS
+    unsigned int *d_write_flag,
+#endif
+    CUDAScatter::ScatterData *scatter_data,
+    const unsigned int scatter_len
+) {
+    // global thread index
+    int index = (blockIdx.x*blockDim.x) + threadIdx.x;
+
+    if (index &gt;= threadCount) return;
+
+    const unsigned int output_index = d_position[index];
+    // If out of bounds, put it in 1 out of bounds slot
+    if (output_index &lt; array_length) {
+        for (unsigned int i = 0; i &lt; scatter_len; ++i) {
+            memcpy(scatter_data[i].out + (output_index * scatter_data[i].typeLen), scatter_data[i].in + (index * scatter_data[i].typeLen), scatter_data[i].typeLen);
+        }
+#if !defined(SEATBELTS) || SEATBELTS
+        // Set err check flag
+        atomicInc(d_write_flag + output_index, UINT_MAX);
+#endif
+    }
+}
+void CUDAScatter::arrayMessageReorder(
+    const unsigned int &amp;streamResourceId,
+    const cudaStream_t &amp;stream,
+    const VariableMap &amp;vars,
+    const std::map&lt;std::string, void*&gt; &amp;in,
+    const std::map&lt;std::string, void*&gt; &amp;out,
+    const unsigned int &amp;itemCount,
+    const unsigned int &amp;array_length,
+    unsigned int *d_write_flag) {
+    // If itemCount is 0, then there is no work to be done.
+    if (itemCount == 0) {
+        return;
+    }
+
+    if (itemCount &gt; array_length) {
+        THROW ArrayMessageWriteConflict(&quot;Too many messages output for array message structure (%u &gt; %u).\n&quot;, itemCount, array_length);
+    }
+    int blockSize = 0;  // The launch configurator returned block size
+    int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
+    int gridSize = 0;  // The actual grid size needed, based on input size
+                       // calculate the grid block size for main agent function
+    cudaOccupancyMaxPotentialBlockSize(&amp;minGridSize, &amp;blockSize, reorder_array_messages, 0, itemCount);
+    gridSize = (itemCount + blockSize - 1) / blockSize;
+    unsigned int *d_position = nullptr;
+    // Build AoS -&gt; AoS list
+    std::vector&lt;ScatterData&gt; sd;
+    for (const auto &amp;v : vars) {
+        if (v.first != &quot;___INDEX&quot;) {
+            char *in_p = reinterpret_cast&lt;char*&gt;(in.at(v.first));
+            char *out_p = reinterpret_cast&lt;char*&gt;(out.at(v.first));
+            sd.push_back({ v.second.type_size * v.second.elements, in_p, out_p });
+        } else {  // Special case, log index var
+            d_position = reinterpret_cast&lt;unsigned int*&gt;(in.at(v.first));
+            d_write_flag = d_write_flag ? d_write_flag : reinterpret_cast&lt;unsigned int*&gt;(out.at(v.first));
+        }
+    }
+    assert(d_position);  // Not an array message, lacking ___INDEX var
+    size_t t_data_len = 0;
+    {  // Decide curve memory requirements
+        gpuErrchk(cub::DeviceReduce::Max(nullptr, t_data_len, d_write_flag, d_position, array_length, stream));
+        if (t_data_len &gt; streamResources[streamResourceId].data_len * sizeof(ScatterData)) {
+            // t_data_len is bigger than current allocation
+            if (t_data_len &gt; sd.size() * sizeof(ScatterData)) {
+                // td_data_len is bigger than sd.size()
+                streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;((t_data_len / sizeof(ScatterData)) + 1));
+            } else {
+                // sd.size() is bigger
+                streamResources[streamResourceId].resize(static_cast&lt;unsigned int&gt;(sd.size()));
+            }
+        }
+    }
+    // Important that sd.size() is still used here, incase allocated len (data_len) is bigger
+    gpuErrchk(cudaMemcpyAsync(streamResources[streamResourceId].d_data, sd.data(), sizeof(ScatterData) * sd.size(), cudaMemcpyHostToDevice, stream));
+    reorder_array_messages &lt;&lt;&lt;gridSize, blockSize, 0, stream &gt;&gt;&gt; (
+        itemCount, array_length,
+        d_position,
+#if !defined(SEATBELTS) || SEATBELTS
+        d_write_flag,
+#endif
+        streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()));
+    gpuErrchkLaunch();
+#if !defined(SEATBELTS) || SEATBELTS
+    // Check d_write_flag for dupes
+    gpuErrchk(cub::DeviceReduce::Max(streamResources[streamResourceId].d_data, t_data_len, d_write_flag, d_position, array_length, stream));
+    unsigned int maxBinSize = 0;
+    gpuErrchk(cudaMemcpyAsync(&amp;maxBinSize, d_position, sizeof(unsigned int), cudaMemcpyDeviceToHost, stream));
+    gpuErrchk(cudaStreamSynchronize(stream));
+    if (maxBinSize &gt; 1) {
+        // Too many messages for single element of array
+        // Report bad ones
+        unsigned int *hd_write_flag = (unsigned int *)malloc(sizeof(unsigned int) * array_length);
+        gpuErrchk(cudaMemcpy(hd_write_flag, d_write_flag, sizeof(unsigned int)* array_length, cudaMemcpyDeviceToHost));
+        for (unsigned int i = 0; i &lt; array_length; ++i) {
+            if (hd_write_flag[i] &gt; 1)
+                fprintf(stderr, &quot;Array messagelist contains %u messages at index %u!\n&quot;, hd_write_flag[i], i);
+        }
+        THROW ArrayMessageWriteConflict(&quot;Multiple threads output array messages to the same index, see stderr.\n&quot;);
+    }
+#endif
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

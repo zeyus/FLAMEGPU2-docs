@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Program Listing for File curve_rtc.cpp &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: black" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="class_view_hierarchy.html">Class Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_view_hierarchy.html">File Hierarchy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unabridged_api.html">Full API</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Program Listing for File curve_rtc.cpp</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/program_listing_file_src_flamegpu_runtime_cuRVE_curve_rtc.cpp.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="program-listing-for-file-curve-rtc-cpp">
+<span id="program-listing-file-src-flamegpu-runtime-curve-curve-rtc-cpp"></span><h1>Program Listing for File curve_rtc.cpp<a class="headerlink" href="#program-listing-for-file-curve-rtc-cpp" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="file_src_flamegpu_runtime_cuRVE_curve_rtc.cpp.html#file-src-flamegpu-runtime-curve-curve-rtc-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/runtime/cuRVE/curve_rtc.cpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &lt;sstream&gt;
+
+#include &quot;flamegpu/runtime/cuRVE/curve_rtc.h&quot;
+#include &quot;flamegpu/exception/FGPUException.h&quot;
+#include &quot;flamegpu/runtime/utility/EnvironmentManager.cuh&quot;
+
+// jitify include for demangle
+#ifdef _MSC_VER
+#pragma warning(push, 2)
+#include &quot;jitify/jitify.hpp&quot;
+#pragma warning(pop)
+#else
+#include &quot;jitify/jitify.hpp&quot;
+#endif
+
+
+const char* CurveRTCHost::curve_rtc_dynamic_h_template = R&quot;###(dynamic/curve_rtc_dynamic.h
+#ifndef CURVE_RTC_DYNAMIC_H_
+#define CURVE_RTC_DYNAMIC_H_
+
+#include &quot;flamegpu/exception/FGPUDeviceException.h&quot;
+
+template &lt;unsigned int N, unsigned int I&gt; struct StringCompare {
+    __device__ inline static bool strings_equal_loop(const char(&amp;a)[N], const char(&amp;b)[N]) {
+        return a[N - I] == b[N - I] &amp;&amp; StringCompare&lt;N, I - 1&gt;::strings_equal_loop(a, b);
+    }
+};
+
+template &lt;unsigned int N&gt; struct StringCompare&lt;N, 1&gt; {
+    __device__ inline static bool strings_equal_loop(const char(&amp;a)[N], const char(&amp;b)[N]) {
+        return a[0] == b[0];
+    }
+};
+
+template &lt;unsigned int N&gt;
+__device__ bool strings_equal(const char(&amp;a)[N], const char(&amp;b)[N]) {
+    return StringCompare&lt;N, N&gt;::strings_equal_loop(a, b);
+}
+
+template &lt;unsigned int N, unsigned int M&gt;
+__device__ bool strings_equal(const char(&amp;a)[N], const char(&amp;b)[M]) {
+    return false;
+}
+
+$DYNAMIC_VARIABLES
+
+class Curve {
+    public:
+    static const int UNKNOWN_VARIABLE = -1;
+
+    typedef int                      Variable;
+    typedef unsigned int             VariableHash;
+    typedef unsigned int             NamespaceHash;
+
+    enum DeviceError {
+        DEVICE_ERROR_NO_ERRORS,
+        DEVICE_ERROR_UNKNOWN_VARIABLE,
+        DEVICE_ERROR_VARIABLE_DISABLED,
+        DEVICE_ERROR_UNKNOWN_TYPE,
+        DEVICE_ERROR_UNKNOWN_LENGTH
+    };
+
+    enum HostError {
+        ERROR_NO_ERRORS,
+        ERROR_UNKNOWN_VARIABLE,
+        ERROR_TOO_MANY_VARIABLES
+    };
+
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static T getAgentVariable(const char(&amp;name)[N], VariableHash namespace_hash, unsigned int index);
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static T getMessageVariable(const char(&amp;name)[N], VariableHash namespace_hash, unsigned int index);
+
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static T getAgentVariable_ldg(const char(&amp;name)[N], VariableHash namespace_hash, unsigned int index);
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static T getMessageVariable_ldg(const char(&amp;name)[N], VariableHash namespace_hash, unsigned int index);
+
+    template &lt;typename T, unsigned int N, unsigned int M&gt;
+    __device__ __forceinline__ static T getAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, unsigned int variable_index, unsigned int array_index);
+
+    template &lt;typename T, unsigned int N, unsigned int M&gt;
+    __device__ __forceinline__ static T getAgentArrayVariable_ldg(const char(&amp;name)[M], VariableHash namespace_hash, unsigned int variable_index, unsigned int array_index);
+    template &lt;typename T, unsigned int N, unsigned int M&gt;
+    __device__ __forceinline__ static T getArrayVariable_ldg(const char(&amp;name)[M], VariableHash namespace_hash, unsigned int variable_index, unsigned int array_index);
+
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static void setAgentVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index);
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static void setMessageVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index);
+    template &lt;typename T, unsigned int N&gt;
+    __device__ __forceinline__ static void setNewAgentVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index);
+
+    template &lt;typename T, unsigned int N, unsigned int M&gt;
+    __device__ __forceinline__ static void setAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, T variable, unsigned int variable_index, unsigned int array_index);
+    template &lt;typename T, unsigned int N, unsigned int M&gt;
+    __device__ __forceinline__ static void setNewAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, T variable, unsigned int variable_index, unsigned int array_index);
+
+};
+
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T Curve::getAgentVariable(const char (&amp;name)[N], VariableHash namespace_hash, unsigned int index) {
+$DYNAMIC_GETAGENTVARIABLE_IMPL
+}
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T Curve::getMessageVariable(const char (&amp;name)[N], VariableHash namespace_hash, unsigned int index) {
+$DYNAMIC_GETMESSAGEVARIABLE_IMPL
+}
+
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T Curve::getAgentVariable_ldg(const char (&amp;name)[N], VariableHash namespace_hash, unsigned int index) {
+$DYNAMIC_GETAGENTVARIABLE_LDG_IMPL
+}
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T Curve::getMessageVariable_ldg(const char (&amp;name)[N], VariableHash namespace_hash, unsigned int index) {
+$DYNAMIC_GETMESSAGEVARIABLE_LDG_IMPL
+}
+
+template &lt;typename T, unsigned int N, unsigned int M&gt;
+__device__ __forceinline__ T Curve::getAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, unsigned int index, unsigned int array_index) {
+$DYNAMIC_GETAGENTARRAYVARIABLE_IMPL
+}
+
+template &lt;typename T, unsigned int N, unsigned int M&gt;
+__device__ __forceinline__ T Curve::getAgentArrayVariable_ldg(const char(&amp;name)[M], VariableHash namespace_hash, unsigned int index, unsigned int array_index) {
+$DYNAMIC_GETAGENTARRAYVARIABLE_LDG_IMPL
+}
+
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ void Curve::setAgentVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index) {
+$DYNAMIC_SETAGENTVARIABLE_IMPL
+}
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ void Curve::setMessageVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index) {
+$DYNAMIC_SETMESSAGEVARIABLE_IMPL
+}
+template &lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ void Curve::setNewAgentVariable(const char(&amp;name)[N], VariableHash namespace_hash, T variable, unsigned int index) {
+$DYNAMIC_SETNEWAGENTVARIABLE_IMPL
+}
+
+template &lt;typename T, unsigned int N, unsigned int M&gt;
+__device__ __forceinline__ void Curve::setAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, T variable, unsigned int index, unsigned int array_index) {
+$DYNAMIC_SETAGENTARRAYVARIABLE_IMPL
+}
+template &lt;typename T, unsigned int N, unsigned int M&gt;
+__device__ __forceinline__ void Curve::setNewAgentArrayVariable(const char(&amp;name)[M], VariableHash namespace_hash, T variable, unsigned int index, unsigned int array_index) {
+$DYNAMIC_SETNEWAGENTARRAYVARIABLE_IMPL
+}
+
+// has to be included after definition of curve namespace
+#include &quot;flamegpu/runtime/utility/DeviceEnvironment.cuh&quot;
+
+template&lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&amp;name)[N]) const {
+$DYNAMIC_ENV_GETVARIABLE_IMPL
+}
+
+template&lt;typename T, unsigned int N&gt;
+__device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&amp;name)[N], const unsigned int &amp;index) const {
+$DYNAMIC_ENV_GETARRAYVARIABLE_IMPL
+}
+
+template&lt;unsigned int N&gt;
+__device__ __forceinline__ bool DeviceEnvironment::containsProperty(const char(&amp;name)[N]) const {
+$DYNAMIC_ENV_CONTAINTS_IMPL
+}
+
+#endif  // CURVE_RTC_DYNAMIC_H_
+)###&quot;;
+
+
+CurveRTCHost::CurveRTCHost() : header(CurveRTCHost::curve_rtc_dynamic_h_template) {
+}
+
+CurveRTCHost::~CurveRTCHost() {
+    free(h_data_buffer);
+}
+
+void CurveRTCHost::registerAgentVariable(const char* variableName, unsigned int namespace_hash, const char* type, size_t type_size, unsigned int elements, bool read, bool write) {
+    if (agent_namespace == 0)
+        agent_namespace = namespace_hash;
+    if (namespace_hash != agent_namespace) {
+        THROW UnknownInternalError(&quot;A different namespace hash (%d) is already registered to the one provided (%d): in CurveRTCHost::registerAgentVariable&quot;, agent_namespace, namespace_hash);
+    }
+    RTCVariableProperties props;
+    props.type = CurveRTCHost::demangle(type);
+    props.read = read;
+    props.write = write;
+    props.elements = elements;
+    props.type_size = type_size;
+    agent_variables.emplace(variableName, props);
+}
+void CurveRTCHost::registerMessageInVariable(const char* variableName, unsigned int namespace_hash, const char* type, size_t type_size, unsigned int elements, bool read, bool write) {
+    if (messageIn_namespace == 0)
+        messageIn_namespace = namespace_hash;
+    if (namespace_hash != messageIn_namespace) {
+        THROW UnknownInternalError(&quot;A different namespace hash (%d) is already registered to the one provided (%d): in CurveRTCHost::registerMessageInVariable&quot;, messageIn_namespace, namespace_hash);
+    }
+    RTCVariableProperties props;
+    props.type = CurveRTCHost::demangle(type);
+    props.read = read;
+    props.write = write;
+    props.elements = elements;
+    props.type_size = type_size;
+    messageIn_variables.emplace(variableName, props);
+}
+void CurveRTCHost::registerMessageOutVariable(const char* variableName, unsigned int namespace_hash, const char* type, size_t type_size, unsigned int elements, bool read, bool write) {
+    if (messageOut_namespace == 0)
+        messageOut_namespace = namespace_hash;
+    if (namespace_hash != messageOut_namespace) {
+        THROW UnknownInternalError(&quot;A different namespace hash (%d) is already registered to the one provided (%d): in CurveRTCHost::registerMessageOutVariable&quot;, messageOut_namespace, namespace_hash);
+    }
+    RTCVariableProperties props;
+    props.type = CurveRTCHost::demangle(type);
+    props.read = read;
+    props.write = write;
+    props.elements = elements;
+    props.type_size = type_size;
+    messageOut_variables.emplace(variableName, props);
+}
+void CurveRTCHost::registerNewAgentVariable(const char* variableName, unsigned int namespace_hash, const char* type, size_t type_size, unsigned int elements, bool read, bool write) {
+    if (newAgent_namespace == 0)
+        newAgent_namespace = namespace_hash;
+    if (namespace_hash != newAgent_namespace) {
+        THROW UnknownInternalError(&quot;A different namespace hash (%d) is already registered to the one provided (%d): in CurveRTCHost::registerNewAgentVariable&quot;, newAgent_namespace, namespace_hash);
+    }
+    RTCVariableProperties props;
+    props.type = CurveRTCHost::demangle(type);
+    props.read = read;
+    props.write = write;
+    props.elements = elements;
+    props.type_size = type_size;
+    newAgent_variables.emplace(variableName, props);
+}
+
+void CurveRTCHost::unregisterAgentVariable(const char* variableName, unsigned int namespace_hash) {
+    if (namespace_hash != agent_namespace) {
+        THROW UnknownInternalError(&quot;Namespace hash (%d) not found when removing variable: in CurveRTCHost::unregisterAgentVariable&quot;, namespace_hash);
+    }
+    auto i = agent_variables.find(variableName);
+    if (i != agent_variables.end()) {
+        agent_variables.erase(variableName);
+    } else {
+        THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when removing variable: in CurveRTCHost::unregisterAgentVariable&quot;, variableName);
+    }
+    // Clear namespace on last var
+    if (agent_variables.empty())
+        agent_namespace = 0;
+}
+void CurveRTCHost::unregisterMessageOutVariable(const char* variableName, unsigned int namespace_hash) {
+    if (namespace_hash != messageOut_namespace) {
+        THROW UnknownInternalError(&quot;Namespace hash (%d) not found when removing variable: in CurveRTCHost::unregisterMessageOutVariable&quot;, namespace_hash);
+    }
+    auto i = messageOut_variables.find(variableName);
+    if (i != messageOut_variables.end()) {
+        messageOut_variables.erase(variableName);
+    } else {
+        THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when removing variable: in CurveRTCHost::unregisterMessageOutVariable&quot;, variableName);
+    }
+    // Clear namespace on last var
+    if (messageOut_variables.empty())
+        messageOut_namespace = 0;
+}
+void CurveRTCHost::unregisterMessageInVariable(const char* variableName, unsigned int namespace_hash) {
+    if (namespace_hash != messageIn_namespace) {
+        THROW UnknownInternalError(&quot;Namespace hash (%d) not found when removing variable: in CurveRTCHost::unregisterMessageInVariable&quot;, namespace_hash);
+    }
+    auto i = messageIn_variables.find(variableName);
+    if (i != messageIn_variables.end()) {
+        messageIn_variables.erase(variableName);
+    } else {
+        THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when removing variable: in CurveRTCHost::unregisterMessageInVariable&quot;, variableName);
+    }
+    // Clear namespace on last var
+    if (messageIn_variables.empty())
+        messageIn_namespace = 0;
+}
+void CurveRTCHost::unregisterNewAgentVariable(const char* variableName, unsigned int namespace_hash) {
+    if (namespace_hash != newAgent_namespace) {
+        THROW UnknownInternalError(&quot;Namespace hash (%d) not found when removing variable: in CurveRTCHost::unregisterNewAgentVariable&quot;, namespace_hash);
+    }
+    auto i = newAgent_variables.find(variableName);
+    if (i != newAgent_variables.end()) {
+        newAgent_variables.erase(variableName);
+    } else {
+        THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when removing variable: in CurveRTCHost::unregisterNewAgentVariable&quot;, variableName);
+    }
+    // Clear namespace on last var
+    if (newAgent_variables.empty())
+        newAgent_namespace = 0;
+}
+
+
+void* CurveRTCHost::getAgentVariableCachePtr(const char* variableName) {
+    const auto i = agent_variables.find(variableName);
+    if (i != agent_variables.end()) {
+        return i-&gt;second.h_data_ptr;
+    }
+    THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when accessing variable: in CurveRTCHost::getAgentVariableCachePtr&quot;, variableName);
+}
+void* CurveRTCHost::getMessageOutVariableCachePtr(const char* variableName) {
+    const auto i = messageOut_variables.find(variableName);
+    if (i != messageOut_variables.end()) {
+        return i-&gt;second.h_data_ptr;
+    }
+    THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when accessing variable: in CurveRTCHost::getMessageOutVariableCachePtr&quot;, variableName);
+}
+void* CurveRTCHost::getMessageInVariableCachePtr(const char* variableName) {
+    const auto i = messageIn_variables.find(variableName);
+    if (i != messageIn_variables.end()) {
+        return i-&gt;second.h_data_ptr;
+    }
+    THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when accessing variable: in CurveRTCHost::getMessageInVariableCachePtr&quot;, variableName);
+}
+void* CurveRTCHost::getNewAgentVariableCachePtr(const char* variableName) {
+    const auto i = newAgent_variables.find(variableName);
+    if (i != newAgent_variables.end()) {
+        return i-&gt;second.h_data_ptr;
+    }
+    THROW UnknownInternalError(&quot;Variable &#39;%s&#39; not found when accessing variable: in CurveRTCHost::getNewAgentVariableCachePtr&quot;, variableName);
+}
+
+void CurveRTCHost::registerEnvVariable(const char* variableName, unsigned int namespace_hash, ptrdiff_t offset, const char* type, size_t type_size, unsigned int elements) {
+    // check to see if namespace key already exists
+    auto i = RTCEnvVariables.find(namespace_hash);
+    RTCEnvVariableProperties props;
+    props.type = CurveRTCHost::demangle(type);
+    props.elements = elements;
+    props.offset = offset;
+    props.type_size = type_size;
+    if (i != RTCEnvVariables.end()) {
+        // emplace into existing namespace key
+        i-&gt;second.emplace(variableName, props);
+    } else {
+        std::map&lt;std::string, RTCEnvVariableProperties&gt; inner;
+        inner.emplace(variableName, props);
+        RTCEnvVariables.emplace(namespace_hash, inner);
+    }
+}
+
+void CurveRTCHost::unregisterEnvVariable(const char* variableName, unsigned int namespace_hash) {
+    auto i = RTCEnvVariables.find(namespace_hash);
+    if (i != RTCEnvVariables.end()) {
+        i-&gt;second.erase(variableName);
+    } else {
+        THROW UnknownInternalError(&quot;Namespace hash (%d) not found when removing environment variable: in CurveRTCHost::unregisterEnvVariable&quot;, namespace_hash);
+    }
+}
+
+
+void CurveRTCHost::initHeaderEnvironment() {
+    // Calculate size of, and generate dynamic variables buffer
+    std::stringstream variables;
+    data_buffer_size = EnvironmentManager::MAX_BUFFER_SIZE;
+    if (data_buffer_size % sizeof(void*) != 0) {
+        THROW UnknownInternalError(&quot;EnvironmentManager::MAX_BUFFER_SIZE should be a multiple of %llu!&quot;, sizeof(void*));
+    }
+    agent_data_offset = data_buffer_size;     data_buffer_size += agent_variables.size() * sizeof(void*);
+    msgOut_data_offset = data_buffer_size;    data_buffer_size += messageOut_variables.size() * sizeof(void*);
+    msgIn_data_offset = data_buffer_size;     data_buffer_size += messageIn_variables.size() * sizeof(void*);
+    newAgent_data_offset = data_buffer_size;  data_buffer_size += newAgent_variables.size() * sizeof(void*);
+    variables &lt;&lt; &quot;__constant__  char &quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot;[&quot; &lt;&lt; data_buffer_size &lt;&lt; &quot;];\n&quot;;
+    setHeaderPlaceholder(&quot;$DYNAMIC_VARIABLES&quot;, variables.str());
+    // generate Environment::get func implementation ($DYNAMIC_ENV_GETVARIABLE_IMPL)
+    {
+        std::stringstream getEnvVariableImpl;
+        for (auto key_pair : RTCEnvVariables) {
+            for (std::pair&lt;std::string, RTCEnvVariableProperties&gt; element : key_pair.second) {
+                RTCEnvVariableProperties props = element.second;
+                if (props.elements == 1) {
+                    getEnvVariableImpl &lt;&lt;   &quot;    if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;        if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;            DTHROW(\&quot;Environment property &#39;%s&#39; type mismatch.\\n\&quot;, name);\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;            return 0;\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;        }\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;#endif\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;        return *reinterpret_cast&lt;T*&gt;(reinterpret_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt;&quot; + &quot; &lt;&lt; props.offset &lt;&lt; &quot;));\n&quot;;
+                    getEnvVariableImpl &lt;&lt;   &quot;    };\n&quot;;
+                }
+            }
+            getEnvVariableImpl &lt;&lt;           &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+            getEnvVariableImpl &lt;&lt;           &quot;    DTHROW(\&quot;Environment property &#39;%s&#39; was not found.\\n\&quot;, name);\n&quot;;
+            getEnvVariableImpl &lt;&lt;           &quot;#endif\n&quot;;
+            getEnvVariableImpl &lt;&lt;           &quot;    return 0;\n&quot;;
+        }
+        setHeaderPlaceholder(&quot;$DYNAMIC_ENV_GETVARIABLE_IMPL&quot;, getEnvVariableImpl.str());
+    }
+    // generate Environment::get func implementation for array variables ($DYNAMIC_ENV_GETARRAYVARIABLE_IMPL)
+    {
+        std::stringstream getEnvArrayVariableImpl;
+        for (auto key_pair : RTCEnvVariables) {
+            for (std::pair&lt;std::string, RTCEnvVariableProperties&gt; element : key_pair.second) {
+                RTCEnvVariableProperties props = element.second;
+                if (props.elements &gt; 1) {
+                    getEnvArrayVariableImpl &lt;&lt; &quot;    if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;        if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;            DTHROW(\&quot;Environment array property &#39;%s&#39; type mismatch.\\n\&quot;, name);\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;            return 0;\n&quot;;
+                    // Env var doesn&#39;t currently require user to specify length
+                    // getEnvArrayVariableImpl &lt;&lt; &quot;        } else if (N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                    // getEnvArrayVariableImpl &lt;&lt; &quot;            DTHROW(\&quot;Environment array property &#39;%s&#39; length mismatch.\\n\&quot;, name);\n&quot;;
+                    // getEnvArrayVariableImpl &lt;&lt; &quot;            return 0;\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;        } else if (index &gt;= &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;            DTHROW(\&quot;Environment array property &#39;%s&#39;, index %d is out of bounds.\\n\&quot;, name, index);\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;            return 0;\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;        }\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;        return reinterpret_cast&lt;T*&gt;(reinterpret_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt;&quot; + &quot; &lt;&lt; props.offset &lt;&lt; &quot;))[index];\n&quot;;
+                    getEnvArrayVariableImpl &lt;&lt; &quot;    };\n&quot;;
+                }
+            }
+            getEnvArrayVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+            getEnvArrayVariableImpl &lt;&lt;         &quot;    DTHROW(\&quot;Environment array property &#39;%s&#39; was not found.\\n\&quot;, name);\n&quot;;
+            getEnvArrayVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+            getEnvArrayVariableImpl &lt;&lt;         &quot;    return 0;\n&quot;;
+        }
+        setHeaderPlaceholder(&quot;$DYNAMIC_ENV_GETARRAYVARIABLE_IMPL&quot;, getEnvArrayVariableImpl.str());
+    }
+    // generate Environment::contains func implementation ($DYNAMIC_ENV_CONTAINTS_IMPL)
+    {
+        std::stringstream containsEnvVariableImpl;
+        for (auto key_pair : RTCEnvVariables) {
+            for (std::pair&lt;std::string, RTCEnvVariableProperties&gt; element : key_pair.second) {
+                RTCEnvVariableProperties props = element.second;
+                if (props.elements == 1) {
+                    containsEnvVariableImpl &lt;&lt;   &quot;    if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;))\n&quot;;
+                    containsEnvVariableImpl &lt;&lt;   &quot;        return true;\n&quot;;
+                }
+            }
+            containsEnvVariableImpl &lt;&lt;           &quot;    return false;\n&quot;;
+        }
+        setHeaderPlaceholder(&quot;$DYNAMIC_ENV_CONTAINTS_IMPL&quot;, containsEnvVariableImpl.str());
+    }
+}
+void CurveRTCHost::initHeaderSetters() {
+    // generate setAgentVariable func implementation ($DYNAMIC_SETAGENTVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream setAgentVariableImpl;
+        for (const auto &amp;element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.write &amp;&amp; props.elements == 1) {
+                setAgentVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;                    DTHROW(\&quot;Agent variable &#39;%s&#39; type mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;                    return;\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;                }\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;              (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[index] = (T) variable;\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;              return;\n&quot;;
+                setAgentVariableImpl &lt;&lt; &quot;          }\n&quot;;
+            } else { ++ct; }
+        }
+        setAgentVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        setAgentVariableImpl &lt;&lt;         &quot;          DTHROW(\&quot;Agent variable &#39;%s&#39; was not found during setVariable().\\n\&quot;, name);\n&quot;;
+        setAgentVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_SETAGENTVARIABLE_IMPL&quot;, setAgentVariableImpl.str());
+    }
+    // generate setMessageVariable func implementation ($DYNAMIC_SETMESSAGEVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream setMessageVariableImpl;
+        for (const auto &amp;element : messageOut_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.write &amp;&amp; props.elements == 1) {
+                setMessageVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;                    DTHROW(\&quot;Message variable &#39;%s&#39; type mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;                    return;\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;                }\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;              (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; msgOut_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[index] = (T) variable;\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;              return;\n&quot;;
+                setMessageVariableImpl &lt;&lt; &quot;          }\n&quot;;
+            } else { ++ct; }
+        }
+        setMessageVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        setMessageVariableImpl &lt;&lt;         &quot;          DTHROW(\&quot;Message variable &#39;%s&#39; was not found during setVariable().\\n\&quot;, name);\n&quot;;
+        setMessageVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_SETMESSAGEVARIABLE_IMPL&quot;, setMessageVariableImpl.str());
+    }
+    // generate setNewAgentVariable func implementation ($DYNAMIC_SETNEWAGENTVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream setNewAgentVariableImpl;
+        for (const auto &amp;element : newAgent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.write &amp;&amp; props.elements == 1) {
+                setNewAgentVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;                    DTHROW(\&quot;New agent variable &#39;%s&#39; type mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;                    return;\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;                }\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;              (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; newAgent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[index] = (T) variable;\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;              return;\n&quot;;
+                setNewAgentVariableImpl &lt;&lt; &quot;          }\n&quot;;
+            } else { ++ct; }
+        }
+        setNewAgentVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        setNewAgentVariableImpl &lt;&lt;         &quot;          DTHROW(\&quot;New agent variable &#39;%s&#39; was not found during setVariable().\\n\&quot;, name);\n&quot;;
+        setNewAgentVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_SETNEWAGENTVARIABLE_IMPL&quot;, setNewAgentVariableImpl.str());
+    }
+    // generate setAgentArrayVariable func implementation ($DYNAMIC_SETAGENTARRAYVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream setAgentArrayVariableImpl;
+        if (!agent_variables.empty())
+            setAgentArrayVariableImpl &lt;&lt;             &quot;    const size_t i = (index * N) + array_index;\n&quot;;
+        for (const auto &amp;element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.write &amp;&amp; props.elements &gt; 1) {
+                setAgentArrayVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; type mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              } else if (N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; length mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              } else if (array_index &gt;= &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39;, index %d is out of bounds during setVariable().\\n\&quot;, name, array_index);\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              }\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[i] = (T) variable;\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;              return;\n&quot;;
+                setAgentArrayVariableImpl &lt;&lt; &quot;          }\n&quot;;
+            } else { ++ct; }
+        }
+        setAgentArrayVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        setAgentArrayVariableImpl &lt;&lt;         &quot;          DTHROW(\&quot;Agent array variable &#39;%s&#39; was not found during setVariable().\\n\&quot;, name);\n&quot;;
+        setAgentArrayVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_SETAGENTARRAYVARIABLE_IMPL&quot;, setAgentArrayVariableImpl.str());
+    }
+    // generate setNewAgentArrayVariable func implementation ($DYNAMIC_SETNEWAGENTARRAYVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream setNewAgentArrayVariableImpl;
+        if (!newAgent_variables.empty())
+            setNewAgentArrayVariableImpl &lt;&lt;             &quot;    const size_t i = (index * N) + array_index;\n&quot;;
+        for (const auto &amp;element : newAgent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.write &amp;&amp; props.elements &gt; 1) {
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;New agent array variable &#39;%s&#39; type mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              } else if (N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;New agent array variable &#39;%s&#39; length mismatch during setVariable().\\n\&quot;, name);\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              } else if (array_index &gt;= &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;New agent array variable &#39;%s&#39;, index %d is out of bounds during setVariable().\\n\&quot;, name, array_index);\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;                  return;\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              }\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; newAgent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[i] = (T) variable;\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;              return;\n&quot;;
+                setNewAgentArrayVariableImpl &lt;&lt; &quot;          }\n&quot;;
+            } else { ++ct; }
+        }
+        setNewAgentArrayVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        setNewAgentArrayVariableImpl &lt;&lt;         &quot;          DTHROW(\&quot;New agent array variable &#39;%s&#39; was not found during setVariable().\\n\&quot;, name);\n&quot;;
+        setNewAgentArrayVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_SETNEWAGENTARRAYVARIABLE_IMPL&quot;, setNewAgentArrayVariableImpl.str());
+    }
+}
+void CurveRTCHost::initHeaderGetters() {
+    // generate getAgentVariable func implementation ($DYNAMIC_GETAGENTVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getAgentVariableImpl;
+        for (const auto &amp;element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements == 1) {
+                getAgentVariableImpl &lt;&lt; &quot;            if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;                    DTHROW(\&quot;Agent variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;                    return 0;\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;                }\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;                return (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[index];\n&quot;;
+                getAgentVariableImpl &lt;&lt; &quot;            }\n&quot;;
+            } else { ++ct; }
+        }
+        getAgentVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getAgentVariableImpl &lt;&lt;         &quot;            DTHROW(\&quot;Agent variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getAgentVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getAgentVariableImpl &lt;&lt;         &quot;            return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETAGENTVARIABLE_IMPL&quot;, getAgentVariableImpl.str());
+    }
+    // generate getMessageVariable func implementation ($DYNAMIC_GETMESSAGEVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getMessageVariableImpl;
+        for (const auto &amp;element : messageIn_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements == 1) {
+                getMessageVariableImpl &lt;&lt; &quot;            if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;                    DTHROW(\&quot;Message variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;                    return 0;\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;                }\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;                return (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; msgIn_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[index];\n&quot;;
+                getMessageVariableImpl &lt;&lt; &quot;            }\n&quot;;
+            } else { ++ct; }
+        }
+        getMessageVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getMessageVariableImpl &lt;&lt;         &quot;            DTHROW(\&quot;Message variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getMessageVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getMessageVariableImpl &lt;&lt;         &quot;            return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETMESSAGEVARIABLE_IMPL&quot;, getMessageVariableImpl.str());
+    }
+    // generate getAgentVariable func implementation ($DYNAMIC_GETAGENTVARIABLE_LDG_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getAgentVariableLDGImpl;
+        for (const auto &amp;element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements == 1) {
+                getAgentVariableLDGImpl &lt;&lt; &quot;            if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;                    DTHROW(\&quot;Agent variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;                    return 0;\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;                }\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;#endif\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;                return (T) __ldg((*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;))) + index);\n&quot;;
+                getAgentVariableLDGImpl &lt;&lt; &quot;            }\n&quot;;
+            } else { ++ct; }
+        }
+        getAgentVariableLDGImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getAgentVariableLDGImpl &lt;&lt;         &quot;            DTHROW(\&quot;Agent variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getAgentVariableLDGImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getAgentVariableLDGImpl &lt;&lt;         &quot;            return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETAGENTVARIABLE_LDG_IMPL&quot;, getAgentVariableLDGImpl.str());
+    }
+    // generate getMessageVariable func implementation ($DYNAMIC_GETMESSAGEVARIABLE_LDG_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getMessageVariableLDGImpl;
+        for (const auto &amp;element : messageIn_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements == 1) {
+                getMessageVariableLDGImpl &lt;&lt; &quot;            if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;                if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;                    DTHROW(\&quot;Message variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;                    return 0;\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;                }\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;#endif\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;                return (T) __ldg((*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; msgIn_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;))) + index);\n&quot;;
+                getMessageVariableLDGImpl &lt;&lt; &quot;            }\n&quot;;
+            } else { ++ct; }
+        }
+        getMessageVariableLDGImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getMessageVariableLDGImpl &lt;&lt;         &quot;            DTHROW(\&quot;Message variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getMessageVariableLDGImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getMessageVariableLDGImpl &lt;&lt;         &quot;            return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETMESSAGEVARIABLE_LDG_IMPL&quot;, getMessageVariableLDGImpl.str());
+    }
+    // generate getArrayVariable func implementation ($DYNAMIC_GETAGENTARRAYVARIABLE_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getAgentArrayVariableImpl;
+        if (!agent_variables.empty())
+            getAgentArrayVariableImpl &lt;&lt;             &quot;    const size_t i = (index * N) + array_index;\n&quot;;
+        for (const auto &amp;element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements &gt; 1) {
+                getAgentArrayVariableImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;              if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;              } else if (N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; length mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;              } else if (array_index &gt;= &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39;, index %d is out of bounds during getVariable().\\n\&quot;, name, array_index);\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;              }\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;#endif\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;              return (*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;)))[i];\n&quot;;
+                getAgentArrayVariableImpl &lt;&lt; &quot;           };\n&quot;;
+            } else { ++ct; }
+        }
+        getAgentArrayVariableImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getAgentArrayVariableImpl &lt;&lt;         &quot;           DTHROW(\&quot;Agent array variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getAgentArrayVariableImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getAgentArrayVariableImpl &lt;&lt;         &quot;           return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETAGENTARRAYVARIABLE_IMPL&quot;, getAgentArrayVariableImpl.str());
+    }
+    // generate getArrayVariable func implementation ($DYNAMIC_GETAGENTARRAYVARIABLE_LDG_IMPL)
+    {
+        size_t ct = 0;
+        std::stringstream getAgentArrayVariableLDGImpl;
+        if (!agent_variables.empty())
+            getAgentArrayVariableLDGImpl &lt;&lt;             &quot;    const size_t i = (index * N) + array_index;\n&quot;;
+        for (std::pair&lt;std::string, RTCVariableProperties&gt; element : agent_variables) {
+            RTCVariableProperties props = element.second;
+            if (props.read &amp;&amp; props.elements &gt; 1) {
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;          if (strings_equal(name, \&quot;&quot; &lt;&lt; element.first &lt;&lt; &quot;\&quot;)) {\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;              if(sizeof(T) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; type mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;              } else if (N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39; length mismatch during getVariable().\\n\&quot;, name);\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;              } else if (array_index &gt;= &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  DTHROW(\&quot;Agent array variable &#39;%s&#39;, index %d is out of bounds during getVariable().\\n\&quot;, name, array_index);\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;                  return 0;\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;              }\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;#endif\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;              return (T) __ldg((*static_cast&lt;T**&gt;(static_cast&lt;void*&gt;(&quot; &lt;&lt; getVariableSymbolName() &lt;&lt; &quot; + &quot; &lt;&lt; agent_data_offset + (ct++ * sizeof(void*)) &lt;&lt; &quot;))) + i);\n&quot;;
+                getAgentArrayVariableLDGImpl &lt;&lt; &quot;           };\n&quot;;
+            } else { ++ct; }
+        }
+        getAgentArrayVariableLDGImpl &lt;&lt;         &quot;#if !defined(SEATBELTS) || SEATBELTS\n&quot;;
+        getAgentArrayVariableLDGImpl &lt;&lt;         &quot;           DTHROW(\&quot;Agent array variable &#39;%s&#39; was not found during getVariable().\\n\&quot;, name);\n&quot;;
+        getAgentArrayVariableLDGImpl &lt;&lt;         &quot;#endif\n&quot;;
+        getAgentArrayVariableLDGImpl &lt;&lt;         &quot;           return 0;\n&quot;;
+        setHeaderPlaceholder(&quot;$DYNAMIC_GETAGENTARRAYVARIABLE_LDG_IMPL&quot;, getAgentArrayVariableLDGImpl.str());
+    }
+}
+void CurveRTCHost::initDataBuffer() {
+    if (data_buffer_size == 0 || h_data_buffer) {
+        THROW InvalidOperation(&quot;CurveRTCHost::initDataBuffer() should only be called once, during the init chain.\n&quot;);
+    }
+    // Alloc buffer
+    h_data_buffer = static_cast&lt;char*&gt;(malloc(data_buffer_size));
+    // Notify all variables of their ptr to store data in cache
+    size_t ct = 0;
+    for (auto &amp;element : agent_variables) {
+        element.second.h_data_ptr = h_data_buffer + agent_data_offset + (ct++ * sizeof(void*));
+    }
+    ct = 0;
+    for (auto &amp;element : messageOut_variables) {
+        element.second.h_data_ptr = h_data_buffer + msgOut_data_offset + (ct++ * sizeof(void*));
+    }
+    ct = 0;
+    for (auto &amp;element : messageIn_variables) {
+        element.second.h_data_ptr = h_data_buffer + msgIn_data_offset + (ct++ * sizeof(void*));
+    }
+    ct = 0;
+    for (auto &amp;element : newAgent_variables) {
+        element.second.h_data_ptr = h_data_buffer + newAgent_data_offset + (ct++ * sizeof(void*));
+    }
+}
+
+std::string CurveRTCHost::getDynamicHeader() {
+    initHeaderEnvironment();
+    initHeaderSetters();
+    initHeaderGetters();
+    initDataBuffer();
+    return header;
+}
+
+void CurveRTCHost::setHeaderPlaceholder(std::string placeholder, std::string dst) {
+    // replace placeholder with dynamically generated variables string
+    size_t pos = header.find(placeholder);
+    if (pos != std::string::npos) {
+        header.replace(pos, placeholder.length(), dst);
+    } else {
+        THROW UnknownInternalError(&quot;String (%s) not found when creating dynamic version of curve for RTC: in CurveRTCHost::setHeaderPlaceholder&quot;, placeholder.c_str());
+    }
+}
+
+std::string CurveRTCHost::getVariableSymbolName() {
+    std::stringstream name;
+    name &lt;&lt; &quot;rtc_env_data_curve&quot;;
+    return name.str();
+}
+
+std::string CurveRTCHost::demangle(const char* verbose_name) {
+#ifndef _MSC_VER
+    std::string s = jitify::reflection::detail::demangle_cuda_symbol(verbose_name);
+#else
+    // Jitify removed the required demangle function, this is a basic clone of what was being done in earlier version
+    // It&#39;s possible jitify::reflection::detail::demangle_native_type() would work, however that requires type_info, not type_index
+    size_t index = 0;
+    std::string s = verbose_name;
+    while (true) {
+        /* Locate the substring to replace. */
+        index = s.find(&quot;class&quot;, index);
+        if (index == std::string::npos) break;
+
+        /* Make the replacement. */
+        s.replace(index, 5, &quot;     &quot;);
+
+        /* Advance index forward so the next iteration doesn&#39;t pick it up as well. */
+        index += 5;
+    }
+#endif
+    // Lambda function for trimming whitesapce as jitify demangle does not remove this
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](int ch) {
+        return !std::isspace(ch);
+        }));
+#ifdef _MSC_VER
+    // int64_t is the only known problematic type in windows as it has a typeid().name() of __int64.
+    // This can be manually replaced
+    std::string int64_type = &quot;__int64&quot;;
+    std::string int64_type_fixed = &quot;long long int&quot;;
+    size_t start_pos = s.find(int64_type);
+    if (!(start_pos == std::string::npos))
+        s.replace(start_pos, int64_type.length(), int64_type_fixed);
+#endif
+
+    // map known basic types in
+    return s;
+}
+
+std::string CurveRTCHost::demangle(const std::type_index&amp; type) {
+    return demangle(type.name());
+}
+void CurveRTCHost::updateEnvCache(const char *env_ptr) {
+    if (env_ptr) {
+        memcpy(h_data_buffer, env_ptr, EnvironmentManager::MAX_BUFFER_SIZE);
+    }
+}
+void CurveRTCHost::updateDevice(const jitify::experimental::KernelInstantiation&amp; instance) {
+    std::string cache_var_name = getVariableSymbolName();
+    CUdeviceptr d_var_ptr = instance.get_global_ptr(cache_var_name.c_str());
+    gpuErrchkDriverAPI(cuMemcpyHtoD(d_var_ptr, h_data_buffer, data_buffer_size));
+}
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

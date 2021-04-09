@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File JitifyCache.cu &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,7 +163,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-jitifycache-cu">
+  <section id="program-listing-for-file-jitifycache-cu">
 <span id="program-listing-file-src-flamegpu-util-jitifycache-cu"></span><h1>Program Listing for File JitifyCache.cu<a class="headerlink" href="#program-listing-for-file-jitifycache-cu" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_util_JitifyCache.cu.html#file-src-flamegpu-util-jitifycache-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/util/JitifyCache.cu</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/util/JitifyCache.h&quot;
@@ -243,7 +244,6 @@ std::string loadFile(const path &amp;filepath) {
 };  // namespace
 
 std::mutex JitifyCache::instance_mutex;
-
 std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::compileKernel(const std::string &amp;func_name, const std::vector&lt;std::string&gt; &amp;template_args, const std::string &amp;kernel_src, const std::string &amp;dynamic_header) {
     NVTX_RANGE(&quot;JitifyCache::compileKernel&quot;);
     // Init runtime compilation constants
@@ -251,20 +251,46 @@ std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::compileKernel(const std:
     static bool header_version_confirmed = false;
     static std::string env_cuda_path = std::getenv(&quot;CUDA_PATH&quot;);
     if (env_inc_fgp2.empty()) {
-        // Var is not set, attempt to use default arrangement
-        path test_include(&quot;&quot;);
+        // Start with the current working directory
+        path test_include(&quot;.&quot;);
         // Try 5 levels of directory, to see if we can find flame_api.h
         for (int i = 0; i &lt; 5; ++i) {
+            // If break out the loop if the test_include directory does not exist.
+            if (!exists(test_include)) {
+                break;
+            }
+            // Check file assuming flamegpu2 is the root cmake project
             path check_file = test_include;
             check_file/= &quot;include/flamegpu/version.h&quot;;
-            if (exists(check_file)) {
-                test_include/= &quot;include&quot;;
-                env_inc_fgp2 = test_include.string();
-                break;
+            // Use try catch to suppress file permission exceptions etc
+            try {
+                if (exists(check_file)) {
+                    test_include /= &quot;include&quot;;
+                    env_inc_fgp2 = test_include.string();
+                    break;
+                }
+            } catch (...) { }
+            // Check file assuming a standalone example is the root cmake project
+            // We want to see if we can find the build directory
+            for (auto&amp; p : directory_iterator(test_include)) {
+                if (is_directory(p)) {
+                    check_file = p.path();
+                    check_file /= &quot;_deps/flamegpu2-src/include/flamegpu/version.h&quot;;
+                    // Use try catch to suppress file permission exceptions etc
+                    try {
+                        if (exists(check_file)) {
+                            test_include = p.path();
+                            test_include /= &quot;_deps/flamegpu2-src/include&quot;;
+                            env_inc_fgp2 = test_include.string();
+                            goto break_fgpu2_inc_dir_loop;  // Break out of nested loop
+                        }
+                    } catch (...) { }
+                }
             }
             // Go up a level for next iteration
             test_include/= &quot;..&quot;;
         }
+break_fgpu2_inc_dir_loop:
         if (env_inc_fgp2.empty()) {
             THROW InvalidAgentFunc(&quot;Error compiling runtime agent function: Unable to automatically determine include directory and FLAMEGPU2_INC_DIR environment variable does not exist, &quot;
                 &quot;in JitifyCache::buildProgram().&quot;);
@@ -490,7 +516,7 @@ JitifyCache&amp; JitifyCache::getInstance() {
 }
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

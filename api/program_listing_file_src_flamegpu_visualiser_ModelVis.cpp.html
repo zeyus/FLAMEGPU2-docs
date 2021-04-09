@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File ModelVis.cpp &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,10 +163,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-modelvis-cpp">
+  <section id="program-listing-for-file-modelvis-cpp">
 <span id="program-listing-file-src-flamegpu-visualiser-modelvis-cpp"></span><h1>Program Listing for File ModelVis.cpp<a class="headerlink" href="#program-listing-for-file-modelvis-cpp" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_visualiser_ModelVis.cpp.html#file-src-flamegpu-visualiser-modelvis-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/visualiser/ModelVis.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/visualiser/ModelVis.h&quot;
+
+#include &lt;thread&gt;
 
 #include &quot;flamegpu/gpu/CUDASimulation.h&quot;
 #include &quot;flamegpu/model/AgentData.h&quot;
@@ -217,7 +220,7 @@ AgentVis &amp;ModelVis::Agent(const std::string &amp;agent_name) {
 }
 
 // Below methods are related to executing the visualiser
-void ModelVis::activate() {
+void ModelVis::_activate() {
     // Only execute if background thread is not active
     if ((!visualiser || !visualiser-&gt;isRunning()) &amp;&amp; !model.getSimulationConfig().console_mode) {
         // Init visualiser
@@ -258,8 +261,16 @@ bool ModelVis::isRunning() const {
 
 void ModelVis::updateBuffers(const unsigned int &amp;sc) {
     if (visualiser) {
+        bool has_agents = false;
         for (auto &amp;a : agents) {
-            a.second.requestBufferResizes(visualiser);
+            has_agents = a.second.requestBufferResizes(visualiser) || has_agents;
+        }
+        // Block the sim when we first get agents, until vis has resized buffers, incase vis is being slow to init
+        if (has_agents &amp;&amp; (sc == 0 || sc == UINT_MAX)) {
+            while (!visualiser-&gt;isReady()) {
+                // Do nothing, just spin until ready
+                std::this_thread::yield();
+            }
         }
         // wait for lock visualiser (its probably executing render loop in separate thread) This might not be 100% safe. RequestResize might need extra thread safety.
         visualiser-&gt;lockMutex();
@@ -357,7 +368,7 @@ LineVis ModelVis::newPolylineSketch(float r, float g, float b, float a) {
 }
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

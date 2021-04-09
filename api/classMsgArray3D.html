@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class MsgArray3D &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -486,14 +487,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-msgarray3d">
+  <section id="class-msgarray3d">
 <span id="exhale-class-classmsgarray3d"></span><h1>Class MsgArray3D<a class="headerlink" href="#class-msgarray3d" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Array3D.h.html#file-include-flamegpu-runtime-messaging-array3d-h"><span class="std std-ref">File Array3D.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="classMsgArray3D_1_1CUDAModelHandler.html#exhale-class-classmsgarray3d-1-1cudamodelhandler"><span class="std std-ref">Class MsgArray3D::CUDAModelHandler</span></a></p></li>
@@ -507,9 +508,9 @@
 <li><p><a class="reference internal" href="structMsgArray3D_1_1MetaData.html#exhale-struct-structmsgarray3d-1-1metadata"><span class="std std-ref">Struct MsgArray3D::MetaData</span></a></p></li>
 <li><p><a class="reference internal" href="classMsgArray3D_1_1Out.html#exhale-class-classmsgarray3d-1-1out"><span class="std std-ref">Class MsgArray3D::Out</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
 <dt id="_CPPv410MsgArray3D">
@@ -518,7 +519,7 @@
 <p>Like an array, each message is assigned an index within a known range Only one message may exist at each index Agent functions can access individual messages by requesting them with their index</p>
 <p>Algorithm: Every agent outputs a message to the array based on their thread index They also set the __index variable with the intended output bin When buildIndex() is called, messages are sorted and errors (multiple messages per bin) are detected </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Types</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
 <dt id="_CPPv4N10MsgArray3D9size_typeE">
 <span id="_CPPv3N10MsgArray3D9size_typeE"></span><span id="_CPPv2N10MsgArray3D9size_typeE"></span><span id="MsgArray3D::size_type"></span><span class="target" id="classMsgArray3D_1afacac7ccd3ada4dbe7a776f24502f12f"></span><em class="property"><span class="pre">typedef</span> </em><a class="reference internal" href="classMsgNone.html#_CPPv47MsgNone" title="MsgNone"><span class="pre">MsgNone</span></a><span class="pre">::</span><a class="reference internal" href="classMsgNone.html#_CPPv4N7MsgNone9size_typeE" title="MsgNone::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
@@ -531,7 +532,7 @@
 <span id="_CPPv3N10MsgArray3D16CUDAModelHandlerE"></span><span id="_CPPv2N10MsgArray3D16CUDAModelHandlerE"></span><span id="MsgArray3D::CUDAModelHandler"></span><span class="target" id="classMsgArray3D_1_1CUDAModelHandler"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">CUDAModelHandler</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgSpecialisationHandler.html#_CPPv424MsgSpecialisationHandler" title="MsgSpecialisationHandler"><span class="pre">MsgSpecialisationHandler</span></a><a class="headerlink" href="#_CPPv4N10MsgArray3D16CUDAModelHandlerE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Blank handler, brute force requires no index or special allocations Only stores the length on device </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">
 <span id="_CPPv3N10MsgArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage"></span><span id="_CPPv2N10MsgArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage"></span><span id="MsgArray3D::CUDAModelHandler::CUDAModelHandler__CUDAMessageR"></span><span class="target" id="classMsgArray3D_1_1CUDAModelHandler_1ac533a09302b8d1537246d9715722978e"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">CUDAModelHandler</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAMessage.html#_CPPv411CUDAMessage" title="CUDAMessage"><span class="pre">CUDAMessage</span></a> <span class="pre">&amp;</span><em><span class="pre">a</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage" title="Permalink to this definition">¶</a><br /></dt>
@@ -606,7 +607,7 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D4DataD0Ev">
 <span id="_CPPv3N10MsgArray3D4DataD0Ev"></span><span id="_CPPv2N10MsgArray3D4DataD0Ev"></span><span id="MsgArray3D::Data::~Data"></span><span class="target" id="structMsgArray3D_1_1Data_1a3eb496829900886e91cfb2d71b320f79"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~Data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">default</span><a class="headerlink" href="#_CPPv4N10MsgArray3D4DataD0Ev" title="Permalink to this definition">¶</a><br /></dt>
@@ -629,7 +630,7 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt id="_CPPv4N10MsgArray3D4Data10dimensionsE">
 <span id="_CPPv3N10MsgArray3D4Data10dimensionsE"></span><span id="_CPPv2N10MsgArray3D4Data10dimensionsE"></span><span id="MsgArray3D::Data::dimensions__std::array:size_type.3:"></span><span class="target" id="structMsgArray3D_1_1Data_1a33870525dd92446dc2189439e94c5e26"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <span class="pre">3</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">dimensions</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D4Data10dimensionsE" title="Permalink to this definition">¶</a><br /></dt>
@@ -637,7 +638,7 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Protected Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">
 <span id="_CPPv3N10MsgArray3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N10MsgArray3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="MsgArray3D::Data::clone__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="structMsgArray3D_1_1Data_1aca31efa1d74034b8717985fbfc91856e"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D4DataE" title="MsgArray3D::Data"><span class="pre">Data</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">newParent</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4N10MsgArray3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE" title="Permalink to this definition">¶</a><br /></dt>
@@ -657,7 +658,7 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Friends</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
 <dl class="friendclass">
 <dt>
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">ModelDescription</span></dt>
@@ -680,7 +681,7 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D11Description13setDimensionsERK9size_typeRK9size_typeRK9size_type">
 <span id="_CPPv3N10MsgArray3D11Description13setDimensionsERK9size_typeRK9size_typeRK9size_type"></span><span id="_CPPv2N10MsgArray3D11Description13setDimensionsERK9size_typeRK9size_typeRK9size_type"></span><span id="MsgArray3D::Description::setDimensions__size_typeCR.size_typeCR.size_typeCR"></span><span class="target" id="classMsgArray3D_1_1Description_1a134e5de3220c0aa392c9aa50964a6f39"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setDimensions</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">len_x</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">len_y</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">len_Z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D11Description13setDimensionsERK9size_typeRK9size_typeRK9size_type" title="Permalink to this definition">¶</a><br /></dt>
@@ -713,7 +714,7 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Protected Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data">
 <span id="_CPPv3N10MsgArray3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="_CPPv2N10MsgArray3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="MsgArray3D::Description::Description__std::shared_ptr:ModelDataC:CR.DataPC"></span><span class="target" id="classMsgArray3D_1_1Description_1abf0a6d9740f23e35517b7a6b95f0171d"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">_model</span></em>, <a class="reference internal" href="#_CPPv4N10MsgArray3D4DataE" title="MsgArray3D::Data"><span class="pre">Data</span></a> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <em><span class="pre">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data" title="Permalink to this definition">¶</a><br /></dt>
@@ -752,7 +753,7 @@
 <span id="_CPPv3N10MsgArray3D2InE"></span><span id="_CPPv2N10MsgArray3D2InE"></span><span id="MsgArray3D::In"></span><span class="target" id="classMsgArray3D_1_1In"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">In</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D2InE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class is accessible via <a class="reference internal" href="classFLAMEGPU__DEVICE__API.html#classFLAMEGPU__DEVICE__API_1abccd5b22bbab0300b46734046439da56"><span class="std std-ref">FLAMEGPU_DEVICE_API.message_in</span></a> if <a class="reference internal" href="#classMsgArray3D"><span class="std std-ref">MsgArray3D</span></a> is specified in FLAMEGPU_AGENT_FUNCTION It gives access to functionality for reading array messages </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv">
 <span id="_CPPv3N10MsgArray3D2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="_CPPv2N10MsgArray3D2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="MsgArray3D::In::In__Curve::NamespaceHash.Curve::NamespaceHash.voidCP"></span><span class="target" id="classMsgArray3D_1_1In_1af38622ea62c5b450cf7e6f752233aafa"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">In</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">agentfn_hash</span></em>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">msg_hash</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_metadata</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv" title="Permalink to this definition">¶</a><br /></dt>
@@ -831,7 +832,7 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK9size_typeRK9size_typeRK9size_typeRK9size_type">
 <span id="_CPPv3N10MsgArray3D2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK9size_typeRK9size_typeRK9size_typeRK9size_type"></span><span id="_CPPv2N10MsgArray3D2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK9size_typeRK9size_typeRK9size_typeRK9size_type"></span><span id="MsgArray3D::In::Filter::Filter__MetaDataCP.Curve::NamespaceHashCR.size_typeCR.size_typeCR.size_typeCR.size_typeCR"></span><span class="target" id="classMsgArray3D_1_1In_1_1Filter_1afed2fc530db855187d474a580b31ec89"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Filter</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D8MetaDataE" title="MsgArray3D::MetaData"><span class="pre">MetaData</span></a> <span class="pre">*</span><em><span class="pre">_metadata</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <span class="pre">&amp;</span><em><span class="pre">_combined_hash</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">x</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">y</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">z</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_radius</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK9size_typeRK9size_typeRK9size_typeRK9size_type" title="Permalink to this definition">¶</a><br /></dt>
@@ -871,7 +872,7 @@
 <span id="_CPPv3N10MsgArray3D2In6Filter8iteratorE"></span><span id="_CPPv2N10MsgArray3D2In6Filter8iteratorE"></span><span id="MsgArray3D::In::Filter::iterator"></span><span class="target" id="classMsgArray3D_1_1In_1_1Filter_1_1iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">iterator</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D2In6Filter8iteratorE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Stock iterator for iterating <a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html#classMsgSpatial3D_1_1In_1_1Filter_1_1Message"><span class="std std-ref">MsgSpatial3D::In::Filter::Message</span></a> objects </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D2In6Filter8iterator8iteratorERK6FilterRKiRKiRKi">
 <span id="_CPPv3N10MsgArray3D2In6Filter8iterator8iteratorERK6FilterRKiRKiRKi"></span><span id="_CPPv2N10MsgArray3D2In6Filter8iterator8iteratorERK6FilterRKiRKiRKi"></span><span id="MsgArray3D::In::Filter::iterator::iterator__FilterCR.iCR.iCR.iCR"></span><span class="target" id="classMsgArray3D_1_1In_1_1Filter_1_1iterator_1a0ca1b4be7dbcc3afb0f6f3ef63592001"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D2In6FilterE" title="MsgArray3D::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_x</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_y</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D2In6Filter8iterator8iteratorERK6FilterRKiRKiRKi" title="Permalink to this definition">¶</a><br /></dt>
@@ -930,7 +931,7 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D2In6Filter7Message7MessageERK6FilterRKiRKiRKi">
 <span id="_CPPv3N10MsgArray3D2In6Filter7Message7MessageERK6FilterRKiRKiRKi"></span><span id="_CPPv2N10MsgArray3D2In6Filter7Message7MessageERK6FilterRKiRKiRKi"></span><span id="MsgArray3D::In::Filter::Message::Message__FilterCR.iCR.iCR.iCR"></span><span class="target" id="classMsgArray3D_1_1In_1_1Filter_1_1Message_1aef63c53d10679120ac81396d4ac469d9"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D2In6FilterE" title="MsgArray3D::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_x</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_y</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_z</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D2In6Filter7Message7MessageERK6FilterRKiRKiRKi" title="Permalink to this definition">¶</a><br /></dt>
@@ -1022,7 +1023,7 @@
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D2In7Message7MessageERKN10MsgArray3D2InERK9size_type">
 <span id="_CPPv3N10MsgArray3D2In7Message7MessageERKN10MsgArray3D2InERK9size_type"></span><span id="_CPPv2N10MsgArray3D2In7Message7MessageERKN10MsgArray3D2InERK9size_type"></span><span id="MsgArray3D::In::Message::Message__MsgArray3D::InCR.size_typeCR"></span><span class="target" id="classMsgArray3D_1_1In_1_1Message_1a8c5513b88d52596c26f4d219e8d4412d"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv410MsgArray3D" title="MsgArray3D"><span class="pre">MsgArray3D</span></a><span class="pre">::</span><a class="reference internal" href="#_CPPv4N10MsgArray3D2InE" title="MsgArray3D::In"><span class="pre">In</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D2In7Message7MessageERKN10MsgArray3D2InERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
@@ -1088,7 +1089,7 @@
 <span id="_CPPv3N10MsgArray3D8MetaDataE"></span><span id="_CPPv2N10MsgArray3D8MetaDataE"></span><span id="MsgArray3D::MetaData"></span><span class="target" id="structMsgArray3D_1_1MetaData"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">MetaData</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D8MetaDataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><a class="reference internal" href="structMsgArray3D_1_1MetaData.html#structMsgArray3D_1_1MetaData"><span class="std std-ref">MetaData</span></a> required by brute force during message reads </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Members</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt id="_CPPv4N10MsgArray3D8MetaData10dimensionsE">
 <span id="_CPPv3N10MsgArray3D8MetaData10dimensionsE"></span><span id="_CPPv2N10MsgArray3D8MetaData10dimensionsE"></span><span id="MsgArray3D::MetaData::dimensions__size_typeA"></span><span class="target" id="structMsgArray3D_1_1MetaData_1a132709a9bcc914131e6b94249fb82a80"></span><a class="reference internal" href="#_CPPv4N10MsgArray3D9size_typeE" title="MsgArray3D::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">dimensions</span></code><span class="pre">[</span><span class="pre">3</span><span class="pre">]</span><a class="headerlink" href="#_CPPv4N10MsgArray3D8MetaData10dimensionsE" title="Permalink to this definition">¶</a><br /></dt>
@@ -1109,7 +1110,7 @@
 <span id="_CPPv3N10MsgArray3D3OutE"></span><span id="_CPPv2N10MsgArray3D3OutE"></span><span id="MsgArray3D::Out"></span><span class="target" id="classMsgArray3D_1_1Out"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Out</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D3OutE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class is accessible via <a class="reference internal" href="classFLAMEGPU__DEVICE__API.html#classFLAMEGPU__DEVICE__API_1a527543c95f60f58442aef2f06af34d42"><span class="std std-ref">FLAMEGPU_DEVICE_API.message_out</span></a> if <a class="reference internal" href="#classMsgArray3D"><span class="std std-ref">MsgArray3D</span></a> is specified in FLAMEGPU_AGENT_FUNCTION It gives access to functionality for outputting array messages </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N10MsgArray3D3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj">
 <span id="_CPPv3N10MsgArray3D3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj"></span><span id="_CPPv2N10MsgArray3D3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj"></span><span id="MsgArray3D::Out::Out__Curve::NamespaceHash.Curve::NamespaceHash.voidCP.unsigned-iP"></span><span class="target" id="classMsgArray3D_1_1Out_1abb10ef7c2ccbb5d2f2e04e2628755523"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Out</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">agentfn_hash</span></em>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">msg_hash</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_metadata</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">*</span><em><span class="pre">scan_flag_messageOutput</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MsgArray3D3Out3OutEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKvPj" title="Permalink to this definition">¶</a><br /></dt>
@@ -1151,7 +1152,7 @@
 
 </div>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Protected Attributes</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
 <dt id="_CPPv4N10MsgArray3D3Out13combined_hashE">
 <span id="_CPPv3N10MsgArray3D3Out13combined_hashE"></span><span id="_CPPv2N10MsgArray3D3Out13combined_hashE"></span><span id="MsgArray3D::Out::combined_hash__Curve::NamespaceHash"></span><span class="target" id="classMsgArray3D_1_1Out_1aae1568bfffb06a05123841a171690812"></span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <code class="sig-name descname"><span class="pre">combined_hash</span></code><a class="headerlink" href="#_CPPv4N10MsgArray3D3Out13combined_hashE" title="Permalink to this definition">¶</a><br /></dt>
@@ -1175,8 +1176,8 @@
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

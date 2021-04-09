@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File LayerDescription.h &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,138 +163,197 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-layerdescription-h">
+  <section id="program-listing-for-file-layerdescription-h">
 <span id="program-listing-file-include-flamegpu-model-layerdescription-h"></span><h1>Program Listing for File LayerDescription.h<a class="headerlink" href="#program-listing-for-file-layerdescription-h" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_include_flamegpu_model_LayerDescription.h.html#file-include-flamegpu-model-layerdescription-h"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/flamegpu/model/LayerDescription.h</span></code>)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_</span>
-<span class="cp">#define INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#ifndef INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_
+#define INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_
 
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+#include &lt;string&gt;
+#include &lt;memory&gt;
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/ModelDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/AgentDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/ModelData.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/LayerData.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/AgentFunction.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/AgentFunctionData.h&quot;</span><span class="cp"></span>
+#include &quot;flamegpu/model/ModelDescription.h&quot;
+#include &quot;flamegpu/model/AgentDescription.h&quot;
+#include &quot;flamegpu/model/ModelData.h&quot;
+#include &quot;flamegpu/model/LayerData.h&quot;
+#include &quot;flamegpu/runtime/AgentFunction.h&quot;
+#include &quot;flamegpu/model/AgentFunctionData.h&quot;
 
-<span class="k">class</span> <span class="nc">LayerDescription</span> <span class="p">{</span>
-    <span class="k">friend</span> <span class="k">struct</span> <span class="nc">LayerData</span><span class="p">;</span>
-    <span class="n">LayerDescription</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">,</span> <span class="n">LayerData</span> <span class="o">*</span><span class="k">const</span> <span class="n">data</span><span class="p">);</span>
-    <span class="n">LayerDescription</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerDescription</span> <span class="o">&amp;</span><span class="n">other_layer</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="n">LayerDescription</span><span class="p">(</span><span class="n">LayerDescription</span> <span class="o">&amp;&amp;</span><span class="n">other_layer</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="n">LayerDescription</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerDescription</span> <span class="o">&amp;</span><span class="n">other_layer</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="n">LayerDescription</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">LayerDescription</span> <span class="o">&amp;&amp;</span><span class="n">other_layer</span><span class="p">)</span> <span class="k">noexcept</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+class LayerDescription {
+    friend struct LayerData;
+    LayerDescription(const std::shared_ptr&lt;const ModelData&gt; &amp;_model, LayerData *const data);
+    LayerDescription(const LayerDescription &amp;other_layer) = delete;
+    LayerDescription(LayerDescription &amp;&amp;other_layer) noexcept = delete;
+    LayerDescription&amp; operator=(const LayerDescription &amp;other_layer) = delete;
+    LayerDescription&amp; operator=(LayerDescription &amp;&amp;other_layer) noexcept = delete;
 
- <span class="k">public</span><span class="o">:</span>
-    <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerDescription</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerDescription</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+ public:
+    bool operator==(const LayerDescription&amp; rhs) const;
+    bool operator!=(const LayerDescription&amp; rhs) const;
 
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">AgentFunction</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="n">addAgentFunction</span><span class="p">(</span><span class="n">AgentFunction</span> <span class="n">a</span> <span class="o">=</span> <span class="n">AgentFunction</span><span class="p">());</span>
-    <span class="kt">void</span> <span class="nf">addAgentFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="n">afd</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">addAgentFunction</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">agentName</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">functionName</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">addAgentFunction</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">agentName</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">functionName</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">addHostFunction</span><span class="p">(</span><span class="n">FLAMEGPU_HOST_FUNCTION_POINTER</span> <span class="n">func_p</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">addSubModel</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">addSubModel</span><span class="p">(</span><span class="k">const</span> <span class="n">SubModelDescription</span> <span class="o">&amp;</span><span class="n">submodel</span><span class="p">);</span>
-<span class="cp">#ifdef SWIG</span>
+    template&lt;typename AgentFunction&gt;
+    void addAgentFunction(AgentFunction a = AgentFunction());
+    void addAgentFunction(const AgentFunctionDescription &amp;afd);
+    void addAgentFunction(const std::string &amp;agentName, const std::string &amp;functionName);
+    void addAgentFunction(const char *agentName, const char *functionName);
+    void addHostFunction(FLAMEGPU_HOST_FUNCTION_POINTER func_p);
+    void addSubModel(const std::string &amp;name);
+    void addSubModel(const SubModelDescription &amp;submodel);
+#ifdef SWIG
 
-    <span class="kr">inline</span> <span class="kt">void</span> <span class="n">addHostFunctionCallback</span><span class="p">(</span><span class="n">HostFunctionCallback</span> <span class="o">*</span><span class="n">func_callback</span><span class="p">);</span>
-<span class="cp">#endif</span>
+    inline void addHostFunctionCallback(HostFunctionCallback *func_callback);
+#endif
 
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">getName</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getIndex</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getAgentFunctionsCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getHostFunctionsCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="cp">#ifdef SWIG</span>
+    std::string getName() const;
+    ModelData::size_type getIndex() const;
+    ModelData::size_type getAgentFunctionsCount() const;
+    ModelData::size_type getHostFunctionsCount() const;
+#ifdef SWIG
 
-    <span class="kr">inline</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">getHostFunctionCallbackCount</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="cp">#endif</span>
+    inline ModelData::size_type getHostFunctionCallbackCount() const;
+#endif
 
-    <span class="k">const</span> <span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="n">getAgentFunction</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-    <span class="n">FLAMEGPU_HOST_FUNCTION_POINTER</span> <span class="nf">getHostFunction</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="cp">#ifdef SWIG</span>
+    const AgentFunctionDescription &amp;getAgentFunction(unsigned int index) const;
+    FLAMEGPU_HOST_FUNCTION_POINTER getHostFunction(unsigned int index) const;
+#ifdef SWIG
 
-    <span class="kr">inline</span> <span class="n">HostFunctionCallback</span><span class="o">*</span> <span class="n">getHostFunctionCallback</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
-<span class="cp">#endif</span>
+    inline HostFunctionCallback* getHostFunctionCallback(unsigned int index) const;
+#endif
 
- <span class="k">private</span><span class="o">:</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">weak_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="n">model</span><span class="p">;</span>
-    <span class="n">LayerData</span> <span class="o">*</span><span class="k">const</span> <span class="n">layer</span><span class="p">;</span>
-<span class="p">};</span>
+ private:
+    std::weak_ptr&lt;const ModelData&gt; model;
+    LayerData *const layer;
+};
 
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">AgentFunction</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">LayerDescription</span><span class="o">::</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="n">AgentFunction</span> <span class="cm">/*af*/</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">AgentFunctionWrapper</span> <span class="o">*</span> <span class="n">func_compare</span> <span class="o">=</span> <span class="n">AgentFunction</span><span class="o">::</span><span class="n">fnPtr</span><span class="p">();</span>
-    <span class="c1">// Find the matching agent function in model hierarchy</span>
-    <span class="k">auto</span> <span class="n">mdl</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mdl</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">THROW</span> <span class="nf">ExpiredWeakPtr</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">a</span> <span class="p">:</span> <span class="n">mdl</span><span class="o">-&gt;</span><span class="n">agents</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">f</span> <span class="p">:</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">functions</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">func</span> <span class="o">==</span> <span class="n">func_compare</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// Check that layer does not already contain function with same agent + states</span>
-                <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span> <span class="o">&amp;</span><span class="nl">b</span> <span class="p">:</span> <span class="n">layer</span><span class="o">-&gt;</span><span class="n">agent_functions</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">if</span> <span class="p">(</span><span class="k">auto</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">parent</span><span class="p">.</span><span class="n">lock</span><span class="p">())</span> <span class="p">{</span>
-                        <span class="c1">// If agent matches</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="n">parent</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">==</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
-                            <span class="c1">// If they share a state</span>
-                            <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">-&gt;</span><span class="n">initial_state</span> <span class="o">==</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">initial_state</span> <span class="o">||</span>
-                                <span class="n">b</span><span class="o">-&gt;</span><span class="n">initial_state</span> <span class="o">==</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">end_state</span> <span class="o">||</span>
-                                <span class="n">b</span><span class="o">-&gt;</span><span class="n">end_state</span> <span class="o">==</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">initial_state</span> <span class="o">||</span>
-                                <span class="n">b</span><span class="o">-&gt;</span><span class="n">end_state</span> <span class="o">==</span> <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">end_state</span><span class="p">)</span> <span class="p">{</span>
-                                <span class="n">THROW</span> <span class="nf">InvalidAgentFunc</span><span class="p">(</span><span class="s">&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;</span>
-                                    <span class="s">&quot;within the layer shares an input or output state, this is not permitted, &quot;</span>
-                                    <span class="s">&quot;in LayerDescription::addAgentFunction()</span><span class="p">.</span><span class="s">&quot;,</span>
-                                    <span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span> <span class="n">b</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
-                            <span class="p">}</span>
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-                <span class="c1">// Add it and check it succeeded</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">agent_functions</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="p">).</span><span class="n">second</span><span class="p">)</span>
-                    <span class="k">return</span><span class="p">;</span>
-                <span class="n">THROW</span> <span class="nf">InvalidAgentFunc</span><span class="p">(</span><span class="s">&quot;Attempted to add same agent function to same layer twice, &quot;</span>
-                    <span class="s">&quot;in LayerDescription::addAgentFunction()</span><span class="p">.</span><span class="s">&quot;)</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="n">THROW</span> <span class="n">InvalidAgentFunc</span><span class="p">(</span><span class="s">&quot;Agent function was not found, &quot;</span>
-        <span class="s">&quot;in LayerDescription::addAgentFunction().&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+template&lt;typename AgentFunction&gt;
+void LayerDescription::addAgentFunction(AgentFunction /*af*/) {
+    if (layer-&gt;sub_model) {
+        THROW InvalidLayerMember(&quot;A layer containing agent functions and/or host functions, may not also contain a submodel, &quot;
+            &quot;in LayerDescription::addAgentFunction()\n&quot;);
+    }
+    if (layer-&gt;host_functions.size() || layer-&gt;host_functions_callbacks.size()) {
+        THROW InvalidLayerMember(&quot;A layer containing host functions, may not also contain agent functions, &quot;
+            &quot;in LayerDescription::addAgentFunction()\n&quot;);
+    }
+    AgentFunctionWrapper * func_compare = AgentFunction::fnPtr();
+    // Find the matching agent function in model hierarchy
+    auto mdl = model.lock();
+    if (!mdl) {
+        THROW ExpiredWeakPtr();
+    }
+    unsigned int matches = 0;
+    std::shared_ptr&lt;AgentFunctionData&gt; match_ptr;
+    for (auto a : mdl-&gt;agents) {
+        for (auto f : a.second-&gt;functions) {
+            if (f.second-&gt;func == func_compare) {
+                auto a_agent_out = f.second-&gt;agent_output.lock();
+                auto a_msg_out = f.second-&gt;message_output.lock();
+                auto a_msg_in = f.second-&gt;message_input.lock();
+                for (const auto &amp;b : layer-&gt;agent_functions) {
+                    if (auto parent = b-&gt;parent.lock()) {
+                        // Check that layer does not already contain function with same agent + states
+                        // If agent matches
+                        if (parent-&gt;name == a.second-&gt;name) {
+                            // If they share a state
+                            if (b-&gt;initial_state == f.second-&gt;initial_state ||
+                                b-&gt;initial_state == f.second-&gt;end_state ||
+                                b-&gt;end_state == f.second-&gt;initial_state ||
+                                b-&gt;end_state == f.second-&gt;end_state) {
+                                THROW InvalidAgentFunc(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                                    &quot;within the layer shares an input or output state, this is not permitted, &quot;
+                                    &quot;in LayerDescription::addAgentFunction().&quot;,
+                                    f.second-&gt;name.c_str(), b-&gt;name.c_str());
+                            }
+                        }
+                        // Check that the layer does not already contain function for the agent + state being output to
+                        if (a_agent_out) {
+                            // If agent matches
+                            if (parent-&gt;name == a_agent_out-&gt;name) {
+                                // If state matches
+                                if (b-&gt;initial_state == f.second-&gt;agent_output_state) {
+                                    THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                                        &quot;within the layer requires the same agent state as an input, as this agent function births, &quot;
+                                        &quot;in LayerDescription::addAgentFunction().&quot;,
+                                        f.second-&gt;name.c_str(), b-&gt;name.c_str());
+                                }
+                            }
+                        }
+                        // Also check the inverse
+                        auto b_agent_out = b-&gt;agent_output.lock();
+                        if (b_agent_out) {
+                            // If agent matches
+                            if (a.second-&gt;name == b_agent_out-&gt;name) {
+                                // If state matches
+                                if (f.second-&gt;initial_state == b-&gt;agent_output_state) {
+                                    THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                                        &quot;within the layer agent births to the same agent state as this agent function requires as an input, &quot;
+                                        &quot;in LayerDescription::addAgentFunction().&quot;,
+                                        f.second-&gt;name.c_str(), b-&gt;name.c_str());
+                                }
+                            }
+                        }
+                    }
+                    // Check the layer does not already contain function which outputs to same message list
+                    auto b_msg_out = b-&gt;message_output.lock();
+                    auto b_msg_in = b-&gt;message_input.lock();
+                    if ((a_msg_out &amp;&amp; b_msg_out &amp;&amp; a_msg_out == b_msg_out) ||
+                        (a_msg_out &amp;&amp; b_msg_in &amp;&amp; a_msg_out == b_msg_in) ||
+                        (a_msg_in &amp;&amp; b_msg_out &amp;&amp; a_msg_in == b_msg_out)) {  // Pointer comparison should be fine here
+                        THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                            &quot;within the layer also inputs or outputs to the same messagelist, this is not permitted, &quot;
+                            &quot;in LayerDescription::addAgentFunction().&quot;,
+                            f.second-&gt;name.c_str(), b-&gt;name.c_str());
+                    }
+                }
+                match_ptr = f.second;
+                ++matches;
+            }
+        }
+    }
+    if (matches == 1) {
+        // Add it and check it succeeded
+        if (layer-&gt;agent_functions.emplace(match_ptr).second)
+            return;
+        THROW InvalidAgentFunc(&quot;Attempted to add same agent function to same layer twice, &quot;
+            &quot;in LayerDescription::addAgentFunction().&quot;);
+    }
+    if (matches &gt; 1) {
+        THROW InvalidAgentFunc(&quot;There are %u possible agent functions to add to layer, please use a more specific method for adding this agent function to a layer, &quot;
+            &quot;in LayerDescription::addAgentFunction().&quot;, matches);
+    }
+    THROW InvalidAgentFunc(&quot;Agent function was not found, &quot;
+        &quot;in LayerDescription::addAgentFunction().&quot;);
+}
 
-<span class="cp">#ifdef SWIG</span>
-<span class="kt">void</span> <span class="n">LayerDescription</span><span class="o">::</span><span class="n">addHostFunctionCallback</span><span class="p">(</span><span class="n">HostFunctionCallback</span><span class="o">*</span> <span class="n">func_callback</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">func_callback</span><span class="p">).</span><span class="n">second</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">THROW</span> <span class="nf">InvalidHostFunc</span><span class="p">(</span><span class="s">&quot;Attempted to add same host function callback twice,&quot;</span>
-                <span class="s">&quot;in LayerDescription::addHostFunctionCallback()&quot;)</span><span class="p">;</span>
-        <span class="p">}</span>
-<span class="p">}</span>
-<span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="n">LayerDescription</span><span class="o">::</span><span class="n">getHostFunctionCallbackCount</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="c1">// Safe down-cast</span>
-    <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-<span class="p">}</span>
-<span class="n">HostFunctionCallback</span><span class="o">*</span> <span class="n">LayerDescription</span><span class="o">::</span><span class="n">getHostFunctionCallback</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">layer</span><span class="o">-&gt;</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">layer</span><span class="o">-&gt;</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">index</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
-            <span class="o">++</span><span class="n">it</span><span class="p">;</span>
-        <span class="k">return</span> <span class="o">*</span><span class="n">it</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">THROW</span> <span class="n">OutOfBoundsException</span><span class="p">(</span><span class="s">&quot;Index %d is out of bounds (only %d items exist) &quot;</span>
-        <span class="s">&quot;in LayerDescription.getHostFunctionCallback()</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span>
-        <span class="n">index</span><span class="p">,</span> <span class="n">layer</span><span class="o">-&gt;</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-<span class="p">}</span>
-<span class="cp">#endif</span>
+#ifdef SWIG
+void LayerDescription::addHostFunctionCallback(HostFunctionCallback* func_callback) {
+    if (!layer-&gt;host_functions_callbacks.insert(func_callback).second) {
+            THROW InvalidHostFunc(&quot;Attempted to add same host function callback twice,&quot;
+                &quot;in LayerDescription::addHostFunctionCallback()&quot;);
+        }
+}
+ModelData::size_type LayerDescription::getHostFunctionCallbackCount() const {
+    // Safe down-cast
+    return static_cast&lt;ModelData::size_type&gt;(layer-&gt;host_functions_callbacks.size());
+}
+HostFunctionCallback* LayerDescription::getHostFunctionCallback(unsigned int index) const {
+    if (index &lt; layer-&gt;host_functions_callbacks.size()) {
+        auto it = layer-&gt;host_functions_callbacks.begin();
+        for (unsigned int i = 0; i &lt; index; ++i)
+            ++it;
+        return *it;
+    }
+    THROW OutOfBoundsException(&quot;Index %d is out of bounds (only %d items exist) &quot;
+        &quot;in LayerDescription.getHostFunctionCallback()\n&quot;,
+        index, layer-&gt;host_functions_callbacks.size());
+}
+#endif
 
-<span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_</span>
+#endif  // INCLUDE_FLAMEGPU_MODEL_LAYERDESCRIPTION_H_
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File LayerDescription.cpp &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,7 +163,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-layerdescription-cpp">
+  <section id="program-listing-for-file-layerdescription-cpp">
 <span id="program-listing-file-src-flamegpu-model-layerdescription-cpp"></span><h1>Program Listing for File LayerDescription.cpp<a class="headerlink" href="#program-listing-for-file-layerdescription-cpp" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_model_LayerDescription.cpp.html#file-src-flamegpu-model-layerdescription-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/model/LayerDescription.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/model/LayerDescription.h&quot;
@@ -200,7 +201,11 @@ void LayerDescription::addAgentFunction(const AgentFunctionDescription &amp;afd)
 void LayerDescription::addAgentFunction(const std::string &amp;agentName, const std::string &amp;functionName) {
     if (layer-&gt;sub_model) {
         THROW InvalidLayerMember(&quot;A layer containing agent functions and/or host functions, may not also contain a submodel, &quot;
-        &quot;in LayerDescription::addSubModel()\n&quot;);
+        &quot;in LayerDescription::addAgentFunction()\n&quot;);
+    }
+    if (layer-&gt;host_functions.size() || layer-&gt;host_functions_callbacks.size()) {
+        THROW InvalidLayerMember(&quot;A layer containing host functions, may not also contain agent functions, &quot;
+            &quot;in LayerDescription::addAgentFunction()\n&quot;);
     }
     // Locate the matching agent function in the model hierarchy
     auto mdl = model.lock();
@@ -217,9 +222,12 @@ void LayerDescription::addAgentFunction(const std::string &amp;agentName, const 
                     &quot;in LayerDescription::addAgentFunction().&quot;,
                     functionName.c_str(), agentName.c_str());
             }
-            // Check that layer does not already contain function with same agent + states
+            auto a_agent_out = f-&gt;second-&gt;agent_output.lock();
+            auto a_msg_out = f-&gt;second-&gt;message_output.lock();
+            auto a_msg_in = f-&gt;second-&gt;message_input.lock();
             for (const auto &amp;b : layer-&gt;agent_functions) {
                 if (auto parent = b-&gt;parent.lock()) {
+                    // Check that layer does not already contain function with same agent + states
                     // If agent matches
                     if (parent-&gt;name == a-&gt;second-&gt;name) {
                         // If they share a state
@@ -233,6 +241,44 @@ void LayerDescription::addAgentFunction(const std::string &amp;agentName, const 
                                 a-&gt;second-&gt;name.c_str(), agentName.c_str(), b-&gt;name.c_str());
                         }
                     }
+                    // Check that the layer does not already contain function for the agent + state being output to
+                    if (a_agent_out) {
+                        // If agent matches
+                        if (parent-&gt;name == a_agent_out-&gt;name) {
+                            // If state matches
+                            if (b-&gt;initial_state == f-&gt;second-&gt;agent_output_state) {
+                                THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                                    &quot;within the layer requires the same agent state as an input, as this agent function births, &quot;
+                                    &quot;in LayerDescription::addAgentFunction().&quot;,
+                                    f-&gt;second-&gt;name.c_str(), b-&gt;name.c_str());
+                            }
+                        }
+                    }
+                    // Also check the inverse
+                    auto b_agent_out = b-&gt;agent_output.lock();
+                    if (b_agent_out) {
+                        // If agent matches
+                        if (a-&gt;second-&gt;name == b_agent_out-&gt;name) {
+                            // If state matches
+                            if (f-&gt;second-&gt;initial_state == b-&gt;agent_output_state) {
+                                THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                                    &quot;within the layer agent births to the same agent state as this agent function requires as an input, &quot;
+                                    &quot;in LayerDescription::addAgentFunction().&quot;,
+                                    f-&gt;second-&gt;name.c_str(), b-&gt;name.c_str());
+                            }
+                        }
+                    }
+                }
+                // Check the layer does not already contain function which outputs to same message list
+                auto b_msg_out = b-&gt;message_output.lock();
+                auto b_msg_in = b-&gt;message_input.lock();
+                if ((a_msg_out &amp;&amp; b_msg_out &amp;&amp; a_msg_out == b_msg_out) ||
+                    (a_msg_out &amp;&amp; b_msg_in &amp;&amp; a_msg_out == b_msg_in) ||
+                    (a_msg_in &amp;&amp; b_msg_out &amp;&amp; a_msg_in == b_msg_out)) {  // Pointer comparison should be fine here
+                    THROW InvalidLayerMember(&quot;Agent functions &#39;%s&#39; cannot be added to this layer as agent function &#39;%s&#39; &quot;
+                        &quot;within the layer also inputs or outputs to the same messagelist, this is not permitted, &quot;
+                        &quot;in LayerDescription::addAgentFunction().&quot;,
+                        f-&gt;second-&gt;name.c_str(), b-&gt;name.c_str());
                 }
             }
             layer-&gt;agent_functions.insert(f-&gt;second);
@@ -249,7 +295,11 @@ void LayerDescription::addAgentFunction(const char *an, const char *fn) {
 void LayerDescription::addHostFunction(FLAMEGPU_HOST_FUNCTION_POINTER func_p) {
     if (layer-&gt;sub_model) {
         THROW InvalidLayerMember(&quot;A layer containing agent functions and/or host functions, may not also contain a submodel, &quot;
-        &quot;in LayerDescription::addSubModel()\n&quot;);
+        &quot;in LayerDescription::addHostFunction()\n&quot;);
+    }
+    if (layer-&gt;agent_functions.size()) {
+        THROW InvalidLayerMember(&quot;A layer containing host functions, may not also contain agent functions, &quot;
+            &quot;in LayerDescription::addHostFunction()\n&quot;);
     }
     if (!layer-&gt;host_functions.insert(func_p).second) {
         THROW InvalidHostFunc(&quot;HostFunction has already been added to LayerDescription,&quot;
@@ -341,7 +391,7 @@ FLAMEGPU_HOST_FUNCTION_POINTER LayerDescription::getHostFunction(unsigned int in
 }
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

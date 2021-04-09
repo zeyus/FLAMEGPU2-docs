@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Agent Behaviour &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1-environment.html">The Model Environment</a></li>
@@ -185,16 +186,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="agent-behaviour">
+  <section id="agent-behaviour">
 <h1>Agent Behaviour<a class="headerlink" href="#agent-behaviour" title="Permalink to this headline">¶</a></h1>
 <p>Agent behaviour is defined using agent functions, agents can change their own state, send and read messages and create new agents.</p>
 <p><strong>TODO General Description</strong></p>
-<div class="section" id="flamegpu-device-api">
+<section id="flamegpu-device-api">
 <h2>FLAMEGPU Device API<a class="headerlink" href="#flamegpu-device-api" title="Permalink to this headline">¶</a></h2>
 <p>The FLAMEGPU Device API provides functionality within agent functions for
 accessing simulation properties and managing the executing agent, usage of
 this functionality is described below.</p>
-<div class="section" id="agent-variable-access">
+<section id="agent-variable-access">
 <h3>Agent Variable Access<a class="headerlink" href="#agent-variable-access" title="Permalink to this headline">¶</a></h3>
 <p>Within agent functions, variables can be accessed with <code class="docutils literal notranslate"><span class="pre">setVariable</span></code> and <code class="docutils literal notranslate"><span class="pre">getVariable</span></code>.
 These variables are accessed from higher latency device memory, so it’s recommended that you avoid multiple reads or writes to the same variable in any agent functions.</p>
@@ -222,8 +223,8 @@ These variables are accessed from higher latency device memory, so it’s recomm
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="environment-property-access">
+</section>
+<section id="environment-property-access">
 <h3>Environment Property Access<a class="headerlink" href="#environment-property-access" title="Permalink to this headline">¶</a></h3>
 <p>Environment properties are read-only within agent functions (however they can be updated with host functions).</p>
 <p>The pattern for reading environment properties is similar to agent variables. The syntax for array variables is slightly different, as the length of the array is not required, however elements are still accessed individually.</p>
@@ -237,8 +238,8 @@ These variables are accessed from higher latency device memory, so it’s recomm
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="random-number-generation">
+</section>
+<section id="random-number-generation">
 <h3>Random Number Generation<a class="headerlink" href="#random-number-generation" title="Permalink to this headline">¶</a></h3>
 <p>The agent function random number api is identical to that present in host functions. It is also seeded according to the random seed provided at model execution, making it preferable to external random libraries. Floating point uniform, normal and log normal distributions are available alongside range based integer distributions.</p>
 <p>The main difference, is that uniformly distributed floats are in the range <code class="docutils literal notranslate"><span class="pre">(0-1]</span></code>, whereas host generation is in the range <code class="docutils literal notranslate"><span class="pre">[0-1)</span></code>. This is due to the underlying libraries used.</p>
@@ -259,12 +260,12 @@ These variables are accessed from higher latency device memory, so it’s recomm
 <p><code class="docutils literal notranslate"><span class="pre">float</span></code> may be replaced with <code class="docutils literal notranslate"><span class="pre">double</span></code>, similarly <code class="docutils literal notranslate"><span class="pre">int</span></code> may be
 replaced with any suitable integer type (e.g. signed/unsigned:
 <code class="docutils literal notranslate"><span class="pre">int8_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int_64_t</span></code>).</p>
-</div>
-<div class="section" id="communication-messaging">
+</section>
+<section id="communication-messaging">
 <h3>Communication (Messaging)<a class="headerlink" href="#communication-messaging" title="Permalink to this headline">¶</a></h3>
 <p>Available messaging types and their usage is detailed in <span class="xref std std-doc">section 4</span>.</p>
-</div>
-<div class="section" id="agent-creation">
+</section>
+<section id="agent-creation">
 <h3>Agent Creation<a class="headerlink" href="#agent-creation" title="Permalink to this headline">¶</a></h3>
 <p>The Device API’s agent creation interface is only able to create a single agent per instance of the
 agent function. Additionally, the agent type and state being created must be earlier specified as
@@ -292,9 +293,9 @@ part of the model description.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

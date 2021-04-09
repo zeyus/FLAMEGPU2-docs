@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Agent Communication &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1-environment.html">The Model Environment</a></li>
@@ -193,7 +194,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="agent-communication">
+  <section id="agent-communication">
 <h1>Agent Communication<a class="headerlink" href="#agent-communication" title="Permalink to this headline">¶</a></h1>
 <p>FLAME GPU represents agent communication with messages. These are output by one group of
 agents in a layer, and then read in a subsequent layer by the same, or a different, group of agents.</p>
@@ -245,14 +246,14 @@ bespoke messaging types, for guidance on this see the file <code class="docutils
 </tr>
 </tbody>
 </table>
-<div class="section" id="brute-force">
+<section id="brute-force">
 <h2>Brute Force<a class="headerlink" href="#brute-force" title="Permalink to this headline">¶</a></h2>
 <p>Brute force messaging is the most basic type of messaging, whereby all messages are seen when
 iterating the message list. Due to the high level of agents supported by FLAMEGPU, use of brute
 force messaging should be limited to small agent populations and optional outputs. There is often
 a more suitable message type.</p>
 <p>An example of brute force messaging can be found in the <cite>circles_bruteforce</cite> example.</p>
-<div class="section" id="model-definition">
+<section id="model-definition">
 <h3>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this headline">¶</a></h3>
 <p>Defining the message’s variables:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">MsgBruteForce</span><span class="o">::</span><span class="n">Description</span> <span class="o">&amp;</span><span class="n">message</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newMessage</span><span class="p">(</span><span class="s">&quot;location&quot;</span><span class="p">);</span>
@@ -273,8 +274,8 @@ a more suitable message type.</p>
 <span class="n">agent</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;move&quot;</span><span class="p">,</span> <span class="n">move</span><span class="p">).</span><span class="n">setMessageInput</span><span class="p">(</span><span class="s">&quot;location&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="message-access">
+</section>
+<section id="message-access">
 <h3>Message Access<a class="headerlink" href="#message-access" title="Permalink to this headline">¶</a></h3>
 <p>Outputting messages:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// The 3rd argument specifies the output message type as Brute Force messaging</span>
@@ -315,24 +316,24 @@ a more suitable message type.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="array">
+</section>
+</section>
+<section id="array">
 <h2>Array<a class="headerlink" href="#array" title="Permalink to this headline">¶</a></h2>
 <p>Array messaging is available in 1D, 2D and 3D, providing direct access to messages at a known location within an array.</p>
 <p><strong>TODO</strong> Details on how optional output works.</p>
 <p>It is also possible to iterate messages within a Moore neighbourhood of a selected element of the array.</p>
 <p>An example of 2D array messaging can be found in the <cite>game_of_life</cite> example.</p>
-<div class="section" id="id1">
+<section id="id1">
 <h3>Model Definition<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p><strong>TODO</strong></p>
-</div>
-<div class="section" id="id2">
+</section>
+<section id="id2">
 <h3>Message Access<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><strong>TODO</strong></p>
-</div>
-</div>
-<div class="section" id="spatial">
+</section>
+</section>
+<section id="spatial">
 <h2>Spatial<a class="headerlink" href="#spatial" title="Permalink to this headline">¶</a></h2>
 <p>Spatial messaging is available in both 2D and 3D, providing access to a reduced subset of messages
 which fall within a set radius. This message types force the inclusion of the <code class="docutils literal notranslate"><span class="pre">float</span></code> message
@@ -342,7 +343,7 @@ to the location of the message.</p>
 perform this bounds check manually. This is not performed automatically, to avoid duplication of
 expensive distance calculations.</em></p>
 <p>An example of spatial 3D messaging can be found in the <cite>circles_spatial3D</cite> example.</p>
-<div class="section" id="id3">
+<section id="id3">
 <h3>Model Definition<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>Defining the message’s variables:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Message type is specified as MsgSpatial2D</span>
@@ -359,8 +360,8 @@ expensive distance calculations.</em></p>
 </div>
 <p>The message is added to agent functions the same as all other messaging types. For an example see the
 earlier examples for Brute Force messaging.</p>
-</div>
-<div class="section" id="id4">
+</section>
+<section id="id4">
 <h3>Message Access<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>Outputting messages:</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// The 3rd argument specifies the output message type as Spatial 2D messaging</span>
@@ -416,13 +417,13 @@ earlier examples for Brute Force messaging.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="graph">
+</section>
+</section>
+<section id="graph">
 <h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">¶</a></h2>
 <p>Not yet available.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

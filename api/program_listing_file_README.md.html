@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File README.md &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,7 +163,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-readme-md">
+  <section id="program-listing-for-file-readme-md">
 <span id="program-listing-file-readme-md"></span><h1>Program Listing for File README.md<a class="headerlink" href="#program-listing-for-file-readme-md" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_README.md.html#file-readme-md"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">README.md</span></code>)</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># FLAME GPU 2</span>
@@ -211,6 +212,10 @@ Only documentation can be built without the required dependencies (however Doxyg
 + Windows/MSVC and CUDA &lt; 11.0
   + There may be intermittent compilation errors due to an NVCC+MSVC bug exposed by Thrust/CUB.
   + Re-running the build appears to work in most cases, Otherwise consider upgrading to CUDA 11.0+ if possible.
++ Windows/MSVC and CUDA &lt;= 11.0
+  + Incremental builds of executables may result in an error at link time (fatbinlink.c) if the flamegpu2 library has been rebuilt, due to a bug with the cuda visual studio integration when relative paths are used.
+  + If this presents itself, re-save the any <span class="sb">`.cu`</span> file for the executable you are working on and build again.
+  + A workaround is in place for CUDA 11.1+
 + CMake 3.16 has known issues on some platforms.
 + Python &lt;= 3.5 may encounter issues with dependency installation such as setuptools. If so, please manually install the correct version.
   + i.e. <span class="sb">`python3 -m pip install --upgrade &#39;setuptools; python_version &gt;= &quot;3.6&quot;&#39; &#39;setuptools&lt;51.3.0; python_version &lt; &quot;3.6&quot; and python_version &gt;= &quot;3.0&quot;&#39;`</span>
@@ -269,6 +274,13 @@ Alternatively using <span class="sb">`-G`</span> the desired version of Visual s
 
 <span class="sb">`Visual Studio 16 2019`</span> can be replaced with any supported [<span class="nt">Visual studio generator</span>](<span class="na">https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#visual-studio-generators</span>) that is installed.
 
+
+CMake will find and use the lastest CUDA toolkit avaialable by default. This choice can be overridden by specifying <span class="sb">`CMAKE_GENERATOR_TOOLSET`</span> to the desired CUDA version. I.e. to specify CUDA 11.1:
+
+<span class="sb">```</span>
+<span class="sb">cmake .. -DCMAKE_GENERATOR_TOOLSET=cuda=11.1</span>
+<span class="sb">```</span>
+
 <span class="gu">#### Configuring CMake</span>
 
 The following options are available when calling <span class="sb">`cmake`</span> on either Linux or Windows. It is also possible to manage these options via <span class="sb">`cmake-gui`</span> on Windows, often by setting the variable of the same name.
@@ -297,6 +309,8 @@ On Linux you may need to install additional packages, refer to the CMake configu
 + [<span class="nt">GLM</span>](<span class="na">http://glm.g-truc.net/</span>) <span class="ge">*(consistent C++/GLSL vector maths functionality)*</span>
 + [<span class="nt">GLEW</span>](<span class="na">http://glew.sourceforge.net/</span>) <span class="ge">*(GL extension loader)*</span>
 + [<span class="nt">FreeType</span>](<span class="na">http://www.freetype.org/</span>)  <span class="ge">*(font loading)*</span>
++ [<span class="nt">DevIL</span>](<span class="na">http://openil.sourceforge.net/</span>)  <span class="ge">*(image loading)*</span>
++ [<span class="nt">Fontconfig</span>](<span class="na">https://www.fontconfig.org/</span>)  <span class="ge">*(Linux only, font detection)*</span>
 
 The visualisation codebase can be found at [<span class="nt">this location</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2-visualiser</span>) and is a fork of [<span class="nt">sdl_exp</span>](<span class="na">https://github.com/Robadob/sdl_exp</span>).
 
@@ -380,7 +394,7 @@ FLAME GPU 2 supports runtime compilation of agent functions. E.g. specification 
 You should use the [<span class="nt">FLAME GPU 2 template project</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2_example_template</span>). This provides a simple standalone example with CMake files ready to build a model using FLAME GPU 2.
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

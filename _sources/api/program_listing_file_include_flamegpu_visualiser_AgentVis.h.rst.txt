@@ -88,7 +88,7 @@ Program Listing for File AgentVis.h
    
     private:
        void initBindings(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
-       void requestBufferResizes(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
+       bool requestBufferResizes(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
        void updateBuffers(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
        std::weak_ptr<AutoPalette> auto_palette;
        std::shared_ptr<AutoPalette> owned_auto_palette;

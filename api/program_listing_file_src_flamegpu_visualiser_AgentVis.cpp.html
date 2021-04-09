@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File AgentVis.cpp &mdash; FLAME GPU 2 0 documentation</title>
@@ -88,7 +89,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -162,7 +163,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="program-listing-for-file-agentvis-cpp">
+  <section id="program-listing-for-file-agentvis-cpp">
 <span id="program-listing-file-src-flamegpu-visualiser-agentvis-cpp"></span><h1>Program Listing for File AgentVis.cpp<a class="headerlink" href="#program-listing-for-file-agentvis-cpp" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_visualiser_AgentVis.cpp.html#file-src-flamegpu-visualiser-agentvis-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/visualiser/AgentVis.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &quot;flamegpu/visualiser/AgentVis.h&quot;
@@ -407,11 +408,14 @@ void AgentVis::initBindings(std::unique_ptr&lt;FLAMEGPU_Visualisation&gt; &amp;v
         vis-&gt;addAgentState(agentData.name, state, vc, core_tex_buffers, vc.tex_buffers);
     }
 }
-void AgentVis::requestBufferResizes(std::unique_ptr&lt;FLAMEGPU_Visualisation&gt; &amp;vis) {
+bool AgentVis::requestBufferResizes(std::unique_ptr&lt;FLAMEGPU_Visualisation&gt; &amp;vis) {
+    unsigned int agents_requested = 0;
     for (auto &amp;state : agentData.states) {
         auto &amp;state_map = agent.state_map.at(state);
         vis-&gt;requestBufferResizes(agentData.name, state, state_map-&gt;getSize());
+        agents_requested += state_map-&gt;getSize();
     }
+    return agents_requested;
 }
 void AgentVis::updateBuffers(std::unique_ptr&lt;FLAMEGPU_Visualisation&gt; &amp;vis) {
     for (auto &amp;state : agentData.states) {
@@ -515,7 +519,7 @@ void AgentVis::clearColor() {
 }
 </pre></div>
 </div>
-</div>
+</section>
 
 
            </div>

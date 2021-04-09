@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Template Class DiscreteColor &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a></li>
@@ -486,33 +487,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="template-class-discretecolor">
+  <section id="template-class-discretecolor">
 <span id="exhale-class-classdiscretecolor"></span><h1>Template Class DiscreteColor<a class="headerlink" href="#template-class-discretecolor" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_visualiser_color_DiscreteColor.h.html#file-include-flamegpu-visualiser-color-discretecolor-h"><span class="std std-ref">File DiscreteColor.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-types">
+<section id="base-types">
 <h3>Base Types<a class="headerlink" href="#base-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">ColorFunction</span></code> (<a class="reference internal" href="classColorFunction.html#exhale-class-classcolorfunction"><span class="std std-ref">Class ColorFunction</span></a>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">std::map&lt;</span> <span class="pre">T,</span> <span class="pre">Color</span> <span class="pre">&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">std::map&lt;</span> <span class="pre">int32_t,</span> <span class="pre">Color</span> <span class="pre">&gt;</span></code></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
 <dt id="_CPPv4I0E13DiscreteColor">
-<span id="_CPPv3I0E13DiscreteColor"></span><span id="_CPPv2I0E13DiscreteColor"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code> <span class="pre">=</span> <span class="pre">int32_t</span><span class="pre">&gt;</span><br /><span class="target" id="classDiscreteColor"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">DiscreteColor</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classColorFunction.html#_CPPv413ColorFunction" title="ColorFunction"><span class="pre">ColorFunction</span></a><span class="pre">,</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0E13DiscreteColor" title="DiscreteColor::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4I0E13DiscreteColor" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3I0E13DiscreteColor"></span><span id="_CPPv2I0E13DiscreteColor"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code> <span class="pre">=</span> <span class="pre">int32_t</span><span class="pre">&gt;</span><br /><span class="target" id="classDiscreteColor"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">DiscreteColor</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classColorFunction.html#_CPPv413ColorFunction" title="ColorFunction"><span class="pre">ColorFunction</span></a><span class="pre">,</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">int32_t</span><span class="pre">,</span> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv4I0E13DiscreteColor" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Used to define a discrete color selection function Integer keys are mapped to static colors Add key:color pairs to this class as you would a std::map * This class only supports being instantiated with types int32_t, and uint32_t These have been typedef as iDiscreteColor and uDiscreteColor respectively The agent variable which provides the key should be of the corresponding type <dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>Currently ignores alpha channel of colors as Alpha support isn’t properly tested </p>
 </dd>
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric">Public Functions</p>
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv4N13DiscreteColor13DiscreteColorERKNSt6stringERK5Color">
 <span id="_CPPv3N13DiscreteColor13DiscreteColorERKNSt6stringERK5Color"></span><span id="_CPPv2N13DiscreteColor13DiscreteColorERKNSt6stringERK5Color"></span><span id="DiscreteColor::DiscreteColor__ssCR.ColorCR"></span><span class="target" id="classDiscreteColor_1a2b9531a3898f9b68a9f3461382008490"></span><code class="sig-name descname"><span class="pre">DiscreteColor</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><em><span class="pre">fallback</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13DiscreteColor13DiscreteColorERKNSt6stringERK5Color" title="Permalink to this definition">¶</a><br /></dt>
@@ -588,8 +589,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

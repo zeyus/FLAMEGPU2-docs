@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Environment Behaviour &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1-environment.html">The Model Environment</a></li>
@@ -190,10 +191,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="environment-behaviour">
+  <section id="environment-behaviour">
 <h1>Environment Behaviour<a class="headerlink" href="#environment-behaviour" title="Permalink to this headline">¶</a></h1>
 <p>Environment behaviour is defined using host functions, these can perform analysis over the whole agent population, create new agents and update the environmental properties.</p>
-<div class="section" id="host-functions">
+<section id="host-functions">
 <h2>Host Functions<a class="headerlink" href="#host-functions" title="Permalink to this headline">¶</a></h2>
 <p>Host functions within FLAMEGPU provide a means to execute model logic at
 a higher level than individual agents, these are executed on the CPU (as
@@ -205,7 +206,7 @@ population.</p>
 <p>They can either be executed as part of a layer, similar to agent
 functions, or called relative to the whole simulation (init function,
 exit function) or each time step (step function)</p>
-<div class="section" id="types-of-host-function">
+<section id="types-of-host-function">
 <h3>Types of Host Function<a class="headerlink" href="#types-of-host-function" title="Permalink to this headline">¶</a></h3>
 <p>There are two forms of host function, functions and conditions, whereby
 conditions must return a value.</p>
@@ -252,8 +253,8 @@ have any return value.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="using-host-functions">
+</section>
+<section id="using-host-functions">
 <h3>Using Host Functions<a class="headerlink" href="#using-host-functions" title="Permalink to this headline">¶</a></h3>
 <p>First the host function must be defined with one of the above listed
 preprocessor macros, these expand to declare the function taking a
@@ -265,7 +266,7 @@ Example of a Host Function</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="section" id="example-of-a-host-condition">
+<section id="example-of-a-host-condition">
 <h4>Example of a Host Condition<a class="headerlink" href="#example-of-a-host-condition" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_EXIT_CONDITION</span><span class="p">(</span><span class="n">my_exit_condition</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">someCondition</span><span class="p">)</span>
@@ -295,14 +296,14 @@ to a layer like agent functions:</p>
 if a host function is required in multiple locations (e.g. Init and
 Step). The naming simply ensures improved visibility of function
 purpose.</em></p>
-</div>
-</div>
-</div>
-<div class="section" id="flamegpu-host-api">
+</section>
+</section>
+</section>
+<section id="flamegpu-host-api">
 <h2>FLAMEGPU Host API<a class="headerlink" href="#flamegpu-host-api" title="Permalink to this headline">¶</a></h2>
 <p>The FLAMEGPU Host API provides functionality within host functions for
 managing the simulation, usage of this functionality is described below.</p>
-<div class="section" id="environment-property-access">
+<section id="environment-property-access">
 <h3>Environment Property Access<a class="headerlink" href="#environment-property-access" title="Permalink to this headline">¶</a></h3>
 <p>Environment properties can be read and updated during host functions and
 conditions (with the exception of properties that were marked as
@@ -329,8 +330,8 @@ to that used to initialise the environment properties via
 </div>
 <p>Environment properties can also be created and removed during
 simulations, however this is discouraged as it may impact performance.</p>
-</div>
-<div class="section" id="random-number-generation">
+</section>
+<section id="random-number-generation">
 <h3>Random Number Generation<a class="headerlink" href="#random-number-generation" title="Permalink to this headline">¶</a></h3>
 <p>The Host API’s random interface is identical to that available from the
 Device API. It is also seeded according to the random seed provided at
@@ -351,8 +352,8 @@ model execution, making it preferable to external random libraries.</p>
 <p><code class="docutils literal notranslate"><span class="pre">float</span></code> may be replaced with <code class="docutils literal notranslate"><span class="pre">double</span></code>, similarly <code class="docutils literal notranslate"><span class="pre">int</span></code> may be
 replaced with any suitable integer type (e.g. signed/unsigned:
 <code class="docutils literal notranslate"><span class="pre">int8_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">int_64_t</span></code>).</p>
-</div>
-<div class="section" id="reduction">
+</section>
+<section id="reduction">
 <h3>Reduction<a class="headerlink" href="#reduction" title="Permalink to this headline">¶</a></h3>
 <p>The Host API offers several types of reduction which can be performed
 over agent variables.</p>
@@ -448,12 +449,12 @@ bounds of the histogram:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sorting-agents">
+</section>
+<section id="sorting-agents">
 <h3>Sorting Agents<a class="headerlink" href="#sorting-agents" title="Permalink to this headline">¶</a></h3>
 <p><strong>TODO</strong></p>
-</div>
-<div class="section" id="agent-creation">
+</section>
+<section id="agent-creation">
 <h3>Agent Creation<a class="headerlink" href="#agent-creation" title="Permalink to this headline">¶</a></h3>
 <p>The Host API’s agent creation interface is identical to that available from the
 Device API. However, agents of any valid type and state can be created
@@ -481,9 +482,9 @@ created agents straight away.</em></p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

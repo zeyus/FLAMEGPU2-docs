@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Submodels &mdash; FLAME GPU 2 0 documentation</title>
@@ -90,7 +91,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="1-environment.html">The Model Environment</a></li>
@@ -178,7 +179,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="submodels">
+  <section id="submodels">
 <h1>Submodels<a class="headerlink" href="#submodels" title="Permalink to this headline">¶</a></h1>
 <p>Submodels are a new feature to FLAMEGPU2, providing a more flexible and intuitive interface for iterative algorithms. These were previously handled in FLAMEGPU1 with global function conditions.</p>
 <p>A submodel acts as a full model nested inside a parent model, the only requirement is that the model contains atleast one exit condition. Agent variables can be mapped between the two models, with each model also having private agent variables (or even private agents). Environment properties can also be shared with submodels, with the ability to mark them as constant within the submodel.</p>
@@ -186,7 +187,7 @@
 <p>A submodel must exist independently within a layer of the parent model, it cannot execute simultaneously with other agent or host functions.</p>
 <p>Models may contain multiple submodels, and submodels may contain sub-submodels. The only limitation to submodel nested, is that circular dependencies are not permitted (e.g. a submodel adding it’s parent model as a submodel).</p>
 <p>An example of submodel usage can be found in the <cite>sugarscape</cite> example.</p>
-<div class="section" id="submodel-definition">
+<section id="submodel-definition">
 <h2>SubModel Definition<a class="headerlink" href="#submodel-definition" title="Permalink to this headline">¶</a></h2>
 <p>A submodel as defined the same as a regular model, via a <cite>ModelDescription</cite>. It must then be added to the model which should host the submodel. Mappings between agent states, agent variables and environment properties can then be created. When mapping variables and properties, they must be of the same type and length.</p>
 <p>When calling <cite>SubAgentDescription::bindAgent()</cite>, it is also possible to automatically bind compatible states and variables.</p>
@@ -242,8 +243,8 @@
 <span class="n">senv</span><span class="p">.</span><span class="n">mapProperty</span><span class="p">(</span><span class="s">&quot;foo2&quot;</span><span class="p">,</span> <span class="s">&quot;bar2&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -107,6 +107,7 @@ Program Listing for File CUDAFatAgentStateList.h
        void initVariables(std::set<std::shared_ptr<VariableBuffer>> &exclusionSet, const unsigned int initCount, const unsigned initOffset, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        std::list<std::shared_ptr<VariableBuffer>> &getUniqueVariables();
        void swap(CUDAFatAgentStateList*other);
+       std::list<std::shared_ptr<VariableBuffer>> getBuffers(std::set<std::shared_ptr<VariableBuffer>>& exclusionSet);
    
     private:
        unsigned int aliveAgents;

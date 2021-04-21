@@ -16,13 +16,14 @@ Program Listing for File SubModelDescription.h
    #include <memory>
    
    #include "LayerDescription.h"
+   #include "DependencyNode.h"
    
    class SubAgentDescription;
    class SubEnvironmentDescription;
    struct ModelData;
    struct SubModelData;
    
-   class SubModelDescription {
+   class SubModelDescription : public DependencyNode {
        friend struct SubModelData;
        friend void LayerDescription::addSubModel(const SubModelDescription &);
        SubModelDescription(const std::shared_ptr<const ModelData> &_model, SubModelData *const _submodel);
@@ -39,6 +40,7 @@ Program Listing for File SubModelDescription.h
        const SubEnvironmentDescription &getSubEnvironment(bool auto_map_props = false) const;
        void setMaxSteps(const unsigned int &max_steps);
        unsigned int getMaxSteps() const;
+       const std::string getName();
    
     private:
        const std::weak_ptr<const ModelData> model;

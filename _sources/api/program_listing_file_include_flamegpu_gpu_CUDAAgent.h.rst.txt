@@ -19,6 +19,7 @@ Program Listing for File CUDAAgent.h
    #include <string>
    #include <mutex>
    #include <unordered_map>
+   #include <list>
    
    // include sub classes
    #include "flamegpu/util/JitifyCache.h"
@@ -65,9 +66,13 @@ Program Listing for File CUDAAgent.h
        const jitify::experimental::KernelInstantiation& getRTCInstantiation(const std::string &function_name) const;
        CurveRTCHost &getRTCHeader(const std::string &function_name) const;
        const CUDARTCFuncMap& getRTCFunctions() const;
-       void initUnmappedVars(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void initUnmappedVars(CUDAScatter& scatter, const unsigned int& streamId, const cudaStream_t& stream);
+       void initExcludedVars(const std::string& state, const unsigned int& count, const unsigned int& offset, CUDAScatter& scatter, const unsigned int& streamId, const cudaStream_t& stream);
        void cullAllStates();
        void cullUnmappedStates();
+       void resizeState(const std::string &state, const unsigned int& minSize, const bool& retainData);
+       void setStateAgentCount(const std::string& state, const unsigned int &newSize);
+       std::list<std::shared_ptr<VariableBuffer>> getUnboundVariableBuffers(const std::string& state);
    
     private:
        static size_t calcTotalVarSize(const AgentData &agent) {

@@ -20,7 +20,7 @@ Program Listing for File CUDAAgentStateList.cu
    #include "flamegpu/pop/AgentVector.h"
    #include "flamegpu/model/AgentDescription.h"
    #include "flamegpu/gpu/CUDAScatter.h"
-   #include "flamegpu/runtime/flamegpu_host_new_agent_api.h"
+   #include "flamegpu/runtime/HostNewAgentAPI.h"
    #include "flamegpu/exception/FGPUException.h"
    
    #ifdef _MSC_VER
@@ -128,7 +128,7 @@ Program Listing for File CUDAAgentStateList.cu
        }
        const unsigned int data_count = getSize();
        if (data_count) {
-           population.resize(data_count, false);
+           population.internal_resize(data_count, false);
            // Copy across the required data device->host
            for (auto& _var : variables) {
                // get the variable size from agent description
@@ -254,6 +254,21 @@ Program Listing for File CUDAAgentStateList.cu
            }
        }
    }
+   void CUDAAgentStateList::initExcludedVars(const unsigned int& count, const unsigned int& offset, CUDAScatter& scatter, const unsigned int& streamId, const cudaStream_t& stream) {
+       std::set<std::shared_ptr<VariableBuffer>> exclusionSet;
+       for (auto& a : variables)
+           exclusionSet.insert(a.second);
+       parent_list->initVariables(exclusionSet, count, offset, scatter, streamId, stream);
+   }
    void CUDAAgentStateList::clear() {
        parent_list->setAgentCount(0, true);
+   }
+   void CUDAAgentStateList::setAgentCount(const unsigned int& newSize) {
+       parent_list->setAgentCount(newSize, false);
+   }
+   std::list<std::shared_ptr<VariableBuffer>> CUDAAgentStateList::getUnboundVariableBuffers() {
+       std::set<std::shared_ptr<VariableBuffer>> exclusionSet;
+       for (auto& a : variables)
+           exclusionSet.insert(a.second);
+       return parent_list->getBuffers(exclusionSet);
    }

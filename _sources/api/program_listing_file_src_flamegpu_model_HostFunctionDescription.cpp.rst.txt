@@ -1,0 +1,46 @@
+
+.. _program_listing_file_src_flamegpu_model_HostFunctionDescription.cpp:
+
+Program Listing for File HostFunctionDescription.cpp
+====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_src_flamegpu_model_HostFunctionDescription.cpp>` (``src/flamegpu/model/HostFunctionDescription.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include <iostream>
+   #include <string>
+   
+   #include "flamegpu/model/HostFunctionDescription.h"
+   
+   
+   HostFunctionDescription::HostFunctionDescription(std::string name, FLAMEGPU_HOST_FUNCTION_POINTER host_function) {
+       this->name = name;
+       this->function = host_function;
+   }
+   
+   HostFunctionDescription::HostFunctionDescription(std::string name, HostFunctionCallback *func_callback) {
+       this->name = name;
+       this->callbackObject = func_callback;
+   }
+   
+   bool HostFunctionDescription::operator==(const HostFunctionDescription& rhs) const {
+       return *this->function == *rhs.function;  // Compare content is functionally the same
+   }
+   bool HostFunctionDescription::operator!=(const HostFunctionDescription& rhs) const {
+       return !(*this == rhs);
+   }
+   
+   std::string HostFunctionDescription::getName() {
+       return name;
+   }
+   
+   FLAMEGPU_HOST_FUNCTION_POINTER HostFunctionDescription::getFunctionPtr() const {
+       return function;
+   }
+   
+   HostFunctionCallback* HostFunctionDescription::getCallbackObject() {
+       return callbackObject;
+   }

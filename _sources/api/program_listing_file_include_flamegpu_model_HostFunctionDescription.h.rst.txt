@@ -1,0 +1,50 @@
+
+.. _program_listing_file_include_flamegpu_model_HostFunctionDescription.h:
+
+Program Listing for File HostFunctionDescription.h
+==================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_HostFunctionDescription.h>` (``include/flamegpu/model/HostFunctionDescription.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_HOSTFUNCTIONDESCRIPTION_H_
+   #define INCLUDE_FLAMEGPU_MODEL_HOSTFUNCTIONDESCRIPTION_H_
+   
+   #include <string>
+   #include <memory>
+   #include <vector>
+   
+   #ifdef SWIG
+   #include "flamegpu/runtime/HostFunctionCallback.h"
+   #endif
+   #include "flamegpu/model/DependencyNode.h"
+   #include "flamegpu/model/LayerDescription.h"
+   
+   class HostFunctionDescription : public DependencyNode {
+       HostFunctionDescription(const HostFunctionDescription &other_function) = delete;
+       HostFunctionDescription(HostFunctionDescription &&other_function) noexcept = delete;
+       HostFunctionDescription& operator=(const HostFunctionDescription &other_function) = delete;
+       HostFunctionDescription& operator=(HostFunctionDescription &&other_function) noexcept = delete;
+   
+    public:
+       HostFunctionDescription(std::string host_function_name, FLAMEGPU_HOST_FUNCTION_POINTER host_function);
+       HostFunctionDescription(std::string host_function_name, HostFunctionCallback *func_callback);
+   
+       bool operator==(const HostFunctionDescription& rhs) const;
+       bool operator!=(const HostFunctionDescription& rhs) const;
+   
+       FLAMEGPU_HOST_FUNCTION_POINTER getFunctionPtr() const;
+       HostFunctionCallback* getCallbackObject();
+       std::string getName();
+   
+   
+    private:
+       FLAMEGPU_HOST_FUNCTION_POINTER function;
+       HostFunctionCallback* callbackObject;
+       std::string name;
+   };
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_HOSTFUNCTIONDESCRIPTION_H_

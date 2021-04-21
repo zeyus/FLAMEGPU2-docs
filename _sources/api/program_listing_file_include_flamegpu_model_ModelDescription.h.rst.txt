@@ -100,6 +100,8 @@ Program Listing for File ModelDescription.h
    #endif
    
        std::string getName() const;
+       DependencyGraph& getDependencyGraph() const;
+       void generateLayers();
        const AgentDescription& getAgent(const std::string &agent_name) const;
        template<typename MsgType>
        const typename MsgType::Description& getMessage(const std::string &message_name) const {

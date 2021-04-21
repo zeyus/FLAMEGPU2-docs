@@ -12,6 +12,7 @@ Program Listing for File ModelDescription.cpp
 
    #include "flamegpu/model/ModelDescription.h"
    
+   #include "flamegpu/model/DependencyGraph.h"
    #include "flamegpu/model/AgentDescription.h"
    #include "flamegpu/model/LayerDescription.h"
    #include "flamegpu/exception/FGPUException.h"
@@ -162,6 +163,14 @@ Program Listing for File ModelDescription.cpp
            THROW InvalidHostFunc("Attempted to add same exit condition twice,"
                "in ModelDescription::addExitCondition()");
        }
+   }
+   
+   void ModelDescription::generateLayers() {
+       model->dependencyGraph->generateLayers(*this);
+   }
+   
+   DependencyGraph& ModelDescription::getDependencyGraph() const {
+       return *(model->dependencyGraph);
    }
    
    std::string ModelDescription::getName() const {

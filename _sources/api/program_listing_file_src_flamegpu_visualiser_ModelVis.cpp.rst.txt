@@ -16,13 +16,16 @@ Program Listing for File ModelVis.cpp
    
    #include "flamegpu/gpu/CUDASimulation.h"
    #include "flamegpu/model/AgentData.h"
+   #include "FLAMEGPU_Visualisation.h"
    
    ModelVis::ModelVis(const CUDASimulation &_model)
        : modelCfg(_model.getModelDescription().name.c_str())
        , autoPalette(std::make_shared<AutoPalette>(Stock::Palettes::DARK2))
        , model(_model)
        , modelData(_model.getModelDescription()) { }
-   
+   ModelVis::~ModelVis() {
+       // Default behaviour
+   }
    void ModelVis::setAutoPalette(const Palette& palette) {
        autoPalette = std::make_shared<AutoPalette>(palette);
    }
@@ -107,7 +110,7 @@ Program Listing for File ModelVis.cpp
        if (visualiser) {
            bool has_agents = false;
            for (auto &a : agents) {
-               has_agents = a.second.requestBufferResizes(visualiser) || has_agents;
+               has_agents = a.second.requestBufferResizes(visualiser, sc == 0 || sc == UINT_MAX) || has_agents;
            }
            // Block the sim when we first get agents, until vis has resized buffers, incase vis is being slow to init
            if (has_agents && (sc == 0 || sc == UINT_MAX)) {
@@ -118,6 +121,7 @@ Program Listing for File ModelVis.cpp
            }
            // wait for lock visualiser (its probably executing render loop in separate thread) This might not be 100% safe. RequestResize might need extra thread safety.
            visualiser->lockMutex();
+           // Update step count
            if (sc != UINT_MAX) {
                visualiser->setStepCount(sc);
            }

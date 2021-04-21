@@ -15,11 +15,13 @@ Program Listing for File AgentFunctionDescription.h
    
    #include <string>
    #include <memory>
+   #include <vector>
    
    #include "flamegpu/model/ModelDescription.h"
    #include "flamegpu/model/AgentDescription.h"
    #include "flamegpu/runtime/AgentFunction.h"
    #include "flamegpu/runtime/AgentFunctionCondition.h"
+   #include "flamegpu/model/DependencyNode.h"
    #include "flamegpu/model/LayerDescription.h"
    #include "flamegpu/runtime/messaging/BruteForce.h"
    #include "flamegpu/runtime/cuRVE/curve_rtc.h"
@@ -35,9 +37,11 @@ Program Listing for File AgentFunctionDescription.h
    struct ModelData;
    struct AgentFunctionData;
    
-   class AgentFunctionDescription {
+   class AgentFunctionDescription : public DependencyNode {
+       friend class DependencyNode;
        friend struct AgentFunctionData;
        friend void LayerDescription::addAgentFunction(const AgentFunctionDescription &);
+       friend class DependencyGraph;
        AgentFunctionDescription(const std::shared_ptr<const ModelData> &model, AgentFunctionData *const data);
        AgentFunctionDescription(const AgentFunctionDescription &other_function) = delete;
        AgentFunctionDescription(AgentFunctionDescription &&other_function) noexcept = delete;
@@ -61,6 +65,7 @@ Program Listing for File AgentFunctionDescription.h
        template<typename AgentFunctionCondition>
        void setFunctionCondition(AgentFunctionCondition);
        void setRTCFunctionCondition(std::string func_cond_src);
+   
        MsgBruteForce::Description &MessageInput();
        MsgBruteForce::Description &MessageOutput();
        bool &MessageOutputOptional();
@@ -80,6 +85,7 @@ Program Listing for File AgentFunctionDescription.h
        bool hasAgentOutput() const;
        bool hasFunctionCondition() const;
        AgentFunctionWrapper *getFunctionPtr() const;
+   
        AgentFunctionConditionWrapper *getConditionPtr() const;
        bool isRTC() const;
    

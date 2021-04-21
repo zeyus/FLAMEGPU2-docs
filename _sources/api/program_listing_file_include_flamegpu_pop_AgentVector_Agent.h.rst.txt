@@ -45,10 +45,11 @@ Program Listing for File AgentVector_Agent.h
    #endif
    
     protected:
-       AgentVector_CAgent(const std::shared_ptr<const AgentData> &agent, const std::weak_ptr<AgentVector::AgentDataMap> &data, AgentVector::size_type pos);
+       AgentVector_CAgent(AgentVector* parent, const std::shared_ptr<const AgentData> &agent, const std::weak_ptr<AgentVector::AgentDataMap> &data, AgentVector::size_type pos);
        const unsigned int index;
        const std::weak_ptr<AgentVector::AgentDataMap> _data;
        std::shared_ptr<const AgentData> _agent;
+       AgentVector * const _parent;
    };
    
    class AgentVector_Agent : public AgentVector_CAgent {
@@ -97,7 +98,7 @@ Program Listing for File AgentVector_Agent.h
    #endif
    
     private:
-       AgentVector_Agent(const std::shared_ptr<const AgentData> &agent, const std::weak_ptr<AgentVector::AgentDataMap> &data, AgentVector::size_type pos);
+       AgentVector_Agent(AgentVector* parent, const std::shared_ptr<const AgentData> &agent, const std::weak_ptr<AgentVector::AgentDataMap> &data, AgentVector::size_type pos);
    };
    
    template <typename T>
@@ -125,8 +126,11 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::setVariable().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        // do the replace
        static_cast<T*>(v_buff->getDataPtr())[index] = value;
+       // Notify (_data was locked above)
+       _parent->_changed(variable_name, index);
    }
    template <typename T, unsigned int N>
    void AgentVector_Agent::setVariable(const std::string &variable_name, const std::array<T, N> &value) {
@@ -153,7 +157,10 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::setVariable().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        memcpy(static_cast<T*>(v_buff->getDataPtr()) + (index * N), value.data(), sizeof(T) * N);
+       // Notify (_data was locked above)
+       _parent->_changed(variable_name, index);
    }
    template <typename T>
    void AgentVector_Agent::setVariable(const std::string &variable_name, const unsigned int &array_index, const T &value) {
@@ -180,6 +187,7 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::setVariable().",
                array_index, v_buff->getElements(), variable_name.c_str());
        }
+       _parent->_require(variable_name);
        static_cast<T*>(v_buff->getDataPtr())[(index * v_buff->getElements()) + array_index] = value;
    }
    #ifdef SWIG
@@ -208,7 +216,10 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::setVariableArray().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        memcpy(static_cast<T*>(v_buff->getDataPtr()) + (index * v_buff->getElements()), value.data(), sizeof(T) * v_buff->getElements());
+       // Notify (_data was locked above)
+       _parent->_changed(variable_name, index);
    }
    #endif
    
@@ -237,6 +248,7 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::getVariable().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        return static_cast<const T*>(v_buff->getReadOnlyDataPtr())[index];
    }
    template <typename T, unsigned int N>
@@ -264,6 +276,7 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::getVariable().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        std::array<T, N> rtn;
        memcpy(rtn.data(), static_cast<const T*>(v_buff->getReadOnlyDataPtr()) + (index * N), sizeof(T) * N);
        return rtn;
@@ -293,6 +306,7 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::getVariable().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        return static_cast<const T*>(v_buff->getReadOnlyDataPtr())[(index * v_buff->getElements()) + array_index];
    }
    #ifdef SWIG
@@ -316,6 +330,7 @@ Program Listing for File AgentVector_Agent.h
                "in AgentVector_Agent::getVariableArray().",
                variable_name.c_str(), v_buff->getType().name(), typeid(T).name());
        }
+       _parent->_require(variable_name);
        std::vector<T> rtn(static_cast<size_t>(v_buff->getElements()));
        memcpy(rtn.data(), static_cast<T*>(v_buff->getDataPtr()) + (index * v_buff->getElements()), sizeof(T) * v_buff->getElements());
        return rtn;

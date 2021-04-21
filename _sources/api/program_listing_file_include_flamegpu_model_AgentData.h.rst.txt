@@ -27,6 +27,7 @@ Program Listing for File AgentData.h
    struct AgentData : std::enable_shared_from_this<AgentData> {
        friend class ModelDescription;
        friend struct ModelData;
+       friend class DependencyGraph;
        typedef std::unordered_map<std::string, std::shared_ptr<AgentFunctionData>> FunctionMap;
    
        FunctionMap functions;

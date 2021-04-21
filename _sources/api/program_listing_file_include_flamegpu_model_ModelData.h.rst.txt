@@ -21,13 +21,14 @@ Program Listing for File ModelData.h
    #include <string>
    
    #include "flamegpu/model/EnvironmentDescription.h"
-   #include "flamegpu/runtime/flamegpu_host_api_macros.h"
+   #include "flamegpu/runtime/HostAPI_macros.h"
    #include "flamegpu/runtime/messaging/BruteForce.h"
    
    
    class HostFunctionCallback;
    class HostFunctionConditionCallback;
    class EnvironmentDescription;
+   class DependencyGraph;
    struct AgentData;
    struct LayerData;
    struct SubModelData;
@@ -62,6 +63,7 @@ Program Listing for File ModelData.h
        HostFunctionConditionCallbackSet exitConditionCallbacks;
        std::shared_ptr<EnvironmentDescription> environment;  // TODO: Move this to same Data:Description format
        std::string name;
+       std::shared_ptr<DependencyGraph> dependencyGraph;
        std::shared_ptr<ModelData> clone() const;
        bool operator==(const ModelData& rhs) const;
        bool operator!=(const ModelData& rhs) const;

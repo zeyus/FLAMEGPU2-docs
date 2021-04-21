@@ -25,7 +25,7 @@ Program Listing for File CUDASimulation.h
    #include "flamegpu/gpu/CUDAScatter.h"
    #include "flamegpu/gpu/CUDAEnsemble.h"
    #include "flamegpu/runtime/utility/RandomManager.cuh"
-   #include "flamegpu/runtime/flamegpu_host_new_agent_api.h"
+   #include "flamegpu/runtime/HostNewAgentAPI.h"
    #include "flamegpu/visualiser/ModelVis.h"
    
    #ifdef _MSC_VER
@@ -45,7 +45,7 @@ Program Listing for File CUDASimulation.h
    struct RunLog;
    
    class CUDASimulation : public Simulation {
-       friend class HostAgentInstance;
+       friend class HostAgentAPI;
        friend class SimRunner;
        typedef std::unordered_map<std::string, std::unique_ptr<CUDAAgent>> CUDAAgentMap;
        typedef std::unordered_map<std::string, std::unique_ptr<CUDAMessage>> CUDAMessageMap;
@@ -167,7 +167,7 @@ Program Listing for File CUDASimulation.h
    
        void initialiseSingletons();
        void initialiseRTC();
-       std::unique_ptr<FLAMEGPU_HOST_API> host_api;
+       std::unique_ptr<HostAPI> host_api;
        void processHostAgentCreation(const unsigned int &streamId);
    
     public:

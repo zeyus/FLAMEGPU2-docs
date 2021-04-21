@@ -22,7 +22,7 @@ Program Listing for File CUDASimulation.cu
    #include "flamegpu/model/AgentDescription.h"
    #include "flamegpu/model/SubModelData.h"
    #include "flamegpu/model/SubAgentData.h"
-   #include "flamegpu/runtime/flamegpu_host_api.h"
+   #include "flamegpu/runtime/HostAPI.h"
    #include "flamegpu/gpu/CUDAScanCompaction.h"
    #include "flamegpu/util/nvtx.h"
    #include "flamegpu/util/compute_capability.cuh"
@@ -34,6 +34,9 @@ Program Listing for File CUDASimulation.cu
    #include "flamegpu/gpu/CUDAMessage.h"
    #include "flamegpu/sim/LoggingConfig.h"
    #include "flamegpu/sim/LogFrame.h"
+   #ifdef VISUALISATION
+   #include "FLAMEGPU_Visualisation.h"
+   #endif
    
    std::map<int, std::atomic<int>> CUDASimulation::active_device_instances;
    std::map<int, std::shared_timed_mutex> CUDASimulation::active_device_mutex;
@@ -252,12 +255,13 @@ Program Listing for File CUDASimulation.cu
    
    bool CUDASimulation::step() {
        NVTX_RANGE(std::string("CUDASimulation::step " + std::to_string(step_count)).c_str());
+       // Ensure singletons have been initialised
+       initialiseSingletons();
+   
        // Time the individual step.
        util::CUDAEventTimer stepTimer = util::CUDAEventTimer();
        stepTimer.start();
    
-       // Ensure singletons have been initialised
-       initialiseSingletons();
    
        // If verbose, print the step number.
        if (getSimulationConfig().verbose) {
@@ -897,6 +901,10 @@ Program Listing for File CUDASimulation.cu
        // Ensure singletons have been initialised
        initialiseSingletons();
    
+       // Create the event timing object.
+       util::CUDAEventTimer simulationTimer = util::CUDAEventTimer();
+       simulationTimer.start();
+   
        // Create as many streams as required
        unsigned int nStreams = getMaximumLayerWidth();
        this->createStreams(nStreams);
@@ -910,9 +918,6 @@ Program Listing for File CUDASimulation.cu
            }
        }
    
-       // Create the event timing object.
-       util::CUDAEventTimer simulationTimer = util::CUDAEventTimer();
-       simulationTimer.start();
        // Reset the class' elapsed time value.
        this->elapsedMillisecondsSimulation = 0.f;
        this->elapsedMillisecondsPerStep.clear();
@@ -1258,7 +1263,7 @@ Program Listing for File CUDASimulation.cu
            singletons->rng.reseed(getSimulationConfig().random_seed);
    
            // Pass created RandomManager to host api
-           host_api = std::make_unique<FLAMEGPU_HOST_API>(*this, singletons->rng, agentOffsets, agentData);
+           host_api = std::make_unique<HostAPI>(*this, singletons->rng, singletons->scatter, agentOffsets, agentData, 0, getStream(0));  // Host fns are currently all serial
    
            for (auto &cm : message_map) {
                cm.second->init(singletons->scatter, 0);
@@ -1560,7 +1565,7 @@ Program Listing for File CUDASimulation.cu
            // Create the named sub map
            const std::string &agent_name = name_state.first.first;
            const std::string &agent_state = name_state.first.second;
-           HostAgentInstance host_agent = host_api->agent(agent_name, agent_state);
+           HostAgentAPI host_agent = host_api->agent(agent_name, agent_state);
            auto &agent_state_log = agents_log.emplace(name_state.first, std::make_pair(std::map<LoggingConfig::NameReductionFn, Any>(), UINT_MAX)).first->second;
            // Log individual variable reductions
            for (const auto &name_reduction : *name_state.second.first) {
@@ -1593,7 +1598,7 @@ Program Listing for File CUDASimulation.cu
            // Create the named sub map
            const std::string &agent_name = name_state.first.first;
            const std::string &agent_state = name_state.first.second;
-           HostAgentInstance host_agent = host_api->agent(agent_name, agent_state);
+           HostAgentAPI host_agent = host_api->agent(agent_name, agent_state);
            auto &agent_state_log = agents_log.emplace(name_state.first, std::make_pair(std::map<LoggingConfig::NameReductionFn, Any>(), UINT_MAX)).first->second;
            // Log individual variable reductions
            for (const auto &name_reduction : *name_state.second.first) {
@@ -1627,7 +1632,7 @@ Program Listing for File CUDASimulation.cu
    
    cudaStream_t CUDASimulation::getStream(const unsigned int n) {
        // Return the appropriate stream, unless concurrency is disabled in which case always stream 0.
-       if (this->streams.size() < n) {
+       if (this->streams.size() <= n) {
            unsigned int nStreams = getMaximumLayerWidth();
            this->createStreams(nStreams);
        }

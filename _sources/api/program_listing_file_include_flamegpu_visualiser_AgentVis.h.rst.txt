@@ -53,6 +53,10 @@ Program Listing for File AgentVis.h
        void setYawVariable(const std::string& var_name);
        void setPitchVariable(const std::string& var_name);
        void setRollVariable(const std::string& var_name);
+       void setUniformScaleVariable(const std::string& var_name);
+       void setScaleXVariable(const std::string& var_name);
+       void setScaleYVariable(const std::string& var_name);
+       void setScaleZVariable(const std::string& var_name);
        void clearXVariable();
        void clearYVariable();
        void clearZVariable();
@@ -65,6 +69,10 @@ Program Listing for File AgentVis.h
        void clearYawVariable();
        void clearPitchVariable();
        void clearRollVariable();
+       void clearUniformScaleVariable();
+       void clearScaleXVariable();
+       void clearScaleYVariable();
+       void clearScaleZVariable();
        std::string getXVariable() const;
        std::string getYVariable() const;
        std::string getZVariable() const;
@@ -77,6 +85,10 @@ Program Listing for File AgentVis.h
        std::string getYawVariable() const;
        std::string getPitchVariable() const;
        std::string getRollVariable() const;
+       std::string getUniformScaleVariable() const;
+       std::string getScaleXVariable() const;
+       std::string getScaleYVariable() const;
+       std::string getScaleZVariable() const;
    
        void setModel(const std::string &modelPath, const std::string &texturePath = "");
        void setModel(const Stock::Models::Model &model);
@@ -88,7 +100,7 @@ Program Listing for File AgentVis.h
    
     private:
        void initBindings(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
-       bool requestBufferResizes(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
+       bool requestBufferResizes(std::unique_ptr<FLAMEGPU_Visualisation> &vis, bool force);
        void updateBuffers(std::unique_ptr<FLAMEGPU_Visualisation> &vis);
        std::weak_ptr<AutoPalette> auto_palette;
        std::shared_ptr<AutoPalette> owned_auto_palette;

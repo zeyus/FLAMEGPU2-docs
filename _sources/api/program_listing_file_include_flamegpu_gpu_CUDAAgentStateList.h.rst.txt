@@ -51,7 +51,10 @@ Program Listing for File CUDAAgentStateList.h
        void scatterNew(void * d_newBuff, const unsigned int &newSize, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        bool getIsSubStatelist();
        void initUnmappedVars(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void initExcludedVars(const unsigned int& count, const unsigned int& offset, CUDAScatter& scatter, const unsigned int& streamId, const cudaStream_t& stream);
        void clear();
+       void setAgentCount(const unsigned int& newSize);
+       std::list<std::shared_ptr<VariableBuffer>> getUnboundVariableBuffers();
    
     private:
        std::map<std::string, std::shared_ptr<VariableBuffer>> variables;

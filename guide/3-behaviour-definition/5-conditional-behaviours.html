@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -45,7 +46,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Runtime Agent Behaviour Definition" href="6-runtime-agent-behaviour.html" />
+    <link rel="next" title="Initial Conditions" href="../4-initial-conditions/index.html" />
     <link rel="prev" title="Agent Communication" href="4-agent-communication.html" /> 
 </head>
 
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Defining Behaviours</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2874,6 +2896,39 @@
             
   <div class="section" id="conditional-behaviours">
 <h1>Conditional Behaviours<a class="headerlink" href="#conditional-behaviours" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="agent-function-conditions">
+<h2>Agent Function Conditions<a class="headerlink" href="#agent-function-conditions" title="Permalink to this headline">¶</a></h2>
+<p>When defining agent functions the initial and end states for the executing agent must be specified. Following this,
+all agents in the specified initial state will execute the agent function and move to the end state. In order to
+allow agents in the same state to diverge an agent function condition must be added to the function.</p>
+<p>Agent function conditions are executed by all agents before the main agent function, and must return either <code class="docutils literal notranslate"><span class="pre">true</span></code>
+or <code class="docutils literal notranslate"><span class="pre">false</span></code>. Agents which return <code class="docutils literal notranslate"><span class="pre">true</span></code> pass the function and continue to execute the agent function and transition
+to the end state.</p>
+<p>Within agent function conditions a reduced read-only FGPU Device API is available. This only permits reading agent
+variables, reading environment variables and random number generation.</p>
+<p>Example definition:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// This agent function condition only allows agents who&#39;s &#39;x&#39; variable equals &#39;1&#39; to progress</span>
+<span class="n">FLAMEGPU_AGENT_FUNCTION_CONDITION</span><span class="p">(</span><span class="n">x_is_1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// A model is defined</span>
+<span class="n">ModelDescription</span> <span class="nf">m</span><span class="p">(</span><span class="s">&quot;model&quot;</span><span class="p">);</span>
+<span class="c1">// It contains an agent with &#39;variable &#39;x&#39; and two states &#39;foo&#39; and &#39;bar&#39;</span>
+<span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;agent&quot;</span><span class="p">);</span>
+<span class="n">a</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+<span class="n">a</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
+<span class="n">a</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span>
+<span class="c1">// The agent has an agent function which transitions agents from state &#39;foo&#39; to &#39;bar&#39;</span>
+<span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="n">af1</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;example_function&quot;</span><span class="p">,</span> <span class="n">ExampleFn</span><span class="p">);</span>
+<span class="n">af1</span><span class="p">.</span><span class="n">setInitialState</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
+<span class="n">af1</span><span class="p">.</span><span class="n">setEndState</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span>
+<span class="c1">// Only agents that pass function condition &#39;x_is_1&#39; may execute the function and transition</span>
+<span class="n">af1</span><span class="p">.</span><span class="n">setFunctionCondition</span><span class="p">(</span><span class="n">x_is_1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -2882,7 +2937,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="6-runtime-agent-behaviour.html" class="btn btn-neutral float-right" title="Runtime Agent Behaviour Definition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../4-initial-conditions/index.html" class="btn btn-neutral float-right" title="Initial Conditions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="4-agent-communication.html" class="btn btn-neutral float-left" title="Agent Communication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

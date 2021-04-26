@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2890,7 +2912,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N16ModelDescription16ModelDescriptionERKNSt6stringE">
 <span id="_CPPv3N16ModelDescription16ModelDescriptionERKNSt6stringE"></span><span id="_CPPv2N16ModelDescription16ModelDescriptionERKNSt6stringE"></span><span id="ModelDescription::ModelDescription__ssCR"></span><span class="target" id="classModelDescription_1a809568d5d27dfff3459735a07e545b47"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">ModelDescription</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">model_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16ModelDescription16ModelDescriptionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Constructor <p>Constructors </p>
+<dd><p><p>Constructor</p>
+<p>Constructors</p>
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2956,7 +2979,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N16ModelDescription8newAgentERKNSt6stringE">
 <span id="_CPPv3N16ModelDescription8newAgentERKNSt6stringE"></span><span id="_CPPv2N16ModelDescription8newAgentERKNSt6stringE"></span><span id="ModelDescription::newAgent__ssCR"></span><span class="target" id="classModelDescription_1a00ea140eb7b5d7e0f61278e3b0ab6282"></span><a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">newAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agent_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16ModelDescription8newAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Creates a new agent with the specified name <p>Accessors </p>
+<dd><p><p>Creates a new agent with the specified name</p>
+<p>Accessors</p>
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3235,7 +3259,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4NK16ModelDescription7getNameEv">
 <span id="_CPPv3NK16ModelDescription7getNameEv"></span><span id="_CPPv2NK16ModelDescription7getNameEv"></span><span id="ModelDescription::getNameC"></span><span class="target" id="classModelDescription_1a0f1fb16ccaf3e95b0d0240910a3362bd"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16ModelDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Const Accessors </p>
+<dd><p>
+Const Accessors </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The model’s name</p>
@@ -3246,7 +3271,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4NK16ModelDescription18getDependencyGraphEv">
 <span id="_CPPv3NK16ModelDescription18getDependencyGraphEv"></span><span id="_CPPv2NK16ModelDescription18getDependencyGraphEv"></span><span id="ModelDescription::getDependencyGraphC"></span><span class="target" id="classModelDescription_1aa87df0bf0ca4b3ff8990a926520d9f7d"></span><a class="reference internal" href="classDependencyGraph.html#_CPPv415DependencyGraph" title="DependencyGraph"><span class="pre">DependencyGraph</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getDependencyGraph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16ModelDescription18getDependencyGraphEv" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Accessors </p>
+<dd><p>
+Accessors </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>A reference to the this model’s <a class="reference internal" href="classDependencyGraph.html#classDependencyGraph"><span class="std std-ref">DependencyGraph</span></a></p>

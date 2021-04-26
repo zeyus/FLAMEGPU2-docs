@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -3046,7 +3068,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t">
 <span id="_CPPv3N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::processDeath__AgentFunctionDataCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1ae7fe2255284d34eafc1f13ec420e2cc6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">processDeath</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent12processDeathERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered <p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered </p>
+<dd><p><p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered</p>
+<p>Processes agent death, this call is forwarded to the fat agent All disabled agents are scattered to swap Only alive agents with deathflag are scattered</p>
 <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processDeath(const unsigned int &amp;, const std::string &amp;, const unsigned int &amp;)</p>
 </dd>
@@ -3070,7 +3093,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">
 <span id="_CPPv3N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::transitionState__ssCR.ssCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1ae12b92cc2c3947d9d69026cd1c87cf47"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">transitionState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">_src</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">_dest</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent15transitionStateERKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Transitions all active agents from the source state to the destination state <p>Transitions all active agents from the source state to the destination state </p>
+<dd><p><p>Transitions all active agents from the source state to the destination state</p>
+<p>Transitions all active agents from the source state to the destination state</p>
 <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>CUDAFatAgent::transitionState(const unsigned int &amp;, const std::string &amp;, const std::string &amp;, const unsigned int &amp;)</p>
 </dd>
@@ -3096,7 +3120,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t">
 <span id="_CPPv3N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAAgent::processFunctionCondition__AgentFunctionDataCR.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAAgent_1a424b622815dc7241350e221ebb7bfa2d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">processFunctionCondition</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9CUDAAgent24processFunctionConditionERK17AgentFunctionDataR11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scattered to after the disabled agents <p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scatterd to after the disabled agents </p>
+<dd><p><p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scattered to after the disabled agents</p>
+<p>Scatters agents based on their output of the agent function condition Agents which failed the condition are scattered to the front and marked as disabled Agents which pass the condition are scatterd to after the disabled agents</p>
 <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>CUDAFatAgent::processFunctionCondition(const unsigned int &amp;, const unsigned int &amp;) </p>
 </dd>

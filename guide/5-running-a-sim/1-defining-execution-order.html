@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -35,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -118,14 +120,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +147,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +160,15 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Running a Simulation</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Defining Execution Order</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4-collecting-data.html">Collecting Data</a></li>
@@ -2874,6 +2897,156 @@
             
   <div class="section" id="defining-execution-order">
 <h1>Defining Execution Order<a class="headerlink" href="#defining-execution-order" title="Permalink to this headline">¶</a></h1>
+<p>Once the agents and behaviours of your model have been specified, you must define the dependencies present in the model.
+Specifying a dependency, e.g. <em>a depends on b</em> ensures that function a will not run until function b has completed. This
+can be used to define the order you want behaviours to take place in, and to ensure that a function which outputs messages
+is complete before another function attempts to read them.</p>
+<div class="section" id="specifying-dependencies">
+<h2>Specifying Dependencies<a class="headerlink" href="#specifying-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Dependencies are specified between <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code>, <code class="docutils literal notranslate"><span class="pre">Submodel</span></code> and <code class="docutils literal notranslate"><span class="pre">HostFunctionDescription</span></code> objects.
+These are specified using the <code class="docutils literal notranslate"><span class="pre">dependsOn</span></code> method.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare that agent_fn2 depends on agent_fn1</span>
+<span class="n">agent_fn2</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">)</span>
+
+<span class="c1"># Declare that host_fn1 depends on agent_fn2</span>
+<span class="n">host_fn1</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare that agent_fn2 depends on agent_fn1</span>
+<span class="n">agent_fn2</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">)</span>
+
+<span class="c1">// Declare that host_fn1 depends on agent_fn2</span>
+<span class="n">host_fn1</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<p>Any of the objects can depend on multiple other objects:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Declare that agent_fn6 depends on agent_fn3, agent_fn4 and agent_fn5</span>
+<span class="n">agent_fn6</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn3</span><span class="p">)</span>
+<span class="n">agent_fn6</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn4</span><span class="p">)</span>
+<span class="n">agent_fn6</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Declare that agent_fn6 depends on agent_fn3, agent_fn4 and agent_fn5</span>
+<span class="n">agent_fn6</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">agent_fn3</span><span class="p">,</span> <span class="n">agent_fn4</span><span class="p">,</span> <span class="n">agent_fn5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="accessing-the-dependencygraph">
+<h2>Accessing the DependencyGraph<a class="headerlink" href="#accessing-the-dependencygraph" title="Permalink to this headline">¶</a></h2>
+<p>Each model has an associated dependency graph which is accessed via a <code class="docutils literal notranslate"><span class="pre">ModelDescription</span></code> as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the DependencyGraph of model</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">getDependencyGraph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Access the DependencyGraph of model</span>
+<span class="n">DependencyGraph</span><span class="o">&amp;</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">getDependencyGraph</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="specifying-roots">
+<h2>Specifying Roots<a class="headerlink" href="#specifying-roots" title="Permalink to this headline">¶</a></h2>
+<p>Any functions or submodels which have no dependencies are <em>roots</em>. These must be added to the dependency graph:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-3-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add agent_fn1 as a root</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">addRoot</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Add agent_fn1 as a root</span>
+<span class="n">graph</span><span class="p">.</span><span class="n">addRoot</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+<p>You do not need to manually add every function or submodel to the graph. Adding the roots is enough, as the others will be included
+as a result of the dependency specifications.</p>
+</div>
+<div class="section" id="generating-layers">
+<h2>Generating Layers<a class="headerlink" href="#generating-layers" title="Permalink to this headline">¶</a></h2>
+<p>When you have specified all your dependencies and roots, you must instruct the model to generate execution layers from the dependency graph:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-4-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the actual execution layers from the dependency graph</span>
+<span class="n">model</span><span class="o">.</span><span class="n">generateLayers</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Generate the actual execution layers from the dependency graph</span>
+<span class="n">model</span><span class="p">.</span><span class="n">generateLayers</span><span class="p">();</span>
+</pre></div>
+</div>
+</div></div>
+<p>If you wish to see the actual layers generated, you can use the <code class="docutils literal notranslate"><span class="pre">getConstructedLayersString()</span></code> method of the dependency graph to obtain a
+string representation of the layers:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-5-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the constructed layers and store them in variable actualLayers</span>
+<span class="n">actualLayers</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">getConstructedLayersString</span><span class="p">()</span>
+
+<span class="c1"># Print the layers to the console</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">actualLayers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-5-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-5-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Get the constructed layers and store them in variable actualLayers</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">actualLayers</span> <span class="o">=</span> <span class="n">graph</span><span class="p">.</span><span class="n">getConstructedLayersString</span><span class="p">();</span>
+
+<span class="c1">// Print the layers to the console</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">actualLayers</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="visualising-the-dependencies">
+<h2>Visualising the Dependencies<a class="headerlink" href="#visualising-the-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>FLAMEGPU2 can automatically produce a <em>GraphViz</em> format graph of your dependency tree. You can use this to visually validate that behaviours
+will be happening in the order you expect them to.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-6-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Produce a diagram of the dependency graph, saved as graphdiagram.gv</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="s2">&quot;graphdiagram.gv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-6-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-6-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Produce a diagram of the dependency graph, saved as graphdiagram.gv</span>
+<span class="n">graph</span><span class="p">.</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="s">&quot;graphdiagram.gv&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+<p>As an example, the following code would produce the graph below in a file named <em>diamond.gv</em>:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-7-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-7-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-7-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">f3</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">f4</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span>
+<span class="n">f4</span><span class="o">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f3</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">getDependencyGraph</span><span class="p">()</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">addRoot</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="s2">&quot;diamond.gv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-7-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-7-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">f2</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="n">f3</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="n">f4</span><span class="p">.</span><span class="n">dependsOn</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span> <span class="n">f3</span><span class="p">);</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">getDependencyGraph</span><span class="p">();</span>
+<span class="n">graph</span><span class="p">.</span><span class="n">addRoot</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="n">graph</span><span class="p">.</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="s">&quot;diamond.gv&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+digraph {
+  Function1[style = filled, color = red];
+  Function2[style = filled, color = red];
+  Function4[style = filled, color = red];
+  Function3[style = filled, color = red];
+  Function4[style = filled, color = red];
+  Function1 -&gt; Function2;
+  Function2 -&gt; Function4;
+  Function1 -&gt; Function3;
+  Function3 -&gt; Function4;
+}</div>
+<div class="section" id="manual-layer-specification">
+<h2>Manual Layer Specification<a class="headerlink" href="#manual-layer-specification" title="Permalink to this headline">¶</a></h2>
+<p>FLAMEGPU2 will automatically determine the optimal execution layers using the DependencyGraph, but you can
+specify them manually if you wish.</p>
+</div>
 </div>
 
 

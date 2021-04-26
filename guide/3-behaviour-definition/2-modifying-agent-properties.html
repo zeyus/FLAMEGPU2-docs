@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -35,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -118,14 +120,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Defining Behaviours</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +147,10 @@
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +160,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2874,6 +2897,48 @@
             
   <div class="section" id="modifying-agent-properties">
 <h1>Modifying Agent Properties<a class="headerlink" href="#modifying-agent-properties" title="Permalink to this headline">¶</a></h1>
+<p>Each instance of an agent will have its own copy of each of the agent properties specified in the agent type defintion.
+These can be accessed and modified within agent functions.</p>
+<p>Within an agent function, variables can be read with <code class="docutils literal notranslate"><span class="pre">getVariable</span></code> and written to with <code class="docutils literal notranslate"><span class="pre">setVariable</span></code>.
+These variables are accessed from higher latency device memory, so for the best performance, we recommended
+that you avoid multiple reads or writes to the same variable in any agent functions and do as much as possible
+with the local copy.</p>
+<p>To achieve the high performance of FLAMEGPU2, agent behaviours must be implemented using C++.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Get the value of agent variable &#39;x&#39; and store it in local variable &#39;x&#39;</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+
+    <span class="c1">// Modify the variable in some way</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">// Store the updated value in the agent&#39;s &#39;x&#39; variable</span>
+    <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+
+    <span class="c1">// Other behaviour code</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+<p>Agent variables can also be arrays, accessing these requires extra arguments. It is not possible to retrieve or set a full array
+in a single function call, during agent functions, elements must be accessed individually.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Return agent variable &#39;location[1]&#39; and store it in local variable &#39;y&#39;</span>
+    <span class="c1">// The length of the array must be passed as the second template argument, in this example the array has a length of 3</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;location&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Update the local copy</span>
+    <span class="n">y</span><span class="o">++</span><span class="p">;</span>
+
+    <span class="c1">// Store the updated local copy in the agent&#39;s &#39;location[1]&#39; variable</span>
+    <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;location&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Other behaviour code</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 
 

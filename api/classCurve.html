@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2991,7 +3013,8 @@
 <dt id="_CPPv4I_j0EN5Curve16registerVariableE8VariableRA1N_KcPvj">
 <span id="_CPPv3I_j0EN5Curve16registerVariableERA1N_KcPvj"></span><span id="_CPPv2I_j0EN5Curve16registerVariableERAN_KcPvj"></span><span class="pre">template&lt;</span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classCurve_1a0547bf2480dc1cc7f151d4e7167c245e"></span><span class="pre">__host__</span> <a class="reference internal" href="#_CPPv4N5Curve8VariableE" title="Curve::Variable"><span class="pre">Variable</span></a> <code class="sig-name descname"><span class="pre">registerVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variableName</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span>, <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">d_ptr</span></em>, <span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I_j0EN5Curve16registerVariableE8VariableRA1N_KcPvj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Template function for registering a constant string Registers a constant string variable name by hashing and then inserting into a hash table. </p>
-<p>Host side template class implementation </p>
+<p>
+Host side template class implementation </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -3021,7 +3044,8 @@
 <dt id="_CPPv4N5Curve24unregisterVariableByHashE12VariableHash">
 <span id="_CPPv3N5Curve24unregisterVariableByHashE12VariableHash"></span><span id="_CPPv2N5Curve24unregisterVariableByHashE12VariableHash"></span><span id="Curve::unregisterVariableByHash__VariableHash"></span><span class="target" id="classCurve_1aaaab1d5f5c2be1d071e21d3d1dc5b1d8"></span><span class="pre">__host__</span> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">unregisterVariableByHash</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N5Curve12VariableHashE" title="Curve::VariableHash"><span class="pre">VariableHash</span></a> <em><span class="pre">variable_hash</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Curve24unregisterVariableByHashE12VariableHash" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Function for un-registering a variable by a VariableHash Un-registers a variable by removal from a hash table. Recommend using the provided unregisterVariable template function. </p>
-<p>TODO: Does un-registering imply that other variable with collisions will no longer be found. I.e. do you need to re-register all other variable when one is removed. </p>
+<p>
+TODO: Does un-registering imply that other variable with collisions will no longer be found. I.e. do you need to re-register all other variable when one is removed. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>variable_hash</strong> – A cuRVE variable string hash from variableHash.</p>

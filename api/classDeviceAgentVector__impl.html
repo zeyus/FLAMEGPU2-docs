@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2914,7 +2936,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4N22DeviceAgentVector_impl22DeviceAgentVector_implER9CUDAAgentRKNSt6stringERK15VarOffsetStructRNSt6vectorI15NewAgentStorageEER11CUDAScatterRKjRK12cudaStream_t">
 <span id="_CPPv3N22DeviceAgentVector_impl22DeviceAgentVector_implER9CUDAAgentRKNSt6stringERK15VarOffsetStructRNSt6vectorI15NewAgentStorageEER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N22DeviceAgentVector_impl22DeviceAgentVector_implER9CUDAAgentRKNSt6stringERK15VarOffsetStructRNSt6vectorI15NewAgentStorageEER11CUDAScatterRKjRK12cudaStream_t"></span><span id="DeviceAgentVector_impl::DeviceAgentVector_impl__CUDAAgentR.ssCR.VarOffsetStructCR.std::vector:NewAgentStorage:R.CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classDeviceAgentVector__impl_1a4cfd5bcf4c0e7b51dcad158871acc2b9"></span><code class="sig-name descname"><span class="pre">DeviceAgentVector_impl</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAAgent.html#_CPPv49CUDAAgent" title="CUDAAgent"><span class="pre">CUDAAgent</span></a> <span class="pre">&amp;</span><em><span class="pre">cuda_agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">cuda_agent_state</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structVarOffsetStruct.html#_CPPv415VarOffsetStruct" title="VarOffsetStruct"><span class="pre">VarOffsetStruct</span></a> <span class="pre">&amp;</span><em><span class="pre">_agentOffsets</span></em>, <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="structNewAgentStorage.html#_CPPv415NewAgentStorage" title="NewAgentStorage"><span class="pre">NewAgentStorage</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">_newAgentData</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N22DeviceAgentVector_impl22DeviceAgentVector_implER9CUDAAgentRKNSt6stringERK15VarOffsetStructRNSt6vectorI15NewAgentStorageEER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Construct a DeviceAgentVector interface to the on-device data of cuda_agent <p>Pair of a host-backed device buffer This allows transactions which impact master-agent unbound variables to work correctly </p>
+<dd><p><p>Construct a DeviceAgentVector interface to the on-device data of cuda_agent</p>
+<p>Pair of a host-backed device buffer This allows transactions which impact master-agent unbound variables to work correctly</p>
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>

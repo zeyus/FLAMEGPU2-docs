@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -118,14 +119,25 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +146,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +159,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -3004,7 +3026,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4I0EN18EnvironmentManager11newPropertyEvRK8NamePairRK1TRKb">
 <span id="_CPPv3I0EN18EnvironmentManager11newPropertyERK8NamePairRK1TRKb"></span><span id="_CPPv2I0EN18EnvironmentManager11newPropertyERK8NamePairRK1TRKb"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classEnvironmentManager_1a03894f7567c500ae48d2a1f19b2597e1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">newProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">NamePair</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EN18EnvironmentManager11newPropertyEvRK8NamePairRK1TRKb" title="EnvironmentManager::newProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">isConst</span></em> <span class="pre">=</span> <span class="pre">false</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN18EnvironmentManager11newPropertyEvRK8NamePairRK1TRKb" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Adds a new environment property <p>Constructors </p>
+<dd><p><p>Adds a new environment property</p>
+<p>Constructors</p>
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3105,7 +3128,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4I0EN18EnvironmentManager11setPropertyE1TRK8NamePairRK1T">
 <span id="_CPPv3I0EN18EnvironmentManager11setPropertyERK8NamePairRK1T"></span><span id="_CPPv2I0EN18EnvironmentManager11setPropertyERK8NamePairRK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classEnvironmentManager_1a283f8d94a61e64ed1f5c058123595be3"></span><a class="reference internal" href="#_CPPv4I0EN18EnvironmentManager11setPropertyE1TRK8NamePairRK1T" title="EnvironmentManager::setProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">NamePair</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EN18EnvironmentManager11setPropertyE1TRK8NamePairRK1T" title="EnvironmentManager::setProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN18EnvironmentManager11setPropertyE1TRK8NamePairRK1T" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets an environment property <p>Setters </p>
+<dd><p><p>Sets an environment property</p>
+<p>Setters</p>
 </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3285,7 +3309,8 @@
 <dl class="cpp function">
 <dt id="_CPPv4I0EN18EnvironmentManager11getPropertyE1TRK8NamePair">
 <span id="_CPPv3I0EN18EnvironmentManager11getPropertyERK8NamePair"></span><span id="_CPPv2I0EN18EnvironmentManager11getPropertyERK8NamePair"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classEnvironmentManager_1a06efb7d219148cf9776b4c36dd7cbd75"></span><a class="reference internal" href="#_CPPv4I0EN18EnvironmentManager11getPropertyE1TRK8NamePair" title="EnvironmentManager::getProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">NamePair</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN18EnvironmentManager11getPropertyE1TRK8NamePair" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Gets an environment property <p>Getters </p>
+<dd><p><p>Gets an environment property</p>
+<p>Getters</p>
 <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>get(const NamePair &amp;)</p>
 </dd>

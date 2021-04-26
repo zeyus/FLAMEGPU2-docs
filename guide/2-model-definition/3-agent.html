@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
 
   
@@ -35,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -45,7 +47,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Agent Properties" href="4-agent-properties.html" />
+    <link rel="next" title="Defining Behaviours" href="../3-behaviour-definition/index.html" />
     <link rel="prev" title="Adding Environmental Properties" href="2-environment.html" /> 
 </head>
 
@@ -118,14 +120,25 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Defining Agents</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#model-definition">Model Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agent-properties">Agent Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="4-agent-properties.html">Agent Properties</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../3-behaviour-definition/index.html">Defining Behaviours</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
@@ -134,8 +147,10 @@
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/6-runtime-agent-behaviour.html">Runtime Agent Behaviour Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../4-initial-conditions/index.html">Initial Conditions</a><ul>
@@ -145,7 +160,15 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
@@ -2874,44 +2897,136 @@
             
   <div class="section" id="defining-agents">
 <h1>Defining Agents<a class="headerlink" href="#defining-agents" title="Permalink to this headline">¶</a></h1>
-<p>Agents are the central component of FLAME GPU simulations, as they map effectively to the highly parallel architecture of GPUs.</p>
-<p><strong>TODO General Description</strong></p>
-<div class="section" id="model-definition">
-<h2>Model Definition<a class="headerlink" href="#model-definition" title="Permalink to this headline">¶</a></h2>
-<p><strong>TODO</strong></p>
-<div class="section" id="agent-function-conditions">
-<h3>Agent Function Conditions<a class="headerlink" href="#agent-function-conditions" title="Permalink to this headline">¶</a></h3>
-<p>When defining agent functions the initial and end states for the executing agent must be specified. Following this,
-all agents in the specified initial state will execute the agent function and move to the end state. In order to
-allow agents in the same state to diverge an agent function condition must be added to the function.</p>
-<p>Agent function conditions are executed by all agents before the main agent function, and must return either <code class="docutils literal notranslate"><span class="pre">true</span></code>
-or <code class="docutils literal notranslate"><span class="pre">false</span></code>. Agents which return <code class="docutils literal notranslate"><span class="pre">true</span></code> pass the function and continue to execute the agent function and transition
-to the end state.</p>
-<p>Within agent function conditions a reduced read-only FGPU Device API is available. This only permits reading agent
-variables, reading environment variables and random number generation.</p>
-<p>Example definition:</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// This agent function condition only allows agents who&#39;s &#39;x&#39; variable equals &#39;1&#39; to progress</span>
-<span class="n">FLAMEGPU_AGENT_FUNCTION_CONDITION</span><span class="p">(</span><span class="n">x_is_1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<p>Agents are the central component of FLAME GPU simulations, and are directly equivalent to agent-based modelling agents. However,
+they can also be used to represent other things such as scalar fields across the environment. Agents are represented by an <code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code>
+object</p>
+<div class="section" id="defining-a-new-agent-type">
+<h2>Defining a New Agent Type<a class="headerlink" href="#defining-a-new-agent-type" title="Permalink to this headline">¶</a></h2>
+<p>FLAMEGPU2 agents are associated with a particular model. As such they are created via a <cite>ModelDescription</cite> object and are initialised with a name:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
+<span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s2">&quot;predator&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// A model is defined</span>
-<span class="n">ModelDescription</span> <span class="nf">m</span><span class="p">(</span><span class="s">&quot;model&quot;</span><span class="p">);</span>
-<span class="c1">// It contains an agent with &#39;variable &#39;x&#39; and two states &#39;foo&#39; and &#39;bar&#39;</span>
-<span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">a</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;agent&quot;</span><span class="p">);</span>
-<span class="n">a</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
-<span class="n">a</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
-<span class="n">a</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span>
-<span class="c1">// The agent has an agent function which transitions agents from state &#39;foo&#39; to &#39;bar&#39;</span>
-<span class="n">AgentFunctionDescription</span> <span class="o">&amp;</span><span class="n">af1</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;example_function&quot;</span><span class="p">,</span> <span class="n">ExampleFn</span><span class="p">);</span>
-<span class="n">af1</span><span class="p">.</span><span class="n">setInitialState</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
-<span class="n">af1</span><span class="p">.</span><span class="n">setEndState</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span>
-<span class="c1">// Only agents that pass function condition &#39;x_is_1&#39; may execute the function and transition</span>
-<span class="n">af1</span><span class="p">.</span><span class="n">setFunctionCondition</span><span class="p">(</span><span class="n">x_is_1</span><span class="p">);</span>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
+<span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
+</div></div>
 </div>
+<div class="section" id="agent-properties">
+<h2>Agent Properties<a class="headerlink" href="#agent-properties" title="Permalink to this headline">¶</a></h2>
+<p>Agent properties should be used to store data which is unique to each instance of an agent, for example, each individual predator in a predator-prey simulation
+would have its own position and hunger level. Each property has a name and a type. For a complete list of supported types, see <strong>TODO: reference page for available types</strong>.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two new floating point variables, x and y</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableFloat</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableFloat</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a new integer variable, hungerLevel</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableInt</span><span class="p">(</span><span class="s2">&quot;hungerLevel&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create two new floating point variables, x and y</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span>
+
+<span class="c1">// Create a new integer variable, hungerLevel</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="agent-array-properties">
+<h2>Agent Array Properties<a class="headerlink" href="#agent-array-properties" title="Permalink to this headline">¶</a></h2>
+<p>Array properties can also be defined by providing a name and array length:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableArrayInt</span><span class="p">(</span><span class="s2">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="agent-states">
+<h2>Agent States<a class="headerlink" href="#agent-states" title="Permalink to this headline">¶</a></h2>
+<p>Agent states are usually used to group sets of behaviours. For example, a predator in a predator-prey simulation may have a resting state and a hunting state.
+All newly defined agent types will have a default state, but you can add additional states if you wish to. States can be defined through the
+<code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code> object:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-3-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two new states, resting and hunting</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newState</span><span class="p">(</span><span class="s2">&quot;resting&quot;</span><span class="p">)</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newState</span><span class="p">(</span><span class="s2">&quot;hunting&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create two new states, resting and hunting</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="full-example-code-from-this-page">
+<h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-4-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
+<span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s2">&quot;predator&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create two new floating point variables, x and y</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableFloat</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableFloat</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a new integer variable, hungerLevel</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableInt</span><span class="p">(</span><span class="s2">&quot;hungerLevel&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newVariableArrayInt</span><span class="p">(</span><span class="s2">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Create two new states, resting and hunting</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newState</span><span class="p">(</span><span class="s2">&quot;resting&quot;</span><span class="p">)</span>
+<span class="n">predator</span><span class="o">.</span><span class="n">newState</span><span class="p">(</span><span class="s2">&quot;hunting&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
+<span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span>
+
+<span class="c1">// Create two new floating point variables, x and y</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span>
+
+<span class="c1">// Create a new integer variable, hungerLevel</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span>
+
+<span class="c1">// Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+<span class="c1">// Create two new states, resting and hunting</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="more-info">
+<h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Related User Guide Pages</p>
+<ul>
+<li><p><a class="reference external" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></p></li>
+<li><p><a class="reference external" href="../8-advanced-sim-management/2-rng-seeds.html">Random Number Generation</a></p></li>
+</ul>
+</li>
+<li><p>Full API documentation for the <code class="docutils literal notranslate"><span class="pre">EnvironmentDescription</span></code>: link</p></li>
+<li><p>Examples which demonstrate creating an environment</p>
+<ul>
+<li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
+<li><p>Ensemble (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/ensemble/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 
@@ -2921,7 +3036,7 @@ variables, reading environment variables and random number generation.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="4-agent-properties.html" class="btn btn-neutral float-right" title="Agent Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../3-behaviour-definition/index.html" class="btn btn-neutral float-right" title="Defining Behaviours" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="2-environment.html" class="btn btn-neutral float-left" title="Adding Environmental Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

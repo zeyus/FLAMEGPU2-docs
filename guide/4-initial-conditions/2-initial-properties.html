@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Initial Properties &mdash; FLAME GPU 2 0 documentation</title>
+  <title>Initialising Agent Variables &mdash; FLAME GPU 2 0 documentation</title>
   
 
   
@@ -36,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -102,6 +103,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-meta/index.html">First Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/2-creating-project.html">Creating a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../2-model-definition/index.html">Defining a Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/1-model.html">Creating a Model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/1-model.html#what-is-a-model">What is a Model?</a></li>
@@ -153,9 +160,17 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Initial Conditions</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="1-agent-populations.html">Agent Populations</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Initial Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1-agent-populations.html">Agent Populations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-populations.html#creating-an-agent-population">Creating an Agent Population</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Initialising Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialising-a-population">Initialising a Population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-a-single-agent">Accessing a Single Agent</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="4-rng-seeds.html">Random Number Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5-from-disk.html">Initialisation from Disk</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
@@ -174,9 +189,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html">Agent Birth from Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html">Agent Birth from Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#agent-creation-overview">Agent Creation Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#enabling-agent-creation">Enabling Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../7-submodels/index.html">Submodels</a><ul>
@@ -2875,7 +2903,7 @@
         
           <li><a href="index.html">Initial Conditions</a> &raquo;</li>
         
-      <li>Initial Properties</li>
+      <li>Initialising Agent Variables</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -2894,8 +2922,46 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="initial-properties">
-<h1>Initial Properties<a class="headerlink" href="#initial-properties" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="initialising-agent-variables">
+<h1>Initialising Agent Variables<a class="headerlink" href="#initialising-agent-variables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="initialising-a-population">
+<h2>Initialising a Population<a class="headerlink" href="#initialising-a-population" title="Permalink to this headline">¶</a></h2>
+<p>To initialise a population, iterate over the <code class="docutils literal notranslate"><span class="pre">AgentVector</span></code> object and set the properties for each agent:</p>
+<p>** TODO: not very idiomatic - python should use enumerate I think, and range based for for cpp**</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">populationSize</span><span class="p">):</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">instance</span><span class="o">.</span><span class="n">setVariableInt</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">populationSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">AgentVector</span><span class="o">::</span><span class="n">Agent</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">instance</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="accessing-a-single-agent">
+<h2>Accessing a Single Agent<a class="headerlink" href="#accessing-a-single-agent" title="Permalink to this headline">¶</a></h2>
+<p>A single agent can be individually accessed by indexing into the <code class="docutils literal notranslate"><span class="pre">AgentVector</span></code> object:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the 23rd agent</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span>
+
+<span class="c1"># Set its id to 12,000</span>
+<span class="n">instance</span><span class="o">.</span><span class="n">setVariableInt</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fetch the 23rd agent</span>
+<span class="n">AgentVector</span><span class="o">::</span><span class="n">Agent</span> <span class="n">instance</span> <span class="o">=</span> <span class="n">population</span><span class="p">[</span><span class="mi">23</span><span class="p">];</span>
+
+<span class="n">Set</span> <span class="n">its</span> <span class="n">id</span> <span class="n">to</span> <span class="mi">12</span><span class="p">,</span><span class="mo">000</span>
+<span class="n">instance</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">,</span> <span class="mi">12000</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
 </div>
 
 

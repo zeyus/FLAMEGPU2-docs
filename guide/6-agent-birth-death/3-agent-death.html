@@ -36,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -102,6 +103,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-meta/index.html">First Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/2-creating-project.html">Creating a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../2-model-definition/index.html">Defining a Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/1-model.html">Creating a Model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/1-model.html#what-is-a-model">What is a Model?</a></li>
@@ -153,9 +160,17 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../4-initial-conditions/index.html">Initial Conditions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/1-agent-populations.html">Agent Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/2-initial-properties.html">Initial Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/1-agent-populations.html">Agent Populations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../4-initial-conditions/1-agent-populations.html#creating-an-agent-population">Creating an Agent Population</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/2-initial-properties.html">Initialising Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../4-initial-conditions/2-initial-properties.html#initialising-a-population">Initialising a Population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../4-initial-conditions/2-initial-properties.html#accessing-a-single-agent">Accessing a Single Agent</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/4-rng-seeds.html">Random Number Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../4-initial-conditions/5-from-disk.html">Initialisation from Disk</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
@@ -174,9 +189,22 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Agent Birth/Death</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="1-agent-birth-device.html">Agent Birth from Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1-agent-birth-device.html">Agent Birth from Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#agent-creation-overview">Agent Creation Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#enabling-agent-creation">Enabling Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-agent-birth-device.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Agent Death</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Agent Death</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#enabling-agent-death">Enabling Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../7-submodels/index.html">Submodels</a><ul>
@@ -2896,6 +2924,59 @@
             
   <div class="section" id="agent-death">
 <h1>Agent Death<a class="headerlink" href="#agent-death" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="enabling-agent-death">
+<h2>Enabling Agent Death<a class="headerlink" href="#enabling-agent-death" title="Permalink to this headline">¶</a></h2>
+<p>By default in FLAMEGPU2 agents do not die. To enable death for a particular agent function, use the <code class="docutils literal notranslate"><span class="pre">setAllowAgentDeath</span></code> method of
+the <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code> object:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Allow agent_fn1 to kill agents</span>
+<span class="n">agent_fn1_description</span><span class="o">.</span><span class="n">setAllowAgentDeath</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Allow agent_fn1 to kill agents</span>
+<span class="n">agent_fn1_description</span><span class="p">.</span><span class="n">setAllowAgentDeath</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="id1">
+<h2>Agent Death<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>To have an agent die, simply <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">DEAD;</span></code> instead of <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">ALIVE;</span></code> at the end of a death-enabled agent function. You can use
+conditionals to only have agents die according to a certain condition:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Get the &#39;x&#39; variable of the agent</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
+
+    <span class="c1">// Kill any agents with x &lt; 25</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">25</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">DEAD</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ALIVE</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="more-info">
+<h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Related User Guide Pages</p>
+<ul>
+<li><p><a class="reference external" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></p></li>
+<li><p><a class="reference external" href="../8-advanced-sim-management/2-rng-seeds.html">Random Number Generation</a></p></li>
+</ul>
+</li>
+<li><p>Full API documentation for the <code class="docutils literal notranslate"><span class="pre">EnvironmentDescription</span></code>: link</p></li>
+<li><p>Examples which demonstrate creating an environment</p>
+<ul>
+<li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
+<li><p>Ensemble (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/ensemble/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 
 

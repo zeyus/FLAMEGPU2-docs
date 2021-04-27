@@ -36,6 +36,7 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -46,7 +47,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Initial Properties" href="2-initial-properties.html" />
+    <link rel="next" title="Initialising Agent Variables" href="2-initial-properties.html" />
     <link rel="prev" title="Initial Conditions" href="index.html" /> 
 </head>
 
@@ -102,6 +103,12 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../1-meta/index.html">First Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/2-creating-project.html">Creating a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../2-model-definition/index.html">Defining a Model</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/1-model.html">Creating a Model</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/1-model.html#what-is-a-model">What is a Model?</a></li>
@@ -153,9 +160,17 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Initial Conditions</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Agent Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2-initial-properties.html">Initial Properties</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Agent Populations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-an-agent-population">Creating an Agent Population</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="2-initial-properties.html">Initialising Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2-initial-properties.html#initialising-a-population">Initialising a Population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-initial-properties.html#accessing-a-single-agent">Accessing a Single Agent</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="4-rng-seeds.html">Random Number Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5-from-disk.html">Initialisation from Disk</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
@@ -174,9 +189,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html">Agent Birth from Agent Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html">Agent Birth from Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#agent-creation-overview">Agent Creation Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#enabling-agent-creation">Enabling Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../7-submodels/index.html">Submodels</a><ul>
@@ -2896,7 +2924,26 @@
             
   <div class="section" id="agent-populations">
 <h1>Agent Populations<a class="headerlink" href="#agent-populations" title="Permalink to this headline">¶</a></h1>
-<p>To initialise your model it is necessary to create the initial agent population and define the initial values of environmental properties. These can either be statically defined in a flat file, or dynamically generated.</p>
+<p>To initialise your model it is necessary to create the initial agent populations. These can either be statically defined in
+a flat file, or dynamically generated. This section deals with dynamically generating agents which is the recommended default
+method. For information on loading from files, please see <strong>TODO: link to initialise from disk</strong></p>
+<div class="section" id="creating-an-agent-population">
+<h2>Creating an Agent Population<a class="headerlink" href="#creating-an-agent-population" title="Permalink to this headline">¶</a></h2>
+<p>Populations of agents in FLAMEGPU2 are represented by the <code class="docutils literal notranslate"><span class="pre">AgentVector</span></code> type. A population can be created by supplying the
+type of agent, and number of agents to create:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a population of 1000 &#39;Boid&#39; agents</span>
+<span class="n">populationSize</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">population</span> <span class="o">=</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">AgentVector</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">Agent</span><span class="p">(</span><span class="s2">&quot;Boid&quot;</span><span class="p">),</span> <span class="n">populationSize</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a population of 1000 &#39;Boid&#39; agents</span>
+<span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">populationSize</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">AgentVector</span> <span class="nf">population</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">Agent</span><span class="p">(</span><span class="s">&quot;Boid&quot;</span><span class="p">),</span> <span class="n">populationSize</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</div>
 </div>
 
 
@@ -2905,7 +2952,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="2-initial-properties.html" class="btn btn-neutral float-right" title="Initial Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="2-initial-properties.html" class="btn btn-neutral float-right" title="Initialising Agent Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Initial Conditions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

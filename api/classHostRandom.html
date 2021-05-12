@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class HostRandom &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,22 +813,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-hostrandom">
+  <section id="class-hostrandom">
 <span id="exhale-class-classhostrandom"></span><h1>Class HostRandom<a class="headerlink" href="#class-hostrandom" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_utility_HostRandom.cuh.html#file-include-flamegpu-runtime-utility-hostrandom-cuh"><span class="std std-ref">File HostRandom.cuh</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv410HostRandom">
-<span id="_CPPv310HostRandom"></span><span id="_CPPv210HostRandom"></span><span id="HostRandom"></span><span class="target" id="classHostRandom"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">HostRandom</span></code><a class="headerlink" href="#_CPPv410HostRandom" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv410HostRandom">
+<span id="_CPPv310HostRandom"></span><span id="_CPPv210HostRandom"></span><span id="HostRandom"></span><span class="target" id="classHostRandom"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostRandom</span></span></span><a class="headerlink" href="#_CPPv410HostRandom" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Utility for accessing random generation within host functions This is prefered over using std random, as it uses a common seed with the device random This should only be instantiated by <a class="reference internal" href="classHostAPI.html#classHostAPI"><span class="std std-ref">HostAPI</span></a> </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK10HostRandom7uniformE1Tv">
-<span id="_CPPv3I0ENK10HostRandom7uniformEv"></span><span id="_CPPv2I0ENK10HostRandom7uniformEv"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1a428b6d823c6a77ec732806f559b15309"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1Tv" title="HostRandom::uniform::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK10HostRandom7uniformE1Tv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10HostRandom7uniformE1Tv">
+<span id="_CPPv3I0ENK10HostRandom7uniformEv"></span><span id="_CPPv2I0ENK10HostRandom7uniformEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1a428b6d823c6a77ec732806f559b15309"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1Tv" title="HostRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10HostRandom7uniformE1Tv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a float uniformly distributed between 0.0 and 1.0. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -827,8 +846,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK10HostRandom6normalE1Tv">
-<span id="_CPPv3I0ENK10HostRandom6normalEv"></span><span id="_CPPv2I0ENK10HostRandom6normalEv"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1aaa42521b19857a3b9dd919dac2d5dc20"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom6normalE1Tv" title="HostRandom::normal::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">normal</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK10HostRandom6normalE1Tv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10HostRandom6normalE1Tv">
+<span id="_CPPv3I0ENK10HostRandom6normalEv"></span><span id="_CPPv2I0ENK10HostRandom6normalEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1aaa42521b19857a3b9dd919dac2d5dc20"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom6normalE1Tv" title="HostRandom::normal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10HostRandom6normalE1Tv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a normally distributed float with mean 0.0 and standard deviation 1.0. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -846,8 +865,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T">
-<span id="_CPPv3I0ENK10HostRandom9logNormalERK1TRK1T"></span><span id="_CPPv2I0ENK10HostRandom9logNormalERK1TRK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1a38b08b2fc6a90eb34cab5308bbe1574d"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">logNormal</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">mean</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">stddev</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T">
+<span id="_CPPv3I0ENK10HostRandom9logNormalERK1TRK1T"></span><span id="_CPPv2I0ENK10HostRandom9logNormalERK1TRK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1a38b08b2fc6a90eb34cab5308bbe1574d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">logNormal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="HostRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stddev</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10HostRandom9logNormalE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a log-normally distributed float based on a normal distribution with the given mean and standard deviation. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -861,8 +880,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T">
-<span id="_CPPv3I0ENK10HostRandom7uniformERK1TRK1T"></span><span id="_CPPv2I0ENK10HostRandom7uniformERK1TRK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1ac59b015dbc76e5d84458b366b0c88230"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T">
+<span id="_CPPv3I0ENK10HostRandom7uniformERK1TRK1T"></span><span id="_CPPv2I0ENK10HostRandom7uniformERK1TRK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1ac59b015dbc76e5d84458b366b0c88230"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="HostRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK10HostRandom7uniformE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns an integer uniformly distributed in the inclusive range [lowerBound, max] </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -876,8 +895,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10HostRandom7setSeedERKj">
-<span id="_CPPv3N10HostRandom7setSeedERKj"></span><span id="_CPPv2N10HostRandom7setSeedERKj"></span><span id="HostRandom::setSeed__unsigned-iCR"></span><span class="target" id="classHostRandom_1ab71053c51079a39821a5ec432dd76eae"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setSeed</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">seed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10HostRandom7setSeedERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10HostRandom7setSeedERKj">
+<span id="_CPPv3N10HostRandom7setSeedERKj"></span><span id="_CPPv2N10HostRandom7setSeedERKj"></span><span id="HostRandom::setSeed__unsigned-iCR"></span><span class="target" id="classHostRandom_1ab71053c51079a39821a5ec432dd76eae"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setSeed</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">seed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10HostRandom7setSeedERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Change the seed used for random generation </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -887,32 +906,32 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10HostRandom7getSeedEv">
-<span id="_CPPv3NK10HostRandom7getSeedEv"></span><span id="_CPPv2NK10HostRandom7getSeedEv"></span><span id="HostRandom::getSeedC"></span><span class="target" id="classHostRandom_1ad87e05f7c15fe399836b358e6102a9e9"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getSeed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK10HostRandom7getSeedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10HostRandom7getSeedEv">
+<span id="_CPPv3NK10HostRandom7getSeedEv"></span><span id="_CPPv2NK10HostRandom7getSeedEv"></span><span id="HostRandom::getSeedC"></span><span class="target" id="classHostRandom_1ad87e05f7c15fe399836b358e6102a9e9"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSeed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10HostRandom7getSeedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the last value used to seed random generation </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK10HostRandom7uniformEcRKcRKc">
-<span id="_CPPv3IENK10HostRandom7uniformERKcRKc"></span><span id="_CPPv2IENK10HostRandom7uniformERKcRKc"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1a19d9b20d92cbf57a3937042a6a965968"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">char</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEcRKcRKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK10HostRandom7uniformEcRKcRKc">
+<span id="_CPPv3IENK10HostRandom7uniformERKcRKc"></span><span id="_CPPv2IENK10HostRandom7uniformERKcRKc"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1a19d9b20d92cbf57a3937042a6a965968"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEcRKcRKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Special cases, std::random doesn’t support char, emulate behaviour </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK10HostRandom7uniformEhRKhRKh">
-<span id="_CPPv3IENK10HostRandom7uniformERKhRKh"></span><span id="_CPPv2IENK10HostRandom7uniformERKhRKh"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1ad53ed0f21c9ff0ed6b6db006d13c228f"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">char</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEhRKhRKh" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK10HostRandom7uniformEhRKhRKh">
+<span id="_CPPv3IENK10HostRandom7uniformERKhRKh"></span><span id="_CPPv2IENK10HostRandom7uniformERKhRKh"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1ad53ed0f21c9ff0ed6b6db006d13c228f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEhRKhRKh" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK10HostRandom7uniformEaRKaRKa">
-<span id="_CPPv3IENK10HostRandom7uniformERKaRKa"></span><span id="_CPPv2IENK10HostRandom7uniformERKaRKa"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classHostRandom_1a7a28cc6c88b2b8999eccf5183ff8133d"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">signed</span> <span class="pre">char</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">signed</span> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">signed</span> <span class="pre">char</span> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEaRKaRKa" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK10HostRandom7uniformEaRKaRKa">
+<span id="_CPPv3IENK10HostRandom7uniformERKaRKa"></span><span id="_CPPv2IENK10HostRandom7uniformERKaRKa"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostRandom_1a7a28cc6c88b2b8999eccf5183ff8133d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">signed</span> <span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">signed</span> <span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">signed</span> <span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK10HostRandom7uniformEaRKaRKa" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

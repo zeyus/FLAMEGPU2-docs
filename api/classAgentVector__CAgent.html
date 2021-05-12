@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class AgentVector_CAgent &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,55 +813,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-agentvector-cagent">
+  <section id="class-agentvector-cagent">
 <span id="exhale-class-classagentvector-cagent"></span><h1>Class AgentVector_CAgent<a class="headerlink" href="#class-agentvector-cagent" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_pop_AgentVector_Agent.h.html#file-include-flamegpu-pop-agentvector-agent-h"><span class="std std-ref">File AgentVector_Agent.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-type">
+<section id="derived-type">
 <h3>Derived Type<a class="headerlink" href="#derived-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">AgentVector_Agent</span></code> (<a class="reference internal" href="classAgentVector__Agent.html#exhale-class-classagentvector-agent"><span class="std std-ref">Class AgentVector_Agent</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv418AgentVector_CAgent">
-<span id="_CPPv318AgentVector_CAgent"></span><span id="_CPPv218AgentVector_CAgent"></span><span id="AgentVector_CAgent"></span><span class="target" id="classAgentVector__CAgent"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentVector_CAgent</span></code><a class="headerlink" href="#_CPPv418AgentVector_CAgent" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv418AgentVector_CAgent">
+<span id="_CPPv318AgentVector_CAgent"></span><span id="_CPPv218AgentVector_CAgent"></span><span id="AgentVector_CAgent"></span><span class="target" id="classAgentVector__CAgent"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentVector_CAgent</span></span></span><a class="headerlink" href="#_CPPv418AgentVector_CAgent" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>const view into <a class="reference internal" href="classAgentVector.html#classAgentVector"><span class="std std-ref">AgentVector</span></a> </p>
 <p>Subclassed by <a class="reference internal" href="classAgentVector__Agent.html#classAgentVector__Agent"><span class="std std-ref">AgentVector_Agent</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N18AgentVector_CAgentD0Ev">
-<span id="_CPPv3N18AgentVector_CAgentD0Ev"></span><span id="_CPPv2N18AgentVector_CAgentD0Ev"></span><span id="AgentVector_CAgent::~AgentVector_CAgent"></span><span class="target" id="classAgentVector__CAgent_1a910c6cfcc535b3d5460e16072eafd120"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~AgentVector_CAgent</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgentD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgentD0Ev">
+<span id="_CPPv3N18AgentVector_CAgentD0Ev"></span><span id="_CPPv2N18AgentVector_CAgentD0Ev"></span><span id="AgentVector_CAgent::~AgentVector_CAgent"></span><span class="target" id="classAgentVector__CAgent_1a910c6cfcc535b3d5460e16072eafd120"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~AgentVector_CAgent</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgentD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE">
-<span id="_CPPv3I0ENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span id="_CPPv2I0ENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector__CAgent_1a6d48573f3473f3974254c3d585434cbf"></span><a class="reference internal" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE" title="AgentVector_CAgent::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE">
+<span id="_CPPv3I0ENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span id="_CPPv2I0ENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentVector__CAgent_1a6d48573f3473f3974254c3d585434cbf"></span><a class="reference internal" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE" title="AgentVector_CAgent::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE">
-<span id="_CPPv3I0_jENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span id="_CPPv2I0_jENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector__CAgent_1aea9e1b5647ec44ce1b60811e908a1b0e"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="AgentVector_CAgent::getVariable::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="AgentVector_CAgent::getVariable::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE">
+<span id="_CPPv3I0_jENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span id="_CPPv2I0_jENK18AgentVector_CAgent11getVariableERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentVector__CAgent_1aea9e1b5647ec44ce1b60811e908a1b0e"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="AgentVector_CAgent::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="AgentVector_CAgent::getVariable::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0_jENK18AgentVector_CAgent11getVariableENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj">
-<span id="_CPPv3I0ENK18AgentVector_CAgent11getVariableERKNSt6stringERKj"></span><span id="_CPPv2I0ENK18AgentVector_CAgent11getVariableERKNSt6stringERKj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentVector__CAgent_1a100149331a0afaab76cadb9248780909"></span><a class="reference internal" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj" title="AgentVector_CAgent::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj">
+<span id="_CPPv3I0ENK18AgentVector_CAgent11getVariableERKNSt6stringERKj"></span><span id="_CPPv2I0ENK18AgentVector_CAgent11getVariableERKNSt6stringERKj"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentVector__CAgent_1a100149331a0afaab76cadb9248780909"></span><a class="reference internal" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj" title="AgentVector_CAgent::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK18AgentVector_CAgent11getVariableE1TRKNSt6stringERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE">
-<span id="_CPPv3N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE"></span><span id="_CPPv2N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE"></span><span id="AgentVector_CAgent::AgentVector_CAgent__AgentVectorP.std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentVector::AgentDataMap:CR.AgentVector::size_type"></span><span class="target" id="classAgentVector__CAgent_1aec83e20eafbad775e216aaab03986919"></span><code class="sig-name descname"><span class="pre">AgentVector_CAgent</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">*</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a><span class="pre">::</span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">data</span></em>, <a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a><span class="pre">::</span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="pre">size_type</span></a> <em><span class="pre">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE">
+<span id="_CPPv3N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE"></span><span id="_CPPv2N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE"></span><span id="AgentVector_CAgent::AgentVector_CAgent__AgentVectorP.std::shared_ptr:AgentDataC:CR.std::weak_ptr:AgentVector::AgentDataMap:CR.AgentVector::size_type"></span><span class="target" id="classAgentVector__CAgent_1aec83e20eafbad775e216aaab03986919"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentVector_CAgent</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="n"><span class="pre">AgentDataMap</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">data</span></span>, <a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector9size_typeE" title="AgentVector::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">pos</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent18AgentVector_CAgentEP11AgentVectorRKNSt10shared_ptrIK9AgentDataEERKNSt8weak_ptrIN11AgentVector12AgentDataMapEEEN11AgentVector9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor, only ever called by <a class="reference internal" href="classAgentVector.html#classAgentVector"><span class="std std-ref">AgentVector</span></a> </p>
 </dd></dl>
 
@@ -850,34 +869,34 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N18AgentVector_CAgent5indexE">
-<span id="_CPPv3N18AgentVector_CAgent5indexE"></span><span id="_CPPv2N18AgentVector_CAgent5indexE"></span><span id="AgentVector_CAgent::index__unsigned-iC"></span><span class="target" id="classAgentVector__CAgent_1a9356df3f793f2a6032ded500f2159c16"></span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">index</span></code><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent5indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgent5indexE">
+<span id="_CPPv3N18AgentVector_CAgent5indexE"></span><span id="_CPPv2N18AgentVector_CAgent5indexE"></span><span id="AgentVector_CAgent::index__unsigned-iC"></span><span class="target" id="classAgentVector__CAgent_1a9356df3f793f2a6032ded500f2159c16"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">index</span></span></span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent5indexE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Index within _data </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18AgentVector_CAgent5_dataE">
-<span id="_CPPv3N18AgentVector_CAgent5_dataE"></span><span id="_CPPv2N18AgentVector_CAgent5_dataE"></span><span id="AgentVector_CAgent::_data__std::weak_ptr:AgentVector::AgentDataMap:C"></span><span class="target" id="classAgentVector__CAgent_1a402d52e3852e8ebb531ddfc50d903804"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a><span class="pre">::</span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="pre">AgentDataMap</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_data</span></code><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent5_dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgent5_dataE">
+<span id="_CPPv3N18AgentVector_CAgent5_dataE"></span><span id="_CPPv2N18AgentVector_CAgent5_dataE"></span><span id="AgentVector_CAgent::_data__std::weak_ptr:AgentVector::AgentDataMap:C"></span><span class="target" id="classAgentVector__CAgent_1a402d52e3852e8ebb531ddfc50d903804"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classAgentVector.html#_CPPv4N11AgentVector12AgentDataMapE" title="AgentVector::AgentDataMap"><span class="n"><span class="pre">AgentDataMap</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_data</span></span></span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent5_dataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Data store </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18AgentVector_CAgent6_agentE">
-<span id="_CPPv3N18AgentVector_CAgent6_agentE"></span><span id="_CPPv2N18AgentVector_CAgent6_agentE"></span><span id="AgentVector_CAgent::_agent__std::shared_ptr:AgentDataC:"></span><span class="target" id="classAgentVector__CAgent_1a2dc71546ba002cfe53c11682d9f3c358"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">_agent</span></code><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent6_agentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgent6_agentE">
+<span id="_CPPv3N18AgentVector_CAgent6_agentE"></span><span id="_CPPv2N18AgentVector_CAgent6_agentE"></span><span id="AgentVector_CAgent::_agent__std::shared_ptr:AgentDataC:"></span><span class="target" id="classAgentVector__CAgent_1a2dc71546ba002cfe53c11682d9f3c358"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_agent</span></span></span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent6_agentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Copy of agent definition </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18AgentVector_CAgent7_parentE">
-<span id="_CPPv3N18AgentVector_CAgent7_parentE"></span><span id="_CPPv2N18AgentVector_CAgent7_parentE"></span><span id="AgentVector_CAgent::_parent__AgentVectorPC"></span><span class="target" id="classAgentVector__CAgent_1a9ce61a1ef5f5cd4f99c8e5cfde9adc92"></span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <code class="sig-name descname"><span class="pre">_parent</span></code><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent7_parentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18AgentVector_CAgent7_parentE">
+<span id="_CPPv3N18AgentVector_CAgent7_parentE"></span><span id="_CPPv2N18AgentVector_CAgent7_parentE"></span><span id="AgentVector_CAgent::_parent__AgentVectorPC"></span><span class="target" id="classAgentVector__CAgent_1a9ce61a1ef5f5cd4f99c8e5cfde9adc92"></span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_parent</span></span></span><a class="headerlink" href="#_CPPv4N18AgentVector_CAgent7_parentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Raw pointer to the parent <a class="reference internal" href="classAgentVector.html#classAgentVector"><span class="std std-ref">AgentVector</span></a> This should not be accessed unless _data can be locked!! It only exists here so that change tracking methods can be called </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

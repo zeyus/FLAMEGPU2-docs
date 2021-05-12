@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct Color &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,69 +813,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-color">
+  <section id="struct-color">
 <span id="exhale-struct-structcolor"></span><h1>Struct Color<a class="headerlink" href="#struct-color" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_visualiser_color_Color.h.html#file-include-flamegpu-visualiser-color-color-h"><span class="std std-ref">File Color.h</span></a></p></li>
 </ul>
-<div class="section" id="struct-documentation">
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv45Color">
-<span id="_CPPv35Color"></span><span id="_CPPv25Color"></span><span id="Color"></span><span class="target" id="structColor"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Color</span></code><a class="headerlink" href="#_CPPv45Color" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv45Color">
+<span id="_CPPv35Color"></span><span id="_CPPv25Color"></span><span id="Color"></span><span class="target" id="structColor"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><a class="headerlink" href="#_CPPv45Color" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Store for a floating point rgba color Each component should be in the inclusive range [0, 1] in-order for the color to be considered valid </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorEv">
-<span id="_CPPv3N5Color5ColorEv"></span><span id="_CPPv2N5Color5ColorEv"></span><span id="Color::Color"></span><span class="target" id="structColor_1a9a742cbe9f9f4037f5d9f4e81a9b2428"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorEv">
+<span id="_CPPv3N5Color5ColorEv"></span><span id="_CPPv2N5Color5ColorEv"></span><span id="Color::Color"></span><span class="target" id="structColor_1a9a742cbe9f9f4037f5d9f4e81a9b2428"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default constructor, initialises to white </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorEffff">
-<span id="_CPPv3N5Color5ColorEffff"></span><span id="_CPPv2N5Color5ColorEffff"></span><span id="Color::Color__float.float.float.float"></span><span class="target" id="structColor_1a96e466b8c9878f21f45b0cddb70aa4e1"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><span class="pre">float</span> <em><span class="pre">_r</span></em>, <span class="pre">float</span> <em><span class="pre">_g</span></em>, <span class="pre">float</span> <em><span class="pre">_b</span></em>, <span class="pre">float</span> <em><span class="pre">_a</span></em> <span class="pre">=</span> <span class="pre">1.0f</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEffff" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorEffff">
+<span id="_CPPv3N5Color5ColorEffff"></span><span id="_CPPv2N5Color5ColorEffff"></span><span id="Color::Color__float.float.float.float"></span><span class="target" id="structColor_1a96e466b8c9878f21f45b0cddb70aa4e1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_r</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_g</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_b</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_a</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEffff" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green, blue (and alpha) components Each component should be in the range [0, 1] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorEdddd">
-<span id="_CPPv3N5Color5ColorEdddd"></span><span id="_CPPv2N5Color5ColorEdddd"></span><span id="Color::Color__double.double.double.double"></span><span class="target" id="structColor_1ae40ef7039a17555948f012d6ec0eef41"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><span class="pre">double</span> <em><span class="pre">_r</span></em>, <span class="pre">double</span> <em><span class="pre">_g</span></em>, <span class="pre">double</span> <em><span class="pre">_b</span></em>, <span class="pre">double</span> <em><span class="pre">_a</span></em> <span class="pre">=</span> <span class="pre">1.0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEdddd" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorEdddd">
+<span id="_CPPv3N5Color5ColorEdddd"></span><span id="_CPPv2N5Color5ColorEdddd"></span><span id="Color::Color__double.double.double.double"></span><span class="target" id="structColor_1ae40ef7039a17555948f012d6ec0eef41"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_r</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_g</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_b</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_a</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEdddd" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorEiiii">
-<span id="_CPPv3N5Color5ColorEiiii"></span><span id="_CPPv2N5Color5ColorEiiii"></span><span id="Color::Color__i.i.i.i"></span><span class="target" id="structColor_1a4219dd279bafb3afd919dd9ccaafdaaa"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">_r</span></em>, <span class="pre">int</span> <em><span class="pre">_g</span></em>, <span class="pre">int</span> <em><span class="pre">_b</span></em>, <span class="pre">int</span> <em><span class="pre">_a</span></em> <span class="pre">=</span> <span class="pre">255</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEiiii" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorEiiii">
+<span id="_CPPv3N5Color5ColorEiiii"></span><span id="_CPPv2N5Color5ColorEiiii"></span><span id="Color::Color__i.i.i.i"></span><span class="target" id="structColor_1a4219dd279bafb3afd919dd9ccaafdaaa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_r</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_g</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_b</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_a</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">255</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEiiii" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green, blue (and alpha) components Each component should be in the range [0, 255] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorERKNSt5arrayIfXL3EEEE">
-<span id="_CPPv3N5Color5ColorERKNSt5arrayIfXL3EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIfX3EEE"></span><span id="Color::Color__std::array:float.3:CR"></span><span class="target" id="structColor_1a3e552b676964fd5a4cc61acbffdfacc1"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><span class="pre">float</span><span class="pre">,</span> <span class="pre">3</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">rgb</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIfXL3EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorERKNSt5arrayIfXL3EEEE">
+<span id="_CPPv3N5Color5ColorERKNSt5arrayIfXL3EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIfX3EEE"></span><span id="Color::Color__std::array:float.3:CR"></span><span class="target" id="structColor_1a3e552b676964fd5a4cc61acbffdfacc1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIfXL3EEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green and blue components Each component should be in the range [0, 1] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorERKNSt5arrayIfXL4EEEE">
-<span id="_CPPv3N5Color5ColorERKNSt5arrayIfXL4EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIfX4EEE"></span><span id="Color::Color__std::array:float.4:CR"></span><span class="target" id="structColor_1aed5038f96456f8e69fb5897bb8c26b34"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><span class="pre">float</span><span class="pre">,</span> <span class="pre">4</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">rgba</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIfXL4EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorERKNSt5arrayIfXL4EEEE">
+<span id="_CPPv3N5Color5ColorERKNSt5arrayIfXL4EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIfX4EEE"></span><span id="Color::Color__std::array:float.4:CR"></span><span class="target" id="structColor_1aed5038f96456f8e69fb5897bb8c26b34"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">float</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgba</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIfXL4EEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green, blue and alpha components Each component should be in the range [0, 1] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorERKNSt5arrayIiXL3EEEE">
-<span id="_CPPv3N5Color5ColorERKNSt5arrayIiXL3EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIiX3EEE"></span><span id="Color::Color__std::array:i.3:CR"></span><span class="target" id="structColor_1a65391c188fe56e7caf1bcb80113bde16"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><span class="pre">int</span><span class="pre">,</span> <span class="pre">3</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">rgb</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIiXL3EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorERKNSt5arrayIiXL3EEEE">
+<span id="_CPPv3N5Color5ColorERKNSt5arrayIiXL3EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIiX3EEE"></span><span id="Color::Color__std::array:i.3:CR"></span><span class="target" id="structColor_1a65391c188fe56e7caf1bcb80113bde16"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIiXL3EEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green and blue components Each component should be in the range [0, 255] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorERKNSt5arrayIiXL4EEEE">
-<span id="_CPPv3N5Color5ColorERKNSt5arrayIiXL4EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIiX4EEE"></span><span id="Color::Color__std::array:i.4:CR"></span><span class="target" id="structColor_1a1217756826a083dd8920a085a3f7585d"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><span class="pre">int</span><span class="pre">,</span> <span class="pre">4</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">rgba</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIiXL4EEEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorERKNSt5arrayIiXL4EEEE">
+<span id="_CPPv3N5Color5ColorERKNSt5arrayIiXL4EEEE"></span><span id="_CPPv2N5Color5ColorERKNSt5arrayIiX4EEE"></span><span id="Color::Color__std::array:i.4:CR"></span><span class="target" id="structColor_1a1217756826a083dd8920a085a3f7585d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rgba</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorERKNSt5arrayIiXL4EEEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color with red, green, blue and alpha components Each component should be in the range [0, 255] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5Color5ColorEPKc">
-<span id="_CPPv3N5Color5ColorEPKc"></span><span id="_CPPv2N5Color5ColorEPKc"></span><span id="Color::Color__cCP"></span><span class="target" id="structColor_1af724742ec4c178fd438fbe5ede09b836"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Color</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">hex</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color5ColorEPKc">
+<span id="_CPPv3N5Color5ColorEPKc"></span><span id="_CPPv2N5Color5ColorEPKc"></span><span id="Color::Color__cCP"></span><span class="target" id="structColor_1af724742ec4c178fd438fbe5ede09b836"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Color</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">hex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Color5ColorEPKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color from a hexcode Supported formats: #abcdef #abc abcdef abc </p>
 <dl class="field-list simple">
 <dt class="field-odd">Throws</dt>
@@ -866,8 +885,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5ColoraSEPKc">
-<span id="_CPPv3N5ColoraSEPKc"></span><span id="_CPPv2N5ColoraSEPKc"></span><span id="Color::assign-operator__cCP"></span><span class="target" id="structColor_1a9cdc4cff690c59137896bd2c0785fa2b"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">hex</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ColoraSEPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5ColoraSEPKc">
+<span id="_CPPv3N5ColoraSEPKc"></span><span id="_CPPv2N5ColoraSEPKc"></span><span id="Color::assign-operator__cCP"></span><span class="target" id="structColor_1a9cdc4cff690c59137896bd2c0785fa2b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">hex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ColoraSEPKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Construct a color from a hexcode Supported formats: #abcdef #abc abcdef abc </p>
 <dl class="field-list simple">
 <dt class="field-odd">Throws</dt>
@@ -877,26 +896,26 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N5ColorixEj">
-<span id="_CPPv3N5ColorixEj"></span><span id="_CPPv2N5ColorixEj"></span><span id="Color::subscript-operator__unsigned-i"></span><span class="target" id="structColor_1acb68a394fa6ac960ff5e1326bd0ad7e1"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator[]</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ColorixEj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5ColorixEj">
+<span id="_CPPv3N5ColorixEj"></span><span id="_CPPv2N5ColorixEj"></span><span id="Color::subscript-operator__unsigned-i"></span><span class="target" id="structColor_1acb68a394fa6ac960ff5e1326bd0ad7e1"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5ColorixEj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Access the color component at index </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5ColorixEj">
-<span id="_CPPv3NK5ColorixEj"></span><span id="_CPPv2NK5ColorixEj"></span><span id="Color::subscript-operator__unsigned-iC"></span><span class="target" id="structColor_1ad008ebe1923829d1876a259de3928b41"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">operator[]</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5ColorixEj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5ColorixEj">
+<span id="_CPPv3NK5ColorixEj"></span><span id="_CPPv2NK5ColorixEj"></span><span id="Color::subscript-operator__unsigned-iC"></span><span class="target" id="structColor_1ad008ebe1923829d1876a259de3928b41"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5ColorixEj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Access the color component at index </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5Color8validateEv">
-<span id="_CPPv3NK5Color8validateEv"></span><span id="_CPPv2NK5Color8validateEv"></span><span id="Color::validateC"></span><span class="target" id="structColor_1aacbe1f4b62f6ea1654f967fc2186ea27"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">validate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5Color8validateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Color8validateEv">
+<span id="_CPPv3NK5Color8validateEv"></span><span id="_CPPv2NK5Color8validateEv"></span><span id="Color::validateC"></span><span class="target" id="structColor_1aacbe1f4b62f6ea1654f967fc2186ea27"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">validate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Color8validateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Return true if all color components are in the inclusive range [0.0, 1.0] </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5ColoreqERK5Color">
-<span id="_CPPv3NK5ColoreqERK5Color"></span><span id="_CPPv2NK5ColoreqERK5Color"></span><span id="Color::eq-operator__ColorCRC"></span><span class="target" id="structColor_1ae4b5d5500c2ee028e3f7d92a4d098ee0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5ColoreqERK5Color" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5ColoreqERK5Color">
+<span id="_CPPv3NK5ColoreqERK5Color"></span><span id="_CPPv2NK5ColoreqERK5Color"></span><span id="Color::eq-operator__ColorCRC"></span><span class="target" id="structColor_1ae4b5d5500c2ee028e3f7d92a4d098ee0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5ColoreqERK5Color" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -905,8 +924,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5ColorneERK5Color">
-<span id="_CPPv3NK5ColorneERK5Color"></span><span id="_CPPv2NK5ColorneERK5Color"></span><span id="Color::neq-operator__ColorCRC"></span><span class="target" id="structColor_1a02121562a10f0bb1fc9593dd33e313fa"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5ColorneERK5Color" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5ColorneERK5Color">
+<span id="_CPPv3NK5ColorneERK5Color"></span><span id="_CPPv2NK5ColorneERK5Color"></span><span id="Color::neq-operator__ColorCRC"></span><span class="target" id="structColor_1a02121562a10f0bb1fc9593dd33e313fa"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5ColorneERK5Color" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Inequality operator </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -915,16 +934,16 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5ColorplERK5Color">
-<span id="_CPPv3NK5ColorplERK5Color"></span><span id="_CPPv2NK5ColorplERK5Color"></span><span id="Color::add-operator__ColorCRC"></span><span class="target" id="structColor_1af097cec61754115a2bd689edb796ea35"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <code class="sig-name descname"><span class="pre">operator+</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK5ColorplERK5Color" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5ColorplERK5Color">
+<span id="_CPPv3NK5ColorplERK5Color"></span><span id="_CPPv2NK5ColorplERK5Color"></span><span id="Color::add-operator__ColorCRC"></span><span class="target" id="structColor_1af097cec61754115a2bd689edb796ea35"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5ColorplERK5Color" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add the components of 2 colors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5ColormlERKf">
-<span id="_CPPv3NK5ColormlERKf"></span><span id="_CPPv2NK5ColormlERKf"></span><span id="Color::mul-operator__floatCRC"></span><span class="target" id="structColor_1a30e46655a846d601e1442ea47efbfd48"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">i</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">noexcept</span></em><a class="headerlink" href="#_CPPv4NK5ColormlERKf" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Multiple the components of a color by i <dl class="xrefsect">
-<dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5ColormlERKf">
+<span id="_CPPv3NK5ColormlERKf"></span><span id="_CPPv2NK5ColormlERKf"></span><span id="Color::mul-operator__floatCRC"></span><span class="target" id="structColor_1a30e46655a846d601e1442ea47efbfd48"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><a class="headerlink" href="#_CPPv4NK5ColormlERKf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Multiple the components of a color by i <dl>
+<dt class="sig sig-object cpp">
 <em><span class="pre">Todo:</span></em></dt>
 <dd><p>Rework this to the other format, so color doesnt need to be the first item </p>
 </dd></dl>
@@ -933,8 +952,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5Colorcv11StaticColorEv">
-<span id="_CPPv3NK5Colorcv11StaticColorEv"></span><span id="_CPPv2NK5Colorcv11StaticColorEv"></span><span id="Color::castto-StaticColor-operatorC"></span><span class="target" id="structColor_1a22723fcb6e0990113b95e1c2d3b84bba"></span><code class="sig-name descname"><span class="pre">operator</span> <span class="pre">StaticColor</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK5Colorcv11StaticColorEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Colorcv11StaticColorEv">
+<span id="_CPPv3NK5Colorcv11StaticColorEv"></span><span id="_CPPv2NK5Colorcv11StaticColorEv"></span><span id="Color::castto-StaticColor-operatorC"></span><span class="target" id="structColor_1a22723fcb6e0990113b95e1c2d3b84bba"></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="w"> </span><a class="reference internal" href="classStaticColor.html#_CPPv411StaticColor" title="StaticColor"><span class="n"><span class="pre">StaticColor</span></span></a></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK5Colorcv11StaticColorEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Implicit conversion function, allowing <a class="reference internal" href="#structColor"><span class="std std-ref">Color</span></a> to be implicitly converted to <a class="reference internal" href="classStaticColor.html#classStaticColor"><span class="std std-ref">StaticColor</span></a> Defined in StaticColor.cpp </p>
 </dd></dl>
 
@@ -942,31 +961,31 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N5Color1rE">
-<span id="_CPPv3N5Color1rE"></span><span id="_CPPv2N5Color1rE"></span><span id="Color::r__float"></span><span class="target" id="structColor_1a3958a556b47d2de3dd45c75aac833c20"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">r</span></code><a class="headerlink" href="#_CPPv4N5Color1rE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color1rE">
+<span id="_CPPv3N5Color1rE"></span><span id="_CPPv2N5Color1rE"></span><span id="Color::r__float"></span><span class="target" id="structColor_1a3958a556b47d2de3dd45c75aac833c20"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">r</span></span></span><a class="headerlink" href="#_CPPv4N5Color1rE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><a class="reference internal" href="#structColor"><span class="std std-ref">Color</span></a> components: red, green, blue, alpha </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N5Color1gE">
-<span id="_CPPv3N5Color1gE"></span><span id="_CPPv2N5Color1gE"></span><span id="Color::g__float"></span><span class="target" id="structColor_1a5defbb21620e480e556181772d665f34"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">g</span></code><a class="headerlink" href="#_CPPv4N5Color1gE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color1gE">
+<span id="_CPPv3N5Color1gE"></span><span id="_CPPv2N5Color1gE"></span><span id="Color::g__float"></span><span class="target" id="structColor_1a5defbb21620e480e556181772d665f34"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">g</span></span></span><a class="headerlink" href="#_CPPv4N5Color1gE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N5Color1bE">
-<span id="_CPPv3N5Color1bE"></span><span id="_CPPv2N5Color1bE"></span><span id="Color::b__float"></span><span class="target" id="structColor_1a33e482be18d6ea31d2b403bee13683b7"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">b</span></code><a class="headerlink" href="#_CPPv4N5Color1bE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color1bE">
+<span id="_CPPv3N5Color1bE"></span><span id="_CPPv2N5Color1bE"></span><span id="Color::b__float"></span><span class="target" id="structColor_1a33e482be18d6ea31d2b403bee13683b7"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#_CPPv4N5Color1bE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N5Color1aE">
-<span id="_CPPv3N5Color1aE"></span><span id="_CPPv2N5Color1aE"></span><span id="Color::a__float"></span><span class="target" id="structColor_1a98047aee65fc3d825f88a76da728fd27"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">a</span></code><a class="headerlink" href="#_CPPv4N5Color1aE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Color1aE">
+<span id="_CPPv3N5Color1aE"></span><span id="_CPPv2N5Color1aE"></span><span id="Color::a__float"></span><span class="target" id="structColor_1a98047aee65fc3d825f88a76da728fd27"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">a</span></span></span><a class="headerlink" href="#_CPPv4N5Color1aE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

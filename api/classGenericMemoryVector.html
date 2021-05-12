@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class GenericMemoryVector &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,84 +813,84 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-genericmemoryvector">
+  <section id="class-genericmemoryvector">
 <span id="exhale-class-classgenericmemoryvector"></span><h1>Class GenericMemoryVector<a class="headerlink" href="#class-genericmemoryvector" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_pop_MemoryVector.h.html#file-include-flamegpu-pop-memoryvector-h"><span class="std std-ref">File MemoryVector.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-type">
+<section id="derived-type">
 <h3>Derived Type<a class="headerlink" href="#derived-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MemoryVector&lt;</span> <span class="pre">T</span> <span class="pre">&gt;</span></code> (<a class="reference internal" href="classMemoryVector.html#exhale-class-classmemoryvector"><span class="std std-ref">Template Class MemoryVector</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv419GenericMemoryVector">
-<span id="_CPPv319GenericMemoryVector"></span><span id="_CPPv219GenericMemoryVector"></span><span id="GenericMemoryVector"></span><span class="target" id="classGenericMemoryVector"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">GenericMemoryVector</span></code><a class="headerlink" href="#_CPPv419GenericMemoryVector" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv419GenericMemoryVector">
+<span id="_CPPv319GenericMemoryVector"></span><span id="_CPPv219GenericMemoryVector"></span><span id="GenericMemoryVector"></span><span class="target" id="classGenericMemoryVector"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GenericMemoryVector</span></span></span><a class="headerlink" href="#_CPPv419GenericMemoryVector" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Subclassed by <a class="reference internal" href="classMemoryVector.html#classMemoryVector"><span class="std std-ref">MemoryVector&lt; T &gt;</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N19GenericMemoryVectorD0Ev">
-<span id="_CPPv3N19GenericMemoryVectorD0Ev"></span><span id="_CPPv2N19GenericMemoryVectorD0Ev"></span><span id="GenericMemoryVector::~GenericMemoryVector"></span><span class="target" id="classGenericMemoryVector_1ac4be58e19f34425bf0bcffb56bdb8143"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~GenericMemoryVector</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19GenericMemoryVectorD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19GenericMemoryVectorD0Ev">
+<span id="_CPPv3N19GenericMemoryVectorD0Ev"></span><span id="_CPPv2N19GenericMemoryVectorD0Ev"></span><span id="GenericMemoryVector::~GenericMemoryVector"></span><span class="target" id="classGenericMemoryVector_1ac4be58e19f34425bf0bcffb56bdb8143"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~GenericMemoryVector</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19GenericMemoryVectorD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Acts as a multiplier </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector7getTypeEv">
-<span id="_CPPv3NK19GenericMemoryVector7getTypeEv"></span><span id="_CPPv2NK19GenericMemoryVector7getTypeEv"></span><span id="GenericMemoryVector::getTypeC"></span><span class="target" id="classGenericMemoryVector_1a6dcbc1ad0ae0e57183ffd081c183534b"></span><em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getType</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector7getTypeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector7getTypeEv">
+<span id="_CPPv3NK19GenericMemoryVector7getTypeEv"></span><span id="_CPPv2NK19GenericMemoryVector7getTypeEv"></span><span id="GenericMemoryVector::getTypeC"></span><span class="target" id="classGenericMemoryVector_1a6dcbc1ad0ae0e57183ffd081c183534b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getType</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector7getTypeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector11getElementsEv">
-<span id="_CPPv3NK19GenericMemoryVector11getElementsEv"></span><span id="_CPPv2NK19GenericMemoryVector11getElementsEv"></span><span id="GenericMemoryVector::getElementsC"></span><span class="target" id="classGenericMemoryVector_1a94ac162073701710397330329edcba22"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getElements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector11getElementsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector11getElementsEv">
+<span id="_CPPv3NK19GenericMemoryVector11getElementsEv"></span><span id="_CPPv2NK19GenericMemoryVector11getElementsEv"></span><span id="GenericMemoryVector::getElementsC"></span><span class="target" id="classGenericMemoryVector_1a94ac162073701710397330329edcba22"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getElements</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector11getElementsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector11getTypeSizeEv">
-<span id="_CPPv3NK19GenericMemoryVector11getTypeSizeEv"></span><span id="_CPPv2NK19GenericMemoryVector11getTypeSizeEv"></span><span id="GenericMemoryVector::getTypeSizeC"></span><span class="target" id="classGenericMemoryVector_1a8f0a8b8c99d513ec2dc660988993ba54"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">getTypeSize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector11getTypeSizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector11getTypeSizeEv">
+<span id="_CPPv3NK19GenericMemoryVector11getTypeSizeEv"></span><span id="_CPPv2NK19GenericMemoryVector11getTypeSizeEv"></span><span id="GenericMemoryVector::getTypeSizeC"></span><span class="target" id="classGenericMemoryVector_1a8f0a8b8c99d513ec2dc660988993ba54"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getTypeSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector11getTypeSizeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector15getVariableSizeEv">
-<span id="_CPPv3NK19GenericMemoryVector15getVariableSizeEv"></span><span id="_CPPv2NK19GenericMemoryVector15getVariableSizeEv"></span><span id="GenericMemoryVector::getVariableSizeC"></span><span class="target" id="classGenericMemoryVector_1acd9fe6a5a82c64aa166dd71bf8c81e88"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">getVariableSize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector15getVariableSizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector15getVariableSizeEv">
+<span id="_CPPv3NK19GenericMemoryVector15getVariableSizeEv"></span><span id="_CPPv2NK19GenericMemoryVector15getVariableSizeEv"></span><span id="GenericMemoryVector::getVariableSizeC"></span><span class="target" id="classGenericMemoryVector_1acd9fe6a5a82c64aa166dd71bf8c81e88"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariableSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector15getVariableSizeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19GenericMemoryVector10getDataPtrEv">
-<span id="_CPPv3N19GenericMemoryVector10getDataPtrEv"></span><span id="_CPPv2N19GenericMemoryVector10getDataPtrEv"></span><span id="GenericMemoryVector::getDataPtr"></span><span class="target" id="classGenericMemoryVector_1a733907cbb2b21dacc667c1cbf883554e"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getDataPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector10getDataPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19GenericMemoryVector10getDataPtrEv">
+<span id="_CPPv3N19GenericMemoryVector10getDataPtrEv"></span><span id="_CPPv2N19GenericMemoryVector10getDataPtrEv"></span><span id="GenericMemoryVector::getDataPtr"></span><span class="target" id="classGenericMemoryVector_1a733907cbb2b21dacc667c1cbf883554e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getDataPtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector10getDataPtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector18getReadOnlyDataPtrEv">
-<span id="_CPPv3NK19GenericMemoryVector18getReadOnlyDataPtrEv"></span><span id="_CPPv2NK19GenericMemoryVector18getReadOnlyDataPtrEv"></span><span id="GenericMemoryVector::getReadOnlyDataPtrC"></span><span class="target" id="classGenericMemoryVector_1a0e60bba2db49bf5928228397867dc5cb"></span><em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getReadOnlyDataPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector18getReadOnlyDataPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector18getReadOnlyDataPtrEv">
+<span id="_CPPv3NK19GenericMemoryVector18getReadOnlyDataPtrEv"></span><span id="_CPPv2NK19GenericMemoryVector18getReadOnlyDataPtrEv"></span><span id="GenericMemoryVector::getReadOnlyDataPtrC"></span><span class="target" id="classGenericMemoryVector_1a0e60bba2db49bf5928228397867dc5cb"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getReadOnlyDataPtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector18getReadOnlyDataPtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19GenericMemoryVector12getVectorPtrEv">
-<span id="_CPPv3N19GenericMemoryVector12getVectorPtrEv"></span><span id="_CPPv2N19GenericMemoryVector12getVectorPtrEv"></span><span id="GenericMemoryVector::getVectorPtr"></span><span class="target" id="classGenericMemoryVector_1a08ea60aaf684142150755a43f0531b80"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getVectorPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector12getVectorPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19GenericMemoryVector12getVectorPtrEv">
+<span id="_CPPv3N19GenericMemoryVector12getVectorPtrEv"></span><span id="_CPPv2N19GenericMemoryVector12getVectorPtrEv"></span><span id="GenericMemoryVector::getVectorPtr"></span><span class="target" id="classGenericMemoryVector_1a08ea60aaf684142150755a43f0531b80"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getVectorPtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector12getVectorPtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19GenericMemoryVector5cloneEv">
-<span id="_CPPv3NK19GenericMemoryVector5cloneEv"></span><span id="_CPPv2NK19GenericMemoryVector5cloneEv"></span><span id="GenericMemoryVector::cloneC"></span><span class="target" id="classGenericMemoryVector_1aa356d11a14e5190fcbd8a60301625754"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="#_CPPv419GenericMemoryVector" title="GenericMemoryVector"><span class="pre">GenericMemoryVector</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector5cloneEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19GenericMemoryVector5cloneEv">
+<span id="_CPPv3NK19GenericMemoryVector5cloneEv"></span><span id="_CPPv2NK19GenericMemoryVector5cloneEv"></span><span id="GenericMemoryVector::cloneC"></span><span class="target" id="classGenericMemoryVector_1aa356d11a14e5190fcbd8a60301625754"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv419GenericMemoryVector" title="GenericMemoryVector"><span class="n"><span class="pre">GenericMemoryVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">clone</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK19GenericMemoryVector5cloneEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19GenericMemoryVector6resizeEj">
-<span id="_CPPv3N19GenericMemoryVector6resizeEj"></span><span id="_CPPv2N19GenericMemoryVector6resizeEj"></span><span id="GenericMemoryVector::resize__unsigned-i"></span><span class="target" id="classGenericMemoryVector_1a38834f0ff7cbca2baa71424f88d25218"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector6resizeEj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19GenericMemoryVector6resizeEj">
+<span id="_CPPv3N19GenericMemoryVector6resizeEj"></span><span id="_CPPv2N19GenericMemoryVector6resizeEj"></span><span id="GenericMemoryVector::resize__unsigned-i"></span><span class="target" id="classGenericMemoryVector_1a38834f0ff7cbca2baa71424f88d25218"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N19GenericMemoryVector6resizeEj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

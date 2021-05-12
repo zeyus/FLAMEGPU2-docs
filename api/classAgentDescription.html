@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class AgentDescription &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,16 +813,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-agentdescription">
+  <section id="class-agentdescription">
 <span id="exhale-class-classagentdescription"></span><h1>Class AgentDescription<a class="headerlink" href="#class-agentdescription" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_AgentDescription.h.html#file-include-flamegpu-model-agentdescription-h"><span class="std std-ref">File AgentDescription.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv416AgentDescription">
-<span id="_CPPv316AgentDescription"></span><span id="_CPPv216AgentDescription"></span><span id="AgentDescription"></span><span class="target" id="classAgentDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentDescription</span></code><a class="headerlink" href="#_CPPv416AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv416AgentDescription">
+<span id="_CPPv316AgentDescription"></span><span id="_CPPv216AgentDescription"></span><span id="AgentDescription"></span><span class="target" id="classAgentDescription"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentDescription</span></span></span><a class="headerlink" href="#_CPPv416AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Within the model hierarchy, this class represents the definition of an agent for a FLAMEGPU model This class is used to configure external elements of agents, such as variables and functions <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="structAgentData.html#structAgentData"><span class="std std-ref">AgentData</span></a> The internal data store for this class </p>
 </dd>
@@ -814,8 +833,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescriptioneqERK16AgentDescription">
-<span id="_CPPv3NK16AgentDescriptioneqERK16AgentDescription"></span><span id="_CPPv2NK16AgentDescriptioneqERK16AgentDescription"></span><span id="AgentDescription::eq-operator__AgentDescriptionCRC"></span><span class="target" id="classAgentDescription_1a6023b494574e48bbdfb17f729527c775"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescriptioneqERK16AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescriptioneqERK16AgentDescription">
+<span id="_CPPv3NK16AgentDescriptioneqERK16AgentDescription"></span><span id="_CPPv2NK16AgentDescriptioneqERK16AgentDescription"></span><span id="AgentDescription::eq-operator__AgentDescriptionCRC"></span><span class="target" id="classAgentDescription_1a6023b494574e48bbdfb17f729527c775"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416AgentDescription" title="AgentDescription"><span class="n"><span class="pre">AgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescriptioneqERK16AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentDescription"><span class="std std-ref">AgentDescription</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -829,8 +848,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescriptionneERK16AgentDescription">
-<span id="_CPPv3NK16AgentDescriptionneERK16AgentDescription"></span><span id="_CPPv2NK16AgentDescriptionneERK16AgentDescription"></span><span id="AgentDescription::neq-operator__AgentDescriptionCRC"></span><span class="target" id="classAgentDescription_1aee7653a90bd19ee1a1a129bf6e9f0d9f"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescriptionneERK16AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescriptionneERK16AgentDescription">
+<span id="_CPPv3NK16AgentDescriptionneERK16AgentDescription"></span><span id="_CPPv2NK16AgentDescriptionneERK16AgentDescription"></span><span id="AgentDescription::neq-operator__AgentDescriptionCRC"></span><span class="target" id="classAgentDescription_1aee7653a90bd19ee1a1a129bf6e9f0d9f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416AgentDescription" title="AgentDescription"><span class="n"><span class="pre">AgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescriptionneERK16AgentDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentDescription"><span class="std std-ref">AgentDescription</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -844,8 +863,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16AgentDescription8newStateERKNSt6stringE">
-<span id="_CPPv3N16AgentDescription8newStateERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription8newStateERKNSt6stringE"></span><span id="AgentDescription::newState__ssCR"></span><span class="target" id="classAgentDescription_1a4bdbeeb0205d50aac37c09d1213fbaea"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">newState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription8newStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16AgentDescription8newStateERKNSt6stringE">
+<span id="_CPPv3N16AgentDescription8newStateERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription8newStateERKNSt6stringE"></span><span id="AgentDescription::newState__ssCR"></span><span class="target" id="classAgentDescription_1a4bdbeeb0205d50aac37c09d1213fbaea"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">newState</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription8newStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Adds a new state to the possible states this agent can enter State’s only exist as strings and have no additional configuration</p>
 <p>Accessors</p>
 </p>
@@ -860,8 +879,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16AgentDescription15setInitialStateERKNSt6stringE">
-<span id="_CPPv3N16AgentDescription15setInitialStateERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription15setInitialStateERKNSt6stringE"></span><span id="AgentDescription::setInitialState__ssCR"></span><span class="target" id="classAgentDescription_1a7abf85fdff26f7a748175bccee29fddd"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setInitialState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">initial_state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription15setInitialStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16AgentDescription15setInitialStateERKNSt6stringE">
+<span id="_CPPv3N16AgentDescription15setInitialStateERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription15setInitialStateERKNSt6stringE"></span><span id="AgentDescription::setInitialState__ssCR"></span><span class="target" id="classAgentDescription_1a7abf85fdff26f7a748175bccee29fddd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setInitialState</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">initial_state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription15setInitialStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the initial state which new agents begin in </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -874,8 +893,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE">
-<span id="_CPPv3I0_N9ModelData9size_typeEEN16AgentDescription11newVariableERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N9ModelData9size_typeEEN16AgentDescription11newVariableERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentDescription_1adf69135b1e98e5bb1e781322469a5adf"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">newVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="AgentDescription::newVariable::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="AgentDescription::newVariable::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">default_value</span></em> <span class="pre">=</span> <span class="pre">{</span><span class="pre">}</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE">
+<span id="_CPPv3I0_N9ModelData9size_typeEEN16AgentDescription11newVariableERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N9ModelData9size_typeEEN16AgentDescription11newVariableERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentDescription_1adf69135b1e98e5bb1e781322469a5adf"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">newVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="AgentDescription::newVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="AgentDescription::newVariable::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">default_value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_N9ModelData9size_typeEEN16AgentDescription11newVariableEvRKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Adds a new variable to the agent</p>
 <p>Template implementation</p>
 </p>
@@ -902,13 +921,13 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T">
-<span id="_CPPv3I0EN16AgentDescription11newVariableERKNSt6stringERK1T"></span><span id="_CPPv2I0EN16AgentDescription11newVariableERKNSt6stringERK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentDescription_1a834e48abf0d498d325035fd33f22ed4d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">newVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T" title="AgentDescription::newVariable::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">default_value</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T">
+<span id="_CPPv3I0EN16AgentDescription11newVariableERKNSt6stringERK1T"></span><span id="_CPPv2I0EN16AgentDescription11newVariableERKNSt6stringERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentDescription_1a834e48abf0d498d325035fd33f22ed4d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">newVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T" title="AgentDescription::newVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">default_value</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16AgentDescription11newVariableEvRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction">
-<span id="_CPPv3I0EN16AgentDescription11newFunctionERKNSt6stringE13AgentFunction"></span><span id="_CPPv2I0EN16AgentDescription11newFunctionERKNSt6stringE13AgentFunction"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">AgentFunction</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">newFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em>, <a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="AgentDescription::newFunction::AgentFunction"><span class="pre">AgentFunction</span></a> <em><span class="pre">a</span></em> <span class="pre">=</span> <a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="AgentDescription::newFunction::AgentFunction"><span class="pre">AgentFunction</span></a><span class="pre">(</span><span class="pre">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction">
+<span id="_CPPv3I0EN16AgentDescription11newFunctionERKNSt6stringE13AgentFunction"></span><span id="_CPPv2I0EN16AgentDescription11newFunctionERKNSt6stringE13AgentFunction"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunction</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">newFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="AgentDescription::newFunction::AgentFunction"><span class="n"><span class="pre">AgentFunction</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="AgentDescription::newFunction::AgentFunction"><span class="n"><span class="pre">AgentFunction</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a new (device) function to the agent </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -934,8 +953,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16AgentDescription14newRTCFunctionERKNSt6stringEPKc">
-<span id="_CPPv3N16AgentDescription14newRTCFunctionERKNSt6stringEPKc"></span><span id="_CPPv2N16AgentDescription14newRTCFunctionERKNSt6stringEPKc"></span><span id="AgentDescription::newRTCFunction__ssCR.cCP"></span><span class="target" id="classAgentDescription_1af74006781346c46d4fc84db8f12ab1dd"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">newRTCFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">func_src</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription14newRTCFunctionERKNSt6stringEPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16AgentDescription14newRTCFunctionERKNSt6stringEPKc">
+<span id="_CPPv3N16AgentDescription14newRTCFunctionERKNSt6stringEPKc"></span><span id="_CPPv2N16AgentDescription14newRTCFunctionERKNSt6stringEPKc"></span><span id="AgentDescription::newRTCFunction__ssCR.cCP"></span><span class="target" id="classAgentDescription_1af74006781346c46d4fc84db8f12ab1dd"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">newRTCFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">func_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription14newRTCFunctionERKNSt6stringEPKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a new runtime (device) function to the agent </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -958,8 +977,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16AgentDescription8FunctionERKNSt6stringE">
-<span id="_CPPv3N16AgentDescription8FunctionERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription8FunctionERKNSt6stringE"></span><span id="AgentDescription::Function__ssCR"></span><span class="target" id="classAgentDescription_1a21e39f5928960e5a8f4221f861058804"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">Function</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription8FunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16AgentDescription8FunctionERKNSt6stringE">
+<span id="_CPPv3N16AgentDescription8FunctionERKNSt6stringE"></span><span id="_CPPv2N16AgentDescription8FunctionERKNSt6stringE"></span><span id="AgentDescription::Function__ssCR"></span><span class="target" id="classAgentDescription_1a21e39f5928960e5a8f4221f861058804"></span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">Function</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16AgentDescription8FunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a mutable reference to the named agent function, which can be used to configure the function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentDescription::getFunction(const std::string &amp;) for the immutable version </p>
 </dd>
@@ -979,8 +998,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription7getNameEv">
-<span id="_CPPv3NK16AgentDescription7getNameEv"></span><span id="_CPPv2NK16AgentDescription7getNameEv"></span><span id="AgentDescription::getNameC"></span><span class="target" id="classAgentDescription_1ac4b322fedff0d3cf3859fd742330a429"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription7getNameEv">
+<span id="_CPPv3NK16AgentDescription7getNameEv"></span><span id="_CPPv2NK16AgentDescription7getNameEv"></span><span id="AgentDescription::getNameC"></span><span class="target" id="classAgentDescription_1ac4b322fedff0d3cf3859fd742330a429"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>
 Const Accessors </p>
 <dl class="field-list simple">
@@ -991,8 +1010,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription14getStatesCountEv">
-<span id="_CPPv3NK16AgentDescription14getStatesCountEv"></span><span id="_CPPv2NK16AgentDescription14getStatesCountEv"></span><span id="AgentDescription::getStatesCountC"></span><span class="target" id="classAgentDescription_1a3ad2917d69a012a4741687237c6ebc37"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getStatesCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription14getStatesCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription14getStatesCountEv">
+<span id="_CPPv3NK16AgentDescription14getStatesCountEv"></span><span id="_CPPv2NK16AgentDescription14getStatesCountEv"></span><span id="AgentDescription::getStatesCountC"></span><span class="target" id="classAgentDescription_1a3ad2917d69a012a4741687237c6ebc37"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getStatesCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription14getStatesCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The number of possible states agents of this type can enter </p>
@@ -1001,8 +1020,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription15getInitialStateEv">
-<span id="_CPPv3NK16AgentDescription15getInitialStateEv"></span><span id="_CPPv2NK16AgentDescription15getInitialStateEv"></span><span id="AgentDescription::getInitialStateC"></span><span class="target" id="classAgentDescription_1a7b40234e2cd4c22d11ea199bb9b70154"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getInitialState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription15getInitialStateEv">
+<span id="_CPPv3NK16AgentDescription15getInitialStateEv"></span><span id="_CPPv2NK16AgentDescription15getInitialStateEv"></span><span id="AgentDescription::getInitialStateC"></span><span class="target" id="classAgentDescription_1a7b40234e2cd4c22d11ea199bb9b70154"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInitialState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The state which newly created agents of this type begin in </p>
@@ -1011,8 +1030,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription15getVariableTypeERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription15getVariableTypeERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription15getVariableTypeERKNSt6stringE"></span><span id="AgentDescription::getVariableType__ssCRC"></span><span class="target" id="classAgentDescription_1a839949d3398d4dc67c2b84ddadbfa54a"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getVariableType</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription15getVariableTypeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription15getVariableTypeERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription15getVariableTypeERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription15getVariableTypeERKNSt6stringE"></span><span id="AgentDescription::getVariableType__ssCRC"></span><span class="target" id="classAgentDescription_1a839949d3398d4dc67c2b84ddadbfa54a"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getVariableType</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription15getVariableTypeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>variable_name</strong> – Name used to refer to the desired variable </p>
@@ -1027,8 +1046,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription15getVariableSizeERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription15getVariableSizeERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription15getVariableSizeERKNSt6stringE"></span><span id="AgentDescription::getVariableSize__ssCRC"></span><span class="target" id="classAgentDescription_1a93378b4bfe164c702c9a37c4c0755cc7"></span><span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">getVariableSize</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription15getVariableSizeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription15getVariableSizeERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription15getVariableSizeERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription15getVariableSizeERKNSt6stringE"></span><span id="AgentDescription::getVariableSize__ssCRC"></span><span class="target" id="classAgentDescription_1a93378b4bfe164c702c9a37c4c0755cc7"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariableSize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription15getVariableSizeERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>variable_name</strong> – Name used to refer to the desired variable </p>
@@ -1043,8 +1062,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription17getVariableLengthERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription17getVariableLengthERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription17getVariableLengthERKNSt6stringE"></span><span id="AgentDescription::getVariableLength__ssCRC"></span><span class="target" id="classAgentDescription_1a98e1af1cad03adc72834cc06f7587702"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getVariableLength</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription17getVariableLengthERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription17getVariableLengthERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription17getVariableLengthERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription17getVariableLengthERKNSt6stringE"></span><span id="AgentDescription::getVariableLength__ssCRC"></span><span class="target" id="classAgentDescription_1a98e1af1cad03adc72834cc06f7587702"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariableLength</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription17getVariableLengthERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>variable_name</strong> – Name used to refer to the desired variable </p>
@@ -1059,14 +1078,14 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription17getVariablesCountEv">
-<span id="_CPPv3NK16AgentDescription17getVariablesCountEv"></span><span id="_CPPv2NK16AgentDescription17getVariablesCountEv"></span><span id="AgentDescription::getVariablesCountC"></span><span class="target" id="classAgentDescription_1ae47cc81a7a7c04f0fb8096a050e62012"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getVariablesCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription17getVariablesCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription17getVariablesCountEv">
+<span id="_CPPv3NK16AgentDescription17getVariablesCountEv"></span><span id="_CPPv2NK16AgentDescription17getVariablesCountEv"></span><span id="AgentDescription::getVariablesCountC"></span><span class="target" id="classAgentDescription_1ae47cc81a7a7c04f0fb8096a050e62012"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariablesCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription17getVariablesCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The total number of variables within the agent </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription11getFunctionERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription11getFunctionERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11getFunctionERKNSt6stringE"></span><span id="AgentDescription::getFunction__ssCRC"></span><span class="target" id="classAgentDescription_1a41aeb4388836c4757c582a7c3fd090fa"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription11getFunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription11getFunctionERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription11getFunctionERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11getFunctionERKNSt6stringE"></span><span id="AgentDescription::getFunction__ssCRC"></span><span class="target" id="classAgentDescription_1a41aeb4388836c4757c582a7c3fd090fa"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription11getFunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns an immutable reference to the named agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentDescription_1a21e39f5928960e5a8f4221f861058804"><span class="std std-ref">AgentDescription::Function(const std::string &amp;)</span></a> for the mutable version </p>
 </dd>
@@ -1086,14 +1105,14 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription17getFunctionsCountEv">
-<span id="_CPPv3NK16AgentDescription17getFunctionsCountEv"></span><span id="_CPPv2NK16AgentDescription17getFunctionsCountEv"></span><span id="AgentDescription::getFunctionsCountC"></span><span class="target" id="classAgentDescription_1aecb11e6cfbf3eb2f8302221acc8110f8"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getFunctionsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription17getFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription17getFunctionsCountEv">
+<span id="_CPPv3NK16AgentDescription17getFunctionsCountEv"></span><span id="_CPPv2NK16AgentDescription17getFunctionsCountEv"></span><span id="AgentDescription::getFunctionsCountC"></span><span class="target" id="classAgentDescription_1aecb11e6cfbf3eb2f8302221acc8110f8"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getFunctionsCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription17getFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The total number of functions within the agent </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription20getAgentOutputsCountEv">
-<span id="_CPPv3NK16AgentDescription20getAgentOutputsCountEv"></span><span id="_CPPv2NK16AgentDescription20getAgentOutputsCountEv"></span><span id="AgentDescription::getAgentOutputsCountC"></span><span class="target" id="classAgentDescription_1ac2b9948913db6538a503a1594969c163"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getAgentOutputsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription20getAgentOutputsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription20getAgentOutputsCountEv">
+<span id="_CPPv3NK16AgentDescription20getAgentOutputsCountEv"></span><span id="_CPPv2NK16AgentDescription20getAgentOutputsCountEv"></span><span id="AgentDescription::getAgentOutputsCountC"></span><span class="target" id="classAgentDescription_1ac2b9948913db6538a503a1594969c163"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgentOutputsCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription20getAgentOutputsCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The total number of agent functions, within the model hierarchy, which create new agents of this type <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentDescription_1a7c7340030051b8676483667e951f9091"><span class="std std-ref">AgentDescription::isOutputOnDevice()</span></a> </p>
 </dd>
@@ -1102,8 +1121,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription8hasStateERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription8hasStateERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription8hasStateERKNSt6stringE"></span><span id="AgentDescription::hasState__ssCRC"></span><span class="target" id="classAgentDescription_1ab3138ef535266c3f9c8c0abe7227a5ec"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription8hasStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription8hasStateERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription8hasStateERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription8hasStateERKNSt6stringE"></span><span id="AgentDescription::hasState__ssCRC"></span><span class="target" id="classAgentDescription_1ab3138ef535266c3f9c8c0abe7227a5ec"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasState</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription8hasStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>state_name</strong> – Name of the state to check </p>
@@ -1115,8 +1134,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription11hasVariableERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription11hasVariableERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11hasVariableERKNSt6stringE"></span><span id="AgentDescription::hasVariable__ssCRC"></span><span class="target" id="classAgentDescription_1a3175fb1afcde333912745ac449595da8"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription11hasVariableERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription11hasVariableERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription11hasVariableERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11hasVariableERKNSt6stringE"></span><span id="AgentDescription::hasVariable__ssCRC"></span><span class="target" id="classAgentDescription_1a3175fb1afcde333912745ac449595da8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription11hasVariableERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>variable_name</strong> – Name of the variable to check </p>
@@ -1128,8 +1147,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription11hasFunctionERKNSt6stringE">
-<span id="_CPPv3NK16AgentDescription11hasFunctionERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11hasFunctionERKNSt6stringE"></span><span id="AgentDescription::hasFunction__ssCRC"></span><span class="target" id="classAgentDescription_1a3bc9e1ca548fdce8d6f6be912be66ff3"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">function_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription11hasFunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription11hasFunctionERKNSt6stringE">
+<span id="_CPPv3NK16AgentDescription11hasFunctionERKNSt6stringE"></span><span id="_CPPv2NK16AgentDescription11hasFunctionERKNSt6stringE"></span><span id="AgentDescription::hasFunction__ssCRC"></span><span class="target" id="classAgentDescription_1a3bc9e1ca548fdce8d6f6be912be66ff3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription11hasFunctionERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>function_name</strong> – Name of the function to check </p>
@@ -1141,20 +1160,20 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription16isOutputOnDeviceEv">
-<span id="_CPPv3NK16AgentDescription16isOutputOnDeviceEv"></span><span id="_CPPv2NK16AgentDescription16isOutputOnDeviceEv"></span><span id="AgentDescription::isOutputOnDeviceC"></span><span class="target" id="classAgentDescription_1a7c7340030051b8676483667e951f9091"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">isOutputOnDevice</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription16isOutputOnDeviceEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription16isOutputOnDeviceEv">
+<span id="_CPPv3NK16AgentDescription16isOutputOnDeviceEv"></span><span id="_CPPv2NK16AgentDescription16isOutputOnDeviceEv"></span><span id="AgentDescription::isOutputOnDeviceC"></span><span class="target" id="classAgentDescription_1a7c7340030051b8676483667e951f9091"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isOutputOnDevice</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription16isOutputOnDeviceEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16AgentDescription9getStatesEv">
-<span id="_CPPv3NK16AgentDescription9getStatesEv"></span><span id="_CPPv2NK16AgentDescription9getStatesEv"></span><span id="AgentDescription::getStatesC"></span><span class="target" id="classAgentDescription_1a0cffbec9128c71b5663699f897e99561"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getStates</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16AgentDescription9getStatesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16AgentDescription9getStatesEv">
+<span id="_CPPv3NK16AgentDescription9getStatesEv"></span><span id="_CPPv2NK16AgentDescription9getStatesEv"></span><span id="AgentDescription::getStatesC"></span><span class="target" id="classAgentDescription_1a0cffbec9128c71b5663699f897e99561"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getStates</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16AgentDescription9getStatesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

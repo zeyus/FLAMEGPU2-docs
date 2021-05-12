@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct ModelData &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,91 +813,91 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-modeldata">
+  <section id="struct-modeldata">
 <span id="exhale-struct-structmodeldata"></span><h1>Struct ModelData<a class="headerlink" href="#struct-modeldata" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_ModelData.h.html#file-include-flamegpu-model-modeldata-h"><span class="std std-ref">File ModelData.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">std::enable_shared_from_this&lt;</span> <span class="pre">ModelData</span> <span class="pre">&gt;</span></code></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv49ModelData">
-<span id="_CPPv39ModelData"></span><span id="_CPPv29ModelData"></span><span id="ModelData"></span><span class="target" id="structModelData"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">ModelData</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">enable_shared_from_this</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv49ModelData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv49ModelData">
+<span id="_CPPv39ModelData"></span><span id="_CPPv29ModelData"></span><span id="ModelData"></span><span class="target" id="structModelData"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ModelData</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_shared_from_this</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv49ModelData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This is the internal data store for <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> Users should only access that data stored within via an instance of <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData9size_typeE">
-<span id="_CPPv3N9ModelData9size_typeE"></span><span id="_CPPv2N9ModelData9size_typeE"></span><span id="ModelData::size_type"></span><span class="target" id="structModelData_1a3f64b602bce0d1db8bf9cc59d007e8f4"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N9ModelData9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData9size_typeE">
+<span id="_CPPv3N9ModelData9size_typeE"></span><span id="_CPPv2N9ModelData9size_typeE"></span><span id="ModelData::size_type"></span><span class="target" id="structModelData_1a3f64b602bce0d1db8bf9cc59d007e8f4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Common size type used in the definition of models </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData8AgentMapE">
-<span id="_CPPv3N9ModelData8AgentMapE"></span><span id="_CPPv2N9ModelData8AgentMapE"></span><span id="ModelData::AgentMap"></span><span class="target" id="structModelData_1afdb57f6a26f308e7f4cd5b5a0ba6ad42"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="pre">AgentData</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentMap</span></code><a class="headerlink" href="#_CPPv4N9ModelData8AgentMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData8AgentMapE">
+<span id="_CPPv3N9ModelData8AgentMapE"></span><span id="_CPPv2N9ModelData8AgentMapE"></span><span id="ModelData::AgentMap"></span><span class="target" id="structModelData_1afdb57f6a26f308e7f4cd5b5a0ba6ad42"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structAgentData.html#_CPPv49AgentData" title="AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentMap</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData8AgentMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Map of name:agent definition map&lt;string, AgentData&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData10MessageMapE">
-<span id="_CPPv3N9ModelData10MessageMapE"></span><span id="_CPPv2N9ModelData10MessageMapE"></span><span id="ModelData::MessageMap"></span><span class="target" id="structModelData_1a2d34e6d980663fb42c11f141e6058713"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="pre">Data</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">MessageMap</span></code><a class="headerlink" href="#_CPPv4N9ModelData10MessageMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData10MessageMapE">
+<span id="_CPPv3N9ModelData10MessageMapE"></span><span id="_CPPv2N9ModelData10MessageMapE"></span><span id="ModelData::MessageMap"></span><span class="target" id="structModelData_1a2d34e6d980663fb42c11f141e6058713"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MessageMap</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData10MessageMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Map of name:message definition map&lt;string, MessageData&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData11SubModelMapE">
-<span id="_CPPv3N9ModelData11SubModelMapE"></span><span id="_CPPv2N9ModelData11SubModelMapE"></span><span id="ModelData::SubModelMap"></span><span class="target" id="structModelData_1a0229dbea0060a1e247464a122ccbc0c8"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">SubModelMap</span></code><a class="headerlink" href="#_CPPv4N9ModelData11SubModelMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData11SubModelMapE">
+<span id="_CPPv3N9ModelData11SubModelMapE"></span><span id="_CPPv2N9ModelData11SubModelMapE"></span><span id="ModelData::SubModelMap"></span><span class="target" id="structModelData_1a0229dbea0060a1e247464a122ccbc0c8"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SubModelMap</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData11SubModelMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Map of name:message definition map&lt;string, MessageData&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData9LayerListE">
-<span id="_CPPv3N9ModelData9LayerListE"></span><span id="_CPPv2N9ModelData9LayerListE"></span><span id="ModelData::LayerList"></span><span class="target" id="structModelData_1ac0f4196e9e6b546666f529c606800928"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">list</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structLayerData.html#_CPPv49LayerData" title="LayerData"><span class="pre">LayerData</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">LayerList</span></code><a class="headerlink" href="#_CPPv4N9ModelData9LayerListE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData9LayerListE">
+<span id="_CPPv3N9ModelData9LayerListE"></span><span id="_CPPv2N9ModelData9LayerListE"></span><span id="ModelData::LayerList"></span><span class="target" id="structModelData_1ac0f4196e9e6b546666f529c606800928"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">list</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structLayerData.html#_CPPv49LayerData" title="LayerData"><span class="n"><span class="pre">LayerData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LayerList</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData9LayerListE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>List of layer definitions list&lt;LayerData&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData15InitFunctionSetE">
-<span id="_CPPv3N9ModelData15InitFunctionSetE"></span><span id="_CPPv2N9ModelData15InitFunctionSetE"></span><span id="ModelData::InitFunctionSet"></span><span class="target" id="structModelData_1aa5cb868b5b79d028734f24179cea788d"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a90dc8679548db206b2f97c41d4b5705d.html#_CPPv430FLAMEGPU_INIT_FUNCTION_POINTER" title="FLAMEGPU_INIT_FUNCTION_POINTER"><span class="pre">FLAMEGPU_INIT_FUNCTION_POINTER</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">InitFunctionSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData15InitFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData15InitFunctionSetE">
+<span id="_CPPv3N9ModelData15InitFunctionSetE"></span><span id="_CPPv2N9ModelData15InitFunctionSetE"></span><span id="ModelData::InitFunctionSet"></span><span class="target" id="structModelData_1aa5cb868b5b79d028734f24179cea788d"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a90dc8679548db206b2f97c41d4b5705d.html#_CPPv430FLAMEGPU_INIT_FUNCTION_POINTER" title="FLAMEGPU_INIT_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_INIT_FUNCTION_POINTER</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">InitFunctionSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData15InitFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Init function pointers set&lt;FLAMEGPU_INIT_FUNCTION_POINTER&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData15StepFunctionSetE">
-<span id="_CPPv3N9ModelData15StepFunctionSetE"></span><span id="_CPPv2N9ModelData15StepFunctionSetE"></span><span id="ModelData::StepFunctionSet"></span><span class="target" id="structModelData_1af2f33c48f0a9365599725118c3b35f5c"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a75f36c6e01e1c72b042145a9216aaf0e.html#_CPPv430FLAMEGPU_STEP_FUNCTION_POINTER" title="FLAMEGPU_STEP_FUNCTION_POINTER"><span class="pre">FLAMEGPU_STEP_FUNCTION_POINTER</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">StepFunctionSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData15StepFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData15StepFunctionSetE">
+<span id="_CPPv3N9ModelData15StepFunctionSetE"></span><span id="_CPPv2N9ModelData15StepFunctionSetE"></span><span id="ModelData::StepFunctionSet"></span><span class="target" id="structModelData_1af2f33c48f0a9365599725118c3b35f5c"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a75f36c6e01e1c72b042145a9216aaf0e.html#_CPPv430FLAMEGPU_STEP_FUNCTION_POINTER" title="FLAMEGPU_STEP_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_STEP_FUNCTION_POINTER</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">StepFunctionSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData15StepFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Step function pointers set&lt;FLAMEGPU_STEP_FUNCTION_POINTER&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData23HostFunctionCallbackSetE">
-<span id="_CPPv3N9ModelData23HostFunctionCallbackSetE"></span><span id="_CPPv2N9ModelData23HostFunctionCallbackSetE"></span><span id="ModelData::HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a492672804242a407a2a9d085500fca3b"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="pre">HostFunctionCallback</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">HostFunctionCallbackSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData23HostFunctionCallbackSetE">
+<span id="_CPPv3N9ModelData23HostFunctionCallbackSetE"></span><span id="_CPPv2N9ModelData23HostFunctionCallbackSetE"></span><span id="ModelData::HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a492672804242a407a2a9d085500fca3b"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="n"><span class="pre">HostFunctionCallback</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostFunctionCallbackSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Step function callback pointers set&lt;HostFunctionCallback&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData32HostFunctionConditionCallbackSetE">
-<span id="_CPPv3N9ModelData32HostFunctionConditionCallbackSetE"></span><span id="_CPPv2N9ModelData32HostFunctionConditionCallbackSetE"></span><span id="ModelData::HostFunctionConditionCallbackSet"></span><span class="target" id="structModelData_1ab8cf405486a638a88786a37a27efacf5"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="classHostFunctionConditionCallback.html#_CPPv429HostFunctionConditionCallback" title="HostFunctionConditionCallback"><span class="pre">HostFunctionConditionCallback</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">HostFunctionConditionCallbackSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData32HostFunctionConditionCallbackSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData32HostFunctionConditionCallbackSetE">
+<span id="_CPPv3N9ModelData32HostFunctionConditionCallbackSetE"></span><span id="_CPPv2N9ModelData32HostFunctionConditionCallbackSetE"></span><span id="ModelData::HostFunctionConditionCallbackSet"></span><span class="target" id="structModelData_1ab8cf405486a638a88786a37a27efacf5"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classHostFunctionConditionCallback.html#_CPPv429HostFunctionConditionCallback" title="HostFunctionConditionCallback"><span class="n"><span class="pre">HostFunctionConditionCallback</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostFunctionConditionCallbackSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData32HostFunctionConditionCallbackSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of host condition callback pointers set&lt;HostFunctionConditionCallback&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData15ExitFunctionSetE">
-<span id="_CPPv3N9ModelData15ExitFunctionSetE"></span><span id="_CPPv2N9ModelData15ExitFunctionSetE"></span><span id="ModelData::ExitFunctionSet"></span><span class="target" id="structModelData_1a98b86ef80cf3a92f6f0edcf96e495b24"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a6694c98b73302b90ccdf71390204b5f3.html#_CPPv430FLAMEGPU_EXIT_FUNCTION_POINTER" title="FLAMEGPU_EXIT_FUNCTION_POINTER"><span class="pre">FLAMEGPU_EXIT_FUNCTION_POINTER</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">ExitFunctionSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData15ExitFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData15ExitFunctionSetE">
+<span id="_CPPv3N9ModelData15ExitFunctionSetE"></span><span id="_CPPv2N9ModelData15ExitFunctionSetE"></span><span id="ModelData::ExitFunctionSet"></span><span class="target" id="structModelData_1a98b86ef80cf3a92f6f0edcf96e495b24"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a6694c98b73302b90ccdf71390204b5f3.html#_CPPv430FLAMEGPU_EXIT_FUNCTION_POINTER" title="FLAMEGPU_EXIT_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_EXIT_FUNCTION_POINTER</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExitFunctionSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData15ExitFunctionSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Exit function pointers set&lt;FLAMEGPU_EXIT_FUNCTION_POINTER&gt; </p>
 </dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N9ModelData16ExitConditionSetE">
-<span id="_CPPv3N9ModelData16ExitConditionSetE"></span><span id="_CPPv2N9ModelData16ExitConditionSetE"></span><span id="ModelData::ExitConditionSet"></span><span class="target" id="structModelData_1aa2c22cff07e32a776c9299d5b207c68b"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a8184cb60c4b531e75e49e55240ef00c3.html#_CPPv431FLAMEGPU_EXIT_CONDITION_POINTER" title="FLAMEGPU_EXIT_CONDITION_POINTER"><span class="pre">FLAMEGPU_EXIT_CONDITION_POINTER</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">ExitConditionSet</span></code><a class="headerlink" href="#_CPPv4N9ModelData16ExitConditionSetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData16ExitConditionSetE">
+<span id="_CPPv3N9ModelData16ExitConditionSetE"></span><span id="_CPPv2N9ModelData16ExitConditionSetE"></span><span id="ModelData::ExitConditionSet"></span><span class="target" id="structModelData_1aa2c22cff07e32a776c9299d5b207c68b"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a8184cb60c4b531e75e49e55240ef00c3.html#_CPPv431FLAMEGPU_EXIT_CONDITION_POINTER" title="FLAMEGPU_EXIT_CONDITION_POINTER"><span class="n"><span class="pre">FLAMEGPU_EXIT_CONDITION_POINTER</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExitConditionSet</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData16ExitConditionSetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Exit condition pointers set&lt;FLAMEGPU_EXIT_CONDITION_POINTER&gt; </p>
 </dd></dl>
 
@@ -886,19 +905,19 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9ModelDataD0Ev">
-<span id="_CPPv3N9ModelDataD0Ev"></span><span id="_CPPv2N9ModelDataD0Ev"></span><span id="ModelData::~ModelData"></span><span class="target" id="structModelData_1a8888ea03c5d27446f2f7f93f6fe6cd42"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~ModelData</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelDataD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelDataD0Ev">
+<span id="_CPPv3N9ModelDataD0Ev"></span><span id="_CPPv2N9ModelDataD0Ev"></span><span id="ModelData::~ModelData"></span><span class="target" id="structModelData_1a8888ea03c5d27446f2f7f93f6fe6cd42"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~ModelData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelDataD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9ModelData5cloneEv">
-<span id="_CPPv3NK9ModelData5cloneEv"></span><span id="_CPPv2NK9ModelData5cloneEv"></span><span id="ModelData::cloneC"></span><span class="target" id="structModelData_1a498fe5ead125ed63e2e396221e4b1b1b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9ModelData5cloneEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9ModelData5cloneEv">
+<span id="_CPPv3NK9ModelData5cloneEv"></span><span id="_CPPv2NK9ModelData5cloneEv"></span><span id="ModelData::cloneC"></span><span class="target" id="structModelData_1a498fe5ead125ed63e2e396221e4b1b1b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clone</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9ModelData5cloneEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Creates a copy of the entire model definition hierarchy This is called when a <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> is passed to a <a class="reference internal" href="classSimulation.html#classSimulation"><span class="std std-ref">Simulation</span></a> (e.g. <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a>) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9ModelDataeqERK9ModelData">
-<span id="_CPPv3NK9ModelDataeqERK9ModelData"></span><span id="_CPPv2NK9ModelDataeqERK9ModelData"></span><span id="ModelData::eq-operator__ModelDataCRC"></span><span class="target" id="structModelData_1ab48a95a0df97cf9498632038b88e2ebe"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9ModelDataeqERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9ModelDataeqERK9ModelData">
+<span id="_CPPv3NK9ModelDataeqERK9ModelData"></span><span id="_CPPv2NK9ModelDataeqERK9ModelData"></span><span id="ModelData::eq-operator__ModelDataCRC"></span><span class="target" id="structModelData_1ab48a95a0df97cf9498632038b88e2ebe"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9ModelDataeqERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structModelData"><span class="std std-ref">ModelData</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -912,8 +931,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9ModelDataneERK9ModelData">
-<span id="_CPPv3NK9ModelDataneERK9ModelData"></span><span id="_CPPv2NK9ModelDataneERK9ModelData"></span><span id="ModelData::neq-operator__ModelDataCRC"></span><span class="target" id="structModelData_1a491b394b076214760e8b4c557f788a96"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9ModelDataneERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9ModelDataneERK9ModelData">
+<span id="_CPPv3NK9ModelDataneERK9ModelData"></span><span id="_CPPv2NK9ModelDataneERK9ModelData"></span><span id="ModelData::neq-operator__ModelDataCRC"></span><span class="target" id="structModelData_1a491b394b076214760e8b4c557f788a96"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9ModelDataneERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structModelData"><span class="std std-ref">ModelData</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -927,8 +946,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9ModelData16getMaxLayerWidthEv">
-<span id="_CPPv3NK9ModelData16getMaxLayerWidthEv"></span><span id="_CPPv2NK9ModelData16getMaxLayerWidthEv"></span><span id="ModelData::getMaxLayerWidthC"></span><span class="target" id="structModelData_1aa2ea0f573614fcf884f70d31e68bc19e"></span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getMaxLayerWidth</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9ModelData16getMaxLayerWidthEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9ModelData16getMaxLayerWidthEv">
+<span id="_CPPv3NK9ModelData16getMaxLayerWidthEv"></span><span id="_CPPv2NK9ModelData16getMaxLayerWidthEv"></span><span id="ModelData::getMaxLayerWidthC"></span><span class="target" id="structModelData_1aa2ea0f573614fcf884f70d31e68bc19e"></span><a class="reference internal" href="#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxLayerWidth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9ModelData16getMaxLayerWidthEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The maximum layer width within the model’s hierarchy </p>
@@ -940,88 +959,88 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData6agentsE">
-<span id="_CPPv3N9ModelData6agentsE"></span><span id="_CPPv2N9ModelData6agentsE"></span><span id="ModelData::agents__AgentMap"></span><span class="target" id="structModelData_1a6f2bb84bfea123546150f8521387f7bb"></span><a class="reference internal" href="#_CPPv4N9ModelData8AgentMapE" title="ModelData::AgentMap"><span class="pre">AgentMap</span></a> <code class="sig-name descname"><span class="pre">agents</span></code><a class="headerlink" href="#_CPPv4N9ModelData6agentsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData6agentsE">
+<span id="_CPPv3N9ModelData6agentsE"></span><span id="_CPPv2N9ModelData6agentsE"></span><span id="ModelData::agents__AgentMap"></span><span class="target" id="structModelData_1a6f2bb84bfea123546150f8521387f7bb"></span><a class="reference internal" href="#_CPPv4N9ModelData8AgentMapE" title="ModelData::AgentMap"><span class="n"><span class="pre">AgentMap</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agents</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData6agentsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s agent definitions </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData8messagesE">
-<span id="_CPPv3N9ModelData8messagesE"></span><span id="_CPPv2N9ModelData8messagesE"></span><span id="ModelData::messages__MessageMap"></span><span class="target" id="structModelData_1a6aadfde57145676cc9f7dcd12ef9afdd"></span><a class="reference internal" href="#_CPPv4N9ModelData10MessageMapE" title="ModelData::MessageMap"><span class="pre">MessageMap</span></a> <code class="sig-name descname"><span class="pre">messages</span></code><a class="headerlink" href="#_CPPv4N9ModelData8messagesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData8messagesE">
+<span id="_CPPv3N9ModelData8messagesE"></span><span id="_CPPv2N9ModelData8messagesE"></span><span id="ModelData::messages__MessageMap"></span><span class="target" id="structModelData_1a6aadfde57145676cc9f7dcd12ef9afdd"></span><a class="reference internal" href="#_CPPv4N9ModelData10MessageMapE" title="ModelData::MessageMap"><span class="n"><span class="pre">MessageMap</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">messages</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData8messagesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s message definitions </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData9submodelsE">
-<span id="_CPPv3N9ModelData9submodelsE"></span><span id="_CPPv2N9ModelData9submodelsE"></span><span id="ModelData::submodels__SubModelMap"></span><span class="target" id="structModelData_1a3e367aaaa333d1eaa6a38ffb369513fa"></span><a class="reference internal" href="#_CPPv4N9ModelData11SubModelMapE" title="ModelData::SubModelMap"><span class="pre">SubModelMap</span></a> <code class="sig-name descname"><span class="pre">submodels</span></code><a class="headerlink" href="#_CPPv4N9ModelData9submodelsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData9submodelsE">
+<span id="_CPPv3N9ModelData9submodelsE"></span><span id="_CPPv2N9ModelData9submodelsE"></span><span id="ModelData::submodels__SubModelMap"></span><span class="target" id="structModelData_1a3e367aaaa333d1eaa6a38ffb369513fa"></span><a class="reference internal" href="#_CPPv4N9ModelData11SubModelMapE" title="ModelData::SubModelMap"><span class="n"><span class="pre">SubModelMap</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">submodels</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData9submodelsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s sub models </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData6layersE">
-<span id="_CPPv3N9ModelData6layersE"></span><span id="_CPPv2N9ModelData6layersE"></span><span id="ModelData::layers__LayerList"></span><span class="target" id="structModelData_1aeeebdea92c596150ede5077d7b9f24f0"></span><a class="reference internal" href="#_CPPv4N9ModelData9LayerListE" title="ModelData::LayerList"><span class="pre">LayerList</span></a> <code class="sig-name descname"><span class="pre">layers</span></code><a class="headerlink" href="#_CPPv4N9ModelData6layersE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData6layersE">
+<span id="_CPPv3N9ModelData6layersE"></span><span id="_CPPv2N9ModelData6layersE"></span><span id="ModelData::layers__LayerList"></span><span class="target" id="structModelData_1aeeebdea92c596150ede5077d7b9f24f0"></span><a class="reference internal" href="#_CPPv4N9ModelData9LayerListE" title="ModelData::LayerList"><span class="n"><span class="pre">LayerList</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">layers</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData6layersE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s layer definitions </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData13initFunctionsE">
-<span id="_CPPv3N9ModelData13initFunctionsE"></span><span id="_CPPv2N9ModelData13initFunctionsE"></span><span id="ModelData::initFunctions__InitFunctionSet"></span><span class="target" id="structModelData_1aac85e30a444bcfb2b6fd356eb41e8f59"></span><a class="reference internal" href="#_CPPv4N9ModelData15InitFunctionSetE" title="ModelData::InitFunctionSet"><span class="pre">InitFunctionSet</span></a> <code class="sig-name descname"><span class="pre">initFunctions</span></code><a class="headerlink" href="#_CPPv4N9ModelData13initFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData13initFunctionsE">
+<span id="_CPPv3N9ModelData13initFunctionsE"></span><span id="_CPPv2N9ModelData13initFunctionsE"></span><span id="ModelData::initFunctions__InitFunctionSet"></span><span class="target" id="structModelData_1aac85e30a444bcfb2b6fd356eb41e8f59"></span><a class="reference internal" href="#_CPPv4N9ModelData15InitFunctionSetE" title="ModelData::InitFunctionSet"><span class="n"><span class="pre">InitFunctionSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initFunctions</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData13initFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds pointers to all of the init functions used by the model </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData21initFunctionCallbacksE">
-<span id="_CPPv3N9ModelData21initFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21initFunctionCallbacksE"></span><span id="ModelData::initFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a09a5e7063ee1a1466e0ddb9a5ab42205"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="pre">HostFunctionCallbackSet</span></a> <code class="sig-name descname"><span class="pre">initFunctionCallbacks</span></code><a class="headerlink" href="#_CPPv4N9ModelData21initFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData21initFunctionCallbacksE">
+<span id="_CPPv3N9ModelData21initFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21initFunctionCallbacksE"></span><span id="ModelData::initFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a09a5e7063ee1a1466e0ddb9a5ab42205"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="n"><span class="pre">HostFunctionCallbackSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initFunctionCallbacks</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData21initFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData13stepFunctionsE">
-<span id="_CPPv3N9ModelData13stepFunctionsE"></span><span id="_CPPv2N9ModelData13stepFunctionsE"></span><span id="ModelData::stepFunctions__StepFunctionSet"></span><span class="target" id="structModelData_1a1ea9559f3fbf2376ac60a905ea3778a8"></span><a class="reference internal" href="#_CPPv4N9ModelData15StepFunctionSetE" title="ModelData::StepFunctionSet"><span class="pre">StepFunctionSet</span></a> <code class="sig-name descname"><span class="pre">stepFunctions</span></code><a class="headerlink" href="#_CPPv4N9ModelData13stepFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData13stepFunctionsE">
+<span id="_CPPv3N9ModelData13stepFunctionsE"></span><span id="_CPPv2N9ModelData13stepFunctionsE"></span><span id="ModelData::stepFunctions__StepFunctionSet"></span><span class="target" id="structModelData_1a1ea9559f3fbf2376ac60a905ea3778a8"></span><a class="reference internal" href="#_CPPv4N9ModelData15StepFunctionSetE" title="ModelData::StepFunctionSet"><span class="n"><span class="pre">StepFunctionSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stepFunctions</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData13stepFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds pointers to all of the step functions used by the model </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData21stepFunctionCallbacksE">
-<span id="_CPPv3N9ModelData21stepFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21stepFunctionCallbacksE"></span><span id="ModelData::stepFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a6146959f84df1d5ae5534e7afa9f7c66"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="pre">HostFunctionCallbackSet</span></a> <code class="sig-name descname"><span class="pre">stepFunctionCallbacks</span></code><a class="headerlink" href="#_CPPv4N9ModelData21stepFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData21stepFunctionCallbacksE">
+<span id="_CPPv3N9ModelData21stepFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21stepFunctionCallbacksE"></span><span id="ModelData::stepFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a6146959f84df1d5ae5534e7afa9f7c66"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="n"><span class="pre">HostFunctionCallbackSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stepFunctionCallbacks</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData21stepFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData13exitFunctionsE">
-<span id="_CPPv3N9ModelData13exitFunctionsE"></span><span id="_CPPv2N9ModelData13exitFunctionsE"></span><span id="ModelData::exitFunctions__ExitFunctionSet"></span><span class="target" id="structModelData_1ae81ff77d210b364ab763df94af23a232"></span><a class="reference internal" href="#_CPPv4N9ModelData15ExitFunctionSetE" title="ModelData::ExitFunctionSet"><span class="pre">ExitFunctionSet</span></a> <code class="sig-name descname"><span class="pre">exitFunctions</span></code><a class="headerlink" href="#_CPPv4N9ModelData13exitFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData13exitFunctionsE">
+<span id="_CPPv3N9ModelData13exitFunctionsE"></span><span id="_CPPv2N9ModelData13exitFunctionsE"></span><span id="ModelData::exitFunctions__ExitFunctionSet"></span><span class="target" id="structModelData_1ae81ff77d210b364ab763df94af23a232"></span><a class="reference internal" href="#_CPPv4N9ModelData15ExitFunctionSetE" title="ModelData::ExitFunctionSet"><span class="n"><span class="pre">ExitFunctionSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exitFunctions</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData13exitFunctionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds pointers to all of the exit functions used by the model </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData21exitFunctionCallbacksE">
-<span id="_CPPv3N9ModelData21exitFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21exitFunctionCallbacksE"></span><span id="ModelData::exitFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a8201e0a13f4d5e678a988035b87ea4ef"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="pre">HostFunctionCallbackSet</span></a> <code class="sig-name descname"><span class="pre">exitFunctionCallbacks</span></code><a class="headerlink" href="#_CPPv4N9ModelData21exitFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData21exitFunctionCallbacksE">
+<span id="_CPPv3N9ModelData21exitFunctionCallbacksE"></span><span id="_CPPv2N9ModelData21exitFunctionCallbacksE"></span><span id="ModelData::exitFunctionCallbacks__HostFunctionCallbackSet"></span><span class="target" id="structModelData_1a8201e0a13f4d5e678a988035b87ea4ef"></span><a class="reference internal" href="#_CPPv4N9ModelData23HostFunctionCallbackSetE" title="ModelData::HostFunctionCallbackSet"><span class="n"><span class="pre">HostFunctionCallbackSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exitFunctionCallbacks</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData21exitFunctionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData14exitConditionsE">
-<span id="_CPPv3N9ModelData14exitConditionsE"></span><span id="_CPPv2N9ModelData14exitConditionsE"></span><span id="ModelData::exitConditions__ExitConditionSet"></span><span class="target" id="structModelData_1a6a320f630976eada190460e759d86ea2"></span><a class="reference internal" href="#_CPPv4N9ModelData16ExitConditionSetE" title="ModelData::ExitConditionSet"><span class="pre">ExitConditionSet</span></a> <code class="sig-name descname"><span class="pre">exitConditions</span></code><a class="headerlink" href="#_CPPv4N9ModelData14exitConditionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData14exitConditionsE">
+<span id="_CPPv3N9ModelData14exitConditionsE"></span><span id="_CPPv2N9ModelData14exitConditionsE"></span><span id="ModelData::exitConditions__ExitConditionSet"></span><span class="target" id="structModelData_1a6a320f630976eada190460e759d86ea2"></span><a class="reference internal" href="#_CPPv4N9ModelData16ExitConditionSetE" title="ModelData::ExitConditionSet"><span class="n"><span class="pre">ExitConditionSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exitConditions</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData14exitConditionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds pointers to all of the exit conditions used by the model </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData22exitConditionCallbacksE">
-<span id="_CPPv3N9ModelData22exitConditionCallbacksE"></span><span id="_CPPv2N9ModelData22exitConditionCallbacksE"></span><span id="ModelData::exitConditionCallbacks__HostFunctionConditionCallbackSet"></span><span class="target" id="structModelData_1a15b1760d8b4763153df67ba82467bc01"></span><a class="reference internal" href="#_CPPv4N9ModelData32HostFunctionConditionCallbackSetE" title="ModelData::HostFunctionConditionCallbackSet"><span class="pre">HostFunctionConditionCallbackSet</span></a> <code class="sig-name descname"><span class="pre">exitConditionCallbacks</span></code><a class="headerlink" href="#_CPPv4N9ModelData22exitConditionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData22exitConditionCallbacksE">
+<span id="_CPPv3N9ModelData22exitConditionCallbacksE"></span><span id="_CPPv2N9ModelData22exitConditionCallbacksE"></span><span id="ModelData::exitConditionCallbacks__HostFunctionConditionCallbackSet"></span><span class="target" id="structModelData_1a15b1760d8b4763153df67ba82467bc01"></span><a class="reference internal" href="#_CPPv4N9ModelData32HostFunctionConditionCallbackSetE" title="ModelData::HostFunctionConditionCallbackSet"><span class="n"><span class="pre">HostFunctionConditionCallbackSet</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exitConditionCallbacks</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData22exitConditionCallbacksE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData11environmentE">
-<span id="_CPPv3N9ModelData11environmentE"></span><span id="_CPPv2N9ModelData11environmentE"></span><span id="ModelData::environment__std::shared_ptr:EnvironmentDescription:"></span><span class="target" id="structModelData_1a1ffe2feb00b60b94de497c3e7881caf9"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="pre">EnvironmentDescription</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">environment</span></code><a class="headerlink" href="#_CPPv4N9ModelData11environmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData11environmentE">
+<span id="_CPPv3N9ModelData11environmentE"></span><span id="_CPPv2N9ModelData11environmentE"></span><span id="ModelData::environment__std::shared_ptr:EnvironmentDescription:"></span><span class="target" id="structModelData_1a1ffe2feb00b60b94de497c3e7881caf9"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="n"><span class="pre">EnvironmentDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">environment</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData11environmentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s environment property definitions </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData4nameE">
-<span id="_CPPv3N9ModelData4nameE"></span><span id="_CPPv2N9ModelData4nameE"></span><span id="ModelData::name__ss"></span><span class="target" id="structModelData_1aa41699319fa7bb987f32947feee9ecb0"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#_CPPv4N9ModelData4nameE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData4nameE">
+<span id="_CPPv3N9ModelData4nameE"></span><span id="_CPPv2N9ModelData4nameE"></span><span id="ModelData::name__ss"></span><span class="target" id="structModelData_1aa41699319fa7bb987f32947feee9ecb0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData4nameE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The name of the model This must be unique among <a class="reference internal" href="classSimulation.html#classSimulation"><span class="std std-ref">Simulation</span></a> (e.g. <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a>) instances </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData15dependencyGraphE">
-<span id="_CPPv3N9ModelData15dependencyGraphE"></span><span id="_CPPv2N9ModelData15dependencyGraphE"></span><span id="ModelData::dependencyGraph__std::shared_ptr:DependencyGraph:"></span><span class="target" id="structModelData_1a18a21298aac437fa833197ba54df709d"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classDependencyGraph.html#_CPPv415DependencyGraph" title="DependencyGraph"><span class="pre">DependencyGraph</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">dependencyGraph</span></code><a class="headerlink" href="#_CPPv4N9ModelData15dependencyGraphE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData15dependencyGraphE">
+<span id="_CPPv3N9ModelData15dependencyGraphE"></span><span id="_CPPv2N9ModelData15dependencyGraphE"></span><span id="ModelData::dependencyGraph__std::shared_ptr:DependencyGraph:"></span><span class="target" id="structModelData_1a18a21298aac437fa833197ba54df709d"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classDependencyGraph.html#_CPPv415DependencyGraph" title="DependencyGraph"><span class="n"><span class="pre">DependencyGraph</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependencyGraph</span></span></span><a class="headerlink" href="#_CPPv4N9ModelData15dependencyGraphE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The dependency graph representing the dependencies of agent functions, submodels and host functions for this model. </p>
 </dd></dl>
 
@@ -1029,8 +1048,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N9ModelData13DEFAULT_STATEE">
-<span id="_CPPv3N9ModelData13DEFAULT_STATEE"></span><span id="_CPPv2N9ModelData13DEFAULT_STATEE"></span><span id="ModelData::DEFAULT_STATE__cCP"></span><span class="target" id="structModelData_1a2c6ea41b3cdc766ca75ca9e400f0caa4"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">DEFAULT_STATE</span></code> <span class="pre">=</span> <span class="pre">&quot;default&quot;</span><a class="headerlink" href="#_CPPv4N9ModelData13DEFAULT_STATEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData13DEFAULT_STATEE">
+<span id="_CPPv3N9ModelData13DEFAULT_STATEE"></span><span id="_CPPv2N9ModelData13DEFAULT_STATEE"></span><span id="ModelData::DEFAULT_STATE__cCP"></span><span class="target" id="structModelData_1a2c6ea41b3cdc766ca75ca9e400f0caa4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">DEFAULT_STATE</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><s><span class="pre">&quot;default&quot;</span></s><a class="headerlink" href="#_CPPv4N9ModelData13DEFAULT_STATEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default state, all agents and agent functions begin in/with this state </p>
 </dd></dl>
 
@@ -1038,14 +1057,14 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9ModelData9ModelDataERK9ModelData">
-<span id="_CPPv3N9ModelData9ModelDataERK9ModelData"></span><span id="_CPPv2N9ModelData9ModelDataERK9ModelData"></span><span id="ModelData::ModelData__ModelDataCR"></span><span class="target" id="structModelData_1a19b37298a47f8e33ff99e61bae0ae887"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">ModelData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N9ModelData9ModelDataERK9ModelData" title="ModelData::ModelData"><span class="pre">ModelData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelData9ModelDataERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData9ModelDataERK9ModelData">
+<span id="_CPPv3N9ModelData9ModelDataERK9ModelData"></span><span id="_CPPv2N9ModelData9ModelDataERK9ModelData"></span><span id="ModelData::ModelData__ModelDataCR"></span><span class="target" id="structModelData_1a19b37298a47f8e33ff99e61bae0ae887"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ModelData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N9ModelData9ModelDataERK9ModelData" title="ModelData::ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelData9ModelDataERK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Copy constructor This should only be called via <a class="reference internal" href="#structModelData_1a498fe5ead125ed63e2e396221e4b1b1b"><span class="std std-ref">clone()</span></a>; </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9ModelData9ModelDataERKNSt6stringE">
-<span id="_CPPv3N9ModelData9ModelDataERKNSt6stringE"></span><span id="_CPPv2N9ModelData9ModelDataERKNSt6stringE"></span><span id="ModelData::ModelData__ssCR"></span><span class="target" id="structModelData_1ab2398dcb4c9c8857a632ff0f2a2efbf8"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">ModelData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">model_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelData9ModelDataERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9ModelData9ModelDataERKNSt6stringE">
+<span id="_CPPv3N9ModelData9ModelDataERKNSt6stringE"></span><span id="_CPPv2N9ModelData9ModelDataERKNSt6stringE"></span><span id="ModelData::ModelData__ssCR"></span><span class="target" id="structModelData_1ab2398dcb4c9c8857a632ff0f2a2efbf8"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ModelData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9ModelData9ModelDataERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Normal constructor This should only be called by <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a></p>
 <p>Constructors </p>
 </dd></dl>
@@ -1054,23 +1073,23 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt>
-<span class="target" id="structModelData_1a29cf74aea3669e9db83e1f9ba6e54c71"></span><code class="sig-name descname"><span class="pre">friend</span> <span class="pre">SubModelData</span></code></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="structModelData_1a29cf74aea3669e9db83e1f9ba6e54c71"></span><span class="sig-name descname"><span class="pre">friend</span> <span class="pre">SubModelData</span></span></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">ModelDescription</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

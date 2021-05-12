@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct SubEnvironmentData &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,31 +813,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-subenvironmentdata">
+  <section id="struct-subenvironmentdata">
 <span id="exhale-struct-structsubenvironmentdata"></span><h1>Struct SubEnvironmentData<a class="headerlink" href="#struct-subenvironmentdata" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_SubEnvironmentData.h.html#file-include-flamegpu-model-subenvironmentdata-h"><span class="std std-ref">File SubEnvironmentData.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">std::enable_shared_from_this&lt;</span> <span class="pre">SubEnvironmentData</span> <span class="pre">&gt;</span></code></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv418SubEnvironmentData">
-<span id="_CPPv318SubEnvironmentData"></span><span id="_CPPv218SubEnvironmentData"></span><span id="SubEnvironmentData"></span><span class="target" id="structSubEnvironmentData"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">SubEnvironmentData</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">enable_shared_from_this</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="pre">SubEnvironmentData</span></a><span class="pre">&gt;</span><a class="headerlink" href="#_CPPv418SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv418SubEnvironmentData">
+<span id="_CPPv318SubEnvironmentData"></span><span id="_CPPv218SubEnvironmentData"></span><span id="SubEnvironmentData"></span><span class="target" id="structSubEnvironmentData"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SubEnvironmentData</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">enable_shared_from_this</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="n"><span class="pre">SubEnvironmentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv418SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all the mappings between the environment properties in the submodel and the parent model Properties of matching type and length can be mapped </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt id="_CPPv4N18SubEnvironmentData7MappingE">
-<span id="_CPPv3N18SubEnvironmentData7MappingE"></span><span id="_CPPv2N18SubEnvironmentData7MappingE"></span><span id="SubEnvironmentData::Mapping"></span><span class="target" id="structSubEnvironmentData_1ac2f1fb29ba75688b15b64e95a967d692"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">Mapping</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData7MappingE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData7MappingE">
+<span id="_CPPv3N18SubEnvironmentData7MappingE"></span><span id="_CPPv2N18SubEnvironmentData7MappingE"></span><span id="SubEnvironmentData::Mapping"></span><span class="target" id="structSubEnvironmentData_1ac2f1fb29ba75688b15b64e95a967d692"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mapping</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData7MappingE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Map of submodel item name:parent model item name map&lt;string, string&gt; </p>
 </dd></dl>
 
@@ -826,8 +845,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK18SubEnvironmentDataeqERK18SubEnvironmentData">
-<span id="_CPPv3NK18SubEnvironmentDataeqERK18SubEnvironmentData"></span><span id="_CPPv2NK18SubEnvironmentDataeqERK18SubEnvironmentData"></span><span id="SubEnvironmentData::eq-operator__SubEnvironmentDataCRC"></span><span class="target" id="structSubEnvironmentData_1a33f701678087a5651548ad14210cfc93"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="pre">SubEnvironmentData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK18SubEnvironmentDataeqERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK18SubEnvironmentDataeqERK18SubEnvironmentData">
+<span id="_CPPv3NK18SubEnvironmentDataeqERK18SubEnvironmentData"></span><span id="_CPPv2NK18SubEnvironmentDataeqERK18SubEnvironmentData"></span><span id="SubEnvironmentData::eq-operator__SubEnvironmentDataCRC"></span><span class="target" id="structSubEnvironmentData_1a33f701678087a5651548ad14210cfc93"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="n"><span class="pre">SubEnvironmentData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SubEnvironmentDataeqERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="structSubAgentData.html#structSubAgentData"><span class="std std-ref">SubAgentData</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -841,8 +860,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK18SubEnvironmentDataneERK18SubEnvironmentData">
-<span id="_CPPv3NK18SubEnvironmentDataneERK18SubEnvironmentData"></span><span id="_CPPv2NK18SubEnvironmentDataneERK18SubEnvironmentData"></span><span id="SubEnvironmentData::neq-operator__SubEnvironmentDataCRC"></span><span class="target" id="structSubEnvironmentData_1a9f439b379ac068cbca639e82fe00a124"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="pre">SubEnvironmentData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK18SubEnvironmentDataneERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK18SubEnvironmentDataneERK18SubEnvironmentData">
+<span id="_CPPv3NK18SubEnvironmentDataneERK18SubEnvironmentData"></span><span id="_CPPv2NK18SubEnvironmentDataneERK18SubEnvironmentData"></span><span id="SubEnvironmentData::neq-operator__SubEnvironmentDataCRC"></span><span class="target" id="structSubEnvironmentData_1a9f439b379ac068cbca639e82fe00a124"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418SubEnvironmentData" title="SubEnvironmentData"><span class="n"><span class="pre">SubEnvironmentData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK18SubEnvironmentDataneERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="structSubAgentData.html#structSubAgentData"><span class="std std-ref">SubAgentData</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -856,8 +875,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData">
-<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData"></span><span id="SubEnvironmentData::SubEnvironmentData__SubEnvironmentDataCR"></span><span class="target" id="structSubEnvironmentData_1a26672c4e0a8ab4f4d1749d72740b97c2"></span><code class="sig-name descname"><span class="pre">SubEnvironmentData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData" title="SubEnvironmentData::SubEnvironmentData"><span class="pre">SubEnvironmentData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData">
+<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData"></span><span id="SubEnvironmentData::SubEnvironmentData__SubEnvironmentDataCR"></span><span class="target" id="structSubEnvironmentData_1a26672c4e0a8ab4f4d1749d72740b97c2"></span><span class="sig-name descname"><span class="n"><span class="pre">SubEnvironmentData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData" title="SubEnvironmentData::SubEnvironmentData"><span class="n"><span class="pre">SubEnvironmentData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default copy constructor, not implemented </p>
 </dd></dl>
 
@@ -865,32 +884,32 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N18SubEnvironmentData14subEnvironmentE">
-<span id="_CPPv3N18SubEnvironmentData14subEnvironmentE"></span><span id="_CPPv2N18SubEnvironmentData14subEnvironmentE"></span><span id="SubEnvironmentData::subEnvironment__std::weak_ptr:EnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1a0218644e0afdd50af68be98317bc177c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="pre">EnvironmentDescription</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">subEnvironment</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData14subEnvironmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData14subEnvironmentE">
+<span id="_CPPv3N18SubEnvironmentData14subEnvironmentE"></span><span id="_CPPv2N18SubEnvironmentData14subEnvironmentE"></span><span id="SubEnvironmentData::subEnvironment__std::weak_ptr:EnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1a0218644e0afdd50af68be98317bc177c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="n"><span class="pre">EnvironmentDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">subEnvironment</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData14subEnvironmentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The sub environment which is bound </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18SubEnvironmentData17masterEnvironmentE">
-<span id="_CPPv3N18SubEnvironmentData17masterEnvironmentE"></span><span id="_CPPv2N18SubEnvironmentData17masterEnvironmentE"></span><span id="SubEnvironmentData::masterEnvironment__std::weak_ptr:EnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1a931fef373731b002f1f04076ce2bdfbe"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="pre">EnvironmentDescription</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">masterEnvironment</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData17masterEnvironmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData17masterEnvironmentE">
+<span id="_CPPv3N18SubEnvironmentData17masterEnvironmentE"></span><span id="_CPPv2N18SubEnvironmentData17masterEnvironmentE"></span><span id="SubEnvironmentData::masterEnvironment__std::weak_ptr:EnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1a931fef373731b002f1f04076ce2bdfbe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="n"><span class="pre">EnvironmentDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">masterEnvironment</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData17masterEnvironmentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The master environment which is bound </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18SubEnvironmentData10propertiesE">
-<span id="_CPPv3N18SubEnvironmentData10propertiesE"></span><span id="_CPPv2N18SubEnvironmentData10propertiesE"></span><span id="SubEnvironmentData::properties__Mapping"></span><span class="target" id="structSubEnvironmentData_1a5525f682e471d3c351d65c58fddfa72c"></span><a class="reference internal" href="#_CPPv4N18SubEnvironmentData7MappingE" title="SubEnvironmentData::Mapping"><span class="pre">Mapping</span></a> <code class="sig-name descname"><span class="pre">properties</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData10propertiesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData10propertiesE">
+<span id="_CPPv3N18SubEnvironmentData10propertiesE"></span><span id="_CPPv2N18SubEnvironmentData10propertiesE"></span><span id="SubEnvironmentData::properties__Mapping"></span><span class="target" id="structSubEnvironmentData_1a5525f682e471d3c351d65c58fddfa72c"></span><a class="reference internal" href="#_CPPv4N18SubEnvironmentData7MappingE" title="SubEnvironmentData::Mapping"><span class="n"><span class="pre">Mapping</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">properties</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData10propertiesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Holds all of the model’s environment property mappings </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18SubEnvironmentData6parentE">
-<span id="_CPPv3N18SubEnvironmentData6parentE"></span><span id="_CPPv2N18SubEnvironmentData6parentE"></span><span id="SubEnvironmentData::parent__std::weak_ptr:SubModelData:"></span><span class="target" id="structSubEnvironmentData_1adf5a0b7a111c07f31fd139712bd57617"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">weak_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">parent</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData6parentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData6parentE">
+<span id="_CPPv3N18SubEnvironmentData6parentE"></span><span id="_CPPv2N18SubEnvironmentData6parentE"></span><span id="SubEnvironmentData::parent__std::weak_ptr:SubModelData:"></span><span class="target" id="structSubEnvironmentData_1adf5a0b7a111c07f31fd139712bd57617"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parent</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData6parentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The model which this environment is a member of </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18SubEnvironmentData11descriptionE">
-<span id="_CPPv3N18SubEnvironmentData11descriptionE"></span><span id="_CPPv2N18SubEnvironmentData11descriptionE"></span><span id="SubEnvironmentData::description__std::shared_ptr:SubEnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1ad85a9419da9b285164b1ebd1a7e71071"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="pre">SubEnvironmentDescription</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">description</span></code><a class="headerlink" href="#_CPPv4N18SubEnvironmentData11descriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData11descriptionE">
+<span id="_CPPv3N18SubEnvironmentData11descriptionE"></span><span id="_CPPv2N18SubEnvironmentData11descriptionE"></span><span id="SubEnvironmentData::description__std::shared_ptr:SubEnvironmentDescription:"></span><span class="target" id="structSubEnvironmentData_1ad85a9419da9b285164b1ebd1a7e71071"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="n"><span class="pre">SubEnvironmentDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">description</span></span></span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData11descriptionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Description class which provides convenient accessors This may be null if the instance has been cloned </p>
 </dd></dl>
 
@@ -898,40 +917,40 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData">
-<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData"></span><span id="SubEnvironmentData::SubEnvironmentData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:SubModelData:CR.SubEnvironmentDataCR"></span><span class="target" id="structSubEnvironmentData_1a8a1f5a564c842db80b571891bbf305fa"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">SubEnvironmentData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">model</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData" title="SubEnvironmentData::SubEnvironmentData"><span class="pre">SubEnvironmentData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData">
+<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData"></span><span id="SubEnvironmentData::SubEnvironmentData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:SubModelData:CR.SubEnvironmentDataCR"></span><span class="target" id="structSubEnvironmentData_1a8a1f5a564c842db80b571891bbf305fa"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SubEnvironmentData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData" title="SubEnvironmentData::SubEnvironmentData"><span class="n"><span class="pre">SubEnvironmentData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERK18SubEnvironmentData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Copy constructor This should only be called via clone(); </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE">
-<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE"></span><span id="SubEnvironmentData::SubEnvironmentData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:SubModelData:CR.std::shared_ptr:EnvironmentDescription:CR"></span><span class="target" id="structSubEnvironmentData_1a7c7847ad3322770868652bb688accf70"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">SubEnvironmentData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">model</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">_parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="pre">EnvironmentDescription</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">subEnv</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE">
+<span id="_CPPv3N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE"></span><span id="_CPPv2N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE"></span><span id="SubEnvironmentData::SubEnvironmentData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:SubModelData:CR.std::shared_ptr:EnvironmentDescription:CR"></span><span class="target" id="structSubEnvironmentData_1a7c7847ad3322770868652bb688accf70"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SubEnvironmentData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classEnvironmentDescription.html#_CPPv422EnvironmentDescription" title="EnvironmentDescription"><span class="n"><span class="pre">EnvironmentDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">subEnv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18SubEnvironmentData18SubEnvironmentDataERKNSt10shared_ptrIK9ModelDataEERKNSt10shared_ptrI12SubModelDataEERKNSt10shared_ptrI22EnvironmentDescriptionEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Normal constructor This should only be called by <a class="reference internal" href="classSubModelDescription.html#classSubModelDescription"><span class="std std-ref">SubModelDescription</span></a> </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">SubEnvironmentDescription</span></dt>
 </dl>
 
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">SubModelDescription</span></dt>
 </dl>
 
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">struct</span></em> <span class="pre">ModelData</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

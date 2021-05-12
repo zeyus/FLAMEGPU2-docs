@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct Palette &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,23 +813,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-palette">
+  <section id="struct-palette">
 <span id="exhale-struct-structpalette"></span><h1>Struct Palette<a class="headerlink" href="#struct-palette" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_visualiser_color_Palette.h.html#file-include-flamegpu-visualiser-color-palette-h"><span class="std std-ref">File Palette.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="classPalette_1_1const__iterator.html#exhale-class-classpalette-1-1const-iterator"><span class="std std-ref">Class Palette::const_iterator</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="inheritance-relationships">
+</section>
+</section>
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-types">
+<section id="derived-types">
 <h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Stock::Palettes::Dark2</span></code> (<a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html#exhale-struct-structstock-1-1palettes-1-1dark2"><span class="std std-ref">Struct Dark2</span></a>)</p></li>
@@ -824,35 +843,35 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Stock::Palettes::YlGn</span></code> (<a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html#exhale-struct-structstock-1-1palettes-1-1ylgn"><span class="std std-ref">Struct YlGn</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Stock::Palettes::YlOrRd</span></code> (<a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html#exhale-struct-structstock-1-1palettes-1-1ylorrd"><span class="std std-ref">Struct YlOrRd</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv47Palette">
-<span id="_CPPv37Palette"></span><span id="_CPPv27Palette"></span><span id="Palette"></span><span class="target" id="structPalette"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Palette</span></code><a class="headerlink" href="#_CPPv47Palette" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv47Palette">
+<span id="_CPPv37Palette"></span><span id="_CPPv27Palette"></span><span id="Palette"></span><span class="target" id="structPalette"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Palette</span></span></span><a class="headerlink" href="#_CPPv47Palette" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Abstract class for representing collections of const colors Optionally, an enum can be added to sub-classes to allow them to be accessed via a name </p>
 <p>Subclassed by <a class="reference internal" href="structStock_1_1Palettes_1_1Dark2.html#structStock_1_1Palettes_1_1Dark2"><span class="std std-ref">Stock::Palettes::Dark2</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1Greys.html#structStock_1_1Palettes_1_1Greys"><span class="std std-ref">Stock::Palettes::Greys</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1Pastel.html#structStock_1_1Palettes_1_1Pastel"><span class="std std-ref">Stock::Palettes::Pastel</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1PiYG.html#structStock_1_1Palettes_1_1PiYG"><span class="std std-ref">Stock::Palettes::PiYG</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1RdYlBu.html#structStock_1_1Palettes_1_1RdYlBu"><span class="std std-ref">Stock::Palettes::RdYlBu</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1Set1.html#structStock_1_1Palettes_1_1Set1"><span class="std std-ref">Stock::Palettes::Set1</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1Set2.html#structStock_1_1Palettes_1_1Set2"><span class="std std-ref">Stock::Palettes::Set2</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1Viridis.html#structStock_1_1Palettes_1_1Viridis"><span class="std std-ref">Stock::Palettes::Viridis</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1YlGn.html#structStock_1_1Palettes_1_1YlGn"><span class="std std-ref">Stock::Palettes::YlGn</span></a>, <a class="reference internal" href="structStock_1_1Palettes_1_1YlOrRd.html#structStock_1_1Palettes_1_1YlOrRd"><span class="std std-ref">Stock::Palettes::YlOrRd</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp enum">
-<dt id="_CPPv4N7Palette8CategoryE">
-<span id="_CPPv3N7Palette8CategoryE"></span><span id="_CPPv2N7Palette8CategoryE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7d"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-name descname"><span class="pre">Category</span></code><a class="headerlink" href="#_CPPv4N7Palette8CategoryE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette8CategoryE">
+<span id="_CPPv3N7Palette8CategoryE"></span><span id="_CPPv2N7Palette8CategoryE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7d"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Category</span></span></span><a class="headerlink" href="#_CPPv4N7Palette8CategoryE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The possibles types of palette Qualitative: Distinct/unrelated colours Sequential: Colors in a sequential order, usually best treated as ordering low to high Diverging: Colors that are ordered such towards a central midpoint </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt id="_CPPv4N7Palette8Category11QualitativeE">
-<span id="_CPPv3N7Palette8Category11QualitativeE"></span><span id="_CPPv2N7Palette8Category11QualitativeE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7da3e947083925271aa46972a0d7116f086"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">Qualitative</span></code><a class="headerlink" href="#_CPPv4N7Palette8Category11QualitativeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette8Category11QualitativeE">
+<span id="_CPPv3N7Palette8Category11QualitativeE"></span><span id="_CPPv2N7Palette8Category11QualitativeE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7da3e947083925271aa46972a0d7116f086"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Qualitative</span></span></span><a class="headerlink" href="#_CPPv4N7Palette8Category11QualitativeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N7Palette8Category10SequentialE">
-<span id="_CPPv3N7Palette8Category10SequentialE"></span><span id="_CPPv2N7Palette8Category10SequentialE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7dadb5da993481e9d8970533cb131bf1b5f"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">Sequential</span></code><a class="headerlink" href="#_CPPv4N7Palette8Category10SequentialE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette8Category10SequentialE">
+<span id="_CPPv3N7Palette8Category10SequentialE"></span><span id="_CPPv2N7Palette8Category10SequentialE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7dadb5da993481e9d8970533cb131bf1b5f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Sequential</span></span></span><a class="headerlink" href="#_CPPv4N7Palette8Category10SequentialE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N7Palette8Category9DivergingE">
-<span id="_CPPv3N7Palette8Category9DivergingE"></span><span id="_CPPv2N7Palette8Category9DivergingE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7dafaefc5eb2be02d38bf0ba1fa1c58592c"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">Diverging</span></code><a class="headerlink" href="#_CPPv4N7Palette8Category9DivergingE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette8Category9DivergingE">
+<span id="_CPPv3N7Palette8Category9DivergingE"></span><span id="_CPPv2N7Palette8Category9DivergingE"></span><span class="target" id="structPalette_1aeeb2059d5726e1e88207614038e96d7dafaefc5eb2be02d38bf0ba1fa1c58592c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Diverging</span></span></span><a class="headerlink" href="#_CPPv4N7Palette8Category9DivergingE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -861,14 +880,14 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N7PaletteD0Ev">
-<span id="_CPPv3N7PaletteD0Ev"></span><span id="_CPPv2N7PaletteD0Ev"></span><span id="Palette::~Palette"></span><span class="target" id="structPalette_1a92344ba6d61060d7b3e71d3e936fabe3"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~Palette</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">default</span><a class="headerlink" href="#_CPPv4N7PaletteD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7PaletteD0Ev">
+<span id="_CPPv3N7PaletteD0Ev"></span><span id="_CPPv2N7PaletteD0Ev"></span><span id="Palette::~Palette"></span><span class="target" id="structPalette_1a92344ba6d61060d7b3e71d3e936fabe3"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Palette</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N7PaletteD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default virtual destructor </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7PaletteixE6size_t">
-<span id="_CPPv3NK7PaletteixE6size_t"></span><span id="_CPPv2NK7PaletteixE6size_t"></span><span id="Palette::subscript-operator__sC"></span><span class="target" id="structPalette_1a557a070d9af8705d353ada48f4354e67"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator[]</span></code><span class="sig-paren">(</span><span class="pre">size_t</span> <em><span class="pre">i</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7PaletteixE6size_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7PaletteixE6size_t">
+<span id="_CPPv3NK7PaletteixE6size_t"></span><span id="_CPPv2NK7PaletteixE6size_t"></span><span id="Palette::subscript-operator__sC"></span><span class="target" id="structPalette_1a557a070d9af8705d353ada48f4354e67"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">[]</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7PaletteixE6size_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Access the members of the palette as an array </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -878,38 +897,38 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette4sizeEv">
-<span id="_CPPv3NK7Palette4sizeEv"></span><span id="_CPPv2NK7Palette4sizeEv"></span><span id="Palette::sizeC"></span><span class="target" id="structPalette_1ac1165ad07b54bba5816219657cbe2163"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7Palette4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette4sizeEv">
+<span id="_CPPv3NK7Palette4sizeEv"></span><span id="_CPPv2NK7Palette4sizeEv"></span><span id="Palette::sizeC"></span><span class="target" id="structPalette_1ac1165ad07b54bba5816219657cbe2163"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Palette4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the number of colors in the palette </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette5beginEv">
-<span id="_CPPv3NK7Palette5beginEv"></span><span id="_CPPv2NK7Palette5beginEv"></span><span id="Palette::beginC"></span><span class="target" id="structPalette_1aeb00d41365c7d3107fc9bbf1f3337b97"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">begin</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7Palette5beginEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette5beginEv">
+<span id="_CPPv3NK7Palette5beginEv"></span><span id="_CPPv2NK7Palette5beginEv"></span><span id="Palette::beginC"></span><span class="target" id="structPalette_1aeb00d41365c7d3107fc9bbf1f3337b97"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Palette5beginEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns an iterator to the first item in the palette </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette3endEv">
-<span id="_CPPv3NK7Palette3endEv"></span><span id="_CPPv2NK7Palette3endEv"></span><span id="Palette::endC"></span><span class="target" id="structPalette_1a70c215f0a18a504445369644e974aa1b"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">end</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7Palette3endEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette3endEv">
+<span id="_CPPv3NK7Palette3endEv"></span><span id="_CPPv2NK7Palette3endEv"></span><span id="Palette::endC"></span><span class="target" id="structPalette_1a70c215f0a18a504445369644e974aa1b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7Palette3endEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns an iterator to after the last item in the palette </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7PaletteeqERK7Palette">
-<span id="_CPPv3NK7PaletteeqERK7Palette"></span><span id="_CPPv2NK7PaletteeqERK7Palette"></span><span id="Palette::eq-operator__PaletteCRC"></span><span class="target" id="structPalette_1aba6fd37df89b727bbd1c1a1757068594"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv47Palette" title="Palette"><span class="pre">Palette</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7PaletteeqERK7Palette" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7PaletteeqERK7Palette">
+<span id="_CPPv3NK7PaletteeqERK7Palette"></span><span id="_CPPv2NK7PaletteeqERK7Palette"></span><span id="Palette::eq-operator__PaletteCRC"></span><span class="target" id="structPalette_1aba6fd37df89b727bbd1c1a1757068594"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47Palette" title="Palette"><span class="n"><span class="pre">Palette</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7PaletteeqERK7Palette" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Compares two palettes for equality (whether they contain the same colors) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette21getColorBlindFriendlyEv">
-<span id="_CPPv3NK7Palette21getColorBlindFriendlyEv"></span><span id="_CPPv2NK7Palette21getColorBlindFriendlyEv"></span><span id="Palette::getColorBlindFriendlyC"></span><span class="target" id="structPalette_1a3a939b4f22ff3dbb6c473b6ae90d8778"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getColorBlindFriendly</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK7Palette21getColorBlindFriendlyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette21getColorBlindFriendlyEv">
+<span id="_CPPv3NK7Palette21getColorBlindFriendlyEv"></span><span id="_CPPv2NK7Palette21getColorBlindFriendlyEv"></span><span id="Palette::getColorBlindFriendlyC"></span><span class="target" id="structPalette_1a3a939b4f22ff3dbb6c473b6ae90d8778"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getColorBlindFriendly</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK7Palette21getColorBlindFriendlyEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns whether the palette is confirmed as suitable for colorblind viewers </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette11getCategoryEv">
-<span id="_CPPv3NK7Palette11getCategoryEv"></span><span id="_CPPv2NK7Palette11getCategoryEv"></span><span id="Palette::getCategoryC"></span><span class="target" id="structPalette_1a35d806dfbb9a4868bfa55c1bd2088103"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="#_CPPv4N7Palette8CategoryE" title="Palette::Category"><span class="pre">Category</span></a> <code class="sig-name descname"><span class="pre">getCategory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK7Palette11getCategoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette11getCategoryEv">
+<span id="_CPPv3NK7Palette11getCategoryEv"></span><span id="_CPPv2NK7Palette11getCategoryEv"></span><span id="Palette::getCategoryC"></span><span class="target" id="structPalette_1a35d806dfbb9a4868bfa55c1bd2088103"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7Palette8CategoryE" title="Palette::Category"><span class="n"><span class="pre">Category</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getCategory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK7Palette11getCategoryEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the category of the palette <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#structPalette_1aeeb2059d5726e1e88207614038e96d7d"><span class="std std-ref">Category</span></a> </p>
 </dd>
@@ -921,53 +940,53 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette6colorsEv">
-<span id="_CPPv3NK7Palette6colorsEv"></span><span id="_CPPv2NK7Palette6colorsEv"></span><span id="Palette::colorsC"></span><span class="target" id="structPalette_1a3d6df04f6ef6efe504b365959a0c4e7b"></span><em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">colors</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK7Palette6colorsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette6colorsEv">
+<span id="_CPPv3NK7Palette6colorsEv"></span><span id="_CPPv2NK7Palette6colorsEv"></span><span id="Palette::colorsC"></span><span class="target" id="structPalette_1a3d6df04f6ef6efe504b365959a0c4e7b"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">colors</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK7Palette6colorsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">AutoPalette</span></dt>
 </dl>
 
 </div>
 <dl class="cpp class">
-<dt id="_CPPv4N7Palette14const_iteratorE">
-<span id="_CPPv3N7Palette14const_iteratorE"></span><span id="_CPPv2N7Palette14const_iteratorE"></span><span id="Palette::const_iterator"></span><span class="target" id="classPalette_1_1const__iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">const_iterator</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">iterator</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">input_iterator_tag</span><span class="pre">,</span> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a><span class="pre">&gt;</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette14const_iteratorE">
+<span id="_CPPv3N7Palette14const_iteratorE"></span><span id="_CPPv2N7Palette14const_iteratorE"></span><span id="Palette::const_iterator"></span><span class="target" id="classPalette_1_1const__iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_iterator</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">iterator</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">input_iterator_tag</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="p"><span class="pre">&gt;</span></span><br /></dt>
 <dd><p>Basic iterator that provides constant access to a palettes colors. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N7Palette14const_iterator14const_iteratorERK7Palette15difference_type">
-<span id="_CPPv3N7Palette14const_iterator14const_iteratorERK7Palette15difference_type"></span><span id="_CPPv2N7Palette14const_iterator14const_iteratorERK7Palette15difference_type"></span><span id="Palette::const_iterator::const_iterator__PaletteCR.difference_type"></span><span class="target" id="classPalette_1_1const__iterator_1a0ceb8503163744cd460deada8be1875f"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">const_iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv47Palette" title="Palette"><span class="pre">Palette</span></a> <span class="pre">&amp;</span><em><span class="pre">_palette</span></em>, <span class="pre">difference_type</span> <em><span class="pre">_pos</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette14const_iterator14const_iteratorERK7Palette15difference_type">
+<span id="_CPPv3N7Palette14const_iterator14const_iteratorERK7Palette15difference_type"></span><span id="_CPPv2N7Palette14const_iterator14const_iteratorERK7Palette15difference_type"></span><span id="Palette::const_iterator::const_iterator__PaletteCR.difference_type"></span><span class="target" id="classPalette_1_1const__iterator_1a0ceb8503163744cd460deada8be1875f"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">const_iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47Palette" title="Palette"><span class="n"><span class="pre">Palette</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_palette</span></span>, <span class="n"><span class="pre">difference_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_pos</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7Palette14const_iteratorppEv">
-<span id="_CPPv3N7Palette14const_iteratorppEv"></span><span id="_CPPv2N7Palette14const_iteratorppEv"></span><span id="Palette::const_iterator::inc-operator"></span><span class="target" id="classPalette_1_1const__iterator_1a61f13dd15d754dd46eb785369917a708"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette14const_iteratorppEv">
+<span id="_CPPv3N7Palette14const_iteratorppEv"></span><span id="_CPPv2N7Palette14const_iteratorppEv"></span><span id="Palette::const_iterator::inc-operator"></span><span class="target" id="classPalette_1_1const__iterator_1a61f13dd15d754dd46eb785369917a708"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7Palette14const_iteratorppEi">
-<span id="_CPPv3N7Palette14const_iteratorppEi"></span><span id="_CPPv2N7Palette14const_iteratorppEi"></span><span id="Palette::const_iterator::inc-operator__i"></span><span class="target" id="classPalette_1_1const__iterator_1ac415534c1a4a2f06b22e68e36fd7c7d3"></span><em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7Palette14const_iteratorppEi">
+<span id="_CPPv3N7Palette14const_iteratorppEi"></span><span id="_CPPv2N7Palette14const_iteratorppEi"></span><span id="Palette::const_iterator::inc-operator__i"></span><span class="target" id="classPalette_1_1const__iterator_1ac415534c1a4a2f06b22e68e36fd7c7d3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette14const_iteratoreqE14const_iterator">
-<span id="_CPPv3NK7Palette14const_iteratoreqE14const_iterator"></span><span id="_CPPv2NK7Palette14const_iteratoreqE14const_iterator"></span><span id="Palette::const_iterator::eq-operator__const_iteratorC"></span><span class="target" id="classPalette_1_1const__iterator_1ab424323ef01b86cc197bf4a861290192"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette14const_iteratoreqE14const_iterator">
+<span id="_CPPv3NK7Palette14const_iteratoreqE14const_iterator"></span><span id="_CPPv2NK7Palette14const_iteratoreqE14const_iterator"></span><span id="Palette::const_iterator::eq-operator__const_iteratorC"></span><span class="target" id="classPalette_1_1const__iterator_1ab424323ef01b86cc197bf4a861290192"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette14const_iteratorneE14const_iterator">
-<span id="_CPPv3NK7Palette14const_iteratorneE14const_iterator"></span><span id="_CPPv2NK7Palette14const_iteratorneE14const_iterator"></span><span id="Palette::const_iterator::neq-operator__const_iteratorC"></span><span class="target" id="classPalette_1_1const__iterator_1a00e4ae56d44b0d436c30d4d9730691a0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="pre">const_iterator</span></a> <em><span class="pre">other</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette14const_iteratorneE14const_iterator">
+<span id="_CPPv3NK7Palette14const_iteratorneE14const_iterator"></span><span id="_CPPv2NK7Palette14const_iteratorneE14const_iterator"></span><span id="Palette::const_iterator::neq-operator__const_iteratorC"></span><span class="target" id="classPalette_1_1const__iterator_1a00e4ae56d44b0d436c30d4d9730691a0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classPalette_1_1const__iterator.html#_CPPv4N7Palette14const_iteratorE" title="Palette::const_iterator"><span class="n"><span class="pre">const_iterator</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7Palette14const_iteratormlEv">
-<span id="_CPPv3NK7Palette14const_iteratormlEv"></span><span id="_CPPv2NK7Palette14const_iteratormlEv"></span><span id="Palette::const_iterator::mul-operatorC"></span><span class="target" id="classPalette_1_1const__iterator_1ae8328e04782af0ec0d86dd2d5a598e11"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7Palette14const_iteratormlEv">
+<span id="_CPPv3NK7Palette14const_iteratormlEv"></span><span id="_CPPv2NK7Palette14const_iteratormlEv"></span><span id="Palette::const_iterator::mul-operatorC"></span><span class="target" id="classPalette_1_1const__iterator_1ae8328e04782af0ec0d86dd2d5a598e11"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -975,8 +994,8 @@
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class CUDAScanCompaction &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,36 +813,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-cudascancompaction">
+  <section id="class-cudascancompaction">
 <span id="exhale-class-classcudascancompaction"></span><h1>Class CUDAScanCompaction<a class="headerlink" href="#class-cudascancompaction" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_gpu_CUDAScanCompaction.h.html#file-include-flamegpu-gpu-cudascancompaction-h"><span class="std std-ref">File CUDAScanCompaction.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv418CUDAScanCompaction">
-<span id="_CPPv318CUDAScanCompaction"></span><span id="_CPPv218CUDAScanCompaction"></span><span id="CUDAScanCompaction"></span><span class="target" id="classCUDAScanCompaction"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">CUDAScanCompaction</span></code><a class="headerlink" href="#_CPPv418CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv418CUDAScanCompaction">
+<span id="_CPPv318CUDAScanCompaction"></span><span id="_CPPv218CUDAScanCompaction"></span><span id="CUDAScanCompaction"></span><span class="target" id="classCUDAScanCompaction"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CUDAScanCompaction</span></span></span><a class="headerlink" href="#_CPPv418CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp enum">
-<dt id="_CPPv4N18CUDAScanCompaction4TypeE">
-<span id="_CPPv3N18CUDAScanCompaction4TypeE"></span><span id="_CPPv2N18CUDAScanCompaction4TypeE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25"></span><em class="property"><span class="pre">enum</span> </em><code class="sig-name descname"><span class="pre">Type</span></code><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction4TypeE">
+<span id="_CPPv3N18CUDAScanCompaction4TypeE"></span><span id="_CPPv2N18CUDAScanCompaction4TypeE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Type</span></span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Try and be a bit more dynamic by using 2d array here </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt id="_CPPv4N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE">
-<span id="_CPPv3N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE"></span><span id="_CPPv2N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25a04741cd3a95030c337a76926a0a6bc66"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">MESSAGE_OUTPUT</span></code><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE">
+<span id="_CPPv3N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE"></span><span id="_CPPv2N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25a04741cd3a95030c337a76926a0a6bc66"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MESSAGE_OUTPUT</span></span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type14MESSAGE_OUTPUTE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N18CUDAScanCompaction4Type11AGENT_DEATHE">
-<span id="_CPPv3N18CUDAScanCompaction4Type11AGENT_DEATHE"></span><span id="_CPPv2N18CUDAScanCompaction4Type11AGENT_DEATHE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25a0bc9b8beaf37c00b85312dccca14cbfa"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">AGENT_DEATH</span></code><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type11AGENT_DEATHE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction4Type11AGENT_DEATHE">
+<span id="_CPPv3N18CUDAScanCompaction4Type11AGENT_DEATHE"></span><span id="_CPPv2N18CUDAScanCompaction4Type11AGENT_DEATHE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25a0bc9b8beaf37c00b85312dccca14cbfa"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AGENT_DEATH</span></span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type11AGENT_DEATHE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N18CUDAScanCompaction4Type12AGENT_OUTPUTE">
-<span id="_CPPv3N18CUDAScanCompaction4Type12AGENT_OUTPUTE"></span><span id="_CPPv2N18CUDAScanCompaction4Type12AGENT_OUTPUTE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25ac6292218faa69963d1176fc9ba02b5dc"></span><em class="property"><span class="pre">enumerator</span> </em><code class="sig-name descname"><span class="pre">AGENT_OUTPUT</span></code><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type12AGENT_OUTPUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction4Type12AGENT_OUTPUTE">
+<span id="_CPPv3N18CUDAScanCompaction4Type12AGENT_OUTPUTE"></span><span id="_CPPv2N18CUDAScanCompaction4Type12AGENT_OUTPUTE"></span><span class="target" id="classCUDAScanCompaction_1af59c1c7b3e68d6bad94f5cab2158bd25ac6292218faa69963d1176fc9ba02b5dc"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AGENT_OUTPUT</span></span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4Type12AGENT_OUTPUTE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -832,23 +851,23 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction18CUDAScanCompactionEv">
-<span id="_CPPv3N18CUDAScanCompaction18CUDAScanCompactionEv"></span><span id="_CPPv2N18CUDAScanCompaction18CUDAScanCompactionEv"></span><span id="CUDAScanCompaction::CUDAScanCompaction"></span><span class="target" id="classCUDAScanCompaction_1a162c0f06643371e8fa23f0db2be91d99"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">CUDAScanCompaction</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction18CUDAScanCompactionEv">
+<span id="_CPPv3N18CUDAScanCompaction18CUDAScanCompactionEv"></span><span id="_CPPv2N18CUDAScanCompaction18CUDAScanCompactionEv"></span><span id="CUDAScanCompaction::CUDAScanCompaction"></span><span class="target" id="classCUDAScanCompaction_1a162c0f06643371e8fa23f0db2be91d99"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CUDAScanCompaction</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction">
-<span id="_CPPv3N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction"></span><span id="_CPPv2N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction"></span><span id="CUDAScanCompaction::CUDAScanCompaction__CUDAScanCompactionCR"></span><span class="target" id="classCUDAScanCompaction_1a6a38cfa67d2cba230f8cec5706cf4414"></span><code class="sig-name descname"><span class="pre">CUDAScanCompaction</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction" title="CUDAScanCompaction::CUDAScanCompaction"><span class="pre">CUDAScanCompaction</span></a> <em class="property"><span class="pre">const</span></em><span class="pre">&amp;</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction">
+<span id="_CPPv3N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction"></span><span id="_CPPv2N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction"></span><span id="CUDAScanCompaction::CUDAScanCompaction__CUDAScanCompactionCR"></span><span class="target" id="classCUDAScanCompaction_1a6a38cfa67d2cba230f8cec5706cf4414"></span><span class="sig-name descname"><span class="n"><span class="pre">CUDAScanCompaction</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction" title="CUDAScanCompaction::CUDAScanCompaction"><span class="n"><span class="pre">CUDAScanCompaction</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction18CUDAScanCompactionERK18CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompactionaSERK18CUDAScanCompaction">
-<span id="_CPPv3N18CUDAScanCompactionaSERK18CUDAScanCompaction"></span><span id="_CPPv2N18CUDAScanCompactionaSERK18CUDAScanCompaction"></span><span id="CUDAScanCompaction::assign-operator__CUDAScanCompactionCR"></span><span class="target" id="classCUDAScanCompaction_1a1c520faa0d7d6f270d1096ad97347e5c"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418CUDAScanCompaction" title="CUDAScanCompaction"><span class="pre">CUDAScanCompaction</span></a> <em class="property"><span class="pre">const</span></em><span class="pre">&amp;</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompactionaSERK18CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompactionaSERK18CUDAScanCompaction">
+<span id="_CPPv3N18CUDAScanCompactionaSERK18CUDAScanCompaction"></span><span id="_CPPv2N18CUDAScanCompactionaSERK18CUDAScanCompaction"></span><span id="CUDAScanCompaction::assign-operator__CUDAScanCompactionCR"></span><span class="target" id="classCUDAScanCompaction_1a1c520faa0d7d6f270d1096ad97347e5c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418CUDAScanCompaction" title="CUDAScanCompaction"><span class="n"><span class="pre">CUDAScanCompaction</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompactionaSERK18CUDAScanCompaction" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction5purgeEv">
-<span id="_CPPv3N18CUDAScanCompaction5purgeEv"></span><span id="_CPPv2N18CUDAScanCompaction5purgeEv"></span><span id="CUDAScanCompaction::purge"></span><span class="target" id="classCUDAScanCompaction_1a9363c25bedf38a1f31d5e4a316af5df4"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">purge</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction5purgeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction5purgeEv">
+<span id="_CPPv3N18CUDAScanCompaction5purgeEv"></span><span id="_CPPv2N18CUDAScanCompaction5purgeEv"></span><span id="CUDAScanCompaction::purge"></span><span class="target" id="classCUDAScanCompaction_1a9363c25bedf38a1f31d5e4a316af5df4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">purge</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction5purgeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Wipes out host mirrors of device memory Only really to be used after calls to cudaDeviceReset() <a class="reference internal" href="#classCUDAScanCompaction"><span class="std std-ref">CUDAScanCompaction</span></a> methods </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -857,45 +876,45 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction6resizeERKjRK4TypeRKj">
-<span id="_CPPv3N18CUDAScanCompaction6resizeERKjRK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction6resizeERKjRK4TypeRKj"></span><span id="CUDAScanCompaction::resize__unsigned-iCR.TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1a80c0aaeac6c146bd08e6d761f5e6a978"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">newCount</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="pre">Type</span></a> <span class="pre">&amp;</span><em><span class="pre">type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction6resizeERKjRK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction6resizeERKjRK4TypeRKj">
+<span id="_CPPv3N18CUDAScanCompaction6resizeERKjRK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction6resizeERKjRK4TypeRKj"></span><span id="CUDAScanCompaction::resize__unsigned-iCR.TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1a80c0aaeac6c146bd08e6d761f5e6a978"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">newCount</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction6resizeERKjRK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction4zeroERK4TypeRKj">
-<span id="_CPPv3N18CUDAScanCompaction4zeroERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction4zeroERK4TypeRKj"></span><span id="CUDAScanCompaction::zero__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1a83a345e80b2abe5cdaf8149a2a862680"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">zero</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="pre">Type</span></a> <span class="pre">&amp;</span><em><span class="pre">type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4zeroERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction4zeroERK4TypeRKj">
+<span id="_CPPv3N18CUDAScanCompaction4zeroERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction4zeroERK4TypeRKj"></span><span id="CUDAScanCompaction::zero__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1a83a345e80b2abe5cdaf8149a2a862680"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">zero</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction4zeroERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction9getConfigERK4TypeRKj">
-<span id="_CPPv3N18CUDAScanCompaction9getConfigERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction9getConfigERK4TypeRKj"></span><span id="CUDAScanCompaction::getConfig__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1aacb3a35a70df9b3b8b48f5058dcd8cec"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structCUDAScanCompactionConfig.html#_CPPv424CUDAScanCompactionConfig" title="CUDAScanCompactionConfig"><span class="pre">CUDAScanCompactionConfig</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getConfig</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="pre">Type</span></a> <span class="pre">&amp;</span><em><span class="pre">type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction9getConfigERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction9getConfigERK4TypeRKj">
+<span id="_CPPv3N18CUDAScanCompaction9getConfigERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction9getConfigERK4TypeRKj"></span><span id="CUDAScanCompaction::getConfig__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1aacb3a35a70df9b3b8b48f5058dcd8cec"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structCUDAScanCompactionConfig.html#_CPPv424CUDAScanCompactionConfig" title="CUDAScanCompactionConfig"><span class="n"><span class="pre">CUDAScanCompactionConfig</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getConfig</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction9getConfigERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18CUDAScanCompaction6ConfigERK4TypeRKj">
-<span id="_CPPv3N18CUDAScanCompaction6ConfigERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction6ConfigERK4TypeRKj"></span><span id="CUDAScanCompaction::Config__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1ab6e144d52418b7444c873b0628d6896a"></span><a class="reference internal" href="structCUDAScanCompactionConfig.html#_CPPv424CUDAScanCompactionConfig" title="CUDAScanCompactionConfig"><span class="pre">CUDAScanCompactionConfig</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">Config</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="pre">Type</span></a> <span class="pre">&amp;</span><em><span class="pre">type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction6ConfigERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction6ConfigERK4TypeRKj">
+<span id="_CPPv3N18CUDAScanCompaction6ConfigERK4TypeRKj"></span><span id="_CPPv2N18CUDAScanCompaction6ConfigERK4TypeRKj"></span><span id="CUDAScanCompaction::Config__TypeCR.unsigned-iCR"></span><span class="target" id="classCUDAScanCompaction_1ab6e144d52418b7444c873b0628d6896a"></span><a class="reference internal" href="structCUDAScanCompactionConfig.html#_CPPv424CUDAScanCompactionConfig" title="CUDAScanCompactionConfig"><span class="n"><span class="pre">CUDAScanCompactionConfig</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">Config</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N18CUDAScanCompaction4TypeE" title="CUDAScanCompaction::Type"><span class="n"><span class="pre">Type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction6ConfigERK4TypeRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N18CUDAScanCompaction9MAX_TYPESE">
-<span id="_CPPv3N18CUDAScanCompaction9MAX_TYPESE"></span><span id="_CPPv2N18CUDAScanCompaction9MAX_TYPESE"></span><span id="CUDAScanCompaction::MAX_TYPES__unsigned-iC"></span><span class="target" id="classCUDAScanCompaction_1a559699688e424cf6ff53b3a9612ca8ae"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">MAX_TYPES</span></code> <span class="pre">=</span> <span class="pre">3</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction9MAX_TYPESE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction9MAX_TYPESE">
+<span id="_CPPv3N18CUDAScanCompaction9MAX_TYPESE"></span><span id="_CPPv2N18CUDAScanCompaction9MAX_TYPESE"></span><span id="CUDAScanCompaction::MAX_TYPES__unsigned-iC"></span><span class="target" id="classCUDAScanCompaction_1a559699688e424cf6ff53b3a9612ca8ae"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MAX_TYPES</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction9MAX_TYPESE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Number of valid values in Type </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18CUDAScanCompaction11MAX_STREAMSE">
-<span id="_CPPv3N18CUDAScanCompaction11MAX_STREAMSE"></span><span id="_CPPv2N18CUDAScanCompaction11MAX_STREAMSE"></span><span id="CUDAScanCompaction::MAX_STREAMS__unsigned-iC"></span><span class="target" id="classCUDAScanCompaction_1a8a2aa3b6ee86f33c7c75b64dbbef5bc1"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">MAX_STREAMS</span></code> <span class="pre">=</span> <span class="pre">128</span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction11MAX_STREAMSE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18CUDAScanCompaction11MAX_STREAMSE">
+<span id="_CPPv3N18CUDAScanCompaction11MAX_STREAMSE"></span><span id="_CPPv2N18CUDAScanCompaction11MAX_STREAMSE"></span><span id="CUDAScanCompaction::MAX_STREAMS__unsigned-iC"></span><span class="target" id="classCUDAScanCompaction_1a8a2aa3b6ee86f33c7c75b64dbbef5bc1"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MAX_STREAMS</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">128</span></span><a class="headerlink" href="#_CPPv4N18CUDAScanCompaction11MAX_STREAMSE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>As of Compute Cability 7.5; 128 is the max concurrent streams </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

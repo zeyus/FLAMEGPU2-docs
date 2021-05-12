@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class AgentFunctionDescription &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,25 +813,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-agentfunctiondescription">
+  <section id="class-agentfunctiondescription">
 <span id="exhale-class-classagentfunctiondescription"></span><h1>Class AgentFunctionDescription<a class="headerlink" href="#class-agentfunctiondescription" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_AgentFunctionDescription.h.html#file-include-flamegpu-model-agentfunctiondescription-h"><span class="std std-ref">File AgentFunctionDescription.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">DependencyNode</span></code> (<a class="reference internal" href="classDependencyNode.html#exhale-class-classdependencynode"><span class="std std-ref">Class DependencyNode</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv424AgentFunctionDescription">
-<span id="_CPPv324AgentFunctionDescription"></span><span id="_CPPv224AgentFunctionDescription"></span><span id="AgentFunctionDescription"></span><span class="target" id="classAgentFunctionDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentFunctionDescription</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><a class="headerlink" href="#_CPPv424AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv424AgentFunctionDescription">
+<span id="_CPPv324AgentFunctionDescription"></span><span id="_CPPv224AgentFunctionDescription"></span><span id="AgentFunctionDescription"></span><span class="target" id="classAgentFunctionDescription"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionDescription</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><a class="headerlink" href="#_CPPv424AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Within the model hierarchy, this class represents an agent function for a FLAMEGPU model This class is used to configure external elements of agent functions, such as inputs and outputs <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classAgentDescription.html#classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"><span class="std std-ref">AgentDescription::newFunction(const std::string&amp;, AgentFunction)</span></a> For creating instances of this class </p>
 </dd>
@@ -821,8 +840,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription">
-<span id="_CPPv3NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::eq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1aa75630f27805b218978d2b8c0fef33c9"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription">
+<span id="_CPPv3NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::eq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1aa75630f27805b218978d2b8c0fef33c9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptioneqERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -836,8 +855,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription">
-<span id="_CPPv3NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::neq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1a70759501f547c54fe18b2578231da2fa"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription">
+<span id="_CPPv3NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="_CPPv2NK24AgentFunctionDescriptionneERK24AgentFunctionDescription"></span><span id="AgentFunctionDescription::neq-operator__AgentFunctionDescriptionCRC"></span><span class="target" id="classAgentFunctionDescription_1a70759501f547c54fe18b2578231da2fa"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescriptionneERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -851,8 +870,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setInitialState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a480158930c2af96aaea5e54080b4bfa1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setInitialState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">initial_state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setInitialStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setInitialState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a480158930c2af96aaea5e54080b4bfa1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setInitialState</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">initial_state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setInitialStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Sets the initial state which agents must be in to execute this function</p>
 <p>Accessors</p>
 <dl class="simple">
@@ -871,8 +890,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setEndState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a43ab61b100d3d4233bd51cc8ee2e17de"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setEndState</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">end_state</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription11setEndStateERKNSt6stringE"></span><span id="AgentFunctionDescription::setEndState__ssCR"></span><span class="target" id="classAgentFunctionDescription_1a43ab61b100d3d4233bd51cc8ee2e17de"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setEndState</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">end_state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription11setEndStateERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the end state which agents enter after executing this function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a480158930c2af96aaea5e54080b4bfa1"><span class="std std-ref">AgentFunctionDescription::setInitialState(const std::string &amp;)</span></a> </p>
 </dd>
@@ -889,8 +908,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageInput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageInput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageInput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageInput</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the message type that can be read during this agent function This is optional, and only one type of message can be read per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageInput(MessageDescription &amp;) </p>
 </dd>
@@ -910,8 +929,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE">
-<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageInput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a110693f72e8441a68a16a6d488cac922"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageInput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE">
+<span id="_CPPv3N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageInput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a110693f72e8441a68a16a6d488cac922"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageInput</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15setMessageInputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the message type that can be read during this agent function This is optional, and only one type of message can be read per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
 </dd>
@@ -932,8 +951,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageOutput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERKNSt6stringE"></span><span id="AgentFunctionDescription::setMessageOutput__ssCR"></span><span class="target" id="classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageOutput</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the message type that can be output during this agent function This is optional, and only one type of message can be output per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setMessageOutput(MessageDescription &amp;) </p>
 </dd>
@@ -955,8 +974,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE">
-<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageOutput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a93e5aa0efcaf92ab77716920c6a46781"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">message</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE">
+<span id="_CPPv3N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="_CPPv2N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE"></span><span id="AgentFunctionDescription::setMessageOutput__MsgBruteForce::DescriptionR"></span><span class="target" id="classAgentFunctionDescription_1a93e5aa0efcaf92ab77716920c6a46781"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageOutput</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription16setMessageOutputERN13MsgBruteForce11DescriptionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the message type that can be output during this agent function This is optional, and only one type of message can be output per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
 </dd>
@@ -979,8 +998,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb">
-<span id="_CPPv3N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="_CPPv2N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="AgentFunctionDescription::setMessageOutputOptional__bCR"></span><span class="target" id="classAgentFunctionDescription_1afff669730d0ac8a7c07d7f6790085d70"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageOutputOptional</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">output_is_optional</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb">
+<span id="_CPPv3N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="_CPPv2N24AgentFunctionDescription24setMessageOutputOptionalERKb"></span><span id="AgentFunctionDescription::setMessageOutputOptional__bCR"></span><span class="target" id="classAgentFunctionDescription_1afff669730d0ac8a7c07d7f6790085d70"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageOutputOptional</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">output_is_optional</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription24setMessageOutputOptionalERKb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures whether message output from this agent function is optional (e.g. whether all agents must output a message each time the function is called) If the function has no message output, this can be ignored </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -994,8 +1013,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__ssCR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a580134fd28169871a239b664eae768b7"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentOutput</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agent_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">state</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__ssCR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a580134fd28169871a239b664eae768b7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setAgentOutput</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agent_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">state</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputERKNSt6stringEKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the agent type that can be output during this agent function This is optional, and only one type of agent can be output per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(AgentDescription &amp;) </p>
 </dd>
@@ -1018,8 +1037,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__AgentDescriptionR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a588c9857aed9cec6e91549f671caae88"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAgentOutput</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">state</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE"></span><span id="AgentFunctionDescription::setAgentOutput__AgentDescriptionR.ssC"></span><span class="target" id="classAgentFunctionDescription_1a588c9857aed9cec6e91549f671caae88"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setAgentOutput</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="n"><span class="pre">AgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">state</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription14setAgentOutputER16AgentDescriptionKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the agent type that can be output during this agent function This is optional, and only one type of agent can be output per agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(AgentDescription &amp;) </p>
 </dd>
@@ -1043,8 +1062,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb">
-<span id="_CPPv3N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="_CPPv2N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="AgentFunctionDescription::setAllowAgentDeath__bCR"></span><span class="target" id="classAgentFunctionDescription_1aa8e985fc79f09fcba2b6de4be510cb88"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setAllowAgentDeath</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">has_death</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb">
+<span id="_CPPv3N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="_CPPv2N24AgentFunctionDescription18setAllowAgentDeathERKb"></span><span id="AgentFunctionDescription::setAllowAgentDeath__bCR"></span><span class="target" id="classAgentFunctionDescription_1aa8e985fc79f09fcba2b6de4be510cb88"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setAllowAgentDeath</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">has_death</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription18setAllowAgentDeathERKb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures whether agents can die during execution of this function (e.g. by returning FLAME_GPU_AGENT_STATUS::DEAD from the agent function) <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af684c97fb27e2ed871f2c62efeeeb7d3"><span class="std std-ref">AgentFunctionDescription::AllowAgentDeath()</span></a> </p>
 </dd>
@@ -1064,20 +1083,20 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition">
-<span id="_CPPv3I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span id="_CPPv2I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">AgentFunctionCondition</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setFunctionCondition</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="AgentFunctionDescription::setFunctionCondition::AgentFunctionCondition"><span class="pre">AgentFunctionCondition</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition">
+<span id="_CPPv3I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span id="_CPPv2I0EN24AgentFunctionDescription20setFunctionConditionE22AgentFunctionCondition"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionCondition</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setFunctionCondition</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="AgentFunctionDescription::setFunctionCondition::AgentFunctionCondition"><span class="n"><span class="pre">AgentFunctionCondition</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN24AgentFunctionDescription20setFunctionConditionEv22AgentFunctionCondition" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the function condition for the agent function This is an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE">
-<span id="_CPPv3N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="AgentFunctionDescription::setRTCFunctionCondition__ss"></span><span class="target" id="classAgentFunctionDescription_1a858fd961778fd748171721e124c0ee0b"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setRTCFunctionCondition</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">func_cond_src</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE">
+<span id="_CPPv3N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="_CPPv2N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="AgentFunctionDescription::setRTCFunctionCondition__ss"></span><span class="target" id="classAgentFunctionDescription_1a858fd961778fd748171721e124c0ee0b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRTCFunctionCondition</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">func_cond_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the RTC function condition for the agent function This is string containing a definition of an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state. The string will be compiled at runtime. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription12MessageInputEv">
-<span id="_CPPv3N24AgentFunctionDescription12MessageInputEv"></span><span id="_CPPv2N24AgentFunctionDescription12MessageInputEv"></span><span id="AgentFunctionDescription::MessageInput"></span><span class="target" id="classAgentFunctionDescription_1a01c3a90cc70eb65a74a168445c206cf1"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription12MessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription12MessageInputEv">
+<span id="_CPPv3N24AgentFunctionDescription12MessageInputEv"></span><span id="_CPPv2N24AgentFunctionDescription12MessageInputEv"></span><span id="AgentFunctionDescription::MessageInput"></span><span class="target" id="classAgentFunctionDescription_1a01c3a90cc70eb65a74a168445c206cf1"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">MessageInput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription12MessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a54e2403f53075e6a21f6cbcba2f352c3"><span class="std std-ref">AgentFunctionDescription::getMessageInput()</span></a> for the immutable version </p>
 </dd>
@@ -1094,8 +1113,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription13MessageOutputEv">
-<span id="_CPPv3N24AgentFunctionDescription13MessageOutputEv"></span><span id="_CPPv2N24AgentFunctionDescription13MessageOutputEv"></span><span id="AgentFunctionDescription::MessageOutput"></span><span class="target" id="classAgentFunctionDescription_1a18e5a44be29bc0b6fa4cf87943f20e01"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription13MessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription13MessageOutputEv">
+<span id="_CPPv3N24AgentFunctionDescription13MessageOutputEv"></span><span id="_CPPv2N24AgentFunctionDescription13MessageOutputEv"></span><span id="AgentFunctionDescription::MessageOutput"></span><span class="target" id="classAgentFunctionDescription_1a18e5a44be29bc0b6fa4cf87943f20e01"></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">MessageOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription13MessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a9699a047a9fe24f48fe994237cfeb86b"><span class="std std-ref">AgentFunctionDescription::getMessageOutput()</span></a> for the immutable version </p>
 </dd>
@@ -1112,8 +1131,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv">
-<span id="_CPPv3N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="_CPPv2N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="AgentFunctionDescription::MessageOutputOptional"></span><span class="target" id="classAgentFunctionDescription_1acdb487efdbeb771f7c0d2b0c787b1f0a"></span><span class="pre">bool</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">MessageOutputOptional</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv">
+<span id="_CPPv3N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="_CPPv2N24AgentFunctionDescription21MessageOutputOptionalEv"></span><span id="AgentFunctionDescription::MessageOutputOptional"></span><span class="target" id="classAgentFunctionDescription_1acdb487efdbeb771f7c0d2b0c787b1f0a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">MessageOutputOptional</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription21MessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::getAgentOutputOptional() </p>
 </dd>
@@ -1129,8 +1148,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv">
-<span id="_CPPv3N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="_CPPv2N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="AgentFunctionDescription::AllowAgentDeath"></span><span class="target" id="classAgentFunctionDescription_1af684c97fb27e2ed871f2c62efeeeb7d3"></span><span class="pre">bool</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">AllowAgentDeath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv">
+<span id="_CPPv3N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="_CPPv2N24AgentFunctionDescription15AllowAgentDeathEv"></span><span id="AgentFunctionDescription::AllowAgentDeath"></span><span class="target" id="classAgentFunctionDescription_1af684c97fb27e2ed871f2c62efeeeb7d3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">AllowAgentDeath</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24AgentFunctionDescription15AllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"><span class="std std-ref">AgentFunctionDescription::getAllowAgentDeath()</span></a> </p>
 </dd>
@@ -1146,8 +1165,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription7getNameEv">
-<span id="_CPPv3NK24AgentFunctionDescription7getNameEv"></span><span id="_CPPv2NK24AgentFunctionDescription7getNameEv"></span><span id="AgentFunctionDescription::getNameC"></span><span class="target" id="classAgentFunctionDescription_1ab3ac63a88b229f784b02afed06a85a4f"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription7getNameEv">
+<span id="_CPPv3NK24AgentFunctionDescription7getNameEv"></span><span id="_CPPv2NK24AgentFunctionDescription7getNameEv"></span><span id="AgentFunctionDescription::getNameC"></span><span class="target" id="classAgentFunctionDescription_1ab3ac63a88b229f784b02afed06a85a4f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>
 Const Accessors </p>
 <dl class="field-list simple">
@@ -1158,8 +1177,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription15getInitialStateEv">
-<span id="_CPPv3NK24AgentFunctionDescription15getInitialStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getInitialStateEv"></span><span id="AgentFunctionDescription::getInitialStateC"></span><span class="target" id="classAgentFunctionDescription_1ab0b5b858d7dab0102d4c3b60e36af12c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getInitialState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription15getInitialStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getInitialStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getInitialStateEv"></span><span id="AgentFunctionDescription::getInitialStateC"></span><span class="target" id="classAgentFunctionDescription_1ab0b5b858d7dab0102d4c3b60e36af12c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInitialState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getInitialStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The state which agents must be in to execute this agent function </p>
@@ -1168,8 +1187,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription11getEndStateEv">
-<span id="_CPPv3NK24AgentFunctionDescription11getEndStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription11getEndStateEv"></span><span id="AgentFunctionDescription::getEndStateC"></span><span class="target" id="classAgentFunctionDescription_1a1df2757e611b6642465cd68e358cb044"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getEndState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription11getEndStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription11getEndStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription11getEndStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription11getEndStateEv"></span><span id="AgentFunctionDescription::getEndStateC"></span><span class="target" id="classAgentFunctionDescription_1a1df2757e611b6642465cd68e358cb044"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getEndState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription11getEndStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The state which agents executing this function enter </p>
@@ -1178,8 +1197,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription15getMessageInputEv">
-<span id="_CPPv3NK24AgentFunctionDescription15getMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getMessageInputEv"></span><span id="AgentFunctionDescription::getMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1a54e2403f53075e6a21f6cbcba2f352c3"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getMessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription15getMessageInputEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getMessageInputEv"></span><span id="AgentFunctionDescription::getMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1a54e2403f53075e6a21f6cbcba2f352c3"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMessageInput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a01c3a90cc70eb65a74a168445c206cf1"><span class="std std-ref">AgentFunctionDescription::MessageInput()</span></a> for the mutable version </p>
 </dd>
@@ -1196,8 +1215,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription16getMessageOutputEv">
-<span id="_CPPv3NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="AgentFunctionDescription::getMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a9699a047a9fe24f48fe994237cfeb86b"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getMessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16getMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription16getMessageOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16getMessageOutputEv"></span><span id="AgentFunctionDescription::getMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a9699a047a9fe24f48fe994237cfeb86b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMessageOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16getMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a18e5a44be29bc0b6fa4cf87943f20e01"><span class="std std-ref">AgentFunctionDescription::MessageOutput()</span></a> for the mutable version </p>
 </dd>
@@ -1214,8 +1233,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv">
-<span id="_CPPv3NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="_CPPv2NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="AgentFunctionDescription::getMessageOutputOptionalC"></span><span class="target" id="classAgentFunctionDescription_1a8df897d6957e5f342c5a2803955afbda"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getMessageOutputOptional</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv">
+<span id="_CPPv3NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="_CPPv2NK24AgentFunctionDescription24getMessageOutputOptionalEv"></span><span id="AgentFunctionDescription::getMessageOutputOptionalC"></span><span class="target" id="classAgentFunctionDescription_1a8df897d6957e5f342c5a2803955afbda"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMessageOutputOptional</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription24getMessageOutputOptionalEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True if message output from this agent function is optional </p>
@@ -1224,8 +1243,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription14getAgentOutputEv">
-<span id="_CPPv3NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="AgentFunctionDescription::getAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a325f5760d7c9d769029012c0c92d62eb"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="pre">AgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgentOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription14getAgentOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getAgentOutputEv"></span><span id="AgentFunctionDescription::getAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a325f5760d7c9d769029012c0c92d62eb"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classAgentDescription.html#_CPPv416AgentDescription" title="AgentDescription"><span class="n"><span class="pre">AgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getAgentOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Throws</dt>
 <dd class="field-odd"><p><a class="reference internal" href="classOutOfBoundsException.html#_CPPv420OutOfBoundsException" title="OutOfBoundsException"><strong>OutOfBoundsException</strong></a> – If the agent output has not been set </p>
@@ -1237,8 +1256,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv">
-<span id="_CPPv3NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="AgentFunctionDescription::getAgentOutputStateC"></span><span class="target" id="classAgentFunctionDescription_1a58f5c8e8db466847a88e7613e448e534"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getAgentOutputState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv">
+<span id="_CPPv3NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="_CPPv2NK24AgentFunctionDescription19getAgentOutputStateEv"></span><span id="AgentFunctionDescription::getAgentOutputStateC"></span><span class="target" id="classAgentFunctionDescription_1a58f5c8e8db466847a88e7613e448e534"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgentOutputState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription19getAgentOutputStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Throws</dt>
 <dd class="field-odd"><p><a class="reference internal" href="classOutOfBoundsException.html#_CPPv420OutOfBoundsException" title="OutOfBoundsException"><strong>OutOfBoundsException</strong></a> – If the agent output has not been set </p>
@@ -1250,8 +1269,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv">
-<span id="_CPPv3NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="_CPPv2NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="AgentFunctionDescription::getAllowAgentDeathC"></span><span class="target" id="classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getAllowAgentDeath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv">
+<span id="_CPPv3NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="_CPPv2NK24AgentFunctionDescription18getAllowAgentDeathEv"></span><span id="AgentFunctionDescription::getAllowAgentDeathC"></span><span class="target" id="classAgentFunctionDescription_1a32bef02d24b4c7704e6497e3de85f9f1"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAllowAgentDeath</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription18getAllowAgentDeathEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True if this agent function can kill agents </p>
@@ -1260,8 +1279,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription15hasMessageInputEv">
-<span id="_CPPv3NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="AgentFunctionDescription::hasMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1ac727bed80b21aff4587adaedf0124b3a"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasMessageInput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15hasMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription15hasMessageInputEv">
+<span id="_CPPv3NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="_CPPv2NK24AgentFunctionDescription15hasMessageInputEv"></span><span id="AgentFunctionDescription::hasMessageInputC"></span><span class="target" id="classAgentFunctionDescription_1ac727bed80b21aff4587adaedf0124b3a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasMessageInput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15hasMessageInputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1af84cb6ed56159d3497fdc5a47aba93ad"><span class="std std-ref">AgentFunctionDescription::setMessageInput(const std::string &amp;)</span></a> </p>
 </dd>
@@ -1277,8 +1296,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv">
-<span id="_CPPv3NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="AgentFunctionDescription::hasMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a6e8d353559faf5ab2641e7bb7d2467c2"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasMessageOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription16hasMessageOutputEv"></span><span id="AgentFunctionDescription::hasMessageOutputC"></span><span class="target" id="classAgentFunctionDescription_1a6e8d353559faf5ab2641e7bb7d2467c2"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasMessageOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription16hasMessageOutputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1aeff898befdd10ebe4f1dc928d12e9ca6"><span class="std std-ref">AgentFunctionDescription::setMessageOutput(const std::string &amp;)</span></a> </p>
 </dd>
@@ -1294,8 +1313,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv">
-<span id="_CPPv3NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="AgentFunctionDescription::hasAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a54b7eb881ec7128fe888b620347672a3"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasAgentOutput</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv">
+<span id="_CPPv3NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="_CPPv2NK24AgentFunctionDescription14hasAgentOutputEv"></span><span id="AgentFunctionDescription::hasAgentOutputC"></span><span class="target" id="classAgentFunctionDescription_1a54b7eb881ec7128fe888b620347672a3"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasAgentOutput</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14hasAgentOutputEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p>AgentFunctionDescription::setAgentOutput(const std::string &amp;) </p>
 </dd>
@@ -1311,8 +1330,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv">
-<span id="_CPPv3NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="_CPPv2NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="AgentFunctionDescription::hasFunctionConditionC"></span><span class="target" id="classAgentFunctionDescription_1aaa9ccfa1438c5107e8044d01db3276ae"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasFunctionCondition</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv">
+<span id="_CPPv3NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="_CPPv2NK24AgentFunctionDescription20hasFunctionConditionEv"></span><span id="AgentFunctionDescription::hasFunctionConditionC"></span><span class="target" id="classAgentFunctionDescription_1aaa9ccfa1438c5107e8044d01db3276ae"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasFunctionCondition</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription20hasFunctionConditionEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classAgentFunctionDescription_1a06a7f4100178a3f43f2b35817a6bdc3e"><span class="std std-ref">AgentFunctionDescription::setFunctionCondition(AgentFunctionCondition)</span></a> </p>
 </dd>
@@ -1326,8 +1345,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv">
-<span id="_CPPv3NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="AgentFunctionDescription::getFunctionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a4923c52cf0fc5949911dd4c0f5cd6ced"></span><span class="pre">AgentFunctionWrapper</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getFunctionPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv">
+<span id="_CPPv3NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription14getFunctionPtrEv"></span><span id="AgentFunctionDescription::getFunctionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a4923c52cf0fc5949911dd4c0f5cd6ced"></span><span class="n"><span class="pre">AgentFunctionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getFunctionPtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription14getFunctionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The cuda kernel entry point for executing the agent function </p>
@@ -1336,8 +1355,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription15getConditionPtrEv">
-<span id="_CPPv3NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="AgentFunctionDescription::getConditionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a530fffbe21b575e9c401f846bd7aaffd"></span><span class="pre">AgentFunctionConditionWrapper</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getConditionPtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getConditionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription15getConditionPtrEv">
+<span id="_CPPv3NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="_CPPv2NK24AgentFunctionDescription15getConditionPtrEv"></span><span id="AgentFunctionDescription::getConditionPtrC"></span><span class="target" id="classAgentFunctionDescription_1a530fffbe21b575e9c401f846bd7aaffd"></span><span class="n"><span class="pre">AgentFunctionConditionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getConditionPtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription15getConditionPtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The cuda kernel entry point for executing the agent function condition </p>
@@ -1346,8 +1365,8 @@ Const Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24AgentFunctionDescription5isRTCEv">
-<span id="_CPPv3NK24AgentFunctionDescription5isRTCEv"></span><span id="_CPPv2NK24AgentFunctionDescription5isRTCEv"></span><span id="AgentFunctionDescription::isRTCC"></span><span class="target" id="classAgentFunctionDescription_1ae6d110cb2a52533815a28baf78bbf7bf"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">isRTC</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription5isRTCEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24AgentFunctionDescription5isRTCEv">
+<span id="_CPPv3NK24AgentFunctionDescription5isRTCEv"></span><span id="_CPPv2NK24AgentFunctionDescription5isRTCEv"></span><span id="AgentFunctionDescription::isRTCC"></span><span class="target" id="classAgentFunctionDescription_1ae6d110cb2a52533815a28baf78bbf7bf"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isRTC</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24AgentFunctionDescription5isRTCEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True if the function is a runtime time specified function </p>
@@ -1358,8 +1377,8 @@ Const Accessors </p>
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

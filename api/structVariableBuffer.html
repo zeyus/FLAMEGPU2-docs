@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct VariableBuffer &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,39 +813,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-variablebuffer">
+  <section id="struct-variablebuffer">
 <span id="exhale-struct-structvariablebuffer"></span><h1>Struct VariableBuffer<a class="headerlink" href="#struct-variablebuffer" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_gpu_CUDAFatAgentStateList.h.html#file-include-flamegpu-gpu-cudafatagentstatelist-h"><span class="std std-ref">File CUDAFatAgentStateList.h</span></a></p></li>
 </ul>
-<div class="section" id="struct-documentation">
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv414VariableBuffer">
-<span id="_CPPv314VariableBuffer"></span><span id="_CPPv214VariableBuffer"></span><span id="VariableBuffer"></span><span class="target" id="structVariableBuffer"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">VariableBuffer</span></code><a class="headerlink" href="#_CPPv414VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv414VariableBuffer">
+<span id="_CPPv314VariableBuffer"></span><span id="_CPPv214VariableBuffer"></span><span id="VariableBuffer"></span><span class="target" id="structVariableBuffer"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VariableBuffer</span></span></span><a class="headerlink" href="#_CPPv414VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This represents a raw buffer </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv">
-<span id="_CPPv3N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv"></span><span id="_CPPv2N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv"></span><span id="VariableBuffer::VariableBuffer__std::type_indexCR.sCR.voidCPC.sCR.voidP.voidP"></span><span class="target" id="structVariableBuffer_1a177b05559f6ef919d89bba884b9db070"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">VariableBuffer</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <span class="pre">&amp;</span><em><span class="pre">_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <span class="pre">&amp;</span><em><span class="pre">_type_size</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <em><span class="pre">_default_value</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <span class="pre">&amp;</span><em><span class="pre">_elements</span></em> <span class="pre">=</span> <span class="pre">1</span>, <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_data</span></em> <span class="pre">=</span> <span class="pre">nullptr</span>, <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_data_swap</span></em> <span class="pre">=</span> <span class="pre">nullptr</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv">
+<span id="_CPPv3N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv"></span><span id="_CPPv2N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv"></span><span id="VariableBuffer::VariableBuffer__std::type_indexCR.sCR.voidCPC.sCR.voidP.voidP"></span><span class="target" id="structVariableBuffer_1a177b05559f6ef919d89bba884b9db070"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VariableBuffer</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_type_size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_default_value</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_elements</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_data</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_data_swap</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer14VariableBufferERKNSt10type_indexERK6size_tPCKvRK6size_tPvPv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer">
-<span id="_CPPv3N14VariableBuffer14VariableBufferERK14VariableBuffer"></span><span id="_CPPv2N14VariableBuffer14VariableBufferERK14VariableBuffer"></span><span id="VariableBuffer::VariableBuffer__VariableBufferCR"></span><span class="target" id="structVariableBuffer_1aeef623ea23777f3c6a57305c20eabde3"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">VariableBuffer</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer" title="VariableBuffer::VariableBuffer"><span class="pre">VariableBuffer</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer">
+<span id="_CPPv3N14VariableBuffer14VariableBufferERK14VariableBuffer"></span><span id="_CPPv2N14VariableBuffer14VariableBufferERK14VariableBuffer"></span><span id="VariableBuffer::VariableBuffer__VariableBufferCR"></span><span class="target" id="structVariableBuffer_1aeef623ea23777f3c6a57305c20eabde3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VariableBuffer</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer" title="VariableBuffer::VariableBuffer"><span class="n"><span class="pre">VariableBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer14VariableBufferERK14VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Copy constructor </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14VariableBufferD0Ev">
-<span id="_CPPv3N14VariableBufferD0Ev"></span><span id="_CPPv2N14VariableBufferD0Ev"></span><span id="VariableBuffer::~VariableBuffer"></span><span class="target" id="structVariableBuffer_1aeb4c5bdfc0fffe20a8acbf7baf852987"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">~VariableBuffer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBufferD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBufferD0Ev">
+<span id="_CPPv3N14VariableBufferD0Ev"></span><span id="_CPPv2N14VariableBufferD0Ev"></span><span id="VariableBuffer::~VariableBuffer"></span><span class="target" id="structVariableBuffer_1aeb4c5bdfc0fffe20a8acbf7baf852987"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~VariableBuffer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBufferD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Destructor </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14VariableBuffer4swapEP14VariableBuffer">
-<span id="_CPPv3N14VariableBuffer4swapEP14VariableBuffer"></span><span id="_CPPv2N14VariableBuffer4swapEP14VariableBuffer"></span><span id="VariableBuffer::swap__VariableBufferP"></span><span class="target" id="structVariableBuffer_1a6fe2e0edab10b61aa500cb42dfaf0c1e"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">swap</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414VariableBuffer" title="VariableBuffer"><span class="pre">VariableBuffer</span></a> <span class="pre">*</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer4swapEP14VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer4swapEP14VariableBuffer">
+<span id="_CPPv3N14VariableBuffer4swapEP14VariableBuffer"></span><span id="_CPPv2N14VariableBuffer4swapEP14VariableBuffer"></span><span id="VariableBuffer::swap__VariableBufferP"></span><span class="target" id="structVariableBuffer_1a6fe2e0edab10b61aa500cb42dfaf0c1e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414VariableBuffer" title="VariableBuffer"><span class="n"><span class="pre">VariableBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14VariableBuffer4swapEP14VariableBuffer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Swaps the buffers pointed to by the two VariableBuffers This is used when performing a state transition to an empty statelist The two buffers must point to the same variable </p>
 </dd></dl>
 
@@ -834,44 +853,44 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer4dataE">
-<span id="_CPPv3N14VariableBuffer4dataE"></span><span id="_CPPv2N14VariableBuffer4dataE"></span><span id="VariableBuffer::data__voidP"></span><span class="target" id="structVariableBuffer_1a341f8f8d1cfb98bd5547dbb3990f0eda"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer4dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer4dataE">
+<span id="_CPPv3N14VariableBuffer4dataE"></span><span id="_CPPv2N14VariableBuffer4dataE"></span><span id="VariableBuffer::data__voidP"></span><span class="target" id="structVariableBuffer_1a341f8f8d1cfb98bd5547dbb3990f0eda"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer4dataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to the device buffer of data </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer14data_conditionE">
-<span id="_CPPv3N14VariableBuffer14data_conditionE"></span><span id="_CPPv2N14VariableBuffer14data_conditionE"></span><span id="VariableBuffer::data_condition__voidP"></span><span class="target" id="structVariableBuffer_1adc2cd2a4d9b6c373a49f382861f4d319"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data_condition</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer14data_conditionE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer14data_conditionE">
+<span id="_CPPv3N14VariableBuffer14data_conditionE"></span><span id="_CPPv2N14VariableBuffer14data_conditionE"></span><span id="VariableBuffer::data_condition__voidP"></span><span class="target" id="structVariableBuffer_1adc2cd2a4d9b6c373a49f382861f4d319"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data_condition</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer14data_conditionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to an offset within data, this should be tied to the number of disabled agents </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer9data_swapE">
-<span id="_CPPv3N14VariableBuffer9data_swapE"></span><span id="_CPPv2N14VariableBuffer9data_swapE"></span><span id="VariableBuffer::data_swap__voidP"></span><span class="target" id="structVariableBuffer_1a516e246e68dc512a4aa72962bc766c36"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data_swap</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer9data_swapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer9data_swapE">
+<span id="_CPPv3N14VariableBuffer9data_swapE"></span><span id="_CPPv2N14VariableBuffer9data_swapE"></span><span id="VariableBuffer::data_swap__voidP"></span><span class="target" id="structVariableBuffer_1a516e246e68dc512a4aa72962bc766c36"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data_swap</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer9data_swapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to a spare device buffer used when scattering </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer4typeE">
-<span id="_CPPv3N14VariableBuffer4typeE"></span><span id="_CPPv2N14VariableBuffer4typeE"></span><span id="VariableBuffer::type__std::type_indexC"></span><span class="target" id="structVariableBuffer_1ac76eb5693627a367ba7f56a3b31309ea"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">type</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer4typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer4typeE">
+<span id="_CPPv3N14VariableBuffer4typeE"></span><span id="_CPPv2N14VariableBuffer4typeE"></span><span id="VariableBuffer::type__std::type_indexC"></span><span class="target" id="structVariableBuffer_1ac76eb5693627a367ba7f56a3b31309ea"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer4typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The type of the variable </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer9type_sizeE">
-<span id="_CPPv3N14VariableBuffer9type_sizeE"></span><span id="_CPPv2N14VariableBuffer9type_sizeE"></span><span id="VariableBuffer::type_size__sC"></span><span class="target" id="structVariableBuffer_1ac0d59d60f6c3d2051cf22e19db2f8969"></span><em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">type_size</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer9type_sizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer9type_sizeE">
+<span id="_CPPv3N14VariableBuffer9type_sizeE"></span><span id="_CPPv2N14VariableBuffer9type_sizeE"></span><span id="VariableBuffer::type_size__sC"></span><span class="target" id="structVariableBuffer_1ac0d59d60f6c3d2051cf22e19db2f8969"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type_size</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer9type_sizeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The size of the variable’s type (e.g. sizeof(T)) </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer8elementsE">
-<span id="_CPPv3N14VariableBuffer8elementsE"></span><span id="_CPPv2N14VariableBuffer8elementsE"></span><span id="VariableBuffer::elements__sC"></span><span class="target" id="structVariableBuffer_1a0d69ad3e74273dbcd0f7ab8dc1baa4b9"></span><em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">elements</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer8elementsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer8elementsE">
+<span id="_CPPv3N14VariableBuffer8elementsE"></span><span id="_CPPv2N14VariableBuffer8elementsE"></span><span id="VariableBuffer::elements__sC"></span><span class="target" id="structVariableBuffer_1a0d69ad3e74273dbcd0f7ab8dc1baa4b9"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elements</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer8elementsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Is the variable array type </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14VariableBuffer13default_valueE">
-<span id="_CPPv3N14VariableBuffer13default_valueE"></span><span id="_CPPv2N14VariableBuffer13default_valueE"></span><span id="VariableBuffer::default_value__voidCPC"></span><span class="target" id="structVariableBuffer_1a9e4b6acd327a5eb062ac24d9d3985969"></span><em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <code class="sig-name descname"><span class="pre">default_value</span></code><a class="headerlink" href="#_CPPv4N14VariableBuffer13default_valueE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14VariableBuffer13default_valueE">
+<span id="_CPPv3N14VariableBuffer13default_valueE"></span><span id="_CPPv2N14VariableBuffer13default_valueE"></span><span id="VariableBuffer::default_value__voidCPC"></span><span class="target" id="structVariableBuffer_1a9e4b6acd327a5eb062ac24d9d3985969"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">default_value</span></span></span><a class="headerlink" href="#_CPPv4N14VariableBuffer13default_valueE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Pointer to the default value of the variable The length of the allocation is equal to elements * type_size </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -882,8 +901,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

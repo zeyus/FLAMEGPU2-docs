@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class Simulation &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,76 +813,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-simulation">
+  <section id="class-simulation">
 <span id="exhale-class-classsimulation"></span><h1>Class Simulation<a class="headerlink" href="#class-simulation" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_sim_Simulation.h.html#file-include-flamegpu-sim-simulation-h"><span class="std std-ref">File Simulation.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="structSimulation_1_1Config.html#exhale-struct-structsimulation-1-1config"><span class="std std-ref">Struct Simulation::Config</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="inheritance-relationships">
+</section>
+</section>
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-type">
+<section id="derived-type">
 <h3>Derived Type<a class="headerlink" href="#derived-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">CUDASimulation</span></code> (<a class="reference internal" href="classCUDASimulation.html#exhale-class-classcudasimulation"><span class="std std-ref">Class CUDASimulation</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv410Simulation">
-<span id="_CPPv310Simulation"></span><span id="_CPPv210Simulation"></span><span id="Simulation"></span><span class="target" id="classSimulation"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Simulation</span></code><a class="headerlink" href="#_CPPv410Simulation" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv410Simulation">
+<span id="_CPPv310Simulation"></span><span id="_CPPv210Simulation"></span><span id="Simulation"></span><span class="target" id="classSimulation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Simulation</span></span></span><a class="headerlink" href="#_CPPv410Simulation" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Subclassed by <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10SimulationD0Ev">
-<span id="_CPPv3N10SimulationD0Ev"></span><span id="_CPPv2N10SimulationD0Ev"></span><span id="Simulation::~Simulation"></span><span class="target" id="classSimulation_1a85781a859dbdf089b4c807ac11646e18"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~Simulation</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">default</span><a class="headerlink" href="#_CPPv4N10SimulationD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10SimulationD0Ev">
+<span id="_CPPv3N10SimulationD0Ev"></span><span id="_CPPv2N10SimulationD0Ev"></span><span id="Simulation::~Simulation"></span><span class="target" id="classSimulation_1a85781a859dbdf089b4c807ac11646e18"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Simulation</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><a class="headerlink" href="#_CPPv4N10SimulationD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE">
-<span id="_CPPv3N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE"></span><span id="Simulation::Simulation__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="classSimulation_1ac600bd2a7cc5ffb6c1879854276e0423"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Simulation</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE">
+<span id="_CPPv3N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE"></span><span id="Simulation::Simulation__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="classSimulation_1ac600bd2a7cc5ffb6c1879854276e0423"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Simulation</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10SimulationERKNSt10shared_ptrIK9ModelDataEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This constructor takes a clone of the <a class="reference internal" href="structModelData.html#structModelData"><span class="std std-ref">ModelData</span></a> hierarchy </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation10initialiseEiPPKc">
-<span id="_CPPv3N10Simulation10initialiseEiPPKc"></span><span id="_CPPv2N10Simulation10initialiseEiPPKc"></span><span id="Simulation::initialise__i.cCPP"></span><span class="target" id="classSimulation_1a66b1eb73618b7fcde6e923088b1df80c"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">initialise</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">argc</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">argv</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10initialiseEiPPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation10initialiseEiPPKc">
+<span id="_CPPv3N10Simulation10initialiseEiPPKc"></span><span id="_CPPv2N10Simulation10initialiseEiPPKc"></span><span id="Simulation::initialise__i.cCPP"></span><span class="target" id="classSimulation_1a66b1eb73618b7fcde6e923088b1df80c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initialise</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10initialiseEiPPKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation13initFunctionsEv">
-<span id="_CPPv3N10Simulation13initFunctionsEv"></span><span id="_CPPv2N10Simulation13initFunctionsEv"></span><span id="Simulation::initFunctions"></span><span class="target" id="classSimulation_1a3d60916936bdc59cf434a7cd25c801e7"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">initFunctions</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation13initFunctionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation13initFunctionsEv">
+<span id="_CPPv3N10Simulation13initFunctionsEv"></span><span id="_CPPv2N10Simulation13initFunctionsEv"></span><span id="Simulation::initFunctions"></span><span class="target" id="classSimulation_1a3d60916936bdc59cf434a7cd25c801e7"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initFunctions</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation13initFunctionsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation4stepEv">
-<span id="_CPPv3N10Simulation4stepEv"></span><span id="_CPPv2N10Simulation4stepEv"></span><span id="Simulation::step"></span><span class="target" id="classSimulation_1addea1819880214b769a378e4985b9423"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">step</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation4stepEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation4stepEv">
+<span id="_CPPv3N10Simulation4stepEv"></span><span id="_CPPv2N10Simulation4stepEv"></span><span id="Simulation::step"></span><span class="target" id="classSimulation_1addea1819880214b769a378e4985b9423"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">step</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation4stepEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation13exitFunctionsEv">
-<span id="_CPPv3N10Simulation13exitFunctionsEv"></span><span id="_CPPv2N10Simulation13exitFunctionsEv"></span><span id="Simulation::exitFunctions"></span><span class="target" id="classSimulation_1a4b6c1a8a65ee4464a3303ad1dbb15f28"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">exitFunctions</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation13exitFunctionsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation13exitFunctionsEv">
+<span id="_CPPv3N10Simulation13exitFunctionsEv"></span><span id="_CPPv2N10Simulation13exitFunctionsEv"></span><span id="Simulation::exitFunctions"></span><span class="target" id="classSimulation_1a4b6c1a8a65ee4464a3303ad1dbb15f28"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exitFunctions</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation13exitFunctionsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation8simulateEv">
-<span id="_CPPv3N10Simulation8simulateEv"></span><span id="_CPPv2N10Simulation8simulateEv"></span><span id="Simulation::simulate"></span><span class="target" id="classSimulation_1a32440d6d8a0bbd608c6c16f2907e6c9f"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">simulate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation8simulateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation8simulateEv">
+<span id="_CPPv3N10Simulation8simulateEv"></span><span id="_CPPv2N10Simulation8simulateEv"></span><span id="Simulation::simulate"></span><span class="target" id="classSimulation_1a32440d6d8a0bbd608c6c16f2907e6c9f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">simulate</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation8simulateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation5resetEv">
-<span id="_CPPv3N10Simulation5resetEv"></span><span id="_CPPv2N10Simulation5resetEv"></span><span id="Simulation::reset"></span><span class="target" id="classSimulation_1a2dc2464162d59383e0a1c68a3f9c42fb"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">reset</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation5resetEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation5resetEv">
+<span id="_CPPv3N10Simulation5resetEv"></span><span id="_CPPv2N10Simulation5resetEv"></span><span id="Simulation::reset"></span><span class="target" id="classSimulation_1a2dc2464162d59383e0a1c68a3f9c42fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation5resetEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the simulation to a clean state This clears all agents and message lists, resets environment properties and reseeds random generation. Also calls <a class="reference internal" href="#classSimulation_1a832bea015273a16ce8ff6e166247b530"><span class="std std-ref">resetStepCounter()</span></a>; </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -876,23 +895,23 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation14getStepCounterEv">
-<span id="_CPPv3N10Simulation14getStepCounterEv"></span><span id="_CPPv2N10Simulation14getStepCounterEv"></span><span id="Simulation::getStepCounter"></span><span class="target" id="classSimulation_1a9c56ad2bb3ea14673511baa9136bbeb2"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStepCounter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation14getStepCounterEv">
+<span id="_CPPv3N10Simulation14getStepCounterEv"></span><span id="_CPPv2N10Simulation14getStepCounterEv"></span><span id="Simulation::getStepCounter"></span><span class="target" id="classSimulation_1a9c56ad2bb3ea14673511baa9136bbeb2"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getStepCounter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation16resetStepCounterEv">
-<span id="_CPPv3N10Simulation16resetStepCounterEv"></span><span id="_CPPv2N10Simulation16resetStepCounterEv"></span><span id="Simulation::resetStepCounter"></span><span class="target" id="classSimulation_1a832bea015273a16ce8ff6e166247b530"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">resetStepCounter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation16resetStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation16resetStepCounterEv">
+<span id="_CPPv3N10Simulation16resetStepCounterEv"></span><span id="_CPPv2N10Simulation16resetStepCounterEv"></span><span id="Simulation::resetStepCounter"></span><span class="target" id="classSimulation_1a832bea015273a16ce8ff6e166247b530"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetStepCounter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation16resetStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10Simulation19getModelDescriptionEv">
-<span id="_CPPv3NK10Simulation19getModelDescriptionEv"></span><span id="_CPPv2NK10Simulation19getModelDescriptionEv"></span><span id="Simulation::getModelDescriptionC"></span><span class="target" id="classSimulation_1a6f83826ae9feadfbcbb20d82460b22f0"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getModelDescription</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK10Simulation19getModelDescriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10Simulation19getModelDescriptionEv">
+<span id="_CPPv3NK10Simulation19getModelDescriptionEv"></span><span id="_CPPv2NK10Simulation19getModelDescriptionEv"></span><span id="Simulation::getModelDescriptionC"></span><span class="target" id="classSimulation_1a6f83826ae9feadfbcbb20d82460b22f0"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getModelDescription</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Simulation19getModelDescriptionEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation10exportDataERKNSt6stringEb">
-<span id="_CPPv3N10Simulation10exportDataERKNSt6stringEb"></span><span id="_CPPv2N10Simulation10exportDataERKNSt6stringEb"></span><span id="Simulation::exportData__ssCR.b"></span><span class="target" id="classSimulation_1a0360c410fc2de3ea8f9fc52e03bd448e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">exportData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">path</span></em>, <span class="pre">bool</span> <em><span class="pre">prettyPrint</span></em> <span class="pre">=</span> <span class="pre">true</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10exportDataERKNSt6stringEb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation10exportDataERKNSt6stringEb">
+<span id="_CPPv3N10Simulation10exportDataERKNSt6stringEb"></span><span id="_CPPv2N10Simulation10exportDataERKNSt6stringEb"></span><span id="Simulation::exportData__ssCR.b"></span><span class="target" id="classSimulation_1a0360c410fc2de3ea8f9fc52e03bd448e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exportData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">path</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prettyPrint</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10exportDataERKNSt6stringEb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Export model state to file Export includes config structures, environment and agent data </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -909,8 +928,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation9exportLogERKNSt6stringEbbb">
-<span id="_CPPv3N10Simulation9exportLogERKNSt6stringEbbb"></span><span id="_CPPv2N10Simulation9exportLogERKNSt6stringEbbb"></span><span id="Simulation::exportLog__ssCR.b.b.b"></span><span class="target" id="classSimulation_1a301ef9f98a218bc7c49c1b00d03bf1ce"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">exportLog</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">path</span></em>, <span class="pre">bool</span> <em><span class="pre">steps</span></em>, <span class="pre">bool</span> <em><span class="pre">exit</span></em>, <span class="pre">bool</span> <em><span class="pre">prettyPrint</span></em> <span class="pre">=</span> <span class="pre">true</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation9exportLogERKNSt6stringEbbb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation9exportLogERKNSt6stringEbbb">
+<span id="_CPPv3N10Simulation9exportLogERKNSt6stringEbbb"></span><span id="_CPPv2N10Simulation9exportLogERKNSt6stringEbbb"></span><span id="Simulation::exportLog__ssCR.b.b.b"></span><span class="target" id="classSimulation_1a301ef9f98a218bc7c49c1b00d03bf1ce"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exportLog</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">path</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">steps</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exit</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">prettyPrint</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation9exportLogERKNSt6stringEbbb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Export the data logged by the last call to <a class="reference internal" href="#classSimulation_1a32440d6d8a0bbd608c6c16f2907e6c9f"><span class="std std-ref">simulate()</span></a> (and/or step) to the given path </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -929,52 +948,52 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE">
-<span id="_CPPv3N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="_CPPv2N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="Simulation::setPopulationData__AgentVectorR.ssCR"></span><span class="target" id="classSimulation_1aff8c8095e84a67c05be62479f1a2bd85"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setPopulationData</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">population</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE">
+<span id="_CPPv3N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="_CPPv2N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="Simulation::setPopulationData__AgentVectorR.ssCR"></span><span class="target" id="classSimulation_1aff8c8095e84a67c05be62479f1a2bd85"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPopulationData</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">population</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation17setPopulationDataER11AgentVectorRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE">
-<span id="_CPPv3N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="_CPPv2N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="Simulation::getPopulationData__AgentVectorR.ssCR"></span><span class="target" id="classSimulation_1ad4b6cfce50f81dec3cb667dc0a2be38e"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">getPopulationData</span></code><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="pre">AgentVector</span></a> <span class="pre">&amp;</span><em><span class="pre">population</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE">
+<span id="_CPPv3N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="_CPPv2N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE"></span><span id="Simulation::getPopulationData__AgentVectorR.ssCR"></span><span class="target" id="classSimulation_1ad4b6cfce50f81dec3cb667dc0a2be38e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPopulationData</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classAgentVector.html#_CPPv411AgentVector" title="AgentVector"><span class="n"><span class="pre">AgentVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">population</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation17getPopulationDataER11AgentVectorRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10Simulation9getRunLogEv">
-<span id="_CPPv3NK10Simulation9getRunLogEv"></span><span id="_CPPv2NK10Simulation9getRunLogEv"></span><span id="Simulation::getRunLogC"></span><span class="target" id="classSimulation_1ad6cd78321c88bad7a9bb49cbb718bf7f"></span><em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structRunLog.html#_CPPv46RunLog" title="RunLog"><span class="pre">RunLog</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getRunLog</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4NK10Simulation9getRunLogEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10Simulation9getRunLogEv">
+<span id="_CPPv3NK10Simulation9getRunLogEv"></span><span id="_CPPv2NK10Simulation9getRunLogEv"></span><span id="Simulation::getRunLogC"></span><span class="target" id="classSimulation_1ad6cd78321c88bad7a9bb49cbb718bf7f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structRunLog.html#_CPPv46RunLog" title="RunLog"><span class="n"><span class="pre">RunLog</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getRunLog</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4NK10Simulation9getRunLogEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation8getAgentERKNSt6stringE">
-<span id="_CPPv3N10Simulation8getAgentERKNSt6stringE"></span><span id="_CPPv2N10Simulation8getAgentERKNSt6stringE"></span><span id="Simulation::getAgent__ssCR"></span><span class="target" id="classSimulation_1ace33690268b486565971e56d18d30006"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="classAgentInterface.html#_CPPv414AgentInterface" title="AgentInterface"><span class="pre">AgentInterface</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation8getAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation8getAgentERKNSt6stringE">
+<span id="_CPPv3N10Simulation8getAgentERKNSt6stringE"></span><span id="_CPPv2N10Simulation8getAgentERKNSt6stringE"></span><span id="Simulation::getAgent__ssCR"></span><span class="target" id="classSimulation_1ace33690268b486565971e56d18d30006"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="classAgentInterface.html#_CPPv414AgentInterface" title="AgentInterface"><span class="n"><span class="pre">AgentInterface</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getAgent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation8getAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation16SimulationConfigEv">
-<span id="_CPPv3N10Simulation16SimulationConfigEv"></span><span id="_CPPv2N10Simulation16SimulationConfigEv"></span><span id="Simulation::SimulationConfig"></span><span class="target" id="classSimulation_1a2367a2dccc1037b5be5364b38ff73a85"></span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="pre">Config</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">SimulationConfig</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation16SimulationConfigEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation16SimulationConfigEv">
+<span id="_CPPv3N10Simulation16SimulationConfigEv"></span><span id="_CPPv2N10Simulation16SimulationConfigEv"></span><span id="Simulation::SimulationConfig"></span><span class="target" id="classSimulation_1a2367a2dccc1037b5be5364b38ff73a85"></span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">SimulationConfig</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation16SimulationConfigEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10Simulation19getSimulationConfigEv">
-<span id="_CPPv3NK10Simulation19getSimulationConfigEv"></span><span id="_CPPv2NK10Simulation19getSimulationConfigEv"></span><span id="Simulation::getSimulationConfigC"></span><span class="target" id="classSimulation_1a9384fe3624f3e3ed0fd021303d8631bf"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="pre">Config</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getSimulationConfig</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK10Simulation19getSimulationConfigEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10Simulation19getSimulationConfigEv">
+<span id="_CPPv3NK10Simulation19getSimulationConfigEv"></span><span id="_CPPv2NK10Simulation19getSimulationConfigEv"></span><span id="Simulation::getSimulationConfigC"></span><span class="target" id="classSimulation_1a9384fe3624f3e3ed0fd021303d8631bf"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getSimulationConfig</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Simulation19getSimulationConfigEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation11applyConfigEv">
-<span id="_CPPv3N10Simulation11applyConfigEv"></span><span id="_CPPv2N10Simulation11applyConfigEv"></span><span id="Simulation::applyConfig"></span><span class="target" id="classSimulation_1a593eaf329ccef6d0c690b8071c4a8df6"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">applyConfig</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation11applyConfigEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation11applyConfigEv">
+<span id="_CPPv3N10Simulation11applyConfigEv"></span><span id="_CPPv2N10Simulation11applyConfigEv"></span><span id="Simulation::applyConfig"></span><span class="target" id="classSimulation_1a593eaf329ccef6d0c690b8071c4a8df6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">applyConfig</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation11applyConfigEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation">
-<span id="_CPPv3N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation"></span><span id="_CPPv2N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation"></span><span id="Simulation::Simulation__std::shared_ptr:SubModelData:CR.CUDASimulationP"></span><span class="target" id="classSimulation_1acd1b46926d9821a03f2fb1eca0ad52e6"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">Simulation</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">sub_model</span></em>, <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">*</span><em><span class="pre">master_model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation">
+<span id="_CPPv3N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation"></span><span id="_CPPv2N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation"></span><span id="Simulation::Simulation__std::shared_ptr:SubModelData:CR.CUDASimulationP"></span><span class="target" id="classSimulation_1acd1b46926d9821a03f2fb1eca0ad52e6"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Simulation</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sub_model</span></span>, <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="n"><span class="pre">CUDASimulation</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">master_model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation10SimulationERKNSt10shared_ptrI12SubModelDataEEP14CUDASimulation" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This constructor is for use with submodels, it does not call clone Additionally sets the submodel ptr </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation5resetEb">
-<span id="_CPPv3N10Simulation5resetEb"></span><span id="_CPPv2N10Simulation5resetEb"></span><span id="Simulation::reset__b"></span><span class="target" id="classSimulation_1aff9cf9ff4c08bd939fe191c1b4df2dfc"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">reset</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">submodelReset</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation5resetEb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation5resetEb">
+<span id="_CPPv3N10Simulation5resetEb"></span><span id="_CPPv2N10Simulation5resetEb"></span><span id="Simulation::reset__b"></span><span class="target" id="classSimulation_1aff9cf9ff4c08bd939fe191c1b4df2dfc"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reset</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">submodelReset</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation5resetEb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the model to a clean state This clears all agents and message lists, resets environment properties and reseeds random generation. Also calls <a class="reference internal" href="#classSimulation_1a832bea015273a16ce8ff6e166247b530"><span class="std std-ref">resetStepCounter()</span></a>; </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -992,28 +1011,28 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation19applyConfig_derivedEv">
-<span id="_CPPv3N10Simulation19applyConfig_derivedEv"></span><span id="_CPPv2N10Simulation19applyConfig_derivedEv"></span><span id="Simulation::applyConfig_derived"></span><span class="target" id="classSimulation_1a965d07fcbca61e640e5cc4b117acea74"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">applyConfig_derived</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation19applyConfig_derivedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation19applyConfig_derivedEv">
+<span id="_CPPv3N10Simulation19applyConfig_derivedEv"></span><span id="_CPPv2N10Simulation19applyConfig_derivedEv"></span><span id="Simulation::applyConfig_derived"></span><span class="target" id="classSimulation_1a965d07fcbca61e640e5cc4b117acea74"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">applyConfig_derived</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation19applyConfig_derivedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation17checkArgs_derivedEiPPKcRi">
-<span id="_CPPv3N10Simulation17checkArgs_derivedEiPPKcRi"></span><span id="_CPPv2N10Simulation17checkArgs_derivedEiPPKcRi"></span><span id="Simulation::checkArgs_derived__i.cCPP.iR"></span><span class="target" id="classSimulation_1ada143d8d14c228c416af9d31462e2a54"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">checkArgs_derived</span></code><span class="sig-paren">(</span><span class="pre">int</span> <em><span class="pre">argc</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">argv</span></em>, <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">i</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation17checkArgs_derivedEiPPKcRi" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation17checkArgs_derivedEiPPKcRi">
+<span id="_CPPv3N10Simulation17checkArgs_derivedEiPPKcRi"></span><span id="_CPPv2N10Simulation17checkArgs_derivedEiPPKcRi"></span><span id="Simulation::checkArgs_derived__i.cCPP.iR"></span><span class="target" id="classSimulation_1ada143d8d14c228c416af9d31462e2a54"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">checkArgs_derived</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span>, <span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">i</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation17checkArgs_derivedEiPPKcRi" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation17printHelp_derivedEv">
-<span id="_CPPv3N10Simulation17printHelp_derivedEv"></span><span id="_CPPv2N10Simulation17printHelp_derivedEv"></span><span id="Simulation::printHelp_derived"></span><span class="target" id="classSimulation_1af99e4866e7b074958e13a7ba704c1ec4"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">printHelp_derived</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation17printHelp_derivedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation17printHelp_derivedEv">
+<span id="_CPPv3N10Simulation17printHelp_derivedEv"></span><span id="_CPPv2N10Simulation17printHelp_derivedEv"></span><span id="Simulation::printHelp_derived"></span><span class="target" id="classSimulation_1af99e4866e7b074958e13a7ba704c1ec4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">printHelp_derived</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation17printHelp_derivedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation18resetDerivedConfigEv">
-<span id="_CPPv3N10Simulation18resetDerivedConfigEv"></span><span id="_CPPv2N10Simulation18resetDerivedConfigEv"></span><span id="Simulation::resetDerivedConfig"></span><span class="target" id="classSimulation_1a5416b36d9bb733a292313187af4ff5f0"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">resetDerivedConfig</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation18resetDerivedConfigEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation18resetDerivedConfigEv">
+<span id="_CPPv3N10Simulation18resetDerivedConfigEv"></span><span id="_CPPv2N10Simulation18resetDerivedConfigEv"></span><span id="Simulation::resetDerivedConfig"></span><span class="target" id="classSimulation_1a5416b36d9bb733a292313187af4ff5f0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resetDerivedConfig</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation18resetDerivedConfigEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10Simulation13getInstanceIDEv">
-<span id="_CPPv3NK10Simulation13getInstanceIDEv"></span><span id="_CPPv2NK10Simulation13getInstanceIDEv"></span><span id="Simulation::getInstanceIDC"></span><span class="target" id="classSimulation_1a7915e0b008e99ba8aa15892f47a969a0"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getInstanceID</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK10Simulation13getInstanceIDEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10Simulation13getInstanceIDEv">
+<span id="_CPPv3NK10Simulation13getInstanceIDEv"></span><span id="_CPPv2NK10Simulation13getInstanceIDEv"></span><span id="Simulation::getInstanceIDC"></span><span class="target" id="classSimulation_1a7915e0b008e99ba8aa15892f47a969a0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getInstanceID</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Simulation13getInstanceIDEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the unique instance id of this <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> instance </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1022,8 +1041,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10Simulation20getMaximumLayerWidthEv">
-<span id="_CPPv3NK10Simulation20getMaximumLayerWidthEv"></span><span id="_CPPv2NK10Simulation20getMaximumLayerWidthEv"></span><span id="Simulation::getMaximumLayerWidthC"></span><span class="target" id="classSimulation_1ade4b9b7744f4bccb65bb487a262ca96d"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getMaximumLayerWidth</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK10Simulation20getMaximumLayerWidthEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10Simulation20getMaximumLayerWidthEv">
+<span id="_CPPv3NK10Simulation20getMaximumLayerWidthEv"></span><span id="_CPPv2NK10Simulation20getMaximumLayerWidthEv"></span><span id="Simulation::getMaximumLayerWidthC"></span><span class="target" id="classSimulation_1ade4b9b7744f4bccb65bb487a262ca96d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaximumLayerWidth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK10Simulation20getMaximumLayerWidthEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>returns the width of the widest layer in model. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1036,118 +1055,118 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation5modelE">
-<span id="_CPPv3N10Simulation5modelE"></span><span id="_CPPv2N10Simulation5modelE"></span><span id="Simulation::model__std::shared_ptr:ModelDataC:C"></span><span class="target" id="classSimulation_1a9a618284a52050791fe96d410a21681f"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">model</span></code><a class="headerlink" href="#_CPPv4N10Simulation5modelE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation5modelE">
+<span id="_CPPv3N10Simulation5modelE"></span><span id="_CPPv2N10Simulation5modelE"></span><span id="Simulation::model__std::shared_ptr:ModelDataC:C"></span><span class="target" id="classSimulation_1a9a618284a52050791fe96d410a21681f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">model</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation5modelE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation8submodelE">
-<span id="_CPPv3N10Simulation8submodelE"></span><span id="_CPPv2N10Simulation8submodelE"></span><span id="Simulation::submodel__std::shared_ptr:SubModelDataC:C"></span><span class="target" id="classSimulation_1a5b3660e53c1513eb277fc6c5f814e904"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">submodel</span></code><a class="headerlink" href="#_CPPv4N10Simulation8submodelE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation8submodelE">
+<span id="_CPPv3N10Simulation8submodelE"></span><span id="_CPPv2N10Simulation8submodelE"></span><span id="Simulation::submodel__std::shared_ptr:SubModelDataC:C"></span><span class="target" id="classSimulation_1a5b3660e53c1513eb277fc6c5f814e904"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">submodel</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation8submodelE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This is only used when model is a submodel, otherwise it is empty If it is set, it causes <a class="reference internal" href="#classSimulation_1a32440d6d8a0bbd608c6c16f2907e6c9f"><span class="std std-ref">simulate()</span></a> to additionally reset/cull unmapped populations </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation11mastermodelE">
-<span id="_CPPv3N10Simulation11mastermodelE"></span><span id="_CPPv2N10Simulation11mastermodelE"></span><span id="Simulation::mastermodel__CUDASimulationCP"></span><span class="target" id="classSimulation_1a03855c980fe7982aa17beb717cfdad5a"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">mastermodel</span></code><a class="headerlink" href="#_CPPv4N10Simulation11mastermodelE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation11mastermodelE">
+<span id="_CPPv3N10Simulation11mastermodelE"></span><span id="_CPPv2N10Simulation11mastermodelE"></span><span id="Simulation::mastermodel__CUDASimulationCP"></span><span class="target" id="classSimulation_1a03855c980fe7982aa17beb717cfdad5a"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="n"><span class="pre">CUDASimulation</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">mastermodel</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation11mastermodelE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Only used by submodels, only required to fetch the name of master model when initialising environment (as this occurs after constructor) </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6configE">
-<span id="_CPPv3N10Simulation6configE"></span><span id="_CPPv2N10Simulation6configE"></span><span id="Simulation::config__Config"></span><span class="target" id="classSimulation_1aad3b2f9a971d230fcf995ceb6ca037b8"></span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="pre">Config</span></a> <code class="sig-name descname"><span class="pre">config</span></code><a class="headerlink" href="#_CPPv4N10Simulation6configE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6configE">
+<span id="_CPPv3N10Simulation6configE"></span><span id="_CPPv2N10Simulation6configE"></span><span id="Simulation::config__Config"></span><span class="target" id="classSimulation_1aad3b2f9a971d230fcf995ceb6ca037b8"></span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">config</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6configE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation17loaded_input_fileE">
-<span id="_CPPv3N10Simulation17loaded_input_fileE"></span><span id="_CPPv2N10Simulation17loaded_input_fileE"></span><span id="Simulation::loaded_input_file__ss"></span><span class="target" id="classSimulation_1a01d05be609d00a1dde51aa750af5bd22"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">loaded_input_file</span></code><a class="headerlink" href="#_CPPv4N10Simulation17loaded_input_fileE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation17loaded_input_fileE">
+<span id="_CPPv3N10Simulation17loaded_input_fileE"></span><span id="_CPPv2N10Simulation17loaded_input_fileE"></span><span id="Simulation::loaded_input_file__ss"></span><span class="target" id="classSimulation_1a01d05be609d00a1dde51aa750af5bd22"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">loaded_input_file</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation17loaded_input_fileE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>If this matches config.input_file, apply_config() will not load the input file </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation11instance_idE">
-<span id="_CPPv3N10Simulation11instance_idE"></span><span id="_CPPv2N10Simulation11instance_idE"></span><span id="Simulation::instance_id__unsigned-iC"></span><span class="target" id="classSimulation_1a6c5efd6fee31a23738b775827c4afed5"></span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">instance_id</span></code><a class="headerlink" href="#_CPPv4N10Simulation11instance_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation11instance_idE">
+<span id="_CPPv3N10Simulation11instance_idE"></span><span id="_CPPv2N10Simulation11instance_idE"></span><span id="Simulation::instance_id__unsigned-iC"></span><span class="target" id="classSimulation_1a6c5efd6fee31a23738b775827c4afed5"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">instance_id</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation11instance_idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Unique index of <a class="reference internal" href="#classSimulation"><span class="std std-ref">Simulation</span></a> instance </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation8env_initE">
-<span id="_CPPv3N10Simulation8env_initE"></span><span id="_CPPv2N10Simulation8env_initE"></span><span id="Simulation::env_init__std::unordered_map:std::pair:ss.unsigned-i:.Any:"></span><span class="target" id="classSimulation_1adf663524012f582c97d3b16f1de32f6f"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">pair</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span><span class="pre">&gt;</span><span class="pre">,</span> <a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">env_init</span></code><a class="headerlink" href="#_CPPv4N10Simulation8env_initE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation8env_initE">
+<span id="_CPPv3N10Simulation8env_initE"></span><span id="_CPPv2N10Simulation8env_initE"></span><span id="Simulation::env_init__std::unordered_map:std::pair:ss.unsigned-i:.Any:"></span><span class="target" id="classSimulation_1adf663524012f582c97d3b16f1de32f6f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="n"><span class="pre">Any</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">env_init</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation8env_initE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initial environment items if they have been loaded from file, prior to device selection </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation13maxLayerWidthE">
-<span id="_CPPv3N10Simulation13maxLayerWidthE"></span><span id="_CPPv2N10Simulation13maxLayerWidthE"></span><span id="Simulation::maxLayerWidth__unsigned-i"></span><span class="target" id="classSimulation_1a8e607bbeba4fc622e527dd35088352d5"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">maxLayerWidth</span></code><a class="headerlink" href="#_CPPv4N10Simulation13maxLayerWidthE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation13maxLayerWidthE">
+<span id="_CPPv3N10Simulation13maxLayerWidthE"></span><span id="_CPPv2N10Simulation13maxLayerWidthE"></span><span id="Simulation::maxLayerWidth__unsigned-i"></span><span class="target" id="classSimulation_1a8e607bbeba4fc622e527dd35088352d5"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">maxLayerWidth</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation13maxLayerWidthE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>the width of the widest layer in the concrete version of the model (calculated once) </p>
 </dd></dl>
 
 </div>
 <dl class="cpp struct">
-<dt id="_CPPv4N10Simulation6ConfigE">
-<span id="_CPPv3N10Simulation6ConfigE"></span><span id="_CPPv2N10Simulation6ConfigE"></span><span id="Simulation::Config"></span><span class="target" id="structSimulation_1_1Config"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">Config</span></code><a class="headerlink" href="#_CPPv4N10Simulation6ConfigE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6ConfigE">
+<span id="_CPPv3N10Simulation6ConfigE"></span><span id="_CPPv2N10Simulation6ConfigE"></span><span id="Simulation::Config"></span><span class="target" id="structSimulation_1_1Config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Config</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6ConfigE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation6Config6ConfigEv">
-<span id="_CPPv3N10Simulation6Config6ConfigEv"></span><span id="_CPPv2N10Simulation6Config6ConfigEv"></span><span id="Simulation::Config::Config"></span><span class="target" id="structSimulation_1_1Config_1aa4891124e0fe54290b79591a5e060ac2"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Config</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation6Config6ConfigEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config6ConfigEv">
+<span id="_CPPv3N10Simulation6Config6ConfigEv"></span><span id="_CPPv2N10Simulation6Config6ConfigEv"></span><span id="Simulation::Config::Config"></span><span class="target" id="structSimulation_1_1Config_1aa4891124e0fe54290b79591a5e060ac2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Config</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation6Config6ConfigEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10Simulation6ConfigaSERK6Config">
-<span id="_CPPv3N10Simulation6ConfigaSERK6Config"></span><span id="_CPPv2N10Simulation6ConfigaSERK6Config"></span><span id="Simulation::Config::assign-operator__ConfigCR"></span><span class="target" id="structSimulation_1_1Config_1ac238ac2aab86c82f6ce746ac11d582fc"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="pre">Config</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation6ConfigaSERK6Config" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6ConfigaSERK6Config">
+<span id="_CPPv3N10Simulation6ConfigaSERK6Config"></span><span id="_CPPv2N10Simulation6ConfigaSERK6Config"></span><span id="Simulation::Config::assign-operator__ConfigCR"></span><span class="target" id="structSimulation_1_1Config_1ac238ac2aab86c82f6ce746ac11d582fc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N10Simulation6ConfigE" title="Simulation::Config"><span class="n"><span class="pre">Config</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10Simulation6ConfigaSERK6Config" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config10input_fileE">
-<span id="_CPPv3N10Simulation6Config10input_fileE"></span><span id="_CPPv2N10Simulation6Config10input_fileE"></span><span id="Simulation::Config::input_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a7a34ada014f7b994dc8d5f2a37d9eabe"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">input_file</span></code><a class="headerlink" href="#_CPPv4N10Simulation6Config10input_fileE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config10input_fileE">
+<span id="_CPPv3N10Simulation6Config10input_fileE"></span><span id="_CPPv2N10Simulation6Config10input_fileE"></span><span id="Simulation::Config::input_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a7a34ada014f7b994dc8d5f2a37d9eabe"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">input_file</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config10input_fileE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config13step_log_fileE">
-<span id="_CPPv3N10Simulation6Config13step_log_fileE"></span><span id="_CPPv2N10Simulation6Config13step_log_fileE"></span><span id="Simulation::Config::step_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a4e8afad4117993e00798ac1490d7ae35"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">step_log_file</span></code><a class="headerlink" href="#_CPPv4N10Simulation6Config13step_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config13step_log_fileE">
+<span id="_CPPv3N10Simulation6Config13step_log_fileE"></span><span id="_CPPv2N10Simulation6Config13step_log_fileE"></span><span id="Simulation::Config::step_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a4e8afad4117993e00798ac1490d7ae35"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">step_log_file</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config13step_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config13exit_log_fileE">
-<span id="_CPPv3N10Simulation6Config13exit_log_fileE"></span><span id="_CPPv2N10Simulation6Config13exit_log_fileE"></span><span id="Simulation::Config::exit_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a16df5b43e5adef0e802f867ffa922c9b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">exit_log_file</span></code><a class="headerlink" href="#_CPPv4N10Simulation6Config13exit_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config13exit_log_fileE">
+<span id="_CPPv3N10Simulation6Config13exit_log_fileE"></span><span id="_CPPv2N10Simulation6Config13exit_log_fileE"></span><span id="Simulation::Config::exit_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a16df5b43e5adef0e802f867ffa922c9b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exit_log_file</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config13exit_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config15common_log_fileE">
-<span id="_CPPv3N10Simulation6Config15common_log_fileE"></span><span id="_CPPv2N10Simulation6Config15common_log_fileE"></span><span id="Simulation::Config::common_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a0d2018447a8054cef5b623caf86e0936"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">common_log_file</span></code><a class="headerlink" href="#_CPPv4N10Simulation6Config15common_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config15common_log_fileE">
+<span id="_CPPv3N10Simulation6Config15common_log_fileE"></span><span id="_CPPv2N10Simulation6Config15common_log_fileE"></span><span id="Simulation::Config::common_log_file__ss"></span><span class="target" id="structSimulation_1_1Config_1a0d2018447a8054cef5b623caf86e0936"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">common_log_file</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config15common_log_fileE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config18truncate_log_filesE">
-<span id="_CPPv3N10Simulation6Config18truncate_log_filesE"></span><span id="_CPPv2N10Simulation6Config18truncate_log_filesE"></span><span id="Simulation::Config::truncate_log_files__b"></span><span class="target" id="structSimulation_1_1Config_1a0baed00d64b0853139b34dc211b20dc7"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">truncate_log_files</span></code> <span class="pre">=</span> <span class="pre">true</span><a class="headerlink" href="#_CPPv4N10Simulation6Config18truncate_log_filesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config18truncate_log_filesE">
+<span id="_CPPv3N10Simulation6Config18truncate_log_filesE"></span><span id="_CPPv2N10Simulation6Config18truncate_log_filesE"></span><span id="Simulation::Config::truncate_log_files__b"></span><span class="target" id="structSimulation_1_1Config_1a0baed00d64b0853139b34dc211b20dc7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">truncate_log_files</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config18truncate_log_filesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config11random_seedE">
-<span id="_CPPv3N10Simulation6Config11random_seedE"></span><span id="_CPPv2N10Simulation6Config11random_seedE"></span><span id="Simulation::Config::random_seed__unsigned-i"></span><span class="target" id="structSimulation_1_1Config_1a5dd374f314a965dbf9596f2500ddab5a"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">random_seed</span></code><a class="headerlink" href="#_CPPv4N10Simulation6Config11random_seedE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config11random_seedE">
+<span id="_CPPv3N10Simulation6Config11random_seedE"></span><span id="_CPPv2N10Simulation6Config11random_seedE"></span><span id="Simulation::Config::random_seed__unsigned-i"></span><span class="target" id="structSimulation_1_1Config_1a5dd374f314a965dbf9596f2500ddab5a"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">random_seed</span></span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config11random_seedE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config5stepsE">
-<span id="_CPPv3N10Simulation6Config5stepsE"></span><span id="_CPPv2N10Simulation6Config5stepsE"></span><span id="Simulation::Config::steps__unsigned-i"></span><span class="target" id="structSimulation_1_1Config_1a064e5c3443801e1458cbfb51b100d5f3"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">steps</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N10Simulation6Config5stepsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config5stepsE">
+<span id="_CPPv3N10Simulation6Config5stepsE"></span><span id="_CPPv2N10Simulation6Config5stepsE"></span><span id="Simulation::Config::steps__unsigned-i"></span><span class="target" id="structSimulation_1_1Config_1a064e5c3443801e1458cbfb51b100d5f3"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">steps</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config5stepsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config7verboseE">
-<span id="_CPPv3N10Simulation6Config7verboseE"></span><span id="_CPPv2N10Simulation6Config7verboseE"></span><span id="Simulation::Config::verbose__b"></span><span class="target" id="structSimulation_1_1Config_1a118085bfb9c4f96d2f4dec72a9fb2b5c"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">verbose</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N10Simulation6Config7verboseE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config7verboseE">
+<span id="_CPPv3N10Simulation6Config7verboseE"></span><span id="_CPPv2N10Simulation6Config7verboseE"></span><span id="Simulation::Config::verbose__b"></span><span class="target" id="structSimulation_1_1Config_1a118085bfb9c4f96d2f4dec72a9fb2b5c"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">verbose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config7verboseE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config6timingE">
-<span id="_CPPv3N10Simulation6Config6timingE"></span><span id="_CPPv2N10Simulation6Config6timingE"></span><span id="Simulation::Config::timing__b"></span><span class="target" id="structSimulation_1_1Config_1aceeef824b66ac6c0310577c9295e8a52"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">timing</span></code> <span class="pre">=</span> <span class="pre">false</span><a class="headerlink" href="#_CPPv4N10Simulation6Config6timingE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config6timingE">
+<span id="_CPPv3N10Simulation6Config6timingE"></span><span id="_CPPv2N10Simulation6Config6timingE"></span><span id="Simulation::Config::timing__b"></span><span class="target" id="structSimulation_1_1Config_1aceeef824b66ac6c0310577c9295e8a52"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timing</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config6timingE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N10Simulation6Config12console_modeE">
-<span id="_CPPv3N10Simulation6Config12console_modeE"></span><span id="_CPPv2N10Simulation6Config12console_modeE"></span><span id="Simulation::Config::console_mode__bC"></span><span class="target" id="structSimulation_1_1Config_1a02c208756a12d281c55e9d5fcb2c8942"></span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">console_mode</span></code> <span class="pre">=</span> <span class="pre">true</span><a class="headerlink" href="#_CPPv4N10Simulation6Config12console_modeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10Simulation6Config12console_modeE">
+<span id="_CPPv3N10Simulation6Config12console_modeE"></span><span id="_CPPv2N10Simulation6Config12console_modeE"></span><span id="Simulation::Config::console_mode__bC"></span><span class="target" id="structSimulation_1_1Config_1a02c208756a12d281c55e9d5fcb2c8942"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">console_mode</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><a class="headerlink" href="#_CPPv4N10Simulation6Config12console_modeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -1155,8 +1174,8 @@
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

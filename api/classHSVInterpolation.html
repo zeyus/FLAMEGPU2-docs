@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class HSVInterpolation &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,31 +813,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-hsvinterpolation">
+  <section id="class-hsvinterpolation">
 <span id="exhale-class-classhsvinterpolation"></span><h1>Class HSVInterpolation<a class="headerlink" href="#class-hsvinterpolation" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_visualiser_color_HSVInterpolation.h.html#file-include-flamegpu-visualiser-color-hsvinterpolation-h"><span class="std std-ref">File HSVInterpolation.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">ColorFunction</span></code> (<a class="reference internal" href="classColorFunction.html#exhale-class-classcolorfunction"><span class="std std-ref">Class ColorFunction</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv416HSVInterpolation">
-<span id="_CPPv316HSVInterpolation"></span><span id="_CPPv216HSVInterpolation"></span><span id="HSVInterpolation"></span><span class="target" id="classHSVInterpolation"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">HSVInterpolation</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classColorFunction.html#_CPPv413ColorFunction" title="ColorFunction"><span class="pre">ColorFunction</span></a><a class="headerlink" href="#_CPPv416HSVInterpolation" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv416HSVInterpolation">
+<span id="_CPPv316HSVInterpolation"></span><span id="_CPPv216HSVInterpolation"></span><span id="HSVInterpolation"></span><span class="target" id="classHSVInterpolation"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HSVInterpolation</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classColorFunction.html#_CPPv413ColorFunction" title="ColorFunction"><span class="n"><span class="pre">ColorFunction</span></span></a><a class="headerlink" href="#_CPPv416HSVInterpolation" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Agent color function for mapping a floating point value to a HSV hue </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf">
-<span id="_CPPv3N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf"></span><span id="_CPPv2N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf"></span><span id="HSVInterpolation::HSVInterpolation__ssCR.floatCR.floatCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1af9fdd0706267af8d804e496b48126562"></span><code class="sig-name descname"><span class="pre">HSVInterpolation</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">hMin</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">hMax</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">s</span></em> <span class="pre">=</span> <span class="pre">1.0f</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">v</span></em> <span class="pre">=</span> <span class="pre">0.88f</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf">
+<span id="_CPPv3N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf"></span><span id="_CPPv2N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf"></span><span id="HSVInterpolation::HSVInterpolation__ssCR.floatCR.floatCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1af9fdd0706267af8d804e496b48126562"></span><span class="sig-name descname"><span class="n"><span class="pre">HSVInterpolation</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">hMin</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">hMax</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">s</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.88f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation16HSVInterpolationERKNSt6stringERKfRKfRKfRKf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructs a HSV interpolation function generator All components must be provided in the inclusive range [0.0, 1.0] </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -834,8 +853,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16HSVInterpolation9setBoundsERKfRKf">
-<span id="_CPPv3N16HSVInterpolation9setBoundsERKfRKf"></span><span id="_CPPv2N16HSVInterpolation9setBoundsERKfRKf"></span><span id="HSVInterpolation::setBounds__floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1ad1ba3b375745a97618b524fc5eeb4238"></span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="pre">HSVInterpolation</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">setBounds</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">min_bound</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">max_bound</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation9setBoundsERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16HSVInterpolation9setBoundsERKfRKf">
+<span id="_CPPv3N16HSVInterpolation9setBoundsERKfRKf"></span><span id="_CPPv2N16HSVInterpolation9setBoundsERKfRKf"></span><span id="HSVInterpolation::setBounds__floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1ad1ba3b375745a97618b524fc5eeb4238"></span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="n"><span class="pre">HSVInterpolation</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">setBounds</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min_bound</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_bound</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation9setBoundsERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the bounds to clamp an agent variable to before using for HSV interpolation </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -858,32 +877,32 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16HSVInterpolation10setWrapHueERKb">
-<span id="_CPPv3N16HSVInterpolation10setWrapHueERKb"></span><span id="_CPPv2N16HSVInterpolation10setWrapHueERKb"></span><span id="HSVInterpolation::setWrapHue__bCR"></span><span class="target" id="classHSVInterpolation_1a482180c4a689d70da38f9146391425e3"></span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="pre">HSVInterpolation</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">setWrapHue</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">_wrapHue</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation10setWrapHueERKb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16HSVInterpolation10setWrapHueERKb">
+<span id="_CPPv3N16HSVInterpolation10setWrapHueERKb"></span><span id="_CPPv2N16HSVInterpolation10setWrapHueERKb"></span><span id="HSVInterpolation::setWrapHue__bCR"></span><span class="target" id="classHSVInterpolation_1a482180c4a689d70da38f9146391425e3"></span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="n"><span class="pre">HSVInterpolation</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">setWrapHue</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_wrapHue</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation10setWrapHueERKb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>If set to true, hue will interpolate over the 0/360 boundary If set false, hue will interpolate without wrapping (e.g. if hMax is &lt; hMin), hMin will be assigned to the lower_bound By default this is set to false </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16HSVInterpolation6getSrcEv">
-<span id="_CPPv3NK16HSVInterpolation6getSrcEv"></span><span id="_CPPv2NK16HSVInterpolation6getSrcEv"></span><span id="HSVInterpolation::getSrcC"></span><span class="target" id="classHSVInterpolation_1ad97709e621c630bf6111c2b504c9613e"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getSrc</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK16HSVInterpolation6getSrcEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16HSVInterpolation6getSrcEv">
+<span id="_CPPv3NK16HSVInterpolation6getSrcEv"></span><span id="_CPPv2NK16HSVInterpolation6getSrcEv"></span><span id="HSVInterpolation::getSrcC"></span><span class="target" id="classHSVInterpolation_1ad97709e621c630bf6111c2b504c9613e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSrc</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16HSVInterpolation6getSrcEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns GLSL for a function that returns a color based on the configured HSV interpolation </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16HSVInterpolation14getSamplerNameEv">
-<span id="_CPPv3NK16HSVInterpolation14getSamplerNameEv"></span><span id="_CPPv2NK16HSVInterpolation14getSamplerNameEv"></span><span id="HSVInterpolation::getSamplerNameC"></span><span class="target" id="classHSVInterpolation_1a41863c464f608496806ca0fb20684d51"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getSamplerName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK16HSVInterpolation14getSamplerNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16HSVInterpolation14getSamplerNameEv">
+<span id="_CPPv3NK16HSVInterpolation14getSamplerNameEv"></span><span id="_CPPv2NK16HSVInterpolation14getSamplerNameEv"></span><span id="HSVInterpolation::getSamplerNameC"></span><span class="target" id="classHSVInterpolation_1a41863c464f608496806ca0fb20684d51"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSamplerName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16HSVInterpolation14getSamplerNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Always returns “color_arg” </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16HSVInterpolation20getAgentVariableNameEv">
-<span id="_CPPv3NK16HSVInterpolation20getAgentVariableNameEv"></span><span id="_CPPv2NK16HSVInterpolation20getAgentVariableNameEv"></span><span id="HSVInterpolation::getAgentVariableNameC"></span><span class="target" id="classHSVInterpolation_1a903825e8be1f60af8f4751b60cf225a9"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getAgentVariableName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK16HSVInterpolation20getAgentVariableNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16HSVInterpolation20getAgentVariableNameEv">
+<span id="_CPPv3NK16HSVInterpolation20getAgentVariableNameEv"></span><span id="_CPPv2NK16HSVInterpolation20getAgentVariableNameEv"></span><span id="HSVInterpolation::getAgentVariableNameC"></span><span class="target" id="classHSVInterpolation_1a903825e8be1f60af8f4751b60cf225a9"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgentVariableName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16HSVInterpolation20getAgentVariableNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns variable_name </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16HSVInterpolation28getAgentVariableRequiredTypeEv">
-<span id="_CPPv3NK16HSVInterpolation28getAgentVariableRequiredTypeEv"></span><span id="_CPPv2NK16HSVInterpolation28getAgentVariableRequiredTypeEv"></span><span id="HSVInterpolation::getAgentVariableRequiredTypeC"></span><span class="target" id="classHSVInterpolation_1a647e3894391e7cffb8537f5c7b01953c"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">getAgentVariableRequiredType</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK16HSVInterpolation28getAgentVariableRequiredTypeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16HSVInterpolation28getAgentVariableRequiredTypeEv">
+<span id="_CPPv3NK16HSVInterpolation28getAgentVariableRequiredTypeEv"></span><span id="_CPPv2NK16HSVInterpolation28getAgentVariableRequiredTypeEv"></span><span id="HSVInterpolation::getAgentVariableRequiredTypeC"></span><span class="target" id="classHSVInterpolation_1a647e3894391e7cffb8537f5c7b01953c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgentVariableRequiredType</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK16HSVInterpolation28getAgentVariableRequiredTypeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns std::type_index(typeid(float)) </p>
 </dd></dl>
 
@@ -891,8 +910,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf">
-<span id="_CPPv3N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf"></span><span id="_CPPv2N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf"></span><span id="HSVInterpolation::REDGREEN__ssCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1a5bc34b1a4d5849389b08ce2283f907f9"></span><em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="pre">HSVInterpolation</span></a> <code class="sig-name descname"><span class="pre">REDGREEN</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">min_bound</span></em> <span class="pre">=</span> <span class="pre">0.0f</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">max_bound</span></em> <span class="pre">=</span> <span class="pre">1.0f</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf">
+<span id="_CPPv3N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf"></span><span id="_CPPv2N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf"></span><span id="HSVInterpolation::REDGREEN__ssCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1a5bc34b1a4d5849389b08ce2283f907f9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="n"><span class="pre">HSVInterpolation</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">REDGREEN</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min_bound</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_bound</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation8REDGREENERKNSt6stringERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>0 = Red, 1 = Green </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -906,8 +925,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf">
-<span id="_CPPv3N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf"></span><span id="_CPPv2N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf"></span><span id="HSVInterpolation::GREENRED__ssCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1afcf47e80e34ebae35fdf68b4dcf04a53"></span><em class="property"><span class="pre">static</span></em> <a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="pre">HSVInterpolation</span></a> <code class="sig-name descname"><span class="pre">GREENRED</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">variable_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">min_bound</span></em> <span class="pre">=</span> <span class="pre">0.0f</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">max_bound</span></em> <span class="pre">=</span> <span class="pre">1.0f</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf">
+<span id="_CPPv3N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf"></span><span id="_CPPv2N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf"></span><span id="HSVInterpolation::GREENRED__ssCR.floatCR.floatCR"></span><span class="target" id="classHSVInterpolation_1afcf47e80e34ebae35fdf68b4dcf04a53"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416HSVInterpolation" title="HSVInterpolation"><span class="n"><span class="pre">HSVInterpolation</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GREENRED</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min_bound</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0f</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_bound</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0f</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16HSVInterpolation8GREENREDERKNSt6stringERKfRKf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>0 = Green, 1 = Red </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -923,8 +942,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

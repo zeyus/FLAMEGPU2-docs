@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class HostEnvironment &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,16 +813,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-hostenvironment">
+  <section id="class-hostenvironment">
 <span id="exhale-class-classhostenvironment"></span><h1>Class HostEnvironment<a class="headerlink" href="#class-hostenvironment" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_utility_HostEnvironment.cuh.html#file-include-flamegpu-runtime-utility-hostenvironment-cuh"><span class="std std-ref">File HostEnvironment.cuh</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv415HostEnvironment">
-<span id="_CPPv315HostEnvironment"></span><span id="_CPPv215HostEnvironment"></span><span id="HostEnvironment"></span><span class="target" id="classHostEnvironment"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">HostEnvironment</span></code><a class="headerlink" href="#_CPPv415HostEnvironment" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv415HostEnvironment">
+<span id="_CPPv315HostEnvironment"></span><span id="_CPPv215HostEnvironment"></span><span id="HostEnvironment"></span><span class="target" id="classHostEnvironment"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostEnvironment</span></span></span><a class="headerlink" href="#_CPPv415HostEnvironment" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class provides host function access to Environment Properties It acts as a wrapper to <a class="reference internal" href="classEnvironmentManager.html#classEnvironmentManager"><span class="std std-ref">EnvironmentManager</span></a>, proxying calls, converting variable name and model_name into a combined hash Pairs with <a class="reference internal" href="classEnvironmentManager.html#classEnvironmentManager"><span class="std std-ref">EnvironmentManager</span></a>, AgentEnvironment and <a class="reference internal" href="classEnvironmentDescription.html#classEnvironmentDescription"><span class="std std-ref">EnvironmentDescription</span></a> This class is only to be constructed by <a class="reference internal" href="classHostAPI.html#classHostAPI"><span class="std std-ref">HostAPI</span></a> <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Not thread-safe </p>
@@ -812,8 +831,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE">
-<span id="_CPPv3I0ENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1a125998c7afb9379e7a5263e5aec5ddb0"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE" title="HostEnvironment::getProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE">
+<span id="_CPPv3I0ENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1a125998c7afb9379e7a5263e5aec5ddb0"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE" title="HostEnvironment::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Gets an environment property</p>
 <p>Getters</p>
 </p>
@@ -831,8 +850,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE">
-<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1a65b1d665d09e6274ee88e3b2276228ad"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="HostEnvironment::getProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="HostEnvironment::getProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE">
+<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1a65b1d665d09e6274ee88e3b2276228ad"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="HostEnvironment::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="HostEnvironment::getProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets an environment property array </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -851,8 +870,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE">
-<span id="_CPPv3I0ENK15HostEnvironment11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span id="_CPPv2I0ENK15HostEnvironment11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1a5209da822fbdf895a9751fb8fce5994b"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="HostEnvironment::getProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE">
+<span id="_CPPv3I0ENK15HostEnvironment11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span id="_CPPv2I0ENK15HostEnvironment11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1a5209da822fbdf895a9751fb8fce5994b"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="HostEnvironment::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets an element of an environment property array <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>get(const std::string &amp;) </p>
 </dd>
@@ -875,8 +894,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T">
-<span id="_CPPv3I0ENK15HostEnvironment11setPropertyERKNSt6stringERK1T"></span><span id="_CPPv2I0ENK15HostEnvironment11setPropertyERKNSt6stringERK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1ab519ec82ca4197c39c68cfb1468a49b2"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T">
+<span id="_CPPv3I0ENK15HostEnvironment11setPropertyERKNSt6stringERK1T"></span><span id="_CPPv2I0ENK15HostEnvironment11setPropertyERKNSt6stringERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1ab519ec82ca4197c39c68cfb1468a49b2"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Sets an environment property</p>
 <p>Setters</p>
 </p>
@@ -903,8 +922,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE">
-<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1adedffb31afdbb8952baf9c46e3b8061c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE">
+<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1adedffb31afdbb8952baf9c46e3b8061c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="HostEnvironment::setProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK15HostEnvironment11setPropertyENSt5arrayI1T1NEERKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets an environment property array </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -932,8 +951,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T">
-<span id="_CPPv3I0ENK15HostEnvironment11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span id="_CPPv2I0ENK15HostEnvironment11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classHostEnvironment_1af452df2842b671dcb7ab40067a45c4c2"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="HostEnvironment::setProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T">
+<span id="_CPPv3I0ENK15HostEnvironment11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span id="_CPPv2I0ENK15HostEnvironment11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classHostEnvironment_1af452df2842b671dcb7ab40067a45c4c2"></span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="HostEnvironment::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK15HostEnvironment11setPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets an element of an environment property array <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>get(const std::string &amp;) </p>
 </dd>
@@ -966,8 +985,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N15HostEnvironment15HostEnvironmentERKj">
-<span id="_CPPv3N15HostEnvironment15HostEnvironmentERKj"></span><span id="_CPPv2N15HostEnvironment15HostEnvironmentERKj"></span><span id="HostEnvironment::HostEnvironment__unsigned-iCR"></span><span class="target" id="classHostEnvironment_1a09a1a50d2da8e11de9a0f5135c393db1"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">HostEnvironment</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15HostEnvironment15HostEnvironmentERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15HostEnvironment15HostEnvironmentERKj">
+<span id="_CPPv3N15HostEnvironment15HostEnvironmentERKj"></span><span id="_CPPv2N15HostEnvironment15HostEnvironmentERKj"></span><span id="HostEnvironment::HostEnvironment__unsigned-iCR"></span><span class="target" id="classHostEnvironment_1a09a1a50d2da8e11de9a0f5135c393db1"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostEnvironment</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">instance_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15HostEnvironment15HostEnvironmentERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructor, to be called by <a class="reference internal" href="classHostAPI.html#classHostAPI"><span class="std std-ref">HostAPI</span></a> </p>
 </dd></dl>
 
@@ -975,22 +994,22 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N15HostEnvironment7env_mgrE">
-<span id="_CPPv3N15HostEnvironment7env_mgrE"></span><span id="_CPPv2N15HostEnvironment7env_mgrE"></span><span id="HostEnvironment::env_mgr__EnvironmentManagerR"></span><span class="target" id="classHostEnvironment_1afa3eec99c6e2654b72ea816bc55b4b92"></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">env_mgr</span></code><a class="headerlink" href="#_CPPv4N15HostEnvironment7env_mgrE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15HostEnvironment7env_mgrE">
+<span id="_CPPv3N15HostEnvironment7env_mgrE"></span><span id="_CPPv2N15HostEnvironment7env_mgrE"></span><span id="HostEnvironment::env_mgr__EnvironmentManagerR"></span><span class="target" id="classHostEnvironment_1afa3eec99c6e2654b72ea816bc55b4b92"></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">env_mgr</span></span></span><a class="headerlink" href="#_CPPv4N15HostEnvironment7env_mgrE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Provides access to <a class="reference internal" href="classEnvironmentManager.html#classEnvironmentManager"><span class="std std-ref">EnvironmentManager</span></a> singleton </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N15HostEnvironment11instance_idE">
-<span id="_CPPv3N15HostEnvironment11instance_idE"></span><span id="_CPPv2N15HostEnvironment11instance_idE"></span><span id="HostEnvironment::instance_id__unsigned-iC"></span><span class="target" id="classHostEnvironment_1a6502a816e4a368efc86eb38e90146f09"></span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">instance_id</span></code><a class="headerlink" href="#_CPPv4N15HostEnvironment11instance_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15HostEnvironment11instance_idE">
+<span id="_CPPv3N15HostEnvironment11instance_idE"></span><span id="_CPPv2N15HostEnvironment11instance_idE"></span><span id="HostEnvironment::instance_id__unsigned-iC"></span><span class="target" id="classHostEnvironment_1a6502a816e4a368efc86eb38e90146f09"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">instance_id</span></span></span><a class="headerlink" href="#_CPPv4N15HostEnvironment11instance_idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Access to instance id of the <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> This is used to augment all variable names </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class MsgSpatial3D::Description &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,29 +813,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-msgspatial3d-description">
+  <section id="class-msgspatial3d-description">
 <span id="exhale-class-classmsgspatial3d-1-1description"></span><h1>Class MsgSpatial3D::Description<a class="headerlink" href="#class-msgspatial3d-description" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Spatial3D_Spatial3DHost.h.html#file-include-flamegpu-runtime-messaging-spatial3d-spatial3dhost-h"><span class="std std-ref">File Spatial3DHost.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This class is a nested type of <a class="reference internal" href="classMsgSpatial3D.html#exhale-class-classmsgspatial3d"><span class="std std-ref">Class MsgSpatial3D</span></a>.</p>
-</div>
-<div class="section" id="inheritance-relationships">
+</section>
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MsgBruteForce::Description</span></code> (<a class="reference internal" href="classMsgBruteForce_1_1Description.html#exhale-class-classmsgbruteforce-1-1description"><span class="std std-ref">Class MsgBruteForce::Description</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv4N12MsgSpatial3D11DescriptionE">
-<span id="_CPPv3N12MsgSpatial3D11DescriptionE"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionE"></span><span id="MsgSpatial3D::Description"></span><span class="target" id="classMsgSpatial3D_1_1Description"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classMsgSpatial3D.html#_CPPv412MsgSpatial3D" title="MsgSpatial3D"><span class="pre">MsgSpatial3D</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Description</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="pre">Description</span></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11DescriptionE">
+<span id="_CPPv3N12MsgSpatial3D11DescriptionE"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionE"></span><span id="MsgSpatial3D::Description"></span><span class="target" id="classMsgSpatial3D_1_1Description"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classMsgSpatial3D.html#_CPPv412MsgSpatial3D" title="MsgSpatial3D"><span class="n"><span class="pre">MsgSpatial3D</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Description</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce11DescriptionE" title="MsgBruteForce::Description"><span class="n"><span class="pre">Description</span></span></a><br /></dt>
 <dd><p>User accessible interface to Spatial3D messages within mode description hierarchy <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="structMsgSpatial3D_1_1Data.html#structMsgSpatial3D_1_1Data"><span class="std std-ref">Data</span></a> </p>
 </dd>
@@ -825,123 +844,123 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description9setRadiusERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description9setRadiusERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description9setRadiusERKf"></span><span id="MsgSpatial3D::Description::setRadius__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a1f2f9f8b51fad554178a5e384310ecdc"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setRadius</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">r</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description9setRadiusERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description9setRadiusERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description9setRadiusERKf"></span><span id="MsgSpatial3D::Description::setRadius__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a1f2f9f8b51fad554178a5e384310ecdc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRadius</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">r</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMinXERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMinXERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinXERKf"></span><span id="MsgSpatial3D::Description::setMinX__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a9a03c3449054c36117be62d03982de11"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMinX</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">x</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMinXERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMinXERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinXERKf"></span><span id="MsgSpatial3D::Description::setMinX__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a9a03c3449054c36117be62d03982de11"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMinX</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMinYERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMinYERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinYERKf"></span><span id="MsgSpatial3D::Description::setMinY__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a19295c15991a62ea787f8d5c907b9695"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMinY</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">y</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMinYERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMinYERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinYERKf"></span><span id="MsgSpatial3D::Description::setMinY__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a19295c15991a62ea787f8d5c907b9695"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMinY</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMinZERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMinZERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinZERKf"></span><span id="MsgSpatial3D::Description::setMinZ__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a0849ee4b2a91bd67690e8f0ddd42851f"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMinZ</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">z</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMinZERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMinZERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMinZERKf"></span><span id="MsgSpatial3D::Description::setMinZ__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a0849ee4b2a91bd67690e8f0ddd42851f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMinZ</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description6setMinERKfRKfRKf">
-<span id="_CPPv3N12MsgSpatial3D11Description6setMinERKfRKfRKf"></span><span id="_CPPv2N12MsgSpatial3D11Description6setMinERKfRKfRKf"></span><span id="MsgSpatial3D::Description::setMin__floatCR.floatCR.floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a01cc23c47cda3f54e1a15233895b7f9d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMin</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">x</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">y</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">z</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description6setMinERKfRKfRKf">
+<span id="_CPPv3N12MsgSpatial3D11Description6setMinERKfRKfRKf"></span><span id="_CPPv2N12MsgSpatial3D11Description6setMinERKfRKfRKf"></span><span id="MsgSpatial3D::Description::setMin__floatCR.floatCR.floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a01cc23c47cda3f54e1a15233895b7f9d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMin</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMaxXERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMaxXERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxXERKf"></span><span id="MsgSpatial3D::Description::setMaxX__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a187521e22383ef6e27104b587bc2a8e3"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMaxX</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">x</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMaxXERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMaxXERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxXERKf"></span><span id="MsgSpatial3D::Description::setMaxX__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a187521e22383ef6e27104b587bc2a8e3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMaxX</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMaxYERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMaxYERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxYERKf"></span><span id="MsgSpatial3D::Description::setMaxY__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aec42167733f7ead145d31f524223a3bb"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMaxY</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">y</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMaxYERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMaxYERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxYERKf"></span><span id="MsgSpatial3D::Description::setMaxY__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aec42167733f7ead145d31f524223a3bb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMaxY</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description7setMaxZERKf">
-<span id="_CPPv3N12MsgSpatial3D11Description7setMaxZERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxZERKf"></span><span id="MsgSpatial3D::Description::setMaxZ__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a57b2a0cd502e1145a8cedc63dd10f674"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMaxZ</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">z</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description7setMaxZERKf">
+<span id="_CPPv3N12MsgSpatial3D11Description7setMaxZERKf"></span><span id="_CPPv2N12MsgSpatial3D11Description7setMaxZERKf"></span><span id="MsgSpatial3D::Description::setMaxZ__floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a57b2a0cd502e1145a8cedc63dd10f674"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMaxZ</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description6setMaxERKfRKfRKf">
-<span id="_CPPv3N12MsgSpatial3D11Description6setMaxERKfRKfRKf"></span><span id="_CPPv2N12MsgSpatial3D11Description6setMaxERKfRKfRKf"></span><span id="MsgSpatial3D::Description::setMax__floatCR.floatCR.floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aad9ca5038f5160e832e1f51593ae05cb"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMax</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">x</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">y</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">z</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description6setMaxERKfRKfRKf">
+<span id="_CPPv3N12MsgSpatial3D11Description6setMaxERKfRKfRKf"></span><span id="_CPPv2N12MsgSpatial3D11Description6setMaxERKfRKfRKf"></span><span id="MsgSpatial3D::Description::setMax__floatCR.floatCR.floatCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aad9ca5038f5160e832e1f51593ae05cb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMax</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">z</span></span><span class="sig-paren">)</span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description9getRadiusEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description9getRadiusEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description9getRadiusEv"></span><span id="MsgSpatial3D::Description::getRadiusC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a27c3a65a1fa4798497522ca293ad1ace"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getRadius</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description9getRadiusEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description9getRadiusEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description9getRadiusEv"></span><span id="MsgSpatial3D::Description::getRadiusC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a27c3a65a1fa4798497522ca293ad1ace"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getRadius</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMinXEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMinXEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinXEv"></span><span id="MsgSpatial3D::Description::getMinXC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aa83ce46a008ae0c73506f363109f6372"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMinX</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMinXEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMinXEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinXEv"></span><span id="MsgSpatial3D::Description::getMinXC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aa83ce46a008ae0c73506f363109f6372"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMinX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMinYEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMinYEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinYEv"></span><span id="MsgSpatial3D::Description::getMinYC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a18a2a005226e7107f85a1d12f8217fe3"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMinY</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMinYEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMinYEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinYEv"></span><span id="MsgSpatial3D::Description::getMinYC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a18a2a005226e7107f85a1d12f8217fe3"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMinY</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMinZEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMinZEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinZEv"></span><span id="MsgSpatial3D::Description::getMinZC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a87f378a30505821086bcb8ac5974d121"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMinZ</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMinZEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMinZEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMinZEv"></span><span id="MsgSpatial3D::Description::getMinZC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a87f378a30505821086bcb8ac5974d121"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMinZ</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMaxXEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxXEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxXEv"></span><span id="MsgSpatial3D::Description::getMaxXC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a320e402f91206fc94a86ff3c7c864d72"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMaxX</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMaxXEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxXEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxXEv"></span><span id="MsgSpatial3D::Description::getMaxXC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a320e402f91206fc94a86ff3c7c864d72"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMaxYEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxYEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxYEv"></span><span id="MsgSpatial3D::Description::getMaxYC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a5acd83c485d3937f50e7aff03d4656f1"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMaxY</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMaxYEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxYEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxYEv"></span><span id="MsgSpatial3D::Description::getMaxYC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a5acd83c485d3937f50e7aff03d4656f1"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxY</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK12MsgSpatial3D11Description7getMaxZEv">
-<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxZEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxZEv"></span><span id="MsgSpatial3D::Description::getMaxZC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1abf676136557f297570d504697715e99d"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getMaxZ</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK12MsgSpatial3D11Description7getMaxZEv">
+<span id="_CPPv3NK12MsgSpatial3D11Description7getMaxZEv"></span><span id="_CPPv2NK12MsgSpatial3D11Description7getMaxZEv"></span><span id="MsgSpatial3D::Description::getMaxZC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1abf676136557f297570d504697715e99d"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxZ</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data">
-<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="MsgSpatial3D::Description::Description__std::shared_ptr:ModelDataC:CR.DataPC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a007c61991ed45d9044a7531f12345c1b"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">_model</span></em>, <a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D4DataE" title="MsgSpatial3D::Data"><span class="pre">Data</span></a> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <em><span class="pre">data</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data">
+<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERKNSt10shared_ptrIK9ModelDataEEPC4Data"></span><span id="MsgSpatial3D::Description::Description__std::shared_ptr:ModelDataC:CR.DataPC"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a007c61991ed45d9044a7531f12345c1b"></span><span class="sig-name descname"><span class="n"><span class="pre">Description</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_model</span></span>, <a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D4DataE" title="MsgSpatial3D::Data"><span class="n"><span class="pre">Data</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">data</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description11DescriptionERK11Description">
-<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERK11Description"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERK11Description"></span><span id="MsgSpatial3D::Description::Description__DescriptionCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a5da95706cbcc3b047f53bf9f7eb43431"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11Description11DescriptionERK11Description" title="MsgSpatial3D::Description::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description11DescriptionERK11Description">
+<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERK11Description"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERK11Description"></span><span id="MsgSpatial3D::Description::Description__DescriptionCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a5da95706cbcc3b047f53bf9f7eb43431"></span><span class="sig-name descname"><span class="n"><span class="pre">Description</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11Description11DescriptionERK11Description" title="MsgSpatial3D::Description::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other_message</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><br /></dt>
 <dd><p>Default copy constructor, not implemented </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11Description11DescriptionERR11Description">
-<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERR11Description"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERR11Description"></span><span id="MsgSpatial3D::Description::Description__DescriptionRR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a3d2bc449513d1adc134330437112e2b1"></span><code class="sig-name descname"><span class="pre">Description</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11Description11DescriptionERR11Description" title="MsgSpatial3D::Description::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em> <span class="pre">=</span> <span class="pre">delete</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11Description11DescriptionERR11Description">
+<span id="_CPPv3N12MsgSpatial3D11Description11DescriptionERR11Description"></span><span id="_CPPv2N12MsgSpatial3D11Description11DescriptionERR11Description"></span><span id="MsgSpatial3D::Description::Description__DescriptionRR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1a3d2bc449513d1adc134330437112e2b1"></span><span class="sig-name descname"><span class="n"><span class="pre">Description</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11Description11DescriptionERR11Description" title="MsgSpatial3D::Description::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other_message</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><br /></dt>
 <dd><p>Default move constructor, not implemented </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11DescriptionaSERK11Description">
-<span id="_CPPv3N12MsgSpatial3D11DescriptionaSERK11Description"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionaSERK11Description"></span><span id="MsgSpatial3D::Description::assign-operator__DescriptionCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aadf3466087781909de18b7636ffb19da"></span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11DescriptionaSERK11Description">
+<span id="_CPPv3N12MsgSpatial3D11DescriptionaSERK11Description"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionaSERK11Description"></span><span id="MsgSpatial3D::Description::assign-operator__DescriptionCR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aadf3466087781909de18b7636ffb19da"></span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other_message</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><br /></dt>
 <dd><p>Default copy assignment, not implemented </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N12MsgSpatial3D11DescriptionaSERR11Description">
-<span id="_CPPv3N12MsgSpatial3D11DescriptionaSERR11Description"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionaSERR11Description"></span><span id="MsgSpatial3D::Description::assign-operator__DescriptionRR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aaadbcac67aad215888171e4021aeabff"></span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="pre">Description</span></a> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">other_message</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">noexcept</span></em> <span class="pre">=</span> <span class="pre">delete</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12MsgSpatial3D11DescriptionaSERR11Description">
+<span id="_CPPv3N12MsgSpatial3D11DescriptionaSERR11Description"></span><span id="_CPPv2N12MsgSpatial3D11DescriptionaSERR11Description"></span><span id="MsgSpatial3D::Description::assign-operator__DescriptionRR"></span><span class="target" id="classMsgSpatial3D_1_1Description_1aaadbcac67aad215888171e4021aeabff"></span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classMsgSpatial3D.html#_CPPv4N12MsgSpatial3D11DescriptionE" title="MsgSpatial3D::Description"><span class="n"><span class="pre">Description</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other_message</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">noexcept</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><br /></dt>
 <dd><p>Default move assignment, not implemented </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

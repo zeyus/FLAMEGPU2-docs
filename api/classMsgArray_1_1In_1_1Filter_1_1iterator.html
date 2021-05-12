@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class Filter::iterator &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,26 +813,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-filter-iterator">
+  <section id="class-filter-iterator">
 <span id="exhale-class-classmsgarray-1-1in-1-1filter-1-1iterator"></span><h1>Class Filter::iterator<a class="headerlink" href="#class-filter-iterator" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Array_ArrayDevice.h.html#file-include-flamegpu-runtime-messaging-array-arraydevice-h"><span class="std std-ref">File ArrayDevice.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This class is a nested type of <a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html#exhale-class-classmsgarray-1-1in-1-1filter"><span class="std std-ref">Class In::Filter</span></a>.</p>
-</div>
-<div class="section" id="class-documentation">
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv4N8MsgArray2In6Filter8iteratorE">
-<span id="_CPPv3N8MsgArray2In6Filter8iteratorE"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorE"></span><span id="MsgArray::In::Filter::iterator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classMsgArray.html#_CPPv48MsgArray" title="MsgArray"><span class="pre">MsgArray</span></a><span class="pre">::</span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2InE" title="MsgArray::In"><span class="pre">In</span></a><span class="pre">::</span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="pre">Filter</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">iterator</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iteratorE">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorE"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorE"></span><span id="MsgArray::In::Filter::iterator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classMsgArray.html#_CPPv48MsgArray" title="MsgArray"><span class="n"><span class="pre">MsgArray</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2InE" title="MsgArray::In"><span class="n"><span class="pre">In</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><br /></dt>
 <dd><p>Stock iterator for iterating <a class="reference internal" href="classMsgSpatial3D_1_1In_1_1Filter_1_1Message.html#classMsgSpatial3D_1_1In_1_1Filter_1_1Message"><span class="std std-ref">MsgSpatial3D::In::Filter::Message</span></a> objects </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi">
-<span id="_CPPv3N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="_CPPv2N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="MsgArray::In::Filter::iterator::iterator__FilterCR.iCR"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ada4920a7779a8da59cb718fca7f48b6e"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">relative_x</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi">
+<span id="_CPPv3N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="_CPPv2N8MsgArray2In6Filter8iterator8iteratorERK6FilterRKi"></span><span id="MsgArray::In::Filter::iterator::iterator__FilterCR.iCR"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ada4920a7779a8da59cb718fca7f48b6e"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6FilterE" title="MsgArray::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">relative_x</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructor This iterator is constructed by <a class="reference internal" href="classMsgArray_1_1In_1_1Filter.html#classMsgArray_1_1In_1_1Filter_1ac7707a259a8a96bf3fa9a8fe47473c38"><span class="std std-ref">MsgArray::In::Filter::begin()</span></a>(size_type, size_type) <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>MsgArray::In::Operator()(<a class="reference internal" href="classMsgArray.html#classMsgArray_1a63b5065eb3168e3bf3b6ca867023ca93"><span class="std std-ref">size_type</span></a>, <a class="reference internal" href="classMsgArray.html#classMsgArray_1a63b5065eb3168e3bf3b6ca867023ca93"><span class="std std-ref">size_type</span></a>) </p>
 </dd>
@@ -822,46 +841,46 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N8MsgArray2In6Filter8iteratorppEv">
-<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEv"></span><span id="MsgArray::In::Filter::iterator::inc-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a45b1a8c72fc164f41591944af104338d"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iteratorppEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEv"></span><span id="MsgArray::In::Filter::iterator::inc-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a45b1a8c72fc164f41591944af104338d"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Moves to the next message (Prefix increment operator) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N8MsgArray2In6Filter8iteratorppEi">
-<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEi"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEi"></span><span id="MsgArray::In::Filter::iterator::inc-operator__i"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a4f8bb66cfe0fb744703165c62b8f6dd9"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iteratorppEi">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorppEi"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorppEi"></span><span id="MsgArray::In::Filter::iterator::inc-operator__i"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a4f8bb66cfe0fb744703165c62b8f6dd9"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Moves to the next message (Postfix increment operator, returns value prior to increment) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8MsgArray2In6Filter8iteratoreqERK8iterator">
-<span id="_CPPv3NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="MsgArray::In::Filter::iterator::eq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a93087498a5be9dcf1effd53d13dcca5c"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8MsgArray2In6Filter8iteratoreqERK8iterator">
+<span id="_CPPv3NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratoreqERK8iterator"></span><span id="MsgArray::In::Filter::iterator::eq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a93087498a5be9dcf1effd53d13dcca5c"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Equality operator Compares message </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8MsgArray2In6Filter8iteratorneERK8iterator">
-<span id="_CPPv3NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="MsgArray::In::Filter::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ab32adec4f33bd926415b1047157a8cf5"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8MsgArray2In6Filter8iteratorneERK8iterator">
+<span id="_CPPv3NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="_CPPv2NK8MsgArray2In6Filter8iteratorneERK8iterator"></span><span id="MsgArray::In::Filter::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1ab32adec4f33bd926415b1047157a8cf5"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter8iteratorE" title="MsgArray::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Inequality operator Compares message </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N8MsgArray2In6Filter8iteratormlEv">
-<span id="_CPPv3N8MsgArray2In6Filter8iteratormlEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratormlEv"></span><span id="MsgArray::In::Filter::iterator::mul-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a3681e041746a1ab27ea1d51ed130f9a5"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iteratormlEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratormlEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratormlEv"></span><span id="MsgArray::In::Filter::iterator::mul-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a3681e041746a1ab27ea1d51ed130f9a5"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N8MsgArray2In6Filter8iteratorptEv">
-<span id="_CPPv3N8MsgArray2In6Filter8iteratorptEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorptEv"></span><span id="MsgArray::In::Filter::iterator::pointer-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a14fb954e6132a4e0eca34f2a3f249905"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">operator-&gt;</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8MsgArray2In6Filter8iteratorptEv">
+<span id="_CPPv3N8MsgArray2In6Filter8iteratorptEv"></span><span id="_CPPv2N8MsgArray2In6Filter8iteratorptEv"></span><span id="MsgArray::In::Filter::iterator::pointer-operator"></span><span class="target" id="classMsgArray_1_1In_1_1Filter_1_1iterator_1a14fb954e6132a4e0eca34f2a3f249905"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray.html#_CPPv4N8MsgArray2In6Filter7MessageE" title="MsgArray::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-&gt;</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

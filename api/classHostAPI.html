@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class HostAPI &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,72 +813,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-hostapi">
+  <section id="class-hostapi">
 <span id="exhale-class-classhostapi"></span><h1>Class HostAPI<a class="headerlink" href="#class-hostapi" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_HostAPI.h.html#file-include-flamegpu-runtime-hostapi-h"><span class="std std-ref">File HostAPI.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="structHostAPI_1_1key__hash.html#exhale-struct-structhostapi-1-1key-hash"><span class="std std-ref">Struct HostAPI::key_hash</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv47HostAPI">
-<span id="_CPPv37HostAPI"></span><span id="_CPPv27HostAPI"></span><span id="HostAPI"></span><span class="target" id="classHostAPI"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">HostAPI</span></code><a class="headerlink" href="#_CPPv47HostAPI" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv47HostAPI">
+<span id="_CPPv37HostAPI"></span><span id="_CPPv27HostAPI"></span><span id="HostAPI"></span><span class="target" id="classHostAPI"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostAPI</span></span></span><a class="headerlink" href="#_CPPv47HostAPI" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A flame gpu api class for use by host functions only This class should only be used by init/step/exit/exitcondition functions. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt id="_CPPv4N7HostAPI15AgentDataBufferE">
-<span id="_CPPv3N7HostAPI15AgentDataBufferE"></span><span id="_CPPv2N7HostAPI15AgentDataBufferE"></span><span id="HostAPI::AgentDataBuffer"></span><span class="target" id="classHostAPI_1ae2d6d19f4abf89cefe98ba8d751d50a4"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="structNewAgentStorage.html#_CPPv415NewAgentStorage" title="NewAgentStorage"><span class="pre">NewAgentStorage</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentDataBuffer</span></code><a class="headerlink" href="#_CPPv4N7HostAPI15AgentDataBufferE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI15AgentDataBufferE">
+<span id="_CPPv3N7HostAPI15AgentDataBufferE"></span><span id="_CPPv2N7HostAPI15AgentDataBufferE"></span><span id="HostAPI::AgentDataBuffer"></span><span class="target" id="classHostAPI_1ae2d6d19f4abf89cefe98ba8d751d50a4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structNewAgentStorage.html#_CPPv415NewAgentStorage" title="NewAgentStorage"><span class="n"><span class="pre">NewAgentStorage</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentDataBuffer</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI15AgentDataBufferE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N7HostAPI23AgentDataBufferStateMapE">
-<span id="_CPPv3N7HostAPI23AgentDataBufferStateMapE"></span><span id="_CPPv2N7HostAPI23AgentDataBufferStateMapE"></span><span id="HostAPI::AgentDataBufferStateMap"></span><span class="target" id="classHostAPI_1a1853591a714c0c0f8db3081561877117"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N7HostAPI15AgentDataBufferE" title="HostAPI::AgentDataBuffer"><span class="pre">AgentDataBuffer</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentDataBufferStateMap</span></code><a class="headerlink" href="#_CPPv4N7HostAPI23AgentDataBufferStateMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI23AgentDataBufferStateMapE">
+<span id="_CPPv3N7HostAPI23AgentDataBufferStateMapE"></span><span id="_CPPv2N7HostAPI23AgentDataBufferStateMapE"></span><span id="HostAPI::AgentDataBufferStateMap"></span><span class="target" id="classHostAPI_1a1853591a714c0c0f8db3081561877117"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7HostAPI15AgentDataBufferE" title="HostAPI::AgentDataBuffer"><span class="n"><span class="pre">AgentDataBuffer</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentDataBufferStateMap</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI23AgentDataBufferStateMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N7HostAPI14AgentOffsetMapE">
-<span id="_CPPv3N7HostAPI14AgentOffsetMapE"></span><span id="_CPPv2N7HostAPI14AgentOffsetMapE"></span><span id="HostAPI::AgentOffsetMap"></span><span class="target" id="classHostAPI_1a9f40df4da81efbb79c3e9ac31f560921"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="structVarOffsetStruct.html#_CPPv415VarOffsetStruct" title="VarOffsetStruct"><span class="pre">VarOffsetStruct</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentOffsetMap</span></code><a class="headerlink" href="#_CPPv4N7HostAPI14AgentOffsetMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI14AgentOffsetMapE">
+<span id="_CPPv3N7HostAPI14AgentOffsetMapE"></span><span id="_CPPv2N7HostAPI14AgentOffsetMapE"></span><span id="HostAPI::AgentOffsetMap"></span><span class="target" id="classHostAPI_1a9f40df4da81efbb79c3e9ac31f560921"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structVarOffsetStruct.html#_CPPv415VarOffsetStruct" title="VarOffsetStruct"><span class="n"><span class="pre">VarOffsetStruct</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentOffsetMap</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI14AgentOffsetMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp type">
-<dt id="_CPPv4N7HostAPI12AgentDataMapE">
-<span id="_CPPv3N7HostAPI12AgentDataMapE"></span><span id="_CPPv2N7HostAPI12AgentDataMapE"></span><span id="HostAPI::AgentDataMap"></span><span class="target" id="classHostAPI_1a19bfb07f0f29666e613cc8a5cd41d956"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N7HostAPI23AgentDataBufferStateMapE" title="HostAPI::AgentDataBufferStateMap"><span class="pre">AgentDataBufferStateMap</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">AgentDataMap</span></code><a class="headerlink" href="#_CPPv4N7HostAPI12AgentDataMapE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI12AgentDataMapE">
+<span id="_CPPv3N7HostAPI12AgentDataMapE"></span><span id="_CPPv2N7HostAPI12AgentDataMapE"></span><span id="HostAPI::AgentDataMap"></span><span class="target" id="classHostAPI_1a19bfb07f0f29666e613cc8a5cd41d956"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7HostAPI23AgentDataBufferStateMapE" title="HostAPI::AgentDataBufferStateMap"><span class="n"><span class="pre">AgentDataBufferStateMap</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentDataMap</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI12AgentDataMapE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t">
-<span id="_CPPv3N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t"></span><span id="_CPPv2N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t"></span><span id="HostAPI::HostAPI__CUDASimulationR.RandomManagerR.CUDAScatterR.AgentOffsetMapCR.AgentDataMapR.unsigned-iCR.cudaStream_t"></span><span class="target" id="classHostAPI_1ae7fe4b97bcfbbcf53265d1cb5cd42b36"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">HostAPI</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">&amp;</span><em><span class="pre">_agentModel</span></em>, <a class="reference internal" href="classRandomManager.html#_CPPv413RandomManager" title="RandomManager"><span class="pre">RandomManager</span></a> <span class="pre">&amp;</span><em><span class="pre">rng</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N7HostAPI14AgentOffsetMapE" title="HostAPI::AgentOffsetMap"><span class="pre">AgentOffsetMap</span></a> <span class="pre">&amp;</span><em><span class="pre">agentOffsets</span></em>, <a class="reference internal" href="#_CPPv4N7HostAPI12AgentDataMapE" title="HostAPI::AgentDataMap"><span class="pre">AgentDataMap</span></a> <span class="pre">&amp;</span><em><span class="pre">agentData</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <span class="pre">cudaStream_t</span> <em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t">
+<span id="_CPPv3N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t"></span><span id="_CPPv2N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t"></span><span id="HostAPI::HostAPI__CUDASimulationR.RandomManagerR.CUDAScatterR.AgentOffsetMapCR.AgentDataMapR.unsigned-iCR.cudaStream_t"></span><span class="target" id="classHostAPI_1ae7fe4b97bcfbbcf53265d1cb5cd42b36"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">HostAPI</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="n"><span class="pre">CUDASimulation</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_agentModel</span></span>, <a class="reference internal" href="classRandomManager.html#_CPPv413RandomManager" title="RandomManager"><span class="n"><span class="pre">RandomManager</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rng</span></span>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7HostAPI14AgentOffsetMapE" title="HostAPI::AgentOffsetMap"><span class="n"><span class="pre">AgentOffsetMap</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agentOffsets</span></span>, <a class="reference internal" href="#_CPPv4N7HostAPI12AgentDataMapE" title="HostAPI::AgentDataMap"><span class="n"><span class="pre">AgentDataMap</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agentData</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span>, <span class="n"><span class="pre">cudaStream_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapRKj12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initailises pointers to 0 Stores reference of <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7HostAPID0Ev">
-<span id="_CPPv3N7HostAPID0Ev"></span><span id="_CPPv2N7HostAPID0Ev"></span><span id="HostAPI::~HostAPI"></span><span class="target" id="classHostAPI_1a1e66c0683555ad09eef3f9347989ad63"></span><code class="sig-name descname"><span class="pre">~HostAPI</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPID0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPID0Ev">
+<span id="_CPPv3N7HostAPID0Ev"></span><span id="_CPPv2N7HostAPID0Ev"></span><span id="HostAPI::~HostAPI"></span><span class="target" id="classHostAPI_1a1e66c0683555ad09eef3f9347989ad63"></span><span class="sig-name descname"><span class="n"><span class="pre">~HostAPI</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPID0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Frees held device memory </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7HostAPI5agentERKNSt6stringERKNSt6stringE">
-<span id="_CPPv3N7HostAPI5agentERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N7HostAPI5agentERKNSt6stringERKNSt6stringE"></span><span id="HostAPI::agent__ssCR.ssCR"></span><span class="target" id="classHostAPI_1a0d24565cf63fd6a28af387ebbfe43b26"></span><a class="reference internal" href="classHostAgentAPI.html#_CPPv412HostAgentAPI" title="HostAgentAPI"><span class="pre">HostAgentAPI</span></a> <code class="sig-name descname"><span class="pre">agent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agent_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">stateName</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPI5agentERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI5agentERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N7HostAPI5agentERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N7HostAPI5agentERKNSt6stringERKNSt6stringE"></span><span id="HostAPI::agent__ssCR.ssCR"></span><span class="target" id="classHostAPI_1a0d24565cf63fd6a28af387ebbfe43b26"></span><a class="reference internal" href="classHostAgentAPI.html#_CPPv412HostAgentAPI" title="HostAgentAPI"><span class="n"><span class="pre">HostAgentAPI</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agent_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stateName</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7HostAPI5agentERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns methods that work on all agents of a certain type currently in a given state </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7HostAPI14getStepCounterEv">
-<span id="_CPPv3NK7HostAPI14getStepCounterEv"></span><span id="_CPPv2NK7HostAPI14getStepCounterEv"></span><span id="HostAPI::getStepCounterC"></span><span class="target" id="classHostAPI_1a39d07418e1a018f51fe2784f8e41b026"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStepCounter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7HostAPI14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7HostAPI14getStepCounterEv">
+<span id="_CPPv3NK7HostAPI14getStepCounterEv"></span><span id="_CPPv2NK7HostAPI14getStepCounterEv"></span><span id="HostAPI::getStepCounterC"></span><span class="target" id="classHostAPI_1a39d07418e1a018f51fe2784f8e41b026"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getStepCounter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7HostAPI14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Access the current stepCount</p>
 <p>Access the current stepCount Sepearate implementation to avoid dependency loop with cuda agent model.</p>
 </p>
@@ -877,22 +896,22 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N7HostAPI6randomE">
-<span id="_CPPv3N7HostAPI6randomE"></span><span id="_CPPv2N7HostAPI6randomE"></span><span id="HostAPI::random__HostRandomC"></span><span class="target" id="classHostAPI_1ac9e4b5aa27415b4182ef2fd967307d81"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classHostRandom.html#_CPPv410HostRandom" title="HostRandom"><span class="pre">HostRandom</span></a> <code class="sig-name descname"><span class="pre">random</span></code><a class="headerlink" href="#_CPPv4N7HostAPI6randomE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI6randomE">
+<span id="_CPPv3N7HostAPI6randomE"></span><span id="_CPPv2N7HostAPI6randomE"></span><span id="HostAPI::random__HostRandomC"></span><span class="target" id="classHostAPI_1ac9e4b5aa27415b4182ef2fd967307d81"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classHostRandom.html#_CPPv410HostRandom" title="HostRandom"><span class="n"><span class="pre">HostRandom</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">random</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI6randomE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Host API access to seeded random number generation </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N7HostAPI11environmentE">
-<span id="_CPPv3N7HostAPI11environmentE"></span><span id="_CPPv2N7HostAPI11environmentE"></span><span id="HostAPI::environment__HostEnvironmentC"></span><span class="target" id="classHostAPI_1abb038241af001fb74a622e03fb9a8b05"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classHostEnvironment.html#_CPPv415HostEnvironment" title="HostEnvironment"><span class="pre">HostEnvironment</span></a> <code class="sig-name descname"><span class="pre">environment</span></code><a class="headerlink" href="#_CPPv4N7HostAPI11environmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7HostAPI11environmentE">
+<span id="_CPPv3N7HostAPI11environmentE"></span><span id="_CPPv2N7HostAPI11environmentE"></span><span id="HostAPI::environment__HostEnvironmentC"></span><span class="target" id="classHostAPI_1abb038241af001fb74a622e03fb9a8b05"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classHostEnvironment.html#_CPPv415HostEnvironment" title="HostEnvironment"><span class="n"><span class="pre">HostEnvironment</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">environment</span></span></span><a class="headerlink" href="#_CPPv4N7HostAPI11environmentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Host API access to environmental properties </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

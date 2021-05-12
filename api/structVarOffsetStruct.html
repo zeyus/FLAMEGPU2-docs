@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct VarOffsetStruct &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,88 +813,88 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-varoffsetstruct">
+  <section id="struct-varoffsetstruct">
 <span id="exhale-struct-structvaroffsetstruct"></span><h1>Struct VarOffsetStruct<a class="headerlink" href="#struct-varoffsetstruct" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_HostNewAgentAPI.h.html#file-include-flamegpu-runtime-hostnewagentapi-h"><span class="std std-ref">File HostNewAgentAPI.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="structVarOffsetStruct_1_1OffsetLen.html#exhale-struct-structvaroffsetstruct-1-1offsetlen"><span class="std std-ref">Struct VarOffsetStruct::OffsetLen</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv415VarOffsetStruct">
-<span id="_CPPv315VarOffsetStruct"></span><span id="_CPPv215VarOffsetStruct"></span><span id="VarOffsetStruct"></span><span class="target" id="structVarOffsetStruct"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">VarOffsetStruct</span></code><a class="headerlink" href="#_CPPv415VarOffsetStruct" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv415VarOffsetStruct">
+<span id="_CPPv315VarOffsetStruct"></span><span id="_CPPv215VarOffsetStruct"></span><span id="VarOffsetStruct"></span><span class="target" id="structVarOffsetStruct"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VarOffsetStruct</span></span></span><a class="headerlink" href="#_CPPv415VarOffsetStruct" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This struct holds a map of how memory for a compact representation of some unknown vars needs to look </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N15VarOffsetStruct15VarOffsetStructERK11VariableMap">
-<span id="_CPPv3N15VarOffsetStruct15VarOffsetStructERK11VariableMap"></span><span id="_CPPv2N15VarOffsetStruct15VarOffsetStructERK11VariableMap"></span><span id="VarOffsetStruct::VarOffsetStruct__VariableMapCR"></span><span class="target" id="structVarOffsetStruct_1a3d684debd9b4ac118b452bfd86265efc"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">VarOffsetStruct</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Variable_8h_1a9bd1d63e1e37008939c3f6ddd1e813d9.html#_CPPv411VariableMap" title="VariableMap"><span class="pre">VariableMap</span></a> <span class="pre">&amp;</span><em><span class="pre">vmap</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK11VariableMap" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct15VarOffsetStructERK11VariableMap">
+<span id="_CPPv3N15VarOffsetStruct15VarOffsetStructERK11VariableMap"></span><span id="_CPPv2N15VarOffsetStruct15VarOffsetStructERK11VariableMap"></span><span id="VarOffsetStruct::VarOffsetStruct__VariableMapCR"></span><span class="target" id="structVarOffsetStruct_1a3d684debd9b4ac118b452bfd86265efc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VarOffsetStruct</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Variable_8h_1a9bd1d63e1e37008939c3f6ddd1e813d9.html#_CPPv411VariableMap" title="VariableMap"><span class="n"><span class="pre">VariableMap</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">vmap</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK11VariableMap" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct">
-<span id="_CPPv3N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct"></span><span id="_CPPv2N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct"></span><span id="VarOffsetStruct::VarOffsetStruct__VarOffsetStructCR"></span><span class="target" id="structVarOffsetStruct_1a26e917f90b2781495eb8345db4c2d427"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">VarOffsetStruct</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct" title="VarOffsetStruct::VarOffsetStruct"><span class="pre">VarOffsetStruct</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct">
+<span id="_CPPv3N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct"></span><span id="_CPPv2N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct"></span><span id="VarOffsetStruct::VarOffsetStruct__VarOffsetStructCR"></span><span class="target" id="structVarOffsetStruct_1a26e917f90b2781495eb8345db4c2d427"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">VarOffsetStruct</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct" title="VarOffsetStruct::VarOffsetStruct"><span class="n"><span class="pre">VarOffsetStruct</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct15VarOffsetStructERK15VarOffsetStruct" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15VarOffsetStructD0Ev">
-<span id="_CPPv3N15VarOffsetStructD0Ev"></span><span id="_CPPv2N15VarOffsetStructD0Ev"></span><span id="VarOffsetStruct::~VarOffsetStruct"></span><span class="target" id="structVarOffsetStruct_1a61b14986ff9952df2d883a4f24c5a90e"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">~VarOffsetStruct</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStructD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStructD0Ev">
+<span id="_CPPv3N15VarOffsetStructD0Ev"></span><span id="_CPPv2N15VarOffsetStructD0Ev"></span><span id="VarOffsetStruct::~VarOffsetStruct"></span><span class="target" id="structVarOffsetStruct_1a61b14986ff9952df2d883a4f24c5a90e"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~VarOffsetStruct</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStructD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct4varsE">
-<span id="_CPPv3N15VarOffsetStruct4varsE"></span><span id="_CPPv2N15VarOffsetStruct4varsE"></span><span id="VarOffsetStruct::vars__std::unordered_map:ss.OffsetLen:"></span><span class="target" id="structVarOffsetStruct_1af19b7ccfa4b588e773f399ff1f69b80c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">unordered_map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="#_CPPv4N15VarOffsetStruct9OffsetLenE" title="VarOffsetStruct::OffsetLen"><span class="pre">OffsetLen</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">vars</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct4varsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct4varsE">
+<span id="_CPPv3N15VarOffsetStruct4varsE"></span><span id="_CPPv2N15VarOffsetStruct4varsE"></span><span id="VarOffsetStruct::vars__std::unordered_map:ss.OffsetLen:"></span><span class="target" id="structVarOffsetStruct_1af19b7ccfa4b588e773f399ff1f69b80c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unordered_map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N15VarOffsetStruct9OffsetLenE" title="VarOffsetStruct::OffsetLen"><span class="n"><span class="pre">OffsetLen</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vars</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct4varsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct9totalSizeE">
-<span id="_CPPv3N15VarOffsetStruct9totalSizeE"></span><span id="_CPPv2N15VarOffsetStruct9totalSizeE"></span><span id="VarOffsetStruct::totalSize__sC"></span><span class="target" id="structVarOffsetStruct_1a6b7cab3dff8986783a7e8bf54d06fe3e"></span><em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">totalSize</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9totalSizeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9totalSizeE">
+<span id="_CPPv3N15VarOffsetStruct9totalSizeE"></span><span id="_CPPv2N15VarOffsetStruct9totalSizeE"></span><span id="VarOffsetStruct::totalSize__sC"></span><span class="target" id="structVarOffsetStruct_1a6b7cab3dff8986783a7e8bf54d06fe3e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">totalSize</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9totalSizeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct12default_dataE">
-<span id="_CPPv3N15VarOffsetStruct12default_dataE"></span><span id="_CPPv2N15VarOffsetStruct12default_dataE"></span><span id="VarOffsetStruct::default_data__cPC"></span><span class="target" id="structVarOffsetStruct_1aea6ab1fc78c7f77c4bd8391310de4f0d"></span><span class="pre">char</span> <span class="pre">*</span><em class="property"><span class="pre">const</span></em> <code class="sig-name descname"><span class="pre">default_data</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct12default_dataE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct12default_dataE">
+<span id="_CPPv3N15VarOffsetStruct12default_dataE"></span><span id="_CPPv2N15VarOffsetStruct12default_dataE"></span><span id="VarOffsetStruct::default_data__cPC"></span><span class="target" id="structVarOffsetStruct_1aea6ab1fc78c7f77c4bd8391310de4f0d"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">default_data</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct12default_dataE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <dl class="cpp struct">
-<dt id="_CPPv4N15VarOffsetStruct9OffsetLenE">
-<span id="_CPPv3N15VarOffsetStruct9OffsetLenE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLenE"></span><span id="VarOffsetStruct::OffsetLen"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">OffsetLen</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLenE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9OffsetLenE">
+<span id="_CPPv3N15VarOffsetStruct9OffsetLenE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLenE"></span><span id="VarOffsetStruct::OffsetLen"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OffsetLen</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLenE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE">
-<span id="_CPPv3N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE"></span><span id="VarOffsetStruct::OffsetLen::OffsetLen__ptrdiff_tCR.sCR.std::type_indexC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1ac17ed1666b0a453735f326fe09482701"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">OffsetLen</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">ptrdiff_t</span> <span class="pre">&amp;</span><em><span class="pre">_offset</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <span class="pre">&amp;</span><em><span class="pre">_len</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <em><span class="pre">_type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE">
+<span id="_CPPv3N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE"></span><span id="VarOffsetStruct::OffsetLen::OffsetLen__ptrdiff_tCR.sCR.std::type_indexC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1ac17ed1666b0a453735f326fe09482701"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OffsetLen</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_len</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen9OffsetLenERK9ptrdiff_tRK6size_tKNSt10type_indexE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct9OffsetLen6offsetE">
-<span id="_CPPv3N15VarOffsetStruct9OffsetLen6offsetE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen6offsetE"></span><span id="VarOffsetStruct::OffsetLen::offset__ptrdiff_tC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1a195fdab17b5d28692f03b4e3378fad04"></span><em class="property"><span class="pre">const</span></em> <span class="pre">ptrdiff_t</span> <code class="sig-name descname"><span class="pre">offset</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen6offsetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9OffsetLen6offsetE">
+<span id="_CPPv3N15VarOffsetStruct9OffsetLen6offsetE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen6offsetE"></span><span id="VarOffsetStruct::OffsetLen::offset__ptrdiff_tC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1a195fdab17b5d28692f03b4e3378fad04"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">offset</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen6offsetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct9OffsetLen3lenE">
-<span id="_CPPv3N15VarOffsetStruct9OffsetLen3lenE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen3lenE"></span><span id="VarOffsetStruct::OffsetLen::len__sC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1a56a82924734c060887922a6b29e82ab7"></span><em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">len</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen3lenE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9OffsetLen3lenE">
+<span id="_CPPv3N15VarOffsetStruct9OffsetLen3lenE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen3lenE"></span><span id="VarOffsetStruct::OffsetLen::len__sC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1a56a82924734c060887922a6b29e82ab7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">len</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen3lenE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N15VarOffsetStruct9OffsetLen4typeE">
-<span id="_CPPv3N15VarOffsetStruct9OffsetLen4typeE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen4typeE"></span><span id="VarOffsetStruct::OffsetLen::type__std::type_indexC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1af46666d7b9d03ab24337f4cfa3288d8f"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">type</span></code><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen4typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15VarOffsetStruct9OffsetLen4typeE">
+<span id="_CPPv3N15VarOffsetStruct9OffsetLen4typeE"></span><span id="_CPPv2N15VarOffsetStruct9OffsetLen4typeE"></span><span id="VarOffsetStruct::OffsetLen::type__std::type_indexC"></span><span class="target" id="structVarOffsetStruct_1_1OffsetLen_1af46666d7b9d03ab24337f4cfa3288d8f"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><a class="headerlink" href="#_CPPv4N15VarOffsetStruct9OffsetLen4typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -883,8 +902,8 @@
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

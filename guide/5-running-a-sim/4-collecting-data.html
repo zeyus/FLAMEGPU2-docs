@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Collecting Data &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,9 +36,11 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
@@ -105,7 +110,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +199,11 @@
 <li class="toctree-l4"><a class="reference internal" href="3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Collecting Data</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +230,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +237,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +268,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_%40142.html">Namespace &#64;142</a></li>
@@ -796,9 +816,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="collecting-data">
+  <section id="collecting-data">
 <h1>Collecting Data<a class="headerlink" href="#collecting-data" title="Permalink to this headline">¶</a></h1>
+<section id="saving-agent-state">
+<h2>Saving Agent State<a class="headerlink" href="#saving-agent-state" title="Permalink to this headline">¶</a></h2>
+<p>The state of the simulation can be periodically saved in either XML or JSON format. To save the state, supply the <strong>TODO: which switch</strong> switch
+to the program, followed by the output period. For example</p>
+<p><strong>TODO: Example</strong></p>
+<p>runs program ‘…’ and will output its state every 5 steps in the JSON format.</p>
+</section>
+<section id="collecting-other-information">
+<h2>Collecting Other Information<a class="headerlink" href="#collecting-other-information" title="Permalink to this headline">¶</a></h2>
+<p>Custom information can be collected using step functions. These run at the end of each step. The FLAMEGPU2 API provides a
+set of functions which can be used to collect information about agents and their variables.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a step function called &#39;step_function&#39;</span>
+<span class="n">FLAMEGPU_STEP_FUNCTION</span><span class="p">(</span><span class="n">step_function</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">auto</span> <span class="n">agent</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;agent&quot;</span><span class="p">);</span>
+
+    <span class="c1">// Compute the sum of all the &#39;a&#39; variables of agent type &#39;agent&#39;</span>
+    <span class="kt">int</span> <span class="n">sum_a</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">sum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">);</span>
+
+    <span class="c1">// Apply a custom function, &#39;customSum&#39; to the variables &#39;a&#39; of agent type &#39;agent&#39;</span>
+    <span class="kt">int</span> <span class="n">custom_sum_a</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="n">customSum</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// Count the number of agents whose &#39;a&#39; variable is set to &#39;1&#39;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">count_a</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">count</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+    <span class="c1">// Sum the values of the &#39;a&#39; variables of agent type &#39;agent&#39;, whose &#39;a&#39; value meets the criteria defined in &#39;customTransform&#39;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">countif_a</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">transformReduce</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="n">customTransform</span><span class="p">,</span> <span class="n">customSum</span><span class="p">,</span> <span class="mi">0u</span><span class="p">);</span>
+
+    <span class="c1">// Print out the collected information</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Step Function! (AgentCount: %u, Sum: %d, CustomSum: %d, Count: %u, CustomCountIf: %u)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">agent</span><span class="p">.</span><span class="n">count</span><span class="p">(),</span> <span class="n">sum_a</span><span class="p">,</span> <span class="n">custom_sum_a</span><span class="p">,</span> <span class="n">count_a</span><span class="p">,</span> <span class="n">countif_a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div></div>
+</section>
+</section>
 
 
            </div>

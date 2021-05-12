@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct MsgArray2D::Data &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,29 +813,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-msgarray2d-data">
+  <section id="struct-msgarray2d-data">
 <span id="exhale-struct-structmsgarray2d-1-1data"></span><h1>Struct MsgArray2D::Data<a class="headerlink" href="#struct-msgarray2d-data" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Array2D_Array2DHost.h.html#file-include-flamegpu-runtime-messaging-array2d-array2dhost-h"><span class="std std-ref">File Array2DHost.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This struct is a nested type of <a class="reference internal" href="classMsgArray2D.html#exhale-class-classmsgarray2d"><span class="std std-ref">Class MsgArray2D</span></a>.</p>
-</div>
-<div class="section" id="inheritance-relationships">
+</section>
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MsgBruteForce::Data</span></code> (<a class="reference internal" href="structMsgBruteForce_1_1Data.html#exhale-struct-structmsgbruteforce-1-1data"><span class="std std-ref">Struct MsgBruteForce::Data</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv4N10MsgArray2D4DataE">
-<span id="_CPPv3N10MsgArray2D4DataE"></span><span id="_CPPv2N10MsgArray2D4DataE"></span><span id="MsgArray2D::Data"></span><span class="target" id="structMsgArray2D_1_1Data"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="pre">MsgArray2D</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Data</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="pre">Data</span></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4DataE">
+<span id="_CPPv3N10MsgArray2D4DataE"></span><span id="_CPPv2N10MsgArray2D4DataE"></span><span id="MsgArray2D::Data"></span><span class="target" id="structMsgArray2D_1_1Data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="n"><span class="pre">MsgArray2D</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Data</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><br /></dt>
 <dd><p>Internal data representation of Array messages within model description hierarchy <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classMsgArray2D_1_1Description.html#classMsgArray2D_1_1Description"><span class="std std-ref">Description</span></a> </p>
 </dd>
@@ -825,18 +844,18 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10MsgArray2D4DataD0Ev">
-<span id="_CPPv3N10MsgArray2D4DataD0Ev"></span><span id="_CPPv2N10MsgArray2D4DataD0Ev"></span><span id="MsgArray2D::Data::~Data"></span><span class="target" id="structMsgArray2D_1_1Data_1a8db6a48b23420a51f46c18a83dcf6d2c"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~Data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">default</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4DataD0Ev">
+<span id="_CPPv3N10MsgArray2D4DataD0Ev"></span><span id="_CPPv2N10MsgArray2D4DataD0Ev"></span><span id="MsgArray2D::Data::~Data"></span><span class="target" id="structMsgArray2D_1_1Data_1a8db6a48b23420a51f46c18a83dcf6d2c"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~Data</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">default</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage">
-<span id="_CPPv3NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="_CPPv2NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="MsgArray2D::Data::getSpecialisationHander__CUDAMessageRC"></span><span class="target" id="structMsgArray2D_1_1Data_1a4c9ec05a9d7f110973831b5249b1879f"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classMsgSpecialisationHandler.html#_CPPv424MsgSpecialisationHandler" title="MsgSpecialisationHandler"><span class="pre">MsgSpecialisationHandler</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getSpecialisationHander</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAMessage.html#_CPPv411CUDAMessage" title="CUDAMessage"><span class="pre">CUDAMessage</span></a> <span class="pre">&amp;</span><em><span class="pre">owner</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage">
+<span id="_CPPv3NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="_CPPv2NK10MsgArray2D4Data23getSpecialisationHanderER11CUDAMessage"></span><span id="MsgArray2D::Data::getSpecialisationHander__CUDAMessageRC"></span><span class="target" id="structMsgArray2D_1_1Data_1a4c9ec05a9d7f110973831b5249b1879f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classMsgSpecialisationHandler.html#_CPPv424MsgSpecialisationHandler" title="MsgSpecialisationHandler"><span class="n"><span class="pre">MsgSpecialisationHandler</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSpecialisationHander</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDAMessage.html#_CPPv411CUDAMessage" title="CUDAMessage"><span class="n"><span class="pre">CUDAMessage</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">owner</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10MsgArray2D4Data7getTypeEv">
-<span id="_CPPv3NK10MsgArray2D4Data7getTypeEv"></span><span id="_CPPv2NK10MsgArray2D4Data7getTypeEv"></span><span id="MsgArray2D::Data::getTypeC"></span><span class="target" id="structMsgArray2D_1_1Data_1a14fd14494bfeb938bb51ed62764d5f1f"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">getType</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10MsgArray2D4Data7getTypeEv">
+<span id="_CPPv3NK10MsgArray2D4Data7getTypeEv"></span><span id="_CPPv2NK10MsgArray2D4Data7getTypeEv"></span><span id="MsgArray2D::Data::getTypeC"></span><span class="target" id="structMsgArray2D_1_1Data_1a14fd14494bfeb938bb51ed62764d5f1f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getType</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><br /></dt>
 <dd><p>Used internally to validate that the corresponding Msg type is attached via the agent function shim. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -849,48 +868,48 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N10MsgArray2D4Data10dimensionsE">
-<span id="_CPPv3N10MsgArray2D4Data10dimensionsE"></span><span id="_CPPv2N10MsgArray2D4Data10dimensionsE"></span><span id="MsgArray2D::Data::dimensions__std::array:size_type.2:"></span><span class="target" id="structMsgArray2D_1_1Data_1a4c7f8f0dea7420c2ce40b419822d5780"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="pre">size_type</span></a><span class="pre">,</span> <span class="pre">2</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">dimensions</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4Data10dimensionsE">
+<span id="_CPPv3N10MsgArray2D4Data10dimensionsE"></span><span id="_CPPv2N10MsgArray2D4Data10dimensionsE"></span><span id="MsgArray2D::Data::dimensions__std::array:size_type.2:"></span><span class="target" id="structMsgArray2D_1_1Data_1a4c7f8f0dea7420c2ce40b419822d5780"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dimensions</span></span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">
-<span id="_CPPv3N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="MsgArray2D::Data::clone__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="structMsgArray2D_1_1Data_1a9c8a9726191c3d02a6d533f57fa01845"></span><em class="property"><span class="pre">virtual</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D4DataE" title="MsgArray2D::Data"><span class="pre">Data</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">newParent</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">override</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">
+<span id="_CPPv3N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="_CPPv2N10MsgArray2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE"></span><span id="MsgArray2D::Data::clone__std::shared_ptr:ModelDataC:CR"></span><span class="target" id="structMsgArray2D_1_1Data_1a9c8a9726191c3d02a6d533f57fa01845"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D4DataE" title="MsgArray2D::Data"><span class="n"><span class="pre">Data</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">clone</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">newParent</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">
-<span id="_CPPv3N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="_CPPv2N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="MsgArray2D::Data::Data__std::shared_ptr:ModelDataC:CR.DataCR"></span><span class="target" id="structMsgArray2D_1_1Data_1a89a670bb426eea51196aa6b173320dee"></span><code class="sig-name descname"><span class="pre">Data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span><span class="pre">&amp;</span>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data" title="MsgArray2D::Data::Data"><span class="pre">Data</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">
+<span id="_CPPv3N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="_CPPv2N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data"></span><span id="MsgArray2D::Data::Data__std::shared_ptr:ModelDataC:CR.DataCR"></span><span class="target" id="structMsgArray2D_1_1Data_1a89a670bb426eea51196aa6b173320dee"></span><span class="sig-name descname"><span class="n"><span class="pre">Data</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data" title="MsgArray2D::Data::Data"><span class="n"><span class="pre">Data</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Copy constructor This is unsafe, should only be used internally, use <a class="reference internal" href="#structMsgArray2D_1_1Data_1a9c8a9726191c3d02a6d533f57fa01845"><span class="std std-ref">clone()</span></a> instead </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">
-<span id="_CPPv3N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="_CPPv2N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="MsgArray2D::Data::Data__std::shared_ptr:ModelDataC:CR.ssCR"></span><span class="target" id="structMsgArray2D_1_1Data_1a4cd631e3670d3b70f9c4d48d5b80c21a"></span><code class="sig-name descname"><span class="pre">Data</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span><span class="pre">&amp;</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">message_name</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">
+<span id="_CPPv3N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="_CPPv2N10MsgArray2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE"></span><span id="MsgArray2D::Data::Data__std::shared_ptr:ModelDataC:CR.ssCR"></span><span class="target" id="structMsgArray2D_1_1Data_1a4cd631e3670d3b70f9c4d48d5b80c21a"></span><span class="sig-name descname"><span class="n"><span class="pre">Data</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">message_name</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Normal constructor, only to be called by <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">ModelDescription</span></dt>
 </dl>
 
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">struct</span></em> <span class="pre">ModelData</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

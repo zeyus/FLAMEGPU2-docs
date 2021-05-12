@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class LayerDescription &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,16 +813,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-layerdescription">
+  <section id="class-layerdescription">
 <span id="exhale-class-classlayerdescription"></span><h1>Class LayerDescription<a class="headerlink" href="#class-layerdescription" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_LayerDescription.h.html#file-include-flamegpu-model-layerdescription-h"><span class="std std-ref">File LayerDescription.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv416LayerDescription">
-<span id="_CPPv316LayerDescription"></span><span id="_CPPv216LayerDescription"></span><span id="LayerDescription"></span><span class="target" id="classLayerDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">LayerDescription</span></code><a class="headerlink" href="#_CPPv416LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv416LayerDescription">
+<span id="_CPPv316LayerDescription"></span><span id="_CPPv216LayerDescription"></span><span id="LayerDescription"></span><span class="target" id="classLayerDescription"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LayerDescription</span></span></span><a class="headerlink" href="#_CPPv416LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Within the model hierarchy, this class represents an execution layer for a FLAMEGPU model This class is used to configure which agent and host functions execute at a stage of the model’s execution <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classModelDescription.html#classModelDescription_1a15fbf56ae07b0559abd4f20c9862b90d"><span class="std std-ref">ModelDescription::newLayer(const std::string&amp;)</span></a> For creating instances of this class </p>
 </dd>
@@ -812,8 +831,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescriptioneqERK16LayerDescription">
-<span id="_CPPv3NK16LayerDescriptioneqERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptioneqERK16LayerDescription"></span><span id="LayerDescription::eq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a2b2bee5c2a0dd97a276f8e2a035edb6d"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="pre">LayerDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescriptioneqERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescriptioneqERK16LayerDescription">
+<span id="_CPPv3NK16LayerDescriptioneqERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptioneqERK16LayerDescription"></span><span id="LayerDescription::eq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a2b2bee5c2a0dd97a276f8e2a035edb6d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="n"><span class="pre">LayerDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescriptioneqERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -827,8 +846,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescriptionneERK16LayerDescription">
-<span id="_CPPv3NK16LayerDescriptionneERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptionneERK16LayerDescription"></span><span id="LayerDescription::neq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a6ee2ce15d52b6a58988591c5ddf46c47"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="pre">LayerDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescriptionneERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescriptionneERK16LayerDescription">
+<span id="_CPPv3NK16LayerDescriptionneERK16LayerDescription"></span><span id="_CPPv2NK16LayerDescriptionneERK16LayerDescription"></span><span id="LayerDescription::neq-operator__LayerDescriptionCRC"></span><span class="target" id="classLayerDescription_1a6ee2ce15d52b6a58988591c5ddf46c47"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv416LayerDescription" title="LayerDescription"><span class="n"><span class="pre">LayerDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescriptionneERK16LayerDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -842,8 +861,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction">
-<span id="_CPPv3I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span id="_CPPv2I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">AgentFunction</span></code><span class="pre">&gt;</span><br /><span class="target" id="classLayerDescription_1a83d2177c22b8dce5ca4be98a726782d7"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="pre">AgentFunction</span></a> <em><span class="pre">a</span></em> <span class="pre">=</span> <a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="pre">AgentFunction</span></a><span class="pre">(</span><span class="pre">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction">
+<span id="_CPPv3I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span id="_CPPv2I0EN16LayerDescription16addAgentFunctionE13AgentFunction"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunction</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classLayerDescription_1a83d2177c22b8dce5ca4be98a726782d7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addAgentFunction</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="n"><span class="pre">AgentFunction</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="LayerDescription::addAgentFunction::AgentFunction"><span class="n"><span class="pre">AgentFunction</span></span></a><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN16LayerDescription16addAgentFunctionEv13AgentFunction" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classAgentDescription.html#classAgentDescription_1aba3fab5f7a2b846d0be8cf9764ec428d"><span class="std std-ref">AgentDescription::newFunction(const std::string &amp;, AgentFunction)</span></a> </p>
 </dd>
@@ -872,8 +891,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription">
-<span id="_CPPv3N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="LayerDescription::addAgentFunction__AgentFunctionDescriptionCR"></span><span class="target" id="classLayerDescription_1afc157f7a448b8a0816b92b0490dc2015"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">afd</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription"></span><span id="LayerDescription::addAgentFunction__AgentFunctionDescriptionCR"></span><span class="target" id="classLayerDescription_1afc157f7a448b8a0816b92b0490dc2015"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addAgentFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">afd</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERK24AgentFunctionDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -892,8 +911,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE">
-<span id="_CPPv3N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="LayerDescription::addAgentFunction__ssCR.ssCR"></span><span class="target" id="classLayerDescription_1a7fd856f7015a111daf9996e00263cac1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agentName</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">functionName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE"></span><span id="LayerDescription::addAgentFunction__ssCR.ssCR"></span><span class="target" id="classLayerDescription_1a7fd856f7015a111daf9996e00263cac1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addAgentFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agentName</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">functionName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds an agent function to this layer The agent function will be called during this stage of model execution </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -915,8 +934,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc">
-<span id="_CPPv3N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="LayerDescription::addAgentFunction__cCP.cCP"></span><span class="target" id="classLayerDescription_1a831d70bef6eede39d0fc60c855bc82cd"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addAgentFunction</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">agentName</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">*</span><em><span class="pre">functionName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc">
+<span id="_CPPv3N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="_CPPv2N16LayerDescription16addAgentFunctionEPKcPKc"></span><span id="LayerDescription::addAgentFunction__cCP.cCP"></span><span class="target" id="classLayerDescription_1a831d70bef6eede39d0fc60c855bc82cd"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addAgentFunction</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">agentName</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">functionName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription16addAgentFunctionEPKcPKc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Adds an agent function to this layer The agent function will be called during this stage of model execution</p>
 <p>Template magic means that the implicit cast doesn’t occur as normal</p>
 </p>
@@ -944,8 +963,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER">
-<span id="_CPPv3N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="_CPPv2N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="LayerDescription::addHostFunction__FLAMEGPU_HOST_FUNCTION_POINTER"></span><span class="target" id="classLayerDescription_1a780789162f4b44b48fed28e87aa1bf1b"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addHostFunction</span></code><span class="sig-paren">(</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></a> <em><span class="pre">func_p</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER">
+<span id="_CPPv3N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="_CPPv2N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER"></span><span id="LayerDescription::addHostFunction__FLAMEGPU_HOST_FUNCTION_POINTER"></span><span class="target" id="classLayerDescription_1a780789162f4b44b48fed28e87aa1bf1b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addHostFunction</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">func_p</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription15addHostFunctionE30FLAMEGPU_HOST_FUNCTION_POINTER" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a host function to this layer The host function will be called during this stage of model execution </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -965,8 +984,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription11addSubModelERKNSt6stringE">
-<span id="_CPPv3N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="LayerDescription::addSubModel__ssCR"></span><span class="target" id="classLayerDescription_1af2195bc3f6e28cae6b0539c249117628"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addSubModel</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription11addSubModelERKNSt6stringE">
+<span id="_CPPv3N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="_CPPv2N16LayerDescription11addSubModelERKNSt6stringE"></span><span id="LayerDescription::addSubModel__ssCR"></span><span class="target" id="classLayerDescription_1af2195bc3f6e28cae6b0539c249117628"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addSubModel</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a submodel to a layer If layer contains a submodel, it may contain nothing else <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a50691cd9a5c471be53182d28e5f33d82"><span class="std std-ref">addSubModel(const SubModelDescription &amp;)</span></a> </p>
 </dd>
@@ -986,8 +1005,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription">
-<span id="_CPPv3N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="_CPPv2N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="LayerDescription::addSubModel__SubModelDescriptionCR"></span><span class="target" id="classLayerDescription_1a50691cd9a5c471be53182d28e5f33d82"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addSubModel</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classSubModelDescription.html#_CPPv419SubModelDescription" title="SubModelDescription"><span class="pre">SubModelDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">submodel</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription">
+<span id="_CPPv3N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="_CPPv2N16LayerDescription11addSubModelERK19SubModelDescription"></span><span id="LayerDescription::addSubModel__SubModelDescriptionCR"></span><span class="target" id="classLayerDescription_1a50691cd9a5c471be53182d28e5f33d82"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addSubModel</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classSubModelDescription.html#_CPPv419SubModelDescription" title="SubModelDescription"><span class="n"><span class="pre">SubModelDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">submodel</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription11addSubModelERK19SubModelDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a submodel to a layer If layer contains a submodel, it may contain nothing else <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1af2195bc3f6e28cae6b0539c249117628"><span class="std std-ref">addSubModel(const std::string &amp;)</span></a> </p>
 </dd>
@@ -1007,8 +1026,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback">
-<span id="_CPPv3N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback"></span><span id="_CPPv2N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback"></span><span id="LayerDescription::_addHostFunctionCallback__HostFunctionCallbackP"></span><span class="target" id="classLayerDescription_1aebd4f21c96f3aad9cf67d99873c34af1"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">_addHostFunctionCallback</span></code><span class="sig-paren">(</span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="pre">HostFunctionCallback</span></a> <span class="pre">*</span><em><span class="pre">func_callback</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback">
+<span id="_CPPv3N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback"></span><span id="_CPPv2N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback"></span><span id="LayerDescription::_addHostFunctionCallback__HostFunctionCallbackP"></span><span class="target" id="classLayerDescription_1aebd4f21c96f3aad9cf67d99873c34af1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_addHostFunctionCallback</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="n"><span class="pre">HostFunctionCallback</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">func_callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N16LayerDescription24_addHostFunctionCallbackEP20HostFunctionCallback" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds a host function to this layer, similar to addHostFunction however the runnable function is encapsulated within an object which permits cross language support in swig. The host function will be called during this stage of model execution </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1025,8 +1044,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription7getNameEv">
-<span id="_CPPv3NK16LayerDescription7getNameEv"></span><span id="_CPPv2NK16LayerDescription7getNameEv"></span><span id="LayerDescription::getNameC"></span><span class="target" id="classLayerDescription_1a9e8e1bfe768b020b4f12d896dec9248b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription7getNameEv">
+<span id="_CPPv3NK16LayerDescription7getNameEv"></span><span id="_CPPv2NK16LayerDescription7getNameEv"></span><span id="LayerDescription::getNameC"></span><span class="target" id="classLayerDescription_1a9e8e1bfe768b020b4f12d896dec9248b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The layer’s name </p>
@@ -1035,8 +1054,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription8getIndexEv">
-<span id="_CPPv3NK16LayerDescription8getIndexEv"></span><span id="_CPPv2NK16LayerDescription8getIndexEv"></span><span id="LayerDescription::getIndexC"></span><span class="target" id="classLayerDescription_1a5da204e0b1798d06881e0f01f56130d1"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getIndex</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription8getIndexEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription8getIndexEv">
+<span id="_CPPv3NK16LayerDescription8getIndexEv"></span><span id="_CPPv2NK16LayerDescription8getIndexEv"></span><span id="LayerDescription::getIndexC"></span><span class="target" id="classLayerDescription_1a5da204e0b1798d06881e0f01f56130d1"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getIndex</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription8getIndexEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The index of the layer within the model’s execution </p>
@@ -1045,8 +1064,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription22getAgentFunctionsCountEv">
-<span id="_CPPv3NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="LayerDescription::getAgentFunctionsCountC"></span><span class="target" id="classLayerDescription_1a4ca6f32af7c4a48017e7a2ff3aaf33e7"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getAgentFunctionsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription22getAgentFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription22getAgentFunctionsCountEv">
+<span id="_CPPv3NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription22getAgentFunctionsCountEv"></span><span id="LayerDescription::getAgentFunctionsCountC"></span><span class="target" id="classLayerDescription_1a4ca6f32af7c4a48017e7a2ff3aaf33e7"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgentFunctionsCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription22getAgentFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The total number of agent functions within the layer </p>
@@ -1055,8 +1074,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription21getHostFunctionsCountEv">
-<span id="_CPPv3NK16LayerDescription21getHostFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription21getHostFunctionsCountEv"></span><span id="LayerDescription::getHostFunctionsCountC"></span><span class="target" id="classLayerDescription_1a3c913a7cc71476a1ba2f3a8f6dccc243"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getHostFunctionsCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription21getHostFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription21getHostFunctionsCountEv">
+<span id="_CPPv3NK16LayerDescription21getHostFunctionsCountEv"></span><span id="_CPPv2NK16LayerDescription21getHostFunctionsCountEv"></span><span id="LayerDescription::getHostFunctionsCountC"></span><span class="target" id="classLayerDescription_1a3c913a7cc71476a1ba2f3a8f6dccc243"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getHostFunctionsCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription21getHostFunctionsCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The total number of host functions within the layer </p>
@@ -1065,8 +1084,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription16getAgentFunctionEj">
-<span id="_CPPv3NK16LayerDescription16getAgentFunctionEj"></span><span id="_CPPv2NK16LayerDescription16getAgentFunctionEj"></span><span id="LayerDescription::getAgentFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1a1ba246a17872c1f7600f49e243956013"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="pre">AgentFunctionDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgentFunction</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription16getAgentFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription16getAgentFunctionEj">
+<span id="_CPPv3NK16LayerDescription16getAgentFunctionEj"></span><span id="_CPPv2NK16LayerDescription16getAgentFunctionEj"></span><span id="LayerDescription::getAgentFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1a1ba246a17872c1f7600f49e243956013"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classAgentFunctionDescription.html#_CPPv424AgentFunctionDescription" title="AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getAgentFunction</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription16getAgentFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a4ca6f32af7c4a48017e7a2ff3aaf33e7"><span class="std std-ref">LayerDescription::getAgentFunctionsCount()</span></a> </p>
 </dd>
@@ -1090,8 +1109,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK16LayerDescription15getHostFunctionEj">
-<span id="_CPPv3NK16LayerDescription15getHostFunctionEj"></span><span id="_CPPv2NK16LayerDescription15getHostFunctionEj"></span><span id="LayerDescription::getHostFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1ae458be51d081203809f72aa5d03b301e"></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></a> <code class="sig-name descname"><span class="pre">getHostFunction</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK16LayerDescription15getHostFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK16LayerDescription15getHostFunctionEj">
+<span id="_CPPv3NK16LayerDescription15getHostFunctionEj"></span><span id="_CPPv2NK16LayerDescription15getHostFunctionEj"></span><span id="LayerDescription::getHostFunction__unsigned-iC"></span><span class="target" id="classLayerDescription_1ae458be51d081203809f72aa5d03b301e"></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getHostFunction</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK16LayerDescription15getHostFunctionEj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classLayerDescription_1a3c913a7cc71476a1ba2f3a8f6dccc243"><span class="std std-ref">LayerDescription::getHostFunctionsCount()</span></a> </p>
 </dd>
@@ -1117,8 +1136,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

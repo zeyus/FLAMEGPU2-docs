@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class CUDAEventTimer &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,18 +813,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-cudaeventtimer">
+  <section id="class-cudaeventtimer">
 <span id="exhale-class-classutil-1-1cudaeventtimer"></span><h1>Class CUDAEventTimer<a class="headerlink" href="#class-cudaeventtimer" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_util_CUDAEventTimer.cuh.html#file-include-flamegpu-util-cudaeventtimer-cuh"><span class="std std-ref">File CUDAEventTimer.cuh</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv4N4util14CUDAEventTimerE">
-<span id="_CPPv3N4util14CUDAEventTimerE"></span><span id="_CPPv2N4util14CUDAEventTimerE"></span><span id="util::CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">util</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">CUDAEventTimer</span></code><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimerE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Class to simplify the use of CUDAEvents for timing. Timing between CUDAEvent_t is only accurate in the default stream, hence streams cannot be passed. <dl class="xrefsect">
-<dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimerE">
+<span id="_CPPv3N4util14CUDAEventTimerE"></span><span id="_CPPv2N4util14CUDAEventTimerE"></span><span id="util::CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">util</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">CUDAEventTimer</span></span></span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimerE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Class to simplify the use of CUDAEvents for timing. Timing between CUDAEvent_t is only accurate in the default stream, hence streams cannot be passed. <dl>
+<dt class="sig sig-object cpp">
 <em><span class="pre">Todo:</span></em></dt>
 <dd><p><ul class="simple">
 <li><p>this appears unreliable on WDDM devices </p></li>
@@ -818,32 +837,32 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimer14CUDAEventTimerEv">
-<span id="_CPPv3N4util14CUDAEventTimer14CUDAEventTimerEv"></span><span id="_CPPv2N4util14CUDAEventTimer14CUDAEventTimerEv"></span><span id="util::CUDAEventTimer::CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer_1afb33505dffbc007a1a4a4555fbfe9cdb"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">CUDAEventTimer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer14CUDAEventTimerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimer14CUDAEventTimerEv">
+<span id="_CPPv3N4util14CUDAEventTimer14CUDAEventTimerEv"></span><span id="_CPPv2N4util14CUDAEventTimer14CUDAEventTimerEv"></span><span id="util::CUDAEventTimer::CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer_1afb33505dffbc007a1a4a4555fbfe9cdb"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CUDAEventTimer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer14CUDAEventTimerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default constructor, creates the cudaEvents and initialises values. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimerD0Ev">
-<span id="_CPPv3N4util14CUDAEventTimerD0Ev"></span><span id="_CPPv2N4util14CUDAEventTimerD0Ev"></span><span id="util::CUDAEventTimer::~CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer_1afa68700f0bbdad57940584e9498436da"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">~CUDAEventTimer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimerD0Ev">
+<span id="_CPPv3N4util14CUDAEventTimerD0Ev"></span><span id="_CPPv2N4util14CUDAEventTimerD0Ev"></span><span id="util::CUDAEventTimer::~CUDAEventTimer"></span><span class="target" id="classutil_1_1CUDAEventTimer_1afa68700f0bbdad57940584e9498436da"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~CUDAEventTimer</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Destroys the cudaEvents created by this instance </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimer5startEv">
-<span id="_CPPv3N4util14CUDAEventTimer5startEv"></span><span id="_CPPv2N4util14CUDAEventTimer5startEv"></span><span id="util::CUDAEventTimer::start"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a9874c0a3382dbbecf665ddd9c6145ce5"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">start</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer5startEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimer5startEv">
+<span id="_CPPv3N4util14CUDAEventTimer5startEv"></span><span id="_CPPv2N4util14CUDAEventTimer5startEv"></span><span id="util::CUDAEventTimer::start"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a9874c0a3382dbbecf665ddd9c6145ce5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer5startEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Record the start event, resetting the syncronisation flag. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimer4stopEv">
-<span id="_CPPv3N4util14CUDAEventTimer4stopEv"></span><span id="_CPPv2N4util14CUDAEventTimer4stopEv"></span><span id="util::CUDAEventTimer::stop"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a7d5124b6501fc38301f7affd5368d8b2"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">stop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer4stopEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimer4stopEv">
+<span id="_CPPv3N4util14CUDAEventTimer4stopEv"></span><span id="_CPPv2N4util14CUDAEventTimer4stopEv"></span><span id="util::CUDAEventTimer::stop"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a7d5124b6501fc38301f7affd5368d8b2"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">stop</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer4stopEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Record the stop event, resetting the syncronisation flag. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimer4syncEv">
-<span id="_CPPv3N4util14CUDAEventTimer4syncEv"></span><span id="_CPPv2N4util14CUDAEventTimer4syncEv"></span><span id="util::CUDAEventTimer::sync"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a48ae778b9cb400f1cb3f010e7faaa308"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">sync</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer4syncEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimer4syncEv">
+<span id="_CPPv3N4util14CUDAEventTimer4syncEv"></span><span id="_CPPv2N4util14CUDAEventTimer4syncEv"></span><span id="util::CUDAEventTimer::sync"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a48ae778b9cb400f1cb3f010e7faaa308"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sync</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer4syncEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Syncrhonize the cudaEvent(s), calcualting the elapsed time in ms between the two events. this is only accurate if used for the default stream (hence streams are not used) Sets the flag indicating syncronisation has occured, and therefore the elapsed time can be queried. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -853,8 +872,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N4util14CUDAEventTimer22getElapsedMillisecondsEv">
-<span id="_CPPv3N4util14CUDAEventTimer22getElapsedMillisecondsEv"></span><span id="_CPPv2N4util14CUDAEventTimer22getElapsedMillisecondsEv"></span><span id="util::CUDAEventTimer::getElapsedMilliseconds"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a20bc6950ac182bfd03468a51a8798951"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">getElapsedMilliseconds</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer22getElapsedMillisecondsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4util14CUDAEventTimer22getElapsedMillisecondsEv">
+<span id="_CPPv3N4util14CUDAEventTimer22getElapsedMillisecondsEv"></span><span id="_CPPv2N4util14CUDAEventTimer22getElapsedMillisecondsEv"></span><span id="util::CUDAEventTimer::getElapsedMilliseconds"></span><span class="target" id="classutil_1_1CUDAEventTimer_1a20bc6950ac182bfd03468a51a8798951"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getElapsedMilliseconds</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N4util14CUDAEventTimer22getElapsedMillisecondsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Get the elapsed time between the start event being issued and the stop event occuring. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -866,8 +885,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

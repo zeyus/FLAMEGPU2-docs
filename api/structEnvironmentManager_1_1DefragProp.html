@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct EnvironmentManager::DefragProp &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,26 +813,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-environmentmanager-defragprop">
+  <section id="struct-environmentmanager-defragprop">
 <span id="exhale-struct-structenvironmentmanager-1-1defragprop"></span><h1>Struct EnvironmentManager::DefragProp<a class="headerlink" href="#struct-environmentmanager-defragprop" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_utility_EnvironmentManager.cuh.html#file-include-flamegpu-runtime-utility-environmentmanager-cuh"><span class="std std-ref">File EnvironmentManager.cuh</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This struct is a nested type of <a class="reference internal" href="classEnvironmentManager.html#exhale-class-classenvironmentmanager"><span class="std std-ref">Class EnvironmentManager</span></a>.</p>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv4N18EnvironmentManager10DefragPropE">
-<span id="_CPPv3N18EnvironmentManager10DefragPropE"></span><span id="_CPPv2N18EnvironmentManager10DefragPropE"></span><span id="EnvironmentManager::DefragProp"></span><span class="target" id="structEnvironmentManager_1_1DefragProp"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">DefragProp</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragPropE">
+<span id="_CPPv3N18EnvironmentManager10DefragPropE"></span><span id="_CPPv2N18EnvironmentManager10DefragPropE"></span><span id="EnvironmentManager::DefragProp"></span><span class="target" id="structEnvironmentManager_1_1DefragProp"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">DefragProp</span></span></span><br /></dt>
 <dd><p>This structure is a clone of <a class="reference internal" href="structEnvironmentManager_1_1EnvProp.html#structEnvironmentManager_1_1EnvProp"><span class="std std-ref">EnvProp</span></a> However, instead of offset (which points to an offset into hc_buffer) data is available, which points to host memory </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp">
-<span id="_CPPv3N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp"></span><span id="EnvironmentManager::DefragProp::DefragProp__EnvPropCR"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a1335129df74f02609d11ac293b477fb5"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">DefragProp</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager7EnvPropE" title="EnvironmentManager::EnvProp"><span class="pre">EnvProp</span></a> <span class="pre">&amp;</span><em><span class="pre">ep</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp">
+<span id="_CPPv3N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10DefragPropERK7EnvProp"></span><span id="EnvironmentManager::DefragProp::DefragProp__EnvPropCR"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a1335129df74f02609d11ac293b477fb5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefragProp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager7EnvPropE" title="EnvironmentManager::EnvProp"><span class="n"><span class="pre">EnvProp</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ep</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>ep.offset is converted to a host pointer by adding to hc_buffer </p>
@@ -826,8 +845,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t">
-<span id="_CPPv3N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t"></span><span id="EnvironmentManager::DefragProp::DefragProp__voidP.sCR.bCR.size_typeCR.std::type_indexCR.ptrdiff_tCR"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a2359926c6760a5f084347ab3969a542c"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">DefragProp</span></code><span class="sig-paren">(</span><span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_data</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">size_t</span> <span class="pre">&amp;</span><em><span class="pre">_length</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">bool</span> <span class="pre">&amp;</span><em><span class="pre">_isConst</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_elements</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <span class="pre">&amp;</span><em><span class="pre">_type</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">ptrdiff_t</span> <span class="pre">&amp;</span><em><span class="pre">_rtc_offset</span></em> <span class="pre">=</span> <span class="pre">0</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t">
+<span id="_CPPv3N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10DefragPropEPvRK6size_tRKbRK9size_typeRKNSt10type_indexERK9ptrdiff_t"></span><span id="EnvironmentManager::DefragProp::DefragProp__voidP.sCR.bCR.size_typeCR.std::type_indexCR.ptrdiff_tCR"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a2359926c6760a5f084347ab3969a542c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DefragProp</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_data</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_length</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_isConst</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_elements</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_rtc_offset</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -846,40 +865,40 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp4dataE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp4dataE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp4dataE"></span><span id="EnvironmentManager::DefragProp::data__voidP"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1aee7aaa495eec25f731984feeb481b0a4"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">data</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp4dataE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp4dataE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp4dataE"></span><span id="EnvironmentManager::DefragProp::data__voidP"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1aee7aaa495eec25f731984feeb481b0a4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">data</span></span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp6lengthE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp6lengthE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp6lengthE"></span><span id="EnvironmentManager::DefragProp::length__s"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a6a6ea40613d34ffbc3a8cae07470cdf3"></span><span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">length</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp6lengthE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp6lengthE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp6lengthE"></span><span id="EnvironmentManager::DefragProp::length__s"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a6a6ea40613d34ffbc3a8cae07470cdf3"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">length</span></span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp7isConstE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp7isConstE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp7isConstE"></span><span id="EnvironmentManager::DefragProp::isConst__b"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1afbd4db0a97f0d15d7b8b7afb789cec0a"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">isConst</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp7isConstE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp7isConstE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp7isConstE"></span><span id="EnvironmentManager::DefragProp::isConst__b"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1afbd4db0a97f0d15d7b8b7afb789cec0a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">isConst</span></span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp8elementsE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp8elementsE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp8elementsE"></span><span id="EnvironmentManager::DefragProp::elements__size_type"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a76fa3433a453692fd5d6daa056d47033"></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">elements</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp8elementsE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp8elementsE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp8elementsE"></span><span id="EnvironmentManager::DefragProp::elements__size_type"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a76fa3433a453692fd5d6daa056d47033"></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">elements</span></span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp4typeE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp4typeE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp4typeE"></span><span id="EnvironmentManager::DefragProp::type__std::type_indexC"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1af89d077ab00b4ab9b973036a92d48483"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">type_index</span> <code class="sig-name descname"><span class="pre">type</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp4typeE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp4typeE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp4typeE"></span><span id="EnvironmentManager::DefragProp::type__std::type_indexC"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1af89d077ab00b4ab9b973036a92d48483"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">type_index</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">type</span></span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N18EnvironmentManager10DefragProp10rtc_offsetE">
-<span id="_CPPv3N18EnvironmentManager10DefragProp10rtc_offsetE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10rtc_offsetE"></span><span id="EnvironmentManager::DefragProp::rtc_offset__ptrdiff_t"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a4ec84cefa2af3d7f41e9ee6e7705f34a"></span><span class="pre">ptrdiff_t</span> <code class="sig-name descname"><span class="pre">rtc_offset</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18EnvironmentManager10DefragProp10rtc_offsetE">
+<span id="_CPPv3N18EnvironmentManager10DefragProp10rtc_offsetE"></span><span id="_CPPv2N18EnvironmentManager10DefragProp10rtc_offsetE"></span><span id="EnvironmentManager::DefragProp::rtc_offset__ptrdiff_t"></span><span class="target" id="structEnvironmentManager_1_1DefragProp_1a4ec84cefa2af3d7f41e9ee6e7705f34a"></span><span class="n"><span class="pre">ptrdiff_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_offset</span></span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class DependencyNode &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,39 +813,39 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-dependencynode">
+  <section id="class-dependencynode">
 <span id="exhale-class-classdependencynode"></span><h1>Class DependencyNode<a class="headerlink" href="#class-dependencynode" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_DependencyNode.h.html#file-include-flamegpu-model-dependencynode-h"><span class="std std-ref">File DependencyNode.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-types">
+<section id="derived-types">
 <h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">AgentFunctionDescription</span></code> (<a class="reference internal" href="classAgentFunctionDescription.html#exhale-class-classagentfunctiondescription"><span class="std std-ref">Class AgentFunctionDescription</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">HostFunctionDescription</span></code> (<a class="reference internal" href="classHostFunctionDescription.html#exhale-class-classhostfunctiondescription"><span class="std std-ref">Class HostFunctionDescription</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">SubModelDescription</span></code> (<a class="reference internal" href="classSubModelDescription.html#exhale-class-classsubmodeldescription"><span class="std std-ref">Class SubModelDescription</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv414DependencyNode">
-<span id="_CPPv314DependencyNode"></span><span id="_CPPv214DependencyNode"></span><span id="DependencyNode"></span><span class="target" id="classDependencyNode"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">DependencyNode</span></code><a class="headerlink" href="#_CPPv414DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv414DependencyNode">
+<span id="_CPPv314DependencyNode"></span><span id="_CPPv214DependencyNode"></span><span id="DependencyNode"></span><span class="target" id="classDependencyNode"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DependencyNode</span></span></span><a class="headerlink" href="#_CPPv414DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Subclassed by <a class="reference internal" href="classAgentFunctionDescription.html#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a>, <a class="reference internal" href="classHostFunctionDescription.html#classHostFunctionDescription"><span class="std std-ref">HostFunctionDescription</span></a>, <a class="reference internal" href="classSubModelDescription.html#classSubModelDescription"><span class="std std-ref">SubModelDescription</span></a></p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N14DependencyNodeD0Ev">
-<span id="_CPPv3N14DependencyNodeD0Ev"></span><span id="_CPPv2N14DependencyNodeD0Ev"></span><span id="DependencyNode::~DependencyNode"></span><span class="target" id="classDependencyNode_1aa5bc008c7c2f81daf0d160510ce2aced"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~DependencyNode</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNodeD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNodeD0Ev">
+<span id="_CPPv3N14DependencyNodeD0Ev"></span><span id="_CPPv2N14DependencyNodeD0Ev"></span><span id="DependencyNode::~DependencyNode"></span><span class="target" id="classDependencyNode_1aa5bc008c7c2f81daf0d160510ce2aced"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~DependencyNode</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNodeD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN14DependencyNode9dependsOnEvR1A">
-<span id="_CPPv3I0EN14DependencyNode9dependsOnER1A"></span><span id="_CPPv2I0EN14DependencyNode9dependsOnER1A"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">A</span></code><span class="pre">&gt;</span><br /><span class="target" id="classDependencyNode_1a861359a05bd65496e7af7d3fb04b8c9d"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">dependsOn</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN14DependencyNode9dependsOnEvR1A" title="DependencyNode::dependsOn::A"><span class="pre">A</span></a> <span class="pre">&amp;</span><em><span class="pre">dep</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN14DependencyNode9dependsOnEvR1A" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN14DependencyNode9dependsOnEvR1A">
+<span id="_CPPv3I0EN14DependencyNode9dependsOnER1A"></span><span id="_CPPv2I0EN14DependencyNode9dependsOnER1A"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classDependencyNode_1a861359a05bd65496e7af7d3fb04b8c9d"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependsOn</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0EN14DependencyNode9dependsOnEvR1A" title="DependencyNode::dependsOn::A"><span class="n"><span class="pre">A</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dep</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN14DependencyNode9dependsOnEvR1A" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Specifies that this agent function depends on the completion of all of the provided functions </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -836,35 +855,35 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args">
-<span id="_CPPv3I0DpEN14DependencyNode9dependsOnER1ADpR4Args"></span><span id="_CPPv2I0DpEN14DependencyNode9dependsOnER1ADpR4Args"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">A</span></code><span class="pre">,</span> <span class="pre">typename</span> <span class="pre">...</span><code class="sig-name descname"><span class="pre">Args</span></code><span class="pre">&gt;</span><br /><span class="target" id="classDependencyNode_1a2866f58e0439fa5454205a4426531359"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">dependsOn</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="DependencyNode::dependsOn::A"><span class="pre">A</span></a> <span class="pre">&amp;</span><em><span class="pre">dep</span></em>, <a class="reference internal" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="DependencyNode::dependsOn::Args"><span class="pre">Args</span></a><span class="pre">&amp;</span><span class="pre">...</span> <em><span class="pre">dependencyList</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args">
+<span id="_CPPv3I0DpEN14DependencyNode9dependsOnER1ADpR4Args"></span><span id="_CPPv2I0DpEN14DependencyNode9dependsOnER1ADpR4Args"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="sig-name descname"><span class="n"><span class="pre">Args</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classDependencyNode_1a2866f58e0439fa5454205a4426531359"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependsOn</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="DependencyNode::dependsOn::A"><span class="n"><span class="pre">A</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dep</span></span>, <a class="reference internal" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="DependencyNode::dependsOn::Args"><span class="n"><span class="pre">Args</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">...</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dependencyList</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0DpEN14DependencyNode9dependsOnEvR1ADpR4Args" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N14DependencyNode12addDependentER14DependencyNode">
-<span id="_CPPv3N14DependencyNode12addDependentER14DependencyNode"></span><span id="_CPPv2N14DependencyNode12addDependentER14DependencyNode"></span><span id="DependencyNode::addDependent__DependencyNodeR"></span><span class="target" id="classDependencyNode_1ad3503e8a6533510b5046ed0ab8a4d36d"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addDependent</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a> <span class="pre">&amp;</span><em><span class="pre">dependent</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode12addDependentER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode12addDependentER14DependencyNode">
+<span id="_CPPv3N14DependencyNode12addDependentER14DependencyNode"></span><span id="_CPPv2N14DependencyNode12addDependentER14DependencyNode"></span><span id="DependencyNode::addDependent__DependencyNodeR"></span><span class="target" id="classDependencyNode_1ad3503e8a6533510b5046ed0ab8a4d36d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addDependent</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dependent</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode12addDependentER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Adds an agent function to this agent function’s list of dependents </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14DependencyNode13dependsOnImplER14DependencyNode">
-<span id="_CPPv3N14DependencyNode13dependsOnImplER14DependencyNode"></span><span id="_CPPv2N14DependencyNode13dependsOnImplER14DependencyNode"></span><span id="DependencyNode::dependsOnImpl__DependencyNodeR"></span><span class="target" id="classDependencyNode_1a6ee01bc6574b4a16959485054b300e8a"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">dependsOnImpl</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a> <span class="pre">&amp;</span><em><span class="pre">dependency</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode13dependsOnImplER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode13dependsOnImplER14DependencyNode">
+<span id="_CPPv3N14DependencyNode13dependsOnImplER14DependencyNode"></span><span id="_CPPv2N14DependencyNode13dependsOnImplER14DependencyNode"></span><span id="DependencyNode::dependsOnImpl__DependencyNodeR"></span><span class="target" id="classDependencyNode_1a6ee01bc6574b4a16959485054b300e8a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependsOnImpl</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">dependency</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode13dependsOnImplER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Auxillary function for dependency construction </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14DependencyNode20setMinimumLayerDepthEKi">
-<span id="_CPPv3N14DependencyNode20setMinimumLayerDepthEKi"></span><span id="_CPPv2N14DependencyNode20setMinimumLayerDepthEKi"></span><span id="DependencyNode::setMinimumLayerDepth__iC"></span><span class="target" id="classDependencyNode_1a835e726fad0aaf2a99de8e99d3c4552b"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMinimumLayerDepth</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">int</span> <em><span class="pre">minLayerDepth</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode20setMinimumLayerDepthEKi" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode20setMinimumLayerDepthEKi">
+<span id="_CPPv3N14DependencyNode20setMinimumLayerDepthEKi"></span><span id="_CPPv2N14DependencyNode20setMinimumLayerDepthEKi"></span><span id="DependencyNode::setMinimumLayerDepth__iC"></span><span class="target" id="classDependencyNode_1a835e726fad0aaf2a99de8e99d3c4552b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMinimumLayerDepth</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">minLayerDepth</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode20setMinimumLayerDepthEKi" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the minimum layer depth for this agent function</p>
 <p>Dependency functions </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK14DependencyNode13hasDependentsEv">
-<span id="_CPPv3NK14DependencyNode13hasDependentsEv"></span><span id="_CPPv2NK14DependencyNode13hasDependentsEv"></span><span id="DependencyNode::hasDependentsC"></span><span class="target" id="classDependencyNode_1aeb36e8be0788b954b0e47715ccb741dc"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasDependents</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK14DependencyNode13hasDependentsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK14DependencyNode13hasDependentsEv">
+<span id="_CPPv3NK14DependencyNode13hasDependentsEv"></span><span id="_CPPv2NK14DependencyNode13hasDependentsEv"></span><span id="DependencyNode::hasDependentsC"></span><span class="target" id="classDependencyNode_1aeb36e8be0788b954b0e47715ccb741dc"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasDependents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14DependencyNode13hasDependentsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>
 Accessors </p>
 <dl class="field-list simple">
@@ -875,8 +894,8 @@ Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK14DependencyNode13getDependentsEv">
-<span id="_CPPv3NK14DependencyNode13getDependentsEv"></span><span id="_CPPv2NK14DependencyNode13getDependentsEv"></span><span id="DependencyNode::getDependentsC"></span><span class="target" id="classDependencyNode_1a5c55dbcf902861cf080b7503b59bcd0b"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getDependents</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK14DependencyNode13getDependentsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK14DependencyNode13getDependentsEv">
+<span id="_CPPv3NK14DependencyNode13getDependentsEv"></span><span id="_CPPv2NK14DependencyNode13getDependentsEv"></span><span id="DependencyNode::getDependentsC"></span><span class="target" id="classDependencyNode_1a5c55dbcf902861cf080b7503b59bcd0b"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getDependents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14DependencyNode13getDependentsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Immutable vector of the dependents of this agent function </p>
@@ -885,8 +904,8 @@ Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK14DependencyNode15hasDependenciesEv">
-<span id="_CPPv3NK14DependencyNode15hasDependenciesEv"></span><span id="_CPPv2NK14DependencyNode15hasDependenciesEv"></span><span id="DependencyNode::hasDependenciesC"></span><span class="target" id="classDependencyNode_1ab0edb1774c6ed74faccc1a52a6529477"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasDependencies</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK14DependencyNode15hasDependenciesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK14DependencyNode15hasDependenciesEv">
+<span id="_CPPv3NK14DependencyNode15hasDependenciesEv"></span><span id="_CPPv2NK14DependencyNode15hasDependenciesEv"></span><span id="DependencyNode::hasDependenciesC"></span><span class="target" id="classDependencyNode_1ab0edb1774c6ed74faccc1a52a6529477"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasDependencies</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14DependencyNode15hasDependenciesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>Whether this agent function has any dependencies </p>
@@ -895,8 +914,8 @@ Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK14DependencyNode15getDependenciesEv">
-<span id="_CPPv3NK14DependencyNode15getDependenciesEv"></span><span id="_CPPv2NK14DependencyNode15getDependenciesEv"></span><span id="DependencyNode::getDependenciesC"></span><span class="target" id="classDependencyNode_1ae3ae9e7d56b398ea388f6e47ecfacc12"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getDependencies</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK14DependencyNode15getDependenciesEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK14DependencyNode15getDependenciesEv">
+<span id="_CPPv3NK14DependencyNode15getDependenciesEv"></span><span id="_CPPv2NK14DependencyNode15getDependenciesEv"></span><span id="DependencyNode::getDependenciesC"></span><span class="target" id="classDependencyNode_1ae3ae9e7d56b398ea388f6e47ecfacc12"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getDependencies</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK14DependencyNode15getDependenciesEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The vector of the dependencies of this agent function </p>
@@ -905,8 +924,8 @@ Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N14DependencyNode20getMinimumLayerDepthEv">
-<span id="_CPPv3N14DependencyNode20getMinimumLayerDepthEv"></span><span id="_CPPv2N14DependencyNode20getMinimumLayerDepthEv"></span><span id="DependencyNode::getMinimumLayerDepth"></span><span class="target" id="classDependencyNode_1a1ee8e4c72213df603f90ae88e829fcfd"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">getMinimumLayerDepth</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode20getMinimumLayerDepthEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode20getMinimumLayerDepthEv">
+<span id="_CPPv3N14DependencyNode20getMinimumLayerDepthEv"></span><span id="_CPPv2N14DependencyNode20getMinimumLayerDepthEv"></span><span id="DependencyNode::getMinimumLayerDepth"></span><span class="target" id="classDependencyNode_1a1ee8e4c72213df603f90ae88e829fcfd"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMinimumLayerDepth</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N14DependencyNode20getMinimumLayerDepthEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The minimum layer depth for this agent function </p>
@@ -918,36 +937,36 @@ Accessors </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N14DependencyNode10dependentsE">
-<span id="_CPPv3N14DependencyNode10dependentsE"></span><span id="_CPPv2N14DependencyNode10dependentsE"></span><span id="DependencyNode::dependents__std::vector:DependencyNodeP:"></span><span class="target" id="classDependencyNode_1a7da9e3abe9e2ac8677d227655f77820c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">dependents</span></code><a class="headerlink" href="#_CPPv4N14DependencyNode10dependentsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode10dependentsE">
+<span id="_CPPv3N14DependencyNode10dependentsE"></span><span id="_CPPv2N14DependencyNode10dependentsE"></span><span id="DependencyNode::dependents__std::vector:DependencyNodeP:"></span><span class="target" id="classDependencyNode_1a7da9e3abe9e2ac8677d227655f77820c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependents</span></span></span><a class="headerlink" href="#_CPPv4N14DependencyNode10dependentsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Vector storing the ‘children’ of this agent function in the dependency tree, i.e. those functions which depend on the completion of this one </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14DependencyNode12dependenciesE">
-<span id="_CPPv3N14DependencyNode12dependenciesE"></span><span id="_CPPv2N14DependencyNode12dependenciesE"></span><span id="DependencyNode::dependencies__std::vector:DependencyNodeP:"></span><span class="target" id="classDependencyNode_1ab38a3ed12c18d28a2e6458103b961e88"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">dependencies</span></code><a class="headerlink" href="#_CPPv4N14DependencyNode12dependenciesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode12dependenciesE">
+<span id="_CPPv3N14DependencyNode12dependenciesE"></span><span id="_CPPv2N14DependencyNode12dependenciesE"></span><span id="DependencyNode::dependencies__std::vector:DependencyNodeP:"></span><span class="target" id="classDependencyNode_1ab38a3ed12c18d28a2e6458103b961e88"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dependencies</span></span></span><a class="headerlink" href="#_CPPv4N14DependencyNode12dependenciesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Vector storing the ‘parents’ of this agent function in the dependency tree, i.e. those functions which must be completed before this one may begin </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N14DependencyNode13minLayerDepthE">
-<span id="_CPPv3N14DependencyNode13minLayerDepthE"></span><span id="_CPPv2N14DependencyNode13minLayerDepthE"></span><span id="DependencyNode::minLayerDepth__i"></span><span class="target" id="classDependencyNode_1a3bafbfaf3935047ae13130b2379ac73b"></span><span class="pre">int</span> <code class="sig-name descname"><span class="pre">minLayerDepth</span></code> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N14DependencyNode13minLayerDepthE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N14DependencyNode13minLayerDepthE">
+<span id="_CPPv3N14DependencyNode13minLayerDepthE"></span><span id="_CPPv2N14DependencyNode13minLayerDepthE"></span><span id="DependencyNode::minLayerDepth__i"></span><span class="target" id="classDependencyNode_1a3bafbfaf3935047ae13130b2379ac73b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">minLayerDepth</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N14DependencyNode13minLayerDepthE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This functions minimum layer depth in the execution graph </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">DependencyGraph</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

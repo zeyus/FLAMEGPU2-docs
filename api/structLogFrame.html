@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct LogFrame &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,84 +813,84 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-logframe">
+  <section id="struct-logframe">
 <span id="exhale-struct-structlogframe"></span><h1>Struct LogFrame<a class="headerlink" href="#struct-logframe" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_sim_LogFrame.h.html#file-include-flamegpu-sim-logframe-h"><span class="std std-ref">File LogFrame.h</span></a></p></li>
 </ul>
-<div class="section" id="struct-documentation">
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv48LogFrame">
-<span id="_CPPv38LogFrame"></span><span id="_CPPv28LogFrame"></span><span id="LogFrame"></span><span class="target" id="structLogFrame"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">LogFrame</span></code><a class="headerlink" href="#_CPPv48LogFrame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv48LogFrame">
+<span id="_CPPv38LogFrame"></span><span id="_CPPv28LogFrame"></span><span id="LogFrame"></span><span class="target" id="structLogFrame"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LogFrame</span></span></span><a class="headerlink" href="#_CPPv48LogFrame" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Perhaps separate the data and interface in these classes? </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N8LogFrame8LogFrameEv">
-<span id="_CPPv3N8LogFrame8LogFrameEv"></span><span id="_CPPv2N8LogFrame8LogFrameEv"></span><span id="LogFrame::LogFrame"></span><span class="target" id="structLogFrame_1ab4786f8ba2ac35ba78ec19f30df8078a"></span><code class="sig-name descname"><span class="pre">LogFrame</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8LogFrame8LogFrameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8LogFrame8LogFrameEv">
+<span id="_CPPv3N8LogFrame8LogFrameEv"></span><span id="_CPPv2N8LogFrame8LogFrameEv"></span><span id="LogFrame::LogFrame"></span><span class="target" id="structLogFrame_1ab4786f8ba2ac35ba78ec19f30df8078a"></span><span class="sig-name descname"><span class="n"><span class="pre">LogFrame</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8LogFrame8LogFrameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default constructor, creates an empty log </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj">
-<span id="_CPPv3N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj"></span><span id="_CPPv2N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj"></span><span id="LogFrame::LogFrame__std::map:ss.Any:CRR.std::map:LoggingConfig::NameStatePair.std::pair:std::map:LoggingConfig::NameReductionFn.Any:.unsigned-i::CRR.unsigned-iCR"></span><span class="target" id="structLogFrame_1a3236c6762f23ce88112d4d9ab4385f1e"></span><code class="sig-name descname"><span class="pre">LogFrame</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">_environment</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="pre">LoggingConfig</span></a><span class="pre">::</span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig13NameStatePairE" title="LoggingConfig::NameStatePair"><span class="pre">NameStatePair</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">pair</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="pre">LoggingConfig</span></a><span class="pre">::</span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig15NameReductionFnE" title="LoggingConfig::NameReductionFn"><span class="pre">NameReductionFn</span></a><span class="pre">,</span> <a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a><span class="pre">&gt;</span><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><span class="pre">&amp;</span><em><span class="pre">_agents</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">_step_count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj">
+<span id="_CPPv3N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj"></span><span id="_CPPv2N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj"></span><span id="LogFrame::LogFrame__std::map:ss.Any:CRR.std::map:LoggingConfig::NameStatePair.std::pair:std::map:LoggingConfig::NameReductionFn.Any:.unsigned-i::CRR.unsigned-iCR"></span><span class="target" id="structLogFrame_1a3236c6762f23ce88112d4d9ab4385f1e"></span><span class="sig-name descname"><span class="n"><span class="pre">LogFrame</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="n"><span class="pre">Any</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_environment</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="n"><span class="pre">LoggingConfig</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig13NameStatePairE" title="LoggingConfig::NameStatePair"><span class="n"><span class="pre">NameStatePair</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="n"><span class="pre">LoggingConfig</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig15NameReductionFnE" title="LoggingConfig::NameReductionFn"><span class="n"><span class="pre">NameReductionFn</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="n"><span class="pre">Any</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_agents</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_step_count</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8LogFrame8LogFrameERRKNSt3mapINSt6stringE3AnyEERRKNSt3mapIN13LoggingConfig13NameStatePairENSt4pairINSt3mapIN13LoggingConfig15NameReductionFnE3AnyEEjEEEERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Creates a log with pre-populated data </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8LogFrame12getStepCountEv">
-<span id="_CPPv3NK8LogFrame12getStepCountEv"></span><span id="_CPPv2NK8LogFrame12getStepCountEv"></span><span id="LogFrame::getStepCountC"></span><span class="target" id="structLogFrame_1a89ca9f699c81c33b0fc7fa0bbc2d9bd8"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStepCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8LogFrame12getStepCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8LogFrame12getStepCountEv">
+<span id="_CPPv3NK8LogFrame12getStepCountEv"></span><span id="_CPPv2NK8LogFrame12getStepCountEv"></span><span id="LogFrame::getStepCountC"></span><span class="target" id="structLogFrame_1a89ca9f699c81c33b0fc7fa0bbc2d9bd8"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getStepCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8LogFrame12getStepCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the step count of the log 0 is the state prior to the first step </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE">
-<span id="_CPPv3NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE"></span><span id="LogFrame::hasEnvironmentProperty__ssCRC"></span><span class="target" id="structLogFrame_1a242a5596cf4be2424a246319ee37ac2f"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">hasEnvironmentProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">property_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE">
+<span id="_CPPv3NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE"></span><span id="LogFrame::hasEnvironmentProperty__ssCRC"></span><span class="target" id="structLogFrame_1a242a5596cf4be2424a246319ee37ac2f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">hasEnvironmentProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">property_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8LogFrame22hasEnvironmentPropertyERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Environment log accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE">
-<span id="_CPPv3I0ENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="structLogFrame_1a9eb12d6c25f9ccb0b9f9dda344e3be1f"></span><a class="reference internal" href="#_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE" title="LogFrame::getEnvironmentProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getEnvironmentProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">property_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE">
+<span id="_CPPv3I0ENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structLogFrame_1a9eb12d6c25f9ccb0b9f9dda344e3be1f"></span><a class="reference internal" href="#_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE" title="LogFrame::getEnvironmentProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getEnvironmentProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">property_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK8LogFrame22getEnvironmentPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE">
-<span id="_CPPv3I0_jENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2I0_jENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="structLogFrame_1a75f2a257c2487ad7cbab1828a3fdc8bd"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="LogFrame::getEnvironmentProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="LogFrame::getEnvironmentProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getEnvironmentProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">property_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE">
+<span id="_CPPv3I0_jENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span id="_CPPv2I0_jENK8LogFrame22getEnvironmentPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="structLogFrame_1a75f2a257c2487ad7cbab1828a3fdc8bd"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="LogFrame::getEnvironmentProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="LogFrame::getEnvironmentProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getEnvironmentProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">property_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0_jENK8LogFrame22getEnvironmentPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE">
-<span id="_CPPv3NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE"></span><span id="LogFrame::getAgent__ssCR.ssCRC"></span><span class="target" id="structLogFrame_1a3fd64ab99439c7100dc7fe3344ef0dcb"></span><a class="reference internal" href="structAgentLogFrame.html#_CPPv413AgentLogFrame" title="AgentLogFrame"><span class="pre">AgentLogFrame</span></a> <code class="sig-name descname"><span class="pre">getAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">agent_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">state_name</span></em> <span class="pre">=</span> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="pre">DEFAULT_STATE</span></a><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE"></span><span id="LogFrame::getAgent__ssCR.ssCRC"></span><span class="target" id="structLogFrame_1a3fd64ab99439c7100dc7fe3344ef0dcb"></span><a class="reference internal" href="structAgentLogFrame.html#_CPPv413AgentLogFrame" title="AgentLogFrame"><span class="n"><span class="pre">AgentLogFrame</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getAgent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agent_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">state_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData13DEFAULT_STATEE" title="ModelData::DEFAULT_STATE"><span class="n"><span class="pre">DEFAULT_STATE</span></span></a><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8LogFrame8getAgentERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Agent log accessor </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8LogFrame14getEnvironmentEv">
-<span id="_CPPv3NK8LogFrame14getEnvironmentEv"></span><span id="_CPPv2NK8LogFrame14getEnvironmentEv"></span><span id="LogFrame::getEnvironmentC"></span><span class="target" id="structLogFrame_1aa7fbd8e19ecabb127087c960fc798ab6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span><span class="pre">,</span> <a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getEnvironment</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8LogFrame14getEnvironmentEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8LogFrame14getEnvironmentEv">
+<span id="_CPPv3NK8LogFrame14getEnvironmentEv"></span><span id="_CPPv2NK8LogFrame14getEnvironmentEv"></span><span id="LogFrame::getEnvironmentC"></span><span class="target" id="structLogFrame_1aa7fbd8e19ecabb127087c960fc798ab6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="n"><span class="pre">Any</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getEnvironment</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8LogFrame14getEnvironmentEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Raw access to environment log map </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK8LogFrame9getAgentsEv">
-<span id="_CPPv3NK8LogFrame9getAgentsEv"></span><span id="_CPPv2NK8LogFrame9getAgentsEv"></span><span id="LogFrame::getAgentsC"></span><span class="target" id="structLogFrame_1a68f79ef0c9b73788b9545c228f52f367"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="pre">LoggingConfig</span></a><span class="pre">::</span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig13NameStatePairE" title="LoggingConfig::NameStatePair"><span class="pre">NameStatePair</span></a><span class="pre">,</span> <span class="pre">std</span><span class="pre">::</span><span class="pre">pair</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">map</span><span class="pre">&lt;</span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="pre">LoggingConfig</span></a><span class="pre">::</span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig15NameReductionFnE" title="LoggingConfig::NameReductionFn"><span class="pre">NameReductionFn</span></a><span class="pre">,</span> <a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="pre">Any</span></a><span class="pre">&gt;</span><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span><span class="pre">&gt;</span><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getAgents</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK8LogFrame9getAgentsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK8LogFrame9getAgentsEv">
+<span id="_CPPv3NK8LogFrame9getAgentsEv"></span><span id="_CPPv2NK8LogFrame9getAgentsEv"></span><span id="LogFrame::getAgentsC"></span><span class="target" id="structLogFrame_1a68f79ef0c9b73788b9545c228f52f367"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="n"><span class="pre">LoggingConfig</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig13NameStatePairE" title="LoggingConfig::NameStatePair"><span class="n"><span class="pre">NameStatePair</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">map</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv413LoggingConfig" title="LoggingConfig"><span class="n"><span class="pre">LoggingConfig</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classLoggingConfig.html#_CPPv4N13LoggingConfig15NameReductionFnE" title="LoggingConfig::NameReductionFn"><span class="n"><span class="pre">NameReductionFn</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="structAny.html#_CPPv43Any" title="Any"><span class="n"><span class="pre">Any</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getAgents</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8LogFrame9getAgentsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Raw access to agent log map </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">CUDASimulation</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

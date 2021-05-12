@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class SubModelDescription &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,31 +813,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-submodeldescription">
+  <section id="class-submodeldescription">
 <span id="exhale-class-classsubmodeldescription"></span><h1>Class SubModelDescription<a class="headerlink" href="#class-submodeldescription" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_SubModelDescription.h.html#file-include-flamegpu-model-submodeldescription-h"><span class="std std-ref">File SubModelDescription.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">DependencyNode</span></code> (<a class="reference internal" href="classDependencyNode.html#exhale-class-classdependencynode"><span class="std std-ref">Class DependencyNode</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv419SubModelDescription">
-<span id="_CPPv319SubModelDescription"></span><span id="_CPPv219SubModelDescription"></span><span id="SubModelDescription"></span><span class="target" id="classSubModelDescription"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">SubModelDescription</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a><a class="headerlink" href="#_CPPv419SubModelDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv419SubModelDescription">
+<span id="_CPPv319SubModelDescription"></span><span id="_CPPv219SubModelDescription"></span><span id="SubModelDescription"></span><span class="target" id="classSubModelDescription"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SubModelDescription</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><a class="headerlink" href="#_CPPv419SubModelDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class provides an interface to a mapping between the parent and sub-model </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb">
-<span id="_CPPv3N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb"></span><span id="_CPPv2N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb"></span><span id="SubModelDescription::bindAgent__ssCR.ssCR.b.b"></span><span class="target" id="classSubModelDescription_1a7315f3262d2901d7836915dd53abb26e"></span><a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="pre">SubAgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">bindAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">sub_agent_name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">master_agent_name</span></em>, <span class="pre">bool</span> <em><span class="pre">auto_map_vars</span></em> <span class="pre">=</span> <span class="pre">false</span>, <span class="pre">bool</span> <em><span class="pre">auto_map_states</span></em> <span class="pre">=</span> <span class="pre">true</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb">
+<span id="_CPPv3N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb"></span><span id="_CPPv2N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb"></span><span id="SubModelDescription::bindAgent__ssCR.ssCR.b.b"></span><span class="target" id="classSubModelDescription_1a7315f3262d2901d7836915dd53abb26e"></span><a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="n"><span class="pre">SubAgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">bindAgent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sub_agent_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">master_agent_name</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">auto_map_vars</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">auto_map_states</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">true</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription9bindAgentERKNSt6stringERKNSt6stringEbb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Defines which agent from the parent/master model will be mapped to which agent in the submodel Only 1 master agent can be bound to each sub agent, however the same master agent can be bound to many sub agents Binding an agent to a subagent, ensures the population of subagents is always the same size. Furthermore, agent variables can be mapped so that they are shared between the two agents. Returns <a class="reference internal" href="classSubAgentDescription.html#classSubAgentDescription"><span class="std std-ref">SubAgentDescription</span></a> which can be used to manually map variables If auto_map_vars is enabled, variables with matching name, type and length will be automatically mapped </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -841,8 +860,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19SubModelDescription8SubAgentERKNSt6stringE">
-<span id="_CPPv3N19SubModelDescription8SubAgentERKNSt6stringE"></span><span id="_CPPv2N19SubModelDescription8SubAgentERKNSt6stringE"></span><span id="SubModelDescription::SubAgent__ssCR"></span><span class="target" id="classSubModelDescription_1a37c6725888c6a3e21ec61f61e34673f1"></span><a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="pre">SubAgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">SubAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">sub_agent_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription8SubAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19SubModelDescription8SubAgentERKNSt6stringE">
+<span id="_CPPv3N19SubModelDescription8SubAgentERKNSt6stringE"></span><span id="_CPPv2N19SubModelDescription8SubAgentERKNSt6stringE"></span><span id="SubModelDescription::SubAgent__ssCR"></span><span class="target" id="classSubModelDescription_1a37c6725888c6a3e21ec61f61e34673f1"></span><a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="n"><span class="pre">SubAgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">SubAgent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sub_agent_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription8SubAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a mutable reference to the named SubAgent description if it has already been bound to a master agent <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>SubModelDescription::getSubAgent(const std::string &amp;) for the immutable version </p>
 </dd>
@@ -862,8 +881,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19SubModelDescription11getSubAgentERKNSt6stringE">
-<span id="_CPPv3NK19SubModelDescription11getSubAgentERKNSt6stringE"></span><span id="_CPPv2NK19SubModelDescription11getSubAgentERKNSt6stringE"></span><span id="SubModelDescription::getSubAgent__ssCRC"></span><span class="target" id="classSubModelDescription_1a4d289dfd22d2b81cf81643ca97075ea6"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="pre">SubAgentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getSubAgent</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">sub_agent_name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK19SubModelDescription11getSubAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19SubModelDescription11getSubAgentERKNSt6stringE">
+<span id="_CPPv3NK19SubModelDescription11getSubAgentERKNSt6stringE"></span><span id="_CPPv2NK19SubModelDescription11getSubAgentERKNSt6stringE"></span><span id="SubModelDescription::getSubAgent__ssCRC"></span><span class="target" id="classSubModelDescription_1a4d289dfd22d2b81cf81643ca97075ea6"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classSubAgentDescription.html#_CPPv419SubAgentDescription" title="SubAgentDescription"><span class="n"><span class="pre">SubAgentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getSubAgent</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sub_agent_name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK19SubModelDescription11getSubAgentERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns an immutable reference to the named SubAgent description if it has already been bound to a master agent <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classSubModelDescription_1a37c6725888c6a3e21ec61f61e34673f1"><span class="std std-ref">SubModelDescription::SubAgent(const std::string &amp;)</span></a> for the mutable version </p>
 </dd>
@@ -883,37 +902,37 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19SubModelDescription14SubEnvironmentEb">
-<span id="_CPPv3N19SubModelDescription14SubEnvironmentEb"></span><span id="_CPPv2N19SubModelDescription14SubEnvironmentEb"></span><span id="SubModelDescription::SubEnvironment__b"></span><span class="target" id="classSubModelDescription_1a36b28b865164df23cb997ba63b731387"></span><a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="pre">SubEnvironmentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">SubEnvironment</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">auto_map_props</span></em> <span class="pre">=</span> <span class="pre">false</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription14SubEnvironmentEb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19SubModelDescription14SubEnvironmentEb">
+<span id="_CPPv3N19SubModelDescription14SubEnvironmentEb"></span><span id="_CPPv2N19SubModelDescription14SubEnvironmentEb"></span><span id="SubModelDescription::SubEnvironment__b"></span><span class="target" id="classSubModelDescription_1a36b28b865164df23cb997ba63b731387"></span><a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="n"><span class="pre">SubEnvironmentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">SubEnvironment</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">auto_map_props</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription14SubEnvironmentEb" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19SubModelDescription17getSubEnvironmentEb">
-<span id="_CPPv3NK19SubModelDescription17getSubEnvironmentEb"></span><span id="_CPPv2NK19SubModelDescription17getSubEnvironmentEb"></span><span id="SubModelDescription::getSubEnvironment__bC"></span><span class="target" id="classSubModelDescription_1a988c2b92c7788466630921826d1238f1"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="pre">SubEnvironmentDescription</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getSubEnvironment</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">auto_map_props</span></em> <span class="pre">=</span> <span class="pre">false</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK19SubModelDescription17getSubEnvironmentEb" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19SubModelDescription17getSubEnvironmentEb">
+<span id="_CPPv3NK19SubModelDescription17getSubEnvironmentEb"></span><span id="_CPPv2NK19SubModelDescription17getSubEnvironmentEb"></span><span id="SubModelDescription::getSubEnvironment__bC"></span><span class="target" id="classSubModelDescription_1a988c2b92c7788466630921826d1238f1"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classSubEnvironmentDescription.html#_CPPv425SubEnvironmentDescription" title="SubEnvironmentDescription"><span class="n"><span class="pre">SubEnvironmentDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getSubEnvironment</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">auto_map_props</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK19SubModelDescription17getSubEnvironmentEb" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19SubModelDescription11setMaxStepsERKj">
-<span id="_CPPv3N19SubModelDescription11setMaxStepsERKj"></span><span id="_CPPv2N19SubModelDescription11setMaxStepsERKj"></span><span id="SubModelDescription::setMaxSteps__unsigned-iCR"></span><span class="target" id="classSubModelDescription_1a2866f3fd6cedea12f61760236e9f18a2"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMaxSteps</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">max_steps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription11setMaxStepsERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19SubModelDescription11setMaxStepsERKj">
+<span id="_CPPv3N19SubModelDescription11setMaxStepsERKj"></span><span id="_CPPv2N19SubModelDescription11setMaxStepsERKj"></span><span id="SubModelDescription::setMaxSteps__unsigned-iCR"></span><span class="target" id="classSubModelDescription_1a2866f3fd6cedea12f61760236e9f18a2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMaxSteps</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_steps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription11setMaxStepsERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the maximum number of steps per execution of the submodel If 0 (default), unlimited however an exit condition is required </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK19SubModelDescription11getMaxStepsEv">
-<span id="_CPPv3NK19SubModelDescription11getMaxStepsEv"></span><span id="_CPPv2NK19SubModelDescription11getMaxStepsEv"></span><span id="SubModelDescription::getMaxStepsC"></span><span class="target" id="classSubModelDescription_1ac280f25c11f6727f87330b1ef018512d"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getMaxSteps</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK19SubModelDescription11getMaxStepsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK19SubModelDescription11getMaxStepsEv">
+<span id="_CPPv3NK19SubModelDescription11getMaxStepsEv"></span><span id="_CPPv2NK19SubModelDescription11getMaxStepsEv"></span><span id="SubModelDescription::getMaxStepsC"></span><span class="target" id="classSubModelDescription_1ac280f25c11f6727f87330b1ef018512d"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaxSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK19SubModelDescription11getMaxStepsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Return the current value of max steps, defaults to 0 This is the maximum number of steps per call of the submodel 0 is unlimited, however requires the model to have an exit condition </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N19SubModelDescription7getNameEv">
-<span id="_CPPv3N19SubModelDescription7getNameEv"></span><span id="_CPPv2N19SubModelDescription7getNameEv"></span><span id="SubModelDescription::getName"></span><span class="target" id="classSubModelDescription_1ae23fca2358371adc810a0becb55a1f16"></span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getName</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N19SubModelDescription7getNameEv">
+<span id="_CPPv3N19SubModelDescription7getNameEv"></span><span id="_CPPv2N19SubModelDescription7getNameEv"></span><span id="SubModelDescription::getName"></span><span class="target" id="classSubModelDescription_1ae23fca2358371adc810a0becb55a1f16"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getName</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N19SubModelDescription7getNameEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

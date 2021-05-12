@@ -4,15 +4,18 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Contributing &mdash; FLAME GPU 2 0 documentation</title>
+  <title>Contributing to FLAMEGPU2 &mdash; FLAME GPU 2 0 documentation</title>
   
 
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Building or Modifying the FGPU2 Source</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Contributing</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_%40142.html">Namespace &#64;142</a></li>
@@ -777,7 +796,7 @@
         
           <li><a href="index.html">Building or Modifying the FGPU2 Source</a> &raquo;</li>
         
-      <li>Contributing</li>
+      <li>Contributing to FLAMEGPU2</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -796,9 +815,74 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h1>
-</div>
+  <section id="contributing-to-flamegpu2">
+<h1>Contributing to FLAMEGPU2<a class="headerlink" href="#contributing-to-flamegpu2" title="Permalink to this headline">¶</a></h1>
+<p>Looking to contribute to FLAME GPU 2? <strong>Here’s how you can help.</strong></p>
+<p>Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.</p>
+<section id="reporting-bugs">
+<h2>Reporting Bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Use the GitHub issue search – check if the issue has already been reported.</p></li>
+<li><p>Check if the issue has been fixed – try to reproduce it with the latest <cite>master</cite> or development branch.</p></li>
+<li><p>Isolate the problem – ideally create a <a class="reference external" href="https://stackoverflow.com/help/minimal-reproducible-example">minimal example</a>.</p></li>
+<li><p>Complete the <a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2_dev/issues/new?template=bug_report.md&amp;title=[BugReport]">bug report template</a> – provide as much relevant detail as possible.</p></li>
+</ol>
+<p>A good bug report should contain all the information necessary to allow a developer to reproduce the issue, without needing to ask for further information.
+Please try to be as detailed as possible in your report. What is your environment? What steps will reproduce the issue? What CUDA version, GPU and OS experience the problem? What is the expected outcome?
+All of these details assist the process of investigating and fixing bugs.</p>
+</section>
+<section id="submitting-pull-requests">
+<h2>Submitting Pull Requests<a class="headerlink" href="#submitting-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>Good pull requests—patches, improvements, new features—are a fantastic help. They should remain focused in scope and avoid containing unrelated commits.</p>
+<p><strong>Please ask first</strong> before embarking on any significant pull request (e.g. implementing features, refactoring code), otherwise you risk spending a lot of time working on something that the project’s developers might not want to merge into the project.</p>
+<p>Please adhere to the [coding conventions](#Coding-Conventions) used throughout the project (indentation, accurate comments, etc.) and any other requirements (such as test coverage).</p>
+<p>Before merging pull requests are required to pass all continuous integration:</p>
+<ul class="simple">
+<li><p>The full codebase should build with the <cite>WARNINGS_AS_ERRORS</cite> option enabled under the provided CMake configuration, on both Windows and Linux.</p></li>
+<li><p>The full test suite should pass.</p></li>
+<li><p><cite>cpplint</cite> should report no issues, using <cite>CPPLINT.cfg</cite> found in the root of the project.</p></li>
+</ul>
+<p>Ideally, these should be addressed as far as possible before creating a pull request. Executing the tests and linter are detailed in the main [README](README.md).</p>
+<section id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h3>
+<p>Any significant additional feature will require creation of tests to demonstrate their functional correctness.</p>
+<p>The existing [tests](tree/master/tests) can be used as templates for how to implement a new test.</p>
+</section>
+<section id="coding-conventions">
+<h3>Coding Conventions<a class="headerlink" href="#coding-conventions" title="Permalink to this headline">¶</a></h3>
+<p>A consistent code style throughout</p>
+<p>The code within FLAME GPU conforms to the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Google C++ style guide</a>, as enforced by <cite>cpplint</cite>, with a number of relaxations:</p>
+<ul class="simple">
+<li><p><cite>[Formatting/Line Length]</cite>: Relaxed to a limit of 240 characters.</p></li>
+</ul>
+</section>
+<section id="naming-conventions">
+<h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Permalink to this headline">¶</a></h3>
+<p><strong>TODO: Discuss &amp; write</strong></p>
+</section>
+<section id="checking-code-style">
+<h3>Checking Code Style<a class="headerlink" href="#checking-code-style" title="Permalink to this headline">¶</a></h3>
+<p>As detailed within the main [README](README.md), if <cite>cpplint</cite> is installed CMake will generate lint targets which report code which strays from the projects coding style.</p>
+<p>This can be executed using <cite>make lint_all</cite> or building the <cite>lint_all</cite> project.</p>
+<p><em>Note: If adding new files, they will first need to be added to `CMakeLists.txt` and CMake configure re-ran.</em></p>
+</section>
+<section id="updating-cmakelists-txt">
+<h3>Updating CMakeLists.txt<a class="headerlink" href="#updating-cmakelists-txt" title="Permalink to this headline">¶</a></h3>
+<p>If adding new source or header files, it is necessary to add them to the list of files within the relevant <cite>CMakeLists.txt</cite>:</p>
+<p><strong>TODO: Update links*
+**TODO: Update links*</strong>
+The main FLAME GPU 2 library: within [<cite>src</cite>](tree/master/src).
+The example models: within the models subdirectory of [<cite>examples</cite>](tree/master/examples).
+The tests: within [<cite>tests</cite>](tree/master/tests).</p>
+<p>Similarly if submitting a new example model, it will need to include it’s own <cite>CMakeLists.txt</cite> (which can be based off an existing examples). This will also need to be reference from the main <cite>CMakeLists.txt</cite> in the root directory of the project.</p>
+<p>This ensure that users on both Linux and Windows can continue to build FLAME GPU 2.</p>
+</section>
+</section>
+<section id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>By contributing your code, you agree to license your contribution under the <a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/LICENSE.MD">MIT License</a>.</p>
+</section>
+</section>
 
 
            </div>

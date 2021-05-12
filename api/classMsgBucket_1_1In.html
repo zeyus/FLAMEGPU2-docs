@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class MsgBucket::In &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,34 +813,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-msgbucket-in">
+  <section id="class-msgbucket-in">
 <span id="exhale-class-classmsgbucket-1-1in"></span><h1>Class MsgBucket::In<a class="headerlink" href="#class-msgbucket-in" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Bucket_BucketDevice.h.html#file-include-flamegpu-runtime-messaging-bucket-bucketdevice-h"><span class="std std-ref">File BucketDevice.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This class is a nested type of <a class="reference internal" href="classMsgBucket.html#exhale-class-classmsgbucket"><span class="std std-ref">Class MsgBucket</span></a>.</p>
-<div class="section" id="nested-types">
+<section id="nested-types">
 <h3>Nested Types<a class="headerlink" href="#nested-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html#exhale-class-classmsgbucket-1-1in-1-1filter"><span class="std std-ref">Class In::Filter</span></a></p></li>
 <li><p><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html#exhale-class-classmsgbucket-1-1in-1-1filter-1-1message"><span class="std std-ref">Class Filter::Message</span></a></p></li>
 <li><p><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html#exhale-class-classmsgbucket-1-1in-1-1filter-1-1iterator"><span class="std std-ref">Class Filter::iterator</span></a></p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv4N9MsgBucket2InE">
-<span id="_CPPv3N9MsgBucket2InE"></span><span id="_CPPv2N9MsgBucket2InE"></span><span id="MsgBucket::In"></span><span class="target" id="classMsgBucket_1_1In"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classMsgBucket.html#_CPPv49MsgBucket" title="MsgBucket"><span class="pre">MsgBucket</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">In</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2InE">
+<span id="_CPPv3N9MsgBucket2InE"></span><span id="_CPPv2N9MsgBucket2InE"></span><span id="MsgBucket::In"></span><span class="target" id="classMsgBucket_1_1In"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classMsgBucket.html#_CPPv49MsgBucket" title="MsgBucket"><span class="n"><span class="pre">MsgBucket</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">In</span></span></span><br /></dt>
 <dd><p>This class is accessible via <a class="reference internal" href="classDeviceAPI.html#classDeviceAPI_1aad62a8a6203edd6449c22b0f2350d532"><span class="std std-ref">DeviceAPI.message_in</span></a> if <a class="reference internal" href="classMsgBucket.html#classMsgBucket"><span class="std std-ref">MsgBucket</span></a> is specified in FLAMEGPU_AGENT_FUNCTION It gives access to functionality for reading bucket </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv">
-<span id="_CPPv3N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="_CPPv2N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="MsgBucket::In::In__Curve::NamespaceHash.Curve::NamespaceHash.voidCP"></span><span class="target" id="classMsgBucket_1_1In_1a2e5c2567ac57a920ad5ae2c875f34f92"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">In</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">agentfn_hash</span></em>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <em><span class="pre">msg_hash</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><em><span class="pre">_metadata</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv">
+<span id="_CPPv3N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="_CPPv2N9MsgBucket2In2InEN5Curve13NamespaceHashEN5Curve13NamespaceHashEPKv"></span><span id="MsgBucket::In::In__Curve::NamespaceHash.Curve::NamespaceHash.voidCP"></span><span class="target" id="classMsgBucket_1_1In_1a2e5c2567ac57a920ad5ae2c875f34f92"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">In</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">agentfn_hash</span></span>, <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">msg_hash</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_metadata</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructor Initialises member variables </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -835,8 +854,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2InclERK4IntT">
-<span id="_CPPv3NK9MsgBucket2InclERK4IntT"></span><span id="_CPPv2NK9MsgBucket2InclERK4IntT"></span><span id="MsgBucket::In::call-operator__IntTCRC"></span><span class="target" id="classMsgBucket_1_1In_1a707570875a2655b76171d2fed6338549"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="pre">Filter</span></a> <code class="sig-name descname"><span class="pre">operator()</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="pre">IntT</span></a> <span class="pre">&amp;</span><em><span class="pre">key</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2InclERK4IntT">
+<span id="_CPPv3NK9MsgBucket2InclERK4IntT"></span><span id="_CPPv2NK9MsgBucket2InclERK4IntT"></span><span id="MsgBucket::In::call-operator__IntTCRC"></span><span class="target" id="classMsgBucket_1_1In_1a707570875a2655b76171d2fed6338549"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="n"><span class="pre">IntT</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">key</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns a <a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html#classMsgBucket_1_1In_1_1Filter"><span class="std std-ref">Filter</span></a> object which provides access to message iterator for iterating a subset of messages stored within the specified bucket</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -846,8 +865,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2InclERK4IntTRK4IntT">
-<span id="_CPPv3NK9MsgBucket2InclERK4IntTRK4IntT"></span><span id="_CPPv2NK9MsgBucket2InclERK4IntTRK4IntT"></span><span id="MsgBucket::In::call-operator__IntTCR.IntTCRC"></span><span class="target" id="classMsgBucket_1_1In_1a5bb5790fe4e0c3734c33337e7d0472bb"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="pre">Filter</span></a> <code class="sig-name descname"><span class="pre">operator()</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="pre">IntT</span></a> <span class="pre">&amp;</span><em><span class="pre">beginKey</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="pre">IntT</span></a> <span class="pre">&amp;</span><em><span class="pre">endKey</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2InclERK4IntTRK4IntT">
+<span id="_CPPv3NK9MsgBucket2InclERK4IntTRK4IntT"></span><span id="_CPPv2NK9MsgBucket2InclERK4IntTRK4IntT"></span><span id="MsgBucket::In::call-operator__IntTCR.IntTCRC"></span><span class="target" id="classMsgBucket_1_1In_1a5bb5790fe4e0c3734c33337e7d0472bb"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="n"><span class="pre">IntT</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">beginKey</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="n"><span class="pre">IntT</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">endKey</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns a <a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html#classMsgBucket_1_1In_1_1Filter"><span class="std std-ref">Filter</span></a> object which provides access to message iterator for iterating a subset of messages within the [begin, end) range of buckets specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -861,8 +880,8 @@
 
 </div>
 <dl class="cpp class">
-<dt id="_CPPv4N9MsgBucket2In6FilterE">
-<span id="_CPPv3N9MsgBucket2In6FilterE"></span><span id="_CPPv2N9MsgBucket2In6FilterE"></span><span id="MsgBucket::In::Filter"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Filter</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6FilterE">
+<span id="_CPPv3N9MsgBucket2In6FilterE"></span><span id="_CPPv2N9MsgBucket2In6FilterE"></span><span id="MsgBucket::In::Filter"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Filter</span></span></span><br /></dt>
 <dd><p>This class is created when a search origin is provided to MsgBucket::In::operator()(IntT) It provides iterator access to the subset of messages found within the specified bucket</p>
 <p><dl class="simple">
 <dt><strong>See</strong></dt><dd><p>MsgBucket::In::operator()(IntT) </p>
@@ -872,8 +891,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT">
-<span id="_CPPv3N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT"></span><span id="_CPPv2N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT"></span><span id="MsgBucket::In::Filter::Filter__MetaDataCP.Curve::NamespaceHashCR.IntTCR.IntTCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1a4d3056d03f626f3dbb6abb49ee8211f3"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Filter</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket8MetaDataE" title="MsgBucket::MetaData"><span class="pre">MetaData</span></a> <span class="pre">*</span><em><span class="pre">_metadata</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <span class="pre">&amp;</span><em><span class="pre">combined_hash</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="pre">IntT</span></a> <span class="pre">&amp;</span><em><span class="pre">beginKey</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="pre">IntT</span></a> <span class="pre">&amp;</span><em><span class="pre">endKey</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT">
+<span id="_CPPv3N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT"></span><span id="_CPPv2N9MsgBucket2In6Filter6FilterEPK8MetaDataRKN5Curve13NamespaceHashERK4IntTRK4IntT"></span><span id="MsgBucket::In::Filter::Filter__MetaDataCP.Curve::NamespaceHashCR.IntTCR.IntTCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1a4d3056d03f626f3dbb6abb49ee8211f3"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Filter</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket8MetaDataE" title="MsgBucket::MetaData"><span class="n"><span class="pre">MetaData</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_metadata</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">combined_hash</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="n"><span class="pre">IntT</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">beginKey</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#_CPPv44IntT" title="IntT"><span class="n"><span class="pre">IntT</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">endKey</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructor, takes the search parameters required Begin key and end key specify the [begin, end) contiguous range of bucket. (inclusive begin, exclusive end) </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -888,14 +907,14 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter5beginEv">
-<span id="_CPPv3NK9MsgBucket2In6Filter5beginEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter5beginEv"></span><span id="MsgBucket::In::Filter::begin__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1aba9b7cb6abf6f8745089b58d28a2a36f"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">begin</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter5beginEv">
+<span id="_CPPv3NK9MsgBucket2In6Filter5beginEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter5beginEv"></span><span id="MsgBucket::In::Filter::begin__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1aba9b7cb6abf6f8745089b58d28a2a36f"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">begin</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns an iterator to the start of the message list subset about the search origin </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter3endEv">
-<span id="_CPPv3NK9MsgBucket2In6Filter3endEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter3endEv"></span><span id="MsgBucket::In::Filter::end__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1ac316dced4b34fa24c45b81cb92ca8f37"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">end</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter3endEv">
+<span id="_CPPv3NK9MsgBucket2In6Filter3endEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter3endEv"></span><span id="MsgBucket::In::Filter::end__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1ac316dced4b34fa24c45b81cb92ca8f37"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns an iterator to the position beyond the end of the message list subset </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -904,21 +923,21 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter4sizeEv">
-<span id="_CPPv3NK9MsgBucket2In6Filter4sizeEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter4sizeEv"></span><span id="MsgBucket::In::Filter::size__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1a806565608189330e4854f54ddc8e4646"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter4sizeEv">
+<span id="_CPPv3NK9MsgBucket2In6Filter4sizeEv"></span><span id="_CPPv2NK9MsgBucket2In6Filter4sizeEv"></span><span id="MsgBucket::In::Filter::size__voidC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1a806565608189330e4854f54ddc8e4646"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns the number of messages in the filtered bucket </p>
 </dd></dl>
 
 </div>
 <dl class="cpp class">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iteratorE">
-<span id="_CPPv3N9MsgBucket2In6Filter8iteratorE"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorE"></span><span id="MsgBucket::In::Filter::iterator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">iterator</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iteratorE">
+<span id="_CPPv3N9MsgBucket2In6Filter8iteratorE"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorE"></span><span id="MsgBucket::In::Filter::iterator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><br /></dt>
 <dd><p>Stock iterator for iterating <a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1Message.html#classMsgBucket_1_1In_1_1Filter_1_1Message"><span class="std std-ref">MsgBucket::In::Filter::Message</span></a> objects </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj">
-<span id="_CPPv3N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj"></span><span id="_CPPv2N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj"></span><span id="MsgBucket::In::Filter::iterator::iterator__FilterCR.unsigned-iCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a9c38257d13ac4ad48ddb604cbcd42cba"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">iterator</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">cell_index</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj">
+<span id="_CPPv3N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj"></span><span id="_CPPv2N9MsgBucket2In6Filter8iterator8iteratorERK6FilterRKj"></span><span id="MsgBucket::In::Filter::iterator::iterator__FilterCR.unsigned-iCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a9c38257d13ac4ad48ddb604cbcd42cba"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">iterator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cell_index</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructor This iterator is constructed by <a class="reference internal" href="classMsgBucket_1_1In_1_1Filter.html#classMsgBucket_1_1In_1_1Filter_1aba9b7cb6abf6f8745089b58d28a2a36f"><span class="std std-ref">MsgBucket::In::Filter::begin()</span></a>(IntT) <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>MsgBucket::In::Operator()(<a class="reference internal" href="typedef_Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb.html#Bucket_8h_1a0b5abebc284f429a6568a68d59e2fcdb"><span class="std std-ref">IntT</span></a>) </p>
 </dd>
@@ -927,38 +946,38 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iteratorppEv">
-<span id="_CPPv3N9MsgBucket2In6Filter8iteratorppEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorppEv"></span><span id="MsgBucket::In::Filter::iterator::inc-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a0dba72075e97dcb1274d780ce00a5e9e"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iteratorppEv">
+<span id="_CPPv3N9MsgBucket2In6Filter8iteratorppEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorppEv"></span><span id="MsgBucket::In::Filter::iterator::inc-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a0dba72075e97dcb1274d780ce00a5e9e"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Moves to the next message (Prefix increment operator) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iteratorppEi">
-<span id="_CPPv3N9MsgBucket2In6Filter8iteratorppEi"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorppEi"></span><span id="MsgBucket::In::Filter::iterator::inc-operator__i"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a8df27a075003a3d931bb9469cb5237c7"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="pre">int</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iteratorppEi">
+<span id="_CPPv3N9MsgBucket2In6Filter8iteratorppEi"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorppEi"></span><span id="MsgBucket::In::Filter::iterator::inc-operator__i"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a8df27a075003a3d931bb9469cb5237c7"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Moves to the next message (Postfix increment operator, returns value prior to increment) </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter8iteratoreqERK8iterator">
-<span id="_CPPv3NK9MsgBucket2In6Filter8iteratoreqERK8iterator"></span><span id="_CPPv2NK9MsgBucket2In6Filter8iteratoreqERK8iterator"></span><span id="MsgBucket::In::Filter::iterator::eq-operator__iteratorCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1ab4609bbcbddd9d3dc8d1c2a005fd71b2"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter8iteratoreqERK8iterator">
+<span id="_CPPv3NK9MsgBucket2In6Filter8iteratoreqERK8iterator"></span><span id="_CPPv2NK9MsgBucket2In6Filter8iteratoreqERK8iterator"></span><span id="MsgBucket::In::Filter::iterator::eq-operator__iteratorCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1ab4609bbcbddd9d3dc8d1c2a005fd71b2"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Equality operator Compares message </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter8iteratorneERK8iterator">
-<span id="_CPPv3NK9MsgBucket2In6Filter8iteratorneERK8iterator"></span><span id="_CPPv2NK9MsgBucket2In6Filter8iteratorneERK8iterator"></span><span id="MsgBucket::In::Filter::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a22e2be38dfebaa3da8819967f4b46572"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="pre">iterator</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter8iteratorneERK8iterator">
+<span id="_CPPv3NK9MsgBucket2In6Filter8iteratorneERK8iterator"></span><span id="_CPPv2NK9MsgBucket2In6Filter8iteratorneERK8iterator"></span><span id="MsgBucket::In::Filter::iterator::neq-operator__iteratorCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1a22e2be38dfebaa3da8819967f4b46572"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter8iteratorE" title="MsgBucket::In::Filter::iterator"><span class="n"><span class="pre">iterator</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Inequality operator Compares message </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iteratormlEv">
-<span id="_CPPv3N9MsgBucket2In6Filter8iteratormlEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratormlEv"></span><span id="MsgBucket::In::Filter::iterator::mul-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1adbf29d97a32b39dfdde818c272371356"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iteratormlEv">
+<span id="_CPPv3N9MsgBucket2In6Filter8iteratormlEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratormlEv"></span><span id="MsgBucket::In::Filter::iterator::mul-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1adbf29d97a32b39dfdde818c272371356"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter8iteratorptEv">
-<span id="_CPPv3N9MsgBucket2In6Filter8iteratorptEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorptEv"></span><span id="MsgBucket::In::Filter::iterator::pointer-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1ad7b7e656b4ca769def63ccdf0231e852"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">*</span><code class="sig-name descname"><span class="pre">operator-&gt;</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter8iteratorptEv">
+<span id="_CPPv3N9MsgBucket2In6Filter8iteratorptEv"></span><span id="_CPPv2N9MsgBucket2In6Filter8iteratorptEv"></span><span id="MsgBucket::In::Filter::iterator::pointer-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1iterator_1ad7b7e656b4ca769def63ccdf0231e852"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">-&gt;</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Dereferences the iterator to return the message object, for accessing variables </p>
 </dd></dl>
 
@@ -966,8 +985,8 @@
 </dd></dl>
 
 <dl class="cpp class">
-<dt id="_CPPv4N9MsgBucket2In6Filter7MessageE">
-<span id="_CPPv3N9MsgBucket2In6Filter7MessageE"></span><span id="_CPPv2N9MsgBucket2In6Filter7MessageE"></span><span id="MsgBucket::In::Filter::Message"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Message</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter7MessageE">
+<span id="_CPPv3N9MsgBucket2In6Filter7MessageE"></span><span id="_CPPv2N9MsgBucket2In6Filter7MessageE"></span><span id="MsgBucket::In::Filter::Message"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Message</span></span></span><br /></dt>
 <dd><p>Provides access to a specific message Returned by the iterator <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classMsgBucket_1_1In_1_1Filter_1_1iterator.html#classMsgBucket_1_1In_1_1Filter_1_1iterator"><span class="std std-ref">In::Filter::iterator</span></a> </p>
 </dd>
@@ -976,8 +995,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj">
-<span id="_CPPv3N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj"></span><span id="_CPPv2N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj"></span><span id="MsgBucket::In::Filter::Message::Message__FilterCR.unsigned-iCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a40fc1d15a69c432537ad65eb05f0a88e"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="pre">Filter</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">_cell_index</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj">
+<span id="_CPPv3N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj"></span><span id="_CPPv2N9MsgBucket2In6Filter7Message7MessageERK6FilterRKj"></span><span id="MsgBucket::In::Filter::Message::Message__FilterCR.unsigned-iCR"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a40fc1d15a69c432537ad65eb05f0a88e"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Message</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6FilterE" title="MsgBucket::In::Filter"><span class="n"><span class="pre">Filter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_cell_index</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructs a message and directly initialises all of it’s member variables </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -986,8 +1005,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter7MessageeqERK7Message">
-<span id="_CPPv3NK9MsgBucket2In6Filter7MessageeqERK7Message"></span><span id="_CPPv2NK9MsgBucket2In6Filter7MessageeqERK7Message"></span><span id="MsgBucket::In::Filter::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a095743b008e91f634c7de8759c501ee2"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter7MessageeqERK7Message">
+<span id="_CPPv3NK9MsgBucket2In6Filter7MessageeqERK7Message"></span><span id="_CPPv2NK9MsgBucket2In6Filter7MessageeqERK7Message"></span><span id="MsgBucket::In::Filter::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a095743b008e91f634c7de8759c501ee2"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Equality operator Compares all internal member vars for equality </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -996,8 +1015,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9MsgBucket2In6Filter7MessageneERK7Message">
-<span id="_CPPv3NK9MsgBucket2In6Filter7MessageneERK7Message"></span><span id="_CPPv2NK9MsgBucket2In6Filter7MessageneERK7Message"></span><span id="MsgBucket::In::Filter::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1add1e87701026cc92d8d75aa007225577"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9MsgBucket2In6Filter7MessageneERK7Message">
+<span id="_CPPv3NK9MsgBucket2In6Filter7MessageneERK7Message"></span><span id="_CPPv2NK9MsgBucket2In6Filter7MessageneERK7Message"></span><span id="MsgBucket::In::Filter::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1add1e87701026cc92d8d75aa007225577"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Inequality operator Returns inverse of equality operator <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>operator==(const Message&amp;) </p>
 </dd>
@@ -1006,8 +1025,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9MsgBucket2In6Filter7MessageppEv">
-<span id="_CPPv3N9MsgBucket2In6Filter7MessageppEv"></span><span id="_CPPv2N9MsgBucket2In6Filter7MessageppEv"></span><span id="MsgBucket::In::Filter::Message::inc-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a6adaa9fb338720700efd5bc77ca8be25"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator++</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9MsgBucket2In6Filter7MessageppEv">
+<span id="_CPPv3N9MsgBucket2In6Filter7MessageppEv"></span><span id="_CPPv2N9MsgBucket2In6Filter7MessageppEv"></span><span id="MsgBucket::In::Filter::Message::inc-operator"></span><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1a6adaa9fb338720700efd5bc77ca8be25"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket2In6Filter7MessageE" title="MsgBucket::In::Filter::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">++</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Updates the message to return variables from the next message in the message list </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1017,8 +1036,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableE1TRA1N_Kc">
-<span id="_CPPv3I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket9size_typeE" title="MsgBucket::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1abdffc7ba286b032ef14da1f1d7cdae30"></span><span class="pre">__device__</span> <a class="reference internal" href="classMsgBucket.html#_CPPv4I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableE1TRA1N_Kc" title="MsgBucket::In::Filter::Message::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableE1TRA1N_Kc">
+<span id="_CPPv3I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableERAN_Kc"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4N9MsgBucket9size_typeE" title="MsgBucket::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classMsgBucket_1_1In_1_1Filter_1_1Message_1abdffc7ba286b032ef14da1f1d7cdae30"></span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="classMsgBucket.html#_CPPv4I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableE1TRA1N_Kc" title="MsgBucket::In::Filter::Message::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="classMsgBucket.html#_CPPv4I0_9size_typeENK9MsgBucket2In6Filter7Message11getVariableE1TRA1N_Kc" title="MsgBucket::In::Filter::Message::getVariable::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns the value for the current message attached to the named variable </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1043,8 +1062,8 @@
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

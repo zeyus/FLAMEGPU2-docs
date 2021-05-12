@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class RandomManager &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,16 +813,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-randommanager">
+  <section id="class-randommanager">
 <span id="exhale-class-classrandommanager"></span><h1>Class RandomManager<a class="headerlink" href="#class-randommanager" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_utility_RandomManager.cuh.html#file-include-flamegpu-runtime-utility-randommanager-cuh"><span class="std std-ref">File RandomManager.cuh</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv413RandomManager">
-<span id="_CPPv313RandomManager"></span><span id="_CPPv213RandomManager"></span><span id="RandomManager"></span><span class="target" id="classRandomManager"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">RandomManager</span></code><a class="headerlink" href="#_CPPv413RandomManager" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv413RandomManager">
+<span id="_CPPv313RandomManager"></span><span id="_CPPv213RandomManager"></span><span id="RandomManager"></span><span class="target" id="classRandomManager"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RandomManager</span></span></span><a class="headerlink" href="#_CPPv413RandomManager" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Singleton manager for initialising simulation wide random with a common seed This is an internal class, that should not be accessed directly by modellers Manages the shared array of curand state use by agent functions Manages the random engine/s used by host functions <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classAgentRandom.html#classAgentRandom"><span class="std std-ref">AgentRandom</span></a> For random number generation during agent functions on the device </p>
 </dd>
@@ -814,8 +833,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt id="_CPPv4N13RandomManager9size_typeE">
-<span id="_CPPv3N13RandomManager9size_typeE"></span><span id="_CPPv2N13RandomManager9size_typeE"></span><span id="RandomManager::size_type"></span><span class="target" id="classRandomManager_1ac7b50192df7483ab9c5a5db6e30ebc8a"></span><em class="property"><span class="pre">typedef</span> </em><a class="reference internal" href="classAgentRandom.html#_CPPv411AgentRandom" title="AgentRandom"><span class="pre">AgentRandom</span></a><span class="pre">::</span><a class="reference internal" href="classAgentRandom.html#_CPPv4N11AgentRandom9size_typeE" title="AgentRandom::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N13RandomManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager9size_typeE">
+<span id="_CPPv3N13RandomManager9size_typeE"></span><span id="_CPPv2N13RandomManager9size_typeE"></span><span id="RandomManager::size_type"></span><span class="target" id="classRandomManager_1ac7b50192df7483ab9c5a5db6e30ebc8a"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="classAgentRandom.html#_CPPv411AgentRandom" title="AgentRandom"><span class="n"><span class="pre">AgentRandom</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classAgentRandom.html#_CPPv4N11AgentRandom9size_typeE" title="AgentRandom::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><a class="headerlink" href="#_CPPv4N13RandomManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Inherit size_type from include-public partner class </p>
 </dd></dl>
 
@@ -823,26 +842,26 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager13RandomManagerEv">
-<span id="_CPPv3N13RandomManager13RandomManagerEv"></span><span id="_CPPv2N13RandomManager13RandomManagerEv"></span><span id="RandomManager::RandomManager"></span><span class="target" id="classRandomManager_1a6eccd72a0337e24c7b2aa3ce430baca1"></span><code class="sig-name descname"><span class="pre">RandomManager</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager13RandomManagerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager13RandomManagerEv">
+<span id="_CPPv3N13RandomManager13RandomManagerEv"></span><span id="_CPPv2N13RandomManager13RandomManagerEv"></span><span id="RandomManager::RandomManager"></span><span class="target" id="classRandomManager_1a6eccd72a0337e24c7b2aa3ce430baca1"></span><span class="sig-name descname"><span class="n"><span class="pre">RandomManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager13RandomManagerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Creates the random manager and calls <a class="reference internal" href="#classRandomManager_1a11c726b3e1ed8a36f7e63d634d10134e"><span class="std std-ref">reseed()</span></a> with the return value from <a class="reference internal" href="#classRandomManager_1a8c7bf926859c71e3f69c1049e91e1555"><span class="std std-ref">seedFromTime()</span></a> </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManagerD0Ev">
-<span id="_CPPv3N13RandomManagerD0Ev"></span><span id="_CPPv2N13RandomManagerD0Ev"></span><span id="RandomManager::~RandomManager"></span><span class="target" id="classRandomManager_1a1b3f9dd05e93193acd98b4b347b8dba7"></span><code class="sig-name descname"><span class="pre">~RandomManager</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManagerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManagerD0Ev">
+<span id="_CPPv3N13RandomManagerD0Ev"></span><span id="_CPPv2N13RandomManagerD0Ev"></span><span id="RandomManager::~RandomManager"></span><span class="target" id="classRandomManager_1a1b3f9dd05e93193acd98b4b347b8dba7"></span><span class="sig-name descname"><span class="n"><span class="pre">~RandomManager</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManagerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager12seedFromTimeEv">
-<span id="_CPPv3N13RandomManager12seedFromTimeEv"></span><span id="_CPPv2N13RandomManager12seedFromTimeEv"></span><span id="RandomManager::seedFromTime"></span><span class="target" id="classRandomManager_1a8c7bf926859c71e3f69c1049e91e1555"></span><span class="pre">uint64_t</span> <code class="sig-name descname"><span class="pre">seedFromTime</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager12seedFromTimeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager12seedFromTimeEv">
+<span id="_CPPv3N13RandomManager12seedFromTimeEv"></span><span id="_CPPv2N13RandomManager12seedFromTimeEv"></span><span id="RandomManager::seedFromTime"></span><span class="target" id="classRandomManager_1a8c7bf926859c71e3f69c1049e91e1555"></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seedFromTime</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager12seedFromTimeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Utility for generating a psuesdo-random seed to pass to init</p>
 <p>Member fns </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager6reseedERKj">
-<span id="_CPPv3N13RandomManager6reseedERKj"></span><span id="_CPPv2N13RandomManager6reseedERKj"></span><span id="RandomManager::reseed__unsigned-iCR"></span><span class="target" id="classRandomManager_1a11c726b3e1ed8a36f7e63d634d10134e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">reseed</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">seed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager6reseedERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager6reseedERKj">
+<span id="_CPPv3N13RandomManager6reseedERKj"></span><span id="_CPPv2N13RandomManager6reseedERKj"></span><span id="RandomManager::reseed__unsigned-iCR"></span><span class="target" id="classRandomManager_1a11c726b3e1ed8a36f7e63d634d10134e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">reseed</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">seed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager6reseedERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Reseeds all owned random generators </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -851,35 +870,35 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager6resizeERK9size_type">
-<span id="_CPPv3N13RandomManager6resizeERK9size_type"></span><span id="_CPPv2N13RandomManager6resizeERK9size_type"></span><span id="RandomManager::resize__size_typeCR"></span><span class="target" id="classRandomManager_1a66a10eff289165de4924e4fec4745464"></span><span class="pre">curandState</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N13RandomManager9size_typeE" title="RandomManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager6resizeERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager6resizeERK9size_type">
+<span id="_CPPv3N13RandomManager6resizeERK9size_type"></span><span id="_CPPv2N13RandomManager6resizeERK9size_type"></span><span id="RandomManager::resize__size_typeCR"></span><span class="target" id="classRandomManager_1a66a10eff289165de4924e4fec4745464"></span><span class="n"><span class="pre">curandState</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N13RandomManager9size_typeE" title="RandomManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_length</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager6resizeERK9size_type" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Resizes random array according to the rules: while(length&lt;_length) length*=growthModifier if(shrinkModifier&lt;1.0) while(length*shrinkModifier&gt;_length) length*=shrinkModifier </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager17setGrowthModifierEf">
-<span id="_CPPv3N13RandomManager17setGrowthModifierEf"></span><span id="_CPPv2N13RandomManager17setGrowthModifierEf"></span><span id="RandomManager::setGrowthModifier__float"></span><span class="target" id="classRandomManager_1ab84aa433c2bdd1b151c24fd019733057"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setGrowthModifier</span></code><span class="sig-paren">(</span><span class="pre">float</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17setGrowthModifierEf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager17setGrowthModifierEf">
+<span id="_CPPv3N13RandomManager17setGrowthModifierEf"></span><span id="_CPPv2N13RandomManager17setGrowthModifierEf"></span><span id="RandomManager::setGrowthModifier__float"></span><span class="target" id="classRandomManager_1ab84aa433c2bdd1b151c24fd019733057"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setGrowthModifier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17setGrowthModifierEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Accessors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager17getGrowthModifierEv">
-<span id="_CPPv3N13RandomManager17getGrowthModifierEv"></span><span id="_CPPv2N13RandomManager17getGrowthModifierEv"></span><span id="RandomManager::getGrowthModifier"></span><span class="target" id="classRandomManager_1a01a5cc1613a0efe33b5279f82cc6604b"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getGrowthModifier</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17getGrowthModifierEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager17getGrowthModifierEv">
+<span id="_CPPv3N13RandomManager17getGrowthModifierEv"></span><span id="_CPPv2N13RandomManager17getGrowthModifierEv"></span><span id="RandomManager::getGrowthModifier"></span><span class="target" id="classRandomManager_1a01a5cc1613a0efe33b5279f82cc6604b"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getGrowthModifier</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17getGrowthModifierEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager17setShrinkModifierEf">
-<span id="_CPPv3N13RandomManager17setShrinkModifierEf"></span><span id="_CPPv2N13RandomManager17setShrinkModifierEf"></span><span id="RandomManager::setShrinkModifier__float"></span><span class="target" id="classRandomManager_1a5703fd0c9d1483d45da04abcb2aa6959"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setShrinkModifier</span></code><span class="sig-paren">(</span><span class="pre">float</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17setShrinkModifierEf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager17setShrinkModifierEf">
+<span id="_CPPv3N13RandomManager17setShrinkModifierEf"></span><span id="_CPPv2N13RandomManager17setShrinkModifierEf"></span><span id="RandomManager::setShrinkModifier__float"></span><span class="target" id="classRandomManager_1a5703fd0c9d1483d45da04abcb2aa6959"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setShrinkModifier</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">float</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17setShrinkModifierEf" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager17getShrinkModifierEv">
-<span id="_CPPv3N13RandomManager17getShrinkModifierEv"></span><span id="_CPPv2N13RandomManager17getShrinkModifierEv"></span><span id="RandomManager::getShrinkModifier"></span><span class="target" id="classRandomManager_1ae587db1e4cc0ae7fca82898b4272e401"></span><span class="pre">float</span> <code class="sig-name descname"><span class="pre">getShrinkModifier</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17getShrinkModifierEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager17getShrinkModifierEv">
+<span id="_CPPv3N13RandomManager17getShrinkModifierEv"></span><span id="_CPPv2N13RandomManager17getShrinkModifierEv"></span><span id="RandomManager::getShrinkModifier"></span><span class="target" id="classRandomManager_1ae587db1e4cc0ae7fca82898b4272e401"></span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getShrinkModifier</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager17getShrinkModifierEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I00EN13RandomManager15getDistributionE1TR4dist">
-<span id="_CPPv3I00EN13RandomManager15getDistributionER4dist"></span><span id="_CPPv2I00EN13RandomManager15getDistributionER4dist"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">typename</span> <code class="sig-name descname"><span class="pre">dist</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRandomManager_1ab9b963c1de0b2c97f72ab1264ef586e9"></span><a class="reference internal" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="RandomManager::getDistribution::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getDistribution</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="RandomManager::getDistribution::dist"><span class="pre">dist</span></a> <span class="pre">&amp;</span><em><span class="pre">distribution</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I00EN13RandomManager15getDistributionE1TR4dist">
+<span id="_CPPv3I00EN13RandomManager15getDistributionER4dist"></span><span id="_CPPv2I00EN13RandomManager15getDistributionER4dist"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dist</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRandomManager_1ab9b963c1de0b2c97f72ab1264ef586e9"></span><a class="reference internal" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="RandomManager::getDistribution::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getDistribution</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="RandomManager::getDistribution::dist"><span class="n"><span class="pre">dist</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">distribution</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I00EN13RandomManager15getDistributionE1TR4dist" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Generates a random number with the provided distribution </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -899,36 +918,36 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager4sizeEv">
-<span id="_CPPv3N13RandomManager4sizeEv"></span><span id="_CPPv2N13RandomManager4sizeEv"></span><span id="RandomManager::size"></span><span class="target" id="classRandomManager_1ab1a5663e4a2b6987c9037100a07098fa"></span><a class="reference internal" href="#_CPPv4N13RandomManager9size_typeE" title="RandomManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">size</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager4sizeEv">
+<span id="_CPPv3N13RandomManager4sizeEv"></span><span id="_CPPv2N13RandomManager4sizeEv"></span><span id="RandomManager::size"></span><span class="target" id="classRandomManager_1ab1a5663e4a2b6987c9037100a07098fa"></span><a class="reference internal" href="#_CPPv4N13RandomManager9size_typeE" title="RandomManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager4sizeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns length of curand state array currently allocated </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager4seedEv">
-<span id="_CPPv3N13RandomManager4seedEv"></span><span id="_CPPv2N13RandomManager4seedEv"></span><span id="RandomManager::seed"></span><span class="target" id="classRandomManager_1a844ee230a1dd69802c8aab682c75a30b"></span><span class="pre">uint64_t</span> <code class="sig-name descname"><span class="pre">seed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager4seedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager4seedEv">
+<span id="_CPPv3N13RandomManager4seedEv"></span><span id="_CPPv2N13RandomManager4seedEv"></span><span id="RandomManager::seed"></span><span class="target" id="classRandomManager_1a844ee230a1dd69802c8aab682c75a30b"></span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">seed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager4seedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager15cudaRandomStateEv">
-<span id="_CPPv3N13RandomManager15cudaRandomStateEv"></span><span id="_CPPv2N13RandomManager15cudaRandomStateEv"></span><span id="RandomManager::cudaRandomState"></span><span class="target" id="classRandomManager_1a83029b5627de9eaabf9450dbefecf8f0"></span><span class="pre">curandState</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">cudaRandomState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager15cudaRandomStateEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager15cudaRandomStateEv">
+<span id="_CPPv3N13RandomManager15cudaRandomStateEv"></span><span id="_CPPv2N13RandomManager15cudaRandomStateEv"></span><span id="RandomManager::cudaRandomState"></span><span class="target" id="classRandomManager_1a83029b5627de9eaabf9450dbefecf8f0"></span><span class="n"><span class="pre">curandState</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">cudaRandomState</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N13RandomManager15cudaRandomStateEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManager13RandomManagerERK13RandomManager">
-<span id="_CPPv3N13RandomManager13RandomManagerERK13RandomManager"></span><span id="_CPPv2N13RandomManager13RandomManagerERK13RandomManager"></span><span id="RandomManager::RandomManager__RandomManagerCR"></span><span class="target" id="classRandomManager_1a242dafddab87d1353a6c1e0c45b21ea3"></span><code class="sig-name descname"><span class="pre">RandomManager</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N13RandomManager13RandomManagerERK13RandomManager" title="RandomManager::RandomManager"><span class="pre">RandomManager</span></a> <em class="property"><span class="pre">const</span></em><span class="pre">&amp;</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N13RandomManager13RandomManagerERK13RandomManager" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManager13RandomManagerERK13RandomManager">
+<span id="_CPPv3N13RandomManager13RandomManagerERK13RandomManager"></span><span id="_CPPv2N13RandomManager13RandomManagerERK13RandomManager"></span><span id="RandomManager::RandomManager__RandomManagerCR"></span><span class="target" id="classRandomManager_1a242dafddab87d1353a6c1e0c45b21ea3"></span><span class="sig-name descname"><span class="n"><span class="pre">RandomManager</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv4N13RandomManager13RandomManagerERK13RandomManager" title="RandomManager::RandomManager"><span class="n"><span class="pre">RandomManager</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N13RandomManager13RandomManagerERK13RandomManager" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N13RandomManageraSERK13RandomManager">
-<span id="_CPPv3N13RandomManageraSERK13RandomManager"></span><span id="_CPPv2N13RandomManageraSERK13RandomManager"></span><span id="RandomManager::assign-operator__RandomManagerCR"></span><span class="target" id="classRandomManager_1a9525af3772aae750e6f0a3b429424463"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413RandomManager" title="RandomManager"><span class="pre">RandomManager</span></a> <em class="property"><span class="pre">const</span></em><span class="pre">&amp;</span><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N13RandomManageraSERK13RandomManager" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N13RandomManageraSERK13RandomManager">
+<span id="_CPPv3N13RandomManageraSERK13RandomManager"></span><span id="_CPPv2N13RandomManageraSERK13RandomManager"></span><span id="RandomManager::assign-operator__RandomManagerCR"></span><span class="target" id="classRandomManager_1a9525af3772aae750e6f0a3b429424463"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv413RandomManager" title="RandomManager"><span class="n"><span class="pre">RandomManager</span></span></a><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N13RandomManageraSERK13RandomManager" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class In::Message &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,20 +813,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-in-message">
+  <section id="class-in-message">
 <span id="exhale-class-classmsgarray2d-1-1in-1-1message"></span><h1>Class In::Message<a class="headerlink" href="#class-in-message" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_Array2D_Array2DDevice.h.html#file-include-flamegpu-runtime-messaging-array2d-array2ddevice-h"><span class="std std-ref">File Array2DDevice.h</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
+<section id="nested-relationships">
 <h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline">¶</a></h2>
 <p>This class is a nested type of <a class="reference internal" href="classMsgArray2D_1_1In.html#exhale-class-classmsgarray2d-1-1in"><span class="std std-ref">Class MsgArray2D::In</span></a>.</p>
-</div>
-<div class="section" id="class-documentation">
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv4N10MsgArray2D2In7MessageE">
-<span id="_CPPv3N10MsgArray2D2In7MessageE"></span><span id="_CPPv2N10MsgArray2D2In7MessageE"></span><span id="MsgArray2D::In::Message"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message"></span><em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="pre">MsgArray2D</span></a><span class="pre">::</span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2InE" title="MsgArray2D::In"><span class="pre">In</span></a><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">Message</span></code><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D2In7MessageE">
+<span id="_CPPv3N10MsgArray2D2In7MessageE"></span><span id="_CPPv2N10MsgArray2D2In7MessageE"></span><span id="MsgArray2D::In::Message"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="n"><span class="pre">MsgArray2D</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2InE" title="MsgArray2D::In"><span class="n"><span class="pre">In</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">Message</span></span></span><br /></dt>
 <dd><p>Provides access to a specific message Returned by In::at(size_type) <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>In::at(size_type) </p>
 </dd>
@@ -816,8 +835,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type">
-<span id="_CPPv3N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type"></span><span id="_CPPv2N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type"></span><span id="MsgArray2D::In::Message::Message__MsgArray2D::InCR.size_typeCR"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1a23da4c25ab2e3f21e5da555e90ff4276"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">Message</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="pre">MsgArray2D</span></a><span class="pre">::</span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2InE" title="MsgArray2D::In"><span class="pre">In</span></a> <span class="pre">&amp;</span><em><span class="pre">parent</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">_index</span></em><span class="sig-paren">)</span><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type">
+<span id="_CPPv3N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type"></span><span id="_CPPv2N10MsgArray2D2In7Message7MessageERKN10MsgArray2D2InERK9size_type"></span><span id="MsgArray2D::In::Message::Message__MsgArray2D::InCR.size_typeCR"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1a23da4c25ab2e3f21e5da555e90ff4276"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Message</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv410MsgArray2D" title="MsgArray2D"><span class="n"><span class="pre">MsgArray2D</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2InE" title="MsgArray2D::In"><span class="n"><span class="pre">In</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_index</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Constructs a message and directly initialises all of it’s member variables index is always init to 0 </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -826,8 +845,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10MsgArray2D2In7MessageeqERK7Message">
-<span id="_CPPv3NK10MsgArray2D2In7MessageeqERK7Message"></span><span id="_CPPv2NK10MsgArray2D2In7MessageeqERK7Message"></span><span id="MsgArray2D::In::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1a7de64e4ec77dbaf16b8084901162443f"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2In7MessageE" title="MsgArray2D::In::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10MsgArray2D2In7MessageeqERK7Message">
+<span id="_CPPv3NK10MsgArray2D2In7MessageeqERK7Message"></span><span id="_CPPv2NK10MsgArray2D2In7MessageeqERK7Message"></span><span id="MsgArray2D::In::Message::eq-operator__MessageCRC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1a7de64e4ec77dbaf16b8084901162443f"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2In7MessageE" title="MsgArray2D::In::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Equality operator Compares all internal member vars for equality </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -836,8 +855,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10MsgArray2D2In7MessageneERK7Message">
-<span id="_CPPv3NK10MsgArray2D2In7MessageneERK7Message"></span><span id="_CPPv2NK10MsgArray2D2In7MessageneERK7Message"></span><span id="MsgArray2D::In::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1abe61831d60a30017735220ecf239b27b"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2In7MessageE" title="MsgArray2D::In::Message"><span class="pre">Message</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10MsgArray2D2In7MessageneERK7Message">
+<span id="_CPPv3NK10MsgArray2D2In7MessageneERK7Message"></span><span id="_CPPv2NK10MsgArray2D2In7MessageneERK7Message"></span><span id="MsgArray2D::In::Message::neq-operator__MessageCRC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1abe61831d60a30017735220ecf239b27b"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D2In7MessageE" title="MsgArray2D::In::Message"><span class="n"><span class="pre">Message</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Inequality operator Returns inverse of equality operator <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>operator==(const Message&amp;) </p>
 </dd>
@@ -846,14 +865,14 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK10MsgArray2D2In7Message8getIndexEv">
-<span id="_CPPv3NK10MsgArray2D2In7Message8getIndexEv"></span><span id="_CPPv2NK10MsgArray2D2In7Message8getIndexEv"></span><span id="MsgArray2D::In::Message::getIndexC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1aed6b90e5dde7f704bafc4372705c2afe"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">getIndex</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK10MsgArray2D2In7Message8getIndexEv">
+<span id="_CPPv3NK10MsgArray2D2In7Message8getIndexEv"></span><span id="_CPPv2NK10MsgArray2D2In7Message8getIndexEv"></span><span id="MsgArray2D::In::Message::getIndexC"></span><span class="target" id="classMsgArray2D_1_1In_1_1Message_1aed6b90e5dde7f704bafc4372705c2afe"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4N10MsgArray2D9size_typeE" title="MsgArray2D::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getIndex</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns the index of the message within the full message list </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_jENK10MsgArray2D2In7Message11getVariableE1TRA1N_Kc">
-<span id="_CPPv3I0_jENK10MsgArray2D2In7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jENK10MsgArray2D2In7Message11getVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classMsgArray2D_1_1In_1_1Message_1af257e5a65a6851f96c8b18b03d68268a"></span><span class="pre">__device__</span> <a class="reference internal" href="classMsgArray2D.html#_CPPv4I0_jENK10MsgArray2D2In7Message11getVariableE1TRA1N_Kc" title="MsgArray2D::In::Message::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_jENK10MsgArray2D2In7Message11getVariableE1TRA1N_Kc">
+<span id="_CPPv3I0_jENK10MsgArray2D2In7Message11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jENK10MsgArray2D2In7Message11getVariableERAN_Kc"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classMsgArray2D_1_1In_1_1Message_1af257e5a65a6851f96c8b18b03d68268a"></span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="classMsgArray2D.html#_CPPv4I0_jENK10MsgArray2D2In7Message11getVariableE1TRA1N_Kc" title="MsgArray2D::In::Message::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="classMsgArray2D.html#_CPPv4I0_jENK10MsgArray2D2In7Message11getVariableE1TRA1N_Kc" title="MsgArray2D::In::Message::getVariable::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><br /></dt>
 <dd><p>Returns the value for the current message attached to the named variable </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -874,8 +893,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

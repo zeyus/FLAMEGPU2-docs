@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class CUDAMessage &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,22 +813,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-cudamessage">
+  <section id="class-cudamessage">
 <span id="exhale-class-classcudamessage"></span><h1>Class CUDAMessage<a class="headerlink" href="#class-cudamessage" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_gpu_CUDAMessage.h.html#file-include-flamegpu-gpu-cudamessage-h"><span class="std std-ref">File CUDAMessage.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv411CUDAMessage">
-<span id="_CPPv311CUDAMessage"></span><span id="_CPPv211CUDAMessage"></span><span id="CUDAMessage"></span><span class="target" id="classCUDAMessage"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">CUDAMessage</span></code><a class="headerlink" href="#_CPPv411CUDAMessage" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv411CUDAMessage">
+<span id="_CPPv311CUDAMessage"></span><span id="_CPPv211CUDAMessage"></span><span id="CUDAMessage"></span><span class="target" id="classCUDAMessage"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CUDAMessage</span></span></span><a class="headerlink" href="#_CPPv411CUDAMessage" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class is <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a>’s internal handler for message functionality </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation">
-<span id="_CPPv3N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation"></span><span id="_CPPv2N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation"></span><span id="CUDAMessage::CUDAMessage__MsgBruteForce::DataCR.CUDASimulationCR"></span><span class="target" id="classCUDAMessage_1a9ba9ac932782e83638ea8fca66e762fc"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">CUDAMessage</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="pre">Data</span></a> <span class="pre">&amp;</span><em><span class="pre">description</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="pre">CUDASimulation</span></a> <span class="pre">&amp;</span><em><span class="pre">cuda_model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation">
+<span id="_CPPv3N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation"></span><span id="_CPPv2N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation"></span><span id="CUDAMessage::CUDAMessage__MsgBruteForce::DataCR.CUDASimulationCR"></span><span class="target" id="classCUDAMessage_1a9ba9ac932782e83638ea8fca66e762fc"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CUDAMessage</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">description</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCUDASimulation.html#_CPPv414CUDASimulation" title="CUDASimulation"><span class="n"><span class="pre">CUDASimulation</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cuda_model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage11CUDAMessageERKN13MsgBruteForce4DataERK14CUDASimulation" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>allocates the hash table/list for message variables and copy the list to device </p>
 <p>Constructs a <a class="reference internal" href="#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a> object Allocates enough memory for each variable within the provided MessageData <a class="reference internal" href="#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a> class </p>
 <dl class="field-list simple">
@@ -820,16 +839,16 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessageD0Ev">
-<span id="_CPPv3N11CUDAMessageD0Ev"></span><span id="_CPPv2N11CUDAMessageD0Ev"></span><span id="CUDAMessage::~CUDAMessage__void"></span><span class="target" id="classCUDAMessage_1a05936ef81565137ba15980811472ae29"></span><em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~CUDAMessage</span></code><span class="sig-paren">(</span><span class="pre">void</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessageD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessageD0Ev">
+<span id="_CPPv3N11CUDAMessageD0Ev"></span><span id="_CPPv2N11CUDAMessageD0Ev"></span><span id="CUDAMessage::~CUDAMessage__void"></span><span class="target" id="classCUDAMessage_1a05936ef81565137ba15980811472ae29"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~CUDAMessage</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessageD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Destroys the <a class="reference internal" href="#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a> object. </p>
 <p>Destructor, releases CUDA memory</p>
 <p>A destructor. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage21getMessageDescriptionEv">
-<span id="_CPPv3NK11CUDAMessage21getMessageDescriptionEv"></span><span id="_CPPv2NK11CUDAMessage21getMessageDescriptionEv"></span><span id="CUDAMessage::getMessageDescriptionC"></span><span class="target" id="classCUDAMessage_1a24ff050a2c92011be1600fd8af1d512e"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="pre">MsgBruteForce</span></a><span class="pre">::</span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="pre">Data</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getMessageDescription</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage21getMessageDescriptionEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage21getMessageDescriptionEv">
+<span id="_CPPv3NK11CUDAMessage21getMessageDescriptionEv"></span><span id="_CPPv2NK11CUDAMessage21getMessageDescriptionEv"></span><span id="CUDAMessage::getMessageDescriptionC"></span><span class="target" id="classCUDAMessage_1a24ff050a2c92011be1600fd8af1d512e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classMsgBruteForce.html#_CPPv413MsgBruteForce" title="MsgBruteForce"><span class="n"><span class="pre">MsgBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classMsgBruteForce.html#_CPPv4N13MsgBruteForce4DataE" title="MsgBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMessageDescription</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage21getMessageDescriptionEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns message description. </p>
 <p>Return an immutable reference to the message description represented by the <a class="reference internal" href="#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a> instance</p>
 <dl class="field-list simple">
@@ -843,8 +862,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage18getMaximumListSizeEv">
-<span id="_CPPv3NK11CUDAMessage18getMaximumListSizeEv"></span><span id="_CPPv2NK11CUDAMessage18getMaximumListSizeEv"></span><span id="CUDAMessage::getMaximumListSizeC"></span><span class="target" id="classCUDAMessage_1a85bab293bc6156719c2bd4113c0ccdfb"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getMaximumListSize</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage18getMaximumListSizeEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage18getMaximumListSizeEv">
+<span id="_CPPv3NK11CUDAMessage18getMaximumListSizeEv"></span><span id="_CPPv2NK11CUDAMessage18getMaximumListSizeEv"></span><span id="CUDAMessage::getMaximumListSizeC"></span><span class="target" id="classCUDAMessage_1a85bab293bc6156719c2bd4113c0ccdfb"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMaximumListSize</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage18getMaximumListSizeEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the maximum list size. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -864,8 +883,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage15getMessageCountEv">
-<span id="_CPPv3NK11CUDAMessage15getMessageCountEv"></span><span id="_CPPv2NK11CUDAMessage15getMessageCountEv"></span><span id="CUDAMessage::getMessageCountC"></span><span class="target" id="classCUDAMessage_1a6b88eaa2fe75ccd8c7726eddd0b55ea5"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getMessageCount</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage15getMessageCountEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage15getMessageCountEv">
+<span id="_CPPv3NK11CUDAMessage15getMessageCountEv"></span><span id="_CPPv2NK11CUDAMessage15getMessageCountEv"></span><span id="CUDAMessage::getMessageCountC"></span><span class="target" id="classCUDAMessage_1a6b88eaa2fe75ccd8c7726eddd0b55ea5"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getMessageCount</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage15getMessageCountEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>The current number of messages </p>
@@ -874,8 +893,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage15setMessageCountERKj">
-<span id="_CPPv3N11CUDAMessage15setMessageCountERKj"></span><span id="_CPPv2N11CUDAMessage15setMessageCountERKj"></span><span id="CUDAMessage::setMessageCount__unsigned-iCR"></span><span class="target" id="classCUDAMessage_1a1dedb01c15242cd4ec7cb006321ee235"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setMessageCount</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">_message_count</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage15setMessageCountERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage15setMessageCountERKj">
+<span id="_CPPv3N11CUDAMessage15setMessageCountERKj"></span><span id="_CPPv2N11CUDAMessage15setMessageCountERKj"></span><span id="CUDAMessage::setMessageCount__unsigned-iCR"></span><span class="target" id="classCUDAMessage_1a1dedb01c15242cd4ec7cb006321ee235"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setMessageCount</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">_message_count</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage15setMessageCountERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Manually update the message count </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -888,8 +907,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage4initER11CUDAScatterRKj">
-<span id="_CPPv3N11CUDAMessage4initER11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage4initER11CUDAScatterRKj"></span><span id="CUDAMessage::init__CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1a52c6999769e2dd2f25c5dbecfdfcac49"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4initER11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage4initER11CUDAScatterRKj">
+<span id="_CPPv3N11CUDAMessage4initER11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage4initER11CUDAScatterRKj"></span><span id="CUDAMessage::init__CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1a52c6999769e2dd2f25c5dbecfdfcac49"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4initER11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Initialise the CUDAMessagelist This allocates and initialises any CUDA data structures for reading the messagelist, and sets them asthough the messagelist were empty. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -902,8 +921,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage6resizeEjR11CUDAScatterRKj">
-<span id="_CPPv3N11CUDAMessage6resizeEjR11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage6resizeEjR11CUDAScatterRKj"></span><span id="CUDAMessage::resize__unsigned-i.CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1af57450fc1a783bad92635c410e7e879e"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">resize</span></code><span class="sig-paren">(</span><span class="pre">unsigned</span> <span class="pre">int</span> <em><span class="pre">newSize</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage6resizeEjR11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage6resizeEjR11CUDAScatterRKj">
+<span id="_CPPv3N11CUDAMessage6resizeEjR11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage6resizeEjR11CUDAScatterRKj"></span><span id="CUDAMessage::resize__unsigned-i.CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1af57450fc1a783bad92635c410e7e879e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">resize</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">newSize</span></span>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage6resizeEjR11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets initial message data to zero by allocating memory for message lists. </p>
 <p>Updates message_count to equal newSize, internally reallocates buffer space if more space is required </p>
 <dl class="field-list simple">
@@ -922,10 +941,10 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj">
-<span id="_CPPv3NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj"></span><span id="_CPPv2NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj"></span><span id="CUDAMessage::mapReadRuntimeVariables__AgentFunctionDataCR.CUDAAgentCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a386f3ecb7c308d835e6b30c6feaed790"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">mapReadRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDAAgent.html#_CPPv49CUDAAgent" title="CUDAAgent"><span class="pre">CUDAAgent</span></a> <span class="pre">&amp;</span><em><span class="pre">cuda_agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Uses the cuRVE runtime to map the variables used by the agent function to the cuRVE library so that can be accessed by name within a n agent function The read runtime variables are to be used when reading messages <dl class="xrefsect">
-<dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj">
+<span id="_CPPv3NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj"></span><span id="_CPPv2NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj"></span><span id="CUDAMessage::mapReadRuntimeVariables__AgentFunctionDataCR.CUDAAgentCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a386f3ecb7c308d835e6b30c6feaed790"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapReadRuntimeVariables</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">func</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCUDAAgent.html#_CPPv49CUDAAgent" title="CUDAAgent"><span class="n"><span class="pre">CUDAAgent</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cuda_agent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">instance_id</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uses the cuRVE runtime to map the variables used by the agent function to the cuRVE library so that can be accessed by name within a n agent function The read runtime variables are to be used when reading messages <dl>
+<dt class="sig sig-object cpp">
 <em><span class="pre">Bug:</span></em></dt>
 <dd><p>message_name is input or output, run some tests to see which one is correct </p>
 </dd></dl>
@@ -942,8 +961,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj">
-<span id="_CPPv3NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj"></span><span id="_CPPv2NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj"></span><span id="CUDAMessage::mapWriteRuntimeVariables__AgentFunctionDataCR.CUDAAgentCR.unsigned-iCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a877334a96fd498220bcd89a3622179c8"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">mapWriteRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCUDAAgent.html#_CPPv49CUDAAgent" title="CUDAAgent"><span class="pre">CUDAAgent</span></a> <span class="pre">&amp;</span><em><span class="pre">cuda_agent</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">writeLen</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj">
+<span id="_CPPv3NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj"></span><span id="_CPPv2NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj"></span><span id="CUDAMessage::mapWriteRuntimeVariables__AgentFunctionDataCR.CUDAAgentCR.unsigned-iCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a877334a96fd498220bcd89a3622179c8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mapWriteRuntimeVariables</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">func</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCUDAAgent.html#_CPPv49CUDAAgent" title="CUDAAgent"><span class="n"><span class="pre">CUDAAgent</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">cuda_agent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">writeLen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">instance_id</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Uses the cuRVE runtime to map the variables used by the agent function to the cuRVE library so that can be accessed by name within a n agent function The write runtime variables are to be used when creating messages, as they are output to swap space </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -961,8 +980,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj">
-<span id="_CPPv3NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="_CPPv2NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="CUDAMessage::unmapRuntimeVariables__AgentFunctionDataCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a06ba8f3c1be9c28f9897e9841f69cbc9"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">unmapRuntimeVariables</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a> <span class="pre">&amp;</span><em><span class="pre">func</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">instance_id</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj">
+<span id="_CPPv3NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="_CPPv2NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj"></span><span id="CUDAMessage::unmapRuntimeVariables__AgentFunctionDataCR.unsigned-iCRC"></span><span class="target" id="classCUDAMessage_1a06ba8f3c1be9c28f9897e9841f69cbc9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">unmapRuntimeVariables</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">func</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">instance_id</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Uses the cuRVE runtime to unmap the variables used by the agent function to the cuRVE library so that they are unavailable to be accessed by name within an agent function. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -975,23 +994,23 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage10getReadPtrERKNSt6stringE">
-<span id="_CPPv3N11CUDAMessage10getReadPtrERKNSt6stringE"></span><span id="_CPPv2N11CUDAMessage10getReadPtrERKNSt6stringE"></span><span id="CUDAMessage::getReadPtr__ssCR"></span><span class="target" id="classCUDAMessage_1abe03eca60771c3c562bec3b0f42c8f38"></span><span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getReadPtr</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">var_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage10getReadPtrERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage10getReadPtrERKNSt6stringE">
+<span id="_CPPv3N11CUDAMessage10getReadPtrERKNSt6stringE"></span><span id="_CPPv2N11CUDAMessage10getReadPtrERKNSt6stringE"></span><span id="CUDAMessage::getReadPtr__ssCR"></span><span class="target" id="classCUDAMessage_1abe03eca60771c3c562bec3b0f42c8f38"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getReadPtr</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">var_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage10getReadPtrERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage11getReadListEv">
-<span id="_CPPv3N11CUDAMessage11getReadListEv"></span><span id="_CPPv2N11CUDAMessage11getReadListEv"></span><span id="CUDAMessage::getReadList"></span><span class="target" id="classCUDAMessage_1a9a031b6b40ebd3f1c04b9faea150bac6"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_CUDAMessageList_8h_1ab69a9ea40b3e67edbce7ed651f75aa71.html#_CPPv410CUDAMsgMap" title="CUDAMsgMap"><span class="pre">CUDAMsgMap</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getReadList</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage11getReadListEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage11getReadListEv">
+<span id="_CPPv3N11CUDAMessage11getReadListEv"></span><span id="_CPPv2N11CUDAMessage11getReadListEv"></span><span id="CUDAMessage::getReadList"></span><span class="target" id="classCUDAMessage_1a9a031b6b40ebd3f1c04b9faea150bac6"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_CUDAMessageList_8h_1ab69a9ea40b3e67edbce7ed651f75aa71.html#_CPPv410CUDAMsgMap" title="CUDAMsgMap"><span class="n"><span class="pre">CUDAMsgMap</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getReadList</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage11getReadListEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage12getWriteListEv">
-<span id="_CPPv3N11CUDAMessage12getWriteListEv"></span><span id="_CPPv2N11CUDAMessage12getWriteListEv"></span><span id="CUDAMessage::getWriteList"></span><span class="target" id="classCUDAMessage_1a0cdedd7f9dbbb8673d749ddf5416caf9"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="typedef_CUDAMessageList_8h_1ab69a9ea40b3e67edbce7ed651f75aa71.html#_CPPv410CUDAMsgMap" title="CUDAMsgMap"><span class="pre">CUDAMsgMap</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">getWriteList</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage12getWriteListEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage12getWriteListEv">
+<span id="_CPPv3N11CUDAMessage12getWriteListEv"></span><span id="_CPPv2N11CUDAMessage12getWriteListEv"></span><span id="CUDAMessage::getWriteList"></span><span class="target" id="classCUDAMessage_1a0cdedd7f9dbbb8673d749ddf5416caf9"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="typedef_CUDAMessageList_8h_1ab69a9ea40b3e67edbce7ed651f75aa71.html#_CPPv410CUDAMsgMap" title="CUDAMsgMap"><span class="n"><span class="pre">CUDAMsgMap</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getWriteList</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage12getWriteListEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage4swapEbRKjR11CUDAScatterRKj">
-<span id="_CPPv3N11CUDAMessage4swapEbRKjR11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage4swapEbRKjR11CUDAScatterRKj"></span><span id="CUDAMessage::swap__b.unsigned-iCR.CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1ab9494f7b2b917fc376150b2aeb1b6747"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">swap</span></code><span class="sig-paren">(</span><span class="pre">bool</span> <em><span class="pre">isOptional</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">newMsgCount</span></em>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4swapEbRKjR11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage4swapEbRKjR11CUDAScatterRKj">
+<span id="_CPPv3N11CUDAMessage4swapEbRKjR11CUDAScatterRKj"></span><span id="_CPPv2N11CUDAMessage4swapEbRKjR11CUDAScatterRKj"></span><span id="CUDAMessage::swap__b.unsigned-iCR.CUDAScatterR.unsigned-iCR"></span><span class="target" id="classCUDAMessage_1ab9494f7b2b917fc376150b2aeb1b6747"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">isOptional</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">newMsgCount</span></span>, <a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4swapEbRKjR11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Swaps the two internal maps within message_list </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1009,44 +1028,44 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage4swapEv">
-<span id="_CPPv3N11CUDAMessage4swapEv"></span><span id="_CPPv2N11CUDAMessage4swapEv"></span><span id="CUDAMessage::swap"></span><span class="target" id="classCUDAMessage_1ab2ffa634837feb83c85928eb428834ec"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">swap</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4swapEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage4swapEv">
+<span id="_CPPv3N11CUDAMessage4swapEv"></span><span id="_CPPv2N11CUDAMessage4swapEv"></span><span id="CUDAMessage::swap"></span><span class="target" id="classCUDAMessage_1ab2ffa634837feb83c85928eb428834ec"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">swap</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage4swapEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Basic list swap with no additional actions </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage26getTruncateMessageListFlagEv">
-<span id="_CPPv3NK11CUDAMessage26getTruncateMessageListFlagEv"></span><span id="_CPPv2NK11CUDAMessage26getTruncateMessageListFlagEv"></span><span id="CUDAMessage::getTruncateMessageListFlagC"></span><span class="target" id="classCUDAMessage_1a5917efb9505d20164ecaf8e1f8e0bc78"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getTruncateMessageListFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage26getTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage26getTruncateMessageListFlagEv">
+<span id="_CPPv3NK11CUDAMessage26getTruncateMessageListFlagEv"></span><span id="_CPPv2NK11CUDAMessage26getTruncateMessageListFlagEv"></span><span id="CUDAMessage::getTruncateMessageListFlagC"></span><span class="target" id="classCUDAMessage_1a5917efb9505d20164ecaf8e1f8e0bc78"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getTruncateMessageListFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage26getTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage26setTruncateMessageListFlagEv">
-<span id="_CPPv3N11CUDAMessage26setTruncateMessageListFlagEv"></span><span id="_CPPv2N11CUDAMessage26setTruncateMessageListFlagEv"></span><span id="CUDAMessage::setTruncateMessageListFlag"></span><span class="target" id="classCUDAMessage_1af27c3276fdc71a35d0988ef1bda1f8e3"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setTruncateMessageListFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage26setTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage26setTruncateMessageListFlagEv">
+<span id="_CPPv3N11CUDAMessage26setTruncateMessageListFlagEv"></span><span id="_CPPv2N11CUDAMessage26setTruncateMessageListFlagEv"></span><span id="CUDAMessage::setTruncateMessageListFlag"></span><span class="target" id="classCUDAMessage_1af27c3276fdc71a35d0988ef1bda1f8e3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setTruncateMessageListFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage26setTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage28clearTruncateMessageListFlagEv">
-<span id="_CPPv3N11CUDAMessage28clearTruncateMessageListFlagEv"></span><span id="_CPPv2N11CUDAMessage28clearTruncateMessageListFlagEv"></span><span id="CUDAMessage::clearTruncateMessageListFlag"></span><span class="target" id="classCUDAMessage_1a5d12741a3dcba15f84e9b46a6924b1fc"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">clearTruncateMessageListFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage28clearTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage28clearTruncateMessageListFlagEv">
+<span id="_CPPv3N11CUDAMessage28clearTruncateMessageListFlagEv"></span><span id="_CPPv2N11CUDAMessage28clearTruncateMessageListFlagEv"></span><span id="CUDAMessage::clearTruncateMessageListFlag"></span><span class="target" id="classCUDAMessage_1a5d12741a3dcba15f84e9b46a6924b1fc"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clearTruncateMessageListFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage28clearTruncateMessageListFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage30getPBMConstructionRequiredFlagEv">
-<span id="_CPPv3NK11CUDAMessage30getPBMConstructionRequiredFlagEv"></span><span id="_CPPv2NK11CUDAMessage30getPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::getPBMConstructionRequiredFlagC"></span><span class="target" id="classCUDAMessage_1afca81c4302a5b781ef8d01dc2c977b47"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getPBMConstructionRequiredFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage30getPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage30getPBMConstructionRequiredFlagEv">
+<span id="_CPPv3NK11CUDAMessage30getPBMConstructionRequiredFlagEv"></span><span id="_CPPv2NK11CUDAMessage30getPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::getPBMConstructionRequiredFlagC"></span><span class="target" id="classCUDAMessage_1afca81c4302a5b781ef8d01dc2c977b47"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getPBMConstructionRequiredFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage30getPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage30setPBMConstructionRequiredFlagEv">
-<span id="_CPPv3N11CUDAMessage30setPBMConstructionRequiredFlagEv"></span><span id="_CPPv2N11CUDAMessage30setPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::setPBMConstructionRequiredFlag"></span><span class="target" id="classCUDAMessage_1a7a3eca6f42717c39aa4f34bb3b9590cd"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">setPBMConstructionRequiredFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage30setPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage30setPBMConstructionRequiredFlagEv">
+<span id="_CPPv3N11CUDAMessage30setPBMConstructionRequiredFlagEv"></span><span id="_CPPv2N11CUDAMessage30setPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::setPBMConstructionRequiredFlag"></span><span class="target" id="classCUDAMessage_1a7a3eca6f42717c39aa4f34bb3b9590cd"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setPBMConstructionRequiredFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage30setPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage32clearPBMConstructionRequiredFlagEv">
-<span id="_CPPv3N11CUDAMessage32clearPBMConstructionRequiredFlagEv"></span><span id="_CPPv2N11CUDAMessage32clearPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::clearPBMConstructionRequiredFlag"></span><span class="target" id="classCUDAMessage_1a4202d2bc3e24402e472e20ca45f5394a"></span><em class="property"><span class="pre">inline</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">clearPBMConstructionRequiredFlag</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage32clearPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage32clearPBMConstructionRequiredFlagEv">
+<span id="_CPPv3N11CUDAMessage32clearPBMConstructionRequiredFlagEv"></span><span id="_CPPv2N11CUDAMessage32clearPBMConstructionRequiredFlagEv"></span><span id="CUDAMessage::clearPBMConstructionRequiredFlag"></span><span class="target" id="classCUDAMessage_1a4202d2bc3e24402e472e20ca45f5394a"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">clearPBMConstructionRequiredFlag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage32clearPBMConstructionRequiredFlagEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t">
-<span id="_CPPv3N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAMessage::buildIndex__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAMessage_1a216e88d0664aa0c392b0ceb07ec23271"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">buildIndex</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="CUDAMessage::buildIndex__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classCUDAMessage_1a216e88d0664aa0c392b0ceb07ec23271"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buildIndex</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">cudaStream_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage10buildIndexER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Builds index, required to read messages (some messaging types won’t require an implementation) </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1059,16 +1078,16 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK11CUDAMessage20getMetaDataDevicePtrEv">
-<span id="_CPPv3NK11CUDAMessage20getMetaDataDevicePtrEv"></span><span id="_CPPv2NK11CUDAMessage20getMetaDataDevicePtrEv"></span><span id="CUDAMessage::getMetaDataDevicePtrC"></span><span class="target" id="classCUDAMessage_1a70e45af6b81a55106e34c5fd86ab28e7"></span><em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK11CUDAMessage20getMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK11CUDAMessage20getMetaDataDevicePtrEv">
+<span id="_CPPv3NK11CUDAMessage20getMetaDataDevicePtrEv"></span><span id="_CPPv2NK11CUDAMessage20getMetaDataDevicePtrEv"></span><span id="CUDAMessage::getMetaDataDevicePtrC"></span><span class="target" id="classCUDAMessage_1a70e45af6b81a55106e34c5fd86ab28e7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMetaDataDevicePtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11CUDAMessage20getMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N11CUDAMessage18zeroAllMessageDataEv">
-<span id="_CPPv3N11CUDAMessage18zeroAllMessageDataEv"></span><span id="_CPPv2N11CUDAMessage18zeroAllMessageDataEv"></span><span id="CUDAMessage::zeroAllMessageData"></span><span class="target" id="classCUDAMessage_1ab78977f61a2da53cec287f6353fdb7e9"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">zeroAllMessageData</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage18zeroAllMessageDataEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11CUDAMessage18zeroAllMessageDataEv">
+<span id="_CPPv3N11CUDAMessage18zeroAllMessageDataEv"></span><span id="_CPPv2N11CUDAMessage18zeroAllMessageDataEv"></span><span id="CUDAMessage::zeroAllMessageData"></span><span class="target" id="classCUDAMessage_1ab78977f61a2da53cec287f6353fdb7e9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">zeroAllMessageData</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11CUDAMessage18zeroAllMessageDataEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets all message variable data to zero. </p>
 <p>Zero all message variable data.</p>
 <dl class="field-list simple">
@@ -1084,8 +1103,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

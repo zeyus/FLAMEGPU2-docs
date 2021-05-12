@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct RdYlBu &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,36 +813,36 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-rdylbu">
+  <section id="struct-rdylbu">
 <span id="exhale-struct-structstock-1-1palettes-1-1rdylbu"></span><h1>Struct RdYlBu<a class="headerlink" href="#struct-rdylbu" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_visualiser_color_Palette.h.html#file-include-flamegpu-visualiser-color-palette-h"><span class="std std-ref">File Palette.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="base-type">
+<section id="base-type">
 <h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Palette</span></code> (<a class="reference internal" href="structPalette.html#exhale-struct-structpalette"><span class="std std-ref">Struct Palette</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="struct-documentation">
+</section>
+</section>
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv4N5Stock8Palettes6RdYlBuE">
-<span id="_CPPv3N5Stock8Palettes6RdYlBuE"></span><span id="_CPPv2N5Stock8Palettes6RdYlBuE"></span><span id="Stock::Palettes::RdYlBu"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-prename descclassname"><span class="pre">Stock</span><span class="pre">::</span><span class="pre">Palettes</span><code class="sig-prename descclassname"><span class="pre">::</span></code></code><code class="sig-name descname"><span class="pre">RdYlBu</span></code> <span class="pre">:</span> <em class="property"><span class="pre">public</span></em> <a class="reference internal" href="structPalette.html#_CPPv47Palette" title="Palette"><span class="pre">Palette</span></a><a class="headerlink" href="#_CPPv4N5Stock8Palettes6RdYlBuE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Stock8Palettes6RdYlBuE">
+<span id="_CPPv3N5Stock8Palettes6RdYlBuE"></span><span id="_CPPv2N5Stock8Palettes6RdYlBuE"></span><span id="Stock::Palettes::RdYlBu"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">Stock</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Palettes</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">RdYlBu</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="structPalette.html#_CPPv47Palette" title="Palette"><span class="n"><span class="pre">Palette</span></span></a><a class="headerlink" href="#_CPPv4N5Stock8Palettes6RdYlBuE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><a class="reference internal" href="structColor.html#structColor"><span class="std std-ref">Color</span></a> blind friendly Diverging palette <a class="reference internal" href="#structStock_1_1Palettes_1_1RdYlBu"><span class="std std-ref">RdYlBu</span></a> palette from Colorbrewer </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N5Stock8Palettes6RdYlBu6RdYlBuEv">
-<span id="_CPPv3N5Stock8Palettes6RdYlBu6RdYlBuEv"></span><span id="_CPPv2N5Stock8Palettes6RdYlBu6RdYlBuEv"></span><span id="Stock::Palettes::RdYlBu::RdYlBu"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a5640d67f111cfcce4f5b9f38ff4fa193"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">RdYlBu</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Stock8Palettes6RdYlBu6RdYlBuEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N5Stock8Palettes6RdYlBu6RdYlBuEv">
+<span id="_CPPv3N5Stock8Palettes6RdYlBu6RdYlBuEv"></span><span id="_CPPv2N5Stock8Palettes6RdYlBu6RdYlBuEv"></span><span id="Stock::Palettes::RdYlBu::RdYlBu"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a5640d67f111cfcce4f5b9f38ff4fa193"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RdYlBu</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5Stock8Palettes6RdYlBu6RdYlBuEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5Stock8Palettes6RdYlBu11getCategoryEv">
-<span id="_CPPv3NK5Stock8Palettes6RdYlBu11getCategoryEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu11getCategoryEv"></span><span id="Stock::Palettes::RdYlBu::getCategoryC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a3d0490cba14c5c82ab2be996dbad2f2c"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <span class="pre">Category</span> <code class="sig-name descname"><span class="pre">getCategory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu11getCategoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Stock8Palettes6RdYlBu11getCategoryEv">
+<span id="_CPPv3NK5Stock8Palettes6RdYlBu11getCategoryEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu11getCategoryEv"></span><span id="Stock::Palettes::RdYlBu::getCategoryC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a3d0490cba14c5c82ab2be996dbad2f2c"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="n"><span class="pre">Category</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getCategory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu11getCategoryEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the category of the palette <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="structPalette.html#structPalette_1aeeb2059d5726e1e88207614038e96d7d"><span class="std std-ref">Category</span></a> </p>
 </dd>
@@ -832,8 +851,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv">
-<span id="_CPPv3NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv"></span><span id="Stock::Palettes::RdYlBu::getColorBlindFriendlyC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a3ef0f7ec0ff9e42c0e92be0aa3b5d7c0"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <span class="pre">bool</span> <code class="sig-name descname"><span class="pre">getColorBlindFriendly</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv">
+<span id="_CPPv3NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv"></span><span id="Stock::Palettes::RdYlBu::getColorBlindFriendlyC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a3ef0f7ec0ff9e42c0e92be0aa3b5d7c0"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getColorBlindFriendly</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu21getColorBlindFriendlyEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns whether the palette is confirmed as suitable for colorblind viewers </p>
 </dd></dl>
 
@@ -841,15 +860,15 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK5Stock8Palettes6RdYlBu6colorsEv">
-<span id="_CPPv3NK5Stock8Palettes6RdYlBu6colorsEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu6colorsEv"></span><span id="Stock::Palettes::RdYlBu::colorsC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a399df1a350cc8bf90cb0503427a58373"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">vector</span><span class="pre">&lt;</span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="pre">Color</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">colors</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em> <em class="property"><span class="pre">override</span></em><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu6colorsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK5Stock8Palettes6RdYlBu6colorsEv">
+<span id="_CPPv3NK5Stock8Palettes6RdYlBu6colorsEv"></span><span id="_CPPv2NK5Stock8Palettes6RdYlBu6colorsEv"></span><span id="Stock::Palettes::RdYlBu::colorsC"></span><span class="target" id="structStock_1_1Palettes_1_1RdYlBu_1a399df1a350cc8bf90cb0503427a58373"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structColor.html#_CPPv45Color" title="Color"><span class="n"><span class="pre">Color</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">colors</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4NK5Stock8Palettes6RdYlBu6colorsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

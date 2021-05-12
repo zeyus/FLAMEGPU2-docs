@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class ReadOnlyDeviceAPI &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,19 +813,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-readonlydeviceapi">
+  <section id="class-readonlydeviceapi">
 <span id="exhale-class-classreadonlydeviceapi"></span><h1>Class ReadOnlyDeviceAPI<a class="headerlink" href="#class-readonlydeviceapi" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_DeviceAPI.h.html#file-include-flamegpu-runtime-deviceapi-h"><span class="std std-ref">File DeviceAPI.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv417ReadOnlyDeviceAPI">
-<span id="_CPPv317ReadOnlyDeviceAPI"></span><span id="_CPPv217ReadOnlyDeviceAPI"></span><span id="ReadOnlyDeviceAPI"></span><span class="target" id="classReadOnlyDeviceAPI"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ReadOnlyDeviceAPI</span></code><a class="headerlink" href="#_CPPv417ReadOnlyDeviceAPI" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv417ReadOnlyDeviceAPI">
+<span id="_CPPv317ReadOnlyDeviceAPI"></span><span id="_CPPv217ReadOnlyDeviceAPI"></span><span id="ReadOnlyDeviceAPI"></span><span class="target" id="classReadOnlyDeviceAPI"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReadOnlyDeviceAPI</span></span></span><a class="headerlink" href="#_CPPv417ReadOnlyDeviceAPI" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>FLAMEGPU_API is a singleton class for the device runtime. </p>
-<p><dl class="xrefsect">
-<dt>
+<p><dl>
+<dt class="sig sig-object cpp">
 <em><span class="pre">Todo:</span></em></dt>
 <dd><p>longer description </p>
 </dd></dl>
@@ -815,8 +834,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState">
-<span id="_CPPv3N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState"></span><span id="_CPPv2N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState"></span><span id="ReadOnlyDeviceAPI::ReadOnlyDeviceAPI__Curve::NamespaceHashCR.Curve::NamespaceHashCR.curandStatePR"></span><span class="target" id="classReadOnlyDeviceAPI_1a0e5e69462bc307e4627a82dee893c44c"></span><span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">ReadOnlyDeviceAPI</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <span class="pre">&amp;</span><em><span class="pre">instance_id_hash</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <span class="pre">&amp;</span><em><span class="pre">agentfuncname_hash</span></em>, <span class="pre">curandState</span> <span class="pre">*</span><span class="pre">&amp;</span><em><span class="pre">d_rng</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState">
+<span id="_CPPv3N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState"></span><span id="_CPPv2N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState"></span><span id="ReadOnlyDeviceAPI::ReadOnlyDeviceAPI__Curve::NamespaceHashCR.Curve::NamespaceHashCR.curandStatePR"></span><span class="target" id="classReadOnlyDeviceAPI_1a0e5e69462bc307e4627a82dee893c44c"></span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ReadOnlyDeviceAPI</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">instance_id_hash</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">agentfuncname_hash</span></span>, <span class="n"><span class="pre">curandState</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d_rng</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI17ReadOnlyDeviceAPIERKN5Curve13NamespaceHashERKN5Curve13NamespaceHashERP11curandState" title="Permalink to this definition">¶</a><br /></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -828,8 +847,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc">
-<span id="_CPPv3I0_jEN17ReadOnlyDeviceAPI11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jEN17ReadOnlyDeviceAPI11getVariableERAN_Kc"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classReadOnlyDeviceAPI_1ae6366b446e7d52a139c02180aaf4aa18"></span><span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc" title="ReadOnlyDeviceAPI::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">N</span><span class="pre">]</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc">
+<span id="_CPPv3I0_jEN17ReadOnlyDeviceAPI11getVariableERA1N_Kc"></span><span id="_CPPv2I0_jEN17ReadOnlyDeviceAPI11getVariableERAN_Kc"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classReadOnlyDeviceAPI_1ae6366b446e7d52a139c02180aaf4aa18"></span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc" title="ReadOnlyDeviceAPI::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc" title="ReadOnlyDeviceAPI::getVariable::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">]</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1N_Kc" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets an agent memory value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -839,8 +858,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj">
-<span id="_CPPv3I0_j_jEN17ReadOnlyDeviceAPI11getVariableERA1M_KcRKj"></span><span id="_CPPv2I0_j_jEN17ReadOnlyDeviceAPI11getVariableERAM_KcRKj"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">,</span> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">M</span></code><span class="pre">&gt;</span><br /><span class="target" id="classReadOnlyDeviceAPI_1a43c17815df8e6fcd33b3b57e73fa7d5f"></span><span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj" title="ReadOnlyDeviceAPI::getVariable::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getVariable</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">char</span> <span class="pre">(</span><span class="pre">&amp;</span><em><span class="pre">variable_name</span></em><span class="pre">)</span><span class="pre">[</span><span class="pre">M</span><span class="pre">]</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj">
+<span id="_CPPv3I0_j_jEN17ReadOnlyDeviceAPI11getVariableERA1M_KcRKj"></span><span id="_CPPv2I0_j_jEN17ReadOnlyDeviceAPI11getVariableERAM_KcRKj"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">M</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classReadOnlyDeviceAPI_1a43c17815df8e6fcd33b3b57e73fa7d5f"></span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj" title="ReadOnlyDeviceAPI::getVariable::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getVariable</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">variable_name</span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj" title="ReadOnlyDeviceAPI::getVariable::M"><span class="n"><span class="pre">M</span></span></a><span class="p"><span class="pre">]</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_j_jEN17ReadOnlyDeviceAPI11getVariableE1TRA1M_KcRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets an agent memory value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -850,8 +869,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK17ReadOnlyDeviceAPI14getStepCounterEv">
-<span id="_CPPv3NK17ReadOnlyDeviceAPI14getStepCounterEv"></span><span id="_CPPv2NK17ReadOnlyDeviceAPI14getStepCounterEv"></span><span id="ReadOnlyDeviceAPI::getStepCounterC"></span><span class="target" id="classReadOnlyDeviceAPI_1a415beaf1c074553d1541f0f426b2cf11"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <em class="property"><span class="pre">inline</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getStepCounter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK17ReadOnlyDeviceAPI14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK17ReadOnlyDeviceAPI14getStepCounterEv">
+<span id="_CPPv3NK17ReadOnlyDeviceAPI14getStepCounterEv"></span><span id="_CPPv2NK17ReadOnlyDeviceAPI14getStepCounterEv"></span><span id="ReadOnlyDeviceAPI::getStepCounterC"></span><span class="target" id="classReadOnlyDeviceAPI_1a415beaf1c074553d1541f0f426b2cf11"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getStepCounter</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK17ReadOnlyDeviceAPI14getStepCounterEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Access the current stepCount </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -864,8 +883,8 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N17ReadOnlyDeviceAPI6randomE">
-<span id="_CPPv3N17ReadOnlyDeviceAPI6randomE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI6randomE"></span><span id="ReadOnlyDeviceAPI::random__AgentRandomC"></span><span class="target" id="classReadOnlyDeviceAPI_1ab60f3c828af079142761a0065495f227"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classAgentRandom.html#_CPPv411AgentRandom" title="AgentRandom"><span class="pre">AgentRandom</span></a> <code class="sig-name descname"><span class="pre">random</span></code><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI6randomE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17ReadOnlyDeviceAPI6randomE">
+<span id="_CPPv3N17ReadOnlyDeviceAPI6randomE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI6randomE"></span><span id="ReadOnlyDeviceAPI::random__AgentRandomC"></span><span class="target" id="classReadOnlyDeviceAPI_1ab60f3c828af079142761a0065495f227"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classAgentRandom.html#_CPPv411AgentRandom" title="AgentRandom"><span class="n"><span class="pre">AgentRandom</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">random</span></span></span><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI6randomE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Provides access to random functionality inside agent functions </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -874,8 +893,8 @@
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N17ReadOnlyDeviceAPI11environmentE">
-<span id="_CPPv3N17ReadOnlyDeviceAPI11environmentE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI11environmentE"></span><span id="ReadOnlyDeviceAPI::environment__DeviceEnvironmentC"></span><span class="target" id="classReadOnlyDeviceAPI_1a64e4bb4de79de791a4efd651cbdc67be"></span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classDeviceEnvironment.html#_CPPv417DeviceEnvironment" title="DeviceEnvironment"><span class="pre">DeviceEnvironment</span></a> <code class="sig-name descname"><span class="pre">environment</span></code><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI11environmentE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17ReadOnlyDeviceAPI11environmentE">
+<span id="_CPPv3N17ReadOnlyDeviceAPI11environmentE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI11environmentE"></span><span id="ReadOnlyDeviceAPI::environment__DeviceEnvironmentC"></span><span class="target" id="classReadOnlyDeviceAPI_1a64e4bb4de79de791a4efd651cbdc67be"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classDeviceEnvironment.html#_CPPv417DeviceEnvironment" title="DeviceEnvironment"><span class="n"><span class="pre">DeviceEnvironment</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">environment</span></span></span><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI11environmentE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Provides access to environment variables inside agent functions </p>
 </dd></dl>
 
@@ -883,24 +902,24 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-attributes">Protected Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N17ReadOnlyDeviceAPI20agent_func_name_hashE">
-<span id="_CPPv3N17ReadOnlyDeviceAPI20agent_func_name_hashE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI20agent_func_name_hashE"></span><span id="ReadOnlyDeviceAPI::agent_func_name_hash__Curve::NamespaceHash"></span><span class="target" id="classReadOnlyDeviceAPI_1a3b7d8d19cc0ca8b98cd89ee50e00c85a"></span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="pre">Curve</span></a><span class="pre">::</span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="pre">NamespaceHash</span></a> <code class="sig-name descname"><span class="pre">agent_func_name_hash</span></code><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI20agent_func_name_hashE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17ReadOnlyDeviceAPI20agent_func_name_hashE">
+<span id="_CPPv3N17ReadOnlyDeviceAPI20agent_func_name_hashE"></span><span id="_CPPv2N17ReadOnlyDeviceAPI20agent_func_name_hashE"></span><span id="ReadOnlyDeviceAPI::agent_func_name_hash__Curve::NamespaceHash"></span><span class="target" id="classReadOnlyDeviceAPI_1a3b7d8d19cc0ca8b98cd89ee50e00c85a"></span><a class="reference internal" href="classCurve.html#_CPPv45Curve" title="Curve"><span class="n"><span class="pre">Curve</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classCurve.html#_CPPv4N5Curve13NamespaceHashE" title="Curve::NamespaceHash"><span class="n"><span class="pre">NamespaceHash</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_func_name_hash</span></span></span><a class="headerlink" href="#_CPPv4N17ReadOnlyDeviceAPI20agent_func_name_hashE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-static-functions">Protected Static Functions</p>
 <dl class="cpp function">
-<dt>
-<span class="target" id="classReadOnlyDeviceAPI_1ae68e9a5326cbf499ac9a2e29dd21a5af"></span><code class="sig-name descname"><span class="pre">static</span> <span class="pre">inline</span> <span class="pre">__forceinline__</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">TID</span> <span class="pre">()</span></code></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="classReadOnlyDeviceAPI_1ae68e9a5326cbf499ac9a2e29dd21a5af"></span><span class="sig-name descname"><span class="pre">static</span> <span class="pre">inline</span> <span class="pre">__forceinline__</span> <span class="pre">static</span> <span class="pre">__device__</span> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">TID</span> <span class="pre">()</span></span></dt>
 <dd><p>Thread index </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

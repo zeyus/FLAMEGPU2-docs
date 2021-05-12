@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class AgentRandom &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,30 +813,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-agentrandom">
+  <section id="class-agentrandom">
 <span id="exhale-class-classagentrandom"></span><h1>Class AgentRandom<a class="headerlink" href="#class-agentrandom" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_utility_AgentRandom.cuh.html#file-include-flamegpu-runtime-utility-agentrandom-cuh"><span class="std std-ref">File AgentRandom.cuh</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv411AgentRandom">
-<span id="_CPPv311AgentRandom"></span><span id="_CPPv211AgentRandom"></span><span id="AgentRandom"></span><span class="target" id="classAgentRandom"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">AgentRandom</span></code><a class="headerlink" href="#_CPPv411AgentRandom" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv411AgentRandom">
+<span id="_CPPv311AgentRandom"></span><span id="_CPPv211AgentRandom"></span><span id="AgentRandom"></span><span class="target" id="classAgentRandom"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentRandom</span></span></span><a class="headerlink" href="#_CPPv411AgentRandom" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Utility for accessing random generation within agent functions This should only be instantiated by FLAMEGPU_API Wraps curand functions to access an internal curand state * </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
 <dl class="cpp type">
-<dt id="_CPPv4N11AgentRandom9size_typeE">
-<span id="_CPPv3N11AgentRandom9size_typeE"></span><span id="_CPPv2N11AgentRandom9size_typeE"></span><span id="AgentRandom::size_type"></span><span class="target" id="classAgentRandom_1a6fcf8f262270bffde1020d944ced316c"></span><em class="property"><span class="pre">typedef</span> </em><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">size_type</span></code><a class="headerlink" href="#_CPPv4N11AgentRandom9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11AgentRandom9size_typeE">
+<span id="_CPPv3N11AgentRandom9size_typeE"></span><span id="_CPPv2N11AgentRandom9size_typeE"></span><span id="AgentRandom::size_type"></span><span class="target" id="classAgentRandom_1a6fcf8f262270bffde1020d944ced316c"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">size_type</span></span></span><a class="headerlink" href="#_CPPv4N11AgentRandom9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N11AgentRandom11AgentRandomEP11curandState">
-<span id="_CPPv3N11AgentRandom11AgentRandomEP11curandState"></span><span id="_CPPv2N11AgentRandom11AgentRandomEP11curandState"></span><span id="AgentRandom::AgentRandom__curandStateP"></span><span class="target" id="classAgentRandom_1afb187a173d243b3f3b652c789af0e18a"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <code class="sig-name descname"><span class="pre">AgentRandom</span></code><span class="sig-paren">(</span><span class="pre">curandState</span> <span class="pre">*</span><em><span class="pre">d_rng</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentRandom11AgentRandomEP11curandState" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N11AgentRandom11AgentRandomEP11curandState">
+<span id="_CPPv3N11AgentRandom11AgentRandomEP11curandState"></span><span id="_CPPv2N11AgentRandom11AgentRandomEP11curandState"></span><span id="AgentRandom::AgentRandom__curandStateP"></span><span class="target" id="classAgentRandom_1afb187a173d243b3f3b652c789af0e18a"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">AgentRandom</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">curandState</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">d_rng</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11AgentRandom11AgentRandomEP11curandState" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructs an <a class="reference internal" href="#classAgentRandom"><span class="std std-ref">AgentRandom</span></a> instance </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -827,8 +846,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK11AgentRandom7uniformE1Tv">
-<span id="_CPPv3I0ENK11AgentRandom7uniformEv"></span><span id="_CPPv2I0ENK11AgentRandom7uniformEv"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1ab709bed12f410cd928bf4046c1bbeeaf"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1Tv" title="AgentRandom::uniform::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom7uniformE1Tv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK11AgentRandom7uniformE1Tv">
+<span id="_CPPv3I0ENK11AgentRandom7uniformEv"></span><span id="_CPPv2I0ENK11AgentRandom7uniformEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1ab709bed12f410cd928bf4046c1bbeeaf"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1Tv" title="AgentRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom7uniformE1Tv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a float uniformly distributed between 0.0 and 1.0. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -841,8 +860,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK11AgentRandom6normalE1Tv">
-<span id="_CPPv3I0ENK11AgentRandom6normalEv"></span><span id="_CPPv2I0ENK11AgentRandom6normalEv"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1a3cbd0b523f1780f8d588fea5ec9704c5"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom6normalE1Tv" title="AgentRandom::normal::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">normal</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom6normalE1Tv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK11AgentRandom6normalE1Tv">
+<span id="_CPPv3I0ENK11AgentRandom6normalEv"></span><span id="_CPPv2I0ENK11AgentRandom6normalEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1a3cbd0b523f1780f8d588fea5ec9704c5"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom6normalE1Tv" title="AgentRandom::normal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom6normalE1Tv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a normally distributed float with mean 0.0 and standard deviation 1.0. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -855,8 +874,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T">
-<span id="_CPPv3I0ENK11AgentRandom9logNormalERK1TRK1T"></span><span id="_CPPv2I0ENK11AgentRandom9logNormalERK1TRK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1a0f2185965c1bf0532eba73f233d954b3"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">logNormal</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">mean</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">stddev</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T">
+<span id="_CPPv3I0ENK11AgentRandom9logNormalERK1TRK1T"></span><span id="_CPPv2I0ENK11AgentRandom9logNormalERK1TRK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1a0f2185965c1bf0532eba73f233d954b3"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">logNormal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="AgentRandom::logNormal::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stddev</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom9logNormalE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a log-normally distributed float based on a normal distribution with the given mean and standard deviation. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -865,8 +884,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T">
-<span id="_CPPv3I0ENK11AgentRandom7uniformERK1TRK1T"></span><span id="_CPPv2I0ENK11AgentRandom7uniformERK1TRK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1a9f4d554db94f098496123b098829b2b3"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T">
+<span id="_CPPv3I0ENK11AgentRandom7uniformERK1TRK1T"></span><span id="_CPPv2I0ENK11AgentRandom7uniformERK1TRK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1a9f4d554db94f098496123b098829b2b3"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="AgentRandom::uniform::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK11AgentRandom7uniformE1TRK1TRK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><p>Returns an integer uniformly distributed in the inclusive range [lowerBound, max]</p>
 <p>Uniform Int</p>
 </p>
@@ -877,43 +896,43 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom7uniformEfv">
-<span id="_CPPv3IENK11AgentRandom7uniformEv"></span><span id="_CPPv2IENK11AgentRandom7uniformEv"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1ad2a05f8cf3c6ec31a0ad29b6cfda16b9"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformEfv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom7uniformEfv">
+<span id="_CPPv3IENK11AgentRandom7uniformEv"></span><span id="_CPPv2IENK11AgentRandom7uniformEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1ad2a05f8cf3c6ec31a0ad29b6cfda16b9"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformEfv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>All templates are specialised Uniform floating point </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom6normalEfv">
-<span id="_CPPv3IENK11AgentRandom6normalEv"></span><span id="_CPPv2IENK11AgentRandom6normalEv"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1a22a72c7925b232126d7965c9d5cb6802"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">normal</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom6normalEfv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom6normalEfv">
+<span id="_CPPv3IENK11AgentRandom6normalEv"></span><span id="_CPPv2IENK11AgentRandom6normalEv"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1a22a72c7925b232126d7965c9d5cb6802"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom6normalEfv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Normal floating point </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom9logNormalEfRKfRKf">
-<span id="_CPPv3IENK11AgentRandom9logNormalERKfRKf"></span><span id="_CPPv2IENK11AgentRandom9logNormalERKfRKf"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1acd0a8b8cf1d880dfb07b21dff20593b8"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">float</span> <code class="sig-name descname"><span class="pre">logNormal</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">mean</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">float</span> <span class="pre">&amp;</span><em><span class="pre">stddev</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom9logNormalEfRKfRKf" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom9logNormalEfRKfRKf">
+<span id="_CPPv3IENK11AgentRandom9logNormalERKfRKf"></span><span id="_CPPv2IENK11AgentRandom9logNormalERKfRKf"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1acd0a8b8cf1d880dfb07b21dff20593b8"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">logNormal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stddev</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom9logNormalEfRKfRKf" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Log Normal floating point </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom9logNormalEdRKdRKd">
-<span id="_CPPv3IENK11AgentRandom9logNormalERKdRKd"></span><span id="_CPPv2IENK11AgentRandom9logNormalERKdRKd"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1aec2dc6f32187e34add5f82c48f50f041"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">double</span> <code class="sig-name descname"><span class="pre">logNormal</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">double</span> <span class="pre">&amp;</span><em><span class="pre">mean</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">double</span> <span class="pre">&amp;</span><em><span class="pre">stddev</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom9logNormalEdRKdRKd" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom9logNormalEdRKdRKd">
+<span id="_CPPv3IENK11AgentRandom9logNormalERKdRKd"></span><span id="_CPPv2IENK11AgentRandom9logNormalERKdRKd"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1aec2dc6f32187e34add5f82c48f50f041"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">logNormal</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mean</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stddev</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom9logNormalEdRKdRKd" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom7uniformE7int64_tRK7int64_tRK7int64_t">
-<span id="_CPPv3IENK11AgentRandom7uniformERK7int64_tRK7int64_t"></span><span id="_CPPv2IENK11AgentRandom7uniformERK7int64_tRK7int64_t"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1abd80187d4beb0e661e4b65664b4e9190"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">int64_t</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">int64_t</span> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">int64_t</span> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformE7int64_tRK7int64_tRK7int64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom7uniformE7int64_tRK7int64_tRK7int64_t">
+<span id="_CPPv3IENK11AgentRandom7uniformERK7int64_tRK7int64_t"></span><span id="_CPPv2IENK11AgentRandom7uniformERK7int64_tRK7int64_t"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1abd80187d4beb0e661e4b65664b4e9190"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformE7int64_tRK7int64_tRK7int64_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4IENK11AgentRandom7uniformE8uint64_tRK8uint64_tRK8uint64_t">
-<span id="_CPPv3IENK11AgentRandom7uniformERK8uint64_tRK8uint64_t"></span><span id="_CPPv2IENK11AgentRandom7uniformERK8uint64_tRK8uint64_t"></span><span class="pre">template&lt;</span><span class="pre">&gt;</span><br /><span class="target" id="classAgentRandom_1ac69de701eaf338298e0cb05bba84a1be"></span><span class="pre">__forceinline__</span> <span class="pre">__device__</span> <span class="pre">uint64_t</span> <code class="sig-name descname"><span class="pre">uniform</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">uint64_t</span> <span class="pre">&amp;</span><em><span class="pre">min</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">uint64_t</span> <span class="pre">&amp;</span><em><span class="pre">max</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformE8uint64_tRK8uint64_tRK8uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4IENK11AgentRandom7uniformE8uint64_tRK8uint64_tRK8uint64_t">
+<span id="_CPPv3IENK11AgentRandom7uniformERK8uint64_tRK8uint64_t"></span><span id="_CPPv2IENK11AgentRandom7uniformERK8uint64_tRK8uint64_t"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classAgentRandom_1ac69de701eaf338298e0cb05bba84a1be"></span><span class="pre">__forceinline__</span><span class="w"> </span><span class="pre">__device__</span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">uniform</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4IENK11AgentRandom7uniformE8uint64_tRK8uint64_tRK8uint64_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

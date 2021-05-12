@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class DependencyGraph &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,16 +813,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-dependencygraph">
+  <section id="class-dependencygraph">
 <span id="exhale-class-classdependencygraph"></span><h1>Class DependencyGraph<a class="headerlink" href="#class-dependencygraph" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_DependencyGraph.h.html#file-include-flamegpu-model-dependencygraph-h"><span class="std std-ref">File DependencyGraph.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv415DependencyGraph">
-<span id="_CPPv315DependencyGraph"></span><span id="_CPPv215DependencyGraph"></span><span id="DependencyGraph"></span><span class="target" id="classDependencyGraph"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">DependencyGraph</span></code><a class="headerlink" href="#_CPPv415DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv415DependencyGraph">
+<span id="_CPPv315DependencyGraph"></span><span id="_CPPv215DependencyGraph"></span><span id="DependencyGraph"></span><span class="target" id="classDependencyGraph"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DependencyGraph</span></span></span><a class="headerlink" href="#_CPPv415DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This class represents the dependency tree for agent functions, host functions and submodels. Each <a class="reference internal" href="classDependencyNode.html#classDependencyNode"><span class="std std-ref">DependencyNode</span></a> has its own dependencies/dependents, the purpose of this class is to walk the dependency tree and provide utility such as validation/layering. <dl class="simple">
 <dt><strong>See</strong></dt><dd><p><a class="reference internal" href="classDependencyNode.html#classDependencyNode"><span class="std std-ref">DependencyNode</span></a> </p>
 </dd>
@@ -812,26 +831,26 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph15DependencyGraphEv">
-<span id="_CPPv3N15DependencyGraph15DependencyGraphEv"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphEv"></span><span id="DependencyGraph::DependencyGraph"></span><span class="target" id="classDependencyGraph_1a650576b3bf782dedb9d116600a1d6e68"></span><code class="sig-name descname"><span class="pre">DependencyGraph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph15DependencyGraphEv">
+<span id="_CPPv3N15DependencyGraph15DependencyGraphEv"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphEv"></span><span id="DependencyGraph::DependencyGraph"></span><span class="target" id="classDependencyGraph_1a650576b3bf782dedb9d116600a1d6e68"></span><span class="sig-name descname"><span class="n"><span class="pre">DependencyGraph</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph15DependencyGraphEPK9ModelData">
-<span id="_CPPv3N15DependencyGraph15DependencyGraphEPK9ModelData"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphEPK9ModelData"></span><span id="DependencyGraph::DependencyGraph__ModelDataCP"></span><span class="target" id="classDependencyGraph_1a6ca21c7e75d8cea518f05cb784b6ace1"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">DependencyGraph</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a> <span class="pre">*</span><em><span class="pre">_model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphEPK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph15DependencyGraphEPK9ModelData">
+<span id="_CPPv3N15DependencyGraph15DependencyGraphEPK9ModelData"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphEPK9ModelData"></span><span id="DependencyGraph::DependencyGraph__ModelDataCP"></span><span class="target" id="classDependencyGraph_1a6ca21c7e75d8cea518f05cb784b6ace1"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DependencyGraph</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">_model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphEPK9ModelData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Used by <a class="reference internal" href="structModelData.html#structModelData"><span class="std std-ref">ModelData</span></a> for instantiation </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph">
-<span id="_CPPv3N15DependencyGraph15DependencyGraphERK15DependencyGraph"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphERK15DependencyGraph"></span><span id="DependencyGraph::DependencyGraph__DependencyGraphCR"></span><span class="target" id="classDependencyGraph_1a0a59955b2e0c329593ec8721be13b2b0"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">DependencyGraph</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph" title="DependencyGraph::DependencyGraph"><span class="pre">DependencyGraph</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph">
+<span id="_CPPv3N15DependencyGraph15DependencyGraphERK15DependencyGraph"></span><span id="_CPPv2N15DependencyGraph15DependencyGraphERK15DependencyGraph"></span><span id="DependencyGraph::DependencyGraph__DependencyGraphCR"></span><span class="target" id="classDependencyGraph_1a0a59955b2e0c329593ec8721be13b2b0"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DependencyGraph</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph" title="DependencyGraph::DependencyGraph"><span class="n"><span class="pre">DependencyGraph</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph15DependencyGraphERK15DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Deep copy </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGrapheqERK15DependencyGraph">
-<span id="_CPPv3N15DependencyGrapheqERK15DependencyGraph"></span><span id="_CPPv2N15DependencyGrapheqERK15DependencyGraph"></span><span id="DependencyGraph::eq-operator__DependencyGraphCR"></span><span class="target" id="classDependencyGraph_1a1dc9e40e2e5ae2cfcee86491b57e12eb"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv415DependencyGraph" title="DependencyGraph"><span class="pre">DependencyGraph</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGrapheqERK15DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGrapheqERK15DependencyGraph">
+<span id="_CPPv3N15DependencyGrapheqERK15DependencyGraph"></span><span id="_CPPv2N15DependencyGrapheqERK15DependencyGraph"></span><span id="DependencyGraph::eq-operator__DependencyGraphCR"></span><span class="target" id="classDependencyGraph_1a1dc9e40e2e5ae2cfcee86491b57e12eb"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv415DependencyGraph" title="DependencyGraph"><span class="n"><span class="pre">DependencyGraph</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGrapheqERK15DependencyGraph" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether DependencyGraphs are functionally the same, i.e, do they represent the same execution graph </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -845,8 +864,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph7addRootER14DependencyNode">
-<span id="_CPPv3N15DependencyGraph7addRootER14DependencyNode"></span><span id="_CPPv2N15DependencyGraph7addRootER14DependencyNode"></span><span id="DependencyGraph::addRoot__DependencyNodeR"></span><span class="target" id="classDependencyGraph_1a4ec776b25670cbda83bd66aafcded5b2"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">addRoot</span></code><span class="sig-paren">(</span><a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="pre">DependencyNode</span></a> <span class="pre">&amp;</span><em><span class="pre">root</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph7addRootER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph7addRootER14DependencyNode">
+<span id="_CPPv3N15DependencyGraph7addRootER14DependencyNode"></span><span id="_CPPv2N15DependencyGraph7addRootER14DependencyNode"></span><span id="DependencyGraph::addRoot__DependencyNodeR"></span><span class="target" id="classDependencyGraph_1a4ec776b25670cbda83bd66aafcded5b2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">addRoot</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classDependencyNode.html#_CPPv414DependencyNode" title="DependencyNode"><span class="n"><span class="pre">DependencyNode</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">root</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph7addRootER14DependencyNode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Add an <a class="reference internal" href="classAgentFunctionDescription.html#classAgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a>, host function or submodel as a root node </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -856,8 +875,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph23validateDependencyGraphEv">
-<span id="_CPPv3N15DependencyGraph23validateDependencyGraphEv"></span><span id="_CPPv2N15DependencyGraph23validateDependencyGraphEv"></span><span id="DependencyGraph::validateDependencyGraph"></span><span class="target" id="classDependencyGraph_1a7d92f62538e304521c61223e356ed3de"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">validateDependencyGraph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph23validateDependencyGraphEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph23validateDependencyGraphEv">
+<span id="_CPPv3N15DependencyGraph23validateDependencyGraphEv"></span><span id="_CPPv2N15DependencyGraph23validateDependencyGraphEv"></span><span id="DependencyGraph::validateDependencyGraph"></span><span class="target" id="classDependencyGraph_1a7d92f62538e304521c61223e356ed3de"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">validateDependencyGraph</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph23validateDependencyGraphEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Checks the dependency graph for cycles and validates that all agent functions belong to the same model </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -867,8 +886,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph14generateLayersER16ModelDescription">
-<span id="_CPPv3N15DependencyGraph14generateLayersER16ModelDescription"></span><span id="_CPPv2N15DependencyGraph14generateLayersER16ModelDescription"></span><span id="DependencyGraph::generateLayers__ModelDescriptionR"></span><span class="target" id="classDependencyGraph_1a550e00c85095e69542355d482459ad44"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">generateLayers</span></code><span class="sig-paren">(</span><a class="reference internal" href="classModelDescription.html#_CPPv416ModelDescription" title="ModelDescription"><span class="pre">ModelDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">model</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph14generateLayersER16ModelDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph14generateLayersER16ModelDescription">
+<span id="_CPPv3N15DependencyGraph14generateLayersER16ModelDescription"></span><span id="_CPPv2N15DependencyGraph14generateLayersER16ModelDescription"></span><span id="DependencyGraph::generateLayers__ModelDescriptionR"></span><span class="target" id="classDependencyGraph_1a550e00c85095e69542355d482459ad44"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">generateLayers</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classModelDescription.html#_CPPv416ModelDescription" title="ModelDescription"><span class="n"><span class="pre">ModelDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph14generateLayersER16ModelDescription" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Generates optimal layers based on the dependencies specified and adds them to the model </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -881,8 +900,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph18generateDOTDiagramENSt6stringE">
-<span id="_CPPv3N15DependencyGraph18generateDOTDiagramENSt6stringE"></span><span id="_CPPv2N15DependencyGraph18generateDOTDiagramENSt6stringE"></span><span id="DependencyGraph::generateDOTDiagram__ss"></span><span class="target" id="classDependencyGraph_1ac8243ee998a510c1ea6ba244070133cc"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">generateDOTDiagram</span></code><span class="sig-paren">(</span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <em><span class="pre">outputFileName</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph18generateDOTDiagramENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph18generateDOTDiagramENSt6stringE">
+<span id="_CPPv3N15DependencyGraph18generateDOTDiagramENSt6stringE"></span><span id="_CPPv2N15DependencyGraph18generateDOTDiagramENSt6stringE"></span><span id="DependencyGraph::generateDOTDiagram__ss"></span><span class="target" id="classDependencyGraph_1ac8243ee998a510c1ea6ba244070133cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">generateDOTDiagram</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">outputFileName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph18generateDOTDiagramENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Generates a .gv file containing the DOT representation of the dependencies specified </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -892,8 +911,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N15DependencyGraph26getConstructedLayersStringEv">
-<span id="_CPPv3N15DependencyGraph26getConstructedLayersStringEv"></span><span id="_CPPv2N15DependencyGraph26getConstructedLayersStringEv"></span><span id="DependencyGraph::getConstructedLayersString"></span><span class="target" id="classDependencyGraph_1a6e337954f3f20a5e43fc6c7a4ad78a62"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getConstructedLayersString</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph26getConstructedLayersStringEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N15DependencyGraph26getConstructedLayersStringEv">
+<span id="_CPPv3N15DependencyGraph26getConstructedLayersStringEv"></span><span id="_CPPv2N15DependencyGraph26getConstructedLayersStringEv"></span><span id="DependencyGraph::getConstructedLayersString"></span><span class="target" id="classDependencyGraph_1a6e337954f3f20a5e43fc6c7a4ad78a62"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getConstructedLayersString</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N15DependencyGraph26getConstructedLayersStringEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a string representation of the constructed layers </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -905,8 +924,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

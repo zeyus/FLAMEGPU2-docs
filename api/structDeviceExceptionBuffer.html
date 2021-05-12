@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct DeviceExceptionBuffer &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,72 +813,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-deviceexceptionbuffer">
+  <section id="struct-deviceexceptionbuffer">
 <span id="exhale-struct-structdeviceexceptionbuffer"></span><h1>Struct DeviceExceptionBuffer<a class="headerlink" href="#struct-deviceexceptionbuffer" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_exception_FGPUDeviceException_device.h.html#file-include-flamegpu-exception-fgpudeviceexception-device-h"><span class="std std-ref">File FGPUDeviceException_device.h</span></a></p></li>
 </ul>
-<div class="section" id="struct-documentation">
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv421DeviceExceptionBuffer">
-<span id="_CPPv321DeviceExceptionBuffer"></span><span id="_CPPv221DeviceExceptionBuffer"></span><span id="DeviceExceptionBuffer"></span><span class="target" id="structDeviceExceptionBuffer"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">DeviceExceptionBuffer</span></code><a class="headerlink" href="#_CPPv421DeviceExceptionBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv421DeviceExceptionBuffer">
+<span id="_CPPv321DeviceExceptionBuffer"></span><span id="_CPPv221DeviceExceptionBuffer"></span><span id="DeviceExceptionBuffer"></span><span class="target" id="structDeviceExceptionBuffer"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DeviceExceptionBuffer</span></span></span><a class="headerlink" href="#_CPPv421DeviceExceptionBuffer" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This struct should exist in device memory per stream It holds buffers for outputting a deconstructed format string </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer11error_countE">
-<span id="_CPPv3N21DeviceExceptionBuffer11error_countE"></span><span id="_CPPv2N21DeviceExceptionBuffer11error_countE"></span><span id="DeviceExceptionBuffer::error_count__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1ace609345c86a46c873dfde8306dbdbe8"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">error_count</span></code><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer11error_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer11error_countE">
+<span id="_CPPv3N21DeviceExceptionBuffer11error_countE"></span><span id="_CPPv2N21DeviceExceptionBuffer11error_countE"></span><span id="DeviceExceptionBuffer::error_count__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1ace609345c86a46c873dfde8306dbdbe8"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error_count</span></span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer11error_countE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The number of threads reporting error </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer9file_pathE">
-<span id="_CPPv3N21DeviceExceptionBuffer9file_pathE"></span><span id="_CPPv2N21DeviceExceptionBuffer9file_pathE"></span><span id="DeviceExceptionBuffer::file_path__cA"></span><span class="target" id="structDeviceExceptionBuffer_1abc5d236e04c03041c6b8aee21e649e4e"></span><span class="pre">char</span> <code class="sig-name descname"><span class="pre">file_path</span></code><span class="pre">[</span><code class="sig-name descname"><span class="pre">FILE_BUFF_LEN</span></code><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9file_pathE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer9file_pathE">
+<span id="_CPPv3N21DeviceExceptionBuffer9file_pathE"></span><span id="_CPPv2N21DeviceExceptionBuffer9file_pathE"></span><span id="DeviceExceptionBuffer::file_path__cA"></span><span class="target" id="structDeviceExceptionBuffer_1abc5d236e04c03041c6b8aee21e649e4e"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">file_path</span></span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer13FILE_BUFF_LENE" title="DeviceExceptionBuffer::FILE_BUFF_LEN"><span class="n"><span class="pre">FILE_BUFF_LEN</span></span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9file_pathE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer7line_noE">
-<span id="_CPPv3N21DeviceExceptionBuffer7line_noE"></span><span id="_CPPv2N21DeviceExceptionBuffer7line_noE"></span><span id="DeviceExceptionBuffer::line_no__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1a42af0e7c9cddc1bc106924c9d35187b0"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">line_no</span></code><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer7line_noE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer7line_noE">
+<span id="_CPPv3N21DeviceExceptionBuffer7line_noE"></span><span id="_CPPv2N21DeviceExceptionBuffer7line_noE"></span><span id="DeviceExceptionBuffer::line_no__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1a42af0e7c9cddc1bc106924c9d35187b0"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">line_no</span></span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer7line_noE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer8block_idE">
-<span id="_CPPv3N21DeviceExceptionBuffer8block_idE"></span><span id="_CPPv2N21DeviceExceptionBuffer8block_idE"></span><span id="DeviceExceptionBuffer::block_id__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1a493a84609392651f975357459b108650"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">block_id</span></code><span class="pre">[</span><span class="pre">3</span><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer8block_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer8block_idE">
+<span id="_CPPv3N21DeviceExceptionBuffer8block_idE"></span><span id="_CPPv2N21DeviceExceptionBuffer8block_idE"></span><span id="DeviceExceptionBuffer::block_id__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1a493a84609392651f975357459b108650"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">block_id</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer8block_idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer9thread_idE">
-<span id="_CPPv3N21DeviceExceptionBuffer9thread_idE"></span><span id="_CPPv2N21DeviceExceptionBuffer9thread_idE"></span><span id="DeviceExceptionBuffer::thread_id__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1ab24c45d2175df4338759ad09559acb49"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">thread_id</span></code><span class="pre">[</span><span class="pre">3</span><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9thread_idE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer9thread_idE">
+<span id="_CPPv3N21DeviceExceptionBuffer9thread_idE"></span><span id="_CPPv2N21DeviceExceptionBuffer9thread_idE"></span><span id="DeviceExceptionBuffer::thread_id__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1ab24c45d2175df4338759ad09559acb49"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">thread_id</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9thread_idE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer13format_stringE">
-<span id="_CPPv3N21DeviceExceptionBuffer13format_stringE"></span><span id="_CPPv2N21DeviceExceptionBuffer13format_stringE"></span><span id="DeviceExceptionBuffer::format_string__cA"></span><span class="target" id="structDeviceExceptionBuffer_1a33aaf4e6a1fd6b88b25229af1af3a609"></span><span class="pre">char</span> <code class="sig-name descname"><span class="pre">format_string</span></code><span class="pre">[</span><code class="sig-name descname"><span class="pre">FORMAT_BUFF_LEN</span></code><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer13format_stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer13format_stringE">
+<span id="_CPPv3N21DeviceExceptionBuffer13format_stringE"></span><span id="_CPPv2N21DeviceExceptionBuffer13format_stringE"></span><span id="DeviceExceptionBuffer::format_string__cA"></span><span class="target" id="structDeviceExceptionBuffer_1a33aaf4e6a1fd6b88b25229af1af3a609"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">format_string</span></span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE" title="DeviceExceptionBuffer::FORMAT_BUFF_LEN"><span class="n"><span class="pre">FORMAT_BUFF_LEN</span></span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer13format_stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The format string passed by the user to the printer </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer17format_args_sizesE">
-<span id="_CPPv3N21DeviceExceptionBuffer17format_args_sizesE"></span><span id="_CPPv2N21DeviceExceptionBuffer17format_args_sizesE"></span><span id="DeviceExceptionBuffer::format_args_sizes__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1a3e09843ccd568f95fa7f4edc42f2a8f8"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">format_args_sizes</span></code><span class="pre">[</span><code class="sig-name descname"><span class="pre">MAX_ARGS</span></code><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer17format_args_sizesE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer17format_args_sizesE">
+<span id="_CPPv3N21DeviceExceptionBuffer17format_args_sizesE"></span><span id="_CPPv2N21DeviceExceptionBuffer17format_args_sizesE"></span><span id="DeviceExceptionBuffer::format_args_sizes__unsigned-iA"></span><span class="target" id="structDeviceExceptionBuffer_1a3e09843ccd568f95fa7f4edc42f2a8f8"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">format_args_sizes</span></span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer8MAX_ARGSE" title="DeviceExceptionBuffer::MAX_ARGS"><span class="n"><span class="pre">MAX_ARGS</span></span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer17format_args_sizesE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The type size of each of the args passed to the printer </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer11format_argsE">
-<span id="_CPPv3N21DeviceExceptionBuffer11format_argsE"></span><span id="_CPPv2N21DeviceExceptionBuffer11format_argsE"></span><span id="DeviceExceptionBuffer::format_args__cA"></span><span class="target" id="structDeviceExceptionBuffer_1a060ebbc3e8a0f4680abcbdc2b8f537be"></span><span class="pre">char</span> <code class="sig-name descname"><span class="pre">format_args</span></code><span class="pre">[</span><code class="sig-name descname"><span class="pre">ARG_BUFF_LEN</span></code><span class="pre">]</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer11format_argsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer11format_argsE">
+<span id="_CPPv3N21DeviceExceptionBuffer11format_argsE"></span><span id="_CPPv2N21DeviceExceptionBuffer11format_argsE"></span><span id="DeviceExceptionBuffer::format_args__cA"></span><span class="target" id="structDeviceExceptionBuffer_1a060ebbc3e8a0f4680abcbdc2b8f537be"></span><span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">format_args</span></span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer12ARG_BUFF_LENE" title="DeviceExceptionBuffer::ARG_BUFF_LEN"><span class="n"><span class="pre">ARG_BUFF_LEN</span></span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer11format_argsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>A compact buffer of each of the args passed to the printer Their size corresponds to the matching array above </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer9arg_countE">
-<span id="_CPPv3N21DeviceExceptionBuffer9arg_countE"></span><span id="_CPPv2N21DeviceExceptionBuffer9arg_countE"></span><span id="DeviceExceptionBuffer::arg_count__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1ab3c064e60b62aac044f4e51d593faaa8"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">arg_count</span></code><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9arg_countE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer9arg_countE">
+<span id="_CPPv3N21DeviceExceptionBuffer9arg_countE"></span><span id="_CPPv2N21DeviceExceptionBuffer9arg_countE"></span><span id="DeviceExceptionBuffer::arg_count__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1ab3c064e60b62aac044f4e51d593faaa8"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arg_count</span></span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer9arg_countE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The total number of args passed to the printer </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer10arg_offsetE">
-<span id="_CPPv3N21DeviceExceptionBuffer10arg_offsetE"></span><span id="_CPPv2N21DeviceExceptionBuffer10arg_offsetE"></span><span id="DeviceExceptionBuffer::arg_offset__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1a5f0082bfaf5e8e483723a22c825a58de"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">arg_offset</span></code><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer10arg_offsetE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer10arg_offsetE">
+<span id="_CPPv3N21DeviceExceptionBuffer10arg_offsetE"></span><span id="_CPPv2N21DeviceExceptionBuffer10arg_offsetE"></span><span id="DeviceExceptionBuffer::arg_offset__unsigned-i"></span><span class="target" id="structDeviceExceptionBuffer_1a5f0082bfaf5e8e483723a22c825a58de"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">arg_offset</span></span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer10arg_offsetE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>The total space used by the args </p>
 </dd></dl>
 
@@ -867,35 +886,35 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer8MAX_ARGSE">
-<span id="_CPPv3N21DeviceExceptionBuffer8MAX_ARGSE"></span><span id="_CPPv2N21DeviceExceptionBuffer8MAX_ARGSE"></span><span id="DeviceExceptionBuffer::MAX_ARGS__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a77e151222feb03f6335fccceb0eb15ae"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">MAX_ARGS</span></code> <span class="pre">=</span> <span class="pre">20</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer8MAX_ARGSE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer8MAX_ARGSE">
+<span id="_CPPv3N21DeviceExceptionBuffer8MAX_ARGSE"></span><span id="_CPPv2N21DeviceExceptionBuffer8MAX_ARGSE"></span><span id="DeviceExceptionBuffer::MAX_ARGS__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a77e151222feb03f6335fccceb0eb15ae"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MAX_ARGS</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">20</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer8MAX_ARGSE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer12ARG_BUFF_LENE">
-<span id="_CPPv3N21DeviceExceptionBuffer12ARG_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer12ARG_BUFF_LENE"></span><span id="DeviceExceptionBuffer::ARG_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1ae634d76906219b5f2de0d18395591913"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">ARG_BUFF_LEN</span></code> <span class="pre">=</span> <span class="pre">4096</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer12ARG_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer12ARG_BUFF_LENE">
+<span id="_CPPv3N21DeviceExceptionBuffer12ARG_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer12ARG_BUFF_LENE"></span><span id="DeviceExceptionBuffer::ARG_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1ae634d76906219b5f2de0d18395591913"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ARG_BUFF_LEN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4096</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer12ARG_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE">
-<span id="_CPPv3N21DeviceExceptionBuffer15FORMAT_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer15FORMAT_BUFF_LENE"></span><span id="DeviceExceptionBuffer::FORMAT_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1acecb1ea7117818e812057870358f80c6"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">FORMAT_BUFF_LEN</span></code> <span class="pre">=</span> <span class="pre">4096</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE">
+<span id="_CPPv3N21DeviceExceptionBuffer15FORMAT_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer15FORMAT_BUFF_LENE"></span><span id="DeviceExceptionBuffer::FORMAT_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1acecb1ea7117818e812057870358f80c6"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FORMAT_BUFF_LEN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4096</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer13FILE_BUFF_LENE">
-<span id="_CPPv3N21DeviceExceptionBuffer13FILE_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer13FILE_BUFF_LENE"></span><span id="DeviceExceptionBuffer::FILE_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a2c13d0505033d55792062f90e0d6b448"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">FILE_BUFF_LEN</span></code> <span class="pre">=</span> <span class="pre">1024</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer13FILE_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer13FILE_BUFF_LENE">
+<span id="_CPPv3N21DeviceExceptionBuffer13FILE_BUFF_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer13FILE_BUFF_LENE"></span><span id="DeviceExceptionBuffer::FILE_BUFF_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a2c13d0505033d55792062f90e0d6b448"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FILE_BUFF_LEN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1024</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer13FILE_BUFF_LENE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N21DeviceExceptionBuffer14OUT_STRING_LENE">
-<span id="_CPPv3N21DeviceExceptionBuffer14OUT_STRING_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer14OUT_STRING_LENE"></span><span id="DeviceExceptionBuffer::OUT_STRING_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a89a3933ae69c43d8c1cf99fc15b16188"></span><em class="property"><span class="pre">static</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">OUT_STRING_LEN</span></code> <span class="pre">=</span> <a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE" title="DeviceExceptionBuffer::FORMAT_BUFF_LEN"><span class="pre">FORMAT_BUFF_LEN</span></a> <span class="pre">*</span> <span class="pre">2</span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer14OUT_STRING_LENE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N21DeviceExceptionBuffer14OUT_STRING_LENE">
+<span id="_CPPv3N21DeviceExceptionBuffer14OUT_STRING_LENE"></span><span id="_CPPv2N21DeviceExceptionBuffer14OUT_STRING_LENE"></span><span id="DeviceExceptionBuffer::OUT_STRING_LEN__unsigned-iC"></span><span class="target" id="structDeviceExceptionBuffer_1a89a3933ae69c43d8c1cf99fc15b16188"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">OUT_STRING_LEN</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N21DeviceExceptionBuffer15FORMAT_BUFF_LENE" title="DeviceExceptionBuffer::FORMAT_BUFF_LEN"><span class="n"><span class="pre">FORMAT_BUFF_LEN</span></span></a><span class="w"> </span><span class="o"><span class="pre">*</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><a class="headerlink" href="#_CPPv4N21DeviceExceptionBuffer14OUT_STRING_LENE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

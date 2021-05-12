@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Struct LayerData &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,22 +813,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="struct-layerdata">
+  <section id="struct-layerdata">
 <span id="exhale-struct-structlayerdata"></span><h1>Struct LayerData<a class="headerlink" href="#struct-layerdata" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_LayerData.h.html#file-include-flamegpu-model-layerdata-h"><span class="std std-ref">File LayerData.h</span></a></p></li>
 </ul>
-<div class="section" id="struct-documentation">
+<section id="struct-documentation">
 <h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp struct">
-<dt id="_CPPv49LayerData">
-<span id="_CPPv39LayerData"></span><span id="_CPPv29LayerData"></span><span id="LayerData"></span><span class="target" id="structLayerData"></span><em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">LayerData</span></code><a class="headerlink" href="#_CPPv49LayerData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv49LayerData">
+<span id="_CPPv39LayerData"></span><span id="_CPPv29LayerData"></span><span id="LayerData"></span><span class="target" id="structLayerData"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">LayerData</span></span></span><a class="headerlink" href="#_CPPv49LayerData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This is the internal data store for <a class="reference internal" href="classLayerDescription.html#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> Users should only access that data stored within via an instance of <a class="reference internal" href="classLayerDescription.html#classLayerDescription"><span class="std std-ref">LayerDescription</span></a> </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4NK9LayerDataeqERK9LayerData">
-<span id="_CPPv3NK9LayerDataeqERK9LayerData"></span><span id="_CPPv2NK9LayerDataeqERK9LayerData"></span><span id="LayerData::eq-operator__LayerDataCRC"></span><span class="target" id="structLayerData_1aae25f6601d202b47b9471d9773d07f63"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator==</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49LayerData" title="LayerData"><span class="pre">LayerData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9LayerDataeqERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9LayerDataeqERK9LayerData">
+<span id="_CPPv3NK9LayerDataeqERK9LayerData"></span><span id="_CPPv2NK9LayerDataeqERK9LayerData"></span><span id="LayerData::eq-operator__LayerDataCRC"></span><span class="target" id="structLayerData_1aae25f6601d202b47b9471d9773d07f63"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49LayerData" title="LayerData"><span class="n"><span class="pre">LayerData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9LayerDataeqERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structLayerData"><span class="std std-ref">LayerData</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -823,8 +842,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK9LayerDataneERK9LayerData">
-<span id="_CPPv3NK9LayerDataneERK9LayerData"></span><span id="_CPPv2NK9LayerDataneERK9LayerData"></span><span id="LayerData::neq-operator__LayerDataCRC"></span><span class="target" id="structLayerData_1acf74c65b5c55191e89300186fe6708a0"></span><span class="pre">bool</span> <code class="sig-name descname"><span class="pre">operator!=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv49LayerData" title="LayerData"><span class="pre">LayerData</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK9LayerDataneERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK9LayerDataneERK9LayerData">
+<span id="_CPPv3NK9LayerDataneERK9LayerData"></span><span id="_CPPv2NK9LayerDataneERK9LayerData"></span><span id="LayerData::neq-operator__LayerDataCRC"></span><span class="target" id="structLayerData_1acf74c65b5c55191e89300186fe6708a0"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv49LayerData" title="LayerData"><span class="n"><span class="pre">LayerData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK9LayerDataneERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structLayerData"><span class="std std-ref">LayerData</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -838,8 +857,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9LayerData9LayerDataERK9LayerData">
-<span id="_CPPv3N9LayerData9LayerDataERK9LayerData"></span><span id="_CPPv2N9LayerData9LayerDataERK9LayerData"></span><span id="LayerData::LayerData__LayerDataCR"></span><span class="target" id="structLayerData_1a00acfb43e3206cddad79fddf5e202a01"></span><code class="sig-name descname"><span class="pre">LayerData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N9LayerData9LayerDataERK9LayerData" title="LayerData::LayerData"><span class="pre">LayerData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">delete</span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData9LayerDataERK9LayerData">
+<span id="_CPPv3N9LayerData9LayerDataERK9LayerData"></span><span id="_CPPv2N9LayerData9LayerDataERK9LayerData"></span><span id="LayerData::LayerData__LayerDataCR"></span><span class="target" id="structLayerData_1a00acfb43e3206cddad79fddf5e202a01"></span><span class="sig-name descname"><span class="n"><span class="pre">LayerData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N9LayerData9LayerDataERK9LayerData" title="LayerData::LayerData"><span class="n"><span class="pre">LayerData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Default copy constructor, not implemented </p>
 </dd></dl>
 
@@ -847,44 +866,44 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData15agent_functionsE">
-<span id="_CPPv3N9LayerData15agent_functionsE"></span><span id="_CPPv2N9LayerData15agent_functionsE"></span><span id="LayerData::agent_functions__std::set:std::shared_ptr:AgentFunctionData::"></span><span class="target" id="structLayerData_1aef12f8c25c07591469d6624475fd0b58"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="pre">AgentFunctionData</span></a><span class="pre">&gt;</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">agent_functions</span></code><a class="headerlink" href="#_CPPv4N9LayerData15agent_functionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData15agent_functionsE">
+<span id="_CPPv3N9LayerData15agent_functionsE"></span><span id="_CPPv2N9LayerData15agent_functionsE"></span><span id="LayerData::agent_functions__std::set:std::shared_ptr:AgentFunctionData::"></span><span class="target" id="structLayerData_1aef12f8c25c07591469d6624475fd0b58"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structAgentFunctionData.html#_CPPv417AgentFunctionData" title="AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_functions</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData15agent_functionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of Agent Functions set&lt;AgentFunctionData&gt; </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData14host_functionsE">
-<span id="_CPPv3N9LayerData14host_functionsE"></span><span id="_CPPv2N9LayerData14host_functionsE"></span><span id="LayerData::host_functions__std::set:FLAMEGPU_HOST_FUNCTION_POINTER:"></span><span class="target" id="structLayerData_1acf89ccf5066bf77fcbc811cfaa36bd48"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">host_functions</span></code><a class="headerlink" href="#_CPPv4N9LayerData14host_functionsE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData14host_functionsE">
+<span id="_CPPv3N9LayerData14host_functionsE"></span><span id="_CPPv2N9LayerData14host_functionsE"></span><span id="LayerData::host_functions__std::set:FLAMEGPU_HOST_FUNCTION_POINTER:"></span><span class="target" id="structLayerData_1acf89ccf5066bf77fcbc811cfaa36bd48"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_HostAPI__macros_8h_1a826eb97087d8cdc5ae53a38c1d6060c7.html#_CPPv430FLAMEGPU_HOST_FUNCTION_POINTER" title="FLAMEGPU_HOST_FUNCTION_POINTER"><span class="n"><span class="pre">FLAMEGPU_HOST_FUNCTION_POINTER</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">host_functions</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData14host_functionsE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of host function pointers set&lt;FLAMEGPU_HOST_FUNCTION_POINTER&gt; </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData24host_functions_callbacksE">
-<span id="_CPPv3N9LayerData24host_functions_callbacksE"></span><span id="_CPPv2N9LayerData24host_functions_callbacksE"></span><span id="LayerData::host_functions_callbacks__std::set:HostFunctionCallbackP:"></span><span class="target" id="structLayerData_1a7c97b6617e1b44b20f74eb944f3b172b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">set</span><span class="pre">&lt;</span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="pre">HostFunctionCallback</span></a><span class="pre">*</span><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">host_functions_callbacks</span></code><a class="headerlink" href="#_CPPv4N9LayerData24host_functions_callbacksE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData24host_functions_callbacksE">
+<span id="_CPPv3N9LayerData24host_functions_callbacksE"></span><span id="_CPPv2N9LayerData24host_functions_callbacksE"></span><span id="LayerData::host_functions_callbacks__std::set:HostFunctionCallbackP:"></span><span class="target" id="structLayerData_1a7c97b6617e1b44b20f74eb944f3b172b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classHostFunctionCallback.html#_CPPv420HostFunctionCallback" title="HostFunctionCallback"><span class="n"><span class="pre">HostFunctionCallback</span></span></a><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">host_functions_callbacks</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData24host_functions_callbacksE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set of host function callbacks (used by SWIG interface) set&lt;HostFunctionCallback*&gt; </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData9sub_modelE">
-<span id="_CPPv3N9LayerData9sub_modelE"></span><span id="_CPPv2N9LayerData9sub_modelE"></span><span id="LayerData::sub_model__std::shared_ptr:SubModelData:"></span><span class="target" id="structLayerData_1a04d601da310d661105381ceb1ac3aef5"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="pre">SubModelData</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">sub_model</span></code><a class="headerlink" href="#_CPPv4N9LayerData9sub_modelE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData9sub_modelE">
+<span id="_CPPv3N9LayerData9sub_modelE"></span><span id="_CPPv2N9LayerData9sub_modelE"></span><span id="LayerData::sub_model__std::shared_ptr:SubModelData:"></span><span class="target" id="structLayerData_1a04d601da310d661105381ceb1ac3aef5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structSubModelData.html#_CPPv412SubModelData" title="SubModelData"><span class="n"><span class="pre">SubModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sub_model</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData9sub_modelE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>SubModel (If present, layer can hold no host_functions or agent_functions) </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData11descriptionE">
-<span id="_CPPv3N9LayerData11descriptionE"></span><span id="_CPPv2N9LayerData11descriptionE"></span><span id="LayerData::description__std::unique_ptr:LayerDescription:"></span><span class="target" id="structLayerData_1a17207976a6b72945c66e5dca0006a34c"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">unique_ptr</span><span class="pre">&lt;</span><a class="reference internal" href="classLayerDescription.html#_CPPv416LayerDescription" title="LayerDescription"><span class="pre">LayerDescription</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">description</span></code><a class="headerlink" href="#_CPPv4N9LayerData11descriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData11descriptionE">
+<span id="_CPPv3N9LayerData11descriptionE"></span><span id="_CPPv2N9LayerData11descriptionE"></span><span id="LayerData::description__std::unique_ptr:LayerDescription:"></span><span class="target" id="structLayerData_1a17207976a6b72945c66e5dca0006a34c"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classLayerDescription.html#_CPPv416LayerDescription" title="LayerDescription"><span class="n"><span class="pre">LayerDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">description</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData11descriptionE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Description class which provides convenient accessors </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData4nameE">
-<span id="_CPPv3N9LayerData4nameE"></span><span id="_CPPv2N9LayerData4nameE"></span><span id="LayerData::name__ss"></span><span class="target" id="structLayerData_1a1ff87e186c4b84e024b017cf87bfc7c2"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">name</span></code><a class="headerlink" href="#_CPPv4N9LayerData4nameE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData4nameE">
+<span id="_CPPv3N9LayerData4nameE"></span><span id="_CPPv2N9LayerData4nameE"></span><span id="LayerData::name__ss"></span><span class="target" id="structLayerData_1a1ff87e186c4b84e024b017cf87bfc7c2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData4nameE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Name of the agent function, used to refer to the agent function in many functions </p>
 </dd></dl>
 
 <dl class="cpp var">
-<dt id="_CPPv4N9LayerData5indexE">
-<span id="_CPPv3N9LayerData5indexE"></span><span id="_CPPv2N9LayerData5indexE"></span><span id="LayerData::index__ModelData::size_type"></span><span class="target" id="structLayerData_1ace928fa4738d8266685236ddb31db8bc"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">index</span></code><a class="headerlink" href="#_CPPv4N9LayerData5indexE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData5indexE">
+<span id="_CPPv3N9LayerData5indexE"></span><span id="_CPPv2N9LayerData5indexE"></span><span id="LayerData::index__ModelData::size_type"></span><span class="target" id="structLayerData_1ace928fa4738d8266685236ddb31db8bc"></span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">index</span></span></span><a class="headerlink" href="#_CPPv4N9LayerData5indexE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Index of the layer in the stack (Eventually this will be replaced when we move to a more durable mode of layers, e.g. dependency analysis) </p>
 </dd></dl>
 
@@ -892,35 +911,35 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData">
-<span id="_CPPv3N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData"></span><span id="_CPPv2N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData"></span><span id="LayerData::LayerData__std::shared_ptr:ModelDataC:CR.LayerDataCR"></span><span class="target" id="structLayerData_1a7d161c1b905962d496623a7ece637598"></span><code class="sig-name descname"><span class="pre">LayerData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">model</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData" title="LayerData::LayerData"><span class="pre">LayerData</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData">
+<span id="_CPPv3N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData"></span><span id="_CPPv2N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData"></span><span id="LayerData::LayerData__std::shared_ptr:ModelDataC:CR.LayerDataCR"></span><span class="target" id="structLayerData_1a7d161c1b905962d496623a7ece637598"></span><span class="sig-name descname"><span class="n"><span class="pre">LayerData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData" title="LayerData::LayerData"><span class="n"><span class="pre">LayerData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERK9LayerData" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Copy constructor This is unsafe, should only be used internally, use clone() instead </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE">
-<span id="_CPPv3N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE"></span><span id="_CPPv2N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE"></span><span id="LayerData::LayerData__std::shared_ptr:ModelDataC:CR.ssCR.ModelData::size_typeCR"></span><span class="target" id="structLayerData_1ab098b9f049bbd4777b2fb57b2954a1cb"></span><code class="sig-name descname"><span class="pre">LayerData</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">shared_ptr</span><span class="pre">&lt;</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">model</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="pre">ModelData</span></a><span class="pre">::</span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE">
+<span id="_CPPv3N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE"></span><span id="_CPPv2N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE"></span><span id="LayerData::LayerData__std::shared_ptr:ModelDataC:CR.ssCR.ModelData::size_typeCR"></span><span class="target" id="structLayerData_1ab098b9f049bbd4777b2fb57b2954a1cb"></span><span class="sig-name descname"><span class="n"><span class="pre">LayerData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structModelData.html#_CPPv49ModelData" title="ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="structModelData.html#_CPPv4N9ModelData9size_typeE" title="ModelData::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N9LayerData9LayerDataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringERKN9ModelData9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Normal constructor, only to be called by <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> </p>
 </dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">class</span></em> <span class="pre">ModelDescription</span></dt>
 </dl>
 
-<dl class="friendclass">
-<dt>
+<dl>
+<dt class="sig sig-object cpp">
 <em class="property"><span class="pre">friend</span> <span class="pre">struct</span></em> <span class="pre">ModelData</span></dt>
 </dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

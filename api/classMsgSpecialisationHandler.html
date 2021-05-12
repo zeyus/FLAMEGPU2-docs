@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class MsgSpecialisationHandler &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,14 +813,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-msgspecialisationhandler">
+  <section id="class-msgspecialisationhandler">
 <span id="exhale-class-classmsgspecialisationhandler"></span><h1>Class MsgSpecialisationHandler<a class="headerlink" href="#class-msgspecialisationhandler" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_messaging_None_NoneHost.h.html#file-include-flamegpu-runtime-messaging-none-nonehost-h"><span class="std std-ref">File NoneHost.h</span></a></p></li>
 </ul>
-<div class="section" id="inheritance-relationships">
+<section id="inheritance-relationships">
 <h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="derived-types">
+<section id="derived-types">
 <h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MsgArray2D::CUDAModelHandler</span></code> (<a class="reference internal" href="classMsgArray2D_1_1CUDAModelHandler.html#exhale-class-classmsgarray2d-1-1cudamodelhandler"><span class="std std-ref">Class MsgArray2D::CUDAModelHandler</span></a>)</p></li>
@@ -813,13 +832,13 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MsgSpatial2D::CUDAModelHandler</span></code> (<a class="reference internal" href="classMsgSpatial2D_1_1CUDAModelHandler.html#exhale-class-classmsgspatial2d-1-1cudamodelhandler"><span class="std std-ref">Class MsgSpatial2D::CUDAModelHandler</span></a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">MsgSpatial3D::CUDAModelHandler</span></code> (<a class="reference internal" href="classMsgSpatial3D_1_1CUDAModelHandler.html#exhale-class-classmsgspatial3d-1-1cudamodelhandler"><span class="std std-ref">Class MsgSpatial3D::CUDAModelHandler</span></a>)</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="class-documentation">
+</section>
+</section>
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv424MsgSpecialisationHandler">
-<span id="_CPPv324MsgSpecialisationHandler"></span><span id="_CPPv224MsgSpecialisationHandler"></span><span id="MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">MsgSpecialisationHandler</span></code><a class="headerlink" href="#_CPPv424MsgSpecialisationHandler" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv424MsgSpecialisationHandler">
+<span id="_CPPv324MsgSpecialisationHandler"></span><span id="_CPPv224MsgSpecialisationHandler"></span><span id="MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MsgSpecialisationHandler</span></span></span><a class="headerlink" href="#_CPPv424MsgSpecialisationHandler" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Interface for message specialisation A derived implementation of this is required for each combination of message type (e.g. <a class="reference internal" href="classMsgBruteForce.html#classMsgBruteForce"><span class="std std-ref">MsgBruteForce</span></a>) and simulation type (e.g. <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a>) <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is recommended that derived classes require an object that provides access to the model specialisation’s representation of messages (e.g. <a class="reference internal" href="classCUDAMessage.html#classCUDAMessage"><span class="std std-ref">CUDAMessage</span></a>) </p>
@@ -833,19 +852,19 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv">
-<span id="_CPPv3N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv"></span><span id="_CPPv2N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv"></span><span id="MsgSpecialisationHandler::MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler_1a7b5ae5702ac04db6554b5dc0de3915b3"></span><em class="property"><span class="pre">inline</span></em> <code class="sig-name descname"><span class="pre">MsgSpecialisationHandler</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv">
+<span id="_CPPv3N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv"></span><span id="_CPPv2N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv"></span><span id="MsgSpecialisationHandler::MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler_1a7b5ae5702ac04db6554b5dc0de3915b3"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MsgSpecialisationHandler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler24MsgSpecialisationHandlerEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandlerD0Ev">
-<span id="_CPPv3N24MsgSpecialisationHandlerD0Ev"></span><span id="_CPPv2N24MsgSpecialisationHandlerD0Ev"></span><span id="MsgSpecialisationHandler::~MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler_1a4b131df4a4bc50b329de071b08eb7ff5"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <code class="sig-name descname"><span class="pre">~MsgSpecialisationHandler</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandlerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandlerD0Ev">
+<span id="_CPPv3N24MsgSpecialisationHandlerD0Ev"></span><span id="_CPPv2N24MsgSpecialisationHandlerD0Ev"></span><span id="MsgSpecialisationHandler::~MsgSpecialisationHandler"></span><span class="target" id="classMsgSpecialisationHandler_1a4b131df4a4bc50b329de071b08eb7ff5"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~MsgSpecialisationHandler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandlerD0Ev" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Destructor, should free any allocated memory in derived classes </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandler4initER11CUDAScatterRKj">
-<span id="_CPPv3N24MsgSpecialisationHandler4initER11CUDAScatterRKj"></span><span id="_CPPv2N24MsgSpecialisationHandler4initER11CUDAScatterRKj"></span><span id="MsgSpecialisationHandler::init__CUDAScatterR.unsigned-iCR"></span><span class="target" id="classMsgSpecialisationHandler_1a98deb258b64d0f4b5b062f7512f00270"></span><em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a> <span class="pre">&amp;</span><em><span class="pre">scatter</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em><span class="sig-paren">)</span> <span class="pre">=</span> <span class="pre">0</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler4initER11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandler4initER11CUDAScatterRKj">
+<span id="_CPPv3N24MsgSpecialisationHandler4initER11CUDAScatterRKj"></span><span id="_CPPv2N24MsgSpecialisationHandler4initER11CUDAScatterRKj"></span><span id="MsgSpecialisationHandler::init__CUDAScatterR.unsigned-iCR"></span><span class="target" id="classMsgSpecialisationHandler_1a98deb258b64d0f4b5b062f7512f00270"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">init</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">scatter</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler4initER11CUDAScatterRKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Allocate and fill metadata, as though message list was empty </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -858,8 +877,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">
-<span id="_CPPv3N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="MsgSpecialisationHandler::buildIndex__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classMsgSpecialisationHandler_1a0a6744b8bd924685f59c4a7bfa5e2c21"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">buildIndex</span></code><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="pre">CUDAScatter</span></a><span class="pre">&amp;</span>, <em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">streamId</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">cudaStream_t</span> <span class="pre">&amp;</span><em><span class="pre">stream</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">
+<span id="_CPPv3N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="_CPPv2N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t"></span><span id="MsgSpecialisationHandler::buildIndex__CUDAScatterR.unsigned-iCR.cudaStream_tCR"></span><span class="target" id="classMsgSpecialisationHandler_1a0a6744b8bd924685f59c4a7bfa5e2c21"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">buildIndex</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="classCUDAScatter.html#_CPPv411CUDAScatter" title="CUDAScatter"><span class="n"><span class="pre">CUDAScatter</span></span></a><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">streamId</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">cudaStream_t</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Constructs an index for the message data structure (e.g. Partition boundary matrix for spatial message types) This is called the first time messages are read, after new messages have been output </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -872,20 +891,20 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv">
-<span id="_CPPv3N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv"></span><span id="_CPPv2N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::allocateMetaDataDevicePtr"></span><span class="target" id="classMsgSpecialisationHandler_1aa2d97fc51a02f101019dc81a0fa34629"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">allocateMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv">
+<span id="_CPPv3N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv"></span><span id="_CPPv2N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::allocateMetaDataDevicePtr"></span><span class="target" id="classMsgSpecialisationHandler_1aa2d97fc51a02f101019dc81a0fa34629"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">allocateMetaDataDevicePtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler25allocateMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Allocates memory for the constructed index. The memory allocation is checked by build index. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv">
-<span id="_CPPv3N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv"></span><span id="_CPPv2N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::freeMetaDataDevicePtr"></span><span class="target" id="classMsgSpecialisationHandler_1a615efb887e2bce6fb4115feaf1041a4b"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <span class="pre">void</span> <code class="sig-name descname"><span class="pre">freeMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv">
+<span id="_CPPv3N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv"></span><span id="_CPPv2N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::freeMetaDataDevicePtr"></span><span class="target" id="classMsgSpecialisationHandler_1a615efb887e2bce6fb4115feaf1041a4b"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">freeMetaDataDevicePtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N24MsgSpecialisationHandler21freeMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Releases memory for the constructed index. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv">
-<span id="_CPPv3NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv"></span><span id="_CPPv2NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::getMetaDataDevicePtrC"></span><span class="target" id="classMsgSpecialisationHandler_1a88eb958c4bf4fd265ae20d4122258f96"></span><em class="property"><span class="pre">inline</span></em> <em class="property"><span class="pre">virtual</span></em> <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">getMetaDataDevicePtr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv">
+<span id="_CPPv3NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv"></span><span id="_CPPv2NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv"></span><span id="MsgSpecialisationHandler::getMetaDataDevicePtrC"></span><span class="target" id="classMsgSpecialisationHandler_1a88eb958c4bf4fd265ae20d4122258f96"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">getMetaDataDevicePtr</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK24MsgSpecialisationHandler20getMetaDataDevicePtrEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns a pointer to metadata for message access during agent functions (For <a class="reference internal" href="classCUDASimulation.html#classCUDASimulation"><span class="std std-ref">CUDASimulation</span></a> this is a device pointer) </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -896,8 +915,8 @@
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

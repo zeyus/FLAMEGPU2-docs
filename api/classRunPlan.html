@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Class RunPlan &mdash; FLAME GPU 2 0 documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
   <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -33,6 +36,7 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -105,7 +109,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
@@ -188,7 +198,11 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -215,7 +229,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/2-submodel-exit-conditions.html">Submodel Exit Conditions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
@@ -223,20 +236,28 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-custom-models.html">Custom Models</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-custom-colours.html">Custom Colours</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-representing-properties-with-colour.html">Custom Models</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Perf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-fgpu2-source/index.html">Building or Modifying the FGPU2 Source</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/1-build-from-source.html">Building FGPU2 from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-fgpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -246,8 +267,6 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_%40142.html">Namespace &#64;142</a></li>
@@ -794,24 +813,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="class-runplan">
+  <section id="class-runplan">
 <span id="exhale-class-classrunplan"></span><h1>Class RunPlan<a class="headerlink" href="#class-runplan" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_sim_RunPlan.h.html#file-include-flamegpu-sim-runplan-h"><span class="std std-ref">File RunPlan.h</span></a></p></li>
 </ul>
-<div class="section" id="class-documentation">
+<section id="class-documentation">
 <h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
-<dt id="_CPPv47RunPlan">
-<span id="_CPPv37RunPlan"></span><span id="_CPPv27RunPlan"></span><span id="RunPlan"></span><span class="target" id="classRunPlan"></span><em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">RunPlan</span></code><a class="headerlink" href="#_CPPv47RunPlan" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv47RunPlan">
+<span id="_CPPv37RunPlan"></span><span id="_CPPv27RunPlan"></span><span id="RunPlan"></span><span class="target" id="classRunPlan"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RunPlan</span></span></span><a class="headerlink" href="#_CPPv47RunPlan" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Individual run config </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
-<dt id="_CPPv4N7RunPlan7RunPlanERK16ModelDescription">
-<span id="_CPPv3N7RunPlan7RunPlanERK16ModelDescription"></span><span id="_CPPv2N7RunPlan7RunPlanERK16ModelDescription"></span><span id="RunPlan::RunPlan__ModelDescriptionCR"></span><span class="target" id="classRunPlan_1ac0d5c02c95cb60b50e219472eb965e28"></span><em class="property"><span class="pre">explicit</span></em> <code class="sig-name descname"><span class="pre">RunPlan</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classModelDescription.html#_CPPv416ModelDescription" title="ModelDescription"><span class="pre">ModelDescription</span></a> <span class="pre">&amp;</span><em><span class="pre">environment</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan7RunPlanERK16ModelDescription" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Constructor this will need to set the random seed to a default value, +1 of previous EnsembleRun would make sense <dl class="xrefsect">
-<dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7RunPlan7RunPlanERK16ModelDescription">
+<span id="_CPPv3N7RunPlan7RunPlanERK16ModelDescription"></span><span id="_CPPv2N7RunPlan7RunPlanERK16ModelDescription"></span><span id="RunPlan::RunPlan__ModelDescriptionCR"></span><span class="target" id="classRunPlan_1ac0d5c02c95cb60b50e219472eb965e28"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RunPlan</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classModelDescription.html#_CPPv416ModelDescription" title="ModelDescription"><span class="n"><span class="pre">ModelDescription</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">environment</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan7RunPlanERK16ModelDescription" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Constructor this will need to set the random seed to a default value, +1 of previous EnsembleRun would make sense <dl>
+<dt class="sig sig-object cpp">
 <em><span class="pre">Todo:</span></em></dt>
 <dd><p>Where will default steps and random seed come from? </p>
 </dd></dl>
@@ -825,13 +844,13 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7RunPlanaSERK7RunPlan">
-<span id="_CPPv3N7RunPlanaSERK7RunPlan"></span><span id="_CPPv2N7RunPlanaSERK7RunPlan"></span><span id="RunPlan::assign-operator__RunPlanCR"></span><span class="target" id="classRunPlan_1acfac077bcdbd57f097dbc08bacb97d15"></span><a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="pre">RunPlan</span></a> <span class="pre">&amp;</span><code class="sig-name descname"><span class="pre">operator=</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="pre">RunPlan</span></a> <span class="pre">&amp;</span><em><span class="pre">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlanaSERK7RunPlan" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7RunPlanaSERK7RunPlan">
+<span id="_CPPv3N7RunPlanaSERK7RunPlan"></span><span id="_CPPv2N7RunPlanaSERK7RunPlan"></span><span id="RunPlan::assign-operator__RunPlanCR"></span><span class="target" id="classRunPlan_1acfac077bcdbd57f097dbc08bacb97d15"></span><a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="n"><span class="pre">RunPlan</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="n"><span class="pre">RunPlan</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlanaSERK7RunPlan" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7RunPlan23setRandomSimulationSeedERKj">
-<span id="_CPPv3N7RunPlan23setRandomSimulationSeedERKj"></span><span id="_CPPv2N7RunPlan23setRandomSimulationSeedERKj"></span><span id="RunPlan::setRandomSimulationSeed__unsigned-iCR"></span><span class="target" id="classRunPlan_1a7104fa943e12054e4ac85d19e25bcd46"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setRandomSimulationSeed</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">random_seed</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan23setRandomSimulationSeedERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7RunPlan23setRandomSimulationSeedERKj">
+<span id="_CPPv3N7RunPlan23setRandomSimulationSeedERKj"></span><span id="_CPPv2N7RunPlan23setRandomSimulationSeedERKj"></span><span id="RunPlan::setRandomSimulationSeed__unsigned-iCR"></span><span class="target" id="classRunPlan_1a7104fa943e12054e4ac85d19e25bcd46"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRandomSimulationSeed</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">random_seed</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan23setRandomSimulationSeedERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the random seed passed to this run of the simulation </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -841,8 +860,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7RunPlan8setStepsERKj">
-<span id="_CPPv3N7RunPlan8setStepsERKj"></span><span id="_CPPv2N7RunPlan8setStepsERKj"></span><span id="RunPlan::setSteps__unsigned-iCR"></span><span class="target" id="classRunPlan_1a4bd1f17f6785ae3112b12af6fd650435"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setSteps</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">steps</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan8setStepsERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7RunPlan8setStepsERKj">
+<span id="_CPPv3N7RunPlan8setStepsERKj"></span><span id="_CPPv2N7RunPlan8setStepsERKj"></span><span id="RunPlan::setSteps__unsigned-iCR"></span><span class="target" id="classRunPlan_1a4bd1f17f6785ae3112b12af6fd650435"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setSteps</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">steps</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan8setStepsERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the number of steps for this instance of the simulation A steps value of 0 requires the <a class="reference internal" href="classModelDescription.html#classModelDescription"><span class="std std-ref">ModelDescription</span></a> to have atleast 1 exit condition </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -852,8 +871,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4N7RunPlan21setOutputSubdirectoryERKNSt6stringE">
-<span id="_CPPv3N7RunPlan21setOutputSubdirectoryERKNSt6stringE"></span><span id="_CPPv2N7RunPlan21setOutputSubdirectoryERKNSt6stringE"></span><span id="RunPlan::setOutputSubdirectory__ssCR"></span><span class="target" id="classRunPlan_1a15653b6e0b6dff8c235330ab64e40392"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setOutputSubdirectory</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">subdir</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan21setOutputSubdirectoryERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N7RunPlan21setOutputSubdirectoryERKNSt6stringE">
+<span id="_CPPv3N7RunPlan21setOutputSubdirectoryERKNSt6stringE"></span><span id="_CPPv2N7RunPlan21setOutputSubdirectoryERKNSt6stringE"></span><span id="RunPlan::setOutputSubdirectory__ssCR"></span><span class="target" id="classRunPlan_1a15653b6e0b6dff8c235330ab64e40392"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setOutputSubdirectory</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">subdir</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7RunPlan21setOutputSubdirectoryERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the sub directory within the output directory for outputs of this run If left empty, output will not goto subdirectories </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -863,8 +882,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T">
-<span id="_CPPv3I0EN7RunPlan11setPropertyERKNSt6stringERK1T"></span><span id="_CPPv2I0EN7RunPlan11setPropertyERKNSt6stringERK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1a86866f231ff69a173cfb1483b3193f51"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T" title="RunPlan::setProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T">
+<span id="_CPPv3I0EN7RunPlan11setPropertyERKNSt6stringERK1T"></span><span id="_CPPv2I0EN7RunPlan11setPropertyERKNSt6stringERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1a86866f231ff69a173cfb1483b3193f51"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T" title="RunPlan::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the environment property override for this run of the model </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -886,8 +905,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE">
-<span id="_CPPv3I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1ab32013eeecc26159a4704a4c6d14a665"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="RunPlan::setProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="RunPlan::setProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE">
+<span id="_CPPv3I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyERKNSt6stringERKNSt5arrayI1T1NEE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1ab32013eeecc26159a4704a4c6d14a665"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="RunPlan::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="RunPlan::setProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEEN7RunPlan11setPropertyEvRKNSt6stringERKNSt5arrayI1T1NEE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the environment property override for this run of the model This version should be used for array properties </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -912,8 +931,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T">
-<span id="_CPPv3I0EN7RunPlan11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span id="_CPPv2I0EN7RunPlan11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1ac44ce7a5968f38590eb3347af9960c45"></span><span class="pre">void</span> <code class="sig-name descname"><span class="pre">setProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="RunPlan::setProperty::T"><span class="pre">T</span></a> <span class="pre">&amp;</span><em><span class="pre">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T">
+<span id="_CPPv3I0EN7RunPlan11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span id="_CPPv2I0EN7RunPlan11setPropertyERKNSt6stringERKN18EnvironmentManager9size_typeERK1T"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1ac44ce7a5968f38590eb3347af9960c45"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="RunPlan::setProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">value</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4I0EN7RunPlan11setPropertyEvRKNSt6stringERKN18EnvironmentManager9size_typeERK1T" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set the environment property override for this run of the model This version should be used for setting individual elements of array properties </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -937,26 +956,26 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlan23getRandomSimulationSeedEv">
-<span id="_CPPv3NK7RunPlan23getRandomSimulationSeedEv"></span><span id="_CPPv2NK7RunPlan23getRandomSimulationSeedEv"></span><span id="RunPlan::getRandomSimulationSeedC"></span><span class="target" id="classRunPlan_1ae9b945dc5a4ecb46c47c107abcd5ecd4"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getRandomSimulationSeed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlan23getRandomSimulationSeedEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlan23getRandomSimulationSeedEv">
+<span id="_CPPv3NK7RunPlan23getRandomSimulationSeedEv"></span><span id="_CPPv2NK7RunPlan23getRandomSimulationSeedEv"></span><span id="RunPlan::getRandomSimulationSeedC"></span><span class="target" id="classRunPlan_1ae9b945dc5a4ecb46c47c107abcd5ecd4"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getRandomSimulationSeed</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlan23getRandomSimulationSeedEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the random seed used for this simulation run </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlan8getStepsEv">
-<span id="_CPPv3NK7RunPlan8getStepsEv"></span><span id="_CPPv2NK7RunPlan8getStepsEv"></span><span id="RunPlan::getStepsC"></span><span class="target" id="classRunPlan_1a25c1489a7bc2029284cf34b95ef74611"></span><span class="pre">unsigned</span> <span class="pre">int</span> <code class="sig-name descname"><span class="pre">getSteps</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlan8getStepsEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlan8getStepsEv">
+<span id="_CPPv3NK7RunPlan8getStepsEv"></span><span id="_CPPv2NK7RunPlan8getStepsEv"></span><span id="RunPlan::getStepsC"></span><span class="target" id="classRunPlan_1a25c1489a7bc2029284cf34b95ef74611"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getSteps</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlan8getStepsEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the number of steps to be executed for this simulation run 0 means unlimited, and is only available if the model description has an exit condition </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlan21getOutputSubdirectoryEv">
-<span id="_CPPv3NK7RunPlan21getOutputSubdirectoryEv"></span><span id="_CPPv2NK7RunPlan21getOutputSubdirectoryEv"></span><span id="RunPlan::getOutputSubdirectoryC"></span><span class="target" id="classRunPlan_1a75680ba1cf4a0345d419ef2d97a7f69b"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <code class="sig-name descname"><span class="pre">getOutputSubdirectory</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlan21getOutputSubdirectoryEv" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlan21getOutputSubdirectoryEv">
+<span id="_CPPv3NK7RunPlan21getOutputSubdirectoryEv"></span><span id="_CPPv2NK7RunPlan21getOutputSubdirectoryEv"></span><span id="RunPlan::getOutputSubdirectoryC"></span><span class="target" id="classRunPlan_1a75680ba1cf4a0345d419ef2d97a7f69b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getOutputSubdirectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlan21getOutputSubdirectoryEv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the currently configured output subdirectory directory Empty string means output for this run will not be placed into a subdirectory </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE">
-<span id="_CPPv3I0ENK7RunPlan11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK7RunPlan11getPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1a4d5fa2d6c1feb53b054089cea5eea7b5"></span><a class="reference internal" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE" title="RunPlan::getProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE">
+<span id="_CPPv3I0ENK7RunPlan11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0ENK7RunPlan11getPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1a4d5fa2d6c1feb53b054089cea5eea7b5"></span><a class="reference internal" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE" title="RunPlan::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets the currently configured environment property value </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -975,8 +994,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE">
-<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyERKNSt6stringE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">,</span> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <code class="sig-name descname"><span class="pre">N</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1a40cf6150929134fc60dd9f2ff6195c70"></span><span class="pre">std</span><span class="pre">::</span><span class="pre">array</span><span class="pre">&lt;</span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="RunPlan::getProperty::T"><span class="pre">T</span></a><span class="pre">,</span> <a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="RunPlan::getProperty::N"><span class="pre">N</span></a><span class="pre">&gt;</span> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE">
+<span id="_CPPv3I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyERKNSt6stringE"></span><span id="_CPPv2I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyERKNSt6stringE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">N</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1a40cf6150929134fc60dd9f2ff6195c70"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">array</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="RunPlan::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="RunPlan::getProperty::N"><span class="n"><span class="pre">N</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0_N18EnvironmentManager9size_typeEENK7RunPlan11getPropertyENSt5arrayI1T1NEERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets the currently configured environment property array value </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -998,8 +1017,8 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE">
-<span id="_CPPv3I0ENK7RunPlan11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span id="_CPPv2I0ENK7RunPlan11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span class="pre">template&lt;</span><span class="pre">typename</span> <code class="sig-name descname"><span class="pre">T</span></code><span class="pre">&gt;</span><br /><span class="target" id="classRunPlan_1afc58092314e4e259839af3816ecd2fa8"></span><a class="reference internal" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="RunPlan::getProperty::T"><span class="pre">T</span></a> <code class="sig-name descname"><span class="pre">getProperty</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">std</span><span class="pre">::</span><span class="pre">string</span> <span class="pre">&amp;</span><em><span class="pre">name</span></em>, <em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="pre">EnvironmentManager</span></a><span class="pre">::</span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="pre">size_type</span></a> <span class="pre">&amp;</span><em><span class="pre">index</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE">
+<span id="_CPPv3I0ENK7RunPlan11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span id="_CPPv2I0ENK7RunPlan11getPropertyERKNSt6stringERKN18EnvironmentManager9size_typeE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classRunPlan_1afc58092314e4e259839af3816ecd2fa8"></span><a class="reference internal" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="RunPlan::getProperty::T"><span class="n"><span class="pre">T</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getProperty</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classEnvironmentManager.html#_CPPv418EnvironmentManager" title="EnvironmentManager"><span class="n"><span class="pre">EnvironmentManager</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classEnvironmentManager.html#_CPPv4N18EnvironmentManager9size_typeE" title="EnvironmentManager::size_type"><span class="n"><span class="pre">size_type</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">index</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4I0ENK7RunPlan11getPropertyE1TRKNSt6stringERKN18EnvironmentManager9size_typeE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets an element of the currently configured environment property array </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1022,26 +1041,26 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlanplERK7RunPlan">
-<span id="_CPPv3NK7RunPlanplERK7RunPlan"></span><span id="_CPPv2NK7RunPlanplERK7RunPlan"></span><span id="RunPlan::add-operator__RunPlanCRC"></span><span class="target" id="classRunPlan_1ae7277f2bd1d0119a57f9707f94a739dd"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="pre">RunPlanVec</span></a> <code class="sig-name descname"><span class="pre">operator+</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="pre">RunPlan</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlanplERK7RunPlan" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlanplERK7RunPlan">
+<span id="_CPPv3NK7RunPlanplERK7RunPlan"></span><span id="_CPPv2NK7RunPlanplERK7RunPlan"></span><span id="RunPlan::add-operator__RunPlanCRC"></span><span class="target" id="classRunPlan_1ae7277f2bd1d0119a57f9707f94a739dd"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="n"><span class="pre">RunPlanVec</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv47RunPlan" title="RunPlan"><span class="n"><span class="pre">RunPlan</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlanplERK7RunPlan" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Operator methods for combining vectors </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlanplERK10RunPlanVec">
-<span id="_CPPv3NK7RunPlanplERK10RunPlanVec"></span><span id="_CPPv2NK7RunPlanplERK10RunPlanVec"></span><span id="RunPlan::add-operator__RunPlanVecCRC"></span><span class="target" id="classRunPlan_1af5cc859fe210b3c95c799aec51a00acf"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="pre">RunPlanVec</span></a> <code class="sig-name descname"><span class="pre">operator+</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="pre">RunPlanVec</span></a> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlanplERK10RunPlanVec" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlanplERK10RunPlanVec">
+<span id="_CPPv3NK7RunPlanplERK10RunPlanVec"></span><span id="_CPPv2NK7RunPlanplERK10RunPlanVec"></span><span id="RunPlan::add-operator__RunPlanVecCRC"></span><span class="target" id="classRunPlan_1af5cc859fe210b3c95c799aec51a00acf"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="n"><span class="pre">RunPlanVec</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">+</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="n"><span class="pre">RunPlanVec</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlanplERK10RunPlanVec" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv4NK7RunPlanmlERKj">
-<span id="_CPPv3NK7RunPlanmlERKj"></span><span id="_CPPv2NK7RunPlanmlERKj"></span><span id="RunPlan::mul-operator__unsigned-iCRC"></span><span class="target" id="classRunPlan_1ab116f49763fffa2d8064148a5381c6d2"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="pre">RunPlanVec</span></a> <code class="sig-name descname"><span class="pre">operator*</span></code><span class="sig-paren">(</span><em class="property"><span class="pre">const</span></em> <span class="pre">unsigned</span> <span class="pre">int</span> <span class="pre">&amp;</span><em><span class="pre">rhs</span></em><span class="sig-paren">)</span> <em class="property"><span class="pre">const</span></em><a class="headerlink" href="#_CPPv4NK7RunPlanmlERKj" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4NK7RunPlanmlERKj">
+<span id="_CPPv3NK7RunPlanmlERKj"></span><span id="_CPPv2NK7RunPlanmlERKj"></span><span id="RunPlan::mul-operator__unsigned-iCRC"></span><span class="target" id="classRunPlan_1ab116f49763fffa2d8064148a5381c6d2"></span><a class="reference internal" href="classRunPlanVec.html#_CPPv410RunPlanVec" title="RunPlanVec"><span class="n"><span class="pre">RunPlanVec</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">*</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK7RunPlanmlERKj" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 </div>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

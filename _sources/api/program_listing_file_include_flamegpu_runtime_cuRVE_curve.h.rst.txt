@@ -53,7 +53,7 @@ Program Listing for File curve.h
        template <unsigned int N>
        __device__ __host__ __forceinline__ static VariableHash variableHash(const char(&str)[N]);
        __host__ Variable getVariableHandle(VariableHash variable_hash);
-       __host__ Variable registerVariableByHash(VariableHash variable_hash, void* d_ptr, size_t size, unsigned int length); // Note: this function was never called
+       __host__ Variable registerVariableByHash(VariableHash variable_hash, void* d_ptr, size_t size, unsigned int length);
        template <unsigned int N, typename T>
        __host__ Variable registerVariable(const char(&variableName)[N], void* d_ptr, unsigned int length);
        __host__ int size() const;
@@ -113,7 +113,6 @@ Program Listing for File curve.h
    
        __host__ HostError getLastHostError();
        __host__ void clearErrors();
-   
        __host__ unsigned int checkHowManyMappedItems();
        static const int MAX_VARIABLES = 1024;          // !< Default maximum number of cuRVE variables (must be a power of 2)
        static const VariableHash EMPTY_FLAG = 0;

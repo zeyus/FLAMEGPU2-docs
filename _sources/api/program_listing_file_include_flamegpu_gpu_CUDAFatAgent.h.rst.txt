@@ -24,6 +24,8 @@ Program Listing for File CUDAFatAgent.h
    #include "flamegpu/gpu/CUDAFatAgentStateList.h"
    #include "flamegpu/model/SubAgentData.h"
    
+   class HostAPI;
+   
    class CUDAFatAgent {
        struct AgentState{
            const unsigned int agent;
@@ -54,6 +56,12 @@ Program Listing for File CUDAFatAgent.h
        void *allocNewBuffer(const size_t &total_agent_size, const unsigned int &new_agents, const size_t &varCount);
        void freeNewBuffer(void *buff);
        unsigned int getMappedAgentCount() const;
+       id_t nextID(unsigned int count = 1);
+       id_t *getDeviceNextID();
+       void notifyDeviceBirths(unsigned int newCount);
+       void assignIDs(HostAPI& hostapi);
+       void markIDsUnset() { agent_ids_have_init = false; }
+       void resetIDCounter();
    
     private:
        std::unordered_map<AgentState, std::shared_ptr<CUDAFatAgentStateList>, AgentState_hash> states;
@@ -68,6 +76,10 @@ Program Listing for File CUDAFatAgent.h
        std::multiset<NewBuffer> d_newLists;
        std::mutex d_newLists_mutex;
        unsigned int mappedAgentCount;
+       id_t _nextID;
+       id_t *d_nextID;
+       id_t hd_nextID;
+       bool agent_ids_have_init = true;
    };
    
    #endif  // INCLUDE_FLAMEGPU_GPU_CUDAFATAGENT_H_

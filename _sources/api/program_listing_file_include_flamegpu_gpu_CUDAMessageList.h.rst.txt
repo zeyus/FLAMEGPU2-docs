@@ -43,9 +43,9 @@ Program Listing for File CUDAMessageList.h
        const CUDAMsgMap &getWriteList() { return d_swap_list; }
    
     protected:
-        void allocateDeviceMessageList(CUDAMsgMap &Message_list);
-        void releaseDeviceMessageList(CUDAMsgMap &Message_list);
-        void zeroDeviceMessageList(CUDAMsgMap &Message_list);
+        void allocateDeviceMessageList(CUDAMsgMap &memory_map);
+        void releaseDeviceMessageList(CUDAMsgMap &memory_map);
+        void zeroDeviceMessageList(CUDAMsgMap &memory_map);
    
     private:
        CUDAMsgMap d_list;

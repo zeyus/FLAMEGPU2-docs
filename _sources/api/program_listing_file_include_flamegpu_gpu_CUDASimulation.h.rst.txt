@@ -177,6 +177,8 @@ Program Listing for File CUDASimulation.h
        typedef std::unordered_map<std::string, AgentDataBufferStateMap> AgentDataMap;
    
     private:
+       void assignAgentIDs();
+       bool agent_ids_have_init = true;
        AgentOffsetMap agentOffsets;
        AgentDataMap agentData;
        void initOffsetsAndMap();

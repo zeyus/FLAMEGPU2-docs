@@ -32,6 +32,7 @@ Program Listing for File CUDAAgent.h
    class CUDAScatter;
    class CUDAFatAgent;
    struct VarOffsetStruct;
+   class HostAPI;
    class CUDAAgent : public AgentInterface {
        friend class AgentVis;
    
@@ -73,8 +74,12 @@ Program Listing for File CUDAAgent.h
        void resizeState(const std::string &state, const unsigned int& minSize, const bool& retainData);
        void setStateAgentCount(const std::string& state, const unsigned int &newSize);
        std::list<std::shared_ptr<VariableBuffer>> getUnboundVariableBuffers(const std::string& state);
+       id_t nextID(unsigned int count = 1);
+       id_t* getDeviceNextID();
+       void assignIDs(HostAPI &hostapi);
    
     private:
+       void validateIDCollisions() const;
        static size_t calcTotalVarSize(const AgentData &agent) {
            size_t rtn = 0;
            for (const auto v : agent.variables) {

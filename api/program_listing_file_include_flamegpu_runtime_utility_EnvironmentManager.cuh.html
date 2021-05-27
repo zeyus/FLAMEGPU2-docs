@@ -134,8 +134,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
@@ -148,11 +148,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -941,8 +943,8 @@ class EnvironmentManager {
         return fk1.first &lt; fk2.first;
     }
     typedef std::multimap&lt;std::pair&lt;size_t, const NamePair&gt;, DefragProp, std::less&lt;&gt;&gt; DefragMap;
-    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc);
-    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc, const unsigned int &amp;master_instance_id, const SubEnvironmentData &amp;mapping);
+    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc, bool isPureRTC);
+    void init(const unsigned int &amp;instance_id, const EnvironmentDescription &amp;desc, bool isPureRTC, const unsigned int &amp;master_instance_id, const SubEnvironmentData &amp;mapping);
     void initRTC(const CUDASimulation &amp;cuda_model);
     void free(Curve &amp;curve, const unsigned int &amp;instance_id);
     template&lt;typename T&gt;
@@ -1068,7 +1070,7 @@ class EnvironmentManager {
     static NamePair toName(const unsigned int &amp;instance_id, const std::string &amp;var_name);
     Curve::VariableHash toHash(const NamePair &amp;name) const;
     void newProperty(const NamePair &amp;name, const char *ptr, const size_t &amp;len, const bool &amp;isConst, const size_type &amp;elements, const std::type_index &amp;type);
-    void defragment(Curve &amp;curve, const DefragMap * mergeProps = nullptr, std::set&lt;NamePair&gt; newmaps = {});
+    void defragment(Curve &amp;curve, const DefragMap * mergeProps = nullptr, std::set&lt;NamePair&gt; newmaps = {}, bool isPureRTC = false);
     void buildRTCOffsets(const unsigned int &amp;instance_id, const unsigned int &amp;master_instance_id, const DefragMap &amp;mergeProperties);
     char* getRTCCache(const unsigned int&amp; instance_id);
     void addRTCOffset(const NamePair &amp;name);

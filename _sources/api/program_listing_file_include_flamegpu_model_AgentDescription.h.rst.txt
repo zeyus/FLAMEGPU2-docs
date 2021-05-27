@@ -63,7 +63,8 @@ Program Listing for File AgentDescription.h
    
        template<typename AgentFunction>
        AgentFunctionDescription &newFunction(const std::string &function_name, AgentFunction a = AgentFunction());
-       AgentFunctionDescription& newRTCFunction(const std::string& function_name, const char* func_src);
+       AgentFunctionDescription& newRTCFunction(const std::string& function_name, const std::string& func_src);
+       AgentFunctionDescription& newRTCFunctionFile(const std::string& function_name, const std::string& file_path);
        AgentFunctionDescription &Function(const std::string &function_name);
    
        std::string getName() const;

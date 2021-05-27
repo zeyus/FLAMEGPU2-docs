@@ -191,6 +191,10 @@ Program Listing for File CUDASimulation.h
        static std::map<int, std::atomic<int>> active_device_instances;
        static std::map<int, std::shared_timed_mutex> active_device_mutex;
        static std::shared_timed_mutex active_device_maps_mutex;
+       static bool detectPureRTC(const std::shared_ptr<const ModelData>& _model);
+   
+    protected:
+       const bool isPureRTC;
    
     public:
        static bool AUTO_CUDA_DEVICE_RESET;

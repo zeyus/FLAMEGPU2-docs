@@ -51,7 +51,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Modifying Agent Properties" href="2-modifying-agent-properties.html" />
+    <link rel="next" title="Modifying Agent Variables" href="2-modifying-agent-variables.html" />
     <link rel="prev" title="Defining Behaviours" href="index.html" /> 
 </head>
 
@@ -137,8 +137,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#more-info">More Info</a></li>
@@ -151,11 +151,13 @@
 <li class="toctree-l4"><a class="reference internal" href="#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -845,7 +847,7 @@ message communication strategy, and an output message communication strategy. We
 name matching the unique function identifier:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an agent function called agent_fn1</span>
-<span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">FLAMEGPU_AGENT_FUNCTION(agent_fn1, MsgNone, MsgNone) {</span>
 <span class="s2">    # Behaviour goes here</span>
 <span class="s2">}</span>
@@ -905,11 +907,35 @@ If you know that you want to define your agent behaviours at runtime, you can in
 </div>
 </div></div>
 </section>
+<section id="flamegpu-device-functions">
+<h2>FLAMEGPU Device Functions<a class="headerlink" href="#flamegpu-device-functions" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to define regular functions which can be used within agent function definitions, you can use the <cite>FLAMEGPU_DEVICE_FUNCTION</cite> macro:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-4-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two ingtegers which can be called inside agent functions.</span>
+<span class="n">FLAMEGPU_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="flamegpu-host-device-functions">
+<h2>FLAMEGPU Host Device Functions<a class="headerlink" href="#flamegpu-host-device-functions" title="Permalink to this headline">¶</a></h2>
+<p>If you wish to define regular functions which can be used within agent function definitions and in host code, you can use the <cite>FLAMEGPU_HOST_DEVICE_FUNCTION</cite> macro:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-5-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for subtracting two ingtegers which can be called inside agent functions, or in host code</span>
+<span class="n">FLAMEGPU_HOST_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">subtract</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+</section>
 <section id="full-example-code-from-this-page">
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-4-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an agent function called agent_fn1</span>
-<span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-6-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an agent function called agent_fn1</span>
+<span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">FLAMEGPU_AGENT_FUNCTION(agent_fn1, MsgNone, MsgNone) {</span>
 <span class="s2">    # Behaviour goes here</span>
 <span class="s2">}</span>
@@ -920,7 +946,12 @@ If you know that you want to define your agent behaviours at runtime, you can in
 <span class="n">agent_fn1_description</span> <span class="o">=</span> <span class="n">agent</span><span class="o">.</span><span class="n">newRTCFunction</span><span class="p">(</span><span class="s2">&quot;agent_fn1&quot;</span><span class="p">,</span> <span class="n">agent_fn1_source</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-4-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function called agent_fn1 - specified ahead of main function</span>
+</div><div aria-labelledby="tab-6-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-6-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two ingtegers which can be called inside agent functions.</span>
+<span class="n">FLAMEGPU_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Define an agent function called agent_fn1 - specified ahead of main function</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Behaviour goes here</span>
 <span class="p">}</span>
@@ -973,7 +1004,7 @@ If you know that you want to define your agent behaviours at runtime, you can in
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="2-modifying-agent-properties.html" class="btn btn-neutral float-right" title="Modifying Agent Properties" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="2-modifying-agent-variables.html" class="btn btn-neutral float-right" title="Modifying Agent Variables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Defining Behaviours" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

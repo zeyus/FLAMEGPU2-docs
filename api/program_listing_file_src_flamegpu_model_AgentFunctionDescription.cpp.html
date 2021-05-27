@@ -134,8 +134,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
@@ -148,11 +148,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -824,7 +826,9 @@
 <p>↰ <a class="reference internal" href="file_src_flamegpu_model_AgentFunctionDescription.cpp.html#file-src-flamegpu-model-agentfunctiondescription-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/model/AgentFunctionDescription.cpp</span></code>)</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>#include &lt;nvrtc.h&gt;
 #include &lt;cuda.h&gt;
+#include &lt;fstream&gt;
 #include &lt;iostream&gt;
+#include &lt;sstream&gt;
 #include &lt;string&gt;
 #include &lt;regex&gt;
 
@@ -1277,7 +1281,7 @@ bool AgentFunctionDescription::isRTC() const {
     return !function-&gt;rtc_source.empty();
 }
 
-AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string&amp; function_name, const char* func_src) {
+AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string&amp; function_name, const std::string&amp; func_src) {
     if (agent-&gt;functions.find(function_name) == agent-&gt;functions.end()) {
         // append jitify program string and include
         std::string func_src_str = std::string(function_name + &quot;_program\n&quot;).append(&quot;#include \&quot;flamegpu/runtime/DeviceAPI.h\&quot;\n&quot;).append(func_src);
@@ -1305,7 +1309,27 @@ AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string
         }
     }
     THROW InvalidAgentFunc(&quot;Agent (&#39;%s&#39;) already contains function &#39;%s&#39;, &quot;
-        &quot;in AgentDescription::newFunction().&quot;,
+        &quot;in AgentDescription::newRTCFunction().&quot;,
+        agent-&gt;name.c_str(), function_name.c_str());
+}
+
+AgentFunctionDescription&amp; AgentDescription::newRTCFunctionFile(const std::string&amp; function_name, const std::string&amp; file_path) {
+    if (agent-&gt;functions.find(function_name) == agent-&gt;functions.end()) {
+        // Load file and forward to regular RTC method
+        std::ifstream file;
+        file.open(file_path);
+        if (file.is_open()) {
+            std::stringstream sstream;
+            sstream &lt;&lt; file.rdbuf();
+            const std::string func_src = sstream.str();
+            return newRTCFunction(function_name, func_src);
+        }
+        THROW InvalidFilePath(&quot;Unable able to open file &#39;%s&#39;, &quot;
+            &quot;in AgentDescription::newRTCFunctionFile().&quot;,
+            file_path.c_str());
+    }
+    THROW InvalidAgentFunc(&quot;Agent (&#39;%s&#39;) already contains function &#39;%s&#39;, &quot;
+        &quot;in AgentDescription::newRTCFunctionFile().&quot;,
         agent-&gt;name.c_str(), function_name.c_str());
 }
 </pre></div>

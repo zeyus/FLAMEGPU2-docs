@@ -134,8 +134,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
@@ -148,11 +148,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -873,7 +875,8 @@ CUDASimulation::CUDASimulation(const std::shared_ptr&lt;const ModelData&gt; &amp
     , streams(std::vector&lt;cudaStream_t&gt;())
     , singletons(nullptr)
     , singletonsInitialised(false)
-    , rtcInitialised(false) {
+    , rtcInitialised(false)
+    , isPureRTC(detectPureRTC(model)) {
     ++active_instances;
     initOffsetsAndMap();
     // Register the signal handler.
@@ -901,6 +904,22 @@ CUDASimulation::CUDASimulation(const std::shared_ptr&lt;const ModelData&gt; &amp
         submodel_map.emplace(it_sm-&gt;first, std::unique_ptr&lt;CUDASimulation&gt;(new CUDASimulation(it_sm-&gt;second, this)));
     }
 }
+bool CUDASimulation::detectPureRTC(const std::shared_ptr&lt;const ModelData&gt;&amp; _model) {
+    const auto&amp; am = _model-&gt;agents;
+    for (auto it = am.cbegin(); it != am.cend(); ++it) {
+        for (const auto&amp; af : it-&gt;second-&gt;functions) {
+            if (af.second-&gt;func || af.second-&gt;condition)
+                return false;
+        }
+    }
+    // TODO: In future this will need to be extended for new forms of device function, e.g. device init
+    const auto&amp; as = _model-&gt;submodels;
+    for (auto it = as.cbegin(); it != as.cend(); ++it) {
+        if (!detectPureRTC(it-&gt;second-&gt;submodel))
+          return false;
+    }
+    return true;
+}
 CUDASimulation::CUDASimulation(const std::shared_ptr&lt;SubModelData&gt; &amp;submodel_desc, CUDASimulation *master_model)
     : Simulation(submodel_desc, master_model)
     , step_count(0)
@@ -908,7 +927,8 @@ CUDASimulation::CUDASimulation(const std::shared_ptr&lt;SubModelData&gt; &amp;su
     , streams(std::vector&lt;cudaStream_t&gt;())
     , singletons(nullptr)
     , singletonsInitialised(false)
-    , rtcInitialised(false) {
+    , rtcInitialised(false)
+    , isPureRTC(master_model-&gt;isPureRTC) {
     ++active_instances;
     initOffsetsAndMap();
     // Ensure submodel is valid
@@ -2099,9 +2119,9 @@ void CUDASimulation::initialiseSingletons() {
 
         // Populate the environment properties
         if (!submodel) {
-            singletons-&gt;environment.init(instance_id, *model-&gt;environment);
+            singletons-&gt;environment.init(instance_id, *model-&gt;environment, isPureRTC);
         } else {
-            singletons-&gt;environment.init(instance_id, *model-&gt;environment, mastermodel-&gt;getInstanceID(), *submodel-&gt;subenvironment);
+            singletons-&gt;environment.init(instance_id, *model-&gt;environment, isPureRTC, mastermodel-&gt;getInstanceID(), *submodel-&gt;subenvironment);
         }
 
         // Propagate singleton init to submodels

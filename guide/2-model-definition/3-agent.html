@@ -137,8 +137,8 @@
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
@@ -151,11 +151,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -845,10 +847,18 @@ object</p>
 </div>
 </div></div>
 </section>
-<section id="agent-properties">
-<h2>Agent Properties<a class="headerlink" href="#agent-properties" title="Permalink to this headline">¶</a></h2>
-<p>Agent properties should be used to store data which is unique to each instance of an agent, for example, each individual predator in a predator-prey simulation
-would have its own position and hunger level. Each property has a name and a type. For a complete list of supported types, see <strong>TODO: reference page for available types</strong>.</p>
+<section id="agent-variables">
+<h2>Agent Variables<a class="headerlink" href="#agent-variables" title="Permalink to this headline">¶</a></h2>
+<p>Agent variables should be used to store data which is unique to each instance of an agent, for example, each individual predator in a predator-prey simulation
+would have its own position and hunger level. Each variable has a name and a type. For a complete list of supported types, see <strong>TODO: reference page for available types</strong>.</p>
+<section id="agent-id">
+<h3>Agent ID<a class="headerlink" href="#agent-id" title="Permalink to this headline">¶</a></h3>
+<p>All agents have a built in <cite>id</cite> variable. This is a number which uniquely identifies this agent. Each agent will automatically be assigned an ID when the simulation
+starts or the agent is birthed. There is currently no way to change the ID of an agent. The agent ID variable is of type <cite>id_t</cite> which is an <cite>unsigned int</cite> by default, but can be redefined if
+more IDs are required.</p>
+</section>
+<section id="user-defined-variables">
+<h3>User Defined Variables<a class="headerlink" href="#user-defined-variables" title="Permalink to this headline">¶</a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two new floating point variables, x and y</span>
 <span class="n">predator</span><span class="o">.</span><span class="n">newVariableFloat</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
@@ -868,15 +878,16 @@ would have its own position and hunger level. Each property has a name and a typ
 </div>
 </div></div>
 </section>
-<section id="agent-array-properties">
-<h2>Agent Array Properties<a class="headerlink" href="#agent-array-properties" title="Permalink to this headline">¶</a></h2>
-<p>Array properties can also be defined by providing a name and array length:</p>
+</section>
+<section id="agent-array-variables">
+<h2>Agent Array Variables<a class="headerlink" href="#agent-array-variables" title="Permalink to this headline">¶</a></h2>
+<p>Array variables can also be defined by providing a name and array length:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an array property called exampleArray which is an array of 3 integers</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-2-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an array variable called exampleArray which is an array of 3 integers</span>
 <span class="n">predator</span><span class="o">.</span><span class="n">newVariableArrayInt</span><span class="p">(</span><span class="s2">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-2-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an array property called exampleArray which is an array of 3 integers</span>
+</div><div aria-labelledby="tab-2-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an array variable called exampleArray which is an array of 3 integers</span>
 <span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -913,7 +924,7 @@ All newly defined agent types will have a default state, but you can add additio
 <span class="c1"># Create a new integer variable, hungerLevel</span>
 <span class="n">predator</span><span class="o">.</span><span class="n">newVariableInt</span><span class="p">(</span><span class="s2">&quot;hungerLevel&quot;</span><span class="p">)</span>
 
-<span class="c1"># Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="c1"># Create an array variable called exampleArray which is an array of 3 integers</span>
 <span class="n">predator</span><span class="o">.</span><span class="n">newVariableArrayInt</span><span class="p">(</span><span class="s2">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># Create two new states, resting and hunting</span>
@@ -931,7 +942,7 @@ All newly defined agent types will have a default state, but you can add additio
 <span class="c1">// Create a new integer variable, hungerLevel</span>
 <span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span>
 
-<span class="c1">// Create an array property called exampleArray which is an array of 3 integers</span>
+<span class="c1">// Create an array variable called exampleArray which is an array of 3 integers</span>
 <span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
 
 <span class="c1">// Create two new states, resting and hunting</span>

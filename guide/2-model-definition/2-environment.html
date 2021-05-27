@@ -137,8 +137,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-agent.html#more-info">More Info</a></li>
@@ -151,11 +151,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-properties.html">Modifying Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -865,9 +867,9 @@ initialised.</p>
 <code class="docutils literal notranslate"><span class="pre">double</span></code>).</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define environmental properties and their initial values</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addFloat</span><span class="p">(</span><span class="s2">&quot;f_prop&quot;</span><span class="p">,</span> <span class="mf">12.0</span><span class="n">f</span><span class="p">)</span>     <span class="c1"># Create float property &#39;f_prop&#39;, with value of 12</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addInt</span><span class="p">(</span><span class="s2">&quot;ia_prop&quot;</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">})</span>  <span class="c1"># Create int array property &#39;ia_prop&#39;, with value of [1, 2, 3]</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addChar</span><span class="p">(</span><span class="s2">&quot;c_prop&quot;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>  <span class="c1"># Create constant char property &#39;c_prop&#39;, with value &#39;g&#39;</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyFloat</span><span class="p">(</span><span class="s2">&quot;f_prop&quot;</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">)</span>     <span class="c1"># Create float property &#39;f_prop&#39;, with value of 12</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyArrayInt</span><span class="p">(</span><span class="s2">&quot;ia_prop&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># Create int array property &#39;ia_prop&#39;, with value of [1, 2, 3]</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyChar</span><span class="p">(</span><span class="s2">&quot;c_prop&quot;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Create constant char property &#39;c_prop&#39;, with value &#39;g&#39;</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define environmental properties and their initial values</span>
@@ -899,9 +901,9 @@ initialised.</p>
 <span class="n">env</span> <span class="o">=</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">EnvironmentDescription</span><span class="p">()</span>
 
 <span class="c1"># Define environmental properties and their initial values</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addFloat</span><span class="p">(</span><span class="s2">&quot;f_prop&quot;</span><span class="p">,</span> <span class="mf">12.0</span><span class="n">f</span><span class="p">)</span>     <span class="c1"># Create float property &#39;f_prop&#39;, with value of 12</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addInt</span><span class="p">(</span><span class="s2">&quot;ia_prop&quot;</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">})</span>  <span class="c1"># Create int array property &#39;ia_prop&#39;, with value of [1, 2, 3]</span>
-<span class="n">env</span><span class="o">.</span><span class="n">addChar</span><span class="p">(</span><span class="s2">&quot;c_prop&quot;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">true</span><span class="p">)</span>  <span class="c1"># Create constant char property &#39;c_prop&#39;, with value &#39;g&#39;</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyFloat</span><span class="p">(</span><span class="s2">&quot;f_prop&quot;</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">)</span>     <span class="c1"># Create float property &#39;f_prop&#39;, with value of 12</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyArrayInt</span><span class="p">(</span><span class="s2">&quot;ia_prop&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># Create int array property &#39;ia_prop&#39;, with value of [1, 2, 3]</span>
+<span class="n">env</span><span class="o">.</span><span class="n">newPropertyChar</span><span class="p">(</span><span class="s2">&quot;c_prop&quot;</span><span class="p">,</span> <span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>  <span class="c1"># Create constant char property &#39;c_prop&#39;, with value &#39;g&#39;</span>
 
 <span class="c1"># Attach the EnvironmentDescription to a ModelDescription</span>
 <span class="n">model</span><span class="o">.</span><span class="n">setEnvironment</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>

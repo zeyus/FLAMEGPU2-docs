@@ -129,8 +129,8 @@ Program Listing for File EnvironmentManager.cuh
            return fk1.first < fk2.first;
        }
        typedef std::multimap<std::pair<size_t, const NamePair>, DefragProp, std::less<>> DefragMap;
-       void init(const unsigned int &instance_id, const EnvironmentDescription &desc);
-       void init(const unsigned int &instance_id, const EnvironmentDescription &desc, const unsigned int &master_instance_id, const SubEnvironmentData &mapping);
+       void init(const unsigned int &instance_id, const EnvironmentDescription &desc, bool isPureRTC);
+       void init(const unsigned int &instance_id, const EnvironmentDescription &desc, bool isPureRTC, const unsigned int &master_instance_id, const SubEnvironmentData &mapping);
        void initRTC(const CUDASimulation &cuda_model);
        void free(Curve &curve, const unsigned int &instance_id);
        template<typename T>
@@ -256,7 +256,7 @@ Program Listing for File EnvironmentManager.cuh
        static NamePair toName(const unsigned int &instance_id, const std::string &var_name);
        Curve::VariableHash toHash(const NamePair &name) const;
        void newProperty(const NamePair &name, const char *ptr, const size_t &len, const bool &isConst, const size_type &elements, const std::type_index &type);
-       void defragment(Curve &curve, const DefragMap * mergeProps = nullptr, std::set<NamePair> newmaps = {});
+       void defragment(Curve &curve, const DefragMap * mergeProps = nullptr, std::set<NamePair> newmaps = {}, bool isPureRTC = false);
        void buildRTCOffsets(const unsigned int &instance_id, const unsigned int &master_instance_id, const DefragMap &mergeProperties);
        char* getRTCCache(const unsigned int& instance_id);
        void addRTCOffset(const NamePair &name);

@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Modifying Agent Properties &mdash; FLAME GPU 2 0 documentation</title>
+  <title>Modifying Agent Variables &mdash; FLAME GPU 2 0 documentation</title>
   
 
   
@@ -137,8 +137,8 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../2-model-definition/3-agent.html">Defining Agents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-properties">Agent Properties</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-properties">Agent Array Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#agent-states">Agent States</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../2-model-definition/3-agent.html#more-info">More Info</a></li>
@@ -151,11 +151,13 @@
 <li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
 <li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#defining-a-runtime-compiled-agent-function-c">Defining a Runtime-Compiled Agent Function (C++)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="1-defining-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifying Agent Properties</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifying Agent Variables</a></li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#defining-messages">Defining Messages</a></li>
@@ -807,13 +809,13 @@
         
           <li><a href="index.html">Defining Behaviours</a> &raquo;</li>
         
-      <li>Modifying Agent Properties</li>
+      <li>Modifying Agent Variables</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/guide/3-behaviour-definition/2-modifying-agent-properties.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/guide/3-behaviour-definition/2-modifying-agent-variables.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -826,14 +828,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="modifying-agent-properties">
-<h1>Modifying Agent Properties<a class="headerlink" href="#modifying-agent-properties" title="Permalink to this headline">¶</a></h1>
-<p>Each instance of an agent will have its own copy of each of the agent properties specified in the agent type defintion.
+  <section id="modifying-agent-variables">
+<h1>Modifying Agent Variables<a class="headerlink" href="#modifying-agent-variables" title="Permalink to this headline">¶</a></h1>
+<p>Each instance of an agent will have its own copy of each of the agent variables specified in the agent type defintion.
 These can be accessed and modified within agent functions.</p>
 <p>Within an agent function, variables can be read with <code class="docutils literal notranslate"><span class="pre">getVariable</span></code> and written to with <code class="docutils literal notranslate"><span class="pre">setVariable</span></code>.
 These variables are accessed from higher latency device memory, so for the best performance, we recommended
 that you avoid multiple reads or writes to the same variable in any agent functions and do as much as possible
-with the local copy.</p>
+with the local copy. The agent ID built-in variable can be accessed via the <cite>getID</cite> method.</p>
 <p>To achieve the high performance of FLAMEGPU2, agent behaviours must be implemented using C++.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Qysr" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="0">C++</button></div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">,</span> <span class="n">MsgNone</span><span class="p">)</span> <span class="p">{</span>

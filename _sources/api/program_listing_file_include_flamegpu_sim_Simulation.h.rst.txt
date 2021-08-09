@@ -1,0 +1,126 @@
+
+.. _program_listing_file_include_flamegpu_sim_Simulation.h:
+
+Program Listing for File Simulation.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_sim_Simulation.h>` (``include/flamegpu/sim/Simulation.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_SIM_SIMULATION_H_
+   #define INCLUDE_FLAMEGPU_SIM_SIMULATION_H_
+   
+   #include <memory>
+   #include <string>
+   #include <ctime>
+   #include <utility>
+   #include <unordered_map>
+   
+   #include "flamegpu/sim/AgentInterface.h"
+   #include "flamegpu/util/StringUint32Pair.h"
+   
+   
+   namespace flamegpu {
+   
+   class AgentVector;
+   class HostAPI;
+   class ModelDescription;
+   struct ModelData;
+   struct RunLog;
+   
+   
+   class Simulation {
+    public:
+       struct Config {
+           Config() : random_seed(static_cast<unsigned int>(time(nullptr))) {
+           }
+           void operator=(const Config &other) {
+               input_file = other.input_file;
+               random_seed = other.random_seed;
+               steps = other.steps;
+               verbose = other.verbose;
+               timing = other.timing;
+   #ifdef VISUALISATION
+               console_mode = other.console_mode;
+   #endif
+           }
+           std::string input_file;
+           std::string step_log_file;
+           std::string exit_log_file;
+           std::string common_log_file;
+           bool truncate_log_files = true;
+           unsigned int random_seed;
+           unsigned int steps = 0;
+           bool verbose = false;
+           bool timing = false;
+   #ifdef VISUALISATION
+           bool console_mode = false;
+   #else
+           const bool console_mode = true;
+   #endif
+       };
+       virtual ~Simulation() = default;
+       explicit Simulation(const std::shared_ptr<const ModelData> &model);
+   
+    protected:
+       explicit Simulation(const std::shared_ptr<SubModelData> &sub_model, CUDASimulation *master_model);
+   
+    public:
+       void initialise(int argc, const char** argv);
+   
+       virtual void initFunctions() = 0;
+       virtual bool step() = 0;
+       virtual void exitFunctions() = 0;
+       virtual void simulate() = 0;
+       void reset();
+       virtual unsigned int getStepCounter() = 0;
+       virtual void resetStepCounter() = 0;
+   
+       const ModelData& getModelDescription() const;
+       void exportData(const std::string &path, bool prettyPrint = true);
+       void exportLog(const std::string &path, bool steps, bool exit, bool prettyPrint = true);
+   
+       virtual void setPopulationData(AgentVector& population, const std::string& state_name = ModelData::DEFAULT_STATE) = 0;
+       virtual void getPopulationData(AgentVector& population, const std::string& state_name = ModelData::DEFAULT_STATE) = 0;
+   
+       virtual const RunLog &getRunLog() const = 0;
+       virtual AgentInterface &getAgent(const std::string &name) = 0;
+   
+       Config &SimulationConfig();
+       const Config &getSimulationConfig() const;
+   
+       void applyConfig();
+   
+    protected:
+       virtual void reset(bool submodelReset) = 0;
+       virtual void applyConfig_derived() = 0;
+       virtual bool checkArgs_derived(int argc, const char** argv, int &i) = 0;
+       virtual void printHelp_derived() = 0;
+       virtual void resetDerivedConfig() = 0;
+       unsigned int getInstanceID() const { return instance_id; }
+   
+       unsigned int getMaximumLayerWidth() const { return maxLayerWidth; }
+   
+       const std::shared_ptr<const ModelData> model;
+   
+       const std::shared_ptr<const SubModelData> submodel;
+       CUDASimulation const * mastermodel;
+   
+       Config config;
+       std::string loaded_input_file;
+       const unsigned int instance_id;
+       util::StringUint32PairUnorderedMap<util::Any> env_init;
+       unsigned int maxLayerWidth;
+   
+    private:
+       static unsigned int get_instance_id();
+       void printHelp(const char *executable);
+       int checkArgs(int argc, const char** argv);
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_SIM_SIMULATION_H_

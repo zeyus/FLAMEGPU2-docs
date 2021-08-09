@@ -1,0 +1,64 @@
+
+.. _program_listing_file_include_flamegpu_io_StateReader.h:
+
+Program Listing for File StateReader.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_StateReader.h>` (``include/flamegpu/io/StateReader.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_STATEREADER_H_
+   #define INCLUDE_FLAMEGPU_IO_STATEREADER_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   #include <utility>
+   
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/util/StringPair.h"
+   #include "flamegpu/util/StringUint32Pair.h"
+   
+   namespace flamegpu {
+   
+   class AgentVector;
+   
+   namespace io {
+   
+   class StateReader {
+    public:
+       StateReader(
+           const std::string& _model_name,
+           const std::unordered_map<std::string, EnvironmentDescription::PropData>& _env_desc,
+           util::StringUint32PairUnorderedMap<util::Any>& _env_init,
+           util::StringPairUnorderedMap<std::shared_ptr<AgentVector>>& _model_state,
+           const std::string& input,
+           Simulation* _sim_instance)
+       : model_state(_model_state)
+       , inputFile(input)
+       , model_name(_model_name)
+       , env_desc(_env_desc)
+       , env_init(_env_init)
+       , sim_instance(_sim_instance) {}
+       virtual ~StateReader() {}
+   
+       // -----------------------------------------------------------------------
+       //  The interface
+       // -----------------------------------------------------------------------
+       virtual int parse() = 0;
+   
+    protected:
+       util::StringPairUnorderedMap<std::shared_ptr<AgentVector>>& model_state;
+       std::string inputFile;
+       const std::string model_name;
+       const std::unordered_map<std::string, EnvironmentDescription::PropData> &env_desc;
+       util::StringUint32PairUnorderedMap<util::Any> &env_init;
+       Simulation *sim_instance;
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_STATEREADER_H_

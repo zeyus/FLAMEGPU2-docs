@@ -1,0 +1,59 @@
+
+.. _program_listing_file_include_flamegpu_io_JSONLogger.h:
+
+Program Listing for File JSONLogger.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_JSONLogger.h>` (``include/flamegpu/io/JSONLogger.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_JSONLOGGER_H_
+   #define INCLUDE_FLAMEGPU_IO_JSONLOGGER_H_
+   
+   #include <string>
+   #include <typeindex>
+   
+   #include "flamegpu/io/Logger.h"
+   #include "flamegpu/util/Any.h"
+   
+   namespace flamegpu {
+   struct RunLog;
+   struct LogFrame;
+   class RunPlan;
+   
+   namespace io {
+   
+   class JSONLogger : public Logger{
+    public:
+       JSONLogger(const std::string &outPath, bool prettyPrint, bool truncateFile);
+       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true) const override;
+       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true) const override;
+   
+    private:
+       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       template<typename T>
+       void logCommon(T &writer, const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       template<typename T>
+       void logConfig(T &writer, const RunLog &log) const;
+       template<typename T>
+       void logConfig(T &writer, const RunPlan &plan) const;
+       template<typename T>
+       void logSteps(T &writer, const RunLog &log) const;
+       template<typename T>
+       void logExit(T &writer, const RunLog &log) const;
+       template<typename T>
+       void writeLogFrame(T &writer, const LogFrame &log) const;
+       template<typename T>
+       void writeAny(T &writer, const util::Any &value, const unsigned int &elements = 1) const;
+   
+       std::string out_path;
+       bool prettyPrint;
+       bool truncateFile;
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_JSONLOGGER_H_

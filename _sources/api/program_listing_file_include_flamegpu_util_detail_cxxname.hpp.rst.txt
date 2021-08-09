@@ -1,0 +1,38 @@
+
+.. _program_listing_file_include_flamegpu_util_detail_cxxname.hpp:
+
+Program Listing for File cxxname.hpp
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_detail_cxxname.hpp>` (``include/flamegpu/util/detail/cxxname.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_CXXNAME_HPP_
+   #define INCLUDE_FLAMEGPU_UTIL_DETAIL_CXXNAME_HPP_
+   
+   #include <string>
+   
+   namespace flamegpu {
+   namespace util {
+   namespace detail {
+   namespace cxxname {
+   
+   inline std::string getUnqualifiedName(std::string qualified) {
+       const char * SCOPE_RESOLUTION_OPERATIOR = "::";
+       size_t lastOccurence = qualified.find_last_of(SCOPE_RESOLUTION_OPERATIOR);
+       if (lastOccurence == std::string::npos) {
+           return qualified;
+       } else {
+           return qualified.substr(lastOccurence + 1);
+       }
+   }
+   
+   }  // namespace cxxname
+   }  // namespace detail
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_DETAIL_CXXNAME_HPP_

@@ -1,0 +1,34 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageSpecialisationHandler.h:
+
+Program Listing for File MessageSpecialisationHandler.h
+=======================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageSpecialisationHandler.h>` (``include/flamegpu/runtime/messaging/MessageSpecialisationHandler.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPECIALISATIONHANDLER_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPECIALISATIONHANDLER_H_
+   
+   #include "flamegpu/runtime/detail/curve/curve.cuh"
+   
+   namespace flamegpu {
+   
+   class CUDAScatter;
+   class MessageSpecialisationHandler {
+    public:
+       MessageSpecialisationHandler() { }
+       virtual ~MessageSpecialisationHandler() { }
+       virtual void init(CUDAScatter &scatter, const unsigned int &streamId) = 0;
+       virtual void buildIndex(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream) { }
+       virtual void allocateMetaDataDevicePtr() { }
+       virtual void freeMetaDataDevicePtr() { }
+       virtual const void *getMetaDataDevicePtr() const { return nullptr; }
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPECIALISATIONHANDLER_H_

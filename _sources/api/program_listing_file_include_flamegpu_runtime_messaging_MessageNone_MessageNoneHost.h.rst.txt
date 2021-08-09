@@ -1,0 +1,34 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageNone_MessageNoneHost.h:
+
+Program Listing for File MessageNoneHost.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageNone_MessageNoneHost.h>` (``include/flamegpu/runtime/messaging/MessageNone/MessageNoneHost.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEHOST_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEHOST_H_
+   
+   #include "flamegpu/runtime/messaging/MessageSpecialisationHandler.h"
+   #include "flamegpu/runtime/messaging/MessageNone.h"
+   
+   namespace flamegpu {
+   
+   class CUDAMessage;
+   
+   class MessageNone::CUDAModelHandler : public MessageSpecialisationHandler {
+    public:
+       explicit CUDAModelHandler(CUDAMessage &a)
+           : MessageSpecialisationHandler()
+           , sim_message(a)
+       { }
+       CUDAMessage &sim_message;
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEHOST_H_

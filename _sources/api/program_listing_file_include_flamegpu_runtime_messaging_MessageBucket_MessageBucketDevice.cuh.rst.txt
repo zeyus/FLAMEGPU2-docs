@@ -1,0 +1,189 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageBucket_MessageBucketDevice.cuh:
+
+Program Listing for File MessageBucketDevice.cuh
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageBucket_MessageBucketDevice.cuh>` (``include/flamegpu/runtime/messaging/MessageBucket/MessageBucketDevice.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBUCKET_MESSAGEBUCKETDEVICE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBUCKET_MESSAGEBUCKETDEVICE_CUH_
+   
+   #include "flamegpu/runtime/messaging/MessageBucket.h"
+   #include "flamegpu/runtime/messaging/MessageBruteForce/MessageBruteForceDevice.cuh"
+   
+   namespace flamegpu {
+   
+   class MessageBucket::In {
+    public:
+       class Filter {
+           friend class Message;
+   
+        public:
+           class Message {
+               const Filter &_parent;
+               unsigned int cell_index;
+   
+            public:
+               __device__ Message(const Filter &parent, const unsigned int &_cell_index)
+                   : _parent(parent)
+                   , cell_index(_cell_index) { }
+               __device__ bool operator==(const Message& rhs) const {
+                   return this->cell_index == rhs.cell_index;
+               }
+               __device__ bool operator!=(const Message& rhs) const { return !(*this == rhs); }
+               __device__ Message& operator++() { ++cell_index; return *this; }
+               template<typename T, size_type N>
+               __device__ T getVariable(const char(&variable_name)[N]) const;
+               template<typename T, MessageNone::size_type N, unsigned int M> __device__
+               T getVariable(const char(&variable_name)[M], const unsigned int &index) const;
+           };
+           class iterator {
+               Message _message;
+   
+            public:
+               __device__ iterator(const Filter &parent, const unsigned int &cell_index)
+                   : _message(parent, cell_index) {
+                   // Increment to find first message
+                   ++_message;
+               }
+               __device__ iterator& operator++() { ++_message;  return *this; }
+               __device__ iterator operator++(int) {
+                   iterator temp = *this;
+                   ++*this;
+                   return temp;
+               }
+               __device__ bool operator==(const iterator& rhs) const { return  _message == rhs._message; }
+               __device__ bool operator!=(const iterator& rhs) const { return  _message != rhs._message; }
+               __device__ Message& operator*() { return _message; }
+               __device__ Message* operator->() { return &_message; }
+           };
+           inline __device__ Filter(const MetaData *_metadata, const detail::curve::Curve::NamespaceHash &combined_hash, const IntT &beginKey, const IntT &endKey);
+           inline __device__ iterator begin(void) const {
+               // Bin before initial bin, as the constructor calls increment operator
+               return iterator(*this, bucket_begin - 1);
+           }
+           inline __device__ iterator end(void) const {
+               // Final bin, as the constructor calls increment operator
+               return iterator(*this, bucket_end - 1);
+           }
+           inline __device__ unsigned int size(void) const {
+               return bucket_end - bucket_begin;
+           }
+   
+        private:
+           IntT bucket_begin, bucket_end;
+           const MetaData *metadata;
+           detail::curve::Curve::NamespaceHash combined_hash;
+       };
+       __device__ In(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *_metadata)
+           : combined_hash(agentfn_hash + message_hash)
+           , metadata(reinterpret_cast<const MetaData*>(_metadata))
+       { }
+       inline __device__ Filter operator() (const IntT &key) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+           {
+               if (key < metadata->min) {
+                   DTHROW("Bucket messaging iterator key %d is lower than minimum key (%d).\n", key, metadata->min);
+               } else if (key >= metadata->max) {
+                   DTHROW("Bucket messaging iterator key %d is higher than maximum key (%d).\n", key, metadata->max - 1);
+               }
+           }
+   #endif
+           return Filter(metadata, combined_hash, key, key + 1);
+       }
+       inline __device__ Filter operator() (const IntT &beginKey, const IntT &endKey) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+           {
+               if (beginKey < metadata->min) {
+                   DTHROW("Bucket messaging iterator begin key %d is lower than minimum key (%d).\n", beginKey, metadata->min);
+               } else if (endKey > metadata->max) {
+                   DTHROW("Bucket messaging iterator end key %d is higher than maximum key + 1 (%d).\n", endKey, metadata->max);
+               } else if (endKey <= beginKey) {
+                   DTHROW("Bucket messaging iterator begin key must be lower than end key (%d !< %d).\n", beginKey, endKey);
+               }
+           }
+   #endif
+           return Filter(metadata, combined_hash, beginKey, endKey);
+       }
+   
+    private:
+       detail::curve::Curve::NamespaceHash combined_hash;
+       const MetaData *metadata;
+   };
+   
+   class MessageBucket::Out : public MessageBruteForce::Out {
+    public:
+       __device__ Out(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *_metadata, unsigned int *scan_flag_messageOutput)
+           : MessageBruteForce::Out(agentfn_hash, message_hash, nullptr, scan_flag_messageOutput)
+   #if !defined(SEATBELTS) || SEATBELTS
+           , metadata(reinterpret_cast<const MetaData*>(_metadata))
+   #else
+           , metadata(nullptr)
+   #endif
+       { }
+       inline __device__ void setKey(const IntT &key) const;
+       const MetaData * const metadata;
+   };
+   
+   __device__ MessageBucket::In::Filter::Filter(const MetaData* _metadata, const detail::curve::Curve::NamespaceHash &_combined_hash, const IntT& beginKey, const IntT& endKey)
+       : bucket_begin(0)
+       , bucket_end(0)
+       , metadata(_metadata)
+       , combined_hash(_combined_hash) {
+       // If key is in bounds
+       if (beginKey >= metadata->min && endKey < metadata->max && beginKey <= endKey) {
+           bucket_begin = metadata->PBM[beginKey - metadata->min];
+           bucket_end = metadata->PBM[endKey - metadata->min];
+       }
+   }
+   
+   __device__ void MessageBucket::Out::setKey(const IntT &key) const {
+       unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;  // + d_message_count;
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (key < metadata->min || key >= metadata->max) {
+           DTHROW("MessageArray key %u is out of range [%d, %d).\n", key, metadata->min, metadata->max);
+       }
+   #endif
+       // set the variables using curve
+       detail::curve::Curve::setMessageVariable<IntT>("_key", combined_hash, key, index);
+   
+       // Set scan flag incase the message is optional
+       this->scan_flag[index] = 1;
+   }
+   
+   template<typename T, unsigned int N>
+   __device__ T MessageBucket::In::Filter::Message::getVariable(const char(&variable_name)[N]) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (cell_index >= _parent.bucket_end) {
+           DTHROW("Bucket message index exceeds bin length, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       T value = detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, cell_index);
+       return value;
+   }
+   template<typename T, MessageNone::size_type N, unsigned int M> __device__
+   T MessageBucket::In::Filter::Message::getVariable(const char(&variable_name)[M], const unsigned int& array_index) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (cell_index >= _parent.bucket_end) {
+           DTHROW("Bucket message index exceeds bin length, unable to get variable '%s'.\n", variable_name);
+           return {};
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, cell_index, array_index);
+       return value;
+   }
+   }  // namespace flamegpu
+   
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBUCKET_MESSAGEBUCKETDEVICE_CUH_

@@ -1,0 +1,44 @@
+
+.. _program_listing_file_include_flamegpu_io_JSONStateWriter.h:
+
+Program Listing for File JSONStateWriter.h
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_JSONStateWriter.h>` (``include/flamegpu/io/JSONStateWriter.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_JSONSTATEWRITER_H_
+   #define INCLUDE_FLAMEGPU_IO_JSONSTATEWRITER_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   
+   #include "flamegpu/io/StateWriter.h"
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/util/StringPair.h"
+   
+   namespace flamegpu {
+   namespace io {
+   class JSONStateWriter : public StateWriter {
+    public:
+       JSONStateWriter(
+           const std::string &model_name,
+           const unsigned int &sim_instance_id,
+           const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> &model_state,
+           const unsigned int &iterations,
+           const std::string &output_file,
+           const Simulation *sim_instance);
+       int writeStates(bool prettyPrint) override;
+   
+    private:
+       template<typename T>
+       void doWrite(T &writer);
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_JSONSTATEWRITER_H_

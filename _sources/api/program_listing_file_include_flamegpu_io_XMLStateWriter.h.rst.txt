@@ -1,0 +1,40 @@
+
+.. _program_listing_file_include_flamegpu_io_XMLStateWriter.h:
+
+Program Listing for File XMLStateWriter.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_XMLStateWriter.h>` (``include/flamegpu/io/XMLStateWriter.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_XMLSTATEWRITER_H_
+   #define INCLUDE_FLAMEGPU_IO_XMLSTATEWRITER_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   
+   #include "flamegpu/io/StateWriter.h"
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/util/StringPair.h"
+   
+   namespace flamegpu {
+   namespace io {
+   class XMLStateWriter : public StateWriter {
+    public:
+       XMLStateWriter(
+           const std::string &model_name,
+           const unsigned int &sim_instance_id,
+           const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> &model_state,
+           const unsigned int &iterations,
+           const std::string &output_file,
+           const Simulation *sim_instance);
+       int writeStates(bool prettyPrint) override;
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_XMLSTATEWRITER_H_

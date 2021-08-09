@@ -1,0 +1,45 @@
+
+.. _program_listing_file_include_flamegpu_io_XMLStateReader.h:
+
+Program Listing for File XMLStateReader.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_XMLStateReader.h>` (``include/flamegpu/io/XMLStateReader.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_XMLSTATEREADER_H_
+   #define INCLUDE_FLAMEGPU_IO_XMLSTATEREADER_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   #include <utility>
+   
+   #include "flamegpu/io/StateReader.h"
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/util/StringPair.h"
+   #include "flamegpu/util/StringUint32Pair.h"
+   
+   namespace flamegpu {
+   namespace io {
+   class XMLStateReader : public StateReader {
+    public:
+       XMLStateReader(
+           const std::string &model_name,
+           const std::unordered_map<std::string, EnvironmentDescription::PropData> &env_desc,
+           util::StringUint32PairUnorderedMap<util::Any> &env_init,
+           util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> &model_state,
+           const std::string &input_file,
+           Simulation *sim_instance);
+       int parse() override;
+   
+    private:
+       std::string getInitialState(const std::string& agent_name) const;
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_XMLSTATEREADER_H_

@@ -1,0 +1,396 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageArray_MessageArrayDevice.cuh:
+
+Program Listing for File MessageArrayDevice.cuh
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageArray_MessageArrayDevice.cuh>` (``include/flamegpu/runtime/messaging/MessageArray/MessageArrayDevice.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY_MESSAGEARRAYDEVICE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY_MESSAGEARRAYDEVICE_CUH_
+   
+   #include "flamegpu/runtime/messaging/MessageArray.h"
+   #include "flamegpu/runtime/messaging/MessageBruteForce/MessageBruteForceDevice.cuh"
+   
+   namespace flamegpu {
+   
+   class MessageArray::In {
+       friend class Message;
+   
+    public:
+       class Message {
+           const MessageArray::In &_parent;
+           size_type index;
+   
+        public:
+           __device__ Message(const MessageArray::In &parent, const size_type &_index) : _parent(parent), index(_index) {}
+           __device__ bool operator==(const Message& rhs) const { return  this->index == rhs.index; }
+           __device__ bool operator!=(const Message& rhs) const { return  this->index != rhs.index; }
+           __device__ size_type getIndex() const { return this->index; }
+           template<typename T, unsigned int N>
+           __device__ T getVariable(const char(&variable_name)[N]) const;
+           template<typename T, MessageNone::size_type N, unsigned int M>
+           __device__ T getVariable(const char(&variable_name)[M], const unsigned int& index) const;
+       };
+       class WrapFilter {
+           friend class Message;
+   
+        public:
+           class Message {
+               const WrapFilter&_parent;
+               int relative_cell;
+               size_type index_1d = 0;
+   
+            public:
+               __device__ Message(const WrapFilter&parent, const int &relative_x)
+                   : _parent(parent) {
+                   relative_cell = relative_x;
+               }
+               __device__ bool operator==(const Message& rhs) const {
+                   return this->relative_cell == rhs.relative_cell;
+                   // && this->_parent.loc == rhs._parent.loc;
+               }
+               __device__ bool operator!=(const Message& rhs) const { return !(*this == rhs); }
+               __device__ inline Message& operator++();
+               __device__ size_type getX() const {
+                   return (this->_parent.loc + relative_cell + this->_parent.length) % this->_parent.length;
+               }
+               template<typename T, unsigned int N>
+               __device__ T getVariable(const char(&variable_name)[N]) const;
+               template<typename T, MessageNone::size_type N, unsigned int M> __device__
+               T getVariable(const char(&variable_name)[M], const unsigned int &index) const;
+           };
+           class iterator {
+               Message _message;
+   
+            public:
+               __device__ iterator(const WrapFilter&parent, const int &relative_x)
+                   : _message(parent, relative_x) {
+                   // Increment to find first message
+                   ++_message;
+               }
+               __device__ iterator& operator++() { ++_message;  return *this; }
+               __device__ iterator operator++(int) {
+                   iterator temp = *this;
+                   ++*this;
+                   return temp;
+               }
+               __device__ bool operator==(const iterator& rhs) const { return  _message == rhs._message; }
+               __device__ bool operator!=(const iterator& rhs) const { return  _message != rhs._message; }
+               __device__ Message& operator*() { return _message; }
+               __device__ Message* operator->() { return &_message; }
+           };
+           __device__ inline WrapFilter(const size_type &_length, const detail::curve::Curve::NamespaceHash &_combined_hash, const size_type &x, const size_type &_radius);
+           inline __device__ iterator begin(void) const {
+               // Bin before initial bin, as the constructor calls increment operator
+               return iterator(*this, -static_cast<int>(radius) - 1);
+           }
+           inline __device__ iterator end(void) const {
+               // Final bin, as the constructor calls increment operator
+               return iterator(*this, radius);
+           }
+   
+        private:
+           size_type loc;
+           const size_type radius;
+           const size_type length;
+           detail::curve::Curve::NamespaceHash combined_hash;
+       };
+       class Filter {
+           friend class Message;
+   
+        public:
+           class Message {
+               const Filter& _parent;
+               int relative_cell;
+               size_type index_1d = 0;
+   
+            public:
+               __device__ Message(const Filter& parent, const int& relative_x)
+                   : _parent(parent) {
+                   relative_cell = relative_x;
+               }
+               __device__ bool operator==(const Message& rhs) const {
+                   return this->relative_cell == rhs.relative_cell;
+                       // && this->_parent.loc == rhs._parent.loc;
+               }
+               __device__ bool operator!=(const Message& rhs) const { return !(*this == rhs); }
+               __device__ inline Message& operator++();
+               __device__ size_type getX() const {
+                   return this->_parent.loc + relative_cell;
+               }
+               template<typename T, unsigned int N>
+               __device__ T getVariable(const char(&variable_name)[N]) const;
+               template<typename T, MessageNone::size_type N, unsigned int M>
+               __device__ T getVariable(const char(&variable_name)[M], const unsigned int& index) const;
+           };
+           class iterator {
+               Message _message;
+   
+            public:
+               __device__ iterator(const Filter& parent, const int& relative_x)
+                   : _message(parent, relative_x) {
+                   // Increment to find first message
+                   ++_message;
+               }
+               __device__ iterator& operator++() { ++_message;  return *this; }
+               __device__ iterator operator++(int) {
+                   iterator temp = *this;
+                   ++* this;
+                   return temp;
+               }
+               __device__ bool operator==(const iterator& rhs) const { return  _message == rhs._message; }
+               __device__ bool operator!=(const iterator& rhs) const { return  _message != rhs._message; }
+               __device__ Message& operator*() { return _message; }
+               __device__ Message* operator->() { return &_message; }
+           };
+           __device__ inline Filter(const size_type& _length, const detail::curve::Curve::NamespaceHash& _combined_hash, const size_type& x, const size_type& _radius);
+           inline __device__ iterator begin(void) const {
+               // Bin before initial bin, as the constructor calls increment operator
+               return iterator(*this, min_cell - 1);
+           }
+           inline __device__ iterator end(void) const {
+               // Final bin, as the constructor calls increment operator
+               return iterator(*this, max_cell);
+           }
+   
+        private:
+           size_type loc;
+           int min_cell;
+           int max_cell;
+           const size_type radius;
+           const size_type length;
+           detail::curve::Curve::NamespaceHash combined_hash;
+       };
+       __device__ In(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *metadata)
+           : combined_hash(agentfn_hash + message_hash)
+           , length(reinterpret_cast<const MetaData*>(metadata)->length)
+       { }
+       inline __device__ WrapFilter wrap(const size_type &x, const size_type &radius = 1) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+           if (radius == 0) {
+               DTHROW("Invalid radius %u for accessing array messagelist of length %u\n", radius, length);
+           } else if ((radius * 2) + 1 > length) {
+               unsigned int min_r = length % 2 == 0 ? length - 2 : length - 1;
+               min_r /= 2;
+               DTHROW("%u is not a valid radius for accessing Array message lists, as the diameter of messages accessed exceeds the message list length (%u)."
+                   " Maximum supported radius for this message list is %u.\n",
+                   radius, length, min_r);
+           } else if (x >= length) {
+               DTHROW("%u is not a valid position for iterating an Array message list of length %u, location must be within bounds.",
+                   x, length);
+           }
+   #endif
+           return WrapFilter(length, combined_hash, x, radius);
+       }
+       inline __device__ Filter operator() (const size_type &x, const size_type &radius = 1) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+           if (radius == 0) {
+               DTHROW("Invalid radius %u for accessing array messagelist of length %u\n", radius, length);
+           } else if (x >= length) {
+               DTHROW("%u is not a valid position for iterating an Array message list of length %u, location must be within bounds.",
+                   x, length);
+           }
+   #endif
+           return Filter(length, combined_hash, x, radius);
+       }
+       __device__ size_type size(void) const {
+           return length;
+       }
+       __device__ Message at(const size_type &index) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+           if (index >= length) {
+               DTHROW("Index is out of bounds for Array messagelist (%u >= %u).\n", index, length);
+           }
+   #endif
+           return Message(*this, index);
+       }
+   
+    private:
+       detail::curve::Curve::NamespaceHash combined_hash;
+       const size_type length;
+   };
+   class MessageArray::Out {
+    public:
+       __device__ Out(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *_metadata, unsigned int *scan_flag_messageOutput)
+           : combined_hash(agentfn_hash + message_hash)
+           , scan_flag(scan_flag_messageOutput)
+   #if !defined(SEATBELTS) || SEATBELTS
+           , metadata(reinterpret_cast<const MetaData*>(_metadata))
+   #else
+           , metadata(nullptr)
+   #endif
+       { }
+       __device__ inline void setIndex(const size_type &id) const;
+       template<typename T, unsigned int N>
+       __device__ void setVariable(const char(&variable_name)[N], T value) const;
+       template<typename T, unsigned int N, unsigned int M>
+       __device__ void setVariable(const char(&variable_name)[M], const unsigned int& index, T value) const;
+   
+    protected:
+       detail::curve::Curve::NamespaceHash combined_hash;
+       unsigned int *scan_flag;
+       const MetaData * const metadata;
+   };
+   
+   template<typename T, unsigned int N>
+   __device__ T MessageArray::In::Message::getVariable(const char(&variable_name)[N]) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       return detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, index);
+   }
+   template<typename T, MessageNone::size_type N, unsigned int M> __device__
+   T MessageArray::In::Message::getVariable(const char(&variable_name)[M], const unsigned int& array_index) const {
+       // simple indexing assumes index is the thread number (this may change later)
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, index, array_index);
+       return value;
+   }
+   template<typename T, unsigned int N>
+   __device__ T MessageArray::In::WrapFilter::Message::getVariable(const char(&variable_name)[N]) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index_1d >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       return detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, index_1d);
+   }
+   template<typename T, MessageNone::size_type N, unsigned int M> __device__
+   T MessageArray::In::WrapFilter::Message::getVariable(const char(&variable_name)[M], const unsigned int& array_index) const {
+       // simple indexing assumes index is the thread number (this may change later)
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index_1d >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, index_1d, array_index);
+       return value;
+   }
+   template<typename T, unsigned int N>
+   __device__ T MessageArray::In::Filter::Message::getVariable(const char(&variable_name)[N]) const {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index_1d >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       return detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, index_1d);
+   }
+   template<typename T, MessageNone::size_type N, unsigned int M> __device__
+   T MessageArray::In::Filter::Message::getVariable(const char(&variable_name)[M], const unsigned int& array_index) const {
+       // simple indexing assumes index is the thread number (this may change later)
+   #if !defined(SEATBELTS) || SEATBELTS
+       // Ensure that the message is within bounds.
+       if (index_1d >= this->_parent.length) {
+           DTHROW("Invalid Array message, unable to get variable '%s'.\n", variable_name);
+           return static_cast<T>(0);
+       }
+   #endif
+       // get the value from curve using the stored hashes and message index.
+       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, index_1d, array_index);
+       return value;
+   }
+   
+   template<typename T, unsigned int N>
+   __device__ void MessageArray::Out::setVariable(const char(&variable_name)[N], T value) const {  // message name or variable name
+       if (variable_name[0] == '_') {
+           return;  // Fail silently
+       }
+       unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+   
+       // set the variable using curve
+       detail::curve::Curve::setMessageVariable<T>(variable_name, combined_hash, value, index);
+   
+       // setIndex() sets the optional message scan flag
+   }
+   template<typename T, unsigned int N, unsigned int M>
+   __device__ void MessageArray::Out::setVariable(const char(&variable_name)[M], const unsigned int& array_index, T value) const {
+       if (variable_name[0] == '_') {
+           return;  // Fail silently
+       }
+       unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+   
+       // set the variable using curve
+       detail::curve::Curve::setMessageArrayVariable<T, N>(variable_name, combined_hash, value, index, array_index);
+   
+       // setIndex() sets the optional message scan flag
+   }
+   
+   __device__ void MessageArray::Out::setIndex(const size_type &id) const {
+       unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (id >= metadata->length) {
+           DTHROW("MessageArray index [%u] is out of bounds [%u]\n", id, metadata->length);
+       }
+   #endif
+   
+       // set the variable using curve
+       detail::curve::Curve::setMessageVariable<size_type>("___INDEX", combined_hash, id, index);
+   
+       // Set scan flag incase the message is optional
+       this->scan_flag[index] = 1;
+   }
+   __device__ MessageArray::In::WrapFilter::WrapFilter(const size_type &_length, const detail::curve::Curve::NamespaceHash &_combined_hash, const size_type &x, const size_type &_radius)
+       : radius(_radius)
+       , length(_length)
+       , combined_hash(_combined_hash) {
+       loc = x;
+   }
+   __device__ MessageArray::In::WrapFilter::Message& MessageArray::In::WrapFilter::Message::operator++() {
+       relative_cell++;
+       // Skip origin cell
+       if (relative_cell == 0) {
+           relative_cell++;
+       }
+       // Wrap over boundaries
+       index_1d = (this->_parent.loc + relative_cell + this->_parent.length) % this->_parent.length;
+       return *this;
+   }
+   __device__ MessageArray::In::Filter::Filter(const size_type &_length, const detail::curve::Curve::NamespaceHash &_combined_hash, const size_type &x, const size_type &_radius)
+       : radius(_radius)
+       , length(_length)
+       , combined_hash(_combined_hash) {
+       loc = x;
+       min_cell = static_cast<int>(x) - static_cast<int>(_radius) < 0 ? -static_cast<int>(x) : -static_cast<int>(_radius);
+       max_cell = x + _radius >= _length ? static_cast<int>(_length) - 1 - static_cast<int>(x) : static_cast<int>(_radius);
+   }
+   __device__ MessageArray::In::Filter::Message& MessageArray::In::Filter::Message::operator++() {
+       relative_cell++;
+       // Skip origin cell
+       if (relative_cell == 0) {
+           relative_cell++;
+       }
+       // Solve to 1 dimensional bin index
+       index_1d = this->_parent.loc + relative_cell;
+       return *this;
+   }
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY_MESSAGEARRAYDEVICE_CUH_

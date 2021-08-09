@@ -1,0 +1,47 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageSpatial3D.h:
+
+Program Listing for File MessageSpatial3D.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageSpatial3D.h>` (``include/flamegpu/runtime/messaging/MessageSpatial3D.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL3D_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL3D_H_
+   
+   #include "flamegpu/runtime/messaging/MessageBruteForce.h"
+   
+   namespace flamegpu {
+   
+   class MessageSpatial3D {
+       typedef MessageNone::size_type size_type;
+   
+    public:
+       // Host
+       struct Data;        // Forward declare inner classes
+       class Description;  // Forward declare inner classes
+       class CUDAModelHandler;
+       // Device
+       class In;
+       class Out;
+   
+       struct GridPos3D {
+           int x, y, z;
+       };
+       struct MetaData {
+           float min[3];
+           float max[3];
+           float radius;
+           unsigned int *PBM;
+           unsigned int gridDim[3];
+           float environmentWidth[3];
+       };
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL3D_H_

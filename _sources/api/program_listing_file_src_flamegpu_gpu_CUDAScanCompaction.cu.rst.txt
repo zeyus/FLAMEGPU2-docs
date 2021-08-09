@@ -1,0 +1,75 @@
+
+.. _program_listing_file_src_flamegpu_gpu_CUDAScanCompaction.cu:
+
+Program Listing for File CUDAScanCompaction.cu
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_src_flamegpu_gpu_CUDAScanCompaction.cu>` (``src/flamegpu/gpu/CUDAScanCompaction.cu``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include <cassert>
+   
+   #include "flamegpu/gpu/CUDAScanCompaction.h"
+   #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
+   #include "flamegpu/gpu/CUDASimulation.h"
+   
+   namespace flamegpu {
+   
+   void CUDAScanCompaction::purge() {
+       memset(configs, 0, sizeof(configs));
+   }
+   
+   void CUDAScanCompaction::resize(const unsigned int& newCount, const Type& type, const unsigned int& streamId) {
+       assert(streamId < MAX_STREAMS);
+       assert(type < MAX_TYPES);
+       configs[type][streamId].resize_scan_flag(newCount);
+   }
+   
+   void CUDAScanCompaction::zero(const Type& type, const unsigned int& streamId) {
+       assert(streamId < MAX_STREAMS);
+       assert(type < MAX_TYPES);
+       configs[type][streamId].zero_scan_flag();
+   }
+   
+   const CUDAScanCompactionConfig &CUDAScanCompaction::getConfig(const Type& type, const unsigned int& streamId) {
+       return configs[type][streamId];
+   }
+   CUDAScanCompactionConfig &CUDAScanCompaction::Config(const Type& type, const unsigned int& streamId) {
+       return configs[type][streamId];
+   }
+   CUDAScanCompactionConfig::~CUDAScanCompactionConfig() {
+       free_scan_flag();
+   }
+   void CUDAScanCompactionConfig::free_scan_flag() {
+       if (d_ptrs.scan_flag) {
+           gpuErrchk(cudaFree(d_ptrs.scan_flag));
+           d_ptrs.scan_flag = nullptr;
+       }
+       if (d_ptrs.position) {
+           gpuErrchk(cudaFree(d_ptrs.position));
+           d_ptrs.position = nullptr;
+       }
+   }
+   
+   void CUDAScanCompactionConfig::zero_scan_flag() {
+       if (d_ptrs.position) {
+           gpuErrchk(cudaMemset(d_ptrs.position, 0, scan_flag_len * sizeof(unsigned int)));  // @todo - make this async + streamSync for less ensbemble blocking.
+       }
+       if (d_ptrs.scan_flag) {
+           gpuErrchk(cudaMemset(d_ptrs.scan_flag, 0, scan_flag_len * sizeof(unsigned int)));  // @todo - make this async + streamSync for less ensbemble blocking.
+       }
+   }
+   
+   void CUDAScanCompactionConfig::resize_scan_flag(const unsigned int& count) {
+       if (count + 1 > scan_flag_len) {
+           free_scan_flag();
+           gpuErrchk(cudaMalloc(&d_ptrs.scan_flag, (count + 1) * sizeof(unsigned int)));  // +1 so we can get the total from the scan
+           gpuErrchk(cudaMalloc(&d_ptrs.position, (count + 1) * sizeof(unsigned int)));  // +1 so we can get the total from the scan
+           scan_flag_len = count + 1;
+       }
+   }
+   
+   }  // namespace flamegpu

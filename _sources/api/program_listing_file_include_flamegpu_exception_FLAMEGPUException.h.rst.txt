@@ -1,0 +1,184 @@
+
+.. _program_listing_file_include_flamegpu_exception_FLAMEGPUException.h:
+
+Program Listing for File FLAMEGPUException.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_exception_FLAMEGPUException.h>` (``include/flamegpu/exception/FLAMEGPUException.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUEXCEPTION_H_
+   #define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUEXCEPTION_H_
+   
+   #include <string>
+   #include <exception>
+   #include <cstdarg>
+   #include <cstdio>
+   
+   namespace flamegpu {
+   namespace exception {
+   
+   #define THROW flamegpu::exception::FLAMEGPUException::setLocation(__FILE__, __LINE__); throw
+   
+   class UnknownError : public std::exception {};
+   
+   class FLAMEGPUException : public std::exception {
+    public:
+        FLAMEGPUException();
+        const char *what() const noexcept override;
+   
+        virtual const char* exception_type() const = 0;
+   
+        static void setLocation(const char *_file, const unsigned int &_line);
+   
+    protected:
+       static std::string parseArgs(const char * format, va_list argp);
+       std::string err_message;
+   
+    private:
+       static const char *file;
+       static unsigned int line;
+   };
+   
+   #ifdef _DEBUG
+   #define DERIVED_FLAMEGPUException(name, default_message)\
+   class name : public FLAMEGPUException {\
+    public:\
+       explicit name(const char *format = default_message, ...) {\
+           va_list argp;\
+           va_start(argp, format);\
+           err_message += parseArgs(format, argp);\
+           va_end(argp);\
+           fprintf(stderr, "%s\n", err_message.c_str()); \
+       }\
+       const char* exception_type() const override {\
+           return #name;\
+       }\
+   }
+   #else
+   #define DERIVED_FLAMEGPUException(name, default_message)\
+   class name : public FLAMEGPUException {\
+    public:\
+       explicit name(const char *format = default_message, ...) {\
+           va_list argp;\
+           va_start(argp, format);\
+           err_message += parseArgs(format, argp);\
+           va_end(argp);\
+       }\
+       const char* exception_type() const override {\
+           return #name;\
+       }\
+   }
+   #endif
+   
+   
+   
+   // Derived Classes //
+   
+   DERIVED_FLAMEGPUException(CUDAError, "CUDA returned an error code!");
+   
+   DERIVED_FLAMEGPUException(ReservedName, "Variable names cannot begin with the character '_'.");
+   
+   DERIVED_FLAMEGPUException(InvalidInputFile, "Invalid Input File");
+   
+   DERIVED_FLAMEGPUException(InvalidVarType, "Bad variable type in agent instance set/get variable");
+   
+   DERIVED_FLAMEGPUException(UnsupportedVarType, "Variables of this type are not supported by function");
+   
+   DERIVED_FLAMEGPUException(InvalidStateName, "Invalid agent state name");
+   
+   DERIVED_FLAMEGPUException(InvalidParent, "Invalid parent");
+   
+   DERIVED_FLAMEGPUException(InvalidAgentName, "Invalid agent name");
+   
+   DERIVED_FLAMEGPUException(InvalidMessageName, "Invalid message name");
+   
+   DERIVED_FLAMEGPUException(InvalidMessageType, "Invalid message type");
+   
+   DERIVED_FLAMEGPUException(InvalidAgent, "Invalid agent");
+   
+   DERIVED_FLAMEGPUException(InvalidMessage, "Invalid message");
+   
+   DERIVED_FLAMEGPUException(InvalidAgentVar, "Invalid agent memory variable");
+   
+   DERIVED_FLAMEGPUException(InvalidAgentState, "Invalid agent state");
+   
+   DERIVED_FLAMEGPUException(InvalidVarArrayLen, "Length of array variable does not match");
+   DERIVED_FLAMEGPUException(OutOfRangeVarArray, "Index is out of range of the array variable");
+   
+   DERIVED_FLAMEGPUException(InvalidMessageVar, "Invalid message memory variable");
+   
+   DERIVED_FLAMEGPUException(InvalidMessageData, "Invalid Message data");
+   
+   DERIVED_FLAMEGPUException(InvalidSubModel, "Invalid SubModel");
+   DERIVED_FLAMEGPUException(InvalidSubModelName, "Invalid SubModel Name, already in use");
+   DERIVED_FLAMEGPUException(InvalidSubAgentName, "SubAgent name was not recognised");
+   DERIVED_FLAMEGPUException(InvalidLayerMember, "Layer configuration unsupported");
+   
+   DERIVED_FLAMEGPUException(InvalidCudaAgent, "CUDA agent not found. This should not happen");
+   
+   DERIVED_FLAMEGPUException(InvalidCudaMessage, "CUDA message not found. This should not happen");
+   
+   DERIVED_FLAMEGPUException(InvalidCudaAgentMapSize, "CUDA agent map size is zero");
+   
+   DERIVED_FLAMEGPUException(InvalidCudaAgentDesc, "CUDA Agent uses different agent description");
+   
+   DERIVED_FLAMEGPUException(InvalidCudaAgentState, "The state does not exist within the CUDA agent.");
+   
+   DERIVED_FLAMEGPUException(InvalidAgentFunc, "Unknown agent function");
+   
+   DERIVED_FLAMEGPUException(InvalidFuncLayerIndx, "Agent function layer index out of bounds!");
+   
+   DERIVED_FLAMEGPUException(InvalidMemoryCapacity, "Invalid Memory Capacity");
+   
+   DERIVED_FLAMEGPUException(InvalidOperation, "Invalid Operation");
+   
+   DERIVED_FLAMEGPUException(InvalidCUDAdevice, "Invalid CUDA Device");
+   
+   DERIVED_FLAMEGPUException(InvalidCUDAComputeCapability, "Invalid CUDA Device Compute Capability");
+   
+   DERIVED_FLAMEGPUException(InvalidHostFunc, "Invalid Host Function");
+   
+   DERIVED_FLAMEGPUException(InvalidArgument, "Invalid Argument Exception");
+   
+   DERIVED_FLAMEGPUException(DuplicateEnvProperty, "Environment property of same name already exists");
+   
+   DERIVED_FLAMEGPUException(InvalidEnvProperty, "Environment property of name does not exist");
+   
+   DERIVED_FLAMEGPUException(InvalidEnvPropertyType, "Environment property of name does not have same type");
+   
+   DERIVED_FLAMEGPUException(ReadOnlyEnvProperty, "Cannot modify environment properties marked as constant");
+   
+   DERIVED_FLAMEGPUException(EnvDescriptionAlreadyLoaded, "Environment description with same model name already is already loaded.");
+   
+   DERIVED_FLAMEGPUException(OutOfMemory, "Allocation failed, sufficient memory unavailable");
+   
+   DERIVED_FLAMEGPUException(CurveException, "Curve reported an error!");
+   
+   DERIVED_FLAMEGPUException(OutOfBoundsException, "Index exceeds bounds of array!");
+   
+   DERIVED_FLAMEGPUException(TinyXMLError, "TinyXML returned an error code!");
+   DERIVED_FLAMEGPUException(RapidJSONError, "RapidJSON returned an error code!");
+   
+   DERIVED_FLAMEGPUException(DifferentModel, "Attempted to use member from a different model!");
+   
+   DERIVED_FLAMEGPUException(UnsupportedFileType, "Cannot handle file type.");
+   DERIVED_FLAMEGPUException(UnknownInternalError, "An unknown error occured within FLAME GPU lib.");
+   
+   DERIVED_FLAMEGPUException(ArrayMessageWriteConflict, "Two messages attempted to write to the same index");
+   DERIVED_FLAMEGPUException(VisualisationException, "An exception prevented the visualisation from working.");
+   DERIVED_FLAMEGPUException(ExpiredWeakPtr, "Unable to convert weak pointer to shared pointer.");
+   DERIVED_FLAMEGPUException(DeviceError, "Error reported from device code");
+   DERIVED_FLAMEGPUException(VersionMismatch, "Versions do not match");
+   DERIVED_FLAMEGPUException(InvalidFilePath, "File does not exist.");
+   DERIVED_FLAMEGPUException(UnsycnedCUDAEventTimer, "Elapsed time requested for Un-synced CUDAEventTimer");
+   DERIVED_FLAMEGPUException(InvalidDependencyGraph, "Agent function dependency graph is invalid");
+   DERIVED_FLAMEGPUException(AgentIDCollision, "Multiple agents of same type share an ID");
+   
+   }  // namespace exception
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUEXCEPTION_H_

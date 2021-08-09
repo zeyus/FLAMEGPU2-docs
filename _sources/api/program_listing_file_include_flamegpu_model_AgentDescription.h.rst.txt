@@ -1,0 +1,163 @@
+
+.. _program_listing_file_include_flamegpu_model_AgentDescription.h:
+
+Program Listing for File AgentDescription.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_AgentDescription.h>` (``include/flamegpu/model/AgentDescription.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_
+   #define INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_
+   
+   #include <string>
+   #include <map>
+   #include <typeinfo>
+   #include <memory>
+   #include <vector>
+   #include <set>
+   
+   #include "flamegpu/model/Variable.h"
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/pop/AgentVector.h"
+   #include "flamegpu/pop/AgentInstance.h"
+   #include "flamegpu/model/AgentData.h"
+   
+   namespace flamegpu {
+   
+   class AgentFunctionDescription;
+   
+   class AgentDescription {
+       friend struct AgentData;
+       friend struct AgentFunctionData;
+       friend class DependencyGraph;
+       friend AgentVector::AgentVector(const AgentDescription& agent_desc, AgentVector::size_type);
+       friend AgentInstance::AgentInstance(const AgentDescription& agent_desc);
+       friend bool AgentVector::matchesAgentType(const AgentDescription& other) const;
+       friend class AgentFunctionDescription;
+       friend AgentDescription& ModelDescription::newAgent(const std::string &);
+   
+       AgentDescription(std::shared_ptr<const ModelData> _model, AgentData *const data);
+       AgentDescription(const AgentDescription &other_agent) = delete;
+       AgentDescription(AgentDescription &&other_agent) noexcept = delete;
+       AgentDescription& operator=(const AgentDescription &other_agent) = delete;
+       AgentDescription& operator=(AgentDescription &&other_agent) noexcept = delete;
+   
+    public:
+       bool operator==(const AgentDescription& rhs) const;
+       bool operator!=(const AgentDescription& rhs) const;
+   
+       void newState(const std::string &state_name);
+       void setInitialState(const std::string &initial_state);
+   
+       template<typename T, ModelData::size_type N>
+       void newVariable(const std::string &variable_name, const std::array<T, N> &default_value = {});
+       template<typename T>
+       void newVariable(const std::string &variable_name, const T&default_value = 0);
+   #ifdef SWIG
+   
+       template<typename T>
+       void newVariableArray(const std::string &variable_name, const ModelData::size_type &length, const std::vector<T>&default_value = {});
+   #endif
+   
+       template<typename AgentFunction>
+       AgentFunctionDescription &newFunction(const std::string &function_name, AgentFunction a = AgentFunction());
+       AgentFunctionDescription& newRTCFunction(const std::string& function_name, const std::string& func_src);
+       AgentFunctionDescription& newRTCFunctionFile(const std::string& function_name, const std::string& file_path);
+       AgentFunctionDescription &Function(const std::string &function_name);
+   
+       std::string getName() const;
+       ModelData::size_type getStatesCount() const;
+       std::string getInitialState() const;
+       const std::type_index &getVariableType(const std::string &variable_name) const;
+       size_t getVariableSize(const std::string &variable_name) const;
+       ModelData::size_type getVariableLength(const std::string &variable_name) const;
+       ModelData::size_type getVariablesCount() const;
+       const AgentFunctionDescription& getFunction(const std::string &function_name) const;
+       ModelData::size_type getFunctionsCount() const;
+       ModelData::size_type getAgentOutputsCount() const;
+       bool hasState(const std::string &state_name) const;
+       bool hasVariable(const std::string &variable_name) const;
+       bool hasFunction(const std::string &function_name) const;
+       bool isOutputOnDevice() const;
+       const std::set<std::string> &getStates() const;
+   
+    private:
+       std::weak_ptr<const ModelData> model;
+       AgentData *const agent;
+   };
+   
+   template <typename T, ModelData::size_type N>
+   void AgentDescription::newVariable(const std::string &variable_name, const std::array<T, N> &default_value) {
+       if (!variable_name.empty() && variable_name[0] == '_') {
+           THROW exception::ReservedName("Agent variable names cannot begin with '_', this is reserved for internal usage, "
+               "in AgentDescription::newVariable().");
+       }
+       std::string lower_variable_name = variable_name;
+       for (auto& c : lower_variable_name)
+           c = static_cast<char>(tolower(c));
+       if (lower_variable_name == "name" || lower_variable_name == "state") {
+           THROW exception::ReservedName("Agent variables cannot be named 'name' or 'state', these are reserved for backwards compatibility reasons, "
+               "in AgentDescription::newVariable().");
+       }
+       // Array length 0 makes no sense
+       static_assert(N > 0, "A variable cannot have 0 elements.");
+       if (agent->variables.find(variable_name) == agent->variables.end()) {
+           agent->variables.emplace(variable_name, Variable(default_value));
+           return;
+       }
+       THROW exception::InvalidAgentVar("Agent ('%s') already contains variable '%s', "
+           "in AgentDescription::newVariable().",
+           agent->name.c_str(), variable_name.c_str());
+   }
+   template <typename T>
+   void AgentDescription::newVariable(const std::string &variable_name, const T &default_value) {
+       newVariable<T, 1>(variable_name, { default_value });
+   }
+   #ifdef SWIG
+   template<typename T>
+   void AgentDescription::newVariableArray(const std::string& variable_name, const ModelData::size_type& length, const std::vector<T>& default_value) {
+       if (!variable_name.empty() && variable_name[0] == '_') {
+           THROW exception::ReservedName("Agent variable names cannot begin with '_', this is reserved for internal usage, "
+               "in AgentDescription::newVariable().");
+       }
+       std::string lower_variable_name = variable_name;
+       for (auto& c : lower_variable_name)
+           c = static_cast<char>(tolower(c));
+       if (lower_variable_name == "name" || lower_variable_name == "state") {
+           THROW exception::ReservedName("Agent variables cannot be named 'name' or 'state', these are reserved for backwards compatibility reasons, "
+               "in AgentDescription::newVariable().");
+       }
+       if (length == 0) {
+           THROW exception::InvalidAgentVar("Agent variable arrays must have a length greater than 0."
+               "in AgentDescription::newVariable().");
+       }
+       if (default_value.size() && default_value.size() != length) {
+           THROW exception::InvalidAgentVar("Agent variable array length specified as %d, but default value provided with %llu elements, "
+               "in AgentDescription::newVariable().",
+               length, static_cast<unsigned int>(default_value.size()));
+       }
+       if (agent->variables.find(variable_name) == agent->variables.end()) {
+           if (!default_value.size()) {
+               std::vector<T> temp(static_cast<size_t>(length));
+               agent->variables.emplace(variable_name, Variable(length, temp));
+           } else {
+               agent->variables.emplace(variable_name, Variable(length, default_value));
+           }
+           return;
+       }
+       THROW exception::InvalidAgentVar("Agent ('%s') already contains variable '%s', "
+           "in AgentDescription::newVariable().",
+           agent->name.c_str(), variable_name.c_str());
+   }
+   #endif
+   // Found in "flamegpu/model/AgentFunctionDescription.h"
+   // template<typename AgentFunction>
+   // AgentFunctionDescription &AgentDescription::newFunction(const std::string &function_name, AgentFunction)
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_AGENTDESCRIPTION_H_

@@ -1,0 +1,54 @@
+
+.. _program_listing_file_include_flamegpu_gpu_detail_CUDAErrorChecking.cuh:
+
+Program Listing for File CUDAErrorChecking.cuh
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_detail_CUDAErrorChecking.cuh>` (``include/flamegpu/gpu/detail/CUDAErrorChecking.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_
+   #define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_
+   
+   #include <cuda.h>
+   
+   #include <string>
+   // #include <stdexcept>
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   
+   namespace flamegpu {
+   namespace detail {
+   
+   #define gpuErrchk(ans) { flamegpu::detail::gpuAssert((ans), __FILE__, __LINE__); }
+   
+   inline void gpuAssert(cudaError_t code, const char *file, int line) {
+       if (code != cudaSuccess) {
+           THROW exception::CUDAError("CUDA Error: %s(%d): %s", file, line, cudaGetErrorString(code));
+       }
+   }
+   
+   #define gpuErrchkDriverAPI(ans) { flamegpu::detail::gpuAssert((ans), __FILE__, __LINE__); }
+   
+   inline void gpuAssert(CUresult code, const char* file, int line) {
+       if (code != CUDA_SUCCESS) {
+           const char *error_str;
+           THROW exception::CUDAError("CUDA Driver Error: %s(%d): %s", file, line, cuGetErrorString(code, &error_str));
+       }
+   }
+   
+   #define gpuErrchkLaunch() { flamegpu::detail::gpuLaunchAssert(__FILE__, __LINE__); }
+   
+   inline void gpuLaunchAssert(const char *file, int line) {
+   #ifdef _DEBUG
+       gpuAssert(cudaDeviceSynchronize(), file, line);
+   #endif
+       gpuAssert(cudaPeekAtLastError(), file, line);
+   }
+   
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_

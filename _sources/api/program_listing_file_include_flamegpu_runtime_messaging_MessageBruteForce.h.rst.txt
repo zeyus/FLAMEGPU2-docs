@@ -1,0 +1,40 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageBruteForce.h:
+
+Program Listing for File MessageBruteForce.h
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageBruteForce.h>` (``include/flamegpu/runtime/messaging/MessageBruteForce.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBRUTEFORCE_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBRUTEFORCE_H_
+   
+   #include "flamegpu/runtime/messaging/MessageNone.h"
+   
+   namespace flamegpu {
+   
+   struct ModelData;
+   
+   class MessageBruteForce {
+    public:
+       typedef MessageNone::size_type size_type;
+   
+       // Host
+       struct Data;        // Forward declare inner classes
+       class Description;  // Forward declare inner classes
+       class CUDAModelHandler;  // Forward declare inner classes
+       // Device
+       class In;  // Forward declare inner classes
+       class Out;  // Forward declare inner classes
+       struct MetaData {
+           unsigned int length = 0;
+       };
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBRUTEFORCE_H_

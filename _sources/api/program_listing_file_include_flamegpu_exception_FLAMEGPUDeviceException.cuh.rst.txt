@@ -1,0 +1,47 @@
+
+.. _program_listing_file_include_flamegpu_exception_FLAMEGPUDeviceException.cuh:
+
+Program Listing for File FLAMEGPUDeviceException.cuh
+====================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_exception_FLAMEGPUDeviceException.cuh>` (``include/flamegpu/exception/FLAMEGPUDeviceException.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_
+   #define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_
+   
+   #include <string>
+   #include <type_traits>
+   
+   #include "flamegpu/gpu/CUDAScanCompaction.h"
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+   
+   #include "flamegpu/exception/FLAMEGPUDeviceException_device.cuh"
+   
+   namespace flamegpu {
+   namespace exception {
+   
+   class DeviceExceptionManager {
+    public:
+       DeviceExceptionManager();
+       ~DeviceExceptionManager();
+       DeviceExceptionBuffer *getDevicePtr(const unsigned int &streamId, const cudaStream_t &stream);
+       void checkError(const std::string &function, const unsigned int &streamId, const cudaStream_t &stream);
+   
+    private:
+       static std::string getLocationString(const DeviceExceptionBuffer &b);
+       static std::string getErrorString(const DeviceExceptionBuffer &b);
+       DeviceExceptionBuffer *d_buffer[CUDAScanCompaction::MAX_STREAMS];
+       DeviceExceptionBuffer hd_buffer[CUDAScanCompaction::MAX_STREAMS];
+   };
+   }  // namespace exception
+   }  // namespace flamegpu
+   #else
+   
+   #define DTHROW(nop)
+   #endif  // SEATBELTS=OFF
+   #endif  // INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_

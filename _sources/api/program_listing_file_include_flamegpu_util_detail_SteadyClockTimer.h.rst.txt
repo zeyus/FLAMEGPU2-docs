@@ -1,0 +1,53 @@
+
+.. _program_listing_file_include_flamegpu_util_detail_SteadyClockTimer.h:
+
+Program Listing for File SteadyClockTimer.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_detail_SteadyClockTimer.h>` (``include/flamegpu/util/detail/SteadyClockTimer.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_STEADYCLOCKTIMER_H_
+   #define INCLUDE_FLAMEGPU_UTIL_DETAIL_STEADYCLOCKTIMER_H_
+   
+   #include <chrono>
+   
+   namespace flamegpu {
+   namespace util {
+   namespace detail {
+   
+   class SteadyClockTimer {
+    public:
+       SteadyClockTimer() :
+           _start(),
+           _stop() { }
+   
+       ~SteadyClockTimer() { }
+   
+       void start() {
+           _start = std::chrono::steady_clock::now();
+       }
+   
+       void stop() {
+           _stop = std::chrono::steady_clock::now();
+       }
+   
+       float getElapsedMilliseconds() {
+           std::chrono::duration<double> elapsed = this->_stop - this->_start;
+           float ms = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count());
+           return ms;
+       }
+   
+    private:
+       std::chrono::time_point<std::chrono::steady_clock> _start;
+       std::chrono::time_point<std::chrono::steady_clock> _stop;
+   };
+   
+   }  // namespace detail
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_DETAIL_STEADYCLOCKTIMER_H_

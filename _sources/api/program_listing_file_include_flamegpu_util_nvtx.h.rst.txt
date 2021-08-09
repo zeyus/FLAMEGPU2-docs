@@ -1,0 +1,112 @@
+
+.. _program_listing_file_include_flamegpu_util_nvtx.h:
+
+Program Listing for File nvtx.h
+===============================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_nvtx.h>` (``include/flamegpu/util/nvtx.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_NVTX_H_
+   #define INCLUDE_FLAMEGPU_UTIL_NVTX_H_
+   
+   #include <cstdint>
+   
+   // If NVTX is enabled, include header, defined namespace / class and macros.
+   #if defined(USE_NVTX)
+       // Include the appropriate header if enabled
+       #if USE_NVTX >= 3
+           #include "nvtx3/nvToolsExt.h"
+       #else
+           #include "nvToolsExt.h"
+       #endif
+   #endif
+   
+   /* @todo - Make these macros testable.
+      If USE_NVTX is enabled, store static counts of push/pop/range's
+      Make accessors to enable testing the number of counts is as expected
+      Could also include this in a device shutdown method, to report if there is a mismatch of push/pop and therefore an NVTX error.
+   */
+   
+   namespace flamegpu {
+   namespace util {
+   namespace nvtx {
+   
+   const uint32_t palette[] = {0xff1b9e77, 0xffd95f02, 0xff7570b3, 0xffe7298a, 0xff66a61e, 0xffe6ab02, 0xffa6761d, 0xff666666};
+   
+   const uint32_t colourCount = sizeof(palette) / sizeof(uint32_t);
+   
+   #if defined(USE_NVTX)
+   
+   inline void push(const char * label) {
+       // Static variable to track the next colour to be used with auto rotation.
+       static uint32_t nextColourIdx = 0;
+   
+       // Get the wrapped colour index
+       uint32_t colourIdx = nextColourIdx % colourCount;
+   
+       // Build/populate the struct of nvtx event attributes
+       nvtxEventAttributes_t eventAttrib = {0};
+       // Generic values
+       eventAttrib.version = NVTX_VERSION;
+       eventAttrib.size = NVTX_EVENT_ATTRIB_STRUCT_SIZE;
+       eventAttrib.colorType = NVTX_COLOR_ARGB;
+       eventAttrib.messageType = NVTX_MESSAGE_TYPE_ASCII;
+   
+       // Selected colour and string
+       eventAttrib.color = palette[colourIdx];
+       eventAttrib.message.ascii = label;
+   
+       // Push the custom event.
+       nvtxRangePushEx(&eventAttrib);
+   
+       // Increment the counter tracking the next colour to use.
+       nextColourIdx = colourIdx + 1;
+   }
+   #else
+   inline void push(const char *) {
+   }
+   #endif
+   
+   inline void pop() {
+       #if defined(USE_NVTX)
+           nvtxRangePop();
+       #endif
+   }
+   
+   class NVTXRange {
+    public:
+       explicit NVTXRange(const char *label) {
+           util::nvtx::push(label);
+       }
+       ~NVTXRange() {
+           util::nvtx::pop();
+       }
+   };
+   
+   }  // namespace nvtx
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   // If USE_NVTX is enabled, provide macros which actually use NVTX
+   #if defined(USE_NVTX)
+   
+   #define NVTX_RANGE(label) ::flamegpu::util::nvtx::NVTXRange uniq_name_using_macros(label)
+   
+   #define NVTX_PUSH(label) ::flamegpu::util::nvtx::push(label)
+   
+   #define NVTX_POP() ::flamegpu::util::nvtx::pop()
+   #else
+   // If NVTX is not enabled, provide macros which do nothing and optimise out any arguments.
+   // Documentation is for the enabled version for doxygen.
+   #define NVTX_RANGE(label)
+   
+   #define NVTX_PUSH(label)
+   
+   #define NVTX_POP()
+   #endif
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_NVTX_H_

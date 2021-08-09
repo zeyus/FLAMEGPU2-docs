@@ -1,0 +1,94 @@
+
+.. _program_listing_file_include_flamegpu_model_Variable.h:
+
+Program Listing for File Variable.h
+===================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_Variable.h>` (``include/flamegpu/model/Variable.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_VARIABLE_H_
+   #define INCLUDE_FLAMEGPU_MODEL_VARIABLE_H_
+   
+   #include <typeindex>
+   #include <memory>
+   #include <map>
+   #include <cassert>
+   #include <string>
+   #include <cstring>
+   #include <vector>
+   
+   #include "flamegpu/pop/detail/MemoryVector.h"
+   
+   namespace flamegpu {
+   
+   struct Variable {
+       template<typename T>
+       Variable(unsigned int _elements, const T)
+           : type(typeid(T))
+           , type_size(sizeof(T))
+           , elements(_elements)
+           , memory_vector(new detail::MemoryVector<T>(_elements))
+           , default_value(nullptr) {
+           assert(_elements > 0);  // This should be enforced with static_assert where Variable's are defined, see MessageDescription::newVariable()
+           // Limited to Arithmetic types
+           // Compound types would allow host pointers inside structs to be passed
+           static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
+               "Only arithmetic types can be used");
+       }
+       template<typename T, std::size_t N>
+       explicit Variable(const std::array<T, N> &_default_value)
+           : type(typeid(T))
+           , type_size(sizeof(T))
+           , elements(N)
+           , memory_vector(new detail::MemoryVector<T>(N))
+           , default_value(malloc(sizeof(T) * N)) {
+           assert(N > 0);  // This should be enforced with static_assert where Variable's are defined, see MessageDescription::newVariable()
+           // Limited to Arithmetic types
+           // Compound types would allow host pointers inside structs to be passed
+           static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
+               "Only arithmetic types can be used");
+           memcpy(default_value, _default_value.data(), sizeof(T) * N);
+       }
+       template<typename T>
+       explicit Variable(const unsigned int &N, const std::vector<T> &_default_value)
+           : type(typeid(T))
+           , type_size(sizeof(T))
+           , elements(N)
+           , memory_vector(new detail::MemoryVector<T>(N))
+           , default_value(malloc(sizeof(T) * N)) {
+           assert(N > 0);  // This should be enforced with static_assert where Variable's are defined, see MessageDescription::newVariable()
+           assert(N  ==  _default_value.size());  // This should be enforced where variables are defined
+           // Limited to Arithmetic types
+           // Compound types would allow host pointers inside structs to be passed
+           static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
+               "Only arithmetic types can be used");
+           memcpy(default_value, _default_value.data(), sizeof(T) * N);
+       }
+       ~Variable() {
+           if (default_value)
+               free(default_value);
+       }
+       const std::type_index type;
+       const size_t type_size;
+       const unsigned int elements;
+       const std::unique_ptr<detail::GenericMemoryVector> memory_vector;
+       void * const default_value;
+       Variable(const Variable &other)
+           : type(other.type)
+           , type_size(other.type_size)
+           , elements(other.elements)
+           , memory_vector(other.memory_vector->clone())
+           , default_value(other.default_value ? malloc(type_size * elements) : nullptr) {
+           if (default_value)
+               memcpy(default_value, other.default_value, type_size * elements);
+       }
+   };
+   typedef std::map<std::string, Variable> VariableMap;
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_VARIABLE_H_

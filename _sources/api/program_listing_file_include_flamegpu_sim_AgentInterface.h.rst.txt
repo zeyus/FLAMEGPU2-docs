@@ -1,0 +1,34 @@
+
+.. _program_listing_file_include_flamegpu_sim_AgentInterface.h:
+
+Program Listing for File AgentInterface.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_sim_AgentInterface.h>` (``include/flamegpu/sim/AgentInterface.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_SIM_AGENTINTERFACE_H_
+   #define INCLUDE_FLAMEGPU_SIM_AGENTINTERFACE_H_
+   
+   #include <string>
+   
+   #include "flamegpu/model/ModelData.h"
+   #include "flamegpu/defines.h"
+   
+   namespace flamegpu {
+   
+   class AgentInterface {
+    public:
+       virtual ~AgentInterface() = default;
+       virtual const AgentData &getAgentDescription() const = 0;
+       virtual void *getStateVariablePtr(const std::string &state_name, const std::string &variable_name) = 0;
+       virtual ModelData::size_type getStateSize(const std::string &state_name) const = 0;
+       virtual id_t nextID(unsigned int count) = 0;
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_SIM_AGENTINTERFACE_H_

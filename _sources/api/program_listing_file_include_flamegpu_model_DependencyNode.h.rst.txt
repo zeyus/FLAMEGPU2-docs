@@ -1,0 +1,53 @@
+
+.. _program_listing_file_include_flamegpu_model_DependencyNode.h:
+
+Program Listing for File DependencyNode.h
+=========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_DependencyNode.h>` (``include/flamegpu/model/DependencyNode.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_MODEL_DEPENDENCYNODE_H_
+   #define INCLUDE_FLAMEGPU_MODEL_DEPENDENCYNODE_H_
+   
+   #include <vector>
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   
+   namespace flamegpu {
+   
+   class DependencyNode {
+    public:
+       virtual ~DependencyNode();
+   
+       template<typename A>
+       void dependsOn(A& dep) {
+          dependsOnImpl(dep);
+       }
+       template<typename A, typename...Args>
+       void dependsOn(A& dep, Args&...dependencyList) {
+          dependsOnImpl(dep);
+          dependsOn(dependencyList...);
+       }
+   
+    protected:
+       friend class DependencyGraph;
+       std::vector<DependencyNode*> dependents;
+       std::vector<DependencyNode*> dependencies;
+       void addDependent(DependencyNode& dependent);
+       int minLayerDepth = 0;
+       void dependsOnImpl(DependencyNode& dependency);
+       void setMinimumLayerDepth(const int minLayerDepth);
+   
+       bool hasDependents() const;
+       const std::vector<DependencyNode*> getDependents() const;
+       bool hasDependencies() const;
+       const std::vector<DependencyNode*> getDependencies() const;
+       int getMinimumLayerDepth();
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_DEPENDENCYNODE_H_

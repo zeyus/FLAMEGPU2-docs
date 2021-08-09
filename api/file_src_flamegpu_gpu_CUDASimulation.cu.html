@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>File CUDASimulation.cu &mdash; FLAME GPU 2 0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/flamegpu.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #4d4d4d" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> FLAME GPU 2
+          
+
+          
+            
+            <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../guide/1-meta/index.html">First Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/1-philosophy.html">FLAMEGPU2 Design Philosophy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/2-creating-project.html">Creating a Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/1-meta/3-structure.html">Structure of a FLAMEGPU2 Program</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#agent-host-function-definitions">Agent/Host Function Definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#model-declaration">Model Declaration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#initialisation">Initialisation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/1-meta/3-structure.html#execution">Execution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/2-model-definition/index.html">Defining a Model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/1-model.html">Creating a Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/1-model.html#what-is-a-model">What is a Model?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/1-model.html#creating-a-modeldescription-object">Creating a ModelDescription Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/1-model.html#more-info">More Info</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/2-environment.html">Adding Environmental Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#what-is-an-environment">What is an Environment?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#creating-an-environmentdescription-object">Creating an EnvironmentDescription Object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#defining-environmental-properties">Defining Environmental Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#attaching-the-environment-to-a-model">Attaching the Environment to a Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#more-info">More Info</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/2-model-definition/3-agent.html">Defining Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#defining-a-new-agent-type">Defining a New Agent Type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-variables">Agent Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-array-variables">Agent Array Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#agent-states">Agent States</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/3-agent.html#more-info">More Info</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/3-behaviour-definition/index.html">Defining Behaviours</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html">Defining Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#what-is-an-agent-function">What is an Agent Function?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#defining-an-agent-function">Defining an Agent Function</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#flamegpu-device-functions">FLAMEGPU Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#flamegpu-host-device-functions">FLAMEGPU Host Device Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#more-info">More Info</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#sending-messages">Sending Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html">Host Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html#defining-host-functions">Defining Host Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html#adding-host-functions-to-a-model">Adding Host Functions to a Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html#writing-host-functions">Writing Host Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/4-initial-conditions/index.html">Initial Conditions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/1-agent-populations.html">Agent Populations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/4-initial-conditions/1-agent-populations.html#creating-an-agent-population">Creating an Agent Population</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/2-initial-properties.html">Initialising Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/4-initial-conditions/2-initial-properties.html#initialising-a-population">Initialising a Population</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/4-initial-conditions/2-initial-properties.html#accessing-a-single-agent">Accessing a Single Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/4-rng-seeds.html">Random Number Generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/5-from-disk.html">Initialisation from Disk</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html">Defining Execution Order</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-dependencies">Specifying Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#accessing-the-dependencygraph">Accessing the DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#specifying-roots">Specifying Roots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#generating-layers">Generating Layers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#visualising-the-dependencies">Visualising the Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#max-steps">Max Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html">Agent Birth from Agent Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#agent-creation-overview">Agent Creation Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#enabling-agent-creation">Enabling Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/7-submodels/index.html">Submodels</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html">Defining a Submodel</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/8-running-multiple-sims/index.html">Running Multiple Simulations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/8-running-multiple-sims/4-multiple-sims.html">Launching Ensembles</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/9-visualisation/index.html">Visualisation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html">Building with Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/10-performance-troubleshooting/1-perf.html">Performance Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#submitting-pull-requests">Submitting Pull Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40146.html">Namespace flamegpu::&#64;146</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util__nvtx.html">Namespace flamegpu::util::nvtx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__visualiser.html">Namespace flamegpu::visualiser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__visualiser__Stock.html">Namespace flamegpu::visualiser::Stock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__visualiser__Stock__Colors.html">Namespace flamegpu::visualiser::Stock::Colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__visualiser__Stock__Palettes.html">Namespace flamegpu::visualiser::Stock::Palettes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentData.html">Struct AgentData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentFunctionData.html">Struct AgentFunctionData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentLogFrame.html">Struct AgentLogFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentVariable.html">Struct AgentVariable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentVariableHash.html">Struct AgentVariableHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html">Struct CUDAEnsemble::EnsembleConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScatter_1_1ScatterData.html">Struct CUDAScatter::ScatterData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScatter_1_1StreamData.html">Struct CUDAScatter::StreamData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1DeviceAgentVector__impl_1_1VariableBufferPair.html">Struct DeviceAgentVector_impl::VariableBufferPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1EnvUpdateFlags.html">Struct EnvironmentManager::EnvUpdateFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1MappedProp.html">Struct EnvironmentManager::MappedProp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1NamePairHash.html">Struct EnvironmentManager::NamePairHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray2D_1_1Data.html">Struct MessageArray2D::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray2D_1_1MetaData.html">Struct MessageArray2D::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray3D_1_1Data.html">Struct MessageArray3D::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray3D_1_1MetaData.html">Struct MessageArray3D::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray_1_1Data.html">Struct MessageArray::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageArray_1_1MetaData.html">Struct MessageArray::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageBruteForce_1_1Data.html">Struct MessageBruteForce::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageBruteForce_1_1MetaData.html">Struct MessageBruteForce::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageBucket_1_1Data.html">Struct MessageBucket::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageBucket_1_1MetaData.html">Struct MessageBucket::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial2D_1_1Data.html">Struct MessageSpatial2D::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial2D_1_1GridPos2D.html">Struct MessageSpatial2D::GridPos2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial2D_1_1MetaData.html">Struct MessageSpatial2D::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial3D_1_1Data.html">Struct MessageSpatial3D::Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial3D_1_1GridPos3D.html">Struct MessageSpatial3D::GridPos3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1MessageSpatial3D_1_1MetaData.html">Struct MessageSpatial3D::MetaData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ModelData.html">Struct ModelData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubEnvironmentData.html">Struct SubEnvironmentData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubModelData.html">Struct SubModelData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t.html">Template Struct sum_input_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01char_01_4.html">Template Struct sum_input_t&lt; char &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01double_01_4.html">Template Struct sum_input_t&lt; double &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01float_01_4.html">Template Struct sum_input_t&lt; float &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01int16__t_01_4.html">Template Struct sum_input_t&lt; int16_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01int32__t_01_4.html">Template Struct sum_input_t&lt; int32_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01int64__t_01_4.html">Template Struct sum_input_t&lt; int64_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01int8__t_01_4.html">Template Struct sum_input_t&lt; int8_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01uint16__t_01_4.html">Template Struct sum_input_t&lt; uint16_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01uint32__t_01_4.html">Template Struct sum_input_t&lt; uint32_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01uint64__t_01_4.html">Template Struct sum_input_t&lt; uint64_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1sum__input__t_3_01uint8__t_01_4.html">Template Struct sum_input_t&lt; uint8_t &gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1util_1_1Any.html">Struct Any</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1util_1_1StringPairHash.html">Struct StringPairHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1util_1_1StringUint32PairHash.html">Struct StringUint32PairHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Variable.html">Struct Variable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1VariableBuffer.html">Struct VariableBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1VarOffsetStruct.html">Struct VarOffsetStruct</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1VarOffsetStruct_1_1OffsetLen.html">Struct VarOffsetStruct::OffsetLen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Color.html">Struct Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Palette.html">Struct Palette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Dark2.html">Struct Dark2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Greys.html">Struct Greys</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Pastel.html">Struct Pastel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1PiYG.html">Struct PiYG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1RdYlBu.html">Struct RdYlBu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Set1.html">Struct Set1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Set2.html">Struct Set2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1Viridis.html">Struct Viridis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1YlGn.html">Struct YlGn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1_1YlOrRd.html">Struct YlOrRd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentDescription.html">Class AgentDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentFunctionDescription.html">Class AgentFunctionDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentInstance.html">Class AgentInstance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentInterface.html">Class AgentInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentLoggingConfig.html">Class AgentLoggingConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentRandom.html">Class AgentRandom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector.html">Class AgentVector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector_1_1const__iterator.html">Class AgentVector::const_iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector_1_1const__reverse__iterator.html">Class AgentVector::const_reverse_iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector_1_1iterator.html">Class AgentVector::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector_1_1reverse__iterator.html">Class AgentVector::reverse_iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector__Agent.html">Class AgentVector_Agent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1AgentVector__CAgent.html">Class AgentVector_CAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAAgent.html">Class CUDAAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAAgentStateList.html">Class CUDAAgentStateList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAEnsemble.html">Class CUDAEnsemble</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAFatAgent.html">Class CUDAFatAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAMessage.html">Class CUDAMessage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAMessageList.html">Class CUDAMessageList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAScatter.html">Class CUDAScatter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDASimulation.html">Class CUDASimulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DependencyGraph.html">Class DependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DependencyNode.html">Class DependencyNode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceAgentVector__impl.html">Class DeviceAgentVector_impl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceAPI.html">Template Class DeviceAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceAPI_1_1AgentOut.html">Class DeviceAPI::AgentOut</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1EnvironmentDescription.html">Class EnvironmentDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1EnvironmentManager.html">Class EnvironmentManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1AgentIDCollision.html">Class AgentIDCollision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ArrayMessageWriteConflict.html">Class ArrayMessageWriteConflict</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1CUDAError.html">Class CUDAError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1CurveException.html">Class CurveException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceError.html">Class DeviceError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceException.html">Class DeviceException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidAgent.html">Class InvalidAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidAgentFunc.html">Class InvalidAgentFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidAgentName.html">Class InvalidAgentName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidAgentState.html">Class InvalidAgentState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidAgentVar.html">Class InvalidAgentVar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidArgument.html">Class InvalidArgument</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCudaAgent.html">Class InvalidCudaAgent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCudaAgentDesc.html">Class InvalidCudaAgentDesc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCudaAgentMapSize.html">Class InvalidCudaAgentMapSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCudaAgentState.html">Class InvalidCudaAgentState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCUDAComputeCapability.html">Class InvalidCUDAComputeCapability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCUDAdevice.html">Class InvalidCUDAdevice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidCudaMessage.html">Class InvalidCudaMessage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidDependencyGraph.html">Class InvalidDependencyGraph</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidEnvProperty.html">Class InvalidEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidEnvPropertyType.html">Class InvalidEnvPropertyType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidFilePath.html">Class InvalidFilePath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidFuncLayerIndx.html">Class InvalidFuncLayerIndx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidHostFunc.html">Class InvalidHostFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidInputFile.html">Class InvalidInputFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidLayerMember.html">Class InvalidLayerMember</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMemoryCapacity.html">Class InvalidMemoryCapacity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMessage.html">Class InvalidMessage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMessageData.html">Class InvalidMessageData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMessageName.html">Class InvalidMessageName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMessageType.html">Class InvalidMessageType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidMessageVar.html">Class InvalidMessageVar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidOperation.html">Class InvalidOperation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidParent.html">Class InvalidParent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidStateName.html">Class InvalidStateName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidSubAgentName.html">Class InvalidSubAgentName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidSubModel.html">Class InvalidSubModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidSubModelName.html">Class InvalidSubModelName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidVarArrayLen.html">Class InvalidVarArrayLen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1InvalidVarType.html">Class InvalidVarType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1OutOfBoundsException.html">Class OutOfBoundsException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1OutOfMemory.html">Class OutOfMemory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1OutOfRangeVarArray.html">Class OutOfRangeVarArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1RapidJSONError.html">Class RapidJSONError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ReadOnlyEnvProperty.html">Class ReadOnlyEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ReservedName.html">Class ReservedName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1TinyXMLError.html">Class TinyXMLError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1UnknownError.html">Class UnknownError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1UnknownInternalError.html">Class UnknownInternalError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1UnsupportedFileType.html">Class UnsupportedFileType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1UnsupportedVarType.html">Class UnsupportedVarType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1UnsycnedCUDAEventTimer.html">Class UnsycnedCUDAEventTimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1VersionMismatch.html">Class VersionMismatch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1VisualisationException.html">Class VisualisationException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostAgentAPI.html">Class HostAgentAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostAPI.html">Class HostAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostEnvironment.html">Class HostEnvironment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionCallback.html">Class HostFunctionCallback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionDescription.html">Class HostFunctionDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostNewAgentAPI.html">Class HostNewAgentAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostRandom.html">Class HostRandom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONLogger.html">Class JSONLogger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONStateReader.html">Class JSONStateReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONStateReader__agentsize__counter.html">Class JSONStateReader_agentsize_counter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONStateReader__impl.html">Class JSONStateReader_impl</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONStateWriter.html">Class JSONStateWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1Logger.html">Class Logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1LoggerFactory.html">Class LoggerFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1StateReader.html">Class StateReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1StateReaderFactory.html">Class StateReaderFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1StateWriter.html">Class StateWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1StateWriterFactory.html">Class StateWriterFactory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1XMLLogger.html">Class XMLLogger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1XMLStateReader.html">Class XMLStateReader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1XMLStateWriter.html">Class XMLStateWriter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1LayerDescription.html">Class LayerDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1LoggingConfig.html">Class LoggingConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray.html">Class MessageArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D.html">Class MessageArray2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html">Class MessageArray2D::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1Description.html">Class MessageArray2D::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In.html">Class MessageArray2D::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1Out.html">Class MessageArray2D::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D.html">Class MessageArray3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html">Class MessageArray3D::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1Description.html">Class MessageArray3D::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In.html">Class MessageArray3D::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1Out.html">Class MessageArray3D::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html">Class MessageArray::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1Description.html">Class MessageArray::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In.html">Class MessageArray::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray_1_1Out.html">Class MessageArray::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html">Class MessageBruteForce</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html">Class MessageBruteForce::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1Description.html">Class MessageBruteForce::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1In.html">Class MessageBruteForce::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1In_1_1iterator.html">Class In::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBruteForce_1_1Out.html">Class MessageBruteForce::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket.html">Class MessageBucket</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html">Class MessageBucket::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1Description.html">Class MessageBucket::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1In.html">Class MessageBucket::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageBucket_1_1Out.html">Class MessageBucket::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageNone.html">Class MessageNone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageNone_1_1CUDAModelHandler.html">Class MessageNone::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageNone_1_1In.html">Class MessageNone::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageNone_1_1Out.html">Class MessageNone::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D.html">Class MessageSpatial2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html">Class MessageSpatial2D::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1Description.html">Class MessageSpatial2D::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1In.html">Class MessageSpatial2D::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial2D_1_1Out.html">Class MessageSpatial2D::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D.html">Class MessageSpatial3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html">Class MessageSpatial3D::CUDAModelHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1Description.html">Class MessageSpatial3D::Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1In.html">Class MessageSpatial3D::In</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1In_1_1Filter.html">Class In::Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpatial3D_1_1Out.html">Class MessageSpatial3D::Out</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageSpecialisationHandler.html">Class MessageSpecialisationHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ModelDescription.html">Class ModelDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RandomManager.html">Class RandomManager</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ReadOnlyDeviceAPI.html">Class ReadOnlyDeviceAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RunPlan.html">Class RunPlan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RunPlanVector.html">Class RunPlanVector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SimLogger.html">Class SimLogger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SimRunner.html">Class SimRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1Simulation.html">Class Simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1StepLoggingConfig.html">Class StepLoggingConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SubAgentDescription.html">Class SubAgentDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SubEnvironmentDescription.html">Class SubEnvironmentDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SubModelDescription.html">Class SubModelDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1util_1_1nvtx_1_1NVTXRange.html">Class NVTXRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1AgentStateVis.html">Class AgentStateVis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1AgentVis.html">Class AgentVis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1AutoPalette.html">Class AutoPalette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1ColorFunction.html">Class ColorFunction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1DiscreteColor.html">Template Class DiscreteColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1HSVInterpolation.html">Class HSVInterpolation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1LineVis.html">Class LineVis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1ModelVis.html">Class ModelVis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1Palette_1_1const__iterator.html">Class Palette::const_iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1StaticColor.html">Class StaticColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1StaticModelVis.html">Class StaticModelVis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1visualiser_1_1ViridisInterpolation.html">Class ViridisInterpolation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#enums">Enums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="enum_namespaceflamegpu_1a1adc39b89f4a6045c011c55a91339e4c.html">Enum AGENT_STATUS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html">Enum CONDITION_RESULT</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1ad0783b09357d94b0e6164fe7047ca661.html">Template Function flamegpu::agent_function_condition_wrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a643b1b7d842763420a871b5ad01cde07.html">Template Function flamegpu::agent_function_wrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a5fa1624859f6fef19656f12c5cf23124.html">Function flamegpu::allocateIDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a0e9933d8e92fc85b481c5ffcec96e4c5.html">Function flamegpu::atomicHistogram1D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a62702550faacab131476f2f0fd42b15d.html">Function flamegpu::atomicHistogram2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1ab142b7f3311b4d53df2ec36802361c18.html">Function flamegpu::atomicHistogram3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a372e103ba46c067bc0f68a2a103b90b1.html">Function flamegpu::broadcastInitKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a8e4c805fb1a16187e4a86a8dc7ced84d.html">Function flamegpu::generateCollisionFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a5b21b0ec7c8afea544e7fee29d2a0e7f.html">Template Function flamegpu::getAgentVariableMaxFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a451011c85abe5de4e9497e29ccf8ffdb.html">Template Function flamegpu::getAgentVariableMeanFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a083ca13c3f24c050c137312fbd4ef6a8.html">Template Function flamegpu::getAgentVariableMinFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aaefedcfe801f1afde9d49fda31de4bfc.html">Template Function flamegpu::getAgentVariableStandardDevFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a0cdae124d116e9ae414cf82e168aa147.html">Template Function flamegpu::getAgentVariableSumFunc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aef3737bc73df02c3cacdfe023e540fda.html">Function flamegpu::getGridPosition2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1af8bd0c23b13150691a8075e10e315df8.html">Function flamegpu::getGridPosition3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1ac19244e95de615218572437593f6f366.html">Function flamegpu::getHash2D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aecff32308539a40d36081f141c5bcee3.html">Function flamegpu::getHash3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1ae83605c416211185d6408b08d3758ea6.html">Function flamegpu::init_curand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a7a197dc32a2a7d5896c0e6f7159dd065.html">Function flamegpu::initToThreadIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a580dd14f3e500d19284a204cc56cb96e.html">Function flamegpu::pbm_reorder_generic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a529cbc02e5f6ba21c809fc4f858fe082.html">Function flamegpu::reorder_array_messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a728cd4b44037b620e529e3a548ea5494.html">Function flamegpu::scatter_all_generic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a844df115c40ca91356e95f37b37f5072.html">Template Function flamegpu::scatter_generic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#variables">Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1ae222c3a1e48085efbe98bf734bf18c47.html">Variable flamegpu::ID_NOT_SET</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1ae2461128afe905a603afcb7877188f29.html">Variable flamegpu::ID_VARIABLE_NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1util_1_1nvtx_1af78944ce056f56e9d4c1df7d773792bf.html">Variable flamegpu::util::nvtx::colourCount</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1util_1_1nvtx_1a0302736e3c60407a5ba2aeeee9415a6f.html">Variable flamegpu::util::nvtx::palette</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Colors_1a591a2e09088968ef4e9549ade22b5333.html">Variable flamegpu::visualiser::Stock::Colors::BLACK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Colors_1a00e6f044ffe65490ec534820dc711801.html">Variable flamegpu::visualiser::Stock::Colors::BLUE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Colors_1aad8474812ca5c495e3d427bac61c1065.html">Variable flamegpu::visualiser::Stock::Colors::GREEN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Colors_1a5c18952ccee1c554960d0591212508e4.html">Variable flamegpu::visualiser::Stock::Colors::RED</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Colors_1a6a178b4824a681a995f9e4ff131af19a.html">Variable flamegpu::visualiser::Stock::Colors::WHITE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a20fa45b16191b081045ab552e8b2d642.html">Variable flamegpu::visualiser::Stock::Palettes::DARK2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a88eb71e0f17b9303a07ea89aa64bc1a2.html">Variable flamegpu::visualiser::Stock::Palettes::GREYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a30cc45821bb2d273b8d88cc52ca569ca.html">Variable flamegpu::visualiser::Stock::Palettes::PASTEL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1afe0ee1ad329fd208faffa923fc0cb07f.html">Variable flamegpu::visualiser::Stock::Palettes::PIYG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1ae976b044a8dd59d5fae4b28dcff4c07b.html">Variable flamegpu::visualiser::Stock::Palettes::RDYLBU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a3bb28bea63506f9eb15100d55c68fa7e.html">Variable flamegpu::visualiser::Stock::Palettes::SET1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a1bd3aa65da115e2a07b9118fa6952e82.html">Variable flamegpu::visualiser::Stock::Palettes::SET2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a852a3b927ba4d6fd38f3be0b1c915c30.html">Variable flamegpu::visualiser::Stock::Palettes::YLGN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a0cfc07ba486999d845c4db0e8b74f152.html">Variable flamegpu::visualiser::Stock::Palettes::YLORRD</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_JitifyCache_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUException_8h_1a3782b4c58365dfbff74733193c5b886e.html">Define DERIVED_FLAMEGPUException</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a6fa64d3ebe64a9559b967c5aed92ca0d.html">Define DTHROW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html">Define FLAMEGPU_AGENT_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionCondition__shim_8cuh_1a18080498fb1ee3218b8b0ff14d7ec1af.html">Define FLAMEGPU_AGENT_FUNCTION_CONDITION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAgentAPI_8cuh_1ad9d5573357effdcf7430c6c2024becc4.html">Define FLAMEGPU_CUSTOM_REDUCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAgentAPI_8cuh_1a64629b6c7aa246731d1657c3ad70996a.html">Define FLAMEGPU_CUSTOM_TRANSFORM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a76f5ec2c762f0289e11d150131b80ef9.html">Define FLAMEGPU_DEVICE_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1a4a4750514dd45f70b587b29543fe7a27.html">Define FLAMEGPU_EXIT_CONDITION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1a1c604c9eb863599998429b48b31fe671.html">Define FLAMEGPU_EXIT_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1a1682b3b663340523820b7b1dc35ef180.html">Define FLAMEGPU_HOST_CONDITION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a92ddd2311e736cc418e2ed1092485ca1.html">Define FLAMEGPU_HOST_DEVICE_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1afd0f16608253df0496b74c78500282c5.html">Define FLAMEGPU_HOST_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1a45ad84203a419b7833ef1f21484648c8.html">Define FLAMEGPU_INIT_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAPI__macros_8h_1a779541ca72e6a0019460ace6d0a9d1ab.html">Define FLAMEGPU_STEP_FUNCTION</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cu_1a5d707cf1db843b2f26d81f0c518b72d0.html">Define FLAMEGPUDeviceException_CU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a3f6ea8e9ef58125936d50d7e1181aa7a.html">Define gpuErrchk</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a05a1b794ed7313e0763388e626530d99.html">Define gpuErrchkDriverAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1aab94d05ca41ffb1aec281d2fee3014a5.html">Define gpuErrchkLaunch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1ab99977b2d12596d8e7eb69f86fd2c0f7.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionCondition_8cuh_1a574cefe207a9b2a90e1b48ecbac1bfed.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTIONCONDITION_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionCondition__shim_8cuh_1a4fade0adcfca1c63f63301ef0f4618cd.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTIONCONDITION_SHIM_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_curve_8cuh_1a05ee33eb8cc0ac9d4f74b4bb3142e251.html">Define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_curve__rtc_8cuh_1a4af8369376d2fad37ccada340646f766.html">Define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_RTC_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_DeviceAPI_8cuh_1ae19bcc534bdbb83776e9b23350a073d8.html">Define INCLUDE_FLAMEGPU_RUNTIME_DEVICEAPI_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostAgentAPI_8cuh_1a1bb5d48469df1669da757724c8d6bc49.html">Define INCLUDE_FLAMEGPU_RUNTIME_HOSTAGENTAPI_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageArray2DDevice_8cuh_1a2d970be19925286658ef10612418323d.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY2D_MESSAGEARRAY2DDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageArray3DDevice_8cuh_1a1eac92a18d97d668a467428697f02f45.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY3D_MESSAGEARRAY3DDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageArrayDevice_8cuh_1af8e2891480b9423ea605c599f3c7ed78.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEARRAY_MESSAGEARRAYDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageBruteForceDevice_8cuh_1a908163ddb9bfbb81c3eabd54007c7d04.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBRUTEFORCE_MESSAGEBRUTEFORCEDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageBucketDevice_8cuh_1a55f537869b8e489d0323140c49f550c7.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGEBUCKET_MESSAGEBUCKETDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageNoneDevice_8cuh_1af35d3304468392badb3a3c3f490ed543.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageSpatial2DDevice_8cuh_1a64a87e1d070382b34fd7106f97b4dad9.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL2D_MESSAGESPATIAL2DDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_MessageSpatial3DDevice_8cuh_1a2e44a936ef72b228e1b4022d142c6d39.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL3D_MESSAGESPATIAL3DDEVICE_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentRandom_8cuh_1acd7f782648ca5a41ae070fcd10411190.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_DeviceEnvironment_8cuh_1a70778256e5045fe5a8a73595d04ce1db.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_EnvironmentManager_8cuh_1a35e4d0576f837bbd5d6ae21c4024f9eb.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostEnvironment_8cuh_1a3e67960203739446d72ad966a9f0d710.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTENVIRONMENT_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostRandom_8cuh_1a057dabfe55bd607fde69100834c1a29c.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTRANDOM_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_RandomManager_8cuh_1abdc3446320e64bb468b1c7d563ce0521.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_RANDOMMANAGER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_AgentLoggingConfig__Reductions_8cuh_1a7f05530c5c7a13f8de36eb4cd1271788.html">Define INCLUDE_FLAMEGPU_SIM_AGENTLOGGINGCONFIG_REDUCTIONS_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_compute__capability_8cuh_1a4bad8946cebb8e427cdf878597032be5.html">Define INCLUDE_FLAMEGPU_UTIL_DETAIL_COMPUTE_CAPABILITY_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CUDAEventTimer_8cuh_1a906db513b7e58dbad67f053deb4d830f.html">Define INCLUDE_FLAMEGPU_UTIL_DETAIL_CUDAEVENTTIMER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_nvtx_8h_1a27e6e9154344b5ec41e9b55b177d8e17.html">Define NVTX_POP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_nvtx_8h_1ad9715a7b8d8ac1584097a1d664dba054.html">Define NVTX_PUSH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_nvtx_8h_1af9a6ff0a3f4236d36762228e06b84c51.html">Define NVTX_RANGE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUException_8h_1ac900f7f4cbb8ade051915b56180eb89d.html">Define THROW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_XMLLogger_8cu_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_XMLStateReader_8cpp_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_XMLStateWriter_8cpp_1afa12b43d02fbd77db41a70be0733552a.html">Define XMLCheckResult</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a1526f45009388246e8fa90b51961ffc1.html">Typedef flamegpu::AgentFunctionConditionWrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a321a8cd9cb3fc96929c7c378b38dc55b.html">Typedef flamegpu::AgentFunctionWrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a63d0d158d88f589b144c183925cf6ac4.html">Typedef flamegpu::CUDAMessageMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1ac8e9e6ebf91151e28403d28a1cf51288.html">Typedef flamegpu::CUDAMessageMapPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1afe2ca90ee1ba3f7638e0a640dda346b3.html">Typedef flamegpu::DeviceAgentVector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a5607538d6f1b97ef411a40c9d52f71b1.html">Typedef flamegpu::FLAMEGPU_EXIT_CONDITION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a677d0646677414a5fe34a580891c1296.html">Typedef flamegpu::FLAMEGPU_EXIT_FUNCTION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a13e4b64ac18db61a5da0c453baf89b1d.html">Typedef flamegpu::FLAMEGPU_HOST_CONDITION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a9bfe18618d31195e57596fba50d28af9.html">Typedef flamegpu::FLAMEGPU_HOST_FUNCTION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a49027ae818bd10917878571d0aab9eae.html">Typedef flamegpu::FLAMEGPU_INIT_FUNCTION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a327d7686ae940faa86f0119b6c7da377.html">Typedef flamegpu::FLAMEGPU_STEP_FUNCTION_POINTER</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1aa38504d5d161ede66606cf62524fb9e2.html">Typedef flamegpu::id_t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1a83d0ff667b27ea2b2ec5677bf0c24253.html">Typedef flamegpu::IntT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1aa7b566b0594a93a119a5514350637c4c.html">Typedef flamegpu::util::StringPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1aecb766a8c1523feef0016f93a23fcc05.html">Typedef flamegpu::util::StringPairMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1afbbdc01d25d7a25770ebe2dda9327653.html">Typedef flamegpu::util::StringPairUnorderedMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1a72a7e160df1621db15bbc9959be7fec0.html">Typedef flamegpu::util::StringUint32Pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1aa4471b1ad6fc994261e936035243c21f.html">Typedef flamegpu::util::StringUint32PairMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1util_1a66f226b533f3e6710fb78c7e7b801dd1.html">Typedef flamegpu::util::StringUint32PairUnorderedMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1aebf720d85bdb918165592c59575fe998.html">Typedef flamegpu::VariableMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1visualiser_1af8b0a3c3a081bb0366b9867e22af0d99.html">Typedef flamegpu::visualiser::iDiscreteColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceflamegpu_1_1visualiser_1ae4a92f51d0b0c323285c6df3f97b5910.html">Typedef flamegpu::visualiser::uDiscreteColor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">FLAME GPU 2</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>File CUDASimulation.cu</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api/file_src_flamegpu_gpu_CUDASimulation.cu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="file-cudasimulation-cu">
+<span id="file-src-flamegpu-gpu-cudasimulation-cu"></span><h1>File CUDASimulation.cu<a class="headerlink" href="#file-cudasimulation-cu" title="Permalink to this headline">¶</a></h1>
+<p>↰ <a class="reference internal" href="dir_src_flamegpu_gpu.html#dir-src-flamegpu-gpu"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-src-flamegpu-gpu-cudasimulation-cu" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDASimulation.cu</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id3">Namespaces</a></p></li>
+</ul>
+</div>
+<section id="definition-src-flamegpu-gpu-cudasimulation-cu">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/gpu/CUDASimulation.cu</span></code>)<a class="headerlink" href="#definition-src-flamegpu-gpu-cudasimulation-cu" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_src_flamegpu_gpu_CUDASimulation.cu.html">Program Listing for File CUDASimulation.cu</a></li>
+</ul>
+</div>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">algorithm</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curand_kernel.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAAgent.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAAgent.h.html#file-include-flamegpu-gpu-cudaagent-h"><span class="std std-ref">File CUDAAgent.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAMessage.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAMessage.h.html#file-include-flamegpu-gpu-cudamessage-h"><span class="std std-ref">File CUDAMessage.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDAScanCompaction.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDAScanCompaction.h.html#file-include-flamegpu-gpu-cudascancompaction-h"><span class="std std-ref">File CUDAScanCompaction.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/gpu/CUDASimulation.h</span></code> (<a class="reference internal" href="file_include_flamegpu_gpu_CUDASimulation.h.html#file-include-flamegpu-gpu-cudasimulation-h"><span class="std std-ref">File CUDASimulation.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/model/AgentDescription.h</span></code> (<a class="reference internal" href="file_include_flamegpu_model_AgentDescription.h.html#file-include-flamegpu-model-agentdescription-h"><span class="std std-ref">File AgentDescription.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/model/AgentFunctionData.cuh</span></code> (<a class="reference internal" href="file_include_flamegpu_model_AgentFunctionData.cuh.html#file-include-flamegpu-model-agentfunctiondata-cuh"><span class="std std-ref">File AgentFunctionData.cuh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/model/LayerData.h</span></code> (<a class="reference internal" href="file_include_flamegpu_model_LayerData.h.html#file-include-flamegpu-model-layerdata-h"><span class="std std-ref">File LayerData.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/model/SubAgentData.h</span></code> (<a class="reference internal" href="file_include_flamegpu_model_SubAgentData.h.html#file-include-flamegpu-model-subagentdata-h"><span class="std std-ref">File SubAgentData.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/model/SubModelData.h</span></code> (<a class="reference internal" href="file_include_flamegpu_model_SubModelData.h.html#file-include-flamegpu-model-submodeldata-h"><span class="std std-ref">File SubModelData.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/runtime/HostAPI.h</span></code> (<a class="reference internal" href="file_include_flamegpu_runtime_HostAPI.h.html#file-include-flamegpu-runtime-hostapi-h"><span class="std std-ref">File HostAPI.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/runtime/HostFunctionCallback.h</span></code> (<a class="reference internal" href="file_include_flamegpu_runtime_HostFunctionCallback.h.html#file-include-flamegpu-runtime-hostfunctioncallback-h"><span class="std std-ref">File HostFunctionCallback.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/runtime/detail/curve/curve_rtc.cuh</span></code> (<a class="reference internal" href="file_include_flamegpu_runtime_detail_curve_curve_rtc.cuh.html#file-include-flamegpu-runtime-detail-curve-curve-rtc-cuh"><span class="std std-ref">File curve_rtc.cuh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/sim/LogFrame.h</span></code> (<a class="reference internal" href="file_include_flamegpu_sim_LogFrame.h.html#file-include-flamegpu-sim-logframe-h"><span class="std std-ref">File LogFrame.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/sim/LoggingConfig.h</span></code> (<a class="reference internal" href="file_include_flamegpu_sim_LoggingConfig.h.html#file-include-flamegpu-sim-loggingconfig-h"><span class="std std-ref">File LoggingConfig.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/util/detail/CUDAEventTimer.cuh</span></code> (<a class="reference internal" href="file_include_flamegpu_util_detail_CUDAEventTimer.cuh.html#file-include-flamegpu-util-detail-cudaeventtimer-cuh"><span class="std std-ref">File CUDAEventTimer.cuh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/util/detail/SignalHandlers.h</span></code> (<a class="reference internal" href="file_include_flamegpu_util_detail_SignalHandlers.h.html#file-include-flamegpu-util-detail-signalhandlers-h"><span class="std std-ref">File SignalHandlers.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/util/detail/compute_capability.cuh</span></code> (<a class="reference internal" href="file_include_flamegpu_util_detail_compute_capability.cuh.html#file-include-flamegpu-util-detail-compute-capability-cuh"><span class="std std-ref">File compute_capability.cuh</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/util/nvtx.h</span></code> (<a class="reference internal" href="file_include_flamegpu_util_nvtx.h.html#file-include-flamegpu-util-nvtx-h"><span class="std std-ref">File nvtx.h</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flamegpu/visualiser/FLAMEGPU_Visualisation.h</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_flamegpu.html#namespace-flamegpu"><span class="std std-ref">Namespace flamegpu</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019, University of Sheffield.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+    <!-- Theme Analytics -->
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXXXX-1', 'auto');
+    
+    ga('send', 'pageview');
+    </script>
+
+    
+   
+
+</body>
+</html>

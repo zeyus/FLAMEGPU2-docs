@@ -1,0 +1,58 @@
+
+.. _program_listing_file_include_flamegpu_io_StateReaderFactory.h:
+
+Program Listing for File StateReaderFactory.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_StateReaderFactory.h>` (``include/flamegpu/io/StateReaderFactory.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_STATEREADERFACTORY_H_
+   #define INCLUDE_FLAMEGPU_IO_STATEREADERFACTORY_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   #include <utility>
+   #include <algorithm>
+   
+   #include "flamegpu/io/StateReader.h"
+   #include "flamegpu/io/XMLStateReader.h"
+   #include "flamegpu/io/JSONStateReader.h"
+   #include "flamegpu/util/StringPair.h"
+   #include "flamegpu/util/StringUint32Pair.h"
+   #include "flamegpu/util/detail/filesystem.h"
+   
+   namespace flamegpu {
+   class AgentVector;
+   
+   namespace io {
+   
+   class StateReaderFactory {
+    public:
+       static StateReader* createReader(
+           const std::string& model_name,
+           const std::unordered_map<std::string, EnvironmentDescription::PropData>& env_desc,
+           util::StringUint32PairUnorderedMap<util::Any>& env_init,
+           util::StringPairUnorderedMap<std::shared_ptr<AgentVector>>& model_state,
+           const std::string& input,
+           Simulation* sim_instance) {
+           const std::string extension = util::detail::filesystem::getFileExt(input);
+   
+           if (extension == "xml") {
+               return new XMLStateReader(model_name, env_desc, env_init, model_state, input, sim_instance);
+           } else if (extension == "json") {
+               return new JSONStateReader(model_name, env_desc, env_init, model_state, input, sim_instance);
+           }
+           THROW exception::UnsupportedFileType("File '%s' is not a type which can be read "
+               "by StateReaderFactory::createReader().",
+               input.c_str());
+       }
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_STATEREADERFACTORY_H_

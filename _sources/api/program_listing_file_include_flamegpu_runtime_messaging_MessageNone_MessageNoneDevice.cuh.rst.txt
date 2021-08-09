@@ -1,0 +1,38 @@
+
+.. _program_listing_file_include_flamegpu_runtime_messaging_MessageNone_MessageNoneDevice.cuh:
+
+Program Listing for File MessageNoneDevice.cuh
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_messaging_MessageNone_MessageNoneDevice.cuh>` (``include/flamegpu/runtime/messaging/MessageNone/MessageNoneDevice.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEDEVICE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEDEVICE_CUH_
+   
+   #ifndef __CUDACC_RTC__
+   #include "flamegpu/runtime/detail/curve/curve.cuh"
+   #endif  // __CUDACC_RTC__
+   
+   #include "flamegpu/runtime/messaging/MessageNone.h"
+   
+   namespace flamegpu {
+   
+   class MessageNone::In {
+    public:
+       __device__ In(detail::curve::Curve::NamespaceHash /*agent fn hash*/, detail::curve::Curve::NamespaceHash /*message name hash*/, const void * /*metadata*/) {
+       }
+   };
+   class MessageNone::Out {
+    public:
+       __device__ Out(detail::curve::Curve::NamespaceHash /*agent fn hash*/, detail::curve::Curve::NamespaceHash /*message name hash*/, const void * /*metadata*/, unsigned int * /*scan_flag_messageOutput*/){
+       }
+   };
+   
+   }  // namespace flamegpu
+   
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGENONE_MESSAGENONEDEVICE_CUH_

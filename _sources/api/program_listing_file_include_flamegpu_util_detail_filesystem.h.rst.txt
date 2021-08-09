@@ -1,0 +1,63 @@
+
+.. _program_listing_file_include_flamegpu_util_detail_filesystem.h:
+
+Program Listing for File filesystem.h
+=====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_detail_filesystem.h>` (``include/flamegpu/util/detail/filesystem.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_FILESYSTEM_H_
+   #define INCLUDE_FLAMEGPU_UTIL_DETAIL_FILESYSTEM_H_
+   
+   #include <string>
+   
+   // If earlier than VS 2019
+   #if defined(_MSC_VER) && _MSC_VER < 1920
+   #include <filesystem>
+   using std::tr2::sys::exists;
+   using std::tr2::sys::path;
+   using std::tr2::sys::create_directory;
+   #else
+   // VS2019 requires this macro, as building pre c++17 cant use std::filesystem
+   #define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+   #include <experimental/filesystem>
+   using std::experimental::filesystem::v1::exists;
+   using std::experimental::filesystem::v1::path;
+   using std::experimental::filesystem::v1::create_directory;
+   #endif
+   
+   namespace flamegpu {
+   namespace util {
+   namespace detail {
+   namespace filesystem {
+   inline void recursive_create_dir(const path &dir) {
+       if (::exists(dir)) {
+           return;
+       }
+       path parent_dir = absolute(dir).parent_path();
+       if (!::exists(parent_dir)) {
+           recursive_create_dir(parent_dir);
+       }
+       create_directory(dir);
+   }
+   
+   inline std::string getFileExt(const std::string& s) {
+       // Find the last position of '.' in given string
+       size_t i = s.rfind('.', s.length());
+       if (i != std::string::npos) {
+           return(s.substr(i + 1, s.length() - i));
+       }
+       // In case of no extension return empty string
+       return("");
+   }
+   
+   }  // namespace filesystem
+   }  // namespace detail
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_DETAIL_FILESYSTEM_H_

@@ -1,0 +1,62 @@
+
+.. _program_listing_file_include_flamegpu_io_StateWriter.h:
+
+Program Listing for File StateWriter.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_io_StateWriter.h>` (``include/flamegpu/io/StateWriter.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_IO_STATEWRITER_H_
+   #define INCLUDE_FLAMEGPU_IO_STATEWRITER_H_
+   
+   #include <memory>
+   #include <string>
+   #include <unordered_map>
+   
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   #include "flamegpu/model/ModelDescription.h"
+   #include "flamegpu/util/StringPair.h"
+   
+   namespace flamegpu {
+   
+   class AgentVector;
+   
+   namespace io {
+   
+   class StateWriter {
+    public:
+       StateWriter(const std::string &_model_name,
+           const unsigned int &_sim_instance_id,
+           const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> &_model_state,
+           const unsigned int &_iterations,
+           const std::string &output_file,
+           const Simulation *_sim_instance)
+       : model_state(_model_state)
+       , iterations(_iterations)
+       , outputFile(output_file)
+       , model_name(_model_name)
+       , sim_instance_id(_sim_instance_id)
+       , sim_instance(_sim_instance) {}
+       virtual ~StateWriter() {}
+   
+       // -----------------------------------------------------------------------
+       //  The interface
+       // -----------------------------------------------------------------------
+       virtual int writeStates(bool prettyPrint) = 0;
+   
+    protected:
+       const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> model_state{};
+       unsigned int iterations;
+       std::string outputFile;
+       const std::string model_name;
+       const unsigned int sim_instance_id;
+       const Simulation *sim_instance;
+   };
+   }  // namespace io
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_IO_STATEWRITER_H_

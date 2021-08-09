@@ -1,0 +1,78 @@
+
+.. _program_listing_file_include_flamegpu_pop_detail_MemoryVector.h:
+
+Program Listing for File MemoryVector.h
+=======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_pop_detail_MemoryVector.h>` (``include/flamegpu/pop/detail/MemoryVector.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_POP_DETAIL_MEMORYVECTOR_H_
+   #define INCLUDE_FLAMEGPU_POP_DETAIL_MEMORYVECTOR_H_
+   
+   #include <vector>
+   #include <typeindex>
+   #include <map>
+   #include <memory>
+   #include <utility>
+   #include <string>
+   
+   #include "flamegpu/pop/detail/GenericMemoryVector.h"
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   
+   namespace flamegpu {
+   namespace detail {
+   template <typename T>
+   class MemoryVector : public GenericMemoryVector {
+    public:
+       explicit MemoryVector(unsigned int _elements = 1)
+       : GenericMemoryVector()
+       , elements(_elements)
+       , type(typeid(T))
+       , type_size(sizeof(T)) { }
+       virtual ~MemoryVector() { ; }
+       const std::type_index& getType() const override {
+           return type;
+       }
+       unsigned int getElements() const override {
+           return elements;
+       }
+       size_t getTypeSize() const override {
+           return type_size;
+       }
+       size_t getVariableSize() const override {
+           return type_size * elements;
+       }
+       void* getDataPtr() override {
+           if (vec.empty())
+               return nullptr;
+           else
+               return &(vec.front());
+       }
+       const void* getReadOnlyDataPtr() const override {
+           if (vec.empty())
+               return nullptr;
+           else
+               return &(vec.front());
+       }
+       MemoryVector<T>* clone() const override {
+           return (new MemoryVector<T>(elements));
+       }
+       void resize(unsigned int s) override {
+           vec.resize(s * elements);
+       }
+   
+    protected:
+       const unsigned int elements;
+       std::vector<T> vec;
+       const std::type_index type;
+       const size_t type_size;
+   };
+   
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_POP_DETAIL_MEMORYVECTOR_H_

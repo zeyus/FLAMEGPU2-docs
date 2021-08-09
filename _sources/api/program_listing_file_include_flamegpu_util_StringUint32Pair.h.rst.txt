@@ -1,0 +1,40 @@
+
+.. _program_listing_file_include_flamegpu_util_StringUint32Pair.h:
+
+Program Listing for File StringUint32Pair.h
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_StringUint32Pair.h>` (``include/flamegpu/util/StringUint32Pair.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_STRINGUINT32PAIR_H_
+   #define INCLUDE_FLAMEGPU_UTIL_STRINGUINT32PAIR_H_
+   
+   #include <string>
+   #include <utility>
+   #include <map>
+   #include <unordered_map>
+   
+   namespace flamegpu {
+   namespace util {
+   typedef std::pair<std::string, unsigned int> StringUint32Pair;
+   
+   struct StringUint32PairHash {
+       std::size_t operator()(const std::pair<std::string, unsigned int>& k) const noexcept {
+           return ((std::hash<std::string>()(k.first) ^ (std::hash<unsigned int>()(k.second) << 1)) >> 1);
+       }
+   };
+   
+   template<typename T>
+   using StringUint32PairMap = std::map<StringUint32Pair, T, StringUint32PairHash>;
+   
+   template<typename T>
+   using StringUint32PairUnorderedMap = std::unordered_map<StringUint32Pair, T, StringUint32PairHash>;
+   
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_STRINGUINT32PAIR_H_

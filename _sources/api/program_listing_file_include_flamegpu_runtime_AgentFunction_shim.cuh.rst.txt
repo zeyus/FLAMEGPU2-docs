@@ -1,0 +1,48 @@
+
+.. _program_listing_file_include_flamegpu_runtime_AgentFunction_shim.cuh:
+
+Program Listing for File AgentFunction_shim.cuh
+===============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_AgentFunction_shim.cuh>` (``include/flamegpu/runtime/AgentFunction_shim.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_CUH_
+   
+   namespace flamegpu {
+   
+   
+   template<typename MessageIn, typename MessageOut>
+   class DeviceAPI;
+   
+   #ifndef __CUDACC_RTC__
+   #define FLAMEGPU_AGENT_FUNCTION(funcName, message_in, message_out)\
+   struct funcName ## _impl {\
+       __device__ __forceinline__ flamegpu::AGENT_STATUS operator()(flamegpu::DeviceAPI<message_in, message_out> *FLAMEGPU) const;\
+       static constexpr flamegpu::AgentFunctionWrapper *fnPtr() { return &flamegpu::agent_function_wrapper<funcName ## _impl, message_in, message_out>; }\
+       static std::type_index inType() { return std::type_index(typeid(message_in)); }\
+       static std::type_index outType() { return std::type_index(typeid(message_out)); }\
+   };\
+   funcName ## _impl funcName;\
+   __device__ __forceinline__ flamegpu::AGENT_STATUS funcName ## _impl::operator()(flamegpu::DeviceAPI<message_in, message_out> *FLAMEGPU) const
+   #else
+   #define FLAMEGPU_AGENT_FUNCTION(funcName, message_in, message_out)\
+   struct funcName ## _impl {\
+       __device__ __forceinline__ flamegpu::AGENT_STATUS operator()(flamegpu::DeviceAPI<message_in, message_out> *FLAMEGPU) const;\
+       static constexpr flamegpu::AgentFunctionWrapper *fnPtr() { return &flamegpu::agent_function_wrapper<funcName ## _impl, message_in, message_out>; }\
+   }; \
+   funcName ## _impl funcName; \
+   __device__ __forceinline__ flamegpu::AGENT_STATUS funcName ## _impl::operator()(flamegpu::DeviceAPI<message_in, message_out> *FLAMEGPU) const
+   #endif
+   
+   #define FLAMEGPU_DEVICE_FUNCTION __device__ __forceinline__
+   
+   #define FLAMEGPU_HOST_DEVICE_FUNCTION __host__ FLAMEGPU_DEVICE_FUNCTION
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_SHIM_CUH_

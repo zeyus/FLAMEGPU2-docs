@@ -1,0 +1,69 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDAScanCompaction.h:
+
+Program Listing for File CUDAScanCompaction.h
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDAScanCompaction.h>` (``include/flamegpu/gpu/CUDAScanCompaction.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDASCANCOMPACTION_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDASCANCOMPACTION_H_
+   
+   namespace flamegpu {
+   
+   // forward declare classes from other modules
+   class CUDASimulation;
+   
+   struct CUDAScanCompactionPtrs {
+       unsigned int *scan_flag = nullptr;
+       unsigned int *position = nullptr;
+   };
+   struct CUDAScanCompactionConfig {
+       CUDAScanCompactionConfig()
+           : scan_flag_len(0)
+           , hd_cub_temp(nullptr)
+           , cub_temp_size(0)
+           , cub_temp_size_max_list_size(0)
+       { }
+       ~CUDAScanCompactionConfig();
+       CUDAScanCompactionConfig(CUDAScanCompactionConfig const&) = delete;
+       void operator=(CUDAScanCompactionConfig const&) = delete;
+       unsigned int scan_flag_len = 0;
+       CUDAScanCompactionPtrs d_ptrs;
+       void* hd_cub_temp = nullptr;
+       size_t cub_temp_size = 0;
+       unsigned int cub_temp_size_max_list_size = 0;
+       void free_scan_flag();
+       void resize_scan_flag(const unsigned int& count);
+       void zero_scan_flag();
+   };
+   
+   class CUDAScanCompaction {
+    public:
+       static const unsigned int MAX_TYPES = 3;
+       static const unsigned int MAX_STREAMS = 128;
+       enum Type : unsigned int {
+           MESSAGE_OUTPUT = 0,
+           AGENT_DEATH = 1,
+           AGENT_OUTPUT = 2
+       };
+       CUDAScanCompaction() { }
+       CUDAScanCompaction(CUDAScanCompaction const&) = delete;
+       void operator=(CUDAScanCompaction const&) = delete;
+       void purge();
+       void resize(const unsigned int& newCount, const Type& type, const unsigned int& streamId);
+       void zero(const Type& type, const unsigned int& streamId);
+       const CUDAScanCompactionConfig &getConfig(const Type& type, const unsigned int& streamId);
+       CUDAScanCompactionConfig &Config(const Type& type, const unsigned int& streamId);
+   
+    private:
+       CUDAScanCompactionConfig configs[MAX_TYPES][MAX_STREAMS];
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDASCANCOMPACTION_H_

@@ -1,0 +1,43 @@
+
+.. _program_listing_file_src_flamegpu_visualiser_color_StaticColor.cpp:
+
+Program Listing for File StaticColor.cpp
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_src_flamegpu_visualiser_color_StaticColor.cpp>` (``src/flamegpu/visualiser/color/StaticColor.cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // @todo - ifdef VISUALISATION
+   #include "flamegpu/visualiser/color/StaticColor.h"
+   
+   #include <sstream>
+   
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   
+   namespace flamegpu {
+   namespace visualiser {
+   
+   StaticColor::StaticColor(const Color& _rgba)
+       : rgba(_rgba) {
+       if (!rgba.validate()) {
+           THROW exception::InvalidArgument("Provided color has invalid components, "
+               "in StaticColor::StaticColor\n");
+       }
+   }
+   std::string StaticColor::getSrc() const {
+       std::stringstream ss;
+       ss << "vec4 calculateColor() {" << "\n";
+       ss << "    return vec4(" << rgba[0] << ", " << rgba[1] << ", " << rgba[2] << ", " << 1.0f << ");" << "\n";
+       ss << "}" << "\n";
+       return ss.str();
+   }
+   
+   Color::operator StaticColor() const {
+       return StaticColor{*this};
+   }
+   
+   }  // namespace visualiser
+   }  // namespace flamegpu

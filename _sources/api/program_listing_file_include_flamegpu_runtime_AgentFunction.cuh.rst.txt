@@ -1,0 +1,104 @@
+
+.. _program_listing_file_include_flamegpu_runtime_AgentFunction.cuh:
+
+Program Listing for File AgentFunction.cuh
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_AgentFunction.cuh>` (``include/flamegpu/runtime/AgentFunction.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_
+   
+   #include <cuda_runtime.h>
+   #include <curand_kernel.h>
+   
+   #include "flamegpu/defines.h"
+   #include "flamegpu/exception/FLAMEGPUDeviceException.cuh"
+   #include "flamegpu/runtime/AgentFunction_shim.cuh"
+   
+   namespace flamegpu {
+   
+   // ! FLAMEGPU function return type
+   enum AGENT_STATUS { ALIVE = 1, DEAD = 0 };
+   
+   typedef void(AgentFunctionWrapper)(
+   #if !defined(SEATBELTS) || SEATBELTS
+       exception::DeviceExceptionBuffer *error_buffer,
+   #endif
+       detail::curve::Curve::NamespaceHash instance_id_hash,
+       detail::curve::Curve::NamespaceHash agent_func_name_hash,
+       detail::curve::Curve::NamespaceHash messagename_inp_hash,
+       detail::curve::Curve::NamespaceHash messagename_outp_hash,
+       detail::curve::Curve::NamespaceHash agent_output_hash,
+       id_t *d_agent_output_nextID,
+       const unsigned int popNo,
+       const void *in_messagelist_metadata,
+       const void *out_messagelist_metadata,
+       curandState *d_rng,
+       unsigned int *scanFlag_agentDeath,
+       unsigned int *scanFlag_messageOutput,
+       unsigned int *scanFlag_agentOutput);  // Can't put __global__ in a typedef
+   
+   template<typename AgentFunction, typename MessageIn, typename MessageOut>
+   __global__ void agent_function_wrapper(
+   #if !defined(SEATBELTS) || SEATBELTS
+       exception::DeviceExceptionBuffer *error_buffer,
+   #endif
+       detail::curve::Curve::NamespaceHash instance_id_hash,
+       detail::curve::Curve::NamespaceHash agent_func_name_hash,
+       detail::curve::Curve::NamespaceHash messagename_inp_hash,
+       detail::curve::Curve::NamespaceHash messagename_outp_hash,
+       detail::curve::Curve::NamespaceHash agent_output_hash,
+       id_t *d_agent_output_nextID,
+       const unsigned int popNo,
+       const void *in_messagelist_metadata,
+       const void *out_messagelist_metadata,
+       curandState *d_rng,
+       unsigned int *scanFlag_agentDeath,
+       unsigned int *scanFlag_messageOutput,
+       unsigned int *scanFlag_agentOutput) {
+   #if !defined(SEATBELTS) || SEATBELTS
+       // We place this at the start of shared memory, so we can locate it anywhere in device code without a reference
+       extern __shared__ exception::DeviceExceptionBuffer *buff[];
+       if (threadIdx.x == 0) {
+           buff[0] = error_buffer;
+       }
+   
+       #if defined(__CUDACC__)  // @todo - This should not be required. This template should only ever be processed by a CUDA compiler.
+       // Sync the block after Thread 0 has written to shared.
+       __syncthreads();
+       #endif  // __CUDACC__
+   #endif
+       // Must be terminated here, else AgentRandom has bounds issues inside DeviceAPI constructor
+       if (DeviceAPI<MessageIn, MessageOut>::getThreadIndex() >= popNo)
+           return;
+       // create a new device FLAME_GPU instance
+       DeviceAPI<MessageIn, MessageOut> api = DeviceAPI<MessageIn, MessageOut>(
+           instance_id_hash,
+           agent_func_name_hash,
+           agent_output_hash,
+           d_agent_output_nextID,
+           d_rng,
+           scanFlag_agentOutput,
+           MessageIn::In(agent_func_name_hash, messagename_inp_hash, in_messagelist_metadata),
+           MessageOut::Out(agent_func_name_hash, messagename_outp_hash, out_messagelist_metadata, scanFlag_messageOutput));
+   
+       // call the user specified device function
+       AGENT_STATUS flag = AgentFunction()(&api);
+       if (scanFlag_agentDeath) {
+           // (scan flags will not be processed unless agent death has been requested in model definition)
+           scanFlag_agentDeath[DeviceAPI<MessageIn, MessageOut>::getThreadIndex()] = flag;
+   #if !defined(SEATBELTS) || SEATBELTS
+       } else if (flag == DEAD) {
+           DTHROW("Agent death must be enabled per agent function when defining the model.\n");
+   #endif
+       }
+   }
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_

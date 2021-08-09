@@ -1,0 +1,53 @@
+
+.. _program_listing_file_include_flamegpu_model_LayerData.h:
+
+Program Listing for File LayerData.h
+====================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_LayerData.h>` (``include/flamegpu/model/LayerData.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef INCLUDE_FLAMEGPU_MODEL_LAYERDATA_H_
+   #define INCLUDE_FLAMEGPU_MODEL_LAYERDATA_H_
+   
+   #include <set>
+   #include <memory>
+   #include <string>
+   
+   #include "flamegpu/runtime/HostAPI_macros.h"  // Todo replace with std/cub style fns (see AgentFunction.cuh)
+   #include "flamegpu/model/ModelData.h"
+   
+   namespace flamegpu {
+   
+   struct AgentFunctionData;
+   class LayerDescription;
+   class HostFunctionCallback;
+   class HostFunctionConditionCallback;
+   
+   struct LayerData {
+       friend class ModelDescription;
+       friend struct ModelData;
+   
+       std::set<std::shared_ptr<AgentFunctionData>> agent_functions;
+       std::set<FLAMEGPU_HOST_FUNCTION_POINTER> host_functions;
+       std::set<HostFunctionCallback*> host_functions_callbacks;
+       std::shared_ptr<SubModelData> sub_model;
+       std::unique_ptr<LayerDescription> description;
+       std::string name;
+       ModelData::size_type index;
+       bool operator==(const LayerData &rhs) const;
+       bool operator!=(const LayerData &rhs) const;
+       LayerData(const LayerData &other) = delete;
+   
+    protected:
+       LayerData(const std::shared_ptr<const ModelData> &model, const LayerData &other);
+       LayerData(const std::shared_ptr<const ModelData> &model, const std::string &name, const ModelData::size_type &index);
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_LAYERDATA_H_

@@ -1,0 +1,126 @@
+
+.. _program_listing_file_include_flamegpu_gpu_CUDAFatAgentStateList.h:
+
+Program Listing for File CUDAFatAgentStateList.h
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_gpu_CUDAFatAgentStateList.h>` (``include/flamegpu/gpu/CUDAFatAgentStateList.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_GPU_CUDAFATAGENTSTATELIST_H_
+   #define INCLUDE_FLAMEGPU_GPU_CUDAFATAGENTSTATELIST_H_
+   
+   #include <memory>
+   #include <list>
+   #include <unordered_map>
+   #include <set>
+   #include <string>
+   #include <utility>
+   
+   #include "flamegpu/model/AgentData.h"
+   #include "flamegpu/model/SubAgentData.h"
+   
+   namespace flamegpu {
+   
+   class CUDAScatter;
+   
+   struct AgentVariable{
+       const unsigned int agent;
+       const std::string variable;
+       bool operator==(const AgentVariable &other) const {
+           return (agent == other.agent && variable == other.variable);
+       }
+   };
+   
+   struct AgentVariableHash {
+       std::size_t operator()(const flamegpu::AgentVariable& k) const noexcept {
+           return ((std::hash<unsigned int>()(k.agent)
+               ^ (std::hash<std::string>()(k.variable) << 1)) >> 1);
+       }
+   };
+   
+   struct VariableBuffer {
+       void *data;
+       void *data_condition;
+       void *data_swap;
+       const std::type_index type;
+       const size_t type_size;
+       const size_t elements;
+       const void *const default_value;
+       VariableBuffer(const std::type_index &_type, const size_t &_type_size, const void * const _default_value, const size_t &_elements = 1, void *_data = nullptr, void *_data_swap = nullptr)
+           : data(_data)
+           , data_condition(_data)
+           , data_swap(_data_swap)
+           , type(_type)
+           , type_size(_type_size)
+           , elements(_elements)
+           , default_value(buildDefaultValue(_default_value)) { }
+       VariableBuffer(const VariableBuffer&other)
+           : data(other.data)
+           , data_condition(other.data_condition)
+           , data_swap(other.data_swap)
+           , type(other.type)
+           , type_size(other.type_size)
+           , elements(other.elements)
+           , default_value(buildDefaultValue(other.default_value)) { }
+       ~VariableBuffer() {
+           free(const_cast<void*>(default_value));
+       }
+       void swap(VariableBuffer *other) {
+           std::swap(data, other->data);
+           std::swap(data_condition, other->data_condition);
+           std::swap(data_swap, other->data_swap);
+           assert(type == other->type);
+           assert(type_size == other->type_size);
+           assert(elements == other->elements);
+           // assert(default_value == other->default_value);  // Would need to evaluate the value not ptr
+       }
+   
+    private:
+       void *buildDefaultValue(const void * const source) const {
+           void *rtn = malloc(type_size * elements);
+           memcpy(rtn, source, type_size * elements);
+           return rtn;
+       }
+   };
+   
+   class CUDAFatAgentStateList {
+    public:
+       explicit CUDAFatAgentStateList(const AgentData& description);
+       CUDAFatAgentStateList(const CUDAFatAgentStateList& other);
+       ~CUDAFatAgentStateList();
+       void addSubAgentVariables(
+         const AgentData &description,
+         const unsigned int &master_fat_index,
+         const unsigned int &sub_fat_index,
+         const std::shared_ptr<SubAgentData> &mapping);
+       std::shared_ptr<VariableBuffer> getVariableBuffer(const unsigned int &fat_index, const std::string &name);
+       void resize(const unsigned int &minSize, const bool &retainData);
+       unsigned int getSize() const;
+       unsigned int getSizeWithDisabled() const;
+       unsigned int getAllocatedSize() const;
+       void setAgentCount(const unsigned int &newCount, const bool &resetDisabled = false);
+       unsigned int scatterDeath(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       unsigned int scatterAgentFunctionConditionFalse(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       unsigned int scatterAgentFunctionConditionTrue(const unsigned int &conditionFailCount, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void scatterSort(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void setDisabledAgents(const unsigned int &numberOfDisabled);
+       void initVariables(std::set<std::shared_ptr<VariableBuffer>> &exclusionSet, const unsigned int initCount, const unsigned initOffset, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       std::list<std::shared_ptr<VariableBuffer>> &getUniqueVariables();
+       void swap(CUDAFatAgentStateList*other);
+       std::list<std::shared_ptr<VariableBuffer>> getBuffers(std::set<std::shared_ptr<VariableBuffer>>& exclusionSet);
+   
+    private:
+       unsigned int aliveAgents;
+       unsigned int disabledAgents;
+       unsigned int bufferLen;
+       std::unordered_map<AgentVariable, std::shared_ptr<VariableBuffer>, AgentVariableHash> variables;
+       std::list<std::shared_ptr<VariableBuffer>> variables_unique;
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_GPU_CUDAFATAGENTSTATELIST_H_

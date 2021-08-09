@@ -1,0 +1,66 @@
+
+.. _program_listing_file_include_flamegpu_model_AgentFunctionData.cuh:
+
+Program Listing for File AgentFunctionData.cuh
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_model_AgentFunctionData.cuh>` (``include/flamegpu/model/AgentFunctionData.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_
+   #define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_
+   
+   #include <memory>
+   #include <string>
+   
+   #include "flamegpu/model/ModelData.h"
+   #include "flamegpu/model/AgentData.h"
+   #include "flamegpu/runtime/AgentFunction.cuh"
+   #include "flamegpu/runtime/AgentFunctionCondition.cuh"
+   
+   namespace flamegpu {
+   
+   class AgentFunctionDescription;
+   class AgentDescription;
+   
+   struct AgentFunctionData {
+       friend class AgentDescription;
+       friend std::shared_ptr<const AgentData> AgentData::clone() const;
+       friend struct ModelData;
+   
+       AgentFunctionWrapper *func;
+       std::string rtc_source;
+       std::string rtc_func_name;
+       std::string initial_state;
+       std::string end_state;
+       std::weak_ptr<MessageBruteForce::Data> message_input;
+       std::weak_ptr<MessageBruteForce::Data> message_output;
+       bool message_output_optional;
+       std::weak_ptr<AgentData> agent_output;
+       std::string agent_output_state;
+       bool has_agent_death = false;
+       AgentFunctionConditionWrapper *condition;
+       std::string rtc_condition_source;
+       std::string rtc_func_condition_name;
+       std::weak_ptr<AgentData> parent;
+       std::unique_ptr<AgentFunctionDescription> description;
+       std::string name;
+       bool operator==(const AgentFunctionData &rhs) const;
+       bool operator!=(const AgentFunctionData &rhs) const;
+       AgentFunctionData(const AgentFunctionData &other) = delete;
+       std::string message_in_type;
+       std::string message_out_type;
+   
+    protected:
+       AgentFunctionData(const std::shared_ptr<const ModelData> &model, std::shared_ptr<AgentData> _parent, const AgentFunctionData &other);
+       AgentFunctionData(std::shared_ptr<AgentData> _parent, const std::string &function_name, AgentFunctionWrapper *agent_function, const std::string &in_type, const std::string &out_type);
+       AgentFunctionData(std::shared_ptr<AgentData> _parent, const std::string& function_name, const std::string &rtc_function_src, const std::string &in_type, const std::string& out_type, const std::string& code_func_name);
+   };
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_

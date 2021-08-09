@@ -1,0 +1,101 @@
+
+.. _program_listing_file_include_flamegpu_runtime_utility_DeviceEnvironment.cuh:
+
+Program Listing for File DeviceEnvironment.cuh
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_utility_DeviceEnvironment.cuh>` (``include/flamegpu/runtime/utility/DeviceEnvironment.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_
+   
+   // #include <cuda_runtime.h>
+   #include <cstdint>
+   #include <string>
+   #include <cassert>
+   
+   namespace flamegpu {
+   
+   #ifndef __CUDACC_RTC__
+   namespace detail {
+       extern __constant__ char c_envPropBuffer[EnvironmentManager::MAX_BUFFER_SIZE];
+   }  // namespace detail
+   #endif
+   
+   class DeviceEnvironment {
+       friend class ReadOnlyDeviceAPI;
+       friend class EnvironmentManager;
+       __host__ __device__ static constexpr unsigned int CURVE_NAMESPACE_HASH() { return 0X1428F902u; }
+       const detail::curve::Curve::NamespaceHash &modelname_hash;
+       __device__ __forceinline__ DeviceEnvironment(const detail::curve::Curve::NamespaceHash &_modelname_hash)
+           : modelname_hash(_modelname_hash) { }
+   
+    public:
+       template<typename T, unsigned int N>
+       __device__ __forceinline__ T getProperty(const char(&name)[N]) const;
+       template<typename T, unsigned int N>
+       __device__ __forceinline__ T getProperty(const char(&name)[N], const unsigned int&index) const;
+       template<unsigned int N>
+       __device__ __forceinline__ bool containsProperty(const char(&name)[N]) const;
+   };
+   
+   // Mash compilation of these functions from RTC builds as this requires a dynamic implementation of the function in curve_rtc
+   #ifndef __CUDACC_RTC__
+   
+   template<typename T, unsigned int N>
+   __device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&name)[N]) const {
+       detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
+       const auto cv = detail::curve::Curve::getVariable(cvh);
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (cv ==  detail::curve::Curve::UNKNOWN_VARIABLE) {
+           DTHROW("Environment property with name: %s was not found.\n", name);
+   #if defined(USE_GLM)
+       } else if (detail::curve::detail::d_sizes[cv] * detail::curve::detail::d_lengths[cv] != sizeof(T)) {
+           DTHROW("Environment property with name: %s type size mismatch %llu != %llu.\n", name, detail::curve::detail::d_sizes[cv] * detail::curve::detail::d_lengths[cv], sizeof(T));
+   #else
+       } else if (detail::curve::detail::d_sizes[cv] != sizeof(T)) {
+           DTHROW("Environment property with name: %s type size mismatch %llu != %llu.\n", name, detail::curve::detail::d_sizes[cv], sizeof(T));
+   #endif
+       } else {
+           return *reinterpret_cast<T*>(detail::c_envPropBuffer + reinterpret_cast<ptrdiff_t>(detail::curve::detail::d_variables[cv]));
+       }
+       return {};
+   #else
+       return *reinterpret_cast<T*>(detail::c_envPropBuffer + reinterpret_cast<ptrdiff_t>(detail::curve::detail::d_variables[cv]));
+   #endif
+   }
+   template<typename T, unsigned int N>
+   __device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&name)[N], const unsigned int &index) const {
+       detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
+       const auto cv = detail::curve::Curve::getVariable(cvh);
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (cv ==  detail::curve::Curve::UNKNOWN_VARIABLE) {
+           DTHROW("Environment property array with name: %s was not found.\n", name);
+       } else if (detail::curve::detail::d_sizes[cv] != sizeof(T)) {
+           DTHROW("Environment property array with name: %s type size mismatch %llu != %llu.\n", name, detail::curve::detail::d_sizes[cv], sizeof(T));
+       } else if (detail::curve::detail::d_lengths[cv] <= index) {
+           DTHROW("Environment property array with name: %s index %u is out of bounds (length %u).\n", name, index, detail::curve::detail::d_lengths[cv]);
+       } else {
+           return *(reinterpret_cast<T*>(detail::c_envPropBuffer + reinterpret_cast<ptrdiff_t>(detail::curve::detail::d_variables[cv])) + index);
+       }
+       return {};
+   #else
+       return *(reinterpret_cast<T*>(detail::c_envPropBuffer + reinterpret_cast<ptrdiff_t>(detail::curve::detail::d_variables[cv])) + index);
+   #endif
+   }
+   
+   template<unsigned int N>
+   __device__ __forceinline__ bool DeviceEnvironment::containsProperty(const char(&name)[N]) const {
+       detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
+       return detail::curve::Curve::getVariable(cvh) != detail::curve::Curve::UNKNOWN_VARIABLE;
+   }
+   
+   #endif  // __CUDACC_RTC__
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_

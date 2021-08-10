@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Structure of a FLAMEGPU2 Program &mdash; FLAME GPU 2 0 documentation</title>
@@ -264,6 +263,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -796,7 +797,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="structure-of-a-flamegpu2-program">
+  <div class="section" id="structure-of-a-flamegpu2-program">
 <h1>Structure of a FLAMEGPU2 Program<a class="headerlink" href="#structure-of-a-flamegpu2-program" title="Permalink to this headline">¶</a></h1>
 <p>FLAMEGPU2 programs are composed of 4 sections:</p>
 <ul class="simple">
@@ -805,13 +806,13 @@
 <li><p>Initialisation</p></li>
 <li><p>Execution</p></li>
 </ul>
-<section id="agent-host-function-definitions">
+<div class="section" id="agent-host-function-definitions">
 <h2>Agent/Host Function Definitions<a class="headerlink" href="#agent-host-function-definitions" title="Permalink to this headline">¶</a></h2>
 <p>These functions define the actual behaviours of your model and are defined before the <cite>main</cite> function. For more detail about defining these please see <a class="reference internal" href="../3-behaviour-definition/1-defining-agent-functions.html#defining-agent-function"><span class="std std-ref">Defining Agent Functions</span></a>.
 If your model is growing very large, you can move these into a separate file and include it using the <cite>#include</cite> preprocessor
 directive. Any number of files could be included this way, allowing you to group related functions together.</p>
-</section>
-<section id="model-declaration">
+</div>
+<div class="section" id="model-declaration">
 <h2>Model Declaration<a class="headerlink" href="#model-declaration" title="Permalink to this headline">¶</a></h2>
 <p>Inside the <cite>main</cite> function, your model structure is declared. This includes declaration of agent and message types. We recommend the following structure For
 model declaration:</p>
@@ -822,16 +823,16 @@ model declaration:</p>
 <li><p>Environment</p></li>
 <li><p>Function dependencies</p></li>
 </ul>
-</section>
-<section id="initialisation">
+</div>
+<div class="section" id="initialisation">
 <h2>Initialisation<a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h2>
 <p>This is where populations of agents are created and the initial conditions of your simulation are defined. This might either be done in code or loaded from file.</p>
-</section>
-<section id="execution">
+</div>
+<div class="section" id="execution">
 <h2>Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
 <p>The simulation is run and any relevant data is collected.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

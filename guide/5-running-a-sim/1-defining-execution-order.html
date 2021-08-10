@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Defining Execution Order &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,13 +798,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="defining-execution-order">
+  <div class="section" id="defining-execution-order">
 <h1>Defining Execution Order<a class="headerlink" href="#defining-execution-order" title="Permalink to this headline">¶</a></h1>
 <p>Once the agents and behaviours of your model have been specified, you must define the dependencies present in the model.
 Specifying a dependency, e.g. <em>a depends on b</em> ensures that function a will not run until function b has completed. This
 can be used to define the order you want behaviours to take place in, and to ensure that a function which outputs messages
 is complete before another function attempts to read them.</p>
-<section id="specifying-dependencies">
+<div class="section" id="specifying-dependencies">
 <h2>Specifying Dependencies<a class="headerlink" href="#specifying-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Dependencies are specified between <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code>, <code class="docutils literal notranslate"><span class="pre">Submodel</span></code> and <code class="docutils literal notranslate"><span class="pre">HostFunctionDescription</span></code> objects.
 These are specified using the <code class="docutils literal notranslate"><span class="pre">dependsOn</span></code> method.</p>
@@ -836,23 +837,22 @@ These are specified using the <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="accessing-the-dependencygraph">
+</div>
+<div class="section" id="accessing-the-dependencygraph">
 <h2>Accessing the DependencyGraph<a class="headerlink" href="#accessing-the-dependencygraph" title="Permalink to this headline">¶</a></h2>
 <p>Each model has an associated dependency graph which is accessed via a <code class="docutils literal notranslate"><span class="pre">ModelDescription</span></code> as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Access the DependencyGraph of model</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Access the DependencyGraph of model</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="o">&amp;</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">getDependencyGraph</span><span class="p">();</span>
-
-<span class="p">..</span> <span class="n">code</span><span class="o">-</span><span class="n">tab</span><span class="o">::</span> <span class="n">python</span>
-
-<span class="cp"># Access the DependencyGraph of model</span>
-<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">getDependencyGraph</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Access the DependencyGraph of model</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">getDependencyGraph</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="specifying-roots">
+</div>
+<div class="section" id="specifying-roots">
 <h2>Specifying Roots<a class="headerlink" href="#specifying-roots" title="Permalink to this headline">¶</a></h2>
 <p>Any functions or submodels which have no dependencies are <em>roots</em>. These must be added to the dependency graph:</p>
 <div class="sphinx-tabs docutils container">
@@ -867,8 +867,8 @@ These are specified using the <code class="docutils literal notranslate"><span c
 </div></div>
 <p>You do not need to manually add every function or submodel to the graph. Adding the roots is enough, as the others will be included
 as a result of the dependency specifications.</p>
-</section>
-<section id="generating-layers">
+</div>
+<div class="section" id="generating-layers">
 <h2>Generating Layers<a class="headerlink" href="#generating-layers" title="Permalink to this headline">¶</a></h2>
 <p>When you have specified all your dependencies and roots, you must instruct the model to generate execution layers from the dependency graph:</p>
 <div class="sphinx-tabs docutils container">
@@ -899,8 +899,8 @@ string representation of the layers:</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="visualising-the-dependencies">
+</div>
+<div class="section" id="visualising-the-dependencies">
 <h2>Visualising the Dependencies<a class="headerlink" href="#visualising-the-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>FLAMEGPU2 can automatically produce a <em>GraphViz</em> format graph of your dependency tree. You can use this to visually validate that behaviours
 will be happening in the order you expect them to.</p>
@@ -945,8 +945,8 @@ will be happening in the order you expect them to.</p>
   Function1 -&gt; Function3;
   Function3 -&gt; Function4;
 }" class="graphviz" /></div>
-</section>
-<section id="manual-layer-specification">
+</div>
+<div class="section" id="manual-layer-specification">
 <h2>Manual Layer Specification<a class="headerlink" href="#manual-layer-specification" title="Permalink to this headline">¶</a></h2>
 <p>FLAMEGPU2 will automatically determine the optimal execution layers using the DependencyGraph, but you can
 specify them manually if you wish. To do so, create <cite>LayerDescription</cite> objects, one representing each execution layer.
@@ -968,8 +968,8 @@ the dependency specification method.</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

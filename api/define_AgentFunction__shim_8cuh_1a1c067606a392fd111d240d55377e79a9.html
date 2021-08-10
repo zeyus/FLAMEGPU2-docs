@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Define FLAMEGPU_AGENT_FUNCTION &mdash; FLAME GPU 2 0 documentation</title>
@@ -264,6 +263,8 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="library_root.html">Library API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -794,12 +795,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="define-flamegpu-agent-function">
+  <div class="section" id="define-flamegpu-agent-function">
 <span id="exhale-define-agentfunction-shim-8cuh-1a1c067606a392fd111d240d55377e79a9"></span><h1>Define FLAMEGPU_AGENT_FUNCTION<a class="headerlink" href="#define-flamegpu-agent-function" title="Permalink to this headline">¶</a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_AgentFunction_shim.cuh.html#file-include-flamegpu-runtime-agentfunction-shim-cuh"><span class="std std-ref">File AgentFunction_shim.cuh</span></a></p></li>
 </ul>
-<section id="define-documentation">
+<div class="section" id="define-documentation">
 <h2>Define Documentation<a class="headerlink" href="#define-documentation" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.FLAMEGPU_AGENT_FUNCTION">
@@ -808,8 +809,8 @@
 <p>struct SomeAgentFunction { // User Implemented agent function behaviour <strong>device</strong> <strong>forceinline</strong> AGENT_STATUS operator()(DeviceAPI&lt;message_in, message_out&gt; *FLAMEGPU) const { // do something return 0; } // Returns a function pointer to the agent function wrapper for this function // Including it here, force instantiates the template, without requiring the user to specify the template args elsewhere static constexpr AgentFunctionWrapper *fnPtr() { return &amp;agent_function_wrapper&lt;SomeAgentFunction, message_in, message_out&gt;; } // These are used to validate that the bound message description matches the specified type static constexpr std::type_index inType() { return std::type_index(typeid(message_in)); } static constexpr std::type_index outType() { return std::type_index(typeid(message_out)); } }; } </p>
 </dd></dl>
 
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

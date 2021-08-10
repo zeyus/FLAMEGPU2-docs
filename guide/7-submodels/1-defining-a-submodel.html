@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Defining a Submodel &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,13 +798,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="defining-a-submodel">
+  <div class="section" id="defining-a-submodel">
 <h1>Defining a Submodel<a class="headerlink" href="#defining-a-submodel" title="Permalink to this headline">¶</a></h1>
 <p>A submodel acts as a full model nested inside a parent model, the only requirement is that the model contains atleast one exit condition. Agent variables can be mapped between the two models, with each model also having private agent variables (or even private agents). The agent ID of bound agents will always be mapped. Unbound agents which are recreated in each submodel run are not guaranteed to have the same ID between runs. Environment properties can also be shared with submodels, with the ability to mark them as constant within the submodel.</p>
 <p>Where an agent variable is mapped between model and submodel, the parent model’s default value will always be used when creating new agents.</p>
 <p>A submodel must exist independently within a layer of the parent model, it cannot execute simultaneously with other agent or host functions.</p>
 <p>Models may contain multiple submodels, and submodels may contain sub-submodels. The only limitation to submodel nested, is that circular dependencies are not permitted (e.g. a submodel adding it’s parent model as a submodel).</p>
-<section id="submodel-definition">
+<div class="section" id="submodel-definition">
 <h2>SubModel Definition<a class="headerlink" href="#submodel-definition" title="Permalink to this headline">¶</a></h2>
 <p>A submodel as defined the same as a regular model, via a <cite>ModelDescription</cite>. It must then be added to the model which should host the submodel. Mappings between agent states, agent variables and environment properties can then be created. When mapping variables and properties, they must be of the same type and length.</p>
 <p>When calling <cite>SubAgentDescription::bindAgent()</cite>, it is also possible to automatically bind compatible states and variables.</p>
@@ -863,8 +864,8 @@
 </pre></div>
 </div>
 </div></div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

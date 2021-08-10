@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Host Functions &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,10 +798,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="host-functions">
+  <div class="section" id="host-functions">
 <span id="id1"></span><h1>Host Functions<a class="headerlink" href="#host-functions" title="Permalink to this headline">¶</a></h1>
 <p>Not all model behaviours can be achieved with agent functions. Some behaviours need to operate over at a level above agents, host functions provide this functionality. If you need to perform a reduction over an agent population, sort agents or update environment properties a host function can deliver.</p>
-<section id="defining-host-functions">
+<div class="section" id="defining-host-functions">
 <h2>Defining Host Functions<a class="headerlink" href="#defining-host-functions" title="Permalink to this headline">¶</a></h2>
 <p>Host functions have a similar interface to agent functions, however the core difference is that Python API host functions are implemented in Python.</p>
 <p>Example definition:</p>
@@ -827,8 +828,8 @@
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="adding-host-functions-to-a-model">
+</div>
+<div class="section" id="adding-host-functions-to-a-model">
 <h2>Adding Host Functions to a Model<a class="headerlink" href="#adding-host-functions-to-a-model" title="Permalink to this headline">¶</a></h2>
 <p>There are several ways that host functions can be added to a model; init, exit, step and layer.</p>
 <p>They can be added as init functions, which execute once at the start when <code class="docutils literal notranslate"><span class="pre">CUDASimulation::simulate()</span></code> is called.</p>
@@ -903,8 +904,8 @@
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="writing-host-functions">
+</div>
+<div class="section" id="writing-host-functions">
 <h2>Writing Host Functions<a class="headerlink" href="#writing-host-functions" title="Permalink to this headline">¶</a></h2>
 <p>Host functions have access to the <code class="docutils literal notranslate"><span class="pre">HostAPI</span></code>. This has similarities to the <code class="docutils literal notranslate"><span class="pre">DeviceAPI</span></code> available within agent functions, however different functionality is available.</p>
 <p><strong>Agent Tools</strong></p>
@@ -1222,8 +1223,8 @@
 </tr>
 </tbody>
 </table>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Defining Agents &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,12 +798,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="defining-agents">
+  <div class="section" id="defining-agents">
 <h1>Defining Agents<a class="headerlink" href="#defining-agents" title="Permalink to this headline">¶</a></h1>
 <p>Agents are the central component of FLAME GPU simulations, and are directly equivalent to agent-based modelling agents. However,
 they can also be used to represent other things such as scalar fields across the environment. Agents are represented by an <code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code>
 object</p>
-<section id="defining-a-new-agent-type">
+<div class="section" id="defining-a-new-agent-type">
 <h2>Defining a New Agent Type<a class="headerlink" href="#defining-a-new-agent-type" title="Permalink to this headline">¶</a></h2>
 <p>FLAMEGPU2 agents are associated with a particular model. As such they are created via a <cite>ModelDescription</cite> object and are initialised with a name:</p>
 <div class="sphinx-tabs docutils container">
@@ -815,18 +816,18 @@ object</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="agent-variables">
+</div>
+<div class="section" id="agent-variables">
 <h2>Agent Variables<a class="headerlink" href="#agent-variables" title="Permalink to this headline">¶</a></h2>
 <p>Agent variables should be used to store data which is unique to each instance of an agent, for example, each individual predator in a predator-prey simulation
 would have its own position and hunger level. Each variable has a name and a type.</p>
-<section id="agent-id">
+<div class="section" id="agent-id">
 <h3>Agent ID<a class="headerlink" href="#agent-id" title="Permalink to this headline">¶</a></h3>
 <p>All agents have a built in <cite>id</cite> variable. This is a number which uniquely identifies this agent. Each agent will automatically be assigned an ID when the simulation
 starts or the agent is birthed. There is currently no way to change the ID of an agent. The agent ID variable is of type <cite>id_t</cite> which is an <cite>unsigned int</cite> by default, but can be redefined if
 more IDs are required.</p>
-</section>
-<section id="user-defined-variables">
+</div>
+<div class="section" id="user-defined-variables">
 <h3>User Defined Variables<a class="headerlink" href="#user-defined-variables" title="Permalink to this headline">¶</a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create two new floating point variables, x and y</span>
@@ -846,9 +847,9 @@ more IDs are required.</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-</section>
-<section id="agent-array-variables">
+</div>
+</div>
+<div class="section" id="agent-array-variables">
 <h2>Agent Array Variables<a class="headerlink" href="#agent-array-variables" title="Permalink to this headline">¶</a></h2>
 <p>Array variables can also be defined by providing a name and array length:</p>
 <div class="sphinx-tabs docutils container">
@@ -861,8 +862,8 @@ more IDs are required.</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="agent-states">
+</div>
+<div class="section" id="agent-states">
 <h2>Agent States<a class="headerlink" href="#agent-states" title="Permalink to this headline">¶</a></h2>
 <p>Agent states are usually used to group sets of behaviours. For example, a predator in a predator-prey simulation may have a resting state and a hunting state.
 All newly defined agent types will have a default state, but you can add additional states if you wish to. States can be defined through the
@@ -879,8 +880,8 @@ All newly defined agent types will have a default state, but you can add additio
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="full-example-code-from-this-page">
+</div>
+<div class="section" id="full-example-code-from-this-page">
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
@@ -920,8 +921,8 @@ All newly defined agent types will have a default state, but you can add additio
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="more-info">
+</div>
+<div class="section" id="more-info">
 <h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Related User Guide Pages</p>
@@ -938,8 +939,8 @@ All newly defined agent types will have a default state, but you can add additio
 </ul>
 </li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

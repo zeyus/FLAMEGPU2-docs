@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Agent Birth from Agent Functions &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,16 +798,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="agent-birth-from-agent-functions">
+  <div class="section" id="agent-birth-from-agent-functions">
 <h1>Agent Birth from Agent Functions<a class="headerlink" href="#agent-birth-from-agent-functions" title="Permalink to this headline">¶</a></h1>
-<section id="agent-creation-overview">
+<div class="section" id="agent-creation-overview">
 <h2>Agent Creation Overview<a class="headerlink" href="#agent-creation-overview" title="Permalink to this headline">¶</a></h2>
 <p>The agent creation interface usable in agent functions is only able to create a single agent per existing agent per iteration.
 Additionally, the agent type and state being created must be earlier specified as part of the model description. If you need
 to create more than one agent for each existing agent, you should use the <a class="reference internal" href="2-agent-birth-host.html#agent-birth-from-host-functions"><span class="std std-ref">Agent Birth from Host Functions</span></a>.</p>
 <p><strong>Note:</strong> <em>Agents created by agent functions do not exist until the next layer.</em></p>
-</section>
-<section id="enabling-agent-creation">
+</div>
+<div class="section" id="enabling-agent-creation">
 <h2>Enabling Agent Creation<a class="headerlink" href="#enabling-agent-creation" title="Permalink to this headline">¶</a></h2>
 <p>To create agents from agent functions, you must specify the type of agent the function produces when defining your agent functions:</p>
 <div class="sphinx-tabs docutils container">
@@ -819,8 +820,8 @@ to create more than one agent for each existing agent, you should use the <a cla
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="creating-the-new-agent">
+</div>
+<div class="section" id="creating-the-new-agent">
 <h2>Creating the New Agent<a class="headerlink" href="#creating-the-new-agent" title="Permalink to this headline">¶</a></h2>
 <p>When agent output has been enabled for an agent function, the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;agent_out</span></code> object will become available within agent
 function definitions. This can be used to initialise the properties of the newly created agent.</p>
@@ -837,8 +838,8 @@ function definitions. This can be used to initialise the properties of the newly
 </div>
 </div></div>
 <p>Agent variables which are not manually set will be initialised with their default values.</p>
-</section>
-<section id="conditional-agent-creation">
+</div>
+<div class="section" id="conditional-agent-creation">
 <h2>Conditional Agent Creation<a class="headerlink" href="#conditional-agent-creation" title="Permalink to this headline">¶</a></h2>
 <p>By default, agent creation is mandatory for an agent function which has agent output enabled. If you don’t want all the agents the
 function runs for to output an agent, you can enable optional agent output:</p>
@@ -857,7 +858,7 @@ As an example:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Fetch this agent&#39;s id</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span>
 
     <span class="c1">// If its id is even, output a new agent, otherwise do nothing</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -871,8 +872,8 @@ As an example:</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="full-example-code-from-this-page">
+</div>
+<div class="section" id="full-example-code-from-this-page">
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// The agent type &#39;example_agent&#39; is set as the agent output type</span>
@@ -902,7 +903,7 @@ As an example:</p>
 
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Fetch this agent&#39;s id</span>
-  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span>
 
   <span class="c1">// If its id is even, output a new agent, otherwise do nothing</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
@@ -916,8 +917,8 @@ As an example:</p>
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="more-info">
+</div>
+<div class="section" id="more-info">
 <h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Related User Guide Pages</p>
@@ -934,8 +935,8 @@ As an example:</p>
 </ul>
 </li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

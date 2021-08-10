@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Defining Agent Functions &mdash; FLAME GPU 2 0 documentation</title>
@@ -265,6 +264,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -797,9 +798,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="defining-agent-functions">
+  <div class="section" id="defining-agent-functions">
 <span id="defining-agent-function"></span><h1>Defining Agent Functions<a class="headerlink" href="#defining-agent-functions" title="Permalink to this headline">¶</a></h1>
-<section id="what-is-an-agent-function">
+<div class="section" id="what-is-an-agent-function">
 <h2>What is an Agent Function?<a class="headerlink" href="#what-is-an-agent-function" title="Permalink to this headline">¶</a></h2>
 <p>Most behaviours within your model will be implemented using agent functions. Agent functions allow you to modify agent variables, change state
 and interact with the environment or other agents. Each agent function in FLAMEGPU2 is associated with a particular agent type and is represented
@@ -807,8 +808,8 @@ by an <code class="docutils literal notranslate"><span class="pre">AgentFunction
 state transitions it should apply to the agent. The implementation code for the behaviour is written separately and is identified by using the
 <code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro to label the code. Alternatively, the implementations can be written in strings and loaded at runtime. The latter
 method is the only method supported for the python version of FLAMEGPU2.</p>
-</section>
-<section id="defining-an-agent-function">
+</div>
+<div class="section" id="defining-an-agent-function">
 <h2>Defining an Agent Function<a class="headerlink" href="#defining-an-agent-function" title="Permalink to this headline">¶</a></h2>
 <p>Agent Functions can be specified as C++ functions, built at compile time when using the C++ interface, or they can be specified as Run-Time Compiled (RTC) functions when using the C++ interface, or the Python interface.</p>
 <p>An agent function is defined using the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro.
@@ -868,8 +869,8 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="flamegpu-device-functions">
+</div>
+<div class="section" id="flamegpu-device-functions">
 <h2>FLAMEGPU Device Functions<a class="headerlink" href="#flamegpu-device-functions" title="Permalink to this headline">¶</a></h2>
 <p>If you wish to define regular functions which can be used within agent function definitions, you can use the <cite>FLAMEGPU_DEVICE_FUNCTION</cite> macro:</p>
 <div class="sphinx-tabs docutils container">
@@ -880,8 +881,8 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="flamegpu-host-device-functions">
+</div>
+<div class="section" id="flamegpu-host-device-functions">
 <h2>FLAMEGPU Host Device Functions<a class="headerlink" href="#flamegpu-host-device-functions" title="Permalink to this headline">¶</a></h2>
 <p>If you wish to define regular functions which can be used within agent function definitions and in host code, you can use the <cite>FLAMEGPU_HOST_DEVICE_FUNCTION</cite> macro:</p>
 <div class="sphinx-tabs docutils container">
@@ -892,8 +893,8 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="full-example-code-from-this-page">
+</div>
+<div class="section" id="full-example-code-from-this-page">
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two integers which can be called inside agent functions.</span>
@@ -937,8 +938,8 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </pre></div>
 </div>
 </div></div>
-</section>
-<section id="more-info">
+</div>
+<div class="section" id="more-info">
 <h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Related User Guide Pages</p>
@@ -955,8 +956,8 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </ul>
 </li>
 </ul>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

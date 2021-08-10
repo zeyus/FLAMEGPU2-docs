@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Program Listing for File README.md &mdash; FLAME GPU 2 0 documentation</title>
@@ -262,6 +261,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
@@ -790,239 +791,319 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="program-listing-for-file-readme-md">
+  <div class="section" id="program-listing-for-file-readme-md">
 <span id="program-listing-file-readme-md"></span><h1>Program Listing for File README.md<a class="headerlink" href="#program-listing-for-file-readme-md" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_README.md.html#file-readme-md"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">README.md</span></code>)</p>
 <div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># FLAME GPU 2</span>
 
-<span class="gu">### Introduction</span>
-
-The project aim is to develop an existing computer application called FLAMEGPU, a high performance Graphics Processing Unit (GPU) extension to the FLAME framework that provides a mapping between a formal agent specifications with C based scripting and optimised CUDA code to support scalable muti-agent simulation.  The plan it to expand/extend features and capabilities of the exiting &lt;a href=&quot;https://github.com/FLAMEGPU/FLAMEGPU&quot;&gt;FLAMEGPU software&lt;/a&gt;, in order to position it as a middle-ware for complex systems simulation. The application is expected to be the equivalent of Thrust for simplifying complex systems on GPUs.  The FLAMEGPU library includes algorithms such as spatial partitioning, network communication.
-
-The Code is currently under active development and should <span class="gs">**not be used**</span> until the first release.
-
-<span class="gu">### Continuous Integration</span>
-
-Continuous Integration (CI) is provided by Github Actions.
-CI jobs <span class="ge">*only*</span> include compilation, as the CI workers do not include CUDA-capable GPUs.
-
+[<span class="nt">![MIT License</span>](<span class="na">https://img.shields.io/apm/l/atomic-design-ui.svg?</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/LICENSE.MD)
+[<span class="nt">![GitHub release (latest by date including pre-releases)</span>](<span class="na">https://img.shields.io/github/v/release/FLAMEGPU/FLAMEGPU2?include_prereleases</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/releases/latest)
+[<span class="nt">![GitHub issues</span>](<span class="na">https://img.shields.io/github/issues/FLAMEGPU/FLAMEGPU2</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/issues)
 [<span class="nt">![Ubuntu</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/workflows/Ubuntu/badge.svg?branch=master</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/actions?query=workflow%3AUbuntu+branch%3Amaster) [<span class="nt">![Windows</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/workflows/Windows/badge.svg?branch=master</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/actions?query=workflow%3AWindows+branch%3Amaster) [<span class="nt">![Lint</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/workflows/Lint/badge.svg?branch=master</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/actions?query=workflow%3ALint+branch%3Amaster) [<span class="nt">![Docs</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/workflows/Docs/badge.svg?branch=master</span>)](https://github.com/FLAMEGPU/FLAMEGPU2/actions?query=workflow%3ADocs+branch%3Amaster)
 
+FLAME GPU is a GPU accelerated agent-based simulation library for domain independent complex systems simulations.
+Version 2 is a complete re-write of the existing library offering greater flexibility, an improved interface for agent scripting and better research software engineering, with CUDA/C++ and Python interfaces.
 
+FLAME GPU provides a mapping between a formal agent specifications with C++ based scripting and optimised CUDA code.
+This includes a number of key Agent-based Modelling (ABM) building blocks such as multiple agent types, agent communication and birth and death allocation.
 
-<span class="gu">### Dependencies</span>
++ Agent-based (AB) modellers are able to focus on specifying agent behaviour and run simulations without explicit understanding of CUDA programming or GPU optimisation strategies.
++ Simulation performance is significantly increased in comparison with CPU alternatives. This allows simulation of far larger model sizes with high performance at a fraction of the cost of grid based alternatives.
++ Massive agent populations can be visualised in real time as agent data is already located on the GPU hardware.
 
-The dependencies below are required for building FLAME GPU 2.
+<span class="gu">## Project Status</span>
+&lt;!-- Remove this section once it is no longer in pre-release / alpha state --&gt;
 
-Only documentation can be built without the required dependencies (however Doxygen is still required).
+FLAME GPU 2 is currently in an pre-release (alpha) state, and although we hope there will not be significant changes to the API prior to a stable release there may be breaking changes as we fix issues, adjust the API and improve performance.
 
-<span class="gu">#### Required</span>
+If you encounter issues while using FLAME GPU, please provide bug reports, feedback or ask questions via [<span class="nt">GitHub Issues</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues</span>) and [<span class="nt">Discussions</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/discussions</span>).
 
-+ [<span class="nt">CMake</span>](<span class="na">https://cmake.org/</span>) <span class="sb">`&gt;= 3.15`</span> (<span class="sb">`&gt;= 3.18`</span> recommended)
-+ [<span class="nt">CUDA Toolkit</span>](<span class="na">https://developer.nvidia.com/cuda-toolkit</span>) <span class="sb">`&gt;= 10.0`</span>
-+ [<span class="nt">git</span>](<span class="na">https://git-scm.com/</span>) (Used for dependency management)
-+ <span class="ge">*Linux:*</span>
-  + [<span class="nt">make</span>](<span class="na">https://www.gnu.org/software/make/</span>)
-  + gcc/g++ <span class="sb">`&gt;= 7`</span> (version requirements [<span class="nt">here</span>](<span class="na">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#system-requirements</span>))
-+ <span class="ge">*Windows:*</span>
-  + Visual Studio 2017 or higher (2019 recommended)
+<span class="gu">## Documentation and Support</span>
 
-<span class="gu">#### Optional</span>
-+ [<span class="nt">cpplint</span>](<span class="na">https://github.com/cpplint/cpplint</span>): Required for linting code
-+ [<span class="nt">Doxygen</span>](<span class="na">http://www.doxygen.nl/</span>): Required for building documentation
-+ [<span class="nt">Python</span>](<span class="na">https://www.python.org/</span>) <span class="sb">`&gt;= 3.x`</span>: required for python integration
-+ [<span class="nt">swig</span>](<span class="na">http://www.swig.org/</span>) <span class="sb">`&gt;= 4.0.2`</span>: Required for python integration
-  + Swig 4.x will be automatically downloaded by CMake if not provided (if possible).
++ [<span class="nt">Website</span>](<span class="na">https://flamegpu.com/</span>)
++ [<span class="nt">Documentation and User Guide</span>](<span class="na">https://docs.flamegpu.com</span>)
++ [<span class="nt">GitHub Discussions</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/discussions</span>)
++ [<span class="nt">GitHub Issues</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues</span>)
 
-<span class="gu">#### Known Issues</span>
-&lt;!-- Thrust issue https://github.com/NVIDIA/thrust/issues/1090 --&gt;
-+ Windows/MSVC and CUDA &lt; 11.0
-  + There may be intermittent compilation errors due to an NVCC+MSVC bug exposed by Thrust/CUB.
-  + Re-running the build appears to work in most cases, Otherwise consider upgrading to CUDA 11.0+ if possible.
-+ Windows/MSVC and CUDA &lt;= 11.0
-  + Incremental builds of executables may result in an error at link time (fatbinlink.c) if the flamegpu2 library has been rebuilt, due to a bug with the cuda visual studio integration when relative paths are used.
-  + If this presents itself, re-save the any <span class="sb">`.cu`</span> file for the executable you are working on and build again.
-  + A workaround is in place for CUDA 11.1+
-+ CMake 3.16 has known issues on some platforms.
-+ Python &lt;= 3.5 may encounter issues with dependency installation such as setuptools. If so, please manually install the correct version.
-  + i.e. <span class="sb">`python3 -m pip install --upgrade &#39;setuptools; python_version &gt;= &quot;3.6&quot;&#39; &#39;setuptools&lt;51.3.0; python_version &lt; &quot;3.6&quot; and python_version &gt;= &quot;3.0&quot;&#39;`</span>
-+ Debug builds under linux with CUDA 11.0 may encounter cuda errors during <span class="sb">`validateIDCollisions`</span>. Consider using an alternate CUDA version if this is required. See [<span class="nt">FLAMEGPU/FLAMEGPU2#569</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues/569</span>)
+<span class="gu">## Installation</span>
 
+Pre-compiled python wheels are available for installations from [<span class="nt">Releases</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/releases/</span>).
+Please see the [<span class="nt">latest release</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/releases/latest</span>) for more information on the available wheels and installation instructions.
 
-<span class="gu">### Building FLAME GPU 2</span>
+C++/CUDA installation is not currently available. Please refer to the section on [<span class="nt">Building</span>](<span class="na">#Building</span>) FLAME GPU.
 
-FLAME GPU 2 uses [<span class="nt">CMake</span>](<span class="na">https://cmake.org/</span>), as a cross-platform process, for configuring and generating build directives, e.g. <span class="sb">`Makefile`</span> or <span class="sb">`.vcxproj`</span>. This is used to build the FLAMEGPU2 library, examples, tests and documentation.
+<span class="gu">## Building</span>
+
+FLAME GPU 2 uses [<span class="nt">CMake</span>](<span class="na">https://cmake.org/</span>), as a cross-platform process, for configuring and generating build directives, e.g. <span class="sb">`Makefile`</span> or <span class="sb">`.vcxproj`</span>.
+This is used to build the FLAMEGPU2 library, examples, tests and documentation.
+
+<span class="gu">### Requirements</span>
+
+Building FLAME GPU has the following requirements. There are also optional dependencies which are required for some components, such as Documentation or Python bindings.
+
++ [<span class="nt">CMake</span>](<span class="na">https://cmake.org/download/</span>) <span class="sb">`&gt;= 3.18`</span>
+  + CMake <span class="sb">`&gt;= 3.15`</span> currently works, but support will be dropped in a future release.
++ [<span class="nt">CUDA</span>](<span class="na">https://developer.nvidia.com/cuda-downloads</span>) <span class="sb">`&gt;= 11.0`</span> and a [<span class="nt">Compute Capability</span>](<span class="na">https://developer.nvidia.com/cuda-gpus</span>) <span class="sb">`&gt;= 3.5`</span> NVIDIA GPU.
+  + CUDA <span class="sb">`&gt;= 10.0`</span> currently works, but support will be dropped in a future release.
++ C++17 capable C++ compiler (host), compatible with the installed CUDA version
+  + [<span class="nt">Microsoft Visual Studio 2019</span>](<span class="na">https://visualstudio.microsoft.com/</span>) (Windows)
+  + [<span class="nt">make</span>](<span class="na">https://www.gnu.org/software/make/</span>) and either [<span class="nt">GCC</span>](<span class="na">https://gcc.gnu.org/</span>) <span class="sb">`&gt;= 7`</span> or [<span class="nt">Clang</span>](<span class="na">https://clang.llvm.org/</span>) <span class="sb">`&gt;= 5`</span> (Linux)
+  + Older C++ compilers which support C++14 may currently work, but support will be dropped in a future release.
++ [<span class="nt">git</span>](<span class="na">https://git-scm.com/</span>)
+
+Optionally:
+
++ [<span class="nt">cpplint</span>](<span class="na">https://github.com/cpplint/cpplint</span>) for linting code
++ [<span class="nt">Doxygen</span>](<span class="na">http://www.doxygen.nl/</span>) to build the documentation
++ [<span class="nt">Python</span>](<span class="na">https://www.python.org/</span>) <span class="sb">`&gt;= 3.6`</span> for python integration
++ [<span class="nt">swig</span>](<span class="na">http://www.swig.org/</span>) <span class="sb">`&gt;= 4.0.2`</span> for python integration
+  + Swig <span class="sb">`4.x`</span> will be automatically downloaded by CMake if not provided (if possible).
++ [<span class="nt">FLAMEGPU2-visualiser</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2-visualiser</span>) dependencies
+  + [<span class="nt">SDL</span>](<span class="na">https://www.libsdl.org/</span>)
+  + [<span class="nt">GLM</span>](<span class="na">http://glm.g-truc.net/</span>) <span class="ge">*(consistent C++/GLSL vector maths functionality)*</span>
+  + [<span class="nt">GLEW</span>](<span class="na">http://glew.sourceforge.net/</span>) <span class="ge">*(GL extension loader)*</span>
+  + [<span class="nt">FreeType</span>](<span class="na">http://www.freetype.org/</span>)  <span class="ge">*(font loading)*</span>
+  + [<span class="nt">DevIL</span>](<span class="na">http://openil.sourceforge.net/</span>)  <span class="ge">*(image loading)*</span>
+  + [<span class="nt">Fontconfig</span>](<span class="na">https://www.fontconfig.org/</span>)  <span class="ge">*(Linux only, font detection)*</span>
+
+<span class="gu">### Building with CMake</span>
+
+Building via CMake is a three step process, with slight differences depending on your platform.
+
+<span class="k">1.</span> Create a build directory for an out-of tree build
+<span class="k">2.</span> Configure CMake into the build directory
+    + Using the CMake GUI or CLI tools
+    + Specifying build options such as the CUDA Compute Capabilities to target, the inclusion of Visualisation or Python components, or performance impacting features such as <span class="sb">`SEATBELTS`</span>. See [<span class="nt">CMake Configuration Options</span>](<span class="na">#CMake-Configuration-Options</span>) for details of the available configuration options
+<span class="k">3.</span> Build compilation targets using the configured build system
+    + See [<span class="nt">Available Targets</span>](<span class="na">#Available-targets</span>) for a list of available targets.
 
 <span class="gu">#### Linux</span>
 
-Under Linux, <span class="sb">`cmake`</span> can be used to generate makefiles specific to your system:
+To build under Linux using the command line, you can perform the following steps.
 
-<span class="sb">```</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake ..</span>
-<span class="sb">make -j8</span>
-<span class="sb">```</span>
+For example, to configure CMake for <span class="sb">`Release`</span> builds, for consumer Pascal GPUs (Compute Capability <span class="sb">`61`</span>), with python bindings enabled, producing the static library and <span class="sb">`boids_bruteforce`</span> example binary.
 
-The option <span class="sb">`-j8`</span> enables parallel compilation using upto 8 threads, this is recommended to improve build times.
+<span class="sb">```bash</span>
+<span class="c1"># Create the build directory and change into it</span>
+mkdir -p build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
 
-By default a <span class="sb">`Makefile`</span> for the <span class="sb">`Release`</span> build configuration will be generated.
+<span class="c1"># Configure CMake from the command line passing configure-time options.</span>
+cmake .. -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCUDA_ARCH<span class="o">=</span><span class="m">61</span> -DBUILD_SWIG_PYTHON<span class="o">=</span>ON
 
-Alternatively, using <span class="sb">`-DCMAKE_BUILD_TYPE=`</span>, <span class="sb">`Debug`</span> or <span class="sb">`Profile`</span> build configurations can be generated:
+<span class="c1"># Build the required targets. In this case all targets</span>
+cmake --build . --target flamegpu boids_bruteforce -j <span class="m">8</span>
 
-<span class="sb">```</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake .. -DCMAKE_BUILD_TYPE=Profile</span>
-<span class="sb">make -j8</span>
+<span class="c1"># Alternatively make can be invoked directly</span>
+make flamegpu boids_bruteforce -j8
+
 <span class="sb">```</span>
 
 <span class="gu">#### Windows</span>
 
-<span class="ge">*Note: If installing CMake on Windows ensure CMake is added to the system path, allowing `cmake` to be used via `cmd`, this option is disabled within the installer by default.*</span>
+Under Windows, you must instruct CMake on which Visual Studio and architecture to build for, using the CMake <span class="sb">`-A`</span> and <span class="sb">`-G`</span> options.
+This can be done through the GUI or the CLI.
 
-When generating Visual studio project files, using <span class="sb">`cmake`</span> (or <span class="sb">`cmake-gui`</span>), the platform <span class="gs">**must**</span> be specified as <span class="sb">`x64`</span>.
+I.e. to configure CMake for consumer Pascal GPUs (Compute Capability <span class="sb">`61`</span>), with python bindings enabled, and build the producing the static library and <span class="sb">`boids_bruteforce`</span> example binary in the Release configuration:
 
-Using <span class="sb">`cmake`</span> this takes the form <span class="sb">`-A x64`</span>:
+<span class="sb">```cmd</span>
+<span class="s">REM Create the build directory</span>
+<span class="s">mkdir build</span>
+<span class="s">cd build</span>
 
-<span class="sb">```</span>
-<span class="sb">mkdir build &amp;&amp; cd build</span>
-<span class="sb">cmake .. -A x64</span>
-<span class="sb">FLAMEGPU2.sln</span>
-<span class="sb">```</span>
+<span class="s">REM Configure CMake from the command line, specifying the -A and -G options. Alternatively use the GUI</span>
+<span class="s">cmake .. -A x64 -G &quot;Visual Studio 16 2019&quot; -DCUDA_ARCH=61 -DBUILD_SWIG_PYTHON=ON</span>
 
-This command will use the latest version of Visual studio detected, and open the created Visual studio solution.
-If the <span class="sb">`cmake`</span> command fails, the detected version does not support CUDA. Reinstalling CUDA may correct this issue.
-
-Alternatively using <span class="sb">`-G`</span> the desired version of Visual studio can be specified:
-
-<span class="sb">```</span>
-<span class="sb">mkdir build &amp;&amp; cd build</span>
-<span class="sb">cmake .. -G &quot;Visual Studio 16 2019&quot; -A x64</span>
-<span class="sb">FLAMEGPU2.sln</span>
+<span class="s">REM You can then open Visual Studio manually from the .sln file, or via:</span>
+<span class="s">cmake --open .</span>
+<span class="s">REM Alternatively, build from the command line specifying the build configuration</span>
+<span class="s">cmake --build . --config Release --target flamegpu boids_bruteforce --verbose</span>
 <span class="sb">```</span>
 
-<span class="sb">`Visual Studio 16 2019`</span> can be replaced with any supported [<span class="nt">Visual studio generator</span>](<span class="na">https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#visual-studio-generators</span>) that is installed.
+<span class="gu">#### Configuring and Building a single example</span>
 
+It is also possible to configure and build individual examples as standalone CMake projects.
 
-CMake will find and use the lastest CUDA toolkit avaialable by default. This choice can be overridden by specifying <span class="sb">`CMAKE_GENERATOR_TOOLSET`</span> to the desired CUDA version. I.e. to specify CUDA 11.1:
+I.e. to configure and build <span class="sb">`game_of_life`</span> example in release mode from the command line, using linux as an example:
 
-<span class="sb">```</span>
-<span class="sb">cmake .. -DCMAKE_GENERATOR_TOOLSET=cuda=11.1</span>
-<span class="sb">```</span>
-
-<span class="gu">#### Configuring CMake</span>
-
-The following options are available when calling <span class="sb">`cmake`</span> on either Linux or Windows. It is also possible to manage these options via <span class="sb">`cmake-gui`</span> on Windows, often by setting the variable of the same name.
-
-<span class="ge">*The examples in the following sections use Linux syntax, it is necessary to include the `-A` (and `-G`) arguments from above when calling `cmake` on Windows. Similarly `.vcxproj` and `.sln` files will be generated rather than `Makefile`.*</span>
-
-<span class="gu">##### Individual examples</span>
-
-Build directives for individual examples can be built from their respective directories
-
-<span class="sb">```</span>
-<span class="sb">cd examples/mas/</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake ..</span>
+<span class="sb">```bash</span>
+<span class="nb">cd</span> examples/game_of_life
+mkdir -p build
+<span class="nb">cd</span> build
+cmake .. -DCMAKE_BUILD_TYPE<span class="o">=</span>Release -DCUDA_ARCH<span class="o">=</span><span class="m">61</span>
+cmake --build . --target all
 <span class="sb">```</span>
 
-<span class="gu">##### Visualisation</span>
+<span class="gu">#### CMake Configuration Options</span>
 
-By default FLAME GPU 2 will not build visualisations, however this can be enabled with the cmake option <span class="sb">`-DVISUALISATION=ON`</span>. This also introduces the <span class="sb">`VISUALISATION`</span> preprocessor macro to all projects, so that optional visualisation code can be enabled.
+| Option                   | Value             | Description                                                                                                |
+| ------------------------ | ----------------- | ---------------------------------------------------------------------------------------------------------- |
+| <span class="sb">`CMAKE_BUILD_TYPE`</span>       | <span class="sb">`Release`</span>/<span class="sb">`Debug`</span> | Select the build configuration for single-target generators such as <span class="sb">`make`</span>                                 |
+| <span class="sb">`SEATBELTS`</span>              | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Enable / Disable additional runtime checks which harm performance but increase usability. Default <span class="sb">`ON`</span>     |
+| <span class="sb">`CUDA_ARCH`</span>              | <span class="sb">`&quot;52 60 70 80&quot;`</span>   | Select [<span class="nt">CUDA Compute Capabilities</span>](<span class="na">https://developer.nvidia.com/cuda-gpus</span>) to build/optimise for, as a space or <span class="sb">`;`</span> separated list. Defaults to <span class="sb">`&quot;&quot;`</span> |
+| <span class="sb">`BUILD_SWIG_PYTHON`</span>      | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Enable Python target <span class="sb">`pyflamegpu`</span> via Swig. Default <span class="sb">`OFF`</span>                                                  |
+| <span class="sb">`BUILD_SWIG_PYTHON_VENV`</span> | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Use a python <span class="sb">`venv`</span> when building the python Swig target. Default <span class="sb">`ON`</span>.                                    |
+| <span class="sb">`BUILD_TESTS`</span>            | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Build the C++/CUDA test suite. Default <span class="sb">`OFF`</span>.                                                              |
+| <span class="sb">`BUILD_TESTS_DEV`</span>        | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Build the reduced-scope development test suite. Default <span class="sb">`OFF`</span>                                              |
+| <span class="sb">`VISUALISATION`</span>          | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Enable Visualisation. Default <span class="sb">`OFF`</span>.                                                                       |
+| <span class="sb">`VISUALISATION_ROOT`</span>     | <span class="sb">`path/to/vis`</span>     | Provide a path to a local copy of the visualisation repository.                                            |
+| <span class="sb">`USE_NVTX`</span>               | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Enable NVTX markers for improved profiling. Default <span class="sb">`OFF`</span>                                                  |
+| <span class="sb">`WARNINGS_AS_ERRORS`</span>     | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Promote compiler/tool warnings to errors are build time. Default <span class="sb">`OFF`</span>                                     |
+| <span class="sb">`EXPORT_RTC_SOURCES`</span>     | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | At runtime, export dynamic RTC files to disk. Useful for debugging RTC models. Default <span class="sb">`OFF`</span>               |
+| <span class="sb">`RTC_DISK_CACHE`</span>         | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Enable/Disable caching of RTC functions to disk. Default <span class="sb">`ON`</span>.                                             |
+| <span class="sb">`USE_GLM`</span>                | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span>        | Experimental feature for GLM type support in RTC models. Default <span class="sb">`OFF`</span>.                                    |
 
-On Windows this will then automatically download the visualisation repository and all dependencies, as such the initial CMake configuration after enabling visualisation may take longer than expected.
-On Linux you may need to install additional packages, refer to the CMake configure output for clarification of which packages are missing from your system.
+&lt;!-- Additional options which users can find if they need them.
+| <span class="sb">`BUILD_FLAMEGPU`</span> | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span> | Build the main FLAMEGPU static library target. Default <span class="sb">`ON`</span> |
+| <span class="sb">`BUILD_API_DOCUMENTATION`</span> | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span> | Build the documentation target. Default <span class="sb">`ON`</span> |
 
-<span class="gs">**Visualisation Dependencies:**</span>
-+ [<span class="nt">SDL</span>](<span class="na">https://www.libsdl.org/</span>)
-+ [<span class="nt">GLM</span>](<span class="na">http://glm.g-truc.net/</span>) <span class="ge">*(consistent C++/GLSL vector maths functionality)*</span>
-+ [<span class="nt">GLEW</span>](<span class="na">http://glew.sourceforge.net/</span>) <span class="ge">*(GL extension loader)*</span>
-+ [<span class="nt">FreeType</span>](<span class="na">http://www.freetype.org/</span>)  <span class="ge">*(font loading)*</span>
-+ [<span class="nt">DevIL</span>](<span class="na">http://openil.sourceforge.net/</span>)  <span class="ge">*(image loading)*</span>
-+ [<span class="nt">Fontconfig</span>](<span class="na">https://www.fontconfig.org/</span>)  <span class="ge">*(Linux only, font detection)*</span>
+| <span class="sb">`BUILD_ALL_EXAMPLES`</span> | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span> | Build the suite of example models. Default <span class="sb">`ON`</span> |
 
-The visualisation codebase can be found at [<span class="nt">this location</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2-visualiser</span>) and is a fork of [<span class="nt">sdl_exp</span>](<span class="na">https://github.com/Robadob/sdl_exp</span>).
+| <span class="sb">`BUILD_EXAMPLE_*`</span> | <span class="sb">`ON`</span>/<span class="sb">`OFF`</span> | Build individual examples as required, if <span class="sb">`BUILD_ALL_EXAMPLES`</span> is <span class="sb">`OFF`</span>. Default <span class="sb">`OFF`</span> |
+ --&gt;
 
-<span class="gu">##### Testing</span>
+For a list of available CMake configuration options, run the following from the <span class="sb">`build`</span> directory:
 
-The test suite can be built from the root directory using <span class="sb">`-DBUILD_TESTS=ON`</span>:
-
-<span class="sb">```</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake .. -DBUILD_TESTS=ON</span>
-<span class="sb">make -j8</span>
-<span class="sb">```</span>
-
-The first time CMake is configured with <span class="sb">`-DBUILD_TESTS=ON`</span> an internet connection is required, as [<span class="nt">GoogleTest</span>](<span class="na">https://github.com/google/googletest</span>) is downloaded and built.
-Subsequent reconfigures will attempt to update this copy, but will continue if updating fails.
-Automatic updating of GoogleTest can be disabled by passing <span class="sb">`-DBUILD_TESTS=OFF`</span>.
-
-GoogleTest runtime documentation can be found [<span class="nt">here</span>](<span class="na">https://github.com/google/googletest/blob/master/googletest/docs/advanced.md</span>).
-In particular <span class="sb">`--gtest_catch_exceptions=0`</span> may be useful during test development, so that unhandled exceptions are passed straight to the debugger.
-
-<span class="gu">##### Documentation</span>
-
-If you wish to build the documentation, [<span class="nt">doxygen</span>](<span class="na">http://www.doxygen.nl/</span>) must be available on your system.
-
-A build file for documentation is generated at the same time as build files for the flamegpu2 library.
-
-This generates the target <span class="sb">`docs`</span> which can be called with <span class="sb">`make`</span>.
-
-<span class="sb">```</span>
-<span class="sb">cd src</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake ..</span>
-<span class="sb">make docs</span>
+<span class="sb">```bash</span>
+cmake -LH ..
 <span class="sb">```</span>
 
-<span class="ge">*When using Visual Studio, the target `docs` will appear as a project within the created solution.*</span>
+<span class="gu">#### Available Targets</span>
 
-<span class="gs">**Building Documentation Without CUDA**</span>
-If you have Doxygen and don&#39;t have the CUDA compiler, CMake will generate a minimal project for only building the documentation.
+| Target         | Description                                                                                                   |
+| -------------- | ------------------------------------------------------------------------------------------------------------- |
+| <span class="sb">`all`</span>          | Linux target containing default set of targets, including everything but the documentation and lint targets   |
+| <span class="sb">`ALL_BUILD`</span>    | The windows equivalent of <span class="sb">`all`</span>                                                                               |
+| <span class="sb">`all_lint`</span>     | Run all available Linter targets                                                                              |
+| <span class="sb">`flamegpu`</span>     | Build FLAME GPU static library                                                                                |
+| <span class="sb">`pyflamegpu`</span>   | Build the python bindings for FLAME GPU                                                                       |
+| <span class="sb">`docs`</span>         | The FLAME GPU API documentation (if available)                                                                |
+| <span class="sb">`tests`</span>        | Build the CUDA C++ test suite, if enabled by <span class="sb">`BUILD_TESTS=ON`</span>                                                 |
+| <span class="sb">`tests_dev`</span>    | Build the CUDA C++ test suite, if enabled by <span class="sb">`BUILD_TESTS_DEV=ON`</span>                                             |
+| <span class="sb">`&lt;example&gt;`</span>    | Each individual model has it&#39;s own target. I.e. <span class="sb">`boids_bruteforce`</span> corresponds to <span class="sb">`examples/boids_bruteforce`</span> |
+| <span class="sb">`lint_&lt;other&gt;`</span> | Lint the <span class="sb">`&lt;other&gt;`</span> target. I.e. <span class="sb">`lint_flamegpu`</span> will lint the <span class="sb">`flamegpu`</span> target                               |
 
-On Linux the standard documentation command, shown above, can be used if <span class="sb">`make`</span> is available.
+For a full list of available targets, run the following after configuring CMake:
 
-If <span class="sb">`make`</span> is unavailable, <span class="ge">*e.g. on Windows*</span>, <span class="sb">`make docs`</span> can be replaced with a direct call to <span class="sb">`doxygen`</span>:
-
-<span class="sb">```</span>
-<span class="sb">doxygen Doxyfile.docs</span>
-<span class="sb">```</span>
-
-<span class="gu">##### Device Architectures</span>
-
-CUDA device architectures can be specified via <span class="sb">`-DCUDA_ARCH`</span> when generating make files, using a semi colon, space or comma separated list of compute capability numbers. I.e to build for just SM_61 and SM_70:
-
-<span class="sb">```</span>
-<span class="sb">mkdir -p build &amp;&amp; cd build</span>
-<span class="sb">cmake .. -DCUDA_ARCH=&quot;61;70&quot;</span>
-<span class="sb">make -j8</span>
+<span class="sb">```bash</span>
+cmake --build . --target <span class="nb">help</span>
 <span class="sb">```</span>
 
-Pass <span class="sb">`-DCUDA_ARCH=`</span> to reset to the default.
+<span class="gu">## Usage</span>
 
-<span class="gu">##### NVTX Markers</span>
+Once compiled individual models can be executed from the command line, with a range of default command line arguments depending on whether the model implements a single Simulation, or an Ensemble of simulations.
 
-[<span class="nt">NVTX markers</span>](<span class="na">https://docs.nvidia.com/cuda/profiler-users-guide/index.html#nvtx</span>) can be enabled to improve the profiling experience, using the <span class="sb">`USE_NVTX`</span> Cmake option.
+To see the available command line arguments use the <span class="sb">`-h`</span> or <span class="sb">`--help`</span> options, for either C++ or python models.
 
-I.e. <span class="sb">`-DUSE_NVTX=ON`</span> will enable NVTX markers and allow custom markers to be included. This is implied by the <span class="sb">`Profile`</span> build configuration.
-See <span class="sb">`include/util/nvtx.h`</span> and the associated documentation for how to apply custom markers.
+I.e. for a <span class="sb">`Release`</span> build of the <span class="sb">`game_of_life`</span> model, run:
 
-<span class="gu">### Running FLAME GPU 2</span>
-Examples for FLAME GPU 2 build to <span class="sb">`&lt;cmake_build_path&gt;/bin/&lt;Debug|Release|Profile&gt;/`</span>, and can be executed from that directory via command line.
+<span class="sb">```bash</span>
+./bin/Release/game_of_life --help
+<span class="sb">```</span>
 
-If wishing to run examples within Visual Studio it is necessary to right click the desired example in the Solution Explorer and select <span class="sb">`Debug &gt; Start New Instance`</span>. Alternatively, if <span class="sb">`Set as StartUp Project`</span> is selected, the main debugging menus can be used to initiate execution. To configure command line argument for execution within Visual Studio, right click the desired example in the Solution Explorer and select <span class="sb">`Properties`</span>, in this dialog select <span class="sb">`Debugging`</span> in the left hand menu to display the entry field for <span class="sb">`command arguments`</span>. Note, it may be necessary to change the configuration as the properties dialog may be targeting a different configuration to the current build configuration.
+<span class="gu">### Visual Studio</span>
 
-<span class="gu">#### Runtime compilation of Agent Functions</span>
+If wishing to run examples within Visual Studio it is necessary to right click the desired example in the Solution Explorer and select <span class="sb">`Debug &gt; Start New Instance`</span>.
+Alternatively, if <span class="sb">`Set as StartUp Project`</span> is selected, the main debugging menus can be used to initiate execution.
+To configure command line argument for execution within Visual Studio, right click the desired example in the Solution Explorer and select <span class="sb">`Properties`</span>, in this dialog select <span class="sb">`Debugging`</span> in the left hand menu to display the entry field for <span class="sb">`command arguments`</span>.
+Note, it may be necessary to change the configuration as the properties dialog may be targeting a different configuration to the current build configuration.
 
-FLAME GPU 2 supports runtime compilation of agent functions. E.g. specification of agent functions, or agent function conditions, as strings. This is a prerequisite for other language support via [<span class="nt">SWIG</span>](<span class="na">http://www.swig.org/</span>). In order to test RTC features (in <span class="sb">`tests/test_cases/runtime/test_rtc_device_api.cu`</span>) you must set the following environment variables.
+<span class="gu">### Environment Variables</span>
 
-<span class="k">1.</span> <span class="sb">`FLAMEGPU_INC_DIR`</span> This should be set to the <span class="sb">`\include`</span> directory of the main FLAME GPU 2 directory.
-<span class="k">2.</span> <span class="sb">`CUDA_PATH`</span> This may be set when installing CUDA, however if it does not exist or has been changed this then it <span class="gs">**must**</span> point to the CUDA installation folder of the CUDA version used to compile FLAMEGPU (e.g. the one detected by CMake).
+Several environmental variables are used or required by FLAME GPU 2.
 
-<span class="gu">### Creating your own project using FLAME GPU 2</span>
-You should use the [<span class="nt">FLAME GPU 2 template project</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2_example_template</span>). This provides a simple standalone example with CMake files ready to build a model using FLAME GPU 2.
++ <span class="sb">`CUDA_PATH`</span> - Required when using RunTime Compilation (RTC), pointing to the root of the CUDA Toolkit where NVRTC resides.
+  + i.e. <span class="sb">`/usr/local/cuda-11.0/`</span> or <span class="sb">`C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.0`</span>.
+  + Alternatively <span class="sb">`CUDA_HOME`</span> may be used if <span class="sb">`CUDA_PATH`</span> was not set.
++ <span class="sb">`FLAMEGPU_INC_DIR`</span> - When RTC compilation is required, if the location of the <span class="sb">`include`</span> directory cannot be found it must be specified using the <span class="sb">`FLAMEGPU_INC_DIR`</span> environment variable.
++ <span class="sb">`FLAMEGPU_TMP_DIR`</span> - FLAME GPU may cache some files to a temporary directory on the system, using the temporary directory returned by [<span class="sb">`std::filesystem::temp_directory_path`</span>](https://en.cppreference.com/w/cpp/filesystem/temp_directory_path). The location can optionally be overridden using the <span class="sb">`FLAMEGPU_TMP_DIR`</span> environment variable.
+
+<span class="gu">## Running the Test Suite(s)</span>
+
+To run the CUDA/C++ test suite:
+
+<span class="k">1.</span> Configure CMake with <span class="sb">`BUILD_TESTS=ON`</span>
+<span class="k">2.</span> Build the <span class="sb">`tests`</span> target
+<span class="k">3.</span> Run the test suite executable for the selected configuration i.e.
+
+<span class="sb">    ```bash</span>
+    ./bin/Release/tests
+<span class="sb">    ```</span>
+
+To run the python test suite:
+
+<span class="k">1.</span> Configure CMake with <span class="sb">`BUILD_SWIG_PYTHON=ON`</span>
+<span class="k">2.</span> Build the <span class="sb">`pyflamegpu`</span> target
+<span class="k">3.</span> Activate the generated python <span class="sb">`venv`</span> for the selected configuration, which has <span class="sb">`pyflamegpu`</span> and <span class="sb">`pytest`</span> installed
+
+    If using Bash (linux, bash for windows)
+
+<span class="sb">    ```bash</span>
+    <span class="nb">source</span> lib/Release/lib/Release/python/venv/bin/activate
+<span class="sb">    ```</span>
+
+    If using <span class="sb">`cmd`</span>:
+
+<span class="sb">    ```bat</span>
+    <span class="k">call</span> lib\Release\python\venv\Scripts\activate.bat
+<span class="sb">    ```</span>
+
+    Or if using Powershell:
+
+<span class="sb">    ```powershell</span>
+    <span class="p">.</span> <span class="n">lib</span><span class="p">\</span><span class="n">Release</span><span class="p">\</span><span class="n">python</span><span class="p">\</span><span class="n">venv</span><span class="p">\</span><span class="n">activate</span><span class="p">.</span><span class="n">ps1</span>
+<span class="sb">    ```</span>
+
+<span class="k">4.</span> Run <span class="sb">`pytest`</span> on the <span class="sb">`tests/swig/python`</span> directory. This may take some time.
+
+<span class="sb">    ```bash</span>
+    python3 -m pytest ../tests/swig/python
+<span class="sb">    ```</span>
+
+<span class="gu">## Creating your own FLAME GPU Model</span>
+
+<span class="gu">### C++/CUDA</span>
+
+To create your own FLAME GPU model using the CUDA/C++ interface, you can use the [<span class="nt">FLAME GPU 2 example template project</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2_example_template</span>). This provides a simple standalone example with CMake files ready to build a model using FLAME GPU.
+
+<span class="gu">### Python</span>
+
+To create your own FLAME GPU model using the Python3 interface, you can use the [<span class="nt">FLAME GPU 2 python example template project</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2_python_example_template</span>).
+This provides a simple standalone example model, and python installation instructions.
+
+<span class="gu">## Contributing</span>
+
+Feel free to submit [<span class="nt">Pull Requests</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/pulls</span>), create [<span class="nt">Issues</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues</span>) or open [<span class="nt">Discussions</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/discussions</span>).
+
+See [<span class="nt">CONTRIBUTING.md</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/CONTRIBUTING.md</span>) for more detailed information on how to contribute to FLAME GPU.
+
+<span class="gu">## Authors and Acknowledgment</span>
+
+See [<span class="nt">Contributors</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/graphs/contributors</span>) for a list of contributors towards this project.
+
+&lt;!-- todo - add how to cite this here? and/or add the citation file. --&gt;
+
+<span class="gu">## License</span>
+
+FLAME GPU is distributed under the [<span class="nt">MIT Licence</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/LICENSE.md</span>).
+
+<span class="gu">## Known issues</span>
+
+There are currently several known issues which will be fixed in future releases (where possible).
+For a full list of known issues pleases see the [<span class="nt">Issue Tracker</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues</span>).
+
++ Performance regressions in CUDA 11.3+, due to changes in compiler register usage ([#560](https://github.com/FLAMEGPU/FLAMEGPU2/issues/560)).
++ Segfault when using <span class="sb">`flamegpu::DependencyGraph`</span> via the default constructor ([#555](https://github.com/FLAMEGPU/FLAMEGPU2/issues/555)). This will require an API break to resolve.
++ Warnings and a loss of performance due to hash collisions in device code ([#356](https://github.com/FLAMEGPU/FLAMEGPU2/issues/356))
++ Multiple known areas where performance can be improved (e.g. Concurrency [<span class="nt">#449</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues/449</span>), RTC Compilation [<span class="nt">#402</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues/402</span>))
++ Windows/MSVC builds using CUDA &lt; 11.0 may encounter intermittent compiler failures. Please use CUDA 11.0+.
+  + This will be resolved by dropping CUDA 10 support in a future release
++ Windows/MSVC builds using CUDA 11.0 may encounter errors when performing incremental builds if the static library has been recompiled. If this presents itself, re-save any <span class="sb">`.cu`</span> file in your executable producing project and re-trigger the build.
++ Debug builds under linux with CUDA 11.0 may encounter cuda errors during <span class="sb">`validateIDCollisions`</span>. Consider using an alternate CUDA version if this is required. See [<span class="nt">FLAMEGPU/FLAMEGPU2#569</span>](<span class="na">https://github.com/FLAMEGPU/FLAMEGPU2/issues/569</span>)
++ CUDA 11.0 with GCC 9 may encounter a segmentation fault during compilation of the test suite. Consider using GCC 8 with CUDA 11.0.
++ CMake 3.16 has known issues on some platforms. CMake versions less than 3.18 are deprecated and support will be removed in a future release.
 </pre></div>
 </div>
-</section>
+</div>
 
 
            </div>

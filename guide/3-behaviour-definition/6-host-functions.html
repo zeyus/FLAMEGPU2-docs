@@ -244,6 +244,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -251,7 +270,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -807,12 +826,12 @@
 <p>Example definition:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called host_fn1</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Behaviour goes here</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Behaviour goes here</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">...</span> <span class="c1">// Rest of code</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Rest of code</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called host_fn1</span>
@@ -835,10 +854,10 @@
 <p>They can be added as init functions, which execute once at the start when <code class="docutils literal notranslate"><span class="pre">CUDASimulation::simulate()</span></code> is called.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span> <span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span>
-<span class="p">...</span> <span class="c1">// Rest of model definition</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Rest of model definition</span>
 <span class="c1">// Add the init function host_fn1 to Test Model</span>
-<span class="n">model</span><span class="p">.</span><span class="n">addInitFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span>
+<span class="n">model</span><span class="p">.</span><span class="n">addInitFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new model</span>
@@ -852,10 +871,10 @@
 <p>They can be added as exit functions, which execute once after all steps have completed when <code class="docutils literal notranslate"><span class="pre">CUDASimulation::simulate()</span></code> is called.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span> <span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span>
-<span class="p">...</span> <span class="c1">// Rest of model definition</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Rest of model definition</span>
 <span class="c1">// Add the exit function host_fn1 to Test Model</span>
-<span class="n">model</span><span class="p">.</span><span class="n">addExitFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span>
+<span class="n">model</span><span class="p">.</span><span class="n">addExitFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new model</span>
@@ -869,10 +888,10 @@
 <p>They can be added as step functions, which execute each model step after all layers have executed.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span> <span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span>
-<span class="p">...</span> <span class="c1">// Rest of model definition</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Rest of model definition</span>
 <span class="c1">// Add the step function host_fn1 to Test Model</span>
-<span class="n">model</span><span class="p">.</span><span class="n">addStepFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span>
+<span class="n">model</span><span class="p">.</span><span class="n">addStepFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new model</span>
@@ -886,12 +905,12 @@
 <p>They can also be added to individual layers, so that they can execute between agent functions each model step.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span> <span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span>
-<span class="p">...</span> <span class="c1">// Rest of model definition</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Rest of model definition</span>
 <span class="c1">// Define a new layer</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">Layer</span> <span class="n">Description</span> <span class="o">&amp;</span><span class="n">layer1</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">Layer</span><span class="w"> </span><span class="n">Description</span><span class="w"> </span><span class="o">&amp;</span><span class="n">layer1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
 <span class="c1">// Add the host function host_fn1 to the layer</span>
-<span class="n">layer1</span><span class="p">.</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span>
+<span class="n">layer1</span><span class="p">.</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">host_fn1</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a new model</span>
@@ -912,12 +931,12 @@
 <p>Host agent operations are performed on a single agent state, the state can be omitted if agents exist within the default state.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called read_env_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">read_env_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">sheep</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span>
-    <span class="c1">// Retrieve the host agent tools for agent wolf in the hungry state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">hungry_wolf</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;wolf&quot;</span><span class="p">,</span> <span class="s">&quot;hungry&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">read_env_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">sheep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent wolf in the hungry state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">hungry_wolf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;wolf&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;hungry&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-5-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-5-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">read_env_hostfn</span><span class="p">(</span><span class="n">pyflamegpu</span><span class="o">.</span><span class="n">HostFunctionCallback</span><span class="p">):</span>
@@ -972,19 +991,19 @@
 <p>As with most variable operations, these require the variable type to be specified as a template argument (appended to the method name in Python). The C++ interface optionally the output type for <code class="docutils literal notranslate"><span class="pre">sum</span></code> and <code class="docutils literal notranslate"><span class="pre">histogramEven</span></code> to be specified too.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-6-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-6-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-6-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called reduce_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">reduce_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">sheep</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span>
-    <span class="c1">// Reduce for the min, max of the sheep agent&#39;s health variable</span>
-    <span class="kt">float</span> <span class="n">min_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">min</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span>
-    <span class="kt">float</span> <span class="n">max_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">max</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span>
-    <span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable with the output type double</span>
-    <span class="kt">double</span> <span class="n">sum_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">sum</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span>
-    <span class="c1">// Count the number of sheep with a health variable equal to 0</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">empty_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">count</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
-    <span class="c1">// Create a histogram of sheep health</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">health_hist</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">histogramEven</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">,</span> <span class="mf">100.001f</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">reduce_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">sheep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reduce for the min, max of the sheep agent&#39;s health variable</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">min_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">min</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">max_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">max</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable with the output type double</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">sum</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Count the number of sheep with a health variable equal to 0</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">empty_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">count</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Create a histogram of sheep health</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">health_hist</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">histogramEven</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">100.001f</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-6-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-6-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called reduce_hostfn</span>
@@ -1006,37 +1025,37 @@
 <p>The C++ API also has access to custom reduction and transform-reduction operations:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-7-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-7-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a bespoke reduction operator sum</span>
-<span class="n">FLAMEGPU_CUSTOM_REDUCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_CUSTOM_REDUCTION</span><span class="p">(</span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 <span class="c1">// Define a bespoke reduction operator</span>
-<span class="n">FLAMEGPU_CUSTOM_TRANSFORM</span><span class="p">(</span><span class="n">is_even</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_CUSTOM_TRANSFORM</span><span class="p">(</span><span class="n">is_even</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nl">a</span> <span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Define an host function called customreduce_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">customreduce_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">sheep</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span>
-    <span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable, the input value is 0</span>
-    <span class="kt">double</span> <span class="n">sum_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
-    <span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable&#39;s that are even, the input value is 0</span>
-    <span class="kt">double</span> <span class="n">sum_even_health</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">transformReduce</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="n">is_even</span><span class="p">,</span> <span class="n">sum</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">customreduce_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">sheep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable, the input value is 0</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reduce for the sum of the sheep agent&#39;s health variable&#39;s that are even, the input value is 0</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">sum_even_health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">transformReduce</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">is_even</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div></div>
 <p>Agent populations can also be sorted according to a variable, the C++ API can additionally sort according to two variables. FLAMEGPU2 may automatically sort agent populations that are outputting spatial messages, as this can significantly improve performance when reading messages.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-8-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-8-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-8-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called reduce_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">reduce_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">sheep</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span>
-    <span class="c1">// Sort the sheep population according to their health variable</span>
-    <span class="n">sheep</span><span class="p">.</span><span class="n">sort</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="n">HostAgentAPI</span><span class="o">::</span><span class="n">ASC</span><span class="p">);</span>
-    <span class="c1">// Sort the sheep population according to their awake variables, those with equal awake variables are sub-sorted according by health</span>
-    <span class="n">sheep</span><span class="p">.</span><span class="n">sort</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;awake&quot;</span><span class="p">,</span> <span class="n">flamegpu</span><span class="p">.</span><span class="n">DESC</span><span class="p">,</span> <span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="n">flamegpu</span><span class="p">.</span><span class="n">ASC</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">reduce_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">sheep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Sort the sheep population according to their health variable</span>
+<span class="w">    </span><span class="n">sheep</span><span class="p">.</span><span class="n">sort</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">HostAgentAPI</span><span class="o">::</span><span class="n">ASC</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Sort the sheep population according to their awake variables, those with equal awake variables are sub-sorted according by health</span>
+<span class="w">    </span><span class="n">sheep</span><span class="p">.</span><span class="n">sort</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;awake&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="p">.</span><span class="n">DESC</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="p">.</span><span class="n">ASC</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-8-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-8-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called reduce_hostfn</span>
@@ -1053,14 +1072,14 @@
 <p>For raw access to agent data, <code class="docutils literal notranslate"><span class="pre">DeviceAgentVector</span></code> can be used. This has an interface similar to <code class="docutils literal notranslate"><span class="pre">AgentVector</span></code>, however automatically synchronises data movement between host and device. This should only be used in limited circumstances as copying memory between host and device has high latency.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-9-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-9-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-9-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called deviceagentvector_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">deviceagentvector_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span> <span class="n">sheep</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span>
-    <span class="c1">// Get DeviceAgentVector to the sheep population</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">DeviceAgentVector</span> <span class="n">sheep_vector</span> <span class="o">=</span> <span class="n">sheep</span><span class="p">.</span><span class="n">getPopulationData</span><span class="p">();</span>
-    <span class="c1">// Set all sheep&#39;s health back to 100</span>
-    <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">s</span> <span class="p">:</span> <span class="n">sheep_vector</span><span class="p">)</span>
-        <span class="n">s</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">);</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">deviceagentvector_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the host agent tools for agent sheep in the default state</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="n">sheep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;sheep&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get DeviceAgentVector to the sheep population</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">DeviceAgentVector</span><span class="w"> </span><span class="n">sheep_vector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sheep</span><span class="p">.</span><span class="n">getPopulationData</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Set all sheep&#39;s health back to 100</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">s</span> <span class="p">:</span><span class="w"> </span><span class="n">sheep_vector</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">s</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">100.0</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-9-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-9-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called deviceagentvector_hostfn</span>
@@ -1081,12 +1100,12 @@
 <p>Reading environment properties:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-10-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-10-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-10-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-10-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-10-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called read_env_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">read_env_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the environment property foo of type float</span>
-    <span class="k">const</span> <span class="kt">float</span> <span class="n">foo</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span>
-    <span class="c1">// Retrieve the environment property bar of type int array[3]</span>
-    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span> <span class="n">bar</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">read_env_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the environment property foo of type float</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the environment property bar of type int array[3]</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-10-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-10-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called read_env_hostfn</span>
@@ -1102,22 +1121,22 @@
 <p>Updating environment properties:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-11-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-11-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-11-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called write_env_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">write_env_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Update the environment property foo of type float</span>
-    <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mf">12.0f</span><span class="p">);</span>
-    <span class="c1">// Update the environment property bar of type int array[3]</span>
-    <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">});</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">write_env_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Update the environment property foo of type float</span>
+<span class="w">    </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Update the environment property bar of type int array[3]</span>
+<span class="w">    </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">setProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">});</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">..</span> <span class="n">code</span><span class="o">-</span><span class="n">tab</span><span class="o">::</span> <span class="n">python</span>
+<span class="p">..</span><span class="w"> </span><span class="n">code</span><span class="o">-</span><span class="n">tab</span><span class="o">::</span><span class="w"> </span><span class="n">python</span><span class="w"></span>
 
-  <span class="cp"># Define an host function called write_env_hostfn</span>
-  <span class="n">class</span> <span class="n">write_env_hostfn</span><span class="p">(</span><span class="n">pyflamegpu</span><span class="p">.</span><span class="n">HostFunctionCallback</span><span class="p">)</span><span class="o">:</span>
-    <span class="n">def</span> <span class="n">run</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">FLAMEGPU</span><span class="p">)</span><span class="o">:</span>
-      <span class="cp"># Update the environment property foo of type float</span>
-      <span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">setPropertyFloat</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="mf">12.0</span><span class="p">);</span>
-      <span class="cp"># Update the environment property bar of type int array[3]</span>
-      <span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">setPropertyArrayInt</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+<span class="w">  </span><span class="cp"># Define an host function called write_env_hostfn</span>
+<span class="w">  </span><span class="n">class</span><span class="w"> </span><span class="n">write_env_hostfn</span><span class="p">(</span><span class="n">pyflamegpu</span><span class="p">.</span><span class="n">HostFunctionCallback</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">run</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="n">FLAMEGPU</span><span class="p">)</span><span class="o">:</span><span class="w"></span>
+<span class="w">      </span><span class="cp"># Update the environment property foo of type float</span>
+<span class="w">      </span><span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">setPropertyFloat</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="cp"># Update the environment property bar of type int array[3]</span>
+<span class="w">      </span><span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">environment</span><span class="p">.</span><span class="n">setPropertyArrayInt</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
 </div></div>
@@ -1137,10 +1156,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uniform</span></code></p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<td></td>
 <td><p>Returns a uniformly distributed floating point number in the inclusive-exclusive range [0, 1).</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">uniform</span></code></p></td>
@@ -1148,10 +1164,7 @@
 <td><p>Returns a uniformly distributed integer in the inclusive range [min, max].</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">normal</span></code></p></td>
-<td><ul class="simple">
-<li></li>
-</ul>
-</td>
+<td></td>
 <td><p>Returns a normally distributed floating point number with mean 0.0 and standard deviation 1.0.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">logNormal</span></code></p></td>
@@ -1163,12 +1176,12 @@
 <p>When calling any of these methods the type must be specified. Most methods only support floating point types (e.g. <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">double</span></code>), with the exception of tha parameterised <cite>uniform`</cite> method which is restricted to integer types:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-12-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-12-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-12-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-12-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-12-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called random_hostfn</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">random_hostfn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Generate a uniform random float [0, 1)</span>
-    <span class="k">const</span> <span class="kt">float</span> <span class="n">uniform_float</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span>
-    <span class="c1">// Generate a uniform random integer [1, 10]</span>
-    <span class="k">const</span> <span class="kt">int</span> <span class="n">uniform_int</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">random_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Generate a uniform random float [0, 1)</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">uniform_float</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Generate a uniform random integer [1, 10]</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uniform_int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-12-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-12-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called random_hostfn</span>
@@ -1184,12 +1197,12 @@
 <p>Additionally the <code class="docutils literal notranslate"><span class="pre">HostAPI</span></code> random object has the ability to retrieve and update the seed used for random generation during the current model execution. However, for most users this will likely be unnecessary as the random seed can be configured before simulations are executed.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-13-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-13-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called random_hostfn2</span>
-<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">random_hostfn2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Retrieve the current random seed</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">old_seed</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">getSeed</span><span class="p">();</span>
-    <span class="c1">// Change the random seed to 12</span>
-    <span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">random</span><span class="o">-&gt;</span><span class="n">setSeed</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">random_hostfn2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the current random seed</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">old_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">random</span><span class="p">.</span><span class="n">getSeed</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Change the random seed to 12</span>
+<span class="w">    </span><span class="n">FLAMEGPU</span><span class="p">.</span><span class="n">random</span><span class="o">-&gt;</span><span class="n">setSeed</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-13-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-13-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called random_hostfn2</span>

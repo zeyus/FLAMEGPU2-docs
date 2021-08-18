@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,14 +816,14 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageNone/MessageNoneHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageBruteForce/MessageBruteForceHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageSpatial2D/MessageSpatial2DHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageSpatial3D/MessageSpatial3DHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray/MessageArrayHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray2D/MessageArray2DHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray3D/MessageArray3DHost.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageBucket/MessageBucketHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageNone/MessageNoneHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageBruteForce/MessageBruteForceHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageSpatial2D/MessageSpatial2DHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageSpatial3D/MessageSpatial3DHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray/MessageArrayHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray2D/MessageArray2DHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageArray3D/MessageArray3DHost.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageBucket/MessageBucketHost.h&quot;</span><span class="cp"></span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_H_</span>
 </pre></div>

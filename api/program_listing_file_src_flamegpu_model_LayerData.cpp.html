@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -794,89 +813,89 @@
   <div class="section" id="program-listing-for-file-layerdata-cpp">
 <span id="program-listing-file-src-flamegpu-model-layerdata-cpp"></span><h1>Program Listing for File LayerData.cpp<a class="headerlink" href="#program-listing-for-file-layerdata-cpp" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_model_LayerData.cpp.html#file-src-flamegpu-model-layerdata-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/model/LayerData.cpp</span></code>)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/LayerData.h&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/LayerData.h&quot;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/LayerDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/SubModelData.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/LayerDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/SubModelData.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="n">LayerData</span><span class="o">::</span><span class="n">LayerData</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">layer_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span> <span class="o">&amp;</span><span class="n">layer_index</span><span class="p">)</span>
-    <span class="o">:</span> <span class="n">description</span><span class="p">(</span><span class="k">new</span> <span class="n">LayerDescription</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="k">this</span><span class="p">))</span>
-    <span class="p">,</span> <span class="n">name</span><span class="p">(</span><span class="n">layer_name</span><span class="p">)</span>
-    <span class="p">,</span> <span class="n">index</span><span class="p">(</span><span class="n">layer_index</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+<span class="n">LayerData</span><span class="o">::</span><span class="n">LayerData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">ModelData</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">layer_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ModelData</span><span class="o">::</span><span class="n">size_type</span><span class="w"> </span><span class="o">&amp;</span><span class="n">layer_index</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">description</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">LayerDescription</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">(</span><span class="n">layer_name</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">(</span><span class="n">layer_index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
-<span class="n">LayerData</span><span class="o">::</span><span class="n">LayerData</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">model</span><span class="p">,</span> <span class="k">const</span> <span class="n">LayerData</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
-    <span class="o">:</span> <span class="n">host_functions</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">host_functions</span><span class="p">)</span>
-    <span class="p">,</span> <span class="n">host_functions_callbacks</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">)</span>
-    <span class="p">,</span> <span class="n">description</span><span class="p">(</span><span class="n">model</span> <span class="o">?</span> <span class="k">new</span> <span class="n">LayerDescription</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="k">this</span><span class="p">)</span> <span class="o">:</span> <span class="k">nullptr</span><span class="p">)</span>
-    <span class="p">,</span> <span class="n">name</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-    <span class="p">,</span> <span class="n">index</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">index</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Manually perform lookup copies</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">_f</span> <span class="p">:</span> <span class="n">other</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span> <span class="n">model</span><span class="o">-&gt;</span><span class="n">agents</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">f</span> <span class="p">:</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">functions</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="o">*</span><span class="n">_f</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">agent_functions</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
-                    <span class="k">goto</span> <span class="n">next_agent_fn</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="nl">next_agent_fn</span> <span class="p">:</span> <span class="p">{}</span>
-    <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">sub_model</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span> <span class="n">model</span><span class="o">-&gt;</span><span class="n">submodels</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">sub_model</span><span class="o">-&gt;</span><span class="n">name</span> <span class="o">==</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">sub_model</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="n">LayerData</span><span class="o">::</span><span class="n">LayerData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">ModelData</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">LayerData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">host_functions</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">host_functions</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">host_functions_callbacks</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">(</span><span class="n">model</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LayerDescription</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Manually perform lookup copies</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">_f</span> <span class="p">:</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span><span class="w"> </span><span class="n">model</span><span class="o">-&gt;</span><span class="n">agents</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">f</span> <span class="p">:</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">_f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">agent_functions</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">second</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="k">goto</span><span class="w"> </span><span class="n">next_agent_fn</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="nl">next_agent_fn</span> <span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">sub_model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span><span class="w"> </span><span class="n">model</span><span class="o">-&gt;</span><span class="n">submodels</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">sub_model</span><span class="o">-&gt;</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">sub_model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">second</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">bool</span> <span class="n">LayerData</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerData</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span>  <span class="c1">// They point to same object</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">name</span>
-    <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">index</span>
-    <span class="o">&amp;&amp;</span> <span class="n">agent_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span>
-    <span class="o">&amp;&amp;</span> <span class="n">host_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">host_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span>
-    <span class="o">&amp;&amp;</span> <span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">()</span>
-    <span class="o">&amp;&amp;</span> <span class="n">host_functions_callbacks</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Compare pointed to values, not pointers</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span> <span class="n">agent_functions</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">b</span> <span class="p">:</span> <span class="n">rhs</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">a</span> <span class="o">==</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">success</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span> <span class="n">host_functions</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kt">bool</span> <span class="n">success</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span><span class="nl">b</span> <span class="p">:</span> <span class="n">rhs</span><span class="p">.</span><span class="n">host_functions</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">a</span> <span class="o">==</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">success</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">LayerData</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LayerData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w">  </span><span class="c1">// They point to same object</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">name</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">index</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">agent_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">host_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">host_functions</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">host_functions_callbacks</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">host_functions_callbacks</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Compare pointed to values, not pointers</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span><span class="w"> </span><span class="n">agent_functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">b</span> <span class="p">:</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">agent_functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">a</span> <span class="p">:</span><span class="w"> </span><span class="n">host_functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">b</span> <span class="p">:</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">host_functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">*</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">bool</span> <span class="n">LayerData</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">LayerData</span> <span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="o">!</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">LayerData</span><span class="o">::</span><span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">LayerData</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 </pre></div>
 </div>
 </div>

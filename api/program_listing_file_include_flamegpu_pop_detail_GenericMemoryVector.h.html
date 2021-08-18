@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,38 +816,38 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_POP_DETAIL_GENERICMEMORYVECTOR_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_POP_DETAIL_GENERICMEMORYVECTOR_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;typeindex&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;typeindex&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/exception/FLAMEGPUException.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/exception/FLAMEGPUException.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">detail</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">detail</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">GenericMemoryVector</span><span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-    <span class="k">virtual</span> <span class="o">~</span><span class="n">GenericMemoryVector</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
-    <span class="k">virtual</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="o">&amp;</span> <span class="n">getType</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getElements</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">size_t</span> <span class="nf">getTypeSize</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">size_t</span> <span class="nf">getVariableSize</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">void</span><span class="o">*</span> <span class="nf">getDataPtr</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="k">const</span> <span class="kt">void</span><span class="o">*</span> <span class="nf">getReadOnlyDataPtr</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="n">GenericMemoryVector</span><span class="o">*</span> <span class="nf">clone</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">resize</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="k">class</span> <span class="nc">GenericMemoryVector</span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="o">~</span><span class="n">GenericMemoryVector</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="o">&amp;</span><span class="w"> </span><span class="n">getType</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">getElements</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">getTypeSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="nf">getVariableSize</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="nf">getDataPtr</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="nf">getReadOnlyDataPtr</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="n">GenericMemoryVector</span><span class="o">*</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resize</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
 <span class="c1">// use this to store default values for a population, must be here to register the correct types at compile time</span>
-<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GenericMemoryVector</span><span class="o">&gt;&gt;</span> <span class="n">StateMemoryMap</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GenericMemoryVector</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">StateMemoryMap</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GenericMemoryVector</span><span class="o">&gt;&gt;</span> <span class="n">StateMemoryMapPair</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">GenericMemoryVector</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">StateMemoryMapPair</span><span class="p">;</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace detail</span>
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace detail</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_POP_DETAIL_GENERICMEMORYVECTOR_H_</span>
 </pre></div>

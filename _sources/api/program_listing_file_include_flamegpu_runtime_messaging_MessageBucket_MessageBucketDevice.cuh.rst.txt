@@ -26,10 +26,10 @@ Program Listing for File MessageBucketDevice.cuh
         public:
            class Message {
                const Filter &_parent;
-               unsigned int cell_index;
+               IntT cell_index;
    
             public:
-               __device__ Message(const Filter &parent, const unsigned int &_cell_index)
+               __device__ Message(const Filter &parent, const IntT &_cell_index)
                    : _parent(parent)
                    , cell_index(_cell_index) { }
                __device__ bool operator==(const Message& rhs) const {
@@ -46,7 +46,7 @@ Program Listing for File MessageBucketDevice.cuh
                Message _message;
    
             public:
-               __device__ iterator(const Filter &parent, const unsigned int &cell_index)
+               __device__ iterator(const Filter &parent, const IntT &cell_index)
                    : _message(parent, cell_index) {
                    // Increment to find first message
                    ++_message;
@@ -71,7 +71,7 @@ Program Listing for File MessageBucketDevice.cuh
                // Final bin, as the constructor calls increment operator
                return iterator(*this, bucket_end - 1);
            }
-           inline __device__ unsigned int size(void) const {
+           inline __device__ IntT size(void) const {
                return bucket_end - bucket_begin;
            }
    

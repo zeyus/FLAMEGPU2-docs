@@ -243,6 +243,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -250,7 +269,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -1073,7 +1092,31 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE">
 <span id="_CPPv3N8flamegpu24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="_CPPv2N8flamegpu24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE"></span><span id="flamegpu::AgentFunctionDescription::setRTCFunctionCondition__ss"></span><span class="target" id="classflamegpu_1_1AgentFunctionDescription_1a46e6461a59ab693b1dccc6f4490627c6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRTCFunctionCondition</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">func_cond_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu24AgentFunctionDescription23setRTCFunctionConditionENSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the RTC function condition for the agent function This is string containing a definition of an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state. The string will be compiled at runtime. </p>
+<dd><p>Sets the RTC function condition for the agent function This is string containing a definition of an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state. The string will be compiled at runtime. <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classflamegpu_1_1AgentFunctionDescription_1a52079105261b5c5f1b0bef056430548c"><span class="std std-ref">setRTCFunctionConditionFile()</span></a> </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func_cond_src</strong> – Source containing RTC agent function condition source </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24AgentFunctionDescription27setRTCFunctionConditionFileERKNSt6stringE">
+<span id="_CPPv3N8flamegpu24AgentFunctionDescription27setRTCFunctionConditionFileERKNSt6stringE"></span><span id="_CPPv2N8flamegpu24AgentFunctionDescription27setRTCFunctionConditionFileERKNSt6stringE"></span><span id="flamegpu::AgentFunctionDescription::setRTCFunctionConditionFile__ssCR"></span><span class="target" id="classflamegpu_1_1AgentFunctionDescription_1a52079105261b5c5f1b0bef056430548c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRTCFunctionConditionFile</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">file_path</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu24AgentFunctionDescription27setRTCFunctionConditionFileERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the RTC function condition for the agent function, with an agent function condition loaded from file This is file containing a definition of an FLAMEGPU_AGENT_FUNCTION_CONDITION which returns a boolean value (true or false) Only agents which return true perform the attached FLAMEGPU_AGENT_FUNCTION and transition from the initial to end state. The string will be compiled at runtime. <dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#classflamegpu_1_1AgentFunctionDescription_1a46e6461a59ab693b1dccc6f4490627c6"><span class="std std-ref">setRTCFunctionCondition()</span></a> </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Location on disk of file containing RTC agent function condition source </p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">

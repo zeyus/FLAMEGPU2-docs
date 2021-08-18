@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,62 +816,62 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_STATICASSERT_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_UTIL_DETAIL_STATICASSERT_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">util</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">detail</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">StaticAssert</span> <span class="p">{</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="p">,</span>
-    <span class="n">_Ty</span> <span class="n">_Val</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">integral_constant</span> <span class="p">{</span>
-    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">_Ty</span> <span class="n">value</span> <span class="o">=</span> <span class="n">_Val</span><span class="p">;</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">util</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">detail</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">StaticAssert</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">_Ty</span><span class="w"> </span><span class="n">_Val</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">integral_constant</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="n">_Ty</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_Val</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">typedef</span> <span class="n">_Ty</span> <span class="n">value_type</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="n">_Val</span><span class="o">&gt;</span> <span class="n">type</span><span class="p">;</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">_Ty</span><span class="w"> </span><span class="n">value_type</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="n">_Val</span><span class="o">&gt;</span><span class="w"> </span><span class="n">type</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">constexpr</span> <span class="k">operator</span> <span class="n">value_type</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="p">);</span>  <span class="c1">// return stored value</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="k">operator</span><span class="w"> </span><span class="n">value_type</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w">  </span><span class="c1">// return stored value</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">constexpr</span> <span class="n">value_type</span> <span class="k">operator</span><span class="p">()()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">value</span><span class="p">);</span>  <span class="c1">// return stored value</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-<span class="k">typedef</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="nb">true</span><span class="o">&gt;</span> <span class="n">true_type</span><span class="p">;</span>
-<span class="k">typedef</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="nb">false</span><span class="o">&gt;</span> <span class="n">false_type</span><span class="p">;</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span> <span class="n">_Val</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">_Cat_base</span>
-    <span class="o">:</span> <span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span> <span class="n">_Val</span><span class="o">&gt;</span> <span class="p">{</span>
-<span class="p">};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty1</span><span class="p">,</span>
-    <span class="k">class</span> <span class="nc">_Ty2</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">is_same</span>
-    <span class="o">:</span> <span class="n">false_type</span> <span class="p">{</span> <span class="p">};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty1</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">is_same</span><span class="o">&lt;</span><span class="n">_Ty1</span><span class="p">,</span> <span class="n">_Ty1</span><span class="o">&gt;</span>
-    <span class="o">:</span> <span class="n">true_type</span> <span class="p">{</span> <span class="p">};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">_Is_RealType</span>
-    <span class="o">:</span> <span class="n">_Cat_base</span><span class="o">&lt;</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">float</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">{</span>
-<span class="p">};</span>
-<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="o">&gt;</span>
-<span class="k">struct</span> <span class="nc">_Is_IntType</span>
-    <span class="o">:</span> <span class="n">_Cat_base</span><span class="o">&lt;</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">signed</span> <span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">uint16_t</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">int16_t</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">uint32_t</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">uint64_t</span><span class="o">&gt;::</span><span class="n">value</span>
-    <span class="o">||</span> <span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span> <span class="kt">int64_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="p">{</span>
-<span class="p">};</span>
-<span class="p">}</span>  <span class="c1">// namespace StaticAssert</span>
-<span class="p">}</span>  <span class="c1">// namespace detail</span>
-<span class="p">}</span>  <span class="c1">// namespace util</span>
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="w">    </span><span class="k">constexpr</span><span class="w"> </span><span class="n">value_type</span><span class="w"> </span><span class="k">operator</span><span class="p">()()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="p">);</span><span class="w">  </span><span class="c1">// return stored value</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="o">&gt;</span><span class="w"> </span><span class="n">true_type</span><span class="p">;</span><span class="w"></span>
+<span class="k">typedef</span><span class="w"> </span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="o">&gt;</span><span class="w"> </span><span class="n">false_type</span><span class="p">;</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="kt">bool</span><span class="w"> </span><span class="n">_Val</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">_Cat_base</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">integral_constant</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="n">_Val</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span> <span class="nc">_Ty2</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">is_same</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">false_type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">is_same</span><span class="o">&lt;</span><span class="n">_Ty1</span><span class="p">,</span><span class="w"> </span><span class="n">_Ty1</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">true_type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">_Is_RealType</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_Cat_base</span><span class="o">&lt;</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">_Ty</span><span class="o">&gt;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">_Is_IntType</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="n">_Cat_base</span><span class="o">&lt;</span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">signed</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">int16_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">int32_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="w"></span>
+<span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="n">is_same</span><span class="o">&lt;</span><span class="n">_Ty</span><span class="p">,</span><span class="w"> </span><span class="kt">int64_t</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace StaticAssert</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace detail</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace util</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_UTIL_DETAIL_STATICASSERT_H_</span>
 </pre></div>

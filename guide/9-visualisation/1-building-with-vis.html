@@ -42,6 +42,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     
@@ -50,7 +51,7 @@
     
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Performance Troubleshooting" href="../10-performance-troubleshooting/index.html" />
+    <link rel="next" title="Configuring a Visualisation" href="2-setting-up-vis.html" />
     <link rel="prev" title="Visualisation" href="index.html" /> 
 </head>
 
@@ -243,6 +244,25 @@
 <li class="toctree-l4"><a class="reference internal" href="#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -250,7 +270,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -799,9 +819,21 @@
             
   <div class="section" id="building-with-visualisation">
 <h1>Building with Visualisation<a class="headerlink" href="#building-with-visualisation" title="Permalink to this headline">¶</a></h1>
-<p>To use the visualisation features you must ensure that you have followed the instructions for Building
-with visualisation enabled.
-If you wish to use your own visualiser, you can save the simulation state to disk as described in <a class="reference internal" href="../5-running-a-sim/4-collecting-data.html#collecting-data"><span class="std std-ref">Collecting Data</span></a>.</p>
+<p>To use the visualisation features you must ensure that you are using a build of FLAME GPU with visualisation enabled.</p>
+<p>Visualisation is enabled at build time by enabling the <cite>VISUALISATION</cite> during CMake configure. See  <span class="xref std std-ref">Building FLAME GPU from Source</span>.</p>
+<p>FLAME GPU visualisation support can be detected within models:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifdef VISUALISATION</span>
+<span class="w">    </span><span class="c1">// Visualisation specific code</span>
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">VISUALISATION</span><span class="p">:</span>
+    <span class="c1"># Visualisation specific code</span>
+</pre></div>
+</div>
+</div></div>
+<p>If you prefer to use 3rd party tools for visualising models, you can save the simulation state to disk as described in <a class="reference internal" href="../5-running-a-sim/4-collecting-data.html#collecting-data"><span class="std std-ref">Collecting Data</span></a>.</p>
 <div class="section" id="default-visualisation">
 <h2>Default Visualisation<a class="headerlink" href="#default-visualisation" title="Permalink to this headline">¶</a></h2>
 <p>The default visualisation will render agents based on their <cite>x</cite>, <cite>y</cite> and <cite>z</cite> variables.</p>
@@ -814,7 +846,7 @@ If you wish to use your own visualiser, you can save the simulation state to dis
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../10-performance-troubleshooting/index.html" class="btn btn-neutral float-right" title="Performance Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="2-setting-up-vis.html" class="btn btn-neutral float-right" title="Configuring a Visualisation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Visualisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

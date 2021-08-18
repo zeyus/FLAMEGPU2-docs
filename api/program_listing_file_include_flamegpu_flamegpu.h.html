@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -801,37 +820,37 @@
 <span class="cp">#ifdef __CUDACC__</span>
 <span class="cp">#pragma diag_suppress = esa_on_defaulted_function_ignored</span>
 <span class="cp">#endif</span>
-<span class="cp">#include</span> <span class="cpf">&lt;glm/glm.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glm/glm.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#endif</span>
 
 <span class="c1">// include all host API classes (top level header from each module)</span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/version.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/HostAPI.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/HostAgentAPI.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/DeviceAPI.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/ModelDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/AgentDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/AgentFunctionDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/DependencyGraph.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/EnvironmentDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/LayerDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/SubModelDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/SubAgentDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/SubEnvironmentDescription.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/pop/AgentVector.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/pop/AgentInstance.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDASimulation.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/AgentFunction_shim.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/AgentFunctionCondition_shim.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDAEnsemble.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/sim/RunPlanVector.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/sim/LoggingConfig.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/sim/AgentLoggingConfig.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/sim/LogFrame.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/version.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/HostAPI.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/HostAgentAPI.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/DeviceAPI.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/ModelDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/AgentDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/AgentFunctionDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/DependencyGraph.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/EnvironmentDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/LayerDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/SubModelDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/SubAgentDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/SubEnvironmentDescription.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/pop/AgentVector.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/pop/AgentInstance.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/CUDASimulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/AgentFunction_shim.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/AgentFunctionCondition_shim.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/CUDAEnsemble.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/sim/RunPlanVector.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/sim/LoggingConfig.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/sim/AgentLoggingConfig.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/sim/LogFrame.h&quot;</span><span class="cp"></span>
 
 <span class="c1">// This include has no impact if VISUALISATION is not defined</span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/visualiser/visualiser_api.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/visualiser/visualiser_api.h&quot;</span><span class="cp"></span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_FLAMEGPU_H_</span>
 </pre></div>

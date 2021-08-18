@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,83 +816,83 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_UTIL_NVTX_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_UTIL_NVTX_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdint&gt;</span><span class="cp"></span>
 
 <span class="c1">// If NVTX is enabled, include header, defined namespace / class and macros.</span>
 <span class="cp">#if defined(USE_NVTX)</span>
-    <span class="c1">// Include the appropriate header if enabled</span>
-    <span class="cp">#if USE_NVTX &gt;= 3</span>
-        <span class="cp">#include</span> <span class="cpf">&quot;nvtx3/nvToolsExt.h&quot;</span><span class="cp"></span>
-    <span class="cp">#else</span>
-        <span class="cp">#include</span> <span class="cpf">&quot;nvToolsExt.h&quot;</span><span class="cp"></span>
-    <span class="cp">#endif</span>
+<span class="w">    </span><span class="c1">// Include the appropriate header if enabled</span>
+<span class="w">    </span><span class="cp">#if USE_NVTX &gt;= 3</span>
+<span class="w">        </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nvtx3/nvToolsExt.h&quot;</span><span class="cp"></span>
+<span class="w">    </span><span class="cp">#else</span>
+<span class="w">        </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;nvToolsExt.h&quot;</span><span class="cp"></span>
+<span class="w">    </span><span class="cp">#endif</span>
 <span class="cp">#endif</span>
 
 <span class="cm">/* @todo - Make these macros testable.</span>
 <span class="cm">   If USE_NVTX is enabled, store static counts of push/pop/range&#39;s</span>
 <span class="cm">   Make accessors to enable testing the number of counts is as expected</span>
 <span class="cm">   Could also include this in a device shutdown method, to report if there is a mismatch of push/pop and therefore an NVTX error.</span>
-<span class="cm">*/</span>
+<span class="cm">*/</span><span class="w"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">util</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">nvtx</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">util</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">nvtx</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">palette</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0xff1b9e77</span><span class="p">,</span> <span class="mh">0xffd95f02</span><span class="p">,</span> <span class="mh">0xff7570b3</span><span class="p">,</span> <span class="mh">0xffe7298a</span><span class="p">,</span> <span class="mh">0xff66a61e</span><span class="p">,</span> <span class="mh">0xffe6ab02</span><span class="p">,</span> <span class="mh">0xffa6761d</span><span class="p">,</span> <span class="mh">0xff666666</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">palette</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mh">0xff1b9e77</span><span class="p">,</span><span class="w"> </span><span class="mh">0xffd95f02</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff7570b3</span><span class="p">,</span><span class="w"> </span><span class="mh">0xffe7298a</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff66a61e</span><span class="p">,</span><span class="w"> </span><span class="mh">0xffe6ab02</span><span class="p">,</span><span class="w"> </span><span class="mh">0xffa6761d</span><span class="p">,</span><span class="w"> </span><span class="mh">0xff666666</span><span class="p">};</span><span class="w"></span>
 
-<span class="k">const</span> <span class="kt">uint32_t</span> <span class="n">colourCount</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">uint32_t</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">colourCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">palette</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">uint32_t</span><span class="p">);</span><span class="w"></span>
 
 <span class="cp">#if defined(USE_NVTX)</span>
 
-<span class="kr">inline</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">label</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Static variable to track the next colour to be used with auto rotation.</span>
-    <span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">nextColourIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Static variable to track the next colour to be used with auto rotation.</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">nextColourIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-    <span class="c1">// Get the wrapped colour index</span>
-    <span class="kt">uint32_t</span> <span class="n">colourIdx</span> <span class="o">=</span> <span class="n">nextColourIdx</span> <span class="o">%</span> <span class="n">colourCount</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Get the wrapped colour index</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">colourIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nextColourIdx</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">colourCount</span><span class="p">;</span><span class="w"></span>
 
-    <span class="c1">// Build/populate the struct of nvtx event attributes</span>
-    <span class="n">nvtxEventAttributes_t</span> <span class="n">eventAttrib</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-    <span class="c1">// Generic values</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">version</span> <span class="o">=</span> <span class="n">NVTX_VERSION</span><span class="p">;</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">NVTX_EVENT_ATTRIB_STRUCT_SIZE</span><span class="p">;</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">colorType</span> <span class="o">=</span> <span class="n">NVTX_COLOR_ARGB</span><span class="p">;</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">messageType</span> <span class="o">=</span> <span class="n">NVTX_MESSAGE_TYPE_ASCII</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Build/populate the struct of nvtx event attributes</span>
+<span class="w">    </span><span class="n">nvtxEventAttributes_t</span><span class="w"> </span><span class="n">eventAttrib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Generic values</span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NVTX_VERSION</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NVTX_EVENT_ATTRIB_STRUCT_SIZE</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">colorType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NVTX_COLOR_ARGB</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">messageType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NVTX_MESSAGE_TYPE_ASCII</span><span class="p">;</span><span class="w"></span>
 
-    <span class="c1">// Selected colour and string</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">palette</span><span class="p">[</span><span class="n">colourIdx</span><span class="p">];</span>
-    <span class="n">eventAttrib</span><span class="p">.</span><span class="n">message</span><span class="p">.</span><span class="n">ascii</span> <span class="o">=</span> <span class="n">label</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Selected colour and string</span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palette</span><span class="p">[</span><span class="n">colourIdx</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="n">eventAttrib</span><span class="p">.</span><span class="n">message</span><span class="p">.</span><span class="n">ascii</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">label</span><span class="p">;</span><span class="w"></span>
 
-    <span class="c1">// Push the custom event.</span>
-    <span class="n">nvtxRangePushEx</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventAttrib</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Push the custom event.</span>
+<span class="w">    </span><span class="n">nvtxRangePushEx</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventAttrib</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// Increment the counter tracking the next colour to use.</span>
-    <span class="n">nextColourIdx</span> <span class="o">=</span> <span class="n">colourIdx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// Increment the counter tracking the next colour to use.</span>
+<span class="w">    </span><span class="n">nextColourIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">colourIdx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 <span class="cp">#else</span>
-<span class="kr">inline</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="p">{</span>
-<span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 <span class="cp">#endif</span>
 
-<span class="kr">inline</span> <span class="kt">void</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
-    <span class="cp">#if defined(USE_NVTX)</span>
-        <span class="n">nvtxRangePop</span><span class="p">();</span>
-    <span class="cp">#endif</span>
-<span class="p">}</span>
+<span class="kr">inline</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">pop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="cp">#if defined(USE_NVTX)</span>
+<span class="w">        </span><span class="n">nvtxRangePop</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">NVTXRange</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-    <span class="k">explicit</span> <span class="n">NVTXRange</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">label</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">util</span><span class="o">::</span><span class="n">nvtx</span><span class="o">::</span><span class="n">push</span><span class="p">(</span><span class="n">label</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="o">~</span><span class="n">NVTXRange</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">util</span><span class="o">::</span><span class="n">nvtx</span><span class="o">::</span><span class="n">pop</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">};</span>
+<span class="k">class</span> <span class="nc">NVTXRange</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">NVTXRange</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">label</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">util</span><span class="o">::</span><span class="n">nvtx</span><span class="o">::</span><span class="n">push</span><span class="p">(</span><span class="n">label</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="o">~</span><span class="n">NVTXRange</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">util</span><span class="o">::</span><span class="n">nvtx</span><span class="o">::</span><span class="n">pop</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace nvtx</span>
-<span class="p">}</span>  <span class="c1">// namespace util</span>
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace nvtx</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace util</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="c1">// If USE_NVTX is enabled, provide macros which actually use NVTX</span>
 <span class="cp">#if defined(USE_NVTX)</span>

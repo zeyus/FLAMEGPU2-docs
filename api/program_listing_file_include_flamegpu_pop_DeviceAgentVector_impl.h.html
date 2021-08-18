@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,130 +816,130 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_POP_DEVICEAGENTVECTOR_IMPL_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_POP_DEVICEAGENTVECTOR_IMPL_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/pop/AgentVector.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDAFatAgentStateList.h&quot;</span><span class="c1">  // VariableBuffer</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/pop/AgentVector.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/CUDAFatAgentStateList.h&quot;</span><span class="c1">  // VariableBuffer</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">CUDAScatter</span><span class="p">;</span>
-<span class="k">class</span> <span class="nc">CUDAAgent</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">CUDAScatter</span><span class="p">;</span><span class="w"></span>
+<span class="k">class</span> <span class="nc">CUDAAgent</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">struct</span> <span class="nc">VarOffsetStruct</span><span class="p">;</span>
-<span class="k">struct</span> <span class="nc">NewAgentStorage</span><span class="p">;</span>
+<span class="k">struct</span> <span class="nc">VarOffsetStruct</span><span class="p">;</span><span class="w"></span>
+<span class="k">struct</span> <span class="nc">NewAgentStorage</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">DeviceAgentVector_impl</span> <span class="o">:</span> <span class="k">protected</span> <span class="n">AgentVector</span> <span class="p">{</span>
- <span class="k">public</span><span class="o">:</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">Agent</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">CAgent</span><span class="p">;</span>
-    <span class="n">DeviceAgentVector_impl</span><span class="p">(</span><span class="n">CUDAAgent</span><span class="o">&amp;</span> <span class="n">_cuda_agent</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">cuda_agent_state</span><span class="p">,</span>
-        <span class="k">const</span> <span class="n">VarOffsetStruct</span><span class="o">&amp;</span> <span class="n">_agentOffsets</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;&amp;</span> <span class="n">_newAgentData</span><span class="p">,</span>
-        <span class="n">CUDAScatter</span><span class="o">&amp;</span> <span class="n">scatter</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">streamId</span><span class="p">,</span> <span class="k">const</span> <span class="n">cudaStream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">);</span>
-     <span class="c1">// DeviceAgentVector_t(const DeviceAgentVector_t&amp; other) = delete;</span>
-     <span class="c1">// DeviceAgentVector_t&amp; operator=(const DeviceAgentVector_t&amp; other) = delete;</span>
-    <span class="kt">void</span> <span class="nf">syncChanges</span><span class="p">();</span>
-    <span class="kt">void</span> <span class="nf">purgeCache</span><span class="p">();</span>
+<span class="k">class</span> <span class="nc">DeviceAgentVector_impl</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">protected</span><span class="w"> </span><span class="n">AgentVector</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">Agent</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">CAgent</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">DeviceAgentVector_impl</span><span class="p">(</span><span class="n">CUDAAgent</span><span class="o">&amp;</span><span class="w"> </span><span class="n">_cuda_agent</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cuda_agent_state</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">VarOffsetStruct</span><span class="o">&amp;</span><span class="w"> </span><span class="n">_agentOffsets</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">_newAgentData</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">CUDAScatter</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scatter</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">streamId</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">cudaStream_t</span><span class="o">&amp;</span><span class="w"> </span><span class="n">stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="c1">// DeviceAgentVector_t(const DeviceAgentVector_t&amp; other) = delete;</span>
+<span class="w">     </span><span class="c1">// DeviceAgentVector_t&amp; operator=(const DeviceAgentVector_t&amp; other) = delete;</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">syncChanges</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">purgeCache</span><span class="p">();</span><span class="w"></span>
 
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">at</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="k">operator</span><span class="p">[];</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">front</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">back</span><span class="p">;</span>
-    <span class="c1">// using AgentVector::data; // Would need to assume whole vector changed</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">begin</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">end</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">cbegin</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">cend</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">rbegin</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">rend</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">crbegin</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">crend</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">empty</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">size</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">max_size</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">reserve</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">capacity</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">shrink_to_fit</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">clear</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">insert</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">at</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="k">operator</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">front</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">back</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// using AgentVector::data; // Would need to assume whole vector changed</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">begin</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">end</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">cbegin</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">cend</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">rbegin</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">rend</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">crbegin</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">crend</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">empty</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">size</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">max_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">reserve</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">capacity</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">shrink_to_fit</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">clear</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">insert</span><span class="p">;</span><span class="w"></span>
 <span class="cp">#ifdef SWIG</span>
 
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">py_insert</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">py_insert</span><span class="p">;</span><span class="w"></span>
 <span class="cp">#endif</span>
 
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">erase</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">erase</span><span class="p">;</span><span class="w"></span>
 <span class="cp">#ifdef SWIG</span>
 
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">py_erase</span><span class="p">;</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">py_erase</span><span class="p">;</span><span class="w"></span>
 <span class="cp">#endif</span>
 
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">push_back</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">pop_back</span><span class="p">;</span>
-    <span class="k">using</span> <span class="n">AgentVector</span><span class="o">::</span><span class="n">resize</span><span class="p">;</span>
-    <span class="c1">// using AgentVector::swap; // This would essentially require replacing the entire on-device agent vector</span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">push_back</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">pop_back</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="n">AgentVector</span><span class="o">::</span><span class="n">resize</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// using AgentVector::swap; // This would essentially require replacing the entire on-device agent vector</span>
 
- <span class="k">protected</span><span class="o">:</span>
-    <span class="kt">void</span> <span class="n">_insert</span><span class="p">(</span><span class="n">size_type</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">count</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_erase</span><span class="p">(</span><span class="n">size_type</span> <span class="n">pos</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">count</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_changed</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">variable_name</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">pos</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_changedAfter</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">variable_name</span><span class="p">,</span> <span class="n">size_type</span> <span class="n">pos</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_require</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">variable_name</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_requireAll</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">_requireLength</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">size_type</span><span class="p">,</span> <span class="n">size_type</span><span class="o">&gt;&gt;</span> <span class="n">change_detail</span><span class="p">;</span>
-    <span class="k">mutable</span> <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">invalid_variables</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="n">unbound_buffers_has_changed</span><span class="p">;</span>
+<span class="w"> </span><span class="k">protected</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">_insert</span><span class="p">(</span><span class="n">size_type</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_erase</span><span class="p">(</span><span class="n">size_type</span><span class="w"> </span><span class="n">pos</span><span class="p">,</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="n">count</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_changed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">variable_name</span><span class="p">,</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_changedAfter</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">variable_name</span><span class="p">,</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="n">pos</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_require</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">variable_name</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_requireAll</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">_requireLength</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">size_type</span><span class="p">,</span><span class="w"> </span><span class="n">size_type</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">change_detail</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">mutable</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">invalid_variables</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">unbound_buffers_has_changed</span><span class="p">;</span><span class="w"></span>
 
- <span class="k">private</span><span class="o">:</span>
-     <span class="k">struct</span> <span class="nc">VariableBufferPair</span> <span class="p">{</span>
-         <span class="k">explicit</span> <span class="n">VariableBufferPair</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VariableBuffer</span><span class="o">&gt;&amp;</span> <span class="n">_device</span><span class="p">)</span>
-             <span class="o">:</span> <span class="n">device</span><span class="p">(</span><span class="n">_device</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
-         <span class="n">VariableBufferPair</span><span class="p">(</span><span class="n">VariableBufferPair</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-             <span class="o">*</span><span class="k">this</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
-         <span class="p">}</span>
-         <span class="n">VariableBufferPair</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">VariableBufferPair</span><span class="o">&amp;&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-             <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">host</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">host</span><span class="p">);</span>
-             <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">device</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="n">device</span><span class="p">);</span>
-             <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
-         <span class="p">}</span>
-         <span class="c1">// @todo Solve this</span>
-         <span class="c1">// VariableBufferPair(const VariableBufferPair&amp; other) = delete;</span>
-         <span class="c1">// VariableBufferPair&amp; operator=(const VariableBufferPair&amp; other) = delete;</span>
+<span class="w"> </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">     </span><span class="k">struct</span> <span class="nc">VariableBufferPair</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="k">explicit</span><span class="w"> </span><span class="n">VariableBufferPair</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VariableBuffer</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">_device</span><span class="p">)</span><span class="w"></span>
+<span class="w">             </span><span class="o">:</span><span class="w"> </span><span class="n">device</span><span class="p">(</span><span class="n">_device</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="n">VariableBufferPair</span><span class="p">(</span><span class="n">VariableBufferPair</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="o">*</span><span class="k">this</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">other</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="n">VariableBufferPair</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">VariableBufferPair</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">host</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">host</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">device</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">device</span><span class="p">);</span><span class="w"></span>
+<span class="w">             </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="c1">// @todo Solve this</span>
+<span class="w">         </span><span class="c1">// VariableBufferPair(const VariableBufferPair&amp; other) = delete;</span>
+<span class="w">         </span><span class="c1">// VariableBufferPair&amp; operator=(const VariableBufferPair&amp; other) = delete;</span>
 
-         <span class="o">~</span><span class="n">VariableBufferPair</span><span class="p">()</span> <span class="p">{</span>
-             <span class="k">if</span> <span class="p">(</span><span class="n">host</span><span class="p">)</span> <span class="n">free</span><span class="p">(</span><span class="n">host</span><span class="p">);</span>
-         <span class="p">}</span>
-         <span class="kt">char</span><span class="o">*</span> <span class="n">host</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="w">         </span><span class="o">~</span><span class="n">VariableBufferPair</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">             </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">host</span><span class="p">)</span><span class="w"> </span><span class="n">free</span><span class="p">(</span><span class="n">host</span><span class="p">);</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"></span>
+<span class="w">         </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
 
-         <span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VariableBuffer</span><span class="o">&gt;</span> <span class="n">device</span><span class="p">;</span>
-     <span class="p">};</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">VariableBufferPair</span><span class="o">&gt;</span> <span class="n">unbound_buffers</span><span class="p">;</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">known_device_buffer_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">unbound_host_buffer_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">unbound_host_buffer_capacity</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="n">unbound_host_buffer_invalid</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="nf">initUnboundBuffers</span><span class="p">();</span>
-    <span class="kt">void</span> <span class="nf">reinitUnboundBuffers</span><span class="p">();</span>
-    <span class="kt">void</span> <span class="nf">resizeUnboundBuffers</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">new_capacity</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">init</span><span class="p">);</span>
-    <span class="n">CUDAAgent</span><span class="o">&amp;</span> <span class="n">cuda_agent</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">cuda_agent_state</span><span class="p">;</span>
+<span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">VariableBuffer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">device</span><span class="p">;</span><span class="w"></span>
+<span class="w">     </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">VariableBufferPair</span><span class="o">&gt;</span><span class="w"> </span><span class="n">unbound_buffers</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">known_device_buffer_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">unbound_host_buffer_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">unbound_host_buffer_capacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">unbound_host_buffer_invalid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">initUnboundBuffers</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">reinitUnboundBuffers</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">resizeUnboundBuffers</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">new_capacity</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">init</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CUDAAgent</span><span class="o">&amp;</span><span class="w"> </span><span class="n">cuda_agent</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">cuda_agent_state</span><span class="p">;</span><span class="w"></span>
 
 
-    <span class="k">const</span> <span class="n">VarOffsetStruct</span><span class="o">&amp;</span> <span class="n">agentOffsets</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;&amp;</span> <span class="n">newAgentData</span><span class="p">;</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">VarOffsetStruct</span><span class="o">&amp;</span><span class="w"> </span><span class="n">agentOffsets</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">newAgentData</span><span class="p">;</span><span class="w"></span>
 
-    <span class="n">CUDAScatter</span><span class="o">&amp;</span> <span class="n">scatter</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&amp;</span> <span class="n">streamId</span><span class="p">;</span>
-    <span class="k">const</span> <span class="n">cudaStream_t</span><span class="o">&amp;</span> <span class="n">stream</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="w">    </span><span class="n">CUDAScatter</span><span class="o">&amp;</span><span class="w"> </span><span class="n">scatter</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">streamId</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">cudaStream_t</span><span class="o">&amp;</span><span class="w"> </span><span class="n">stream</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_POP_DEVICEAGENTVECTOR_IMPL_H_</span>
 </pre></div>

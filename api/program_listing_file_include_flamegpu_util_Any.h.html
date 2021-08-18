@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,47 +816,47 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_UTIL_ANY_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_UTIL_ANY_H_</span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
-<span class="k">namespace</span> <span class="nn">util</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">util</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">struct</span> <span class="nc">Any</span> <span class="p">{</span>
-    <span class="n">Any</span><span class="p">(</span><span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">_ptr</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="o">&amp;</span><span class="n">_length</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">type_index</span> <span class="o">&amp;</span><span class="n">_type</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">_elements</span><span class="p">)</span>
-        <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">_length</span><span class="p">))</span>
-        <span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">_length</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">type</span><span class="p">(</span><span class="n">_type</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">elements</span><span class="p">(</span><span class="n">_elements</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">_ptr</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
-    <span class="k">explicit</span> <span class="n">Any</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span>
-        <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span>
-        <span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
-        <span class="p">,</span> <span class="n">type</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">))</span>
-        <span class="p">,</span> <span class="n">elements</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">other</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span>
-    <span class="p">}</span>
-    <span class="n">Any</span><span class="p">(</span><span class="k">const</span> <span class="n">Any</span> <span class="o">&amp;</span><span class="n">_other</span><span class="p">)</span>
-        <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">length</span><span class="p">))</span>
-        <span class="p">,</span> <span class="n">length</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">type</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">type</span><span class="p">)</span>
-        <span class="p">,</span> <span class="n">elements</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">elements</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span> <span class="n">_other</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="cm">/*</span>
+<span class="k">struct</span> <span class="nc">Any</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">Any</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">_ptr</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_length</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_type</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_elements</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">_length</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">_length</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">_type</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">elements</span><span class="p">(</span><span class="n">_elements</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="n">_ptr</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="k">explicit</span><span class="w"> </span><span class="n">Any</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)))</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="n">T</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">elements</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">Any</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Any</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_other</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">ptr</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">length</span><span class="p">))</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">length</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">type</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">,</span><span class="w"> </span><span class="n">elements</span><span class="p">(</span><span class="n">_other</span><span class="p">.</span><span class="n">elements</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">memcpy</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="n">_other</span><span class="p">.</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">     * Releases the allocated memory</span>
-<span class="cm">     */</span>
-    <span class="o">~</span><span class="n">Any</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="kt">void</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Any</span> <span class="o">&amp;</span><span class="n">_other</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="k">const</span> <span class="n">ptr</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">;</span>
-    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">type_index</span> <span class="n">type</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">elements</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="o">~</span><span class="n">Any</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Any</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_other</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="w"> </span><span class="n">type</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">elements</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace util</span>
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace util</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_UTIL_ANY_H_</span>
 </pre></div>

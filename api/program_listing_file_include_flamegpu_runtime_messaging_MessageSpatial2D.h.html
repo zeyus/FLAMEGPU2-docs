@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,37 +816,37 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL2D_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL2D_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/messaging/MessageBruteForce.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/messaging/MessageBruteForce.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">MessageSpatial2D</span> <span class="p">{</span>
-    <span class="k">typedef</span> <span class="n">MessageNone</span><span class="o">::</span><span class="n">size_type</span> <span class="n">size_type</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">MessageSpatial2D</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">MessageNone</span><span class="o">::</span><span class="n">size_type</span><span class="w"> </span><span class="n">size_type</span><span class="p">;</span><span class="w"></span>
 
- <span class="k">public</span><span class="o">:</span>
-    <span class="c1">// Host</span>
-    <span class="k">struct</span> <span class="nc">Data</span><span class="p">;</span>        <span class="c1">// Forward declare inner classes</span>
-    <span class="k">class</span> <span class="nc">Description</span><span class="p">;</span>  <span class="c1">// Forward declare inner classes</span>
-    <span class="k">class</span> <span class="nc">CUDAModelHandler</span><span class="p">;</span>
-    <span class="c1">// Device</span>
-    <span class="k">class</span> <span class="nc">In</span><span class="p">;</span>
-    <span class="k">class</span> <span class="nc">Out</span><span class="p">;</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Host</span>
+<span class="w">    </span><span class="k">struct</span> <span class="nc">Data</span><span class="p">;</span><span class="w">        </span><span class="c1">// Forward declare inner classes</span>
+<span class="w">    </span><span class="k">class</span> <span class="nc">Description</span><span class="p">;</span><span class="w">  </span><span class="c1">// Forward declare inner classes</span>
+<span class="w">    </span><span class="k">class</span> <span class="nc">CUDAModelHandler</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Device</span>
+<span class="w">    </span><span class="k">class</span> <span class="nc">In</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span> <span class="nc">Out</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">struct</span> <span class="nc">GridPos2D</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
-    <span class="p">};</span>
+<span class="w">    </span><span class="k">struct</span> <span class="nc">GridPos2D</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="k">struct</span> <span class="nc">MetaData</span> <span class="p">{</span>
-        <span class="kt">float</span> <span class="n">min</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-        <span class="kt">float</span> <span class="n">max</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-        <span class="kt">float</span> <span class="n">radius</span><span class="p">;</span>
-        <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">PBM</span><span class="p">;</span>
-        <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">gridDim</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-        <span class="kt">float</span> <span class="n">environmentWidth</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-    <span class="p">};</span>
-<span class="p">};</span>
+<span class="w">    </span><span class="k">struct</span> <span class="nc">MetaData</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">min</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">max</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">radius</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">PBM</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">gridDim</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">environmentWidth</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL2D_H_</span>
 </pre></div>

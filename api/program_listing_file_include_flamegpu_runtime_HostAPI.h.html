@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,105 +816,105 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_RUNTIME_HOSTAPI_H_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_RUNTIME_HOSTAPI_H_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="c1">  // required for cudaStream_t. This doesn&#39;t require nvcc however, as no device code.</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="c1">  // required for cudaStream_t. This doesn&#39;t require nvcc however, as no device code.</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/detail/CUDAErrorChecking.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/utility/HostRandom.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/utility/HostEnvironment.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/HostAPI_macros.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/HostNewAgentAPI.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/detail/CUDAErrorChecking.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/utility/HostRandom.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/utility/HostEnvironment.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/HostAPI_macros.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/HostNewAgentAPI.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">CUDAScatter</span><span class="p">;</span>
-<span class="k">class</span> <span class="nc">CUDASimulation</span><span class="p">;</span>
-<span class="k">class</span> <span class="nc">HostAgentAPI</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">CUDAScatter</span><span class="p">;</span><span class="w"></span>
+<span class="k">class</span> <span class="nc">CUDASimulation</span><span class="p">;</span><span class="w"></span>
+<span class="k">class</span> <span class="nc">HostAgentAPI</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">class</span> <span class="nc">HostAPI</span> <span class="p">{</span>
-    <span class="k">friend</span> <span class="k">class</span> <span class="nc">HostAgentAPI</span><span class="p">;</span>
-    <span class="k">friend</span> <span class="k">class</span> <span class="nc">CUDAFatAgent</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">HostAPI</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span> <span class="nc">HostAgentAPI</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">friend</span><span class="w"> </span><span class="k">class</span> <span class="nc">CUDAFatAgent</span><span class="p">;</span><span class="w"></span>
 
- <span class="k">public</span><span class="o">:</span>
-    <span class="c1">// Typedefs repeated from CUDASimulation</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;</span> <span class="n">AgentDataBuffer</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">AgentDataBuffer</span><span class="o">&gt;</span> <span class="n">AgentDataBufferStateMap</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">VarOffsetStruct</span><span class="o">&gt;</span> <span class="n">AgentOffsetMap</span><span class="p">;</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">AgentDataBufferStateMap</span><span class="o">&gt;</span> <span class="n">AgentDataMap</span><span class="p">;</span>
+<span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Typedefs repeated from CUDASimulation</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">NewAgentStorage</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AgentDataBuffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">AgentDataBuffer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AgentDataBufferStateMap</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">VarOffsetStruct</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AgentOffsetMap</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">AgentDataBufferStateMap</span><span class="o">&gt;</span><span class="w"> </span><span class="n">AgentDataMap</span><span class="p">;</span><span class="w"></span>
 
-     <span class="k">explicit</span> <span class="n">HostAPI</span><span class="p">(</span><span class="n">CUDASimulation</span><span class="o">&amp;</span><span class="n">_agentModel</span><span class="p">,</span>
-          <span class="n">RandomManager</span> <span class="o">&amp;</span><span class="n">rng</span><span class="p">,</span>
-          <span class="n">CUDAScatter</span> <span class="o">&amp;</span><span class="n">scatter</span><span class="p">,</span>
-          <span class="k">const</span> <span class="n">AgentOffsetMap</span> <span class="o">&amp;</span><span class="n">agentOffsets</span><span class="p">,</span>
-          <span class="n">AgentDataMap</span> <span class="o">&amp;</span><span class="n">agentData</span><span class="p">,</span>
-          <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">streamId</span><span class="p">,</span>
-         <span class="n">cudaStream_t</span> <span class="n">stream</span><span class="p">);</span>
-     <span class="o">~</span><span class="n">HostAPI</span><span class="p">();</span>
-    <span class="n">HostAgentAPI</span> <span class="nf">agent</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">agent_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span><span class="n">stateName</span> <span class="o">=</span> <span class="n">ModelData</span><span class="o">::</span><span class="n">DEFAULT_STATE</span><span class="p">);</span>
-    <span class="k">const</span> <span class="n">HostRandom</span> <span class="n">random</span><span class="p">;</span>
-    <span class="k">const</span> <span class="n">HostEnvironment</span> <span class="n">environment</span><span class="p">;</span>
+<span class="w">     </span><span class="k">explicit</span><span class="w"> </span><span class="n">HostAPI</span><span class="p">(</span><span class="n">CUDASimulation</span><span class="o">&amp;</span><span class="n">_agentModel</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">RandomManager</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rng</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">CUDAScatter</span><span class="w"> </span><span class="o">&amp;</span><span class="n">scatter</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="n">AgentOffsetMap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agentOffsets</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="n">AgentDataMap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agentData</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">streamId</span><span class="p">,</span><span class="w"></span>
+<span class="w">         </span><span class="n">cudaStream_t</span><span class="w"> </span><span class="n">stream</span><span class="p">);</span><span class="w"></span>
+<span class="w">     </span><span class="o">~</span><span class="n">HostAPI</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">HostAgentAPI</span><span class="w"> </span><span class="nf">agent</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agent_name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">stateName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ModelData</span><span class="o">::</span><span class="n">DEFAULT_STATE</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">HostRandom</span><span class="w"> </span><span class="n">random</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">HostEnvironment</span><span class="w"> </span><span class="n">environment</span><span class="p">;</span><span class="w"></span>
 
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">getStepCounter</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">getStepCounter</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w"></span>
 
- <span class="k">private</span><span class="o">:</span>
-    <span class="k">enum</span> <span class="nc">CUB_Operation</span> <span class="p">{</span>
-        <span class="n">MIN</span><span class="p">,</span>
-        <span class="n">MAX</span><span class="p">,</span>
-        <span class="n">SUM</span><span class="p">,</span>
-        <span class="n">CUSTOM_REDUCE</span><span class="p">,</span>
-        <span class="n">HISTOGRAM_EVEN</span><span class="p">,</span>
-        <span class="n">SORT</span>
-    <span class="p">};</span>
-    <span class="c1">// Can&#39;t put type_info in map, deleted constructors, so we use it&#39;s hash code</span>
-    <span class="c1">// Histogram always has type int, so we use number of bins instead</span>
-    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">CUB_Operation</span><span class="p">,</span> <span class="kt">size_t</span><span class="o">&gt;</span> <span class="n">CUB_Config</span><span class="p">;</span>
-    <span class="k">struct</span> <span class="nc">key_hash</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="nf">operator</span><span class="p">()(</span><span class="k">const</span> <span class="n">CUB_Config</span><span class="o">&amp;</span> <span class="n">k</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="o">^</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">CUB_Config</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span><span class="p">,</span> <span class="n">key_hash</span><span class="o">&gt;</span> <span class="n">cub_largestAllocatedOp</span><span class="p">;</span>
-    <span class="kt">bool</span> <span class="nf">tempStorageRequiresResize</span><span class="p">(</span><span class="k">const</span> <span class="n">CUB_Config</span> <span class="o">&amp;</span><span class="n">cc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">items</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="nf">resizeTempStorage</span><span class="p">(</span><span class="k">const</span> <span class="n">CUB_Config</span> <span class="o">&amp;</span><span class="n">cc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">items</span><span class="p">,</span> <span class="k">const</span> <span class="kt">size_t</span> <span class="o">&amp;</span><span class="n">newSize</span><span class="p">);</span>
-    <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
-    <span class="kt">void</span> <span class="n">resizeOutputSpace</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">items</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="n">CUDASimulation</span> <span class="o">&amp;</span><span class="n">agentModel</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">d_cub_temp</span><span class="p">;</span>
-    <span class="kt">size_t</span> <span class="n">d_cub_temp_size</span><span class="p">;</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">d_output_space</span><span class="p">;</span>
-    <span class="kt">size_t</span> <span class="n">d_output_space_size</span><span class="p">;</span>
-    <span class="cm">/*</span>
+<span class="w"> </span><span class="k">private</span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="k">enum</span> <span class="nc">CUB_Operation</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">MIN</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">MAX</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">SUM</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">CUSTOM_REDUCE</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">HISTOGRAM_EVEN</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">SORT</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Can&#39;t put type_info in map, deleted constructors, so we use it&#39;s hash code</span>
+<span class="w">    </span><span class="c1">// Histogram always has type int, so we use number of bins instead</span>
+<span class="w">    </span><span class="k">typedef</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">CUB_Operation</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CUB_Config</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span> <span class="nc">key_hash</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="w"> </span><span class="nf">operator</span><span class="p">()(</span><span class="k">const</span><span class="w"> </span><span class="n">CUB_Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">))</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">CUB_Config</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">key_hash</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cub_largestAllocatedOp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">tempStorageRequiresResize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CUB_Config</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">items</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">resizeTempStorage</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">CUB_Config</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cc</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">items</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="o">&amp;</span><span class="n">newSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">resizeOutputSpace</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">CUDASimulation</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agentModel</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">d_cub_temp</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">d_cub_temp_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">d_output_space</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">d_output_space_size</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">     * Owned by CUDASimulation, this provides memory offsets for agent variables</span>
 <span class="cm">     * Used for host agent creationg</span>
-<span class="cm">     */</span>
-    <span class="k">const</span> <span class="n">AgentOffsetMap</span> <span class="o">&amp;</span><span class="n">agentOffsets</span><span class="p">;</span>
-    <span class="cm">/*</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">AgentOffsetMap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agentOffsets</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="cm">/*</span>
 <span class="cm">     * Owned by CUDASimulation, this provides storage for new agents</span>
 <span class="cm">     * Used for host agent creation, this should be emptied end of each step</span>
 <span class="cm">     * when new agents are copied to device.</span>
-<span class="cm">     */</span>
-    <span class="n">AgentDataMap</span> <span class="o">&amp;</span><span class="n">agentData</span><span class="p">;</span>
-    <span class="n">CUDAScatter</span> <span class="o">&amp;</span><span class="n">scatter</span><span class="p">;</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">streamId</span><span class="p">;</span>
-    <span class="n">cudaStream_t</span> <span class="n">stream</span><span class="p">;</span>
-<span class="p">};</span>
+<span class="cm">     */</span><span class="w"></span>
+<span class="w">    </span><span class="n">AgentDataMap</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agentData</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">CUDAScatter</span><span class="w"> </span><span class="o">&amp;</span><span class="n">scatter</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">streamId</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">cudaStream_t</span><span class="w"> </span><span class="n">stream</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span>
-<span class="kt">void</span> <span class="n">HostAPI</span><span class="o">::</span><span class="n">resizeOutputSpace</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">items</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">items</span> <span class="o">&gt;</span> <span class="n">d_output_space_size</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d_output_space_size</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_output_space</span><span class="p">));</span>
-        <span class="p">}</span>
-        <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_output_space</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">items</span><span class="p">));</span>
-        <span class="n">d_output_space_size</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="n">items</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="o">&gt;</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">HostAPI</span><span class="o">::</span><span class="n">resizeOutputSpace</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">items</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">items</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">d_output_space_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_output_space_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_output_space</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d_output_space</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">items</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="n">d_output_space_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">items</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_RUNTIME_HOSTAPI_H_</span>
 </pre></div>

@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -1177,11 +1196,40 @@ void AgentFunctionDescription::setRTCFunctionCondition(std::string func_cond_src
     }
 
     // append jitify program string and include
-    std::string func_cond_src_str = std::string(func_cond_name + &quot;_program\n&quot;).append(&quot;#include \&quot;flamegpu/runtime/DeviceAPI.cuh\&quot;\n&quot;).append(func_cond_src);
+    std::string func_cond_src_str = std::string(func_cond_name + &quot;_program\n&quot;);
+#ifdef OUTPUT_RTC_DYNAMIC_FILES
+    func_cond_src_str.append(&quot;#line 1 \&quot;&quot;).append(function-&gt;rtc_func_name).append(&quot;_impl_condition.cu\&quot;\n&quot;);
+#endif
+    func_cond_src_str.append(&quot;#include \&quot;flamegpu/runtime/DeviceAPI.cuh\&quot;\n&quot;);
+    // Append line pragma to correct file/line number in same format as OUTPUT_RTC_DYNAMIC_FILES
+#ifndef OUTPUT_RTC_DYNAMIC_FILES
+    func_cond_src_str.append(&quot;#line 1 \&quot;&quot;).append(function-&gt;rtc_func_name).append(&quot;_impl_condition.cu\&quot;\n&quot;);
+#endif
+    // If src begins (\r)\n, trim that
+    // Append the function source
+    if (func_cond_src.find_first_of(&quot;\n&quot;) &lt;= 1) {
+        func_cond_src_str.append(func_cond_src.substr(func_cond_src.find_first_of(&quot;\n&quot;) + 1));
+    } else {
+        func_cond_src_str.append(func_cond_src);
+    }
 
     // update the agent function data
     function-&gt;rtc_func_condition_name = func_cond_name;
     function-&gt;rtc_condition_source = func_cond_src_str;
+}
+void AgentFunctionDescription::setRTCFunctionConditionFile(const std::string&amp; file_path) {
+    // Load file and forward to regular RTC method
+    std::ifstream file;
+    file.open(file_path);
+    if (file.is_open()) {
+        std::stringstream sstream;
+        sstream &lt;&lt; file.rdbuf();
+        const std::string func_src = sstream.str();
+        setRTCFunctionCondition(func_src);
+    }
+    THROW exception::InvalidFilePath(&quot;Unable able to open file &#39;%s&#39;, &quot;
+        &quot;in AgentDescription::newRTCFunctionFile().&quot;,
+        file_path.c_str());
 }
 
 MessageBruteForce::Description &amp;AgentFunctionDescription::MessageInput() {
@@ -1277,7 +1325,11 @@ AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string
                 std::string in_type_name = match[2];
                 std::string out_type_name = match[3];
                 // set the runtime agent function source in agent function data
-                std::string func_src_str = std::string(function_name + &quot;_program\n&quot;).append(&quot;#include \&quot;flamegpu/runtime/DeviceAPI.cuh\&quot;\n&quot;);
+                std::string func_src_str = std::string(function_name + &quot;_program\n&quot;);
+#ifdef OUTPUT_RTC_DYNAMIC_FILES
+                func_src_str.append(&quot;#line 1 \&quot;&quot;).append(code_func_name).append(&quot;_impl.cu\&quot;\n&quot;);
+#endif
+                func_src_str.append(&quot;#include \&quot;flamegpu/runtime/DeviceAPI.cuh\&quot;\n&quot;);
                 // Include the required headers for the input message type.
                 std::string in_type_include_name = in_type_name.substr(in_type_name.find_last_of(&quot;::&quot;) + 1);
                 func_src_str = func_src_str.append(&quot;#include \&quot;flamegpu/runtime/messaging/&quot;+ in_type_include_name + &quot;/&quot; + in_type_include_name + &quot;Device.cuh\&quot;\n&quot;);
@@ -1286,8 +1338,17 @@ AgentFunctionDescription&amp; AgentDescription::newRTCFunction(const std::string
                     std::string out_type_include_name = out_type_name.substr(out_type_name.find_last_of(&quot;::&quot;) + 1);
                     func_src_str = func_src_str.append(&quot;#include \&quot;flamegpu/runtime/messaging/&quot;+ out_type_include_name + &quot;/&quot; + out_type_include_name + &quot;Device.cuh\&quot;\n&quot;);
                 }
+                // Append line pragma to correct file/line number in same format as OUTPUT_RTC_DYNAMIC_FILES
+#ifndef OUTPUT_RTC_DYNAMIC_FILES
+                func_src_str.append(&quot;#line 1 \&quot;&quot;).append(code_func_name).append(&quot;_impl.cu\&quot;\n&quot;);
+#endif
+                // If src begins (\r)\n, trim that
                 // Append the function source
-                func_src_str = func_src_str.append(func_src);
+                if (func_src.find_first_of(&quot;\n&quot;) &lt;= 1) {
+                    func_src_str.append(func_src.substr(func_src.find_first_of(&quot;\n&quot;) + 1));
+                } else {
+                    func_src_str.append(func_src);
+                }
                 auto rtn = std::shared_ptr&lt;AgentFunctionData&gt;(new AgentFunctionData(this-&gt;agent-&gt;shared_from_this(), function_name, func_src_str, in_type_name, out_type_name, code_func_name));
                 agent-&gt;functions.emplace(function_name, rtn);
                 return *rtn-&gt;description;

@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -794,209 +813,209 @@
   <div class="section" id="program-listing-for-file-randommanager-cu">
 <span id="program-listing-file-src-flamegpu-runtime-utility-randommanager-cu"></span><h1>Program Listing for File RandomManager.cu<a class="headerlink" href="#program-listing-for-file-randommanager-cu" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_runtime_utility_RandomManager.cu.html#file-src-flamegpu-runtime-utility-randommanager-cu"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/runtime/utility/RandomManager.cu</span></code>)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/utility/RandomManager.cuh&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/utility/RandomManager.cuh&quot;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;curand_kernel.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;device_launch_parameters.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;curand_kernel.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;device_launch_parameters.h&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="cpf">&lt;ctime&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cassert&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/detail/CUDAErrorChecking.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/gpu/CUDASimulation.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/detail/CUDAErrorChecking.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/gpu/CUDASimulation.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="n">RandomManager</span><span class="o">::</span><span class="n">RandomManager</span><span class="p">()</span> <span class="o">:</span>
-    <span class="n">deviceInitialised</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">reseed</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">seedFromTime</span><span class="p">()</span> <span class="o">%</span> <span class="n">UINT_MAX</span><span class="p">));</span>
-<span class="p">}</span>
-<span class="n">RandomManager</span><span class="o">::~</span><span class="n">RandomManager</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">free</span><span class="p">();</span>  <span class="c1">// @todo call free/freeDevice not in the constructor! instead just log that?</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">purge</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">d_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">uint64_t</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">seedFromTime</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="k">nullptr</span><span class="p">));</span>
-<span class="p">}</span>
+<span class="n">RandomManager</span><span class="o">::</span><span class="n">RandomManager</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">deviceInitialised</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">reseed</span><span class="p">(</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">seedFromTime</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">UINT_MAX</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">RandomManager</span><span class="o">::~</span><span class="n">RandomManager</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">free</span><span class="p">();</span><span class="w">  </span><span class="c1">// @todo call free/freeDevice not in the constructor! instead just log that?</span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">purge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">d_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">uint64_t</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">seedFromTime</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">uint64_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="k">nullptr</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">reseedHost</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">freeHost</span><span class="p">();</span>
-    <span class="n">host_rng</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="p">();</span>
-    <span class="c1">// Reset host random generator/s</span>
-    <span class="n">host_rng</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="n">mSeed</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">reseedHost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">freeHost</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">host_rng</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">mt19937</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reset host random generator/s</span>
+<span class="w">    </span><span class="n">host_rng</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span><span class="n">mSeed</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">reseedDevice</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">freeDevice</span><span class="p">();</span>
-    <span class="c1">// curand is initialised on access if length does not match. This would need a second device length?</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">reseedDevice</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">freeDevice</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// curand is initialised on access if length does not match. This would need a second device length?</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">reseed</span><span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">&amp;</span><span class="n">seed</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Set the instance&#39;s seed to the new value</span>
-    <span class="n">mSeed</span> <span class="o">=</span> <span class="n">seed</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">reseed</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">seed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Set the instance&#39;s seed to the new value</span>
+<span class="w">    </span><span class="n">mSeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">seed</span><span class="p">;</span><span class="w"></span>
 
-    <span class="c1">// Apply the new seed to the host</span>
-    <span class="n">reseedHost</span><span class="p">();</span>
-    <span class="c1">// Apply the new seed to the device.</span>
-    <span class="n">reseedDevice</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// Apply the new seed to the host</span>
+<span class="w">    </span><span class="n">reseedHost</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Apply the new seed to the device.</span>
+<span class="w">    </span><span class="n">reseedDevice</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">freeHost</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Release host_max</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">h_max_random_state</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">);</span>
-        <span class="n">h_max_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="n">h_max_random_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">freeHost</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Release host_max</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">h_max_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">h_max_random_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">freeDevice</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Clear size - length is just for the device portion?</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">freeDevice</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Clear size - length is just for the device portion?</span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">deviceInitialised</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Set the device&#39;s internal size to 0.</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="c1">// Release old random states on the deivce and update pointers.</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span>
-        <span class="p">}</span>
-        <span class="n">d_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">deviceInitialised</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Set the device&#39;s internal size to 0.</span>
+<span class="w">        </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Release old random states on the deivce and update pointers.</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">d_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">free</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Free the host and device.</span>
-    <span class="n">freeHost</span><span class="p">();</span>
-    <span class="n">freeDevice</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">free</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Free the host and device.</span>
+<span class="w">    </span><span class="n">freeHost</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">freeDevice</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">curandState</span> <span class="o">*</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="k">const</span> <span class="n">size_type</span> <span class="o">&amp;</span><span class="n">_length</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">growthModifier</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">);</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">);</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">);</span>
-    <span class="k">auto</span> <span class="n">t_length</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">t_length</span> <span class="o">&lt;</span> <span class="n">_length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">t_length</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span> <span class="o">*</span> <span class="n">growthModifier</span><span class="p">);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">shrinkModifier</span> <span class="o">&lt;</span> <span class="mf">1.0f</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">while</span> <span class="p">(</span><span class="n">t_length</span> <span class="o">*</span> <span class="n">shrinkModifier</span> <span class="o">&gt;</span> <span class="n">_length</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">t_length</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span> <span class="o">*</span> <span class="n">shrinkModifier</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  <span class="c1">// Special case for first run</span>
-        <span class="n">t_length</span> <span class="o">=</span> <span class="n">_length</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// Don&#39;t allow array to go below RandomManager::min_length elements</span>
-    <span class="n">t_length</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="o">&lt;</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span><span class="p">,</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">min_length</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">t_length</span> <span class="o">!=</span> <span class="n">length</span><span class="p">)</span>
-        <span class="n">resizeDeviceArray</span><span class="p">(</span><span class="n">t_length</span><span class="p">);</span>
-    <span class="k">return</span> <span class="n">d_random_state</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">__global__</span> <span class="kt">void</span> <span class="n">init_curand</span><span class="p">(</span><span class="n">curandState</span> <span class="o">*</span><span class="n">d_random_state</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">threadCount</span><span class="p">,</span> <span class="kt">uint64_t</span> <span class="n">seed</span><span class="p">,</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span> <span class="n">offset</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">*</span> <span class="n">blockDim</span><span class="p">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">&lt;</span> <span class="n">threadCount</span><span class="p">)</span>
-        <span class="n">curand_init</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">id</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">d_random_state</span><span class="p">[</span><span class="n">offset</span> <span class="o">+</span> <span class="n">id</span><span class="p">]);</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">resizeDeviceArray</span><span class="p">(</span><span class="k">const</span> <span class="n">size_type</span> <span class="o">&amp;</span><span class="n">_length</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Mark that the device hsa now been initialised.</span>
-    <span class="n">deviceInitialised</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">_length</span> <span class="o">&gt;</span> <span class="n">h_max_random_size</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Growing array</span>
-        <span class="n">curandState</span> <span class="o">*</span><span class="n">t_hd_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-        <span class="c1">// Allocate new mem to t_hd</span>
-        <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_hd_random_state</span><span class="p">,</span> <span class="n">_length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span>
-        <span class="c1">// Copy hd-&gt;t_hd[****    ]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_hd_random_state</span><span class="p">,</span> <span class="n">d_random_state</span><span class="p">,</span> <span class="n">length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToDevice</span><span class="p">));</span>
-        <span class="p">}</span>
-        <span class="c1">// Update pointers hd=t_hd</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span>
-        <span class="p">}</span>
-        <span class="n">d_random_state</span> <span class="o">=</span> <span class="n">t_hd_random_state</span><span class="p">;</span>
-        <span class="c1">// Init new[    ****]</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">h_max_random_size</span> <span class="o">&gt;</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// We have part/all host backup, copy to device array</span>
-            <span class="c1">// Reinit backup[    **  ]</span>
-            <span class="k">const</span> <span class="n">size_type</span> <span class="n">copy_len</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">h_max_random_size</span><span class="p">,</span> <span class="n">_length</span><span class="p">);</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_random_state</span> <span class="o">+</span> <span class="n">length</span><span class="p">,</span> <span class="n">h_max_random_state</span> <span class="o">+</span> <span class="n">length</span><span class="p">,</span> <span class="n">copy_len</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span> <span class="n">cudaMemcpyHostToDevice</span><span class="p">));</span>
-            <span class="n">length</span> <span class="o">+=</span> <span class="n">copy_len</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">_length</span> <span class="o">&gt;</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Init remainder[     **]</span>
-            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">initThreads</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
-            <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">initBlocks</span> <span class="o">=</span> <span class="p">((</span><span class="n">_length</span> <span class="o">-</span> <span class="n">length</span><span class="p">)</span> <span class="o">/</span> <span class="n">initThreads</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-            <span class="n">init_curand</span><span class="o">&lt;&lt;&lt;</span><span class="n">initBlocks</span><span class="p">,</span> <span class="n">initThreads</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">,</span> <span class="n">_length</span> <span class="o">-</span> <span class="n">length</span><span class="p">,</span> <span class="n">mSeed</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>  <span class="c1">// This could be async with above memcpy?</span>
-            <span class="n">gpuErrchkLaunch</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">// Shrinking array</span>
-        <span class="n">curandState</span> <span class="o">*</span><span class="n">t_hd_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-        <span class="n">curandState</span> <span class="o">*</span><span class="n">t_h_max_random_state</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
-        <span class="c1">// Allocate new</span>
-        <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_hd_random_state</span><span class="p">,</span> <span class="n">_length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span>
-        <span class="c1">// Allocate host backup</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="n">h_max_random_size</span><span class="p">)</span>
-            <span class="n">t_h_max_random_state</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">curandState</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span>
-        <span class="k">else</span>
-            <span class="n">t_h_max_random_state</span> <span class="o">=</span> <span class="n">h_max_random_state</span><span class="p">;</span>
-        <span class="c1">// Copy old-&gt;new</span>
-        <span class="n">assert</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">);</span>
-        <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_hd_random_state</span><span class="p">,</span> <span class="n">d_random_state</span><span class="p">,</span> <span class="n">_length</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToDevice</span><span class="p">));</span>
-        <span class="c1">// Copy part being shrunk away to host storage (This could be async with above memcpy?)</span>
-        <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_h_max_random_state</span> <span class="o">+</span> <span class="n">_length</span><span class="p">,</span> <span class="n">d_random_state</span> <span class="o">+</span> <span class="n">_length</span><span class="p">,</span> <span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">_length</span><span class="p">)</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span> <span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span>
-        <span class="c1">// Release and replace old host ptr</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="n">h_max_random_size</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">h_max_random_state</span><span class="p">)</span>
-                <span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">);</span>
-            <span class="n">h_max_random_state</span> <span class="o">=</span> <span class="n">t_h_max_random_state</span><span class="p">;</span>
-            <span class="n">h_max_random_size</span> <span class="o">=</span> <span class="n">length</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="c1">// Release old</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">d_random_state</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span>
-        <span class="p">}</span>
-        <span class="c1">// Update pointer</span>
-        <span class="n">d_random_state</span> <span class="o">=</span> <span class="n">t_hd_random_state</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// Update length</span>
-    <span class="n">length</span> <span class="o">=</span> <span class="n">_length</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">setGrowthModifier</span><span class="p">(</span><span class="kt">float</span> <span class="n">_growthModifier</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">growthModifier</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">);</span>
-    <span class="n">RandomManager</span><span class="o">::</span><span class="n">growthModifier</span> <span class="o">=</span> <span class="n">_growthModifier</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">float</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">getGrowthModifier</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">growthModifier</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">void</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">setShrinkModifier</span><span class="p">(</span><span class="kt">float</span> <span class="n">_shrinkModifier</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">);</span>
-    <span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">);</span>
-    <span class="n">RandomManager</span><span class="o">::</span><span class="n">shrinkModifier</span> <span class="o">=</span> <span class="n">_shrinkModifier</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">float</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">getShrinkModifier</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">shrinkModifier</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">size</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">length</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kt">uint64_t</span> <span class="n">RandomManager</span><span class="o">::</span><span class="n">seed</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">mSeed</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">curandState</span> <span class="o">*</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">cudaRandomState</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">d_random_state</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">growthModifier</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">t_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t_length</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">_length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">t_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">growthModifier</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">t_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">_length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">t_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">shrinkModifier</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// Special case for first run</span>
+<span class="w">        </span><span class="n">t_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_length</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Don&#39;t allow array to go below RandomManager::min_length elements</span>
+<span class="w">    </span><span class="n">t_length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">max</span><span class="o">&lt;</span><span class="n">size_type</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t_length</span><span class="p">,</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">min_length</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">t_length</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">resizeDeviceArray</span><span class="p">(</span><span class="n">t_length</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">d_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">init_curand</span><span class="p">(</span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">d_random_state</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">threadCount</span><span class="p">,</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="w"> </span><span class="n">offset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threadCount</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="n">curand_init</span><span class="p">(</span><span class="n">seed</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d_random_state</span><span class="p">[</span><span class="n">offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">]);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">resizeDeviceArray</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Mark that the device hsa now been initialised.</span>
+<span class="w">    </span><span class="n">deviceInitialised</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">h_max_random_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Growing array</span>
+<span class="w">        </span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">t_hd_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Allocate new mem to t_hd</span>
+<span class="w">        </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_hd_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Copy hd-&gt;t_hd[****    ]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_hd_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">d_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span><span class="w"> </span><span class="n">cudaMemcpyDeviceToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Update pointers hd=t_hd</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_random_state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">d_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_hd_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Init new[    ****]</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">h_max_random_size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// We have part/all host backup, copy to device array</span>
+<span class="w">            </span><span class="c1">// Reinit backup[    **  ]</span>
+<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">size_type</span><span class="w"> </span><span class="n">copy_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">min</span><span class="p">(</span><span class="n">h_max_random_size</span><span class="p">,</span><span class="w"> </span><span class="n">_length</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">d_random_state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">h_max_random_state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">copy_len</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span><span class="w"> </span><span class="n">cudaMemcpyHostToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="w">            </span><span class="n">length</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">copy_len</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Init remainder[     **]</span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">initThreads</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">initBlocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">_length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">initThreads</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">init_curand</span><span class="o">&lt;&lt;&lt;</span><span class="n">initBlocks</span><span class="p">,</span><span class="w"> </span><span class="n">initThreads</span><span class="o">&gt;&gt;&gt;</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">_length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">mSeed</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">);</span><span class="w">  </span><span class="c1">// This could be async with above memcpy?</span>
+<span class="w">            </span><span class="n">gpuErrchkLaunch</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Shrinking array</span>
+<span class="w">        </span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">t_hd_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">t_h_max_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Allocate new</span>
+<span class="w">        </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMalloc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">t_hd_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Allocate host backup</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">h_max_random_size</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">t_h_max_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">curandState</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">malloc</span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">)));</span><span class="w"></span>
+<span class="w">        </span><span class="k">else</span><span class="w"></span>
+<span class="w">            </span><span class="n">t_h_max_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h_max_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Copy old-&gt;new</span>
+<span class="w">        </span><span class="n">assert</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_hd_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">d_random_state</span><span class="p">,</span><span class="w"> </span><span class="n">_length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span><span class="w"> </span><span class="n">cudaMemcpyDeviceToDevice</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Copy part being shrunk away to host storage (This could be async with above memcpy?)</span>
+<span class="w">        </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaMemcpy</span><span class="p">(</span><span class="n">t_h_max_random_state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_length</span><span class="p">,</span><span class="w"> </span><span class="n">d_random_state</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">_length</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_length</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">curandState</span><span class="p">),</span><span class="w"> </span><span class="n">cudaMemcpyDeviceToHost</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Release and replace old host ptr</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">h_max_random_size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">)</span><span class="w"></span>
+<span class="w">                </span><span class="o">::</span><span class="n">free</span><span class="p">(</span><span class="n">h_max_random_state</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="n">h_max_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_h_max_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">h_max_random_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Release old</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">d_random_state</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">gpuErrchk</span><span class="p">(</span><span class="n">cudaFree</span><span class="p">(</span><span class="n">d_random_state</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Update pointer</span>
+<span class="w">        </span><span class="n">d_random_state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_hd_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Update length</span>
+<span class="w">    </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_length</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">setGrowthModifier</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">_growthModifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">growthModifier</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">growthModifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_growthModifier</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">getGrowthModifier</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">growthModifier</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">setShrinkModifier</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">_shrinkModifier</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">assert</span><span class="p">(</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">shrinkModifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_shrinkModifier</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">float</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">getShrinkModifier</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">shrinkModifier</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">RandomManager</span><span class="o">::</span><span class="n">size_type</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">length</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="kt">uint64_t</span><span class="w"> </span><span class="n">RandomManager</span><span class="o">::</span><span class="n">seed</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mSeed</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">RandomManager</span><span class="o">::</span><span class="n">cudaRandomState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">d_random_state</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 </pre></div>
 </div>
 </div>

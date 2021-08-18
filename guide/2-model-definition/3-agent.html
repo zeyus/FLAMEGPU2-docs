@@ -244,6 +244,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -251,7 +270,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -808,7 +827,7 @@ object</p>
 <p>FLAMEGPU2 agents are associated with a particular model. As such they are created via a <cite>ModelDescription</cite> object and are initialised with a name:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span><span class="w"> </span><span class="o">&amp;</span><span class="n">predator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
@@ -831,11 +850,11 @@ more IDs are required.</p>
 <h3>User Defined Variables<a class="headerlink" href="#user-defined-variables" title="Permalink to this headline">¶</a></h3>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create two new floating point variables, x and y</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create a new integer variable, hungerLevel</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two new floating point variables, x and y</span>
@@ -854,7 +873,7 @@ more IDs are required.</p>
 <p>Array variables can also be defined by providing a name and array length:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create an array variable called exampleArray which is an array of 3 integers</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an array variable called exampleArray which is an array of 3 integers</span>
@@ -870,8 +889,8 @@ All newly defined agent types will have a default state, but you can add additio
 <code class="docutils literal notranslate"><span class="pre">AgentDescription</span></code> object:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create two new states, resting and hunting</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create two new states, resting and hunting</span>
@@ -885,21 +904,21 @@ All newly defined agent types will have a default state, but you can add additio
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span> <span class="o">&amp;</span><span class="n">predator</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span><span class="w"> </span><span class="o">&amp;</span><span class="n">predator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;predator&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create two new floating point variables, x and y</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create a new integer variable, hungerLevel</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariable</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;hungerLevel&quot;</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create an array variable called exampleArray which is an array of 3 integers</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newVariableArray</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;exampleArray&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Create two new states, resting and hunting</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span>
-<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;resting&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">predator</span><span class="p">.</span><span class="n">newState</span><span class="p">(</span><span class="s">&quot;hunting&quot;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new agent called &#39;predator&#39; associated the model &#39;model&#39;</span>

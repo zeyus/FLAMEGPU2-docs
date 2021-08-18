@@ -244,6 +244,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -251,7 +270,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -818,38 +837,38 @@ We will discuss messages in more detail later, so for now don’t worry about th
 <p>For Non-RTC functions, when using the C++ interface, the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro can be used to declare and define the agent function, which can then be associated with the <code class="docutils literal notranslate"><span class="pre">flamegpu::AgentDescription</span></code> object using the <code class="docutils literal notranslate"><span class="pre">newFunction</span></code> method.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function called agent_fn1 - specified ahead of main function</span>
-<span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Behaviour goes here</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Behaviour goes here</span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
 
-    <span class="c1">// Attach a function called agent_fn1, defined by the symbol agent_fn1 to the AgentDescription object agent.</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="n">agent_fn1_description</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span> <span class="n">agent_fn1</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Attach a function called agent_fn1, defined by the symbol agent_fn1 to the AgentDescription object agent.</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span><span class="w"> </span><span class="n">agent_fn1_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">agent_fn1</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// ...</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div></div>
 <p>When using the Run-Time Compiled (RTC) functions, optionally in the C++ interface or required by the Python interface, the function must be defined in a string and associated with the AgentDescription using the <code class="docutils literal notranslate"><span class="pre">newRTCFunction</span></code> method.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="sa">R</span><span class="s">&quot;</span><span class="dl">###(</span><span class="s"></span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">###(</span><span class="s"></span>
 <span class="s">// Define an agent function called agent_fn1 - specified ahead of main function</span>
 <span class="s">FLAMEGPU_AGENT_FUNCTION(agent_fn1, flamegpu::MessageNone, flamegpu::MessageNone) {</span>
 <span class="s">    // Behaviour goes here</span>
 <span class="s">}</span>
-<span class="dl">)###</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="dl">)###</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span>
 
-    <span class="c1">// Attach a function called agent_fn1, defined in the string variable agent_fn1_source to the AgentDescription object agent.</span>
-    <span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="n">agent_fn1_description</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">newRTCFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span> <span class="n">agent_fn1_source</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Attach a function called agent_fn1, defined in the string variable agent_fn1_source to the AgentDescription object agent.</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span><span class="w"> </span><span class="n">agent_fn1_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">newRTCFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// ...</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an agent function called agent_fn1</span>
@@ -875,9 +894,9 @@ We will discuss messages in more detail later, so for now don’t worry about th
 <p>If you wish to define regular functions which can be used within agent function definitions, you can use the <cite>FLAMEGPU_DEVICE_FUNCTION</cite> macro:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two integers which can be called inside agent functions.</span>
-<span class="n">FLAMEGPU_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_DEVICE_FUNCTION</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div></div>
@@ -887,9 +906,9 @@ We will discuss messages in more detail later, so for now don’t worry about th
 <p>If you wish to define regular functions which can be used within agent function definitions and in host code, you can use the <cite>FLAMEGPU_HOST_DEVICE_FUNCTION</cite> macro:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for subtracting two integers which can be called inside agent functions, or in host code</span>
-<span class="n">FLAMEGPU_HOST_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">subtract</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_HOST_DEVICE_FUNCTION</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">subtract</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </div></div>
@@ -898,31 +917,31 @@ We will discuss messages in more detail later, so for now don’t worry about th
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline">¶</a></h2>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two integers which can be called inside agent functions.</span>
-<span class="n">FLAMEGPU_DEVICE_FUNCTION</span> <span class="kt">int</span> <span class="n">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_DEVICE_FUNCTION</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Define an agent function called agent_fn1 - specified ahead of main function</span>
-<span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span> <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Behaviour goes here</span>
-<span class="p">}</span>
+<span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Behaviour goes here</span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Define an agent function called agent_fn1 which will be compiled at runtime</span>
-<span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">agent_fn1_source</span> <span class="o">=</span> <span class="sa">R</span><span class="s">&quot;</span><span class="dl">###(</span><span class="s"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">###(</span><span class="s"></span>
 <span class="s">FLAMEGPU_AGENT_FUNCTION(agent_fn1, flamegpu::MessageNone, flamegpu::MessageNone) {</span>
 <span class="s">    // Behaviour goes here</span>
 <span class="s">}</span>
-<span class="dl">)###</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="dl">)###</span><span class="s">&quot;</span><span class="p">;</span><span class="w"></span>
 
 <span class="c1">// Somewhere inside main() {</span>
 
 <span class="c1">// Attach a function called agent_fn1 to an agent called agent</span>
 <span class="c1">// The AgentFunctionDescription is stored in the agent_fn1_description variable</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="n">agent_fn1_description</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span> <span class="n">agent_fn1_source</span><span class="p">);</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span><span class="w"> </span><span class="n">agent_fn1_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">newFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Attach a runtime-compiled function called agent_fn1 to an agent called agent</span>
 <span class="c1">// The AgentFunctionDescription is stored in the agent_fn1_description variable</span>
-<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span> <span class="n">agent_fn1_description</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">newRTCFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span> <span class="n">agent_fn1_source</span><span class="p">);</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentFunctionDescription</span><span class="o">&amp;</span><span class="w"> </span><span class="n">agent_fn1_description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">newRTCFunction</span><span class="p">(</span><span class="s">&quot;agent_fn1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an agent function called agent_fn1</span>

@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -794,366 +813,366 @@
   <div class="section" id="program-listing-for-file-dependencygraph-cpp">
 <span id="program-listing-file-src-flamegpu-model-dependencygraph-cpp"></span><h1>Program Listing for File DependencyGraph.cpp<a class="headerlink" href="#program-listing-for-file-dependencygraph-cpp" title="Permalink to this headline">¶</a></h1>
 <p>↰ <a class="reference internal" href="file_src_flamegpu_model_DependencyGraph.cpp.html#file-src-flamegpu-model-dependencygraph-cpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">src/flamegpu/model/DependencyGraph.cpp</span></code>)</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;flamegpu/model/DependencyGraph.h&quot;</span><span class="cp"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/model/DependencyGraph.h&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">()</span> <span class="p">{</span>
-<span class="p">}</span>
+<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">(</span><span class="k">const</span> <span class="n">ModelData</span><span class="o">*</span> <span class="n">_model</span><span class="p">)</span> <span class="o">:</span> <span class="n">model</span><span class="p">(</span><span class="n">_model</span><span class="p">)</span> <span class="p">{</span>
-<span class="p">}</span>
+<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ModelData</span><span class="o">*</span><span class="w"> </span><span class="n">_model</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">model</span><span class="p">(</span><span class="n">_model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">(</span><span class="k">const</span> <span class="n">DependencyGraph</span><span class="o">&amp;</span> <span class="n">other</span><span class="p">)</span> <span class="o">:</span> <span class="n">model</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">model</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">other</span><span class="p">.</span><span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">roots</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="n">DependencyGraph</span><span class="o">::</span><span class="n">DependencyGraph</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">model</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">roots</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 
-<span class="kt">bool</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">DependencyGraph</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">,</span> <span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">checkEqual</span><span class="p">;</span>
-    <span class="n">checkEqual</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">checkEqual</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">DependencyNode</span><span class="o">*</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">lhsDeps</span> <span class="o">=</span> <span class="n">lhs</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">();</span>
-        <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">rhsDeps</span> <span class="o">=</span> <span class="n">rhs</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">();</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">bool</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">checkEqual</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">checkEqual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">checkEqual</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lhsDeps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lhs</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rhsDeps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">();</span><span class="w"></span>
 
-        <span class="c1">// Different number of dependents -&gt; not same</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">lhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">rhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">// Check children are equal</span>
-            <span class="k">for</span>  <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">lhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">rhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">checkEqual</span><span class="p">(</span><span class="n">lhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
-                    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-    <span class="p">};</span>
+<span class="w">        </span><span class="c1">// Different number of dependents -&gt; not same</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Check children are equal</span>
+<span class="w">            </span><span class="k">for</span><span class="w">  </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lhsDeps</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">checkEqual</span><span class="p">(</span><span class="n">lhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">rhsDeps</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="c1">// Check equal number of roots</span>
-    <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">lhsRoots</span> <span class="o">=</span> <span class="n">roots</span><span class="p">;</span>
-    <span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="n">rhsRoots</span> <span class="o">=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">roots</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Check equal number of roots</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">lhsRoots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">roots</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">rhsRoots</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rhs</span><span class="p">.</span><span class="n">roots</span><span class="p">;</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">lhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="n">rhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">checkEqual</span><span class="p">(</span><span class="n">lhsRoots</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">rhsRoots</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">rhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">lhsRoots</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">checkEqual</span><span class="p">(</span><span class="n">lhsRoots</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">rhsRoots</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">addRoot</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">&amp;</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">roots</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">root</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">addRoot</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">&amp;</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">roots</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">bool</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">validateDependencyGraph</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">functionStack</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">validateDependencyGraph</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">functionStack</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">roots</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">THROW</span> <span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Agent function dependency graph is empty!&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">getDependencies</span><span class="p">().</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">THROW</span> <span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Root agent function has dependencies!&quot;</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">root</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">THROW</span> <span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Dependency graph validation failed! Does the graph have a cycle?&quot;</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">roots</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">THROW</span><span class="w"> </span><span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Agent function dependency graph is empty!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="o">-&gt;</span><span class="n">getDependencies</span><span class="p">().</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">THROW</span><span class="w"> </span><span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Root agent function has dependencies!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">root</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">THROW</span><span class="w"> </span><span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;Warning! Dependency graph validation failed! Does the graph have a cycle?&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">generateLayers</span><span class="p">(</span><span class="n">ModelDescription</span><span class="o">&amp;</span> <span class="n">_model</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Check model doesn&#39;t already have layers attached</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">_model</span><span class="p">.</span><span class="n">getLayersCount</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">THROW</span> <span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;DependencyGraph cannot generate layers on a model which already has layers attached!&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">generateLayers</span><span class="p">(</span><span class="n">ModelDescription</span><span class="o">&amp;</span><span class="w"> </span><span class="n">_model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Check model doesn&#39;t already have layers attached</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_model</span><span class="p">.</span><span class="n">getLayersCount</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">THROW</span><span class="w"> </span><span class="nf">exception::InvalidDependencyGraph</span><span class="p">(</span><span class="s">&quot;DependencyGraph cannot generate layers on a model which already has layers attached!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// Check dependency graph is valid before we attempt to build layers</span>
-    <span class="n">validateDependencyGraph</span><span class="p">();</span>
-    <span class="n">checkForUnattachedFunctions</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Check dependency graph is valid before we attempt to build layers</span>
+<span class="w">    </span><span class="n">validateDependencyGraph</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">checkForUnattachedFunctions</span><span class="p">();</span><span class="w"></span>
 
-    <span class="c1">// Lambda to walk the graph and set minimum layer depths of nodes</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">setMinLayerDepths</span><span class="p">;</span>
-    <span class="n">setMinLayerDepths</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">setMinLayerDepths</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">depth</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">depth</span> <span class="o">&gt;=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getMinimumLayerDepth</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">node</span><span class="o">-&gt;</span><span class="n">setMinimumLayerDepth</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">setMinLayerDepths</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
+<span class="w">    </span><span class="c1">// Lambda to walk the graph and set minimum layer depths of nodes</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">setMinLayerDepths</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">setMinLayerDepths</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">setMinLayerDepths</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">depth</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">depth</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getMinimumLayerDepth</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">setMinimumLayerDepth</span><span class="p">(</span><span class="n">depth</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">setMinLayerDepths</span><span class="p">(</span><span class="n">child</span><span class="p">,</span><span class="w"> </span><span class="n">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="c1">// Set minimum layer depths</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">setMinLayerDepths</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="c1">// Set minimum layer depths</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">setMinLayerDepths</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// Build list of functions in their respective ideal layers assuming no conflicts</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;&gt;</span> <span class="n">idealLayers</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">buildIdealLayers</span><span class="p">;</span>
-    <span class="n">buildIdealLayers</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">buildIdealLayers</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">idealLayers</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// New layers required</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;&gt;::</span><span class="n">size_type</span> <span class="n">nodeDepth</span> <span class="o">=</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getMinimumLayerDepth</span><span class="p">();</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">nodeDepth</span> <span class="o">&gt;=</span> <span class="n">idealLayers</span><span class="p">.</span><span class="n">size</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">idealLayers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;</span><span class="p">());</span>
-        <span class="p">}</span>
+<span class="w">    </span><span class="c1">// Build list of functions in their respective ideal layers assuming no conflicts</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;&gt;</span><span class="w"> </span><span class="n">idealLayers</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">buildIdealLayers</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">buildIdealLayers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">buildIdealLayers</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">idealLayers</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// New layers required</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;&gt;::</span><span class="n">size_type</span><span class="w"> </span><span class="n">nodeDepth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getMinimumLayerDepth</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">nodeDepth</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">idealLayers</span><span class="p">.</span><span class="n">size</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">idealLayers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">DependencyNode</span><span class="o">*&gt;</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="c1">// Add node to relevant layer if node hasn&#39;t already been added</span>
-        <span class="kt">bool</span> <span class="n">alreadyAdded</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">includedNode</span> <span class="p">:</span> <span class="n">idealLayers</span><span class="p">[</span><span class="n">nodeDepth</span><span class="p">])</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="n">includedNode</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">alreadyAdded</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">alreadyAdded</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">idealLayers</span><span class="p">[</span><span class="n">nodeDepth</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="c1">// Add node to relevant layer if node hasn&#39;t already been added</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">alreadyAdded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">includedNode</span> <span class="p">:</span><span class="w"> </span><span class="n">idealLayers</span><span class="p">[</span><span class="n">nodeDepth</span><span class="p">])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">includedNode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">alreadyAdded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">alreadyAdded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">idealLayers</span><span class="p">[</span><span class="n">nodeDepth</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="c1">// Repeat for children</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">buildIdealLayers</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
+<span class="w">        </span><span class="c1">// Repeat for children</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">buildIdealLayers</span><span class="p">(</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">buildIdealLayers</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">buildIdealLayers</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// idealLayers now contains DependencyNode pointers in their ideal layers, i.e. assuming no conflicts.</span>
-    <span class="c1">// Now iterate structure attempting to add functions to layers.</span>
-    <span class="c1">// If we encounter conflicts, introduce additional layers as necessary</span>
-    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">idealLayer</span> <span class="p">:</span> <span class="n">idealLayers</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Request a new layer from the model</span>
-        <span class="n">LayerDescription</span><span class="o">*</span> <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-        <span class="c1">// Attempt to add each node in the idealLayer to the layer</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">node</span> <span class="p">:</span> <span class="n">idealLayer</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Add node based on its concrete type</span>
-            <span class="c1">// Agent function</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span> <span class="n">afd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="k">try</span> <span class="p">{</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidAgentFunc</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="c1">// Conflict, create new layer and add to that instead</span>
-                    <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span>
-                    <span class="c1">// printf(&quot;New function execution layer created - exception::InvalidAgentFunc exception\n&quot;);</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span>
-                    <span class="c1">// printf(&quot;New function execution layer created - exception::InvalidLayerMember exception\n&quot;);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+<span class="w">    </span><span class="c1">// idealLayers now contains DependencyNode pointers in their ideal layers, i.e. assuming no conflicts.</span>
+<span class="w">    </span><span class="c1">// Now iterate structure attempting to add functions to layers.</span>
+<span class="w">    </span><span class="c1">// If we encounter conflicts, introduce additional layers as necessary</span>
+<span class="w">    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">idealLayer</span> <span class="p">:</span><span class="w"> </span><span class="n">idealLayers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Request a new layer from the model</span>
+<span class="w">        </span><span class="n">LayerDescription</span><span class="o">*</span><span class="w"> </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Attempt to add each node in the idealLayer to the layer</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">node</span> <span class="p">:</span><span class="w"> </span><span class="n">idealLayer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Add node based on its concrete type</span>
+<span class="w">            </span><span class="c1">// Agent function</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span><span class="w"> </span><span class="n">afd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidAgentFunc</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// Conflict, create new layer and add to that instead</span>
+<span class="w">                    </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// printf(&quot;New function execution layer created - exception::InvalidAgentFunc exception\n&quot;);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addAgentFunction</span><span class="p">(</span><span class="o">*</span><span class="n">afd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">afd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// printf(&quot;New function execution layer created - exception::InvalidLayerMember exception\n&quot;);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
 
-            <span class="c1">// Submodel</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">SubModelDescription</span><span class="o">*</span> <span class="n">smd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="k">try</span> <span class="p">{</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span>
-                    <span class="c1">// printf(&quot;New submodel layer created - exception::InvalidLayerMember exception\n&quot;);</span>
-                <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidSubModel</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                    <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                    <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span>
-                    <span class="c1">// printf(&quot;New submodel layer created - exception::InvalidSubModel exception\n&quot;);</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
+<span class="w">            </span><span class="c1">// Submodel</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SubModelDescription</span><span class="o">*</span><span class="w"> </span><span class="n">smd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// printf(&quot;New submodel layer created - exception::InvalidLayerMember exception\n&quot;);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidSubModel</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addSubModel</span><span class="p">(</span><span class="o">*</span><span class="n">smd</span><span class="p">);</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">smd</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="c1">// printf(&quot;New submodel layer created - exception::InvalidSubModel exception\n&quot;);</span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
 
-            <span class="c1">// Host function</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">HostFunctionDescription</span><span class="o">*</span> <span class="n">hdf</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="c1">// function ptr, callback object should be mutually exclusive. Callback only used for SWIG, ptr only for non-SWIG.</span>
-                <span class="c1">// If ptr is available, use that</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">()</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="p">{</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">());</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                        <span class="n">layer</span><span class="o">-&gt;</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">());</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span>
-                        <span class="c1">// printf(&quot;New host function layer created - exception::InvalidLayerMember exception\n&quot;);</span>
-                    <span class="p">}</span>
-                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-                    <span class="k">try</span> <span class="p">{</span>
-                        <span class="n">layer</span><span class="o">-&gt;</span><span class="n">_addHostFunctionCallback</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getCallbackObject</span><span class="p">());</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span>
-                    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="k">const</span> <span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span>
-                        <span class="n">layer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span>
-                        <span class="n">layer</span><span class="o">-&gt;</span><span class="n">_addHostFunctionCallback</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getCallbackObject</span><span class="p">());</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span>
-                        <span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span>
-                        <span class="c1">// printf(&quot;New host function layer created - exception::InvalidLayerMember exception\n&quot;);</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">            </span><span class="c1">// Host function</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">HostFunctionDescription</span><span class="o">*</span><span class="w"> </span><span class="n">hdf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="c1">// function ptr, callback object should be mutually exclusive. Callback only used for SWIG, ptr only for non-SWIG.</span>
+<span class="w">                </span><span class="c1">// If ptr is available, use that</span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">());</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">addHostFunction</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getFunctionPtr</span><span class="p">());</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// printf(&quot;New host function layer created - exception::InvalidLayerMember exception\n&quot;);</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">_addHostFunctionCallback</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getCallbackObject</span><span class="p">());</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">InvalidLayerMember</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_model</span><span class="p">.</span><span class="n">newLayer</span><span class="p">();</span><span class="w"></span>
+<span class="w">                        </span><span class="n">layer</span><span class="o">-&gt;</span><span class="n">_addHostFunctionCallback</span><span class="p">(</span><span class="n">hdf</span><span class="o">-&gt;</span><span class="n">getCallbackObject</span><span class="p">());</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">                        </span><span class="n">constructedLayers</span><span class="p">.</span><span class="n">back</span><span class="p">().</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">hdf</span><span class="p">));</span><span class="w"></span>
+<span class="w">                        </span><span class="c1">// printf(&quot;New host function layer created - exception::InvalidLayerMember exception\n&quot;);</span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">bool</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Check if the function we are looking at already exists on the stack - if so we have a cycle</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">doesFunctionExistInStack</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Check if the function we are looking at already exists on the stack - if so we have a cycle</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">doesFunctionExistInStack</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// No cycle detected, check if all child nodes form valid subtrees</span>
-    <span class="n">functionStack</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">child</span><span class="p">))</span>
-            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="c1">// No cycle detected, check if all child nodes form valid subtrees</span>
+<span class="w">    </span><span class="n">functionStack</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">validateSubTree</span><span class="p">(</span><span class="n">child</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// No problems, tree formed by this node and its children is valid</span>
-    <span class="c1">// Pop this function from the stack and return</span>
-    <span class="n">functionStack</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// No problems, tree formed by this node and its children is valid</span>
+<span class="w">    </span><span class="c1">// Pop this function from the stack and return</span>
+<span class="w">    </span><span class="n">functionStack</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">bool</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">doesFunctionExistInStack</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">function</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// Iterating vector probably faster than using constant lookup structure for likely number of elements</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">fn</span> <span class="p">:</span> <span class="n">functionStack</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">fn</span> <span class="o">==</span> <span class="n">function</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">doesFunctionExistInStack</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">function</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Iterating vector probably faster than using constant lookup structure for likely number of elements</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">fn</span> <span class="p">:</span><span class="w"> </span><span class="n">functionStack</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">function</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">checkForUnattachedFunctions</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Build set of model&#39;s agent functions</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">AgentFunctionData</span><span class="o">*&gt;</span> <span class="n">modelFunctions</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">agent</span> <span class="p">:</span> <span class="n">model</span><span class="o">-&gt;</span><span class="n">agents</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">func</span> <span class="p">:</span> <span class="n">agent</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">functions</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">modelFunctions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">get</span><span class="p">());</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">checkForUnattachedFunctions</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Build set of model&#39;s agent functions</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">AgentFunctionData</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">modelFunctions</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">agent</span> <span class="p">:</span><span class="w"> </span><span class="n">model</span><span class="o">-&gt;</span><span class="n">agents</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">func</span> <span class="p">:</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">second</span><span class="o">-&gt;</span><span class="n">functions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">modelFunctions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="n">second</span><span class="p">.</span><span class="n">get</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// Build set of functions present in the dependency graph</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">AgentFunctionData</span><span class="o">*&gt;</span> <span class="n">graphFunctions</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">captureFunctions</span><span class="p">;</span>
-    <span class="n">captureFunctions</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">captureFunctions</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">graphFunctions</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span> <span class="n">afd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">graphFunctions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">afd</span><span class="o">-&gt;</span><span class="n">function</span><span class="p">);</span>
-        <span class="p">}</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">const</span> <span class="k">auto</span><span class="o">&amp;</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-            <span class="n">captureFunctions</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
-        <span class="p">}</span>
-    <span class="p">};</span>
+<span class="w">    </span><span class="c1">// Build set of functions present in the dependency graph</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="n">AgentFunctionData</span><span class="o">*&gt;</span><span class="w"> </span><span class="n">graphFunctions</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">captureFunctions</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">captureFunctions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">captureFunctions</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">graphFunctions</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span><span class="w"> </span><span class="n">afd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">graphFunctions</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">afd</span><span class="o">-&gt;</span><span class="n">function</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">captureFunctions</span><span class="p">(</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
 
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">captureFunctions</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-    <span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">captureFunctions</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
-    <span class="c1">// Compare sets</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">modelFunctions</span> <span class="o">!=</span> <span class="n">graphFunctions</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;WARNING: Not all agent functions are used in the dependency graph - have you forgotten to add one?&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">flush</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// Compare sets</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">modelFunctions</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">graphFunctions</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;WARNING: Not all agent functions are used in the dependency graph - have you forgotten to add one?&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">flush</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span> <span class="n">afd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">afd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">HostFunctionDescription</span><span class="o">*</span> <span class="n">hfd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">hfd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">SubModelDescription</span><span class="o">*</span> <span class="n">smd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">smd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;DependencyNode without concrete type!&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AgentFunctionDescription</span><span class="o">*</span><span class="w"> </span><span class="n">afd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">afd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">HostFunctionDescription</span><span class="o">*</span><span class="w"> </span><span class="n">hfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">hfd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SubModelDescription</span><span class="o">*</span><span class="w"> </span><span class="n">smd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">smd</span><span class="o">-&gt;</span><span class="n">getName</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;DependencyNode without concrete type!&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">outputFileName</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">validateDependencyGraph</span><span class="p">();</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="nf">DOTFile</span><span class="p">(</span><span class="n">outputFileName</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">DOTFile</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="p">{</span>
-        <span class="c1">// File preamble</span>
-        <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;digraph {&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">generateDOTDiagram</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">outputFileName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">validateDependencyGraph</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="nf">DOTFile</span><span class="p">(</span><span class="n">outputFileName</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">DOTFile</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// File preamble</span>
+<span class="w">        </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;digraph {&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
 
-        <span class="c1">// Lambda to recursively print nodes</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">printNodes</span><span class="p">;</span>
-        <span class="n">printNodes</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">printNodes</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DOTFile</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">nodeName</span> <span class="o">=</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
-            <span class="k">if</span> <span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;    &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeName</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;[style = filled, color = red];&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;    &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeName</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;[style = filled, color = yellow];&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;    &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">nodeName</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;[style = filled, color = green];&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-            <span class="p">}</span>
+<span class="w">        </span><span class="c1">// Lambda to recursively print nodes</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">printNodes</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">printNodes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">printNodes</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DOTFile</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">nodeName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">AgentFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">nodeName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[style = filled, color = red];&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">HostFunctionDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">nodeName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[style = filled, color = yellow];&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">SubModelDescription</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">node</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">nodeName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;[style = filled, color = green];&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
 
-            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-                <span class="n">printNodes</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">printNodes</span><span class="p">(</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
 
-        <span class="c1">// Lambda to recursively print relations</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">printRelations</span><span class="p">;</span>
-        <span class="n">printRelations</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">printRelations</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">DOTFile</span><span class="p">]</span> <span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// Get this node&#39;s name</span>
-            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">parentName</span> <span class="o">=</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// Lambda to recursively print relations</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">printRelations</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">printRelations</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="n">printRelations</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DOTFile</span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="n">DependencyNode</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="c1">// Get this node&#39;s name</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">parentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getNodeName</span><span class="p">(</span><span class="n">node</span><span class="p">);</span><span class="w"></span>
 
-            <span class="c1">// For each child, print DOT relation and recurse</span>
-            <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">child</span> <span class="p">:</span> <span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span> <span class="p">{</span>
-                <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;    &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">parentName</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; -&gt; &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">getNodeName</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;;&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-                <span class="n">printRelations</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">};</span>
+<span class="w">            </span><span class="c1">// For each child, print DOT relation and recurse</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">child</span> <span class="p">:</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">getDependents</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">parentName</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; -&gt; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">getNodeName</span><span class="p">(</span><span class="n">child</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">printRelations</span><span class="p">(</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
 
-        <span class="c1">// Recursively print nodes</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">printNodes</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="c1">// Recursively print nodes</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printNodes</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="c1">// Recursively print relations</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">root</span> <span class="p">:</span> <span class="n">roots</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">printRelations</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
-        <span class="p">}</span>
+<span class="w">        </span><span class="c1">// Recursively print relations</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">root</span> <span class="p">:</span><span class="w"> </span><span class="n">roots</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">printRelations</span><span class="p">(</span><span class="n">root</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
 
-        <span class="c1">// EOF</span>
-        <span class="n">DOTFile</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">        </span><span class="c1">// EOF</span>
+<span class="w">        </span><span class="n">DOTFile</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getConstructedLayersString</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">stringstream</span> <span class="n">ss</span><span class="p">;</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">layerCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">layer</span> <span class="p">:</span> <span class="n">constructedLayers</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;--------------------&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Layer &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">layerCount</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;--------------------&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="nl">item</span> <span class="p">:</span> <span class="n">layer</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">item</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">ss</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="n">layerCount</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
-<span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">DependencyGraph</span><span class="o">::</span><span class="n">getConstructedLayersString</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">ss</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">layerCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">layer</span> <span class="p">:</span><span class="w"> </span><span class="n">constructedLayers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;--------------------&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Layer &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">layerCount</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;--------------------&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="nl">item</span> <span class="p">:</span><span class="w"> </span><span class="n">layer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">ss</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">layerCount</span><span class="o">++</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ss</span><span class="p">.</span><span class="n">str</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 </pre></div>
 </div>
 </div>

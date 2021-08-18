@@ -241,6 +241,25 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/1-building-with-vis.html#default-visualisation">Default Visualisation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html">Configuring a Visualisation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualisation-options">Visualisation Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/2-setting-up-vis.html#visualising-after-simulation-exit">Visualising After Simulation Exit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html">Visualising Agents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-model">Agent Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-position">Agent Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-direction">Agent Direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-scale">Agent Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-color">Agent Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/3-visualising-agents.html#agent-states">Agent States</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html">Visualising Additional Details</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#lines">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/9-visualisation/4-adding-details.html#models">Models</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/10-performance-troubleshooting/index.html">Performance Troubleshooting</a><ul>
@@ -248,7 +267,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/11-flamegpu2-source/index.html">Building or Modifying the FLAMEGPU Source</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAMEGPU from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/1-build-from-source.html">Building FLAME GPU from Source</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/2-request-a-new-feature.html">Requesting Features</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html">Contributing to FLAMEGPU2</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/11-flamegpu2-source/3-contribute.html#reporting-bugs">Reporting Bugs</a></li>
@@ -797,64 +816,64 @@
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTIONCONDITION_CUH_</span>
 <span class="cp">#define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTIONCONDITION_CUH_</span>
 
-<span class="cp">#include</span> <span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cuda_runtime.h&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/DeviceAPI.cuh&quot;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&quot;flamegpu/runtime/AgentFunctionCondition_shim.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/DeviceAPI.cuh&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/runtime/AgentFunctionCondition_shim.cuh&quot;</span><span class="cp"></span>
 
-<span class="k">namespace</span> <span class="nn">flamegpu</span> <span class="p">{</span>
+<span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="c1">// ! FLAMEGPU function return type</span>
-<span class="k">typedef</span> <span class="kt">void</span><span class="p">(</span><span class="n">AgentFunctionConditionWrapper</span><span class="p">)(</span>
+<span class="k">typedef</span><span class="w"> </span><span class="kt">void</span><span class="p">(</span><span class="n">AgentFunctionConditionWrapper</span><span class="p">)(</span><span class="w"></span>
 <span class="cp">#if !defined(SEATBELTS) || SEATBELTS</span>
-    <span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span> <span class="o">*</span><span class="n">error_buffer</span><span class="p">,</span>
+<span class="w">    </span><span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span><span class="w"> </span><span class="o">*</span><span class="n">error_buffer</span><span class="p">,</span><span class="w"></span>
 <span class="cp">#endif</span>
-    <span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span> <span class="n">instance_id_hash</span><span class="p">,</span>
-    <span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span> <span class="n">agent_func_name_hash</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">popNo</span><span class="p">,</span>
-    <span class="n">curandState</span> <span class="o">*</span><span class="n">d_rng</span><span class="p">,</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">scanFlag_conditionResult</span><span class="p">);</span>  <span class="c1">// Can&#39;t put __global__ in a typedef</span>
+<span class="w">    </span><span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span><span class="w"> </span><span class="n">instance_id_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span><span class="w"> </span><span class="n">agent_func_name_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">popNo</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">d_rng</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">scanFlag_conditionResult</span><span class="p">);</span><span class="w">  </span><span class="c1">// Can&#39;t put __global__ in a typedef</span>
 
-<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">AgentFunctionCondition</span><span class="o">&gt;</span>
-<span class="n">__global__</span> <span class="kt">void</span> <span class="n">agent_function_condition_wrapper</span><span class="p">(</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">AgentFunctionCondition</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">__global__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">agent_function_condition_wrapper</span><span class="p">(</span><span class="w"></span>
 <span class="cp">#if !defined(SEATBELTS) || SEATBELTS</span>
-    <span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span> <span class="o">*</span><span class="n">error_buffer</span><span class="p">,</span>
+<span class="w">    </span><span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span><span class="w"> </span><span class="o">*</span><span class="n">error_buffer</span><span class="p">,</span><span class="w"></span>
 <span class="cp">#endif</span>
-    <span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span> <span class="n">instance_id_hash</span><span class="p">,</span>
-    <span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span> <span class="n">agent_func_name_hash</span><span class="p">,</span>
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">popNo</span><span class="p">,</span>
-    <span class="n">curandState</span> <span class="o">*</span><span class="n">d_rng</span><span class="p">,</span>
-    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">scanFlag_conditionResult</span><span class="p">)</span> <span class="p">{</span>
+<span class="w">    </span><span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span><span class="w"> </span><span class="n">instance_id_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">detail</span><span class="o">::</span><span class="n">curve</span><span class="o">::</span><span class="n">Curve</span><span class="o">::</span><span class="n">NamespaceHash</span><span class="w"> </span><span class="n">agent_func_name_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">popNo</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">curandState</span><span class="w"> </span><span class="o">*</span><span class="n">d_rng</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">scanFlag_conditionResult</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="cp">#if !defined(SEATBELTS) || SEATBELTS</span>
-    <span class="c1">// We place this at the start of shared memory, so we can locate it anywhere in device code without a reference</span>
-    <span class="k">extern</span> <span class="n">__shared__</span> <span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span> <span class="o">*</span><span class="n">shared_mem</span><span class="p">[];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">shared_mem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">error_buffer</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="c1">// @todo - this tempalte should onyl ever be seen by a cuda compiler.</span>
-    <span class="cp">#if defined(__CUDACC__)</span>
-        <span class="n">__syncthreads</span><span class="p">();</span>
-    <span class="cp">#endif</span>
+<span class="w">    </span><span class="c1">// We place this at the start of shared memory, so we can locate it anywhere in device code without a reference</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="n">__shared__</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">DeviceExceptionBuffer</span><span class="w"> </span><span class="o">*</span><span class="n">shared_mem</span><span class="p">[];</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">shared_mem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">error_buffer</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// @todo - this tempalte should onyl ever be seen by a cuda compiler.</span>
+<span class="w">    </span><span class="cp">#if defined(__CUDACC__)</span>
+<span class="w">        </span><span class="n">__syncthreads</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="cp">#endif</span>
 <span class="cp">#endif</span>
-    <span class="c1">// Must be terminated here, else AgentRandom has bounds issues inside DeviceAPI constructor</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">ReadOnlyDeviceAPI</span><span class="o">::</span><span class="n">getThreadIndex</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="n">popNo</span><span class="p">)</span>
-        <span class="k">return</span><span class="p">;</span>
-    <span class="c1">// create a new device FLAME_GPU instance</span>
-    <span class="n">ReadOnlyDeviceAPI</span> <span class="n">api</span> <span class="o">=</span> <span class="n">ReadOnlyDeviceAPI</span><span class="p">(</span>
-        <span class="n">instance_id_hash</span><span class="p">,</span>
-        <span class="n">agent_func_name_hash</span><span class="p">,</span>
-        <span class="n">d_rng</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Must be terminated here, else AgentRandom has bounds issues inside DeviceAPI constructor</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ReadOnlyDeviceAPI</span><span class="o">::</span><span class="n">getThreadIndex</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">popNo</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// create a new device FLAME_GPU instance</span>
+<span class="w">    </span><span class="n">ReadOnlyDeviceAPI</span><span class="w"> </span><span class="n">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReadOnlyDeviceAPI</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">instance_id_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">agent_func_name_hash</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="n">d_rng</span><span class="p">);</span><span class="w"></span>
 
-    <span class="c1">// call the user specified device function</span>
-    <span class="p">{</span>
-        <span class="c1">// Negate the return value, we want false at the start of the scattered array</span>
-        <span class="kt">bool</span> <span class="n">conditionResult</span> <span class="o">=</span> <span class="o">!</span><span class="p">(</span><span class="n">AgentFunctionCondition</span><span class="p">()(</span><span class="o">&amp;</span><span class="n">api</span><span class="p">));</span>
-        <span class="c1">// (scan flags will be processed to filter agents</span>
-        <span class="n">scanFlag_conditionResult</span><span class="p">[</span><span class="n">ReadOnlyDeviceAPI</span><span class="o">::</span><span class="n">getThreadIndex</span><span class="p">()]</span> <span class="o">=</span> <span class="n">conditionResult</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// call the user specified device function</span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Negate the return value, we want false at the start of the scattered array</span>
+<span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">conditionResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">AgentFunctionCondition</span><span class="p">()(</span><span class="o">&amp;</span><span class="n">api</span><span class="p">));</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// (scan flags will be processed to filter agents</span>
+<span class="w">        </span><span class="n">scanFlag_conditionResult</span><span class="p">[</span><span class="n">ReadOnlyDeviceAPI</span><span class="o">::</span><span class="n">getThreadIndex</span><span class="p">()]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conditionResult</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>  <span class="c1">// namespace flamegpu</span>
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace flamegpu</span>
 
 
 <span class="cp">#endif  </span><span class="c1">// INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTIONCONDITION_CUH_</span>

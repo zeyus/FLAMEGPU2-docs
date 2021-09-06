@@ -31,8 +31,8 @@ Program Listing for File HostRandom.cuh
        inline T logNormal(const T& mean, const T& stddev) const;
        template<typename T>
        inline T uniform(const T& min, const T& max) const;
-       void setSeed(const unsigned int &seed);
-       unsigned int getSeed() const;
+       void setSeed(const uint64_t &seed);
+       uint64_t getSeed() const;
    
     private:
        explicit HostRandom(RandomManager &_rng) : rng(_rng) { }

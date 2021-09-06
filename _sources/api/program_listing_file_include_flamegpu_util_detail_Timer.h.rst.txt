@@ -1,0 +1,38 @@
+
+.. _program_listing_file_include_flamegpu_util_detail_Timer.h:
+
+Program Listing for File Timer.h
+================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_util_detail_Timer.h>` (``include/flamegpu/util/detail/Timer.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_TIMER_H_
+   #define INCLUDE_FLAMEGPU_UTIL_DETAIL_TIMER_H_
+   
+   
+   namespace flamegpu {
+   namespace util {
+   namespace detail {
+   
+   class Timer {
+    public:
+       virtual ~Timer() = default;
+   
+       virtual void start() = 0;
+   
+       virtual void stop() = 0;
+   
+       virtual float getElapsedMilliseconds() = 0;
+   
+       virtual float getElapsedSeconds() = 0;
+   };
+   
+   }  // namespace detail
+   }  // namespace util
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_UTIL_DETAIL_TIMER_H_

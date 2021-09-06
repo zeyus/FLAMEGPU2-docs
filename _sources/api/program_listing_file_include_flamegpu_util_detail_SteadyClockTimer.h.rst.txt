@@ -15,35 +15,56 @@ Program Listing for File SteadyClockTimer.h
    
    #include <chrono>
    
+   #include "flamegpu/util/detail/Timer.h"
+   #include "flamegpu/exception/FLAMEGPUException.h"
+   
+   
    namespace flamegpu {
    namespace util {
    namespace detail {
    
-   class SteadyClockTimer {
+   class SteadyClockTimer : public virtual Timer {
     public:
        SteadyClockTimer() :
-           _start(),
-           _stop() { }
+           startTime(),
+           stopTime(),
+           startEventRecorded(false),
+           stopEventRecorded(false) { }
    
        ~SteadyClockTimer() { }
    
-       void start() {
-           _start = std::chrono::steady_clock::now();
+       void start() override {
+           this->startTime = std::chrono::steady_clock::now();
+           this->startEventRecorded = true;
+           this->stopEventRecorded = false;
        }
    
-       void stop() {
-           _stop = std::chrono::steady_clock::now();
+       void stop() override {
+           this->stopTime = std::chrono::steady_clock::now();
+           this->stopEventRecorded = true;
        }
    
-       float getElapsedMilliseconds() {
-           std::chrono::duration<double> elapsed = this->_stop - this->_start;
+       float getElapsedMilliseconds() override {
+           if (!startEventRecorded) {
+               THROW exception::TimerException("start() must be called prior to getElapsed*");
+           }
+           if (!stopEventRecorded) {
+               THROW exception::TimerException("stop() must be called prior to getElapsed*");
+           }
+           std::chrono::duration<double> elapsed = this->stopTime - this->startTime;
            float ms = static_cast<float>(std::chrono::duration_cast<std::chrono::milliseconds>(elapsed).count());
            return ms;
        }
    
+       float getElapsedSeconds() override {
+           return this->getElapsedMilliseconds() / 1000.0f;
+       }
+   
     private:
-       std::chrono::time_point<std::chrono::steady_clock> _start;
-       std::chrono::time_point<std::chrono::steady_clock> _stop;
+       std::chrono::time_point<std::chrono::steady_clock> startTime;
+       std::chrono::time_point<std::chrono::steady_clock> stopTime;
+       bool startEventRecorded;
+       bool stopEventRecorded;
    };
    
    }  // namespace detail

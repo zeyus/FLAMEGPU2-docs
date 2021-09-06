@@ -1,0 +1,35 @@
+
+.. _program_listing_file_include_flamegpu_version.h:
+
+Program Listing for File version.h
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_version.h>` (``include/flamegpu/version.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   
+   #ifndef INCLUDE_FLAMEGPU_VERSION_H_
+   #define INCLUDE_FLAMEGPU_VERSION_H_
+   
+   #define FLAMEGPU_VERSION 2000000
+   
+   namespace flamegpu {
+   static constexpr unsigned int VERSION = FLAMEGPU_VERSION;
+   static constexpr unsigned int VERSION_MAJOR = flamegpu::VERSION / 1000000;
+   static constexpr unsigned int VERSION_MINOR = flamegpu::VERSION / 1000 % 1000;
+   static constexpr unsigned int VERSION_PATCH = flamegpu::VERSION % 1000;
+   
+   static constexpr char VERSION_PRERELEASE[] = "alpha.1";
+   
+   extern const char VERSION_BUILDMETADATA[];
+   
+   extern const char VERSION_STRING[];
+   
+   extern const char VERSION_FULL[];
+   
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_VERSION_H_

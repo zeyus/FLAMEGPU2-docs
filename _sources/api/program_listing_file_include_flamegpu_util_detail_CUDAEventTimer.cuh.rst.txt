@@ -13,6 +13,9 @@ Program Listing for File CUDAEventTimer.cuh
    #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_CUDAEVENTTIMER_CUH_
    #define INCLUDE_FLAMEGPU_UTIL_DETAIL_CUDAEVENTTIMER_CUH_
    
+   #include <cuda_runtime.h>
+   
+   #include "flamegpu/util/detail/Timer.h"
    #include "flamegpu/exception/FLAMEGPUException.h"
    #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
    
@@ -20,12 +23,14 @@ Program Listing for File CUDAEventTimer.cuh
    namespace util {
    namespace detail {
    
-   class CUDAEventTimer {
+   class CUDAEventTimer : public virtual Timer {
     public:
        CUDAEventTimer() :
        startEvent(NULL),
        stopEvent(NULL),
        ms(0.),
+       startEventRecorded(false),
+       stopEventRecorded(false),
        synced(false) {
            gpuErrchk(cudaEventCreate(&this->startEvent));
            gpuErrchk(cudaEventCreate(&this->stopEvent));
@@ -34,33 +39,54 @@ Program Listing for File CUDAEventTimer.cuh
            gpuErrchk(cudaEventDestroy(this->startEvent));
            gpuErrchk(cudaEventDestroy(this->stopEvent));
            this->startEvent = NULL;
-           this->startEvent = NULL;
+           this->stopEvent = NULL;
        }
-       void start() {
+       void start() override {
            gpuErrchk(cudaEventRecord(this->startEvent));
-           synced = false;
+           this->startEventRecorded = true;
+           this->stopEventRecorded = false;
+           this->synced = false;
        }
-       void stop() {
+       void stop() override {
            gpuErrchk(cudaEventRecord(this->stopEvent));
-           synced = false;
+           this->stopEventRecorded = true;
+           this->synced = false;
        }
-       float sync() {
+       float getElapsedMilliseconds() override {
+           // If the cuda event timer has not been synchonised, sync it. This stores the time internally.
+           if (!this->synced) {
+               this->sync();
+           }
+           // Return the stored elapsed time in milliseconds.
+           return this->ms;
+       }
+   
+       float getElapsedSeconds() override {
+           // Get the elapsed time in milliseconds, and convert it to seconds.
+           return this->getElapsedMilliseconds() / 1000.0f;
+       }
+   
+   
+   
+    private:
+       void sync() {
+           // If the start or stop events have not yet been recorded, do not proceed and throw an exception.
+           if (!startEventRecorded) {
+               THROW exception::TimerException("start() must be called prior to getElapsed*");
+           }
+           if (!stopEventRecorded) {
+               THROW exception::TimerException("stop() must be called prior to getElapsed*");
+           }
            gpuErrchk(cudaEventSynchronize(this->stopEvent));
            gpuErrchk(cudaEventElapsedTime(&this->ms, this->startEvent, this->stopEvent));
            synced = true;
-           return ms;
-       }
-       float getElapsedMilliseconds() {
-           if (!synced) {
-               THROW exception::UnsycnedCUDAEventTimer();
-           }
-           return ms;
        }
    
-    private:
        cudaEvent_t startEvent;
        cudaEvent_t stopEvent;
        float ms;
+       bool startEventRecorded;
+       bool stopEventRecorded;
        bool synced;
    };
    

@@ -64,13 +64,13 @@ Program Listing for File LogFrame.h
            , step(_step) { }
        const LogFrame &getExitLog() const { return exit; }
        const std::list<LogFrame> &getStepLog() const {return step; }
-       unsigned int getRandomSeed() const { return random_seed; }
+       uint64_t getRandomSeed() const { return random_seed; }
        unsigned int getStepLogFrequency() const { return step_log_frequency; }
    
     private:
        LogFrame exit;
        std::list<LogFrame> step;
-       unsigned int random_seed = 0;
+       uint64_t random_seed = 0;
        unsigned int step_log_frequency = 0;
    };
    struct AgentLogFrame {

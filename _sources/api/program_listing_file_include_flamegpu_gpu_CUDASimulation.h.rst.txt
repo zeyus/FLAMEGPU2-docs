@@ -26,6 +26,7 @@ Program Listing for File CUDASimulation.h
    #include "flamegpu/gpu/CUDAEnsemble.h"
    #include "flamegpu/runtime/utility/RandomManager.cuh"
    #include "flamegpu/runtime/HostNewAgentAPI.h"
+   #include "flamegpu/gpu/CUDAMacroEnvironment.h"
    
    #ifdef VISUALISATION
    #include "flamegpu/visualiser/ModelVis.h"
@@ -127,6 +128,7 @@ Program Listing for File CUDASimulation.h
        std::vector<float> elapsedMillisecondsPerStep;
        void incrementStepCounter();
        CUDAAgentMap agent_map;
+       CUDAMacroEnvironment macro_env;
        Config config;
        std::shared_ptr<const StepLoggingConfig> step_log_config;
        std::shared_ptr<const LoggingConfig> exit_log_config;

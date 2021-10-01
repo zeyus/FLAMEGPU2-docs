@@ -23,8 +23,10 @@ Program Listing for File HostEnvironment.cuh
    #include <set>
    #include <vector>
    
+   #include "flamegpu/gpu/CUDAMacroEnvironment.h"
    #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
    #include "flamegpu/runtime/utility/EnvironmentManager.cuh"
+   #include "flamegpu/runtime/utility/HostMacroProperty.cuh"
    
    namespace flamegpu {
    
@@ -32,8 +34,9 @@ Program Listing for File HostEnvironment.cuh
        friend class HostAPI;
    
     protected:
-       explicit HostEnvironment(const unsigned int &instance_id);
+       explicit HostEnvironment(const unsigned int &instance_id, CUDAMacroEnvironment &_macro_env);
        EnvironmentManager &env_mgr;
+       CUDAMacroEnvironment& macro_env;
        const unsigned int instance_id;
    
     public:
@@ -59,6 +62,14 @@ Program Listing for File HostEnvironment.cuh
    
        template<typename T>
        std::vector<T> setPropertyArray(const std::string &name, const std::vector<T> &value) const;
+   #endif
+   
+       template<typename T, unsigned int I = 1, unsigned int J = 1, unsigned int K = 1, unsigned int W = 1>
+       HostMacroProperty<T, I, J, K, W> getMacroProperty(const std::string& name) const;
+   #ifdef SWIG
+   
+       template<typename T>
+       HostMacroProperty_swig<T> getMacroProperty_swig(const std::string& name) const;
    #endif
    };
    
@@ -116,6 +127,17 @@ Program Listing for File HostEnvironment.cuh
    }
    #endif  // SWIG
    
+   template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W>
+   HostMacroProperty<T, I, J, K, W> HostEnvironment::getMacroProperty(const std::string& name) const {
+       return macro_env.getProperty<T, I, J, K, W>(name);
+   }
+   
+   #ifdef SWIG
+   template<typename T>
+   HostMacroProperty_swig<T> HostEnvironment::getMacroProperty_swig(const std::string& name) const {
+       return macro_env.getProperty_swig<T>(name);
+   }
+   #endif
    }  // namespace flamegpu
    
    #endif  // INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTENVIRONMENT_CUH_

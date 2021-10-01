@@ -13,6 +13,7 @@ Program Listing for File curve_rtc.cuh
    #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_RTC_CUH_
    #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_RTC_CUH_
    
+   #include <array>
    #include <cstring>
    #include <string>
    #include <cstdio>
@@ -48,6 +49,8 @@ Program Listing for File curve_rtc.cuh
        void* getNewAgentVariableCachePtr(const char* variableName);
        void registerEnvVariable(const char* propertyName, ptrdiff_t offset, const char* type, size_t type_size, unsigned int elements = 1);
        void unregisterEnvVariable(const char* propertyName);
+       void registerEnvMacroProperty(const char* propertyName, void* d_ptr, const char* type, size_t type_size, const std::array<unsigned int, 4>& dimensions);
+       void unregisterEnvMacroProperty(const char* propertyName);
        void setFileName(const std::string& filename);
        std::string getDynamicHeader();
        static std::string getVariableSymbolName();
@@ -74,6 +77,13 @@ Program Listing for File curve_rtc.cuh
            ptrdiff_t offset;
            size_t type_size;
        };
+       struct RTCEnvMacroPropertyProperties {
+           std::string type;
+           std::array<unsigned int, 4> dimensions;
+           size_t type_size;
+           void* d_ptr;
+           void* h_data_ptr;
+       };
    
     private:
        void initHeaderEnvironment();
@@ -86,6 +96,7 @@ Program Listing for File curve_rtc.cuh
        size_t messageOut_data_offset = 0;
        size_t messageIn_data_offset = 0;
        size_t newAgent_data_offset = 0;
+       size_t envMacro_data_offset = 0;
        size_t data_buffer_size = 0;
        char * h_data_buffer = nullptr;
        std::map<std::string, RTCVariableProperties> agent_variables;
@@ -93,6 +104,7 @@ Program Listing for File curve_rtc.cuh
        std::map<std::string, RTCVariableProperties> messageIn_variables;
        std::map<std::string, RTCVariableProperties> newAgent_variables;
        std::map<std::string, RTCEnvVariableProperties> RTCEnvVariables;
+       std::map<std::string, RTCEnvMacroPropertyProperties> RTCEnvMacroProperties;
    };
    
    }  // namespace curve

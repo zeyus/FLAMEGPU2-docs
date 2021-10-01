@@ -67,7 +67,7 @@ Program Listing for File CUDAAgent.h
        void unmapNewRuntimeVariables(const AgentFunctionData& func, const unsigned int &instance_id);
        void scatterNew(const AgentFunctionData& func, const unsigned int &newSize, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        void clearFunctionCondition(const std::string &state);
-       void addInstantitateRTCFunction(const AgentFunctionData& func, bool function_condition = false);
+       void addInstantitateRTCFunction(const AgentFunctionData& func, const CUDAMacroEnvironment& macro_env, bool function_condition = false);
        const jitify::experimental::KernelInstantiation& getRTCInstantiation(const std::string &function_name) const;
        detail::curve::CurveRTCHost &getRTCHeader(const std::string &function_name) const;
        const CUDARTCFuncMap& getRTCFunctions() const;

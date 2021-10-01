@@ -31,6 +31,7 @@ Program Listing for File HostAPI.h
    class CUDAScatter;
    class CUDASimulation;
    class HostAgentAPI;
+   class CUDAMacroEnvironment;
    
    class HostAPI {
        friend class HostAgentAPI;
@@ -48,6 +49,7 @@ Program Listing for File HostAPI.h
              CUDAScatter &scatter,
              const AgentOffsetMap &agentOffsets,
              AgentDataMap &agentData,
+             CUDAMacroEnvironment &macro_env,
              const unsigned int &streamId,
             cudaStream_t stream);
         ~HostAPI();

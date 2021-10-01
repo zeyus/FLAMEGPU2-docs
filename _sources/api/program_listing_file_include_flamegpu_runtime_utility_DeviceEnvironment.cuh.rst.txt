@@ -14,9 +14,10 @@ Program Listing for File DeviceEnvironment.cuh
    #define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_
    
    // #include <cuda_runtime.h>
-   #include <cstdint>
    #include <string>
    #include <cassert>
+   
+   #include "flamegpu/runtime/utility/DeviceMacroProperty.cuh"
    
    namespace flamegpu {
    
@@ -26,12 +27,18 @@ Program Listing for File DeviceEnvironment.cuh
    }  // namespace detail
    #endif
    
-   class DeviceEnvironment {
+   
+   
+   class ReadOnlyDeviceEnvironment {
        friend class ReadOnlyDeviceAPI;
        friend class EnvironmentManager;
+       friend class CUDAMacroEnvironment;
+   
+    protected:
        __host__ __device__ static constexpr unsigned int CURVE_NAMESPACE_HASH() { return 0X1428F902u; }
+       __host__ __device__ static constexpr unsigned int MACRO_NAMESPACE_HASH() { return 0xF3ABEB4F; }
        const detail::curve::Curve::NamespaceHash &modelname_hash;
-       __device__ __forceinline__ DeviceEnvironment(const detail::curve::Curve::NamespaceHash &_modelname_hash)
+       __device__ __forceinline__ ReadOnlyDeviceEnvironment(const detail::curve::Curve::NamespaceHash &_modelname_hash)
            : modelname_hash(_modelname_hash) { }
    
     public:
@@ -41,13 +48,22 @@ Program Listing for File DeviceEnvironment.cuh
        __device__ __forceinline__ T getProperty(const char(&name)[N], const unsigned int&index) const;
        template<unsigned int N>
        __device__ __forceinline__ bool containsProperty(const char(&name)[N]) const;
+       template<typename T, unsigned int I = 1, unsigned int J = 1, unsigned int K = 1, unsigned int W = 1, unsigned int N>
+       __device__ __forceinline__ ReadOnlyDeviceMacroProperty<T, I, J, K, W> getMacroProperty(const char(&name)[N]) const;
+   };
+   class DeviceEnvironment : public ReadOnlyDeviceEnvironment {
+    public:
+       __device__ __forceinline__ DeviceEnvironment(const detail::curve::Curve::NamespaceHash& _modelname_hash)
+           : ReadOnlyDeviceEnvironment(_modelname_hash) { }
+       template<typename T, unsigned int I = 1, unsigned int J = 1, unsigned int K = 1, unsigned int W = 1, unsigned int N>
+       __device__ __forceinline__ DeviceMacroProperty<T, I, J, K, W> getMacroProperty(const char(&name)[N]) const;
    };
    
    // Mash compilation of these functions from RTC builds as this requires a dynamic implementation of the function in curve_rtc
    #ifndef __CUDACC_RTC__
    
    template<typename T, unsigned int N>
-   __device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&name)[N]) const {
+   __device__ __forceinline__ T ReadOnlyDeviceEnvironment::getProperty(const char(&name)[N]) const {
        detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
        const auto cv = detail::curve::Curve::getVariable(cvh);
    #if !defined(SEATBELTS) || SEATBELTS
@@ -69,7 +85,7 @@ Program Listing for File DeviceEnvironment.cuh
    #endif
    }
    template<typename T, unsigned int N>
-   __device__ __forceinline__ T DeviceEnvironment::getProperty(const char(&name)[N], const unsigned int &index) const {
+   __device__ __forceinline__ T ReadOnlyDeviceEnvironment::getProperty(const char(&name)[N], const unsigned int &index) const {
        detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
        const auto cv = detail::curve::Curve::getVariable(cvh);
    #if !defined(SEATBELTS) || SEATBELTS
@@ -89,11 +105,51 @@ Program Listing for File DeviceEnvironment.cuh
    }
    
    template<unsigned int N>
-   __device__ __forceinline__ bool DeviceEnvironment::containsProperty(const char(&name)[N]) const {
+   __device__ __forceinline__ bool ReadOnlyDeviceEnvironment::containsProperty(const char(&name)[N]) const {
        detail::curve::Curve::VariableHash cvh = CURVE_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
        return detail::curve::Curve::getVariable(cvh) != detail::curve::Curve::UNKNOWN_VARIABLE;
    }
    
+   template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W, unsigned int N>
+   __device__ __forceinline__ ReadOnlyDeviceMacroProperty<T, I, J, K, W> ReadOnlyDeviceEnvironment::getMacroProperty(const char(&name)[N]) const {
+       detail::curve::Curve::VariableHash cvh = MACRO_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
+       const auto cv = detail::curve::Curve::getVariable(cvh);
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (cv == detail::curve::Curve::UNKNOWN_VARIABLE) {
+           DTHROW("Environment macro property name: %s was not found.\n", name);
+       } else if (detail::curve::detail::d_sizes[cv] != sizeof(T)) {
+           DTHROW("Environment macro property with name: %s type size mismatch %llu != %llu.\n", name, detail::curve::detail::d_sizes[cv], sizeof(T));
+       } else if (detail::curve::detail::d_lengths[cv] != I * J * K * W) {
+           DTHROW("Environment macro property with name: %s total length mismatch (%u != %u).\n", name, detail::curve::detail::d_lengths[cv], I * J * K * W);
+       } else {
+           return DeviceMacroProperty<T, I, J, K, W>(reinterpret_cast<T*>(detail::curve::detail::d_variables[cv]),
+           reinterpret_cast<unsigned int*>(detail::curve::detail::d_variables[cv] + (I * J * K * W * sizeof(T))));  // Read-write flag resides in 8 bits at the end of the buffer
+       }
+       return ReadOnlyDeviceMacroProperty<T, I, J, K, W>(nullptr, nullptr);
+   #else
+       return ReadOnlyDeviceMacroProperty<T, I, J, K, W>(reinterpret_cast<T*>(detail::curve::detail::d_variables[cv]));
+   #endif
+   }
+   template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W, unsigned int N>
+   __device__ __forceinline__ DeviceMacroProperty<T, I, J, K, W> DeviceEnvironment::getMacroProperty(const char(&name)[N]) const {
+       detail::curve::Curve::VariableHash cvh = MACRO_NAMESPACE_HASH() + modelname_hash + detail::curve::Curve::variableHash(name);
+       const auto cv = detail::curve::Curve::getVariable(cvh);
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (cv == detail::curve::Curve::UNKNOWN_VARIABLE) {
+           DTHROW("Environment macro property name: %s was not found.\n", name);
+       } else if (detail::curve::detail::d_sizes[cv] != sizeof(T)) {
+           DTHROW("Environment macro property with name: %s type size mismatch %llu != %llu.\n", name, detail::curve::detail::d_sizes[cv], sizeof(T));
+       } else if (detail::curve::detail::d_lengths[cv] != I * J * K * W) {
+           DTHROW("Environment macro property with name: %s total length mismatch (%u != %u).\n", name, detail::curve::detail::d_lengths[cv], I * J * K * W);
+       } else {
+           return DeviceMacroProperty<T, I, J, K, W>(reinterpret_cast<T*>(detail::curve::detail::d_variables[cv]),
+               reinterpret_cast<unsigned int*>(detail::curve::detail::d_variables[cv] + (I * J * K * W * sizeof(T))));  // Read-write flag resides in 8 bits at the end of the buffer
+       }
+       return DeviceMacroProperty<T, I, J, K, W>(nullptr, nullptr);
+   #else
+       return DeviceMacroProperty<T, I, J, K, W>(reinterpret_cast<T*>(detail::curve::detail::d_variables[cv]));
+   #endif
+   }
    #endif  // __CUDACC_RTC__
    
    }  // namespace flamegpu

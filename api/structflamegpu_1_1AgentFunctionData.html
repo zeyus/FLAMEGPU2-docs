@@ -1,41 +1,20 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Struct AgentFunctionData &mdash; FLAME GPU 2 0 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/flamegpu.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/flamegpu.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
@@ -44,42 +23,21 @@
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Struct AgentLogFrame" href="structflamegpu_1_1AgentLogFrame.html" />
     <link rel="prev" title="Struct AgentData" href="structflamegpu_1_1AgentData.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #4d4d4d" >
-          
-
-          
             <a href="../index.html" class="icon icon-home"> FLAME GPU 2
-          
-
-          
-            
             <img src="../_static/flamegpu2-icon-notext-128.png" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -87,18 +45,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">Quickstart</a><ul>
@@ -143,6 +90,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#what-is-an-environment">What is an Environment?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#creating-an-environmentdescription-object">Creating an EnvironmentDescription Object</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#defining-environmental-properties">Defining Environmental Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#macro-environmental-properties">Macro Environmental Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/2-model-definition/2-environment.html#more-info">More Info</a></li>
 </ul>
@@ -169,7 +117,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#sending-messages">Sending Messages</a></li>
@@ -305,7 +257,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40149.html">Namespace flamegpu::&#64;149</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40153.html">Namespace flamegpu::&#64;153</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -326,6 +278,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1AgentState.html">Struct CUDAFatAgent::AgentState</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1AgentState__hash.html">Struct CUDAFatAgent::AgentState_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAFatAgent_1_1NewBuffer.html">Struct CUDAFatAgent::NewBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAMacroEnvironment_1_1MacroEnvProp.html">Struct CUDAMacroEnvironment::MacroEnvProp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScanCompactionConfig.html">Struct CUDAScanCompactionConfig</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScanCompactionPtrs.html">Struct CUDAScanCompactionPtrs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDAScatter_1_1InversionIterator.html">Struct CUDAScatter::InversionIterator</a></li>
@@ -334,6 +287,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDASimulation_1_1Config.html">Struct CUDASimulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1CUDASimulation_1_1Singletons.html">Struct CUDASimulation::Singletons</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1DeviceAgentVector__impl_1_1VariableBufferPair.html">Struct DeviceAgentVector_impl::VariableBufferPair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentDescription_1_1MacroPropData.html">Struct EnvironmentDescription::MacroPropData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentDescription_1_1PropData.html">Struct EnvironmentDescription::PropData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1DefragProp.html">Struct EnvironmentManager::DefragProp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1EnvProp.html">Struct EnvironmentManager::EnvProp</a></li>
@@ -343,6 +297,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LoggingConfig_1_1NameReductionFn.html">Struct LoggingConfig::NameReductionFn</a></li>
@@ -418,6 +373,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAEnsemble.html">Class CUDAEnsemble</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAFatAgent.html">Class CUDAFatAgent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAFatAgentStateList.html">Class CUDAFatAgentStateList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAMacroEnvironment.html">Class CUDAMacroEnvironment</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAMessage.html">Class CUDAMessage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAMessageList.html">Class CUDAMessageList</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1CUDAScanCompaction.html">Class CUDAScanCompaction</a></li>
@@ -429,6 +385,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceAPI.html">Template Class DeviceAPI</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceAPI_1_1AgentOut.html">Class DeviceAPI::AgentOut</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceEnvironment.html">Class DeviceEnvironment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1DeviceMacroProperty.html">Template Class DeviceMacroProperty</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1EnvironmentDescription.html">Class EnvironmentDescription</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1EnvironmentManager.html">Class EnvironmentManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1AgentIDCollision.html">Class AgentIDCollision</a></li>
@@ -498,6 +455,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionCallback.html">Class HostFunctionCallback</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionConditionCallback.html">Class HostFunctionConditionCallback</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostFunctionDescription.html">Class HostFunctionDescription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostMacroProperty.html">Template Class HostMacroProperty</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostNewAgentAPI.html">Class HostNewAgentAPI</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1HostRandom.html">Class HostRandom</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1io_1_1JSONLogger.html">Class JSONLogger</a></li>
@@ -591,6 +549,8 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ModelDescription.html">Class ModelDescription</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RandomManager.html">Class RandomManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ReadOnlyDeviceAPI.html">Class ReadOnlyDeviceAPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ReadOnlyDeviceEnvironment.html">Class ReadOnlyDeviceEnvironment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1ReadOnlyDeviceMacroProperty.html">Template Class ReadOnlyDeviceMacroProperty</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RunPlan.html">Class RunPlan</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1RunPlanVector.html">Class RunPlanVector</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1SimLogger.html">Class SimLogger</a></li>
@@ -727,8 +687,10 @@
 <li class="toctree-l4"><a class="reference internal" href="define_MessageSpatial3DDevice_8cuh_1a2e44a936ef72b228e1b4022d142c6d39.html">Define INCLUDE_FLAMEGPU_RUNTIME_MESSAGING_MESSAGESPATIAL3D_MESSAGESPATIAL3DDEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentRandom_8cuh_1acd7f782648ca5a41ae070fcd10411190.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_AGENTRANDOM_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_DeviceEnvironment_8cuh_1a70778256e5045fe5a8a73595d04ce1db.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEENVIRONMENT_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_DeviceMacroProperty_8cuh_1a061e18ea0c5e08a909ac3b5e9b6e7d29.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_DEVICEMACROPROPERTY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_EnvironmentManager_8cuh_1a35e4d0576f837bbd5d6ae21c4024f9eb.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_ENVIRONMENTMANAGER_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_HostEnvironment_8cuh_1a3e67960203739446d72ad966a9f0d710.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTENVIRONMENT_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_HostMacroProperty_8cuh_1a46f00be2ac5b3fd3461d430c8fbf6f1a.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTMACROPROPERTY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_HostRandom_8cuh_1a057dabfe55bd607fde69100834c1a29c.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_HOSTRANDOM_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_RandomManager_8cuh_1abdc3446320e64bb468b1c7d563ce0521.html">Define INCLUDE_FLAMEGPU_RUNTIME_UTILITY_RANDOMMANAGER_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentLoggingConfig__Reductions_8cuh_1a7f05530c5c7a13f8de36eb4cd1271788.html">Define INCLUDE_FLAMEGPU_SIM_AGENTLOGGINGCONFIG_REDUCTIONS_CUH_</a></li>
@@ -775,89 +737,47 @@
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #4d4d4d" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">FLAME GPU 2</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
           <li><a href="library_root.html">Library API</a> &raquo;</li>
-        
       <li>Struct AgentFunctionData</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/api/structflamegpu_1_1AgentFunctionData.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <div class="section" id="struct-agentfunctiondata">
-<span id="exhale-struct-structflamegpu-1-1agentfunctiondata"></span><h1>Struct AgentFunctionData<a class="headerlink" href="#struct-agentfunctiondata" title="Permalink to this headline">¶</a></h1>
+<span id="exhale-struct-structflamegpu-1-1agentfunctiondata"></span><h1>Struct AgentFunctionData<a class="headerlink" href="#struct-agentfunctiondata" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p>Defined in <a class="reference internal" href="file_include_flamegpu_model_AgentFunctionData.cuh.html#file-include-flamegpu-model-agentfunctiondata-cuh"><span class="std std-ref">File AgentFunctionData.cuh</span></a></p></li>
 </ul>
 <div class="section" id="struct-documentation">
-<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline">¶</a></h2>
+<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionDataE">
-<span id="_CPPv3N8flamegpu17AgentFunctionDataE"></span><span id="_CPPv2N8flamegpu17AgentFunctionDataE"></span><span id="flamegpu::AgentFunctionData"></span><span class="target" id="structflamegpu_1_1AgentFunctionData"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">flamegpu</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionDataE"></span><span id="_CPPv2N8flamegpu17AgentFunctionDataE"></span><span id="flamegpu::AgentFunctionData"></span><span class="target" id="structflamegpu_1_1AgentFunctionData"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">flamegpu</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>This is the internal data store for <a class="reference internal" href="classflamegpu_1_1AgentFunctionDescription.html#classflamegpu_1_1AgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> Users should only access that data stored within via an instance of <a class="reference internal" href="classflamegpu_1_1AgentFunctionDescription.html#classflamegpu_1_1AgentFunctionDescription"><span class="std std-ref">AgentFunctionDescription</span></a> </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData">
-<span id="_CPPv3NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData"></span><span id="_CPPv2NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::eq-operator__AgentFunctionDataCRC"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a6e41c0f0f98155336c093387c9a4dbce"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="flamegpu::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData"></span><span id="_CPPv2NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::eq-operator__AgentFunctionDataCRC"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a6e41c0f0f98155336c093387c9a4dbce"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">==</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="flamegpu::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu17AgentFunctionDataeqERK17AgentFunctionData" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structflamegpu_1_1AgentFunctionData"><span class="std std-ref">AgentFunctionData</span></a> hierarchies are functionally the same </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -872,7 +792,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData">
-<span id="_CPPv3NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData"></span><span id="_CPPv2NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::neq-operator__AgentFunctionDataCRC"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a256fd62dd5a1b4dcd774527fa78174a7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="flamegpu::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData"></span><span id="_CPPv2NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::neq-operator__AgentFunctionDataCRC"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a256fd62dd5a1b4dcd774527fa78174a7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">!=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionDataE" title="flamegpu::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rhs</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu17AgentFunctionDataneERK17AgentFunctionData" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Equality operator, checks whether <a class="reference internal" href="#structflamegpu_1_1AgentFunctionData"><span class="std std-ref">AgentFunctionData</span></a> hierarchies are functionally different </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -887,7 +807,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData">
-<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__AgentFunctionDataCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a5c2beb17fede54a037e977af71a38d99"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData" title="flamegpu::AgentFunctionData::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__AgentFunctionDataCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a5c2beb17fede54a037e977af71a38d99"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData" title="flamegpu::AgentFunctionData::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">delete</span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERK17AgentFunctionData" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Default copy constructor, not implemented </p>
 </dd></dl>
 
@@ -896,7 +816,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData4funcE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData4funcE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData4funcE"></span><span id="flamegpu::AgentFunctionData::func__AgentFunctionWrapperP"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a2c50ecee9e50505243b9acd77f12ee83"></span><span class="n"><span class="pre">AgentFunctionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">func</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData4funcE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData4funcE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData4funcE"></span><span id="flamegpu::AgentFunctionData::func__AgentFunctionWrapperP"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a2c50ecee9e50505243b9acd77f12ee83"></span><span class="n"><span class="pre">AgentFunctionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">func</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData4funcE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The cuda kernel entry point for executing the agent function <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>void agent_function_wrapper(detail::curve::Curve::NamespaceHash, detail::curve::Curve::NamespaceHash, detail::curve::Curve::NamespaceHash, detail::curve::Curve::NamespaceHash, const int, const void *, const unsigned int, const unsigned int) </p>
 </dd>
@@ -906,67 +826,67 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData10rtc_sourceE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData10rtc_sourceE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData10rtc_sourceE"></span><span id="flamegpu::AgentFunctionData::rtc_source__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a7b187fc139f33ecfb5044b4be9a5c3c5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_source</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData10rtc_sourceE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData10rtc_sourceE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData10rtc_sourceE"></span><span id="flamegpu::AgentFunctionData::rtc_source__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a7b187fc139f33ecfb5044b4be9a5c3c5"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_source</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData10rtc_sourceE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The string representing the RTC defined agent function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData13rtc_func_nameE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData13rtc_func_nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13rtc_func_nameE"></span><span id="flamegpu::AgentFunctionData::rtc_func_name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0f0d354c2dd768899ac2eef376755796"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_func_name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13rtc_func_nameE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData13rtc_func_nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13rtc_func_nameE"></span><span id="flamegpu::AgentFunctionData::rtc_func_name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0f0d354c2dd768899ac2eef376755796"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_func_name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13rtc_func_nameE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The string representing the RTC defined agent function name </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData13initial_stateE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData13initial_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13initial_stateE"></span><span id="flamegpu::AgentFunctionData::initial_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0d152ba029f780000751254c27316839"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initial_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13initial_stateE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData13initial_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13initial_stateE"></span><span id="flamegpu::AgentFunctionData::initial_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0d152ba029f780000751254c27316839"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">initial_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13initial_stateE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Agent’s must be in this state to execute this function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData9end_stateE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData9end_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData9end_stateE"></span><span id="flamegpu::AgentFunctionData::end_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ac258499ab6a4f2ed69ed542a40d498a3"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData9end_stateE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData9end_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData9end_stateE"></span><span id="flamegpu::AgentFunctionData::end_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ac258499ab6a4f2ed69ed542a40d498a3"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">end_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData9end_stateE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Agent’s which execute this function leave in this state </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData13message_inputE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData13message_inputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13message_inputE"></span><span id="flamegpu::AgentFunctionData::message_input__std::weak_ptr:MessageBruteForce::Data:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a75a1a7b5ef57a36c89d7fca541251514"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><span class="n"><span class="pre">MessageBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce4DataE" title="flamegpu::MessageBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_input</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13message_inputE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData13message_inputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData13message_inputE"></span><span id="flamegpu::AgentFunctionData::message_input__std::weak_ptr:MessageBruteForce::Data:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a75a1a7b5ef57a36c89d7fca541251514"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><span class="n"><span class="pre">MessageBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce4DataE" title="flamegpu::MessageBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_input</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData13message_inputE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>If set, this type of message is input to the function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData14message_outputE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData14message_outputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData14message_outputE"></span><span id="flamegpu::AgentFunctionData::message_output__std::weak_ptr:MessageBruteForce::Data:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a46956939a06d2559b60884826c6b3df6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><span class="n"><span class="pre">MessageBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce4DataE" title="flamegpu::MessageBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_output</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData14message_outputE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData14message_outputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData14message_outputE"></span><span id="flamegpu::AgentFunctionData::message_output__std::weak_ptr:MessageBruteForce::Data:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a46956939a06d2559b60884826c6b3df6"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><span class="n"><span class="pre">MessageBruteForce</span></span></a><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce4DataE" title="flamegpu::MessageBruteForce::Data"><span class="n"><span class="pre">Data</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_output</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData14message_outputE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>If set, this type of message is output by the function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData23message_output_optionalE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData23message_output_optionalE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData23message_output_optionalE"></span><span id="flamegpu::AgentFunctionData::message_output_optional__b"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a49fcb98fca3ab919bf08416934555f82"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_output_optional</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData23message_output_optionalE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData23message_output_optionalE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData23message_output_optionalE"></span><span id="flamegpu::AgentFunctionData::message_output_optional__b"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a49fcb98fca3ab919bf08416934555f82"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_output_optional</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData23message_output_optionalE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>If set, message outputs from this function are optional </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData12agent_outputE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData12agent_outputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData12agent_outputE"></span><span id="flamegpu::AgentFunctionData::agent_output__std::weak_ptr:AgentData:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1aa6123afa12eccf024fc34bee145dc718"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_output</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData12agent_outputE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData12agent_outputE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData12agent_outputE"></span><span id="flamegpu::AgentFunctionData::agent_output__std::weak_ptr:AgentData:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1aa6123afa12eccf024fc34bee145dc718"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_output</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData12agent_outputE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>If set, this is the agent type which is output by the function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData18agent_output_stateE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData18agent_output_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData18agent_output_stateE"></span><span id="flamegpu::AgentFunctionData::agent_output_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a3834794c1d9d984161f245dfdb126ca2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_output_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData18agent_output_stateE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData18agent_output_stateE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData18agent_output_stateE"></span><span id="flamegpu::AgentFunctionData::agent_output_state__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a3834794c1d9d984161f245dfdb126ca2"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">agent_output_state</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData18agent_output_stateE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>If set, this is the agent type which is output by the function </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData15has_agent_deathE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData15has_agent_deathE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData15has_agent_deathE"></span><span id="flamegpu::AgentFunctionData::has_agent_death__b"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ad75e7fde6296224f84247655942b3b05"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">has_agent_death</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData15has_agent_deathE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData15has_agent_deathE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData15has_agent_deathE"></span><span id="flamegpu::AgentFunctionData::has_agent_death__b"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ad75e7fde6296224f84247655942b3b05"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">has_agent_death</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData15has_agent_deathE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>This must be marked to true if the agent function can return DEAD Enabling this tells FLAMEGPU to sort agents to remove those which have died from the population </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData9conditionE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData9conditionE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData9conditionE"></span><span id="flamegpu::AgentFunctionData::condition__AgentFunctionConditionWrapperP"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0aa5b86a7a74eec3ddcb12c883aed293"></span><span class="n"><span class="pre">AgentFunctionConditionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">condition</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData9conditionE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData9conditionE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData9conditionE"></span><span id="flamegpu::AgentFunctionData::condition__AgentFunctionConditionWrapperP"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a0aa5b86a7a74eec3ddcb12c883aed293"></span><span class="n"><span class="pre">AgentFunctionConditionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">condition</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData9conditionE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The cuda kernel entry point for executing the agent function condition <dl class="simple">
 <dt><strong>See</strong></dt><dd><p>void agent_function_condition_wrapper(detail::curve::Curve::NamespaceHash, detail::curve::Curve::NamespaceHash, const int, const unsigned int, const unsigned int) </p>
 </dd>
@@ -976,43 +896,43 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData20rtc_condition_sourceE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData20rtc_condition_sourceE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData20rtc_condition_sourceE"></span><span id="flamegpu::AgentFunctionData::rtc_condition_source__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ab20f648c286e11e85543d408860b0f4a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_condition_source</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData20rtc_condition_sourceE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData20rtc_condition_sourceE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData20rtc_condition_sourceE"></span><span id="flamegpu::AgentFunctionData::rtc_condition_source__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ab20f648c286e11e85543d408860b0f4a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_condition_source</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData20rtc_condition_sourceE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The string representing the RTC defined agent function condition </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData23rtc_func_condition_nameE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData23rtc_func_condition_nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData23rtc_func_condition_nameE"></span><span id="flamegpu::AgentFunctionData::rtc_func_condition_name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1abd9b8ae25de27e124d33ddaf758b3c24"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_func_condition_name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData23rtc_func_condition_nameE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData23rtc_func_condition_nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData23rtc_func_condition_nameE"></span><span id="flamegpu::AgentFunctionData::rtc_func_condition_name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1abd9b8ae25de27e124d33ddaf758b3c24"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rtc_func_condition_name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData23rtc_func_condition_nameE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The string representing the RTC defined agent function condition </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData6parentE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData6parentE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData6parentE"></span><span id="flamegpu::AgentFunctionData::parent__std::weak_ptr:AgentData:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ab65dbc3881f85fbb79180e968e0a5255"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parent</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData6parentE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData6parentE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData6parentE"></span><span id="flamegpu::AgentFunctionData::parent__std::weak_ptr:AgentData:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ab65dbc3881f85fbb79180e968e0a5255"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">weak_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">parent</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData6parentE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>The agent which this function is a member of </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData11descriptionE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData11descriptionE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData11descriptionE"></span><span id="flamegpu::AgentFunctionData::description__std::unique_ptr:AgentFunctionDescription:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a9edb768d7157d2833c12ea46854cf517"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescriptionE" title="flamegpu::AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">description</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData11descriptionE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData11descriptionE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData11descriptionE"></span><span id="flamegpu::AgentFunctionData::description__std::unique_ptr:AgentFunctionDescription:"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a9edb768d7157d2833c12ea46854cf517"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">unique_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescriptionE" title="flamegpu::AgentFunctionDescription"><span class="n"><span class="pre">AgentFunctionDescription</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">description</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData11descriptionE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Description class which provides convenient accessors </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData4nameE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData4nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData4nameE"></span><span id="flamegpu::AgentFunctionData::name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a13aa3a65fdea0cb0ba545690e9d64963"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData4nameE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData4nameE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData4nameE"></span><span id="flamegpu::AgentFunctionData::name__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a13aa3a65fdea0cb0ba545690e9d64963"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">name</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData4nameE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Name of the agent function, used to refer to the agent function in many functions </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData15message_in_typeE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData15message_in_typeE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData15message_in_typeE"></span><span id="flamegpu::AgentFunctionData::message_in_type__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1af75f3d684982f0a8681f5ee0615c4d7f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_in_type</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData15message_in_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData15message_in_typeE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData15message_in_typeE"></span><span id="flamegpu::AgentFunctionData::message_in_type__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1af75f3d684982f0a8681f5ee0615c4d7f"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_in_type</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData15message_in_typeE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Input messaging type (as string) specified in FLAMEGPU_AGENT_FUNCTION. Used for type checking in model specification. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData16message_out_typeE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData16message_out_typeE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData16message_out_typeE"></span><span id="flamegpu::AgentFunctionData::message_out_type__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ae24271a045fcca6239292045508cbcd9"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_out_type</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData16message_out_typeE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData16message_out_typeE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData16message_out_typeE"></span><span id="flamegpu::AgentFunctionData::message_out_type__ss"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ae24271a045fcca6239292045508cbcd9"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">message_out_type</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData16message_out_typeE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Output messaging type (as string) specified in FLAMEGPU_AGENT_FUNCTION. Used for type checking in model specification. </p>
 </dd></dl>
 
@@ -1021,7 +941,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-protected-functions">Protected Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData">
-<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:AgentData:.AgentFunctionDataCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a143205579ee881903c9dcbdacbe1fea5"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structflamegpu_1_1ModelData.html#_CPPv4N8flamegpu9ModelDataE" title="flamegpu::ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData" title="flamegpu::AgentFunctionData::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:ModelDataC:CR.std::shared_ptr:AgentData:.AgentFunctionDataCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a143205579ee881903c9dcbdacbe1fea5"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="structflamegpu_1_1ModelData.html#_CPPv4N8flamegpu9ModelDataE" title="flamegpu::ModelData"><span class="n"><span class="pre">ModelData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">model</span></span>, <span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData" title="flamegpu::AgentFunctionData::AgentFunctionData"><span class="n"><span class="pre">AgentFunctionData</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">other</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataERKNSt10shared_ptrIK9ModelDataEENSt10shared_ptrI9AgentDataEERK17AgentFunctionData" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Copy constructor This is unsafe, should only be used internally, use clone() instead </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1036,7 +956,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:AgentData:.ssCR.AgentFunctionWrapperP.ssCR.ssCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a9118b3b6f0ce5fc1a65c48edd2a04ac6"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <span class="n"><span class="pre">AgentFunctionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">agent_function</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:AgentData:.ssCR.AgentFunctionWrapperP.ssCR.ssCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1a9118b3b6f0ce5fc1a65c48edd2a04ac6"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <span class="n"><span class="pre">AgentFunctionWrapper</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">agent_function</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringEP20AgentFunctionWrapperRKNSt6stringERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Normal constructor, only to be called by <a class="reference internal" href="classflamegpu_1_1AgentDescription.html#classflamegpu_1_1AgentDescription"><span class="std std-ref">AgentDescription</span></a> </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1053,7 +973,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">
-<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:AgentData:.ssCR.ssCR.ssCR.ssCR.ssCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ae677b4dcc9a450d1e1cea6e86dfc365f"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rtc_function_src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">code_func_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv3N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"></span><span id="flamegpu::AgentFunctionData::AgentFunctionData__std::shared_ptr:AgentData:.ssCR.ssCR.ssCR.ssCR.ssCR"></span><span class="target" id="structflamegpu_1_1AgentFunctionData_1ae677b4dcc9a450d1e1cea6e86dfc365f"></span><span class="sig-name descname"><span class="n"><span class="pre">AgentFunctionData</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentDataE" title="flamegpu::AgentData"><span class="n"><span class="pre">AgentData</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">_parent</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">function_name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rtc_function_src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">in_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">out_type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">code_func_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu17AgentFunctionData17AgentFunctionDataENSt10shared_ptrI9AgentDataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Normal constructor for RTC function, only to be called by <a class="reference internal" href="classflamegpu_1_1AgentDescription.html#classflamegpu_1_1AgentDescription"><span class="std std-ref">AgentDescription</span></a> </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1096,63 +1016,44 @@
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="structflamegpu_1_1AgentLogFrame.html" class="btn btn-neutral float-right" title="Struct AgentLogFrame" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="structflamegpu_1_1AgentData.html" class="btn btn-neutral float-left" title="Struct AgentData" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="structflamegpu_1_1AgentLogFrame.html" class="btn btn-neutral float-right" title="Struct AgentLogFrame" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2019, University of Sheffield.
-
-    </p>
+    <p>&#169; Copyright 2019, University of Sheffield.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
-
-  
-  
-    
     <!-- Theme Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXX-1"></script>
     <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    ga('create', 'UA-XXXXXXX-1', 'auto');
-    
-    ga('send', 'pageview');
-    </script>
-
-    
-   
+      gtag('config', 'UA-XXXXXXX-1', {
+          'anonymize_ip': false,
+      });
+    </script> 
 
 </body>
 </html>

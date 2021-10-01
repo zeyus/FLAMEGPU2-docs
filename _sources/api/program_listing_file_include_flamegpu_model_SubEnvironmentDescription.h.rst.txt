@@ -31,9 +31,13 @@ Program Listing for File SubEnvironmentDescription.h
        SubEnvironmentDescription& operator=(SubEnvironmentDescription &&other_agent) noexcept = delete;
    
     public:
+       void autoMap();
        void autoMapProperties();
+       void autoMapMacroProperties();
        void mapProperty(const std::string &sub_property_name, const std::string &master_property_name);
+       void mapMacroProperty(const std::string& sub_property_name, const std::string& master_property_name);
        std::string getPropertyMapping(const std::string &sub_property_name);
+       std::string getMacroPropertyMapping(const std::string& sub_property_name);
    
     private:
        const std::weak_ptr<const ModelData> model;

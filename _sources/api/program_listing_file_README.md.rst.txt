@@ -167,7 +167,7 @@ Program Listing for File README.md
    
    | Option                   | Value             | Description                                                                                                |
    | ------------------------ | ----------------- | ---------------------------------------------------------------------------------------------------------- |
-   | `CMAKE_BUILD_TYPE`       | `Release`/`Debug` | Select the build configuration for single-target generators such as `make`                                 |
+   | `CMAKE_BUILD_TYPE`       | `Release`/`Debug`/`MinSizeRel`/`RelWithDebInfo` | Select the build configuration for single-target generators such as `make`   |
    | `SEATBELTS`              | `ON`/`OFF`        | Enable / Disable additional runtime checks which harm performance but increase usability. Default `ON`     |
    | `CUDA_ARCH`              | `"52 60 70 80"`   | Select [CUDA Compute Capabilities](https://developer.nvidia.com/cuda-gpus) to build/optimise for, as a space or `;` separated list. Defaults to `""` |
    | `BUILD_SWIG_PYTHON`      | `ON`/`OFF`        | Enable Python target `pyflamegpu` via Swig. Default `OFF`                                                  |
@@ -302,7 +302,6 @@ Program Listing for File README.md
    If you use this software in your work, please cite DOI [10.5281/zenodo.5428984](https://doi.org/10.5281/zenodo.5428984). Release specific DOI are also provided via Zenodo.
    
    Alternatively, [CITATION.cff](https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/CITATION.cff) provides citation metadata, which can also be accessed from [GitHub](https://github.com/FLAMEGPU/FLAMEGPU2).
-   
    
    ## License
    

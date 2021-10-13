@@ -52,7 +52,7 @@ Program Listing for File CUDAEnsemble.h
        void initialise(int argc, const char** argv);
        void setStepLog(const StepLoggingConfig &stepConfig);
        void setExitLog(const LoggingConfig &exitConfig);
-       float getEnsembleElapsedTime() const { return ensemble_elapsed_time; }
+       double getEnsembleElapsedTime() const { return ensemble_elapsed_time; }
        const std::vector<RunLog> &getLogs();
    
     private:
@@ -63,7 +63,7 @@ Program Listing for File CUDAEnsemble.h
        std::shared_ptr<const LoggingConfig> exit_log_config;
        std::vector<RunLog> run_logs;
        const std::shared_ptr<const ModelData> model;
-       float ensemble_elapsed_time = 0.f;
+       double ensemble_elapsed_time = 0.;
    };
    
    }  // namespace flamegpu

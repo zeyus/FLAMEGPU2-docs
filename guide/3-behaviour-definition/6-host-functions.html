@@ -799,6 +799,7 @@
 <h2>Adding Host Functions to a Model<a class="headerlink" href="#adding-host-functions-to-a-model" title="Permalink to this headline"></a></h2>
 <p>There are several ways that host functions can be added to a model; init, exit, step and layer.</p>
 <p>They can be added as init functions, which execute once at the start when <code class="docutils literal notranslate"><span class="pre">CUDASimulation::simulate()</span></code> is called.</p>
+<p>If multiple init functions are added to a model, they will be executed in the order that they were added to the model.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
@@ -816,6 +817,7 @@
 </div>
 </div></div>
 <p>They can be added as exit functions, which execute once after all steps have completed when <code class="docutils literal notranslate"><span class="pre">CUDASimulation::simulate()</span></code> is called.</p>
+<p>If multiple exit functions are added to a model, they will be executed in the order that they were added to the model.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
@@ -833,6 +835,7 @@
 </div>
 </div></div>
 <p>They can be added as step functions, which execute each model step after all layers have executed.</p>
+<p>If multiple step functions are added to a model, they will be executed in the order that they were added to the model.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
@@ -850,6 +853,7 @@
 </div>
 </div></div>
 <p>They can also be added to individual layers, so that they can execute between agent functions each model step.</p>
+<p>Host functions must be the only functions within a layer.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a new model</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;Test Model&quot;</span><span class="p">);</span><span class="w"></span>
@@ -1118,33 +1122,32 @@
 * The increment/decrement operators are not available, as they cannot be overriden.</p>
 <p>Updating environment macro properties:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-13-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span>// Define an host function called write_env_hostfn
-FLAMEGPU_HOST_FUNCTION(write_env_hostfn) {
-    // Retrieve the environment macro property bar of type int array[3][3][3]
-    auto bar = FLAMEGPU-&gt;environment.getProperty&lt;int, 3, 3, 3&gt;(&quot;bar&quot;);
-    // Update some of the values
-    foo = 12.0f;
-    bar[0][0][0]+=1;
-    bar[0][1][0] = 5;
-    ++bar[0][0][2];
-}
-
-.. code-tab:: python
-
-  # Define an host function called write_env_hostfn
-  class write_env_hostfn(pyflamegpu.HostFunctionCallback):
-    def run(self,FLAMEGPU):
-    # Retrieve the environment macro property foo of type float
-    foo = FLAMEGPU-&gt;environment.getMacroPropertyFloat(&quot;foo&quot;);
-    # Retrieve the environment macro property bar of type int array[3][3][3]
-    bar = FLAMEGPU.environment.getPropertyInt(&quot;bar&quot;);
-    # Update some of the values
-    # foo = 12.0; is not allowed
-    foo.set(12.0);
-    foo[0] = 12.0; # This is the same as calling set()
-    bar[0][0][0]+=1;
-    bar[0][1][0] = 5;
-    # ++bar[0][0][2]; # Python does not allow the increment operator to be overriden
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-13-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-13-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an host function called write_env_hostfn</span>
+<span class="n">FLAMEGPU_HOST_FUNCTION</span><span class="p">(</span><span class="n">write_env_hostfn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Retrieve the environment macro property bar of type int array[3][3][3]</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">bar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="p">.</span><span class="n">getProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;bar&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Update some of the values</span>
+<span class="w">    </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">12.0f</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="o">++</span><span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-13-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-13-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define an host function called write_env_hostfn</span>
+<span class="k">class</span> <span class="nc">write_env_hostfn</span><span class="p">(</span><span class="n">pyflamegpu</span><span class="o">.</span><span class="n">HostFunctionCallback</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">FLAMEGPU</span><span class="p">):</span>
+  <span class="c1"># Retrieve the environment macro property foo of type float</span>
+  <span class="n">foo</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">environment</span><span class="o">.</span><span class="n">getMacroPropertyFloat</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">);</span>
+  <span class="c1"># Retrieve the environment macro property bar of type int array[3][3][3]</span>
+  <span class="n">bar</span> <span class="o">=</span> <span class="n">FLAMEGPU</span><span class="o">.</span><span class="n">environment</span><span class="o">.</span><span class="n">getPropertyInt</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">);</span>
+  <span class="c1"># Update some of the values</span>
+  <span class="c1"># foo = 12.0; is not allowed</span>
+  <span class="n">foo</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mf">12.0</span><span class="p">);</span>
+  <span class="n">foo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">12.0</span><span class="p">;</span> <span class="c1"># This is the same as calling set()</span>
+  <span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span>
+  <span class="n">bar</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="c1"># ++bar[0][0][2]; # Python does not allow the increment operator to be overriden</span>
 </pre></div>
 </div>
 </div></div>

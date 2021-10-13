@@ -95,18 +95,18 @@ Program Listing for File CUDASimulation.h
    
        void RTCSafeCudaMemcpyToSymbolAddress(void* ptr, const char* rtc_symbol_name, const void* src, size_t count, size_t offset = 0) const;
    
-       float getElapsedTimeRTCInitialisation() const;
+       double getElapsedTimeRTCInitialisation() const;
    
-       float getElapsedTimeSimulation() const;
+       double getElapsedTimeSimulation() const;
    
-       float getElapsedTimeInitFunctions() const;
+       double getElapsedTimeInitFunctions() const;
    
-       float getElapsedTimeExitFunctions() const;
+       double getElapsedTimeExitFunctions() const;
    
-       std::vector<float> getElapsedTimeSteps() const;
+       std::vector<double> getElapsedTimeSteps() const;
    
    
-       float getElapsedTimeStep(unsigned int step) const;
+       double getElapsedTimeStep(unsigned int step) const;
    
        using Simulation::getInstanceID;
    
@@ -120,12 +120,12 @@ Program Listing for File CUDASimulation.h
     private:
        void reseed(const uint64_t &seed);
        unsigned int step_count;
-       float elapsedMillisecondsSimulation;
-       float elapsedMillisecondsInitFunctions;
-       float elapsedMillisecondsExitFunctions;
-       float elapsedMillisecondsRTCInitialisation;
+       double elapsedSecondsSimulation;
+       double elapsedSecondsInitFunctions;
+       double elapsedSecondsExitFunctions;
+       double elapsedSecondsRTCInitialisation;
    
-       std::vector<float> elapsedMillisecondsPerStep;
+       std::vector<double> elapsedSecondsPerStep;
        void incrementStepCounter();
        CUDAAgentMap agent_map;
        CUDAMacroEnvironment macro_env;

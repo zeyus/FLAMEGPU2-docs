@@ -17,7 +17,7 @@ Program Listing for File ModelData.h
    #include <list>
    #include <memory>
    #include <typeindex>
-   #include <set>
+   #include <vector>
    #include <string>
    
    #include "flamegpu/model/EnvironmentDescription.h"
@@ -43,25 +43,25 @@ Program Listing for File ModelData.h
        typedef std::unordered_map<std::string, std::shared_ptr<MessageBruteForce::Data>> MessageMap;
        typedef std::unordered_map<std::string, std::shared_ptr<SubModelData>> SubModelMap;
        typedef std::list<std::shared_ptr<LayerData>> LayerList;
-       typedef std::set<FLAMEGPU_INIT_FUNCTION_POINTER> InitFunctionSet;
-       typedef std::set<FLAMEGPU_STEP_FUNCTION_POINTER> StepFunctionSet;
-       typedef std::set<HostFunctionCallback*> HostFunctionCallbackSet;
-       typedef std::set<HostFunctionConditionCallback*> HostFunctionConditionCallbackSet;
-       typedef std::set<FLAMEGPU_EXIT_FUNCTION_POINTER> ExitFunctionSet;
-       typedef std::set<FLAMEGPU_EXIT_CONDITION_POINTER> ExitConditionSet;
+       typedef std::vector<FLAMEGPU_INIT_FUNCTION_POINTER> InitFunctionVector;
+       typedef std::vector<FLAMEGPU_STEP_FUNCTION_POINTER> StepFunctionVector;
+       typedef std::vector<HostFunctionCallback*> HostFunctionCallbackVector;
+       typedef std::vector<HostFunctionConditionCallback*> HostFunctionConditionCallbackVector;
+       typedef std::vector<FLAMEGPU_EXIT_FUNCTION_POINTER> ExitFunctionVector;
+       typedef std::vector<FLAMEGPU_EXIT_CONDITION_POINTER> ExitConditionVector;
    
        AgentMap agents;
        MessageMap messages;
        SubModelMap submodels;
        LayerList layers;
-       InitFunctionSet initFunctions;
-       HostFunctionCallbackSet initFunctionCallbacks;
-       StepFunctionSet stepFunctions;
-       HostFunctionCallbackSet stepFunctionCallbacks;
-       ExitFunctionSet exitFunctions;
-       HostFunctionCallbackSet exitFunctionCallbacks;
-       ExitConditionSet exitConditions;
-       HostFunctionConditionCallbackSet exitConditionCallbacks;
+       InitFunctionVector initFunctions;
+       HostFunctionCallbackVector initFunctionCallbacks;
+       StepFunctionVector stepFunctions;
+       HostFunctionCallbackVector stepFunctionCallbacks;
+       ExitFunctionVector exitFunctions;
+       HostFunctionCallbackVector exitFunctionCallbacks;
+       ExitConditionVector exitConditions;
+       HostFunctionConditionCallbackVector exitConditionCallbacks;
        std::shared_ptr<EnvironmentDescription> environment;  // TODO: Move this to same Data:Description format
        std::string name;
        std::shared_ptr<DependencyGraph> dependencyGraph;

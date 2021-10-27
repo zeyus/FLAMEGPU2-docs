@@ -768,8 +768,12 @@
 
 <span class="cp">#ifdef USE_GLM</span>
 <span class="cp">#ifdef __CUDACC__</span>
+<span class="cp">#ifdef __NVCC_DIAG_PRAGMA_SUPPORT__</span>
+<span class="cp">#pragma nv_diag_suppress = esa_on_defaulted_function_ignored</span>
+<span class="cp">#else</span>
 <span class="cp">#pragma diag_suppress = esa_on_defaulted_function_ignored</span>
-<span class="cp">#endif</span>
+<span class="cp">#endif  </span><span class="c1">// __NVCC_DIAG_PRAGMA_SUPPORT__</span>
+<span class="cp">#endif  </span><span class="c1">// __CUDACC__</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glm/glm.hpp&gt;</span><span class="cp"></span>
 <span class="cp">#endif</span>
 
@@ -815,7 +819,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2019, University of Sheffield.</p>
+    <p>&#169; Copyright 2021, University of Sheffield.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -110,7 +110,7 @@ Program Listing for File SubModelDescription.cpp
    }
    
    
-   SubEnvironmentDescription &SubModelDescription::SubEnvironment(bool auto_map_props) {
+   SubEnvironmentDescription &SubModelDescription::SubEnvironment(bool auto_map) {
        if (!data->subenvironment) {
            auto mdl = model.lock();
            if (!mdl) {
@@ -118,11 +118,13 @@ Program Listing for File SubModelDescription.cpp
            }
            data->subenvironment = std::shared_ptr<SubEnvironmentData>(new SubEnvironmentData(mdl, data->shared_from_this(), data->submodel->environment));
        }
-       if (auto_map_props)
+       if (auto_map) {
            data->subenvironment->description->autoMapProperties();
+           data->subenvironment->description->autoMapMacroProperties();
+       }
        return *data->subenvironment->description;
    }
-   const SubEnvironmentDescription &SubModelDescription::getSubEnvironment(bool auto_map_props) const {
+   const SubEnvironmentDescription &SubModelDescription::getSubEnvironment(bool auto_map) const {
        if (!data->subenvironment) {
            auto mdl = model.lock();
            if (!mdl) {
@@ -130,8 +132,10 @@ Program Listing for File SubModelDescription.cpp
            }
            data->subenvironment = std::shared_ptr<SubEnvironmentData>(new SubEnvironmentData(mdl, data->shared_from_this(), data->submodel->environment));
        }
-       if (auto_map_props)
+       if (auto_map) {
            data->subenvironment->description->autoMapProperties();
+           data->subenvironment->description->autoMapMacroProperties();
+       }
        return *data->subenvironment->description;
    }
    

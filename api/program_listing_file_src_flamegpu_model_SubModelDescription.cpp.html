@@ -863,7 +863,7 @@ const SubAgentDescription &amp;SubModelDescription::getSubAgent(const std::strin
 }
 
 
-SubEnvironmentDescription &amp;SubModelDescription::SubEnvironment(bool auto_map_props) {
+SubEnvironmentDescription &amp;SubModelDescription::SubEnvironment(bool auto_map) {
     if (!data-&gt;subenvironment) {
         auto mdl = model.lock();
         if (!mdl) {
@@ -871,11 +871,13 @@ SubEnvironmentDescription &amp;SubModelDescription::SubEnvironment(bool auto_map
         }
         data-&gt;subenvironment = std::shared_ptr&lt;SubEnvironmentData&gt;(new SubEnvironmentData(mdl, data-&gt;shared_from_this(), data-&gt;submodel-&gt;environment));
     }
-    if (auto_map_props)
+    if (auto_map) {
         data-&gt;subenvironment-&gt;description-&gt;autoMapProperties();
+        data-&gt;subenvironment-&gt;description-&gt;autoMapMacroProperties();
+    }
     return *data-&gt;subenvironment-&gt;description;
 }
-const SubEnvironmentDescription &amp;SubModelDescription::getSubEnvironment(bool auto_map_props) const {
+const SubEnvironmentDescription &amp;SubModelDescription::getSubEnvironment(bool auto_map) const {
     if (!data-&gt;subenvironment) {
         auto mdl = model.lock();
         if (!mdl) {
@@ -883,8 +885,10 @@ const SubEnvironmentDescription &amp;SubModelDescription::getSubEnvironment(bool
         }
         data-&gt;subenvironment = std::shared_ptr&lt;SubEnvironmentData&gt;(new SubEnvironmentData(mdl, data-&gt;shared_from_this(), data-&gt;submodel-&gt;environment));
     }
-    if (auto_map_props)
+    if (auto_map) {
         data-&gt;subenvironment-&gt;description-&gt;autoMapProperties();
+        data-&gt;subenvironment-&gt;description-&gt;autoMapMacroProperties();
+    }
     return *data-&gt;subenvironment-&gt;description;
 }
 
@@ -911,7 +915,7 @@ const std::string SubModelDescription::getName() {
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2019, University of Sheffield.</p>
+    <p>&#169; Copyright 2021, University of Sheffield.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

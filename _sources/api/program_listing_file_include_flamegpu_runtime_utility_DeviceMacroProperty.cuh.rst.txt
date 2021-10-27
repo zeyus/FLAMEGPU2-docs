@@ -84,6 +84,7 @@ Program Listing for File DeviceMacroProperty.cuh
        const unsigned int old = atomicOr(read_write_flag, 1u << 0);
        if (old & 1u << 1) {
            DTHROW("DeviceMacroProperty read and atomic write operations cannot be mixed in the same layer, as this may cause race conditions.\n");
+           return;
        }
    }
    template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W>
@@ -91,6 +92,7 @@ Program Listing for File DeviceMacroProperty.cuh
        const unsigned int old = atomicOr(read_write_flag, 1u << 1);
        if (old & 1u << 0) {
            DTHROW("DeviceMacroProperty read and atomic write operations cannot be mixed in the same layer as this may cause race conditions.\n");
+           return;
        }
    }
    #endif
@@ -109,8 +111,10 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I == 1 && J == 1 && K == 1 && W == 1) {
            DTHROW("Indexing error, property has less dimensions.\n");
+           return ReadOnlyDeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        } else if (i >= I) {
            DTHROW("Indexing error, out of bounds %u >= %u.\n", i, I);
+           return ReadOnlyDeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        } else if (this->ptr == nullptr) {
            return ReadOnlyDeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        }
@@ -127,8 +131,10 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I == 1 && J == 1 && K == 1 && W == 1) {
            DTHROW("Indexing error, property has less dimensions.\n");
+           return DeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        } else if (i >= I) {
            DTHROW("Indexing error, out of bounds %u >= %u.\n", i, I);
+           return DeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        } else if (this->ptr == nullptr) {
            return DeviceMacroProperty<T, J, K, W, 1>(nullptr, nullptr);
        }
@@ -145,6 +151,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -162,6 +169,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return *this;
        } else if (this->ptr == nullptr) {
            return *this;
        }
@@ -176,6 +184,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return *this;
        } else if (this->ptr == nullptr) {
            return *this;
        }
@@ -194,6 +203,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -207,6 +217,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -220,6 +231,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return *this;
        } else if (this->ptr == nullptr) {
            return *this;
        }
@@ -235,6 +247,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return *this;
        } else if (this->ptr == nullptr) {
            return *this;
        }
@@ -249,6 +262,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -263,6 +277,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -278,6 +293,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -293,6 +309,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -309,6 +326,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -319,7 +337,11 @@ Program Listing for File DeviceMacroProperty.cuh
    
    // GCC doesn't like seeing atomicExch with host compiler
    #ifdef __CUDACC__
+   #ifdef __NVCC_DIAG_PRAGMA_SUPPORT__
+   #pragma nv_diag_suppress = initialization_not_reachable
+   #else
    #pragma diag_suppress = initialization_not_reachable
+   #endif  // __NVCC_DIAG_PRAGMA_SUPPORT__
    template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W>
    __device__ __forceinline__ T DeviceMacroProperty<T, I, J, K, W>::exchange(T val) {
        static_assert(std::is_same<T, int32_t>::value ||
@@ -332,6 +354,7 @@ Program Listing for File DeviceMacroProperty.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (I != 1 || J != 1 || K != 1 || W != 1) {
            DTHROW("Indexing error, property has more dimensions.\n");
+           return { };
        } else if (this->ptr == nullptr) {
            return { };
        }
@@ -346,8 +369,12 @@ Program Listing for File DeviceMacroProperty.cuh
        return *reinterpret_cast<const T*>(&rval);
        // return atomicExch(this->ptr, val);
    }
+   #ifdef __NVCC_DIAG_PRAGMA_SUPPORT__
+   #pragma nv_diag_default = initialization_not_reachable
+   #else
    #pragma diag_default = initialization_not_reachable
-   #endif
+   #endif  // __NVCC_DIAG_PRAGMA_SUPPORT__
+   #endif  // __CUDACC__
    
    }  // namespace flamegpu
    

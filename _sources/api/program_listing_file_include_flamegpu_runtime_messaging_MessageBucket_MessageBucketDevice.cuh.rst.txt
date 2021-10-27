@@ -63,6 +63,11 @@ Program Listing for File MessageBucketDevice.cuh
                __device__ Message* operator->() { return &_message; }
            };
            inline __device__ Filter(const MetaData *_metadata, const detail::curve::Curve::NamespaceHash &combined_hash, const IntT &beginKey, const IntT &endKey);
+   #if !defined(SEATBELTS) || SEATBELTS
+   
+           inline __device__ Filter();
+   #endif
+   
            inline __device__ iterator begin(void) const {
                // Bin before initial bin, as the constructor calls increment operator
                return iterator(*this, bucket_begin - 1);
@@ -89,8 +94,10 @@ Program Listing for File MessageBucketDevice.cuh
            {
                if (key < metadata->min) {
                    DTHROW("Bucket messaging iterator key %d is lower than minimum key (%d).\n", key, metadata->min);
+                   return Filter();
                } else if (key >= metadata->max) {
                    DTHROW("Bucket messaging iterator key %d is higher than maximum key (%d).\n", key, metadata->max - 1);
+                   return Filter();
                }
            }
    #endif
@@ -101,10 +108,13 @@ Program Listing for File MessageBucketDevice.cuh
            {
                if (beginKey < metadata->min) {
                    DTHROW("Bucket messaging iterator begin key %d is lower than minimum key (%d).\n", beginKey, metadata->min);
+                   return Filter();
                } else if (endKey > metadata->max) {
                    DTHROW("Bucket messaging iterator end key %d is higher than maximum key + 1 (%d).\n", endKey, metadata->max);
+                   return Filter();
                } else if (endKey <= beginKey) {
                    DTHROW("Bucket messaging iterator begin key must be lower than end key (%d !< %d).\n", beginKey, endKey);
+                   return Filter();
                }
            }
    #endif
@@ -141,6 +151,13 @@ Program Listing for File MessageBucketDevice.cuh
            bucket_end = metadata->PBM[endKey - metadata->min];
        }
    }
+   #if !defined(SEATBELTS) || SEATBELTS
+   __device__ MessageBucket::In::Filter::Filter()
+       : bucket_begin(0)
+       , bucket_end(0)
+       , metadata(nullptr)
+       , combined_hash(0) { }
+   #endif
    
    __device__ void MessageBucket::Out::setKey(const IntT &key) const {
        unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;  // + d_message_count;
@@ -148,6 +165,7 @@ Program Listing for File MessageBucketDevice.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        if (key < metadata->min || key >= metadata->max) {
            DTHROW("MessageArray key %u is out of range [%d, %d).\n", key, metadata->min, metadata->max);
+           return;
        }
    #endif
        // set the variables using curve

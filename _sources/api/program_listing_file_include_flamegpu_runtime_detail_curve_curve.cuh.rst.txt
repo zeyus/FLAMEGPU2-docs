@@ -26,10 +26,14 @@ Program Listing for File curve.cuh
    
    #ifdef USE_GLM
    #ifdef __CUDACC__
+   #ifdef __NVCC_DIAG_PRAGMA_SUPPORT__
+   #pragma nv_diag_suppress = esa_on_defaulted_function_ignored
+   #else
    #pragma diag_suppress = esa_on_defaulted_function_ignored
-   #endif
+   #endif  // __NVCC_DIAG_PRAGMA_SUPPORT__
+   #endif  // __CUDACC__
    #include <glm/glm.hpp>
-   #endif
+   #endif  // USE_GLM
    
    namespace flamegpu {
    namespace detail {
@@ -340,8 +344,10 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable with name '%s' was not found.\n", variableName);
+               return {};
            } else if (curve::detail::d_sizes[cv] != sizeof(T)) {
                DTHROW("Curve variable with name '%s' type size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T));
+               return {};
            }
        }
    #endif
@@ -363,8 +369,10 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable with name '%s' was not found.\n", variableName);
+               return {};
            } else if (curve::detail::d_sizes[cv] != sizeof(T)) {
                DTHROW("Curve variable with name '%s' type size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T));
+               return {};
            }
        }
    #endif
@@ -391,13 +399,15 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable array with name '%s' was not found.\n", variableName);
+               return {};
            } else if (curve::detail::d_sizes[cv] != sizeof(T) * N) {
                DTHROW("Curve variable array with name '%s', type size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T) * N);
+               return {};
            }
        }
        if (array_index >= N) {
            DTHROW("Curve array index %u is out of bounds for variable with name '%s'.\n", array_index, variableName);
-           return 0;
+           return {};
        }
    #endif
        // Curve currently doesn't store whether a variable is an array
@@ -420,13 +430,15 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable array with name '%s' was not found.\n", variableName);
+               return {};
            } else if (curve::detail::d_sizes[cv] != sizeof(T) * N) {
                DTHROW("Curve variable array with name '%s', type size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T) * N);
+               return {};
            }
        }
        if (array_index >= N) {
            DTHROW("Curve array index %u is out of bounds for variable with name '%s'.\n", array_index, variableName);
-           return 0;
+           return {};
        }
    #endif
        // Curve currently doesn't store whether a variable is an array
@@ -485,8 +497,10 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable with name '%s' was not found.\n", variableName);
+               return;
            } else if (curve::detail::d_sizes[cv] != sizeof(T)) {
                DTHROW("Curve variable with name '%s', type size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T));
+               return;
            }
        }
    #endif
@@ -512,8 +526,10 @@ Program Listing for File curve.cuh
            const auto cv = getVariable(variable_hash+namespace_hash);
            if (cv ==  UNKNOWN_VARIABLE) {
                DTHROW("Curve variable array with name '%s' was not found.\n", variableName);
+               return;
            } else if (curve::detail::d_sizes[cv] != sizeof(T) * N) {
                DTHROW("Curve variable array with name '%s', size mismatch %llu != %llu.\n", variableName, curve::detail::d_sizes[cv], sizeof(T) * N);
+               return;
            }
        }
        if (array_index >= N) {
@@ -523,7 +539,7 @@ Program Listing for File curve.cuh
    #endif
        // Curve currently doesn't store whether a variable is an array
        // Curve stores M * sizeof(T), so this is checked instead
-       return setArrayVariableByHash<T, N>(variable_hash + namespace_hash, variable, agent_index, array_index);
+       setArrayVariableByHash<T, N>(variable_hash + namespace_hash, variable, agent_index, array_index);
    }
    
    }  // namespace curve

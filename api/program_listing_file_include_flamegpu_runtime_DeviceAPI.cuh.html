@@ -785,10 +785,14 @@
 
 <span class="cp">#ifdef USE_GLM</span>
 <span class="cp">#ifdef __CUDACC__</span>
+<span class="cp">#ifdef __NVCC_DIAG_PRAGMA_SUPPORT__</span>
+<span class="cp">#pragma nv_diag_suppress = esa_on_defaulted_function_ignored</span>
+<span class="cp">#else</span>
 <span class="cp">#pragma diag_suppress = esa_on_defaulted_function_ignored</span>
-<span class="cp">#endif</span>
+<span class="cp">#endif  </span><span class="c1">// __NVCC_DIAG_PRAGMA_SUPPORT__</span>
+<span class="cp">#endif  </span><span class="c1">// __CUDACC__</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;glm/glm.hpp&gt;</span><span class="cp"></span>
-<span class="cp">#endif</span>
+<span class="cp">#endif  </span><span class="c1">// USE_GLM</span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
@@ -1024,10 +1028,10 @@
 <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="o">&gt;</span><span class="w"></span>
 <span class="n">__device__</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DeviceAPI</span><span class="o">&lt;</span><span class="n">MessageIn</span><span class="p">,</span><span class="w"> </span><span class="n">MessageOut</span><span class="o">&gt;::</span><span class="n">setVariable</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="p">(</span><span class="o">&amp;</span><span class="n">variable_name</span><span class="p">)[</span><span class="n">M</span><span class="p">],</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">array_index</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="o">&amp;</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">variable_name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="sc">&#39;_&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Fail silently</span>
 <span class="cp">#if !defined(SEATBELTS) || SEATBELTS</span>
 <span class="w">        </span><span class="n">DTHROW</span><span class="p">(</span><span class="s">&quot;Variable names starting with &#39;_&#39; are reserved for internal use, with &#39;%s&#39;, in DeviceAPI::setVariable().</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">variable_name</span><span class="p">);</span><span class="w"></span>
 <span class="cp">#endif</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span><span class="w">  </span><span class="c1">// Fail silently</span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// simple indexing assumes index is the thread number (this may change later)</span>
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">blockDim</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">blockIdx</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">threadIdx</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"></span>
@@ -1126,7 +1130,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2019, University of Sheffield.</p>
+    <p>&#169; Copyright 2021, University of Sheffield.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

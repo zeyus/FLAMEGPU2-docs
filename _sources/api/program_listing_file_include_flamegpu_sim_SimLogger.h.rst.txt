@@ -34,7 +34,9 @@ Program Listing for File SimLogger.h
            const std::string &out_format,
            std::queue<unsigned int> &log_export_queue,
            std::mutex &log_export_queue_mutex,
-           std::condition_variable &log_export_queue_cdn);
+           std::condition_variable &log_export_queue_cdn,
+           bool _export_step,
+           bool _export_exit);
        std::thread thread;
        void start();
        // External references
@@ -45,6 +47,8 @@ Program Listing for File SimLogger.h
        std::queue<unsigned int> &log_export_queue;
        std::mutex &log_export_queue_mutex;
        std::condition_variable &log_export_queue_cdn;
+       bool export_step;
+       bool export_exit;
    };
    
    }  // namespace flamegpu

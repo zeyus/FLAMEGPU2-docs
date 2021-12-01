@@ -33,7 +33,7 @@ Program Listing for File CUDAMessageList.h
        void cleanupAllocatedData();
        void* getReadMessageListVariablePointer(std::string variable_name);
        void* getWriteMessageListVariablePointer(std::string variable_name);
-   
+       void resize(CUDAScatter& scatter, const unsigned int& streamId = 0, const unsigned int& keep_len = 0);
        void zeroMessageData();
        virtual void swap();
        virtual unsigned int scatter(const unsigned int &newCount, CUDAScatter &scatter, const unsigned int &streamId, const bool &append);
@@ -44,7 +44,7 @@ Program Listing for File CUDAMessageList.h
     protected:
         void allocateDeviceMessageList(CUDAMessageMap &memory_map);
         void releaseDeviceMessageList(CUDAMessageMap &memory_map);
-        void zeroDeviceMessageList(CUDAMessageMap &memory_map);
+        void zeroDeviceMessageList(CUDAMessageMap &memory_map, const unsigned int& skip_offset = 0);
    
     private:
        CUDAMessageMap d_list;

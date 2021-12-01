@@ -25,7 +25,7 @@ Program Listing for File MessageBruteForceHost.h
    
    #include "flamegpu/runtime/messaging/MessageNone/MessageNoneHost.h"
    #include "flamegpu/runtime/messaging/MessageBruteForce.h"
-   
+   #include "flamegpu/runtime/messaging/MessageSortingType.h"
    
    namespace flamegpu {
    
@@ -66,6 +66,7 @@ Program Listing for File MessageBruteForceHost.h
        virtual std::unique_ptr<MessageSpecialisationHandler> getSpecialisationHander(CUDAMessage &owner) const;
    
        virtual std::type_index getType() const;
+       virtual flamegpu::MessageSortingType getSortingType() const;
    
     protected:
        virtual Data *clone(const std::shared_ptr<const ModelData> &newParent);

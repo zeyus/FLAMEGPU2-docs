@@ -18,6 +18,7 @@ Program Listing for File CUDASimulation.h
    #include <string>
    #include <unordered_map>
    #include <map>
+   #include <set>
    
    #include "flamegpu/exception/FLAMEGPUDeviceException.cuh"
    #include "flamegpu/sim/Simulation.h"
@@ -105,7 +106,6 @@ Program Listing for File CUDASimulation.h
    
        std::vector<double> getElapsedTimeSteps() const;
    
-   
        double getElapsedTimeStep(unsigned int step) const;
    
        using Simulation::getInstanceID;
@@ -154,6 +154,15 @@ Program Listing for File CUDASimulation.h
        void stepStepFunctions();
        bool stepExitConditions();
    
+       void spatialSortAgent(const std::string& funcName, const std::string& agentName, const std::string& state, const int mode);
+   
+       constexpr static int Agent2D = 0;
+       constexpr static int Agent3D = 1;
+   
+       std::set<std::string> sortTriggers2D;
+       std::set<std::string> sortTriggers3D;
+   
+       void determineAgentsToSort();
    
        struct Singletons {
          detail::curve::Curve &curve;

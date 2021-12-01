@@ -171,8 +171,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="4-collecting-data.html">Collecting Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
-<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#configuring-data-to-be-collected">Configuring Data to be Collected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#accessing-collected-data">Accessing Collected Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#writing-collected-data-to-file">Writing Collected Data to File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#accessing-the-complete-agent-state">Accessing the Complete Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-collecting-data.html#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -198,7 +201,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../7-submodels/index.html">Submodels</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html">Defining a Submodel</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">Submodel Definition</a></li>
 </ul>
 </li>
 </ul>
@@ -252,12 +255,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#page-hierarchy">Page Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40153.html">Namespace flamegpu::&#64;153</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40154.html">Namespace flamegpu::&#64;154</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -578,6 +582,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#enums">Enums</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a1adc39b89f4a6045c011c55a91339e4c.html">Enum AGENT_STATUS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html">Enum CONDITION_RESULT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html">Enum MessageSortingType</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#functions">Functions</a><ul>
@@ -588,6 +593,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a62702550faacab131476f2f0fd42b15d.html">Function flamegpu::atomicHistogram2D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1ab142b7f3311b4d53df2ec36802361c18.html">Function flamegpu::atomicHistogram3D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a372e103ba46c067bc0f68a2a103b90b1.html">Function flamegpu::broadcastInitKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1ab6b7cc2d61ad5fc6ef4f30962f0e1c0c.html">Function flamegpu::calculateSpatialHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a8e4c805fb1a16187e4a86a8dc7ced84d.html">Function flamegpu::generateCollisionFlags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a5b21b0ec7c8afea544e7fee29d2a0e7f.html">Template Function flamegpu::getAgentVariableMaxFunc</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a451011c85abe5de4e9497e29ccf8ffdb.html">Template Function flamegpu::getAgentVariableMeanFunc</a></li>
@@ -607,6 +613,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -785,8 +792,11 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="4-collecting-data.html">Collecting Data</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
-<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#configuring-data-to-be-collected">Configuring Data to be Collected</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#accessing-collected-data">Accessing Collected Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#writing-collected-data-to-file">Writing Collected Data to File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#accessing-the-complete-agent-state">Accessing the Complete Agent State</a></li>
+<li class="toctree-l2"><a class="reference internal" href="4-collecting-data.html#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
 </ul>

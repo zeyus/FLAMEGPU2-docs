@@ -172,8 +172,11 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Collecting Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#saving-agent-state">Saving Agent State</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#collecting-other-information">Collecting Other Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-data-to-be-collected">Configuring Data to be Collected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-collected-data">Accessing Collected Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#writing-collected-data-to-file">Writing Collected Data to File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-the-complete-agent-state">Accessing the Complete Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +202,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../7-submodels/index.html">Submodels</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html">Defining a Submodel</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../7-submodels/1-defining-a-submodel.html#submodel-definition">Submodel Definition</a></li>
 </ul>
 </li>
 </ul>
@@ -253,12 +256,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#page-hierarchy">Page Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40153.html">Namespace flamegpu::&#64;153</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40154.html">Namespace flamegpu::&#64;154</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -579,6 +583,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#enums">Enums</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a1adc39b89f4a6045c011c55a91339e4c.html">Enum AGENT_STATUS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html">Enum CONDITION_RESULT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html">Enum MessageSortingType</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#functions">Functions</a><ul>
@@ -589,6 +594,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a62702550faacab131476f2f0fd42b15d.html">Function flamegpu::atomicHistogram2D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1ab142b7f3311b4d53df2ec36802361c18.html">Function flamegpu::atomicHistogram3D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a372e103ba46c067bc0f68a2a103b90b1.html">Function flamegpu::broadcastInitKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1ab6b7cc2d61ad5fc6ef4f30962f0e1c0c.html">Function flamegpu::calculateSpatialHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a8e4c805fb1a16187e4a86a8dc7ced84d.html">Function flamegpu::generateCollisionFlags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a5b21b0ec7c8afea544e7fee29d2a0e7f.html">Template Function flamegpu::getAgentVariableMaxFunc</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a451011c85abe5de4e9497e29ccf8ffdb.html">Template Function flamegpu::getAgentVariableMeanFunc</a></li>
@@ -608,6 +614,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -767,40 +774,321 @@
              
   <div class="section" id="collecting-data">
 <span id="id1"></span><h1>Collecting Data<a class="headerlink" href="#collecting-data" title="Permalink to this headline"></a></h1>
-<div class="section" id="saving-agent-state">
-<h2>Saving Agent State<a class="headerlink" href="#saving-agent-state" title="Permalink to this headline"></a></h2>
-<p>The state of the simulation can be periodically saved in either XML or JSON format. To save the state, supply the <strong>TODO: which switch</strong> switch
-to the program, followed by the output period. For example</p>
-<p><strong>TODO: Example</strong></p>
-<p>runs program ‘…’ and will output its state every 5 steps in the JSON format.</p>
-</div>
-<div class="section" id="collecting-other-information">
-<h2>Collecting Other Information<a class="headerlink" href="#collecting-other-information" title="Permalink to this headline"></a></h2>
-<p>Custom information can be collected using step functions. These run at the end of each step. The FLAMEGPU2 API provides a
-set of functions which can be used to collect information about agents and their variables.</p>
+<div class="section" id="configuring-data-to-be-collected">
+<h2>Configuring Data to be Collected<a class="headerlink" href="#configuring-data-to-be-collected" title="Permalink to this headline"></a></h2>
+<p>As Simulations are likely to involve thousands to millions of agents, logging the full simulation state would produce large amounts of output most of which is not required. As such, FLAMEGPU provides the ability to specify a subset of population level reductions and environment properties to be logged each step or at simulation exit.</p>
+<p>To define a logging config, you should declare either a <code class="docutils literal notranslate"><span class="pre">LoggingConfig</span></code> or <code class="docutils literal notranslate"><span class="pre">StepLoggingConfig</span></code>, passing your <code class="docutils literal notranslate"><span class="pre">ModelDescription</span></code> to the constructor. These two classes share the same interface for specifying data to be logged, however <code class="docutils literal notranslate"><span class="pre">StepLoggingConfig</span></code> additionally allows you specify <code class="docutils literal notranslate"><span class="pre">setLoggingFrequency()</span></code> to adjust how often steps are logged (default 1, every step).</p>
+<p>Environment properties are logged with <code class="docutils literal notranslate"><span class="pre">logEnvironment()</span></code>, specifying the property’s name</p>
+<p>Agent data is logged according to agent state, so agent’s with multiple states must have the config specified for each state required to be logged. The total number of agents in the state can be logged with <code class="docutils literal notranslate"><span class="pre">logCount()</span></code>. Or variable reductions can be logged with; <code class="docutils literal notranslate"><span class="pre">logMean()</span></code>, <code class="docutils literal notranslate"><span class="pre">logStandardDev()</span></code>, <code class="docutils literal notranslate"><span class="pre">logMin()</span></code>, <code class="docutils literal notranslate"><span class="pre">logMax()</span></code>, <code class="docutils literal notranslate"><span class="pre">logSum()</span></code> specifying the variable’s name and type (in the same form as used throughout the API).</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a step function called &#39;step_function&#39;</span>
-<span class="n">FLAMEGPU_STEP_FUNCTION</span><span class="p">(</span><span class="n">step_function</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;agent&quot;</span><span class="p">);</span><span class="w"></span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;example model&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Compute the sum of all the &#39;a&#39; variables of agent type &#39;agent&#39;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">sum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="p">...</span><span class="w"> </span><span class="c1">// Fully define the model</span>
 
-<span class="w">    </span><span class="c1">// Apply a custom function, &#39;customSum&#39; to the variables &#39;a&#39; of agent type &#39;agent&#39;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">custom_sum_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">reduce</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">customSum</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Count the number of agents whose &#39;a&#39; variable is set to &#39;1&#39;</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">count_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">count</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Sum the values of the &#39;a&#39; variables of agent type &#39;agent&#39;, whose &#39;a&#39; value meets the criteria defined in &#39;customTransform&#39;</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">countif_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">transformReduce</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">customTransform</span><span class="p">,</span><span class="w"> </span><span class="n">customSum</span><span class="p">,</span><span class="w"> </span><span class="mi">0u</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Print out the collected information</span>
-<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Step Function! (AgentCount: %u, Sum: %d, CustomSum: %d, Count: %u, CustomCountIf: %u)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">agent</span><span class="p">.</span><span class="n">count</span><span class="p">(),</span><span class="w"> </span><span class="n">sum_a</span><span class="p">,</span><span class="w"> </span><span class="n">custom_sum_a</span><span class="p">,</span><span class="w"> </span><span class="n">count_a</span><span class="p">,</span><span class="w"> </span><span class="n">countif_a</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Specify the desired LoggingConfig or StepLoggingConfig</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">StepLoggingConfig</span><span class="w"> </span><span class="n">step_log_cfg</span><span class="p">(</span><span class="n">model</span><span class="p">);</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Log every step (not available to LoggingConfig, for exit logs)</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the environment property &#39;env_prop&#39; in the logged data</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">logEnvironment</span><span class="p">(</span><span class="s">&quot;env_prop&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the current number of &#39;boid&#39; agents, within the default state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logCount</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the current number of &#39;boid&#39; agents, within the &#39;alive&#39; state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;alive&quot;</span><span class="p">).</span><span class="n">logCount</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the mean of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logMean</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the standard deviation of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logStandardDev</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the min and max of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logMin</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logMax</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Include the sum of the boid agent population&#39;s variable &#39;health&#39;, within the &#39;alive&#39; state</span>
+<span class="w">    </span><span class="n">step_log_cfg</span><span class="p">.</span><span class="n">agent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">logSum</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;health&quot;</span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
+
+<span class="c1">// Create the CUDASimulation instance</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">CUDASimulation</span><span class="w"> </span><span class="n">cuda_sim</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Attach the logging config/s</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">setStepLog</span><span class="p">(</span><span class="n">step_log_cfg</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// cuda_sim.setExitLog(exit_log_cfg);</span>
+
+<span class="c1">// Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">simulate</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">ModelDescription</span><span class="p">(</span><span class="s2">&quot;example model&quot;</span><span class="p">)</span>
+
+<span class="o">...</span> <span class="c1"># Fully define the model</span>
+
+<span class="c1"># Specify the desired LoggingConfig or StepLoggingConfig</span>
+<span class="n">step_log_cfg</span> <span class="o">=</span> <span class="n">flamegpu</span><span class="o">.</span><span class="n">StepLoggingConfig</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="c1"># Log every step (not available to LoggingConfig, for exit logs)</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">setFrequency</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Include the environment property &#39;env_prop&#39; in the logged data</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">logEnvironment</span><span class="p">(</span><span class="s2">&quot;env_prop&quot;</span><span class="p">)</span>
+<span class="c1"># Include the current number of &#39;boid&#39; agents, within the default state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logCount</span><span class="p">()</span>
+<span class="c1"># Include the current number of &#39;boid&#39; agents, within the &#39;alive&#39; state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">,</span> <span class="s2">&quot;alive&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logCount</span><span class="p">()</span>
+<span class="c1"># Include the mean of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logMeanFloat</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+<span class="c1"># Include the standard deviation of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logStandardDevFloat</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+<span class="c1"># Include the min and max of the boid agent population&#39;s variable &#39;speed&#39;, within the default state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logMinFloat</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logMaxFloat</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+<span class="c1"># Include the sum of the boid agent population&#39;s variable &#39;health&#39;, within the &#39;alive&#39; state</span>
+<span class="n">step_log_cfg</span><span class="o">.</span><span class="n">agent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">logSumInt</span><span class="p">(</span><span class="s2">&quot;health&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create the CUDASimulation instance</span>
+<span class="n">cuda_sim</span> <span class="o">=</span> <span class="n">flamegpu</span><span class="o">.</span><span class="n">CUDASimulation</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span>
+
+<span class="c1"># Attach the logging config/s</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">setStepLog</span><span class="p">(</span><span class="n">step_log_cfg</span><span class="p">)</span>
+<span class="c1"># cuda_sim.setExitLog(exit_log_cfg)</span>
+
+<span class="c1"># Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
 </pre></div>
 </div>
 </div></div>
+</div>
+<div class="section" id="accessing-collected-data">
+<h2>Accessing Collected Data<a class="headerlink" href="#accessing-collected-data" title="Permalink to this headline"></a></h2>
+<p>After configuring a <code class="docutils literal notranslate"><span class="pre">CUDASimulation</span></code> to use specific logging configs, and executing the simulation, the log can be accessed via code using <code class="docutils literal notranslate"><span class="pre">getRunLog()</span></code>. This returns a structure combining the step and exit logs that were requested.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Attach the logging config/s</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">setStepLog</span><span class="p">(</span><span class="n">step_log_cfg</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// cuda_sim.setExitLog(exit_log_cfg);</span>
+
+<span class="c1">// Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">simulate</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Fetch the logged data</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">RunLog</span><span class="w"> </span><span class="n">run_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuda_sim</span><span class="p">.</span><span class="n">getRunLog</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Get the random seed used</span>
+<span class="kt">uint64_t</span><span class="w"> </span><span class="n">rng_seed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run_log</span><span class="p">.</span><span class="n">getRandomSeed</span><span class="p">();</span><span class="w"></span>
+<span class="c1">// Get the step logging frequency</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">step_log_freqency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run_log</span><span class="p">.</span><span class="n">getStepLogFrequency</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Access the step and exit log data</span>
+<span class="c1">// The step and exit logs will be empty, if a respective logging config was not specified.</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">LogFrame</span><span class="w"> </span><span class="n">exit_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run_log</span><span class="p">.</span><span class="n">getExitLog</span><span class="p">();</span><span class="w"></span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="n">flamegpu</span><span class="o">::</span><span class="n">LogFrame</span><span class="o">&gt;</span><span class="w"> </span><span class="n">step_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">run_log</span><span class="p">.</span><span class="n">getStepLog</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Iterate the step log and print some information to console</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">log</span><span class="p">:</span><span class="n">step_log</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get the step index</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">step_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="n">getStepCount</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get a logged environment property</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">env_prop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="n">getEnvironmentProperty</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;env_prop&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Get logged boid agent property reduction data, from the default state</span>
+<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">agent_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="n">getAgent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">getCount</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Reduce operators upcast the return type to the most suitable to not lose data</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">agent_speed_mean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="n">getAgent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">).</span><span class="n">getMean</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Print data to console</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;#%u: %u, %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">step</span><span class="o">+</span><span class="n">count</span><span class="p">,</span><span class="w"> </span><span class="n">agent_count</span><span class="p">,</span><span class="w"> </span><span class="n">agent_speed_mean</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Attach the logging config/s</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">setStepLog</span><span class="p">(</span><span class="n">step_log_cfg</span><span class="p">)</span>
+<span class="c1"># cuda_sim.setExitLog(exit_log_cfg)</span>
+
+<span class="c1"># Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+
+<span class="c1"># Fetch the logged data</span>
+<span class="n">run_log</span> <span class="o">=</span> <span class="n">cuda_sim</span><span class="o">.</span><span class="n">getRunLog</span><span class="p">();</span>
+
+<span class="c1"># Get the random seed used</span>
+<span class="n">rng_seed</span> <span class="o">=</span> <span class="n">run_log</span><span class="o">.</span><span class="n">getRandomSeed</span><span class="p">();</span>
+<span class="c1"># Get the step logging frequency</span>
+<span class="n">step_log_freqency</span> <span class="o">=</span> <span class="n">run_log</span><span class="o">.</span><span class="n">getStepLogFrequency</span><span class="p">();</span>
+
+<span class="c1"># Access the step and exit log data</span>
+<span class="c1"># The step and exit logs will be empty, if a respective logging config was not specified.</span>
+<span class="n">exit_log</span> <span class="o">=</span> <span class="n">run_log</span><span class="o">.</span><span class="n">getExitLog</span><span class="p">();</span>
+<span class="n">step_log</span> <span class="o">=</span> <span class="n">run_log</span><span class="o">.</span><span class="n">getStepLog</span><span class="p">();</span>
+
+<span class="c1"># Iterate the step log and print some information to console</span>
+<span class="k">for</span> <span class="n">log</span> <span class="ow">in</span> <span class="n">step_log</span><span class="p">:</span>
+    <span class="c1"># Get the step index</span>
+    <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">step_count</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getStepCount</span><span class="p">();</span>
+    <span class="c1"># Get a logged environment property</span>
+    <span class="nb">int</span> <span class="n">env_prop</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getEnvironmentPropertyInt</span><span class="p">(</span><span class="s2">&quot;env_prop&quot;</span><span class="p">)</span>
+    <span class="c1"># Get logged boid agent property reduction data, from the default state</span>
+    <span class="n">unsigned</span> <span class="nb">int</span> <span class="n">agent_count</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getAgent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getCount</span><span class="p">()</span>
+    <span class="c1"># Reduce operators upcast the return type to the most suitable to not lose data</span>
+    <span class="n">double</span> <span class="n">agent_speed_mean</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">getAgent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">getMean</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">)</span>
+    <span class="c1"># Print data to console</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;#</span><span class="si">%u</span><span class="s2">: </span><span class="si">%u</span><span class="s2">, </span><span class="si">%f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">step</span><span class="o">+</span><span class="n">count</span><span class="p">,</span> <span class="n">agent_count</span><span class="p">,</span> <span class="n">agent_speed_mean</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="writing-collected-data-to-file">
+<h2>Writing Collected Data to File<a class="headerlink" href="#writing-collected-data-to-file" title="Permalink to this headline"></a></h2>
+<p>Instead of processing logged data at runtime, you can store it to file for post-processing at a later time.</p>
+<p>This is achieved by specifying output path configuration arguments, either via the command line at runtime or in code.</p>
+<p>In order to pass arguments via the command line, it is necessary to ensure that command line args (<code class="docutils literal notranslate"><span class="pre">argc</span></code>, <code class="docutils literal notranslate"><span class="pre">argv</span></code>) are passed to <code class="docutils literal notranslate"><span class="pre">CUDASimulation</span></code>, either the constructor or to <cite>initialise()</cite>.</p>
+<p>The command line arguments available related to logging:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 17%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Long Argument</p></th>
+<th class="head"><p>Short Argument</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--out-step</span></code> &lt;file path&gt;</p></td>
+<td><p>n/a</p></td>
+<td><p>Path to a JSON/XML file to store step logging data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--out-exit</span></code> &lt;file path&gt;</p></td>
+<td><p>n/a</p></td>
+<td><p>Path to a JSON/XML file to store exit logging data.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--out-log</span></code> &lt;file path&gt;</p></td>
+<td><p>n/a</p></td>
+<td><p>Path to a JSON/XML file to store both step and exit logging data.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Alternatively, these options can be configured in code:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="p">...</span><span class="w"></span>
+
+<span class="c1">// Manually configure the simulation config</span>
+<span class="n">sim_cfg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cuda_sim</span><span class="p">.</span><span class="n">SimulationConfig</span><span class="p">();</span><span class="w"></span>
+<span class="n">sim_cfg</span><span class="p">.</span><span class="n">step_log_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;step_log.json&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">sim_cfg</span><span class="p">.</span><span class="n">exit_log_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;exit_log.json&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">sim_cfg</span><span class="p">.</span><span class="n">common_log_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;some_directory/common_log.xml&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="n">sim_cfg</span><span class="p">.</span><span class="n">truncate_log_files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">True</span><span class="p">;</span><span class="w"> </span><span class="c1">// This is the default setting</span>
+
+<span class="c1">// Notify the simulation that you have updated the config</span>
+<span class="c1">// This is not always required, in this case it will only create subdirectories that are missing</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">applyConfig</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">simulate</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Logged data should be written to file when simulate() returns</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
+
+<span class="c1"># Manually configure the simulation config</span>
+<span class="n">sim_cfg</span> <span class="o">=</span> <span class="n">cuda_sim</span><span class="o">.</span><span class="n">SimulationConfig</span><span class="p">()</span>
+<span class="n">sim_cfg</span><span class="o">.</span><span class="n">step_log_file</span> <span class="o">=</span> <span class="s2">&quot;step_log.json&quot;</span>
+<span class="n">sim_cfg</span><span class="o">.</span><span class="n">exit_log_file</span> <span class="o">=</span> <span class="s2">&quot;exit_log.json&quot;</span>
+<span class="n">sim_cfg</span><span class="o">.</span><span class="n">common_log_file</span> <span class="o">=</span> <span class="s2">&quot;some_directory/common_log.xml&quot;</span>
+<span class="n">sim_cfg</span><span class="o">.</span><span class="n">truncate_log_files</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># This is the default setting</span>
+
+<span class="c1"># Notify the simulation that you have updated the config</span>
+<span class="c1"># This is not always required, in this case it will only create subdirectories that are missing</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">applyConfig</span><span class="p">()</span>
+
+<span class="c1"># Run the simulation as normal</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+
+<span class="c1"># Logged data should be written to file when simulate() returns</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="accessing-the-complete-agent-state">
+<h2>Accessing the Complete Agent State<a class="headerlink" href="#accessing-the-complete-agent-state" title="Permalink to this headline"></a></h2>
+<p>In some limited cases, you may want to directly access a full agent population. This can only be achieved in code, either directly accessing the agent data or specifying that it should be sent to file.</p>
+<p>Similar to specifying an initial agent population, you can fetch an agent population.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;example model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span><span class="w"> </span><span class="o">&amp;</span><span class="n">boid_agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">...</span><span class="w"> </span><span class="c1">// Fully define the model</span>
+
+<span class="p">...</span><span class="w"> </span><span class="c1">// Setup the CUDASimulation</span>
+
+<span class="c1">// Run the simulation as normal</span>
+<span class="c1">// step() could also be used to access the agent state, on a per step basis</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">simulate</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Copy the boid agent data, from the default state, to an agent vector</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentVector</span><span class="w"> </span><span class="nf">out_pop</span><span class="p">(</span><span class="n">boid_agent</span><span class="p">);</span><span class="w"></span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">getPopulationData</span><span class="p">(</span><span class="n">out_pop</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Iterate the agents, and print their speed</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="nl">boid</span> <span class="p">:</span><span class="w"> </span><span class="n">out_pop</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Speed: %f</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">boid</span><span class="p">.</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;speed&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">ModelDescription</span><span class="p">(</span><span class="s2">&quot;example model&quot;</span><span class="p">);</span>
+<span class="n">boid_agent</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">);</span>
+
+<span class="o">...</span> <span class="c1"># Fully define the model</span>
+
+<span class="o">...</span> <span class="c1"># Setup the CUDASimulation</span>
+
+<span class="c1"># Run the simulation as normal</span>
+<span class="c1"># step() could also be used to access the agent state, on a per step basis</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+
+<span class="c1"># Copy the boid agent data, from the default state, to an agent vector</span>
+<span class="n">flamegpu</span><span class="p">::</span><span class="n">AgentVector</span> <span class="n">out_pop</span><span class="p">(</span><span class="n">boid_agent</span><span class="p">)</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">getPopulationData</span><span class="p">(</span><span class="n">out_pop</span><span class="p">)</span>
+
+<span class="c1"># Iterate the agents, and print their speed</span>
+<span class="k">for</span> <span class="n">boid</span> <span class="ow">in</span> <span class="n">out_pop</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Speed: </span><span class="si">%f</span><span class="s2">&quot;</span><span class="o">%</span><span class="p">(</span><span class="n">boid</span><span class="o">.</span><span class="n">getVariableFloat</span><span class="p">(</span><span class="s2">&quot;speed&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">exportData()</span></code> can be called to export the full simulation state to file (agent variables and environment properties).</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-4-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">flamegpu</span><span class="o">::</span><span class="n">ModelDescription</span><span class="w"> </span><span class="nf">model</span><span class="p">(</span><span class="s">&quot;example model&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">AgentDescription</span><span class="w"> </span><span class="o">&amp;</span><span class="n">boid_agent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s">&quot;boid&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="p">...</span><span class="w"> </span><span class="c1">// Fully define the model</span>
+
+<span class="p">...</span><span class="w"> </span><span class="c1">// Setup the CUDASimulation</span>
+
+<span class="c1">// Run the simulation as normal</span>
+<span class="c1">// step() could also be used to access the agent state, on a per step basis</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">simulate</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// Log the simulation state to JSON/XML file</span>
+<span class="n">cuda_sim</span><span class="p">.</span><span class="n">exportData</span><span class="p">(</span><span class="s">&quot;end.json&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-4-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">pyflamegpu</span><span class="o">.</span><span class="n">ModelDescription</span><span class="p">(</span><span class="s2">&quot;example model&quot;</span><span class="p">);</span>
+<span class="n">boid_agent</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">newAgent</span><span class="p">(</span><span class="s2">&quot;boid&quot;</span><span class="p">);</span>
+
+<span class="o">...</span> <span class="c1"># Fully define the model</span>
+
+<span class="o">...</span> <span class="c1"># Setup the CUDASimulation</span>
+
+<span class="c1"># Run the simulation as normal</span>
+<span class="c1"># step() could also be used to access the agent state, on a per step basis</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">simulate</span><span class="p">()</span>
+
+<span class="c1"># Log the simulation state to JSON/XML file</span>
+<span class="n">cuda_sim</span><span class="o">.</span><span class="n">exportData</span><span class="p">(</span><span class="s2">&quot;end.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+<div class="section" id="additional-notes">
+<h2>Additional Notes<a class="headerlink" href="#additional-notes" title="Permalink to this headline"></a></h2>
+<p>At the time of writing it is not possible to log Environment Macro Properties, doing so would require manually outputting them via an init, step or exit function.</p>
 </div>
 </div>
 

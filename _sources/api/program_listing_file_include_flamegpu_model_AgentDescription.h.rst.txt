@@ -84,6 +84,7 @@ Program Listing for File AgentDescription.h
        bool hasFunction(const std::string &function_name) const;
        bool isOutputOnDevice() const;
        const std::set<std::string> &getStates() const;
+       void setSortPeriod(const unsigned int sortPeriod);
    
     private:
        std::weak_ptr<const ModelData> model;
@@ -101,6 +102,10 @@ Program Listing for File AgentDescription.h
            c = static_cast<char>(tolower(c));
        if (lower_variable_name == "name" || lower_variable_name == "state") {
            THROW exception::ReservedName("Agent variables cannot be named 'name' or 'state', these are reserved for backwards compatibility reasons, "
+               "in AgentDescription::newVariable().");
+       }
+       if (lower_variable_name == "_auto_sort_bin_index") {
+           THROW exception::ReservedName("The variable name '_auto_sort_bin_index' is reserved for internal usage, "
                "in AgentDescription::newVariable().");
        }
        // Array length 0 makes no sense

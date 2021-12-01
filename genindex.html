@@ -170,8 +170,11 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html">Collecting Data</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#saving-agent-state">Saving Agent State</a></li>
-<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#collecting-other-information">Collecting Other Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#configuring-data-to-be-collected">Configuring Data to be Collected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#accessing-collected-data">Accessing Collected Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#writing-collected-data-to-file">Writing Collected Data to File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#accessing-the-complete-agent-state">Accessing the Complete Agent State</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/5-running-a-sim/4-collecting-data.html#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
 </ul>
@@ -197,7 +200,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="guide/7-submodels/index.html">Submodels</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="guide/7-submodels/1-defining-a-submodel.html">Defining a Submodel</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="guide/7-submodels/1-defining-a-submodel.html#submodel-definition">SubModel Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="guide/7-submodels/1-defining-a-submodel.html#submodel-definition">Submodel Definition</a></li>
 </ul>
 </li>
 </ul>
@@ -251,12 +254,13 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api/library_root.html">Library API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/library_root.html#page-hierarchy">Page Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#class-hierarchy">Class Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#file-hierarchy">File Hierarchy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__%40153.html">Namespace flamegpu::&#64;153</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__%40154.html">Namespace flamegpu::&#64;154</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -577,6 +581,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#enums">Enums</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/enum_namespaceflamegpu_1a1adc39b89f4a6045c011c55a91339e4c.html">Enum AGENT_STATUS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html">Enum CONDITION_RESULT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html">Enum MessageSortingType</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#functions">Functions</a><ul>
@@ -587,6 +592,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a62702550faacab131476f2f0fd42b15d.html">Function flamegpu::atomicHistogram2D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1ab142b7f3311b4d53df2ec36802361c18.html">Function flamegpu::atomicHistogram3D</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a372e103ba46c067bc0f68a2a103b90b1.html">Function flamegpu::broadcastInitKernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1ab6b7cc2d61ad5fc6ef4f30962f0e1c0c.html">Function flamegpu::calculateSpatialHash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a8e4c805fb1a16187e4a86a8dc7ced84d.html">Function flamegpu::generateCollisionFlags</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a5b21b0ec7c8afea544e7fee29d2a0e7f.html">Template Function flamegpu::getAgentVariableMaxFunc</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a451011c85abe5de4e9497e29ccf8ffdb.html">Template Function flamegpu::getAgentVariableMeanFunc</a></li>
@@ -606,6 +612,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -833,6 +840,8 @@
 </li>
       <li><a href="api/structflamegpu_1_1AgentData.html#_CPPv4NK8flamegpu9AgentDataeqERK9AgentData">flamegpu::AgentData::operator== (C++ function)</a>
 </li>
+      <li><a href="api/structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentData10sortPeriodE">flamegpu::AgentData::sortPeriod (C++ member)</a>
+</li>
       <li><a href="api/structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentData6statesE">flamegpu::AgentData::states (C++ member)</a>
 </li>
       <li><a href="api/structflamegpu_1_1AgentData.html#_CPPv4N8flamegpu9AgentData9variablesE">flamegpu::AgentData::variables (C++ member)</a>
@@ -886,6 +895,8 @@
       <li><a href="api/classflamegpu_1_1AgentDescription.html#_CPPv4NK8flamegpu16AgentDescriptioneqERK16AgentDescription">flamegpu::AgentDescription::operator== (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1AgentDescription.html#_CPPv4N8flamegpu16AgentDescription15setInitialStateERKNSt6stringE">flamegpu::AgentDescription::setInitialState (C++ function)</a>
+</li>
+      <li><a href="api/classflamegpu_1_1AgentDescription.html#_CPPv4N8flamegpu16AgentDescription13setSortPeriodEKj">flamegpu::AgentDescription::setSortPeriod (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1AgentFunctionData.html#_CPPv4N8flamegpu17AgentFunctionDataE">flamegpu::AgentFunctionData (C++ struct)</a>
 </li>
@@ -1269,6 +1280,8 @@
 </li>
       <li><a href="api/function_namespaceflamegpu_1a372e103ba46c067bc0f68a2a103b90b1.html#_CPPv4N8flamegpu19broadcastInitKernelEKjPN11CUDAScatter11ScatterDataEKjKj">flamegpu::broadcastInitKernel (C++ function)</a>
 </li>
+      <li><a href="api/function_namespaceflamegpu_1ab6b7cc2d61ad5fc6ef4f30962f0e1c0c.html#_CPPv4N8flamegpu20calculateSpatialHashEPfPfPfPjN6detail4DimsIfEEN6detail4DimsIfEEN6detail4DimsIjEEj">flamegpu::calculateSpatialHash (C++ function)</a>
+</li>
       <li><a href="api/enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html#_CPPv4N8flamegpu16CONDITION_RESULTE">flamegpu::CONDITION_RESULT (C++ enum)</a>
 </li>
       <li><a href="api/enum_namespaceflamegpu_1a2f06e5efd2a057b11a2fb53e711c443a.html#_CPPv4N8flamegpu16CONDITION_RESULT8CONTINUEE">flamegpu::CONDITION_RESULT::CONTINUE (C++ enumerator)</a>
@@ -1591,7 +1604,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4NK8flamegpu11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj">flamegpu::CUDAMessage::mapWriteRuntimeVariables (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage6resizeEjR11CUDAScatterRKj">flamegpu::CUDAMessage::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage6resizeEjR11CUDAScatterRKjRKj">flamegpu::CUDAMessage::resize (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage15setMessageCountERKj">flamegpu::CUDAMessage::setMessageCount (C++ function)</a>
 </li>
@@ -1625,13 +1638,15 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList24releaseDeviceMessageListER14CUDAMessageMap">flamegpu::CUDAMessageList::releaseDeviceMessageList (C++ function)</a>
 </li>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList6resizeER11CUDAScatterRKjRKj">flamegpu::CUDAMessageList::resize (C++ function)</a>
+</li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList7scatterERKjR11CUDAScatterRKjRKb">flamegpu::CUDAMessageList::scatter (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList10scatterAllERKjR11CUDAScatterRKj">flamegpu::CUDAMessageList::scatterAll (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList4swapEv">flamegpu::CUDAMessageList::swap (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList21zeroDeviceMessageListER14CUDAMessageMap">flamegpu::CUDAMessageList::zeroDeviceMessageList (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList21zeroDeviceMessageListER14CUDAMessageMapRKj">flamegpu::CUDAMessageList::zeroDeviceMessageList (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList15zeroMessageDataEv">flamegpu::CUDAMessageList::zeroMessageData (C++ function)</a>
 </li>
@@ -3111,12 +3126,12 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7Message4getYEv">flamegpu::MessageArray2D::In::Filter::Message::getY (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7Message4getYEv">[1]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7Message4getYEv">[2]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7Message4getYEv">[3]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7Message7MessageERK6FilterRKiRKi">flamegpu::MessageArray2D::In::Filter::Message::Message (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7Message7MessageERK6FilterRKiRKi">[1]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7Message7MessageERK6FilterRKiRKi">[2]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7Message7MessageERK6FilterRKiRKi">[3]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageneERK7Message">flamegpu::MessageArray2D::In::Filter::Message::operator!= (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageneERK7Message">[1]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageneERK7Message">[2]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageneERK7Message">[3]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7MessageppEv">flamegpu::MessageArray2D::In::Filter::Message::operator++ (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7MessageppEv">[1]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7MessageppEv">[2]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html#_CPPv4N8flamegpu14MessageArray2D2In6Filter7MessageppEv">[3]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageeqERK7Message">flamegpu::MessageArray2D::In::Filter::Message::operator== (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageeqERK7Message">[1]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageeqERK7Message">[2]</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html#_CPPv4NK8flamegpu14MessageArray2D2In6Filter7MessageeqERK7Message">[3]</a>
@@ -3567,6 +3582,8 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce4Data11descriptionE">flamegpu::MessageBruteForce::Data::description (C++ member)</a>, <a href="api/structflamegpu_1_1MessageBruteForce_1_1Data.html#_CPPv4N8flamegpu17MessageBruteForce4Data11descriptionE">[1]</a>
 </li>
+      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4NK8flamegpu17MessageBruteForce4Data14getSortingTypeEv">flamegpu::MessageBruteForce::Data::getSortingType (C++ function)</a>, <a href="api/structflamegpu_1_1MessageBruteForce_1_1Data.html#_CPPv4NK8flamegpu17MessageBruteForce4Data14getSortingTypeEv">[1]</a>
+</li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4NK8flamegpu17MessageBruteForce4Data23getSpecialisationHanderER11CUDAMessage">flamegpu::MessageBruteForce::Data::getSpecialisationHander (C++ function)</a>, <a href="api/structflamegpu_1_1MessageBruteForce_1_1Data.html#_CPPv4NK8flamegpu17MessageBruteForce4Data23getSpecialisationHanderER11CUDAMessage">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4NK8flamegpu17MessageBruteForce4Data7getTypeEv">flamegpu::MessageBruteForce::Data::getType (C++ function)</a>, <a href="api/structflamegpu_1_1MessageBruteForce_1_1Data.html#_CPPv4NK8flamegpu17MessageBruteForce4Data7getTypeEv">[1]</a>
@@ -3791,6 +3808,14 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageNone.html#_CPPv4N8flamegpu11MessageNone9size_typeE">flamegpu::MessageNone::size_type (C++ type)</a>
 </li>
+      <li><a href="api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html#_CPPv4N8flamegpu18MessageSortingTypeE">flamegpu::MessageSortingType (C++ enum)</a>
+</li>
+      <li><a href="api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html#_CPPv4N8flamegpu18MessageSortingType4noneE">flamegpu::MessageSortingType::none (C++ enumerator)</a>
+</li>
+      <li><a href="api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html#_CPPv4N8flamegpu18MessageSortingType9spatial2DE">flamegpu::MessageSortingType::spatial2D (C++ enumerator)</a>
+</li>
+      <li><a href="api/enum_namespaceflamegpu_1a167df7c66e4cd9ff9a0fbc124d6a4825.html#_CPPv4N8flamegpu18MessageSortingType9spatial3DE">flamegpu::MessageSortingType::spatial3D (C++ enumerator)</a>
+</li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2DE">flamegpu::MessageSpatial2D (C++ class)</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerE">flamegpu::MessageSpatial2D::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerE">[1]</a>
@@ -3814,6 +3839,8 @@
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">flamegpu::MessageSpatial2D::Data::clone (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial2D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial2D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">flamegpu::MessageSpatial2D::Data::Data (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">[1]</a>, <a href="api/structflamegpu_1_1MessageSpatial2D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">[2]</a>, <a href="api/structflamegpu_1_1MessageSpatial2D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial2D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">[3]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4NK8flamegpu16MessageSpatial2D4Data14getSortingTypeEv">flamegpu::MessageSpatial2D::Data::getSortingType (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial2D_1_1Data.html#_CPPv4NK8flamegpu16MessageSpatial2D4Data14getSortingTypeEv">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4NK8flamegpu16MessageSpatial2D4Data23getSpecialisationHanderER11CUDAMessage">flamegpu::MessageSpatial2D::Data::getSpecialisationHander (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial2D_1_1Data.html#_CPPv4NK8flamegpu16MessageSpatial2D4Data23getSpecialisationHanderER11CUDAMessage">[1]</a>
 </li>
@@ -3954,6 +3981,8 @@
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">flamegpu::MessageSpatial3D::Data::clone (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial3D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial3D4Data5cloneERKNSt10shared_ptrIK9ModelDataEE">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">flamegpu::MessageSpatial3D::Data::Data (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">[1]</a>, <a href="api/structflamegpu_1_1MessageSpatial3D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial3D4Data4DataERKNSt10shared_ptrIK9ModelDataEERK4Data">[2]</a>, <a href="api/structflamegpu_1_1MessageSpatial3D_1_1Data.html#_CPPv4N8flamegpu16MessageSpatial3D4Data4DataERKNSt10shared_ptrIK9ModelDataEERKNSt6stringE">[3]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4NK8flamegpu16MessageSpatial3D4Data14getSortingTypeEv">flamegpu::MessageSpatial3D::Data::getSortingType (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial3D_1_1Data.html#_CPPv4NK8flamegpu16MessageSpatial3D4Data14getSortingTypeEv">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4NK8flamegpu16MessageSpatial3D4Data23getSpecialisationHanderER11CUDAMessage">flamegpu::MessageSpatial3D::Data::getSpecialisationHander (C++ function)</a>, <a href="api/structflamegpu_1_1MessageSpatial3D_1_1Data.html#_CPPv4NK8flamegpu16MessageSpatial3D4Data23getSpecialisationHanderER11CUDAMessage">[1]</a>
 </li>
@@ -4504,6 +4533,8 @@
       <li><a href="api/classflamegpu_1_1Simulation.html#_CPPv4N8flamegpu10SimulationD0Ev">flamegpu::Simulation::~Simulation (C++ function)</a>
 </li>
       <li><a href="api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html#_CPPv4N8flamegpu17sortBuffer_kernelEPcPcPj6size_tj">flamegpu::sortBuffer_kernel (C++ function)</a>
+</li>
+      <li><a href="api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html#_CPPv4N8flamegpu28spatialSortInitToThreadIndexEPjj">flamegpu::spatialSortInitToThreadIndex (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1StepLoggingConfig.html#_CPPv4N8flamegpu17StepLoggingConfigE">flamegpu::StepLoggingConfig (C++ class)</a>
 </li>

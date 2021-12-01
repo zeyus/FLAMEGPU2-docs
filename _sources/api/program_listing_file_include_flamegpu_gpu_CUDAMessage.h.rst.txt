@@ -44,7 +44,7 @@ Program Listing for File CUDAMessage.h
        unsigned int getMessageCount() const;
        void setMessageCount(const unsigned int &_message_count);
        void init(CUDAScatter &scatter, const unsigned int &streamId);
-       void resize(unsigned int newSize, CUDAScatter &scatter, const unsigned int &streamId);
+       void resize(unsigned int newSize, CUDAScatter &scatter, const unsigned int &streamId, const unsigned int &keepLen = 0);
        void mapReadRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &instance_id) const;
        void mapWriteRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &writeLen, const unsigned int &instance_id) const;
        void unmapRuntimeVariables(const AgentFunctionData& func, const unsigned int &instance_id) const;

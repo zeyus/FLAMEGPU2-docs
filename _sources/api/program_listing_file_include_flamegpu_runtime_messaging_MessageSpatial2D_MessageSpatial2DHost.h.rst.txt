@@ -61,6 +61,7 @@ Program Listing for File MessageSpatial2DHost.h
        std::unique_ptr<MessageSpecialisationHandler> getSpecialisationHander(CUDAMessage &owner) const override;
    
        std::type_index getType() const override;
+       flamegpu::MessageSortingType getSortingType() const override;
    
     protected:
        Data *clone(const std::shared_ptr<const ModelData> &newParent) override;

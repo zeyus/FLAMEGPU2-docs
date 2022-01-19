@@ -23,7 +23,12 @@ Program Listing for File FLAMEGPUDeviceException_device.cuh
    
    #if !defined(SEATBELTS) || SEATBELTS
    
+   #ifdef __CUDACC__
    #define DTHROW flamegpu::exception::DeviceException::create(__FILE__, __LINE__).setMessage
+   #else
+   // Just trying to make host compiler happy when it sees device code by mistake
+   #define DTHROW(...)
+   #endif
    
    struct DeviceExceptionBuffer {
        static const unsigned int MAX_ARGS = 20;
@@ -42,6 +47,8 @@ Program Listing for File FLAMEGPUDeviceException_device.cuh
        unsigned int arg_count;
        unsigned int arg_offset;
    };
+   #ifdef __CUDACC__
+   
    class DeviceException {
     public:
        __device__ static DeviceException create(const char *file, const unsigned int line) {
@@ -68,7 +75,7 @@ Program Listing for File FLAMEGPUDeviceException_device.cuh
    
     private:
        template<typename T>
-       __device__ void subformat(DeviceExceptionBuffer *buff, T t);
+       __device__ inline void subformat(DeviceExceptionBuffer *buff, T t);
        template<typename T, typename... Args>
        __device__ void subformat_recurse(DeviceExceptionBuffer *buff, const T &t, Args... args) {
            // Call subformat with T
@@ -100,11 +107,11 @@ Program Listing for File FLAMEGPUDeviceException_device.cuh
                memcpy(buff[0]->thread_id, &tid3, sizeof(unsigned int) * 3);
            }
        }
-       __device__ unsigned int getErrorCount();
+       __device__ inline unsigned int getErrorCount();
        const bool hasError;
    };
    template<typename T>
-   __device__ void DeviceException::subformat(DeviceExceptionBuffer *buff, T t) {
+   __device__ inline void DeviceException::subformat(DeviceExceptionBuffer *buff, T t) {
        if (buff->arg_count < DeviceExceptionBuffer::MAX_ARGS) {
            if (buff->arg_offset + sizeof(T) <= DeviceExceptionBuffer::ARG_BUFF_LEN) {
                // Copy arg size
@@ -117,9 +124,8 @@ Program Listing for File FLAMEGPUDeviceException_device.cuh
            }
        }
    }
-   #if defined(__CUDACC_RTC__) || defined(FLAMEGPUDeviceException_CU)
    template<>
-   __device__ void DeviceException::subformat(DeviceExceptionBuffer *buff, const char *t) {
+   __device__ inline void DeviceException::subformat(DeviceExceptionBuffer *buff, const char *t) {
        if (buff->arg_count < DeviceExceptionBuffer::MAX_ARGS) {
            const unsigned int string_length = strlen(t);
            if (buff->arg_offset + string_length <= DeviceExceptionBuffer::ARG_BUFF_LEN) {

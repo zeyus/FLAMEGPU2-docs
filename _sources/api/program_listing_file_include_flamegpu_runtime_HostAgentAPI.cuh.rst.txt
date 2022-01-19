@@ -30,6 +30,7 @@ Program Listing for File HostAgentAPI.cuh
    #include <vector>
    #include <functional>
    #include <memory>
+   #include <utility>
    
    #include "flamegpu/sim/AgentInterface.h"
    #include "flamegpu/model/AgentDescription.h"
@@ -38,6 +39,7 @@ Program Listing for File HostAgentAPI.cuh
    #include "flamegpu/gpu/CUDAAgent.h"
    #include "flamegpu/pop/DeviceAgentVector.h"
    #include "flamegpu/pop/DeviceAgentVector_impl.h"
+   #include "flamegpu/sim/AgentLoggingConfig_Reductions.cuh"
    
    namespace flamegpu {
    
@@ -71,15 +73,12 @@ Program Listing for File HostAgentAPI.cuh
            : api(_api)
            , agent(_agent)
            , stateName(_stateName)
-           , population(nullptr)
            , agentOffsets(_agentOffsets)
            , newAgentData(_newAgentData) { }
-       ~HostAgentAPI();
        HostAgentAPI(const HostAgentAPI& other)
            : api(other.api)
            , agent(other.agent)
            , stateName(other.stateName)
-           , population(nullptr)  // Never copy DeviceAgentVector
            , agentOffsets(other.agentOffsets)
            , newAgentData(other.newAgentData)
        { }
@@ -92,6 +91,8 @@ Program Listing for File HostAgentAPI.cuh
        InT sum(const std::string &variable) const;
        template<typename InT, typename OutT>
        OutT sum(const std::string &variable) const;
+       template<typename InT>
+       std::pair<double, double> meanStandardDeviation(const std::string& variable) const;
        template<typename InT>
        InT min(const std::string &variable) const;
        template<typename InT>
@@ -119,7 +120,6 @@ Program Listing for File HostAgentAPI.cuh
        HostAPI &api;
        AgentInterface &agent;
        const std::string stateName;
-       std::shared_ptr<DeviceAgentVector_impl> population;
        const VarOffsetStruct& agentOffsets;
        HostAPI::AgentDataBuffer& newAgentData;
    };
@@ -135,6 +135,7 @@ Program Listing for File HostAgentAPI.cuh
    template<typename InT, typename OutT>
    OutT HostAgentAPI::sum(const std::string &variable) const {
        static_assert(sizeof(InT) <= sizeof(OutT), "Template arg OutT should not be of a smaller size than InT");
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -169,7 +170,43 @@ Program Listing for File HostAgentAPI.cuh
        return rtn;
    }
    template<typename InT>
+   std::pair<double, double> HostAgentAPI::meanStandardDeviation(const std::string& variable) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
+       if (population) {
+           // If the user has a DeviceAgentVector out, sync changes
+           population->syncChanges();
+       }
+       const auto& agentDesc = agent.getAgentDescription();
+   
+       std::type_index typ = agentDesc.description->getVariableType(variable);  // This will throw name exception
+       if (agentDesc.variables.at(variable).elements != 1) {
+           THROW exception::UnsupportedVarType("HostAgentAPI::meanStandardDeviation() does not support agent array variables.");
+       }
+       if (std::type_index(typeid(InT)) != typ) {
+           THROW exception::InvalidVarType("Wrong variable type passed to HostAgentAPI::meanStandardDeviation(). "
+               "This call expects '%s', but '%s' was requested.",
+               agentDesc.variables.at(variable).type.name(), typeid(InT).name());
+       }
+       void* var_ptr = agent.getStateVariablePtr(stateName, variable);
+       const auto agentCount = agent.getStateSize(stateName);
+       if (agentCount == 0) {
+           return std::make_pair(0.0, 0.0);
+       }
+       // Calculate mean
+       const typename sum_input_t<InT>::result_t sum_result = sum<InT, typename sum_input_t<InT>::result_t>(variable);
+       const double mean = sum_result / static_cast<double>(agentCount);
+       // Then for each number: subtract the Mean and square the result
+       // Then work out the mean of those squared differences.
+       auto lock = std::unique_lock<std::mutex>(detail::STANDARD_DEVIATION_MEAN_mutex);
+       gpuErrchk(cudaMemcpyToSymbol(detail::STANDARD_DEVIATION_MEAN, &mean, sizeof(double)));
+       const double variance = transformReduce<InT, double>(variable, detail::standard_deviation_subtract_mean, detail::standard_deviation_add, 0) / static_cast<double>(agentCount);
+       lock.unlock();
+       // Take the square root of that and we are done!
+       return std::make_pair(mean, sqrt(variance));
+   }
+   template<typename InT>
    InT HostAgentAPI::min(const std::string &variable) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -205,6 +242,7 @@ Program Listing for File HostAgentAPI.cuh
    }
    template<typename InT>
    InT HostAgentAPI::max(const std::string &variable) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -240,6 +278,7 @@ Program Listing for File HostAgentAPI.cuh
    }
    template<typename InT>
    unsigned int HostAgentAPI::count(const std::string &variable, const InT &value) {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -267,6 +306,7 @@ Program Listing for File HostAgentAPI.cuh
    }
    template<typename InT, typename OutT>
    std::vector<OutT> HostAgentAPI::histogramEven(const std::string &variable, const unsigned int &histogramBins, const InT &lowerBound, const InT &upperBound) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -308,20 +348,31 @@ Program Listing for File HostAgentAPI.cuh
    }
    template<typename InT, typename reductionOperatorT>
    InT HostAgentAPI::reduce(const std::string &variable, reductionOperatorT /*reductionOperator*/, const InT &init) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
        }
        const auto &agentDesc = agent.getAgentDescription();
        const std::type_index typ = agentDesc.description->getVariableType(variable);  // This will throw name exception
+   #ifndef USE_GLM
        if (agentDesc.variables.at(variable).elements != 1) {
            THROW exception::UnsupportedVarType("HostAgentAPI::reduce() does not support agent array variables.");
        }
        if (std::type_index(typeid(InT)) != typ) {
            THROW exception::InvalidVarType("Wrong variable type passed to HostAgentAPI::reduce(). "
                "This call expects '%s', but '%s' was requested.",
-               agentDesc.variables.at(variable).type.name(), typeid(InT).name());
+               typ.name(), typeid(InT).name());
        }
+   #else
+       // GLM is awkward, so we need to perform a vaguer check
+       auto var = agentDesc.variables.at(variable);
+       if (sizeof(InT) != var.elements * var.type_size) {
+           THROW exception::InvalidVarType("Wrong variable type passed to HostAgentAPI::transformReduce(). "
+               "This call expects '%s[%u]', but '%s' was requested.",
+               typ.name(), var.elements, typeid(InT).name());
+       }
+   #endif
        void *var_ptr = agent.getStateVariablePtr(stateName, variable);
        const auto agentCount = agent.getStateSize(stateName);
        // Check if we need to resize cub storage
@@ -345,20 +396,31 @@ Program Listing for File HostAgentAPI.cuh
    }
    template<typename InT, typename OutT, typename transformOperatorT, typename reductionOperatorT>
    OutT HostAgentAPI::transformReduce(const std::string &variable, transformOperatorT /*transformOperator*/, reductionOperatorT /*reductionOperator*/, const OutT &init) const {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
        }
        const auto &agentDesc = agent.getAgentDescription();
        const std::type_index typ = agentDesc.description->getVariableType(variable);  // This will throw name exception
+   #ifndef USE_GLM
        if (agentDesc.variables.at(variable).elements != 1) {
            THROW exception::UnsupportedVarType("HostAgentAPI::transformReduce() does not support agent array variables.");
        }
        if (std::type_index(typeid(InT)) != typ) {
            THROW exception::InvalidVarType("Wrong variable type passed to HostAgentAPI::transformReduce(). "
                "This call expects '%s', but '%s' was requested.",
-               agentDesc.variables.at(variable).type.name(), typeid(InT).name());
+               typ.name(), typeid(InT).name());
        }
+   #else
+       // GLM is awkward, so we need to perform a vaguer check
+       auto var = agentDesc.variables.at(variable);
+       if (sizeof(InT) != var.elements * var.type_size) {
+           THROW exception::InvalidVarType("Wrong variable type passed to HostAgentAPI::transformReduce(). "
+               "This call expects '%s[%u]', but '%s' was requested.",
+               typ.name(), var.elements, typeid(InT).name());
+       }
+   #endif
        void *var_ptr = agent.getStateVariablePtr(stateName, variable);
        const auto agentCount = agent.getStateSize(stateName);
        OutT rtn = thrust::transform_reduce(thrust::device_ptr<InT>(reinterpret_cast<InT*>(var_ptr)), thrust::device_ptr<InT>(reinterpret_cast<InT*>(var_ptr) + agentCount),
@@ -370,6 +432,7 @@ Program Listing for File HostAgentAPI.cuh
    
    template<typename VarT>
    void HostAgentAPI::sort(const std::string &variable, Order order, int beginBit, int endBit) {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();
@@ -432,6 +495,7 @@ Program Listing for File HostAgentAPI.cuh
    
    template<typename Var1T, typename Var2T>
    void HostAgentAPI::sort(const std::string &variable1, Order order1, const std::string &variable2, Order order2) {
+       std::shared_ptr<DeviceAgentVector_impl> population = agent.getPopulationVec(stateName);
        if (population) {
            // If the user has a DeviceAgentVector out, sync changes
            population->syncChanges();

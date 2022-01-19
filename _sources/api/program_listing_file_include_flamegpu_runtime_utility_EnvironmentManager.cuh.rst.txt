@@ -155,6 +155,7 @@ Program Listing for File EnvironmentManager.cuh
        T setProperty(const NamePair &name, const T &value);
        template<typename T>
        T setProperty(const unsigned int &instance_id, const std::string &var_name, const T &value);
+       void setProperty(const unsigned int& instance_id, const std::string& var_name, void *data, size_t len);
        template<typename T, size_type N>
        std::array<T, N> setProperty(const NamePair &name, const std::array<T, N> &value);
        template<typename T, size_type N>
@@ -248,6 +249,24 @@ Program Listing for File EnvironmentManager.cuh
                name.first, name.second.c_str());
        }
        inline std::type_index type(const unsigned int &instance_id, const std::string &var_name) const { return type(toName(instance_id, var_name)); }
+       inline size_t type_size(const NamePair& name) const {
+           std::shared_lock<std::shared_timed_mutex> lock(mutex);
+           auto a = properties.find(name);
+           if (a != properties.end())
+               return a->second.length;
+           const auto b = mapped_properties.find(name);
+           if (b != mapped_properties.end()) {
+               a = properties.find(b->second.masterProp);
+               if (a != properties.end())
+                   return a->second.length;
+               THROW exception::InvalidEnvProperty("Mapped environmental property with name '%u:%s' maps to missing property with name '%u:%s', "
+                   "in EnvironmentManager::type_size().",
+                   name.first, name.second.c_str(), b->second.masterProp.first, b->second.masterProp.second.c_str());
+           }
+           THROW exception::InvalidEnvProperty("Environmental property with name '%u:%s' does not exist, "
+               "in EnvironmentManager::type_size().",
+               name.first, name.second.c_str());
+       }
        inline size_t freeSpace() const { std::shared_lock<std::shared_timed_mutex> lock(mutex); return m_freeSpace; }
        static const char CURVE_NAMESPACE_STRING[23];
        const detail::curve::Curve::NamespaceHash CURVE_NAMESPACE_HASH;
@@ -352,16 +371,37 @@ Program Listing for File EnvironmentManager.cuh
    
    template<typename T>
    T EnvironmentManager::setProperty(const NamePair &name, const T &value) {
+   #ifdef USE_GLM
+       // GLM is a bit awkward, so we just do a rough type size check, similar to on device
        const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(T))) {
+       const size_t prop_len = type_size(name);
+       if (prop_len != sizeof(T)) {
            THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
                "in EnvironmentManager::set().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
+   #else
+       // Limited to Arithmetic types
+       // Compound types would allow host pointers inside structs to be passed
+       static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
+           "Only arithmetic types can be used as environmental properties");
+       const std::type_index typ_id = type(name);
+       if (typ_id != std::type_index(typeid(T))) {
+           THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
+               "in EnvironmentManager::setProperty().",
+               name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+       }
+   #endif
        if (isConst(name)) {
            THROW exception::ReadOnlyEnvProperty("Environmental property ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                name.first, name.second.c_str());
+       }
+       const size_type array_len = length(name);
+       if (array_len != 1) {
+           THROW exception::InvalidEnvPropertyType("Named environmental property is an array of length %u, the array function must be used! "
+               "in EnvironmentManager::setProperty().",
+               array_len);
        }
        // Copy old data to return
        T rtn = getProperty<T>(name);
@@ -392,18 +432,18 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        if (isConst(name)) {
            THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                name.first, name.second.c_str());
        }
        const size_type array_len = length(name);
        if (array_len != N) {
            THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match template argument N (%u)! "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                array_len, N);
        }
        // Copy old data to return
@@ -436,18 +476,18 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setPropertyArray().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        if (isConst(name)) {
            THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setPropertyArray().",
                name.first, name.second.c_str());
        }
        const size_type array_len = length(name);
        if (array_len != value.size()) {
            THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match length of provided array (%llu)! "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setPropertyArray().",
                array_len, value.size());
        }
        std::unique_lock<std::shared_timed_mutex> lock(mutex);
@@ -481,18 +521,18 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        if (isConst(name)) {
            THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                name.first, name.second.c_str());
        }
        const size_type array_len = length(name);
        if (index >= array_len) {
            THROW exception::OutOfBoundsException("Index(%u) exceeds named environmental property array's length (%u), "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::setProperty().",
                index, array_len);
        }
        std::unique_lock<std::shared_timed_mutex> lock(mutex);
@@ -523,16 +563,33 @@ Program Listing for File EnvironmentManager.cuh
    
    template<typename T>
    T EnvironmentManager::getProperty(const NamePair &name) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
-           "Only arithmetic types can be used as environmental properties");
-       std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(T))) {
+   #ifdef USE_GLM
+       // GLM is a bit awkward, so we just do a rough type size check, similar to on device
+       const std::type_index typ_id = type(name);
+       const size_t prop_len = type_size(name);
+       if (prop_len != sizeof(T)) {
            THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
                "in EnvironmentManager::get().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
+   #else
+       // Limited to Arithmetic types
+       // Compound types would allow host pointers inside structs to be passed
+       static_assert(std::is_arithmetic<T>::value || std::is_enum<T>::value,
+           "Only arithmetic types can be used as environmental properties");
+       const std::type_index typ_id = type(name);
+       if (typ_id != std::type_index(typeid(T))) {
+           THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
+               "in EnvironmentManager::getProperty().",
+               name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
+       }
+       const size_type array_len = length(name);
+       if (array_len != 1) {
+           THROW exception::InvalidEnvPropertyType("Named environmental property is an array of length %u, the array function must be used! "
+               "in EnvironmentManager::getProperty().",
+               array_len);
+       }
+   #endif
        std::shared_lock<std::shared_timed_mutex> lock(mutex);
        // Copy old data to return
        const auto a = properties.find(name);
@@ -553,13 +610,13 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::get().",
+               "in EnvironmentManager::getProperty().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        const size_type array_len = length(name);
        if (array_len != N) {
            THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match template argument N (%u)! "
-               "in EnvironmentManager::get().",
+               "in EnvironmentManager::getProperty().",
                array_len, N);
        }
        // Copy old data to return
@@ -586,13 +643,13 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::get().",
+               "in EnvironmentManager::getProperty().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        const size_type array_len = length(name);
        if (index >= array_len) {
            THROW exception::OutOfBoundsException("Index(%u) exceeds named environmental property array's length (%u), "
-               "in EnvironmentManager::set().",
+               "in EnvironmentManager::getProperty().",
                index, array_len);
        }
        std::shared_lock<std::shared_timed_mutex> lock(mutex);
@@ -612,7 +669,7 @@ Program Listing for File EnvironmentManager.cuh
        const std::type_index typ_id = type(name);
        if (typ_id != std::type_index(typeid(T))) {
            THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::get().",
+               "in EnvironmentManager::getPropertyArray().",
                name.first, name.second.c_str(), typ_id.name(), typeid(T).name());
        }
        const size_type array_len = length(name);

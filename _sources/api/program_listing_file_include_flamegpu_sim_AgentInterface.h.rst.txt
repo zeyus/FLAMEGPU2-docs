@@ -14,12 +14,14 @@ Program Listing for File AgentInterface.h
    #define INCLUDE_FLAMEGPU_SIM_AGENTINTERFACE_H_
    
    #include <string>
+   #include <memory>
    
    #include "flamegpu/model/ModelData.h"
    #include "flamegpu/defines.h"
    
-   namespace flamegpu {
    
+   namespace flamegpu {
+   class DeviceAgentVector_impl;
    class AgentInterface {
     public:
        virtual ~AgentInterface() = default;
@@ -27,6 +29,9 @@ Program Listing for File AgentInterface.h
        virtual void *getStateVariablePtr(const std::string &state_name, const std::string &variable_name) = 0;
        virtual ModelData::size_type getStateSize(const std::string &state_name) const = 0;
        virtual id_t nextID(unsigned int count) = 0;
+       virtual void setPopulationVec(const std::string &state_name, const std::shared_ptr<DeviceAgentVector_impl>& d_vec) = 0;
+       virtual std::shared_ptr<DeviceAgentVector_impl> getPopulationVec(const std::string& state_name) = 0;
+       virtual void resetPopulationVecs() = 0;
    };
    
    }  // namespace flamegpu

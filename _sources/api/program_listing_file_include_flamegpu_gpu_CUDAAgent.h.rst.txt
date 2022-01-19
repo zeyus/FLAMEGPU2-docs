@@ -81,6 +81,9 @@ Program Listing for File CUDAAgent.h
        id_t nextID(unsigned int count = 1) override;
        id_t* getDeviceNextID();
        void assignIDs(HostAPI &hostapi);
+       void setPopulationVec(const std::string& state_name, const std::shared_ptr<DeviceAgentVector_impl>& d_vec);
+       std::shared_ptr<DeviceAgentVector_impl> getPopulationVec(const std::string& state_name);
+       void resetPopulationVecs();
    
     private:
        void validateIDCollisions() const;
@@ -103,6 +106,7 @@ Program Listing for File CUDAAgent.h
        const size_t TOTAL_AGENT_VARIABLE_SIZE;
        std::unordered_map<std::string, void*> newBuffs;
        std::mutex newBuffsMutex;
+       std::map<std::string, std::shared_ptr<DeviceAgentVector_impl>> population_dvec;
    };
    
    }  // namespace flamegpu

@@ -149,7 +149,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/4-rng-seeds.html">Random Number Generation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/5-from-disk.html">Initialisation from Disk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/4-initial-conditions/5-from-disk.html">Initialisation from Disk</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/4-initial-conditions/5-from-disk.html#file-format">File Format</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/5-running-a-sim/index.html">Running a Simulation</a><ul>
@@ -162,7 +165,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/2-creating-a-sim.html">Creating a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#max-steps">Max Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
@@ -176,6 +179,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/5-running-a-sim/4-collecting-data.html#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/5-running-a-sim/5-configuring-execution.html">Configuring Execution</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../guide/6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -848,17 +852,8 @@ int XMLStateReader::parse() {
         THROW exception::TinyXMLError(&quot;TinyXML error: Error parsing doc %s.&quot;, inputFile.c_str());
     }
 
-    tinyxml2::XMLElement * pElement = pRoot-&gt;FirstChildElement(&quot;itno&quot;);
-    if (pElement == nullptr) {
-        THROW exception::TinyXMLError(&quot;TinyXML error: Error parsing element %s.&quot;, inputFile.c_str());
-    }
-
-    int error;
-    errorId = pElement-&gt;QueryIntText(&amp;error);
-    XMLCheckResult(errorId);
-
     // Read config data
-    pElement = pRoot-&gt;FirstChildElement(&quot;config&quot;);
+    tinyxml2::XMLElement* pElement = pRoot-&gt;FirstChildElement(&quot;config&quot;);
     if (pElement) {
         // Sim config
         if (sim_instance) {
@@ -870,20 +865,26 @@ int XMLStateReader::parse() {
                     if (inputFile != val &amp;&amp; !val.empty())
                         printf(&quot;Warning: Input file &#39;%s&#39; refers to second input file &#39;%s&#39;, this will not be loaded.\n&quot;, inputFile.c_str(), val.c_str());
                     // sim_instance-&gt;SimulationConfig().input_file = val;
-                } else if (key == &quot;steps&quot;) {
-                    sim_instance-&gt;SimulationConfig().steps = static_cast&lt;unsigned int&gt;(stoull(val));
-                } else if (key == &quot;timing&quot;) {
+                } else if (key == &quot;step_log_file&quot;) {
+                    sim_instance-&gt;SimulationConfig().step_log_file = val;
+                } else if (key == &quot;exit_log_file&quot;) {
+                    sim_instance-&gt;SimulationConfig().exit_log_file = val;
+                } else if (key == &quot;common_log_file&quot;) {
+                    sim_instance-&gt;SimulationConfig().common_log_file = val;
+                } else if (key == &quot;truncate_log_files&quot;) {
                     for (auto&amp; c : val)
                         c = static_cast&lt;char&gt;(::tolower(c));
                     if (val == &quot;true&quot;) {
-                        sim_instance-&gt;SimulationConfig().timing = true;
+                        sim_instance-&gt;SimulationConfig().truncate_log_files = true;
                     } else if (val == &quot;false&quot;) {
-                        sim_instance-&gt;SimulationConfig().timing = false;
+                        sim_instance-&gt;SimulationConfig().truncate_log_files = false;
                     } else {
-                        sim_instance-&gt;SimulationConfig().timing = static_cast&lt;bool&gt;(stoll(val));
+                        sim_instance-&gt;SimulationConfig().truncate_log_files = static_cast&lt;bool&gt;(stoll(val));
                     }
                 } else if (key == &quot;random_seed&quot;) {
                     sim_instance-&gt;SimulationConfig().random_seed = static_cast&lt;uint64_t&gt;(stoull(val));
+                } else if (key == &quot;steps&quot;) {
+                    sim_instance-&gt;SimulationConfig().steps = static_cast&lt;unsigned int&gt;(stoull(val));
                 } else if (key == &quot;verbose&quot;) {
                     for (auto&amp; c : val)
                         c = static_cast&lt;char&gt;(::tolower(c));
@@ -893,6 +894,16 @@ int XMLStateReader::parse() {
                         sim_instance-&gt;SimulationConfig().verbose = false;
                     } else {
                         sim_instance-&gt;SimulationConfig().verbose = static_cast&lt;bool&gt;(stoll(val));
+                    }
+                } else if (key == &quot;timing&quot;) {
+                    for (auto&amp; c : val)
+                        c = static_cast&lt;char&gt;(::tolower(c));
+                    if (val == &quot;true&quot;) {
+                        sim_instance-&gt;SimulationConfig().timing = true;
+                    } else if (val == &quot;false&quot;) {
+                        sim_instance-&gt;SimulationConfig().timing = false;
+                    } else {
+                        sim_instance-&gt;SimulationConfig().timing = static_cast&lt;bool&gt;(stoll(val));
                     }
                 } else if (key == &quot;console_mode&quot;) {
 #ifdef VISUALISATION
@@ -924,7 +935,17 @@ int XMLStateReader::parse() {
                 std::string val = cudaCfgElement-&gt;GetText();
                 if (key == &quot;device_id&quot;) {
                     cudamodel_instance-&gt;CUDAConfig().device_id = static_cast&lt;unsigned int&gt;(stoull(val));
-                }  else {
+                } else if (key == &quot;inLayerConcurrency&quot;) {
+                    for (auto&amp; c : val)
+                        c = static_cast&lt;char&gt;(::tolower(c));
+                    if (val == &quot;true&quot;) {
+                        cudamodel_instance-&gt;CUDAConfig().inLayerConcurrency = true;
+                    } else if (val == &quot;false&quot;) {
+                        cudamodel_instance-&gt;CUDAConfig().inLayerConcurrency = false;
+                    } else {
+                        cudamodel_instance-&gt;CUDAConfig().inLayerConcurrency = static_cast&lt;bool&gt;(stoll(val));
+                    }
+                } else {
                     fprintf(stderr, &quot;Warning: Input file &#39;%s&#39; contains unexpected cuda config property &#39;%s&#39;.\n&quot;, inputFile.c_str(), key.c_str());
                 }
             }

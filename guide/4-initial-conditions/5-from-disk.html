@@ -21,6 +21,7 @@
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
         <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -151,7 +152,10 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="4-rng-seeds.html">Random Number Generation</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Initialisation from Disk</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Initialisation from Disk</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#file-format">File Format</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../5-running-a-sim/index.html">Running a Simulation</a><ul>
@@ -164,7 +168,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/1-defining-execution-order.html#manual-layer-specification">Manual Layer Specification</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/2-launching-a-sim.html">Launching a Simulation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/2-creating-a-sim.html">Creating a Simulation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html">Simulation Exit Conditions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html#max-steps">Max Steps</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/3-end-conditions.html#conditional-exit">Conditional Exit</a></li>
@@ -178,6 +182,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../5-running-a-sim/4-collecting-data.html#additional-notes">Additional Notes</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../5-running-a-sim/5-configuring-execution.html">Configuring Execution</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../6-agent-birth-death/index.html">Agent Birth/Death</a><ul>
@@ -770,13 +775,150 @@
            <div itemprop="articleBody">
              
   <div class="section" id="initialisation-from-disk">
-<h1>Initialisation from Disk<a class="headerlink" href="#initialisation-from-disk" title="Permalink to this headline"></a></h1>
-<p>FLAMEGPU2 simulations can be initialised from disk using either the XML or JSON format. The format is described <strong>TODO: Link to format</strong></p>
-<p>To load the file, supply the <strong>TODO: which switch</strong> switch to the program, followed by the path to the XML or JSON file.
-For example</p>
-<p><cite>…</cite></p>
-<p>will run the program ‘…’ initialised with <cite>….JSON</cite>.</p>
-<p>Agent IDs must be unique when the file is loaded from disk. There is no way to fix this programmatically within FLAME, it must be corrected in the intiialisation file.</p>
+<span id="id1"></span><h1>Initialisation from Disk<a class="headerlink" href="#initialisation-from-disk" title="Permalink to this headline"></a></h1>
+<p>FLAMEGPU2 simulations can be initialised from disk using either the XML or JSON format. The XML format is compatible with the previous FLAMEGPU1 input/output files, whereas the JSON format is new to FLAMEGPU2. In both cases, the input and output file formats are the same.</p>
+<p>Loading simulation state (agent data and environment properties) from file can be achieved via either command line specification, or explicit specification within the code for the model. (See the <a class="reference internal" href="../5-running-a-sim/5-configuring-execution.html#configuring-execution"><span class="std std-ref">full guide</span></a> guide for more information)</p>
+<p>In most cases, the input file will be taken from command line which can be passed using <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;input</span> <span class="pre">file&gt;</span></code>.</p>
+<p>Agent IDs must be unique when the file is loaded from disk, otherwise an <code class="docutils literal notranslate"><span class="pre">AgentIDCollision</span></code> exception will be thrown. This must be corrected in the input file, as there is no method to do so within FLAMEGPU2.</p>
+<p>In most cases, components of the input file are optional and can be omitted if defaults are preferred. If agents are not assigned IDs within the input file, they will be automatically generated.</p>
+<div class="section" id="file-format">
+<h2>File Format<a class="headerlink" href="#file-format" title="Permalink to this headline"></a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 95%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Block</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">itno</span></code></p></td>
+<td><p><strong>XML Only</strong> This block provides the step number in XML output files, it is included for backwards compatibility with FLAMEGPU 1. It has no use for input.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">config</span></code></p></td>
+<td><p>This block is split into sub-blocks <code class="docutils literal notranslate"><span class="pre">simulation</span></code> and <code class="docutils literal notranslate"><span class="pre">cuda</span></code>, the members of each sub-block align with <code class="docutils literal notranslate"><span class="pre">SimulationConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">CUDAConfig</span></code> members of the same name respectively. These values are output to log the configuration, and can optionally be used to set the configuration via input file. (See the <a class="reference internal" href="../5-running-a-sim/5-configuring-execution.html#configuring-execution"><span class="std std-ref">Configuring Execution</span></a> guide for details of each individual member)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stats</span></code></p></td>
+<td><p>This block includes statistics collected by FLAME GPU 2 during execution. It has no purpose on input.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">environment</span></code></p></td>
+<td><p>This block includes members of the environment, and can be used to configure the environment via input file. Members which begin with <code class="docutils literal notranslate"><span class="pre">_</span></code> are automatically created internal properties, which can be set via input file.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xagent</span></code></p></td>
+<td><p><strong>XML Only</strong> Each <code class="docutils literal notranslate"><span class="pre">xagent</span></code> block represents a single agent, and the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">state</span></code> values must match an agent state within the loaded model description hierarchy. Members which begin with <code class="docutils literal notranslate"><span class="pre">_</span></code> are automatically created internal variables, which can be set via input file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">agents</span></code></p></td>
+<td><p><strong>JSON Only</strong> Within the <code class="docutils literal notranslate"><span class="pre">agents</span></code> block, a sub block may exist for each agent type, and within this a sub-block for each state type. Each state then maps to an array of object, where each object consists of a single agent’s variables. Members which begin with <code class="docutils literal notranslate"><span class="pre">_</span></code> are automatically created internal variables, which can be set via input file.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The below code block displays example files output from FLAME GPU 2 in both XML and JSON formats.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-WE1M" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-WE1M" name="WE1M" role="tab" tabindex="0">XML</button><button aria-controls="panel-0-SlNPTg==" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-SlNPTg==" name="SlNPTg==" role="tab" tabindex="-1">JSON</button></div><div aria-labelledby="tab-0-WE1M" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-WE1M" name="WE1M" role="tabpanel" tabindex="0"><div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;states&gt;</span>
+    <span class="nt">&lt;itno&gt;</span>100<span class="nt">&lt;/itno&gt;</span>
+    <span class="nt">&lt;config&gt;</span>
+        <span class="nt">&lt;simulation&gt;</span>
+            <span class="nt">&lt;input_file&gt;&lt;/input_file&gt;</span>
+            <span class="nt">&lt;step_log_file&gt;&lt;/step_log_file&gt;</span>
+            <span class="nt">&lt;exit_log_file&gt;&lt;/exit_log_file&gt;</span>
+            <span class="nt">&lt;common_log_file&gt;&lt;/common_log_file&gt;</span>
+            <span class="nt">&lt;truncate_log_files&gt;</span>true<span class="nt">&lt;/truncate_log_files&gt;</span>
+            <span class="nt">&lt;random_seed&gt;</span>1643029170<span class="nt">&lt;/random_seed&gt;</span>
+            <span class="nt">&lt;steps&gt;</span>1<span class="nt">&lt;/steps&gt;</span>
+            <span class="nt">&lt;verbose&gt;</span>false<span class="nt">&lt;/verbose&gt;</span>
+            <span class="nt">&lt;timing&gt;</span>false<span class="nt">&lt;/timing&gt;</span>
+            <span class="nt">&lt;console_mode&gt;</span>false<span class="nt">&lt;/console_mode&gt;</span>
+        <span class="nt">&lt;/simulation&gt;</span>
+        <span class="nt">&lt;cuda&gt;</span>
+            <span class="nt">&lt;device_id&gt;</span>0<span class="nt">&lt;/device_id&gt;</span>
+            <span class="nt">&lt;inLayerConcurrency&gt;</span>true<span class="nt">&lt;/inLayerConcurrency&gt;</span>
+        <span class="nt">&lt;/cuda&gt;</span>
+    <span class="nt">&lt;/config&gt;</span>
+    <span class="nt">&lt;stats&gt;</span>
+        <span class="nt">&lt;step_count&gt;</span>100<span class="nt">&lt;/step_count&gt;</span>
+    <span class="nt">&lt;/stats&gt;</span>
+    <span class="nt">&lt;environment&gt;</span>
+        <span class="nt">&lt;repulse&gt;</span>0.05<span class="nt">&lt;/repulse&gt;</span>
+        <span class="nt">&lt;_stepCount&gt;</span>1<span class="nt">&lt;/_stepCount&gt;</span>
+    <span class="nt">&lt;/environment&gt;</span>
+    <span class="nt">&lt;xagent&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Circle<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;state&gt;</span>default<span class="nt">&lt;/state&gt;</span>
+        <span class="nt">&lt;_auto_sort_bin_index&gt;</span>0<span class="nt">&lt;/_auto_sort_bin_index&gt;</span>
+        <span class="nt">&lt;_id&gt;</span>241<span class="nt">&lt;/_id&gt;</span>
+        <span class="nt">&lt;drift&gt;</span>0.0<span class="nt">&lt;/drift&gt;</span>
+        <span class="nt">&lt;x&gt;</span>0.8293430805206299<span class="nt">&lt;/x&gt;</span>
+        <span class="nt">&lt;y&gt;</span>1.5674132108688355<span class="nt">&lt;/y&gt;</span>
+        <span class="nt">&lt;z&gt;</span>14.034683227539063<span class="nt">&lt;/z&gt;</span>
+    <span class="nt">&lt;/xagent&gt;</span>
+    <span class="nt">&lt;xagent&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Circle<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;state&gt;</span>default<span class="nt">&lt;/state&gt;</span>
+        <span class="nt">&lt;_auto_sort_bin_index&gt;</span>0<span class="nt">&lt;/_auto_sort_bin_index&gt;</span>
+        <span class="nt">&lt;_id&gt;</span>242<span class="nt">&lt;/_id&gt;</span>
+        <span class="nt">&lt;drift&gt;</span>0.0<span class="nt">&lt;/drift&gt;</span>
+        <span class="nt">&lt;x&gt;</span>23.089038848876954<span class="nt">&lt;/x&gt;</span>
+        <span class="nt">&lt;y&gt;</span>24.715721130371095<span class="nt">&lt;/y&gt;</span>
+        <span class="nt">&lt;z&gt;</span>2.3497250080108644<span class="nt">&lt;/z&gt;</span>
+    <span class="nt">&lt;/xagent&gt;</span>
+<span class="nt">&lt;/states&gt;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-SlNPTg==" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-0-SlNPTg==" name="SlNPTg==" role="tabpanel" tabindex="0"><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;config&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;simulation&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;input_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;step_log_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;exit_log_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;common_log_file&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;truncate_log_files&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;random_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1643029117</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;steps&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;verbose&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;timing&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;console_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;cuda&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;device_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;inLayerConcurrency&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;step_count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;environment&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;repulse&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;_stepCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;agents&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;Circle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="nt">&quot;default&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;_auto_sort_bin_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">241</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;drift&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8293430805206299</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5674132108688355</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">14.034683227539063</span><span class="w"></span>
+<span class="w">        </span><span class="p">},</span><span class="w"></span>
+<span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;_auto_sort_bin_index&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">168</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">242</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;drift&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">23.089038848876954</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">24.715721130371095</span><span class="p">,</span><span class="w"></span>
+<span class="w">          </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.3497250080108644</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+</div>
 </div>
 
 

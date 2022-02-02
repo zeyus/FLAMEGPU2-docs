@@ -114,20 +114,26 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html">Host Functions</a><ul>
@@ -189,14 +195,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -949,7 +953,12 @@
 <span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">env_desc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="o">-&gt;</span><span class="n">environment</span><span class="o">-&gt;</span><span class="n">getPropertiesMap</span><span class="p">();</span><span class="w">  </span><span class="c1">// For some reason this method returns a copy, not a reference</span>
 <span class="w">                </span><span class="n">io</span><span class="o">::</span><span class="n">StateReader</span><span class="w"> </span><span class="o">*</span><span class="n">read__</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">io</span><span class="o">::</span><span class="n">StateReaderFactory</span><span class="o">::</span><span class="n">createReader</span><span class="p">(</span><span class="n">model</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">env_desc</span><span class="p">,</span><span class="w"> </span><span class="n">env_init</span><span class="p">,</span><span class="w"> </span><span class="n">pops</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">input_file</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="k">this</span><span class="p">);</span><span class="w"></span>
 <span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">read__</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">                    </span><span class="n">read__</span><span class="o">-&gt;</span><span class="n">parse</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">read__</span><span class="o">-&gt;</span><span class="n">parse</span><span class="p">();</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                        </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Loading input file &#39;%s&#39; failed!</span><span class="se">\n</span><span class="s">Detail: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">input_file</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">());</span><span class="w"></span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="p">}</span><span class="w"></span>
 <span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agent</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">pops</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">                        </span><span class="n">setPopulationData</span><span class="p">(</span><span class="o">*</span><span class="n">agent</span><span class="p">.</span><span class="n">second</span><span class="p">);</span><span class="w"></span>
 <span class="w">                    </span><span class="p">}</span><span class="w"></span>

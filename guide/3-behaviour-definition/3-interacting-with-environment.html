@@ -117,20 +117,26 @@
 <li class="toctree-l4"><a class="reference internal" href="1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="6-host-functions.html">Host Functions</a><ul>
@@ -192,14 +198,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -780,7 +784,7 @@
 <h2>Environment Properties<a class="headerlink" href="#environment-properties" title="Permalink to this headline"></a></h2>
 <p>Agent functions can only read environmental properties. If you wish to modify an environmental property, this must be done
 through <a class="reference internal" href="6-host-functions.html#host-functions"><span class="std std-ref">Host Functions</span></a>.</p>
-<p>Environmental properties are accessed as follows:</p>
+<p>Environmental properties are accessed, using <a class="reference internal" href="../../api/classflamegpu_1_1DeviceEnvironment.html#_CPPv4N8flamegpu17DeviceEnvironmentE" title="flamegpu::DeviceEnvironment"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceEnvironment</span></code></a>, as follows:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Get the value of environment property &#39;interaction_radius&#39; and store it in local variable &#39;interaction_radius&#39;</span>
@@ -796,7 +800,7 @@ through <a class="reference internal" href="6-host-functions.html#host-functions
 <div class="section" id="environment-macro-properties">
 <h2>Environment Macro Properties<a class="headerlink" href="#environment-macro-properties" title="Permalink to this headline"></a></h2>
 <p>Agent functions have much greater access to environmental macroscopic properties, however they still cannot be directly written to, or both updated and read in the same layer.</p>
-<p>Environmental macro properties can be read as follows:</p>
+<p>Environmental macro properties can be read, via the returned <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4I0_j_j_j_jEN8flamegpu19DeviceMacroPropertyE" title="flamegpu::DeviceMacroProperty"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceMacroProperty</span></code></a>, as follows:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Get the single float from environment macro property &#39;float1&#39; and store it in local variable &#39;test_float&#39;</span>
@@ -812,43 +816,12 @@ through <a class="reference internal" href="6-host-functions.html#host-functions
 </pre></div>
 </div>
 </div></div>
-<p>They can also be updated with a selection of functions, which execute atomically. These functions will update a single variable and return information related to it’s old or new state. This can be useful, for simple actions such as conflict resolution and counting. However, if a basic read is subsequently required, a separate host or agent function in a following layer must be used (otherwise there would be a race condition). If running with <code class="docutils literal notranslate"><span class="pre">SEATBELTS</span></code> mode enabled, an exception should be thrown where potential race conditions are detected.</p>
-<p>Macro properties support the normal <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">++</span></code>, <code class="docutils literal notranslate"><span class="pre">--</span></code> operations. They also have access to a limited set of additional functions, explained in the table below.</p>
+<p>They can also be updated with a selection of functions, which execute atomically. These functions will update a single variable and return information related to it’s old or new state. This can be useful, for simple actions such as conflict resolution and counting. However, if a basic read is subsequently required, a separate host or agent function in a following layer must be used (otherwise there would be a race condition). If running with <cite>SEATBELTS</cite> mode enabled, an exception should be thrown where potential race conditions are detected.</p>
+<p>Macro properties support the normal <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4NK8flamegpu19DeviceMacroPropertyplERK1T" title="flamegpu::DeviceMacroProperty::operator+"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">+</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4NK8flamegpu19DeviceMacroPropertymiERK1T" title="flamegpu::DeviceMacroProperty::operator-"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">-</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4N8flamegpu19DeviceMacroPropertypLERK1T" title="flamegpu::DeviceMacroProperty::operator+="><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">+=</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4N8flamegpu19DeviceMacroPropertymIERK1T" title="flamegpu::DeviceMacroProperty::operator-="><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">-=</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4N8flamegpu19DeviceMacroPropertyppEv" title="flamegpu::DeviceMacroProperty::operator++"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">++</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4N8flamegpu19DeviceMacroPropertymmEv" title="flamegpu::DeviceMacroProperty::operator--"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">--</span></code></a> operations. They also have access to a limited set of additional functions, explained in the table below.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><code class="docutils literal notranslate"><span class="pre">DeviceMacroProperty</span></code> update support is limited to specific variable types. This varies between functions however <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> has the widest support, for full explanation check the API docs.</p>
+<p><a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4I0_j_j_j_jEN8flamegpu19DeviceMacroPropertyE" title="flamegpu::DeviceMacroProperty"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceMacroProperty</span></code></a> update support is limited to specific variable types. This varies between functions however <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code> has the widest support, for full explanation check the API docs.</p>
 </div>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 34%" />
-<col style="width: 52%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Method</p></th>
-<th class="head"><p>Supported Types</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">min(val)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint64_t</span></code></p></td>
-<td><p>Update property according to <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">&lt;</span> <span class="pre">old</span> <span class="pre">?</span> <span class="pre">val</span> <span class="pre">:</span> <span class="pre">old</span></code> and return it’s new value.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">max(val)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint64_t</span></code></p></td>
-<td><p>Update property according to <code class="docutils literal notranslate"><span class="pre">val</span> <span class="pre">&gt;</span> <span class="pre">old</span> <span class="pre">?</span> <span class="pre">val</span> <span class="pre">:</span> <span class="pre">old</span></code> and return it’s new value.</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CAS(compare,</span> <span class="pre">val)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint64_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint16_t</span></code></p></td>
-<td><p>Update property according to <code class="docutils literal notranslate"><span class="pre">old</span> <span class="pre">==</span> <span class="pre">compare</span> <span class="pre">?</span> <span class="pre">val</span> <span class="pre">:</span> <span class="pre">old</span></code> and return <code class="docutils literal notranslate"><span class="pre">old</span></code>.</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">exchange(val)</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">int32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
-<td><p>Update property to match val, and return <code class="docutils literal notranslate"><span class="pre">old</span></code>.</p></td>
-</tr>
-</tbody>
-</table>
 <p>Example usage is shown below:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleFn</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -873,6 +846,19 @@ through <a class="reference internal" href="6-host-functions.html#host-functions
 </pre></div>
 </div>
 </div></div>
+</div>
+<div class="section" id="more-info">
+<h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1DeviceEnvironment.html#_CPPv4N8flamegpu17DeviceEnvironmentE" title="flamegpu::DeviceEnvironment"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceEnvironment</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1DeviceMacroProperty.html#_CPPv4I0_j_j_j_jEN8flamegpu19DeviceMacroPropertyE" title="flamegpu::DeviceMacroProperty"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceMacroProperty</span></code></a></p></li>
+<li><p>Examples which demonstrate creating agent functions</p>
+<ul>
+<li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
+<li><p>Ensemble (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/ensemble/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 

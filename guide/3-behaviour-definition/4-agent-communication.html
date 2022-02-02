@@ -117,20 +117,26 @@
 <li class="toctree-l4"><a class="reference internal" href="1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="6-host-functions.html">Host Functions</a><ul>
@@ -192,14 +198,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -779,14 +783,14 @@
 <p>Communication between agents in FLAMEGPU2 is handled through messages. Messages contain variables which are used to transmit information between agents.</p>
 <div class="section" id="defining-messages">
 <h2>Defining Messages<a class="headerlink" href="#defining-messages" title="Permalink to this headline"></a></h2>
-<p>Defining a message type in FLAMEGPU2 requires selection of a communication strategy and specification of the data the message will contain. FLAME GPU comes
+<p>Defining a message type in FLAMEGPU2 requires selection of a communication strategy and specification of the data the message will contain. FLAMEGPU2 comes
 with several built-in communication strategies, described below. It can also be extended to support bespoke messaging types. For guidance on this see the file
 <code class="docutils literal notranslate"><span class="pre">include/flamegpu/runtime/messaging.h</span></code>. For each message type, the communication strategy defines how the messages will be accessed.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 15%" />
-<col style="width: 28%" />
-<col style="width: 57%" />
+<col style="width: 11%" />
+<col style="width: 45%" />
+<col style="width: 44%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Type</p></th>
@@ -796,36 +800,36 @@ with several built-in communication strategies, described below. It can also be 
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Brute Force</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageBruteForce</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBruteForce</span></code></a></p></td>
 <td><p>Access all messages</p></td>
 </tr>
 <tr class="row-odd"><td><p>Bucket</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageBucket</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucketE" title="flamegpu::MessageBucket"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBucket</span></code></a></p></td>
 <td><p>Access all messages with a specified integer key</p></td>
 </tr>
 <tr class="row-even"><td><p>Spatial 2D</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageSpatial2D</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2DE" title="flamegpu::MessageSpatial2D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D</span></code></a></p></td>
 <td><p>Access all messages within a radius in 2D</p></td>
 </tr>
 <tr class="row-odd"><td><p>Spatial 3D</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageSpatial3D</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3DE" title="flamegpu::MessageSpatial3D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D</span></code></a></p></td>
 <td><p>Access all messages within a radius in 3D</p></td>
 </tr>
 <tr class="row-even"><td><p>Array 1D</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageArray1D</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArrayE" title="flamegpu::MessageArray"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray</span></code></a></p></td>
 <td><p>Directly access messages via a 1 dimensional array</p></td>
 </tr>
 <tr class="row-odd"><td><p>Array 2D</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageArray2D</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2DE" title="flamegpu::MessageArray2D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D</span></code></a></p></td>
 <td><p>Directly access messages via a 2 dimensional array</p></td>
 </tr>
 <tr class="row-even"><td><p>Array 3D</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">MessageArray3D</span></code></p></td>
+<td><p><a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3DE" title="flamegpu::MessageArray3D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D</span></code></a></p></td>
 <td><p>Directly access messages via a 3 dimensional array</p></td>
 </tr>
 </tbody>
 </table>
-<p>A new message type can defined using one of the above symbols:</p>
+<p>A new message type can be defined using one of the above symbols:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Create a new message type called &quot;location&quot; which uses the brute force communication strategy</span>
 <span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageBruteForce</span><span class="o">::</span><span class="n">Description</span><span class="w"> </span><span class="o">&amp;</span><span class="n">locationMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">newMessage</span><span class="p">(</span><span class="s">&quot;location&quot;</span><span class="p">);</span><span class="w"></span>
@@ -862,7 +866,7 @@ and must match that of the message type:</p>
 </pre></div>
 </div>
 </div></div>
-<p>To specify the type of message the function should output, the <code class="docutils literal notranslate"><span class="pre">setMessageOutput</span></code> method of the <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code> object is used:</p>
+<p>To specify the type of message the function should output, the <a class="reference internal" href="../../api/classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescription16setMessageOutputERKNSt6stringE" title="flamegpu::AgentFunctionDescription::setMessageOutput"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setMessageOutput()</span></code></a> method of the <a class="reference internal" href="../../api/classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescriptionE" title="flamegpu::AgentFunctionDescription"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code></a> object is used:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-3-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Specify that the &quot;outputdata&quot; agent function outputs a &quot;location_message&quot;</span>
 <span class="n">outputdata</span><span class="p">.</span><span class="n">setMessageOutput</span><span class="p">(</span><span class="s">&quot;location_message&quot;</span><span class="p">);</span><span class="w"></span>
@@ -886,7 +890,7 @@ and must match that of the message type:</p>
 </div></div>
 <p><strong>Bucket Messaging</strong>
 Bucket Messages each have an associated bucket index, of an integer type such as <code class="docutils literal notranslate"><span class="pre">int</span></code> or <code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">int</span></code>.
-The Bucket indices are a sequential set of integers, between a configurable lower and upper bound, using the <code class="docutils literal notranslate"><span class="pre">setUpperBound</span></code>, <code class="docutils literal notranslate"><span class="pre">setLowerBound</span></code> and <code class="docutils literal notranslate"><span class="pre">setBounds</span></code> methods on the <code class="docutils literal notranslate"><span class="pre">BucketMessage::Description</span></code> class.</p>
+The Bucket indices are a sequential set of integers, between a configurable lower and upper bound, using the <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket11Description13setUpperBoundERK4IntT" title="flamegpu::MessageBucket::Description::setUpperBound"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setUpperBound()</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket11Description13setLowerBoundERK4IntT" title="flamegpu::MessageBucket::Description::setLowerBound"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setLowerBound()</span></code></a> and <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket11Description9setBoundsERK4IntTRK4IntT" title="flamegpu::MessageBucket::Description::setBounds"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setBounds()</span></code></a> methods on the <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket11DescriptionE" title="flamegpu::MessageBucket::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">BucketMessage::Description</span></code></a> class.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-5-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-5-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Set an upper bound of bucket indices to 12 for the &quot;message&quot; MessageBucket::Description instance.</span>
 <span class="n">message</span><span class="p">.</span><span class="n">setUpperBound</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span><span class="w"></span>
@@ -907,7 +911,7 @@ The Bucket indices are a sequential set of integers, between a configurable lowe
 </pre></div>
 </div>
 </div></div>
-<p>When outputting bucket messages, the bucket index for the message must be set, using the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;mesasage_out.setKey</span></code> method.</p>
+<p>When outputting bucket messages, the bucket index for the message must be set, using the <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4NK8flamegpu13MessageBucket3Out6setKeyERK4IntT" title="flamegpu::MessageBucket::Out::setKey"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setKey()</span></code></a> method.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-6-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-6-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-6-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;outputdata&quot; which has no input messages and outputs a message using the &quot;MessageBucket&quot; communication strategy</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">outputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageBucket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -920,7 +924,7 @@ The Bucket indices are a sequential set of integers, between a configurable lowe
 </div>
 </div></div>
 <p><strong>Spatial Messaging</strong>
-If you are using <code class="docutils literal notranslate"><span class="pre">MessageSpatial2D</span></code> or <code class="docutils literal notranslate"><span class="pre">MessageSpatial3D</span></code> then your message type will automatically have <code class="docutils literal notranslate"><span class="pre">float</span></code> variables <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> (and <code class="docutils literal notranslate"><span class="pre">z</span></code> for 3D) added to the message. These correspond to the message’s spatial location and must be set in your agent function.</p>
+If you are using <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D</span></code> or <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D</span></code> then your message type will automatically have <code class="docutils literal notranslate"><span class="pre">float</span></code> variables <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> (and <code class="docutils literal notranslate"><span class="pre">z</span></code> for 3D) added to the message. These correspond to the message’s spatial location and must be set in your agent function.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-7-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-7-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-7-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;outputdata&quot; which has no input messages and outputs a message using the &quot;MessageSpatial3D&quot; communication strategy</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">outputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageSpatial3D</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -933,7 +937,7 @@ If you are using <code class="docutils literal notranslate"><span class="pre">Me
 </pre></div>
 </div>
 </div></div>
-<p>You must also specify the interaction radius via the <code class="docutils literal notranslate"><span class="pre">MessageDescription</span></code> object:</p>
+<p>You must also specify the interaction radius via the <code class="docutils literal notranslate"><span class="pre">MessageDescription</span></code> (<a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D11DescriptionE" title="flamegpu::MessageSpatial2D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">2D</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D11DescriptionE" title="flamegpu::MessageSpatial3D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">3D</span></code></a>) object:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-8-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-8-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-8-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-8-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Specify that the &quot;outputdata&quot; agent function has an interaction radius of 2.0f</span>
 <span class="n">outputdata</span><span class="p">.</span><span class="n">setMessageOutput</span><span class="p">(</span><span class="mf">2.0f</span><span class="p">);</span><span class="w"></span>
@@ -945,7 +949,7 @@ If you are using <code class="docutils literal notranslate"><span class="pre">Me
 </div>
 </div></div>
 <p><strong>Array Messaging</strong>
-If you are using <code class="docutils literal notranslate"><span class="pre">MessageArray1D</span></code>, <code class="docutils literal notranslate"><span class="pre">MessageArray2D</span></code> or <code class="docutils literal notranslate"><span class="pre">MessageArray3D</span></code> then you must specify the corresponding array index when outputting a message. It is important that only 1 agent writes a message to each index (if <code class="docutils literal notranslate"><span class="pre">SEATBELTS</span></code> is enabled then multiple outputs to the same index will raise an exception).</p>
+If you are using <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArrayE" title="flamegpu::MessageArray"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2DE" title="flamegpu::MessageArray2D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D</span></code></a> or <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3DE" title="flamegpu::MessageArray3D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D</span></code></a> then you must specify the corresponding array index when outputting a message. It is important that only 1 agent writes a message to each index (if <cite>SEATBELTS</cite> is enabled then multiple outputs to the same index will raise an exception).</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-9-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-9-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-9-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;outputdata&quot; which has no input messages and outputs a message using the &quot;MessageArray3D&quot; communication strategy</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">outputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageArray3D</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -971,7 +975,7 @@ If you are using <code class="docutils literal notranslate"><span class="pre">Me
 </pre></div>
 </div>
 </div></div>
-<p>The input message type is specified using the <code class="docutils literal notranslate"><span class="pre">setMessageInput</span></code> method of the <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code> object:</p>
+<p>The input message type is specified using the <a class="reference internal" href="../../api/classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescription15setMessageInputERKNSt6stringE" title="flamegpu::AgentFunctionDescription::setMessageInput"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setMessageInput()</span></code></a> method of the <a class="reference internal" href="../../api/classflamegpu_1_1AgentFunctionDescription.html#_CPPv4N8flamegpu24AgentFunctionDescriptionE" title="flamegpu::AgentFunctionDescription"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code></a> object:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-11-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-11-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-11-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-11-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-11-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Specify that the &quot;inputdata&quot; agent function inputs a &quot;location_message&quot;</span>
 <span class="n">inputdata</span><span class="p">.</span><span class="n">setMessageInput</span><span class="p">(</span><span class="s">&quot;location_message&quot;</span><span class="p">);</span><span class="w"></span>
@@ -996,7 +1000,7 @@ If you are using <code class="docutils literal notranslate"><span class="pre">Me
 </div></div>
 <p><strong>Bucket Messaging</strong></p>
 <p>If you are using the Bucket messaging strategy, you will also need to supply the bucket index/key to access the messages from the specific bucket.
-If an invalid bucket index is provided (based on the bounds), then either a device exception will be thrown if available (<code class="docutils literal notranslate"><span class="pre">SEATBELTS=ON</span></code>), or no messages will be returned.</p>
+If an invalid bucket index is provided (based on the bounds), then either a device exception will be thrown if available (<cite>SEATBELTS=ON&lt;SEATBELTS&gt;</cite>), or no messages will be returned.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-13-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-13-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;inputdata&quot; which has accepts an input message using the &quot;MessageBucket&quot; communication strategy and inputs no messages</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">inputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageBucket</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1065,7 +1069,7 @@ If you are using one of the array messaging strategies, there are several method
 </pre></div>
 </div>
 </div></div>
-<p>Similar to spatial messaging, array messages can be used to iterate the exclusive Moore neighbourhood around a target index (the specified index’s message is not returned):</p>
+<p>Similar to spatial messaging, array messages can be used to iterate the exclusive Moore neighbourhood around a target index (the specified index’s message is not returned) by calling <code class="docutils literal notranslate"><span class="pre">operator()</span></code> (<a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4NK8flamegpu12MessageArray2InclERK9size_typeRK9size_type" title="flamegpu::MessageArray::In::operator()"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">1D</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D2InclERK9size_typeRK9size_typeRK9size_type" title="flamegpu::MessageArray2D::In::operator()"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">2D</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4NK8flamegpu14MessageArray3D2InclERK9size_typeRK9size_typeRK9size_typeRK9size_type" title="flamegpu::MessageArray3D::In::operator()"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">3D</span></code></a>):</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-16-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-16-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-16-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;inputdata&quot; which has accepts an input message using the &quot;MessageSpatial3D&quot; communication strategy and inputs no messages</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">inputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageArray3D</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1084,7 +1088,7 @@ If you are using one of the array messaging strategies, there are several method
 </div>
 </div></div>
 <p>Moore iteration supports radii of any suitable positive integer. Whilst the default is <code class="docutils literal notranslate"><span class="pre">1</span></code>, bespoke values can optionally be passed as the final argument during iteration.</p>
-<p>If wrapping of array bounds is required, then an alternate iterator method <code class="docutils literal notranslate"><span class="pre">wrap()</span></code> is called.</p>
+<p>If wrapping of array bounds is required, then an alternate iterator method <code class="docutils literal notranslate"><span class="pre">wrap()</span></code> (<a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4NK8flamegpu12MessageArray2In4wrapERK9size_typeRK9size_type" title="flamegpu::MessageArray::In::wrap"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">1D</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D2In4wrapERK9size_typeRK9size_typeRK9size_type" title="flamegpu::MessageArray2D::In::wrap"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">2D</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4NK8flamegpu14MessageArray3D2In4wrapERK9size_typeRK9size_typeRK9size_typeRK9size_type" title="flamegpu::MessageArray3D::In::wrap"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">3D</span></code></a>) is called.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-17-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-17-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-17-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function, &quot;inputdata&quot; which has accepts an input message using the &quot;MessageSpatial3D&quot; communication strategy and inputs no messages</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">inputdata</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageArray3D</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -1102,6 +1106,37 @@ If you are using one of the array messaging strategies, there are several method
 </pre></div>
 </div>
 </div></div>
+</div>
+<div class="section" id="more-info">
+<h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForceE" title="flamegpu::MessageBruteForce"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBruteForce</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce11DescriptionE" title="flamegpu::MessageBruteForce::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBruteForce::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce3OutE" title="flamegpu::MessageBruteForce::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBruteForce::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce2InE" title="flamegpu::MessageBruteForce::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBruteForce::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucketE" title="flamegpu::MessageBucket"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBucket</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket11DescriptionE" title="flamegpu::MessageBucket::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBucket::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket3OutE" title="flamegpu::MessageBucket::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBucket::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket2InE" title="flamegpu::MessageBucket::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageBucket::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2DE" title="flamegpu::MessageSpatial2D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D11DescriptionE" title="flamegpu::MessageSpatial2D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D3OutE" title="flamegpu::MessageSpatial2D::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D2InE" title="flamegpu::MessageSpatial2D::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial2D::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3DE" title="flamegpu::MessageSpatial3D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D11DescriptionE" title="flamegpu::MessageSpatial3D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D3OutE" title="flamegpu::MessageSpatial3D::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D2InE" title="flamegpu::MessageSpatial3D::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageSpatial3D::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArrayE" title="flamegpu::MessageArray"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray11DescriptionE" title="flamegpu::MessageArray::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray3OutE" title="flamegpu::MessageArray::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray2InE" title="flamegpu::MessageArray::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2DE" title="flamegpu::MessageArray2D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D11DescriptionE" title="flamegpu::MessageArray2D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D3OutE" title="flamegpu::MessageArray2D::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D2InE" title="flamegpu::MessageArray2D::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray2D::In</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3DE" title="flamegpu::MessageArray3D"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D</span></code></a> <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D11DescriptionE" title="flamegpu::MessageArray3D::Description"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D::Description</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D3OutE" title="flamegpu::MessageArray3D::Out"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D::Out</span></code></a>, <a class="reference internal" href="../../api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D2InE" title="flamegpu::MessageArray3D::In"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">MessageArray3D::In</span></code></a></p></li>
+<li><p>Examples which demonstrate brute force messaging</p>
+<ul>
+<li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
+<li><p>Circles Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/circles_bruteforce/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+<li><p>Examples which demonstrate spatial 3D messaging</p>
+<ul>
+<li><p>Boids Spatial 3D (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_spatial3D/src/main.cu">View on github</a>)</p></li>
+<li><p>Boids Spatial 3D (Python) (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/swig_boids_spatial3D/boids_spatial3D.py">View on github</a>)</p></li>
+<li><p>Circles Spatial 3D (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/circles_spatial3D/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+<li><p>Examples which demonstrate array 2D messaging</p>
+<ul>
+<li><p>Game of Life (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/game_of_life/src/main.cu">View on github</a>)</p></li>
+<li><p>Sugarscape (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/sugarscape/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 

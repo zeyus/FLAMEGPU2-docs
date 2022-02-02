@@ -117,20 +117,26 @@
 <li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="6-host-functions.html">Host Functions</a><ul>
@@ -192,14 +198,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -782,16 +786,16 @@
 and interact with the environment or other agents. Each agent function in FLAMEGPU2 is associated with a particular agent type and is represented
 by an <code class="docutils literal notranslate"><span class="pre">AgentFunctionDescription</span></code> object. This object describes the name of the function, the agent state in which it should be active, and any
 state transitions it should apply to the agent. The implementation code for the behaviour is written separately and is identified by using the
-<code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro to label the code. Alternatively, the implementations can be written in strings and loaded at runtime. The latter
+<a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html#c.FLAMEGPU_AGENT_FUNCTION" title="FLAMEGPU_AGENT_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code></a> macro to label the code. Alternatively, the implementations can be written in strings and loaded at runtime. The latter
 method is the only method supported for the python version of FLAMEGPU2.</p>
 </div>
 <div class="section" id="defining-an-agent-function">
 <h2>Defining an Agent Function<a class="headerlink" href="#defining-an-agent-function" title="Permalink to this headline"></a></h2>
 <p>Agent Functions can be specified as C++ functions, built at compile time when using the C++ interface, or they can be specified as Run-Time Compiled (RTC) functions when using the C++ interface, or the Python interface.</p>
-<p>An agent function is defined using the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro.
+<p>An agent function is defined using the <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html#c.FLAMEGPU_AGENT_FUNCTION" title="FLAMEGPU_AGENT_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code></a> macro.
 This takes three arguments: a unique name identifying the function, an input message communication strategy, and an output message communication strategy.
 We will discuss messages in more detail later, so for now don’t worry about the second and third parameters.</p>
-<p>For Non-RTC functions, when using the C++ interface, the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code> macro can be used to declare and define the agent function, which can then be associated with the <code class="docutils literal notranslate"><span class="pre">flamegpu::AgentDescription</span></code> object using the <code class="docutils literal notranslate"><span class="pre">newFunction</span></code> method.</p>
+<p>For Non-RTC functions, when using the C++ interface, the <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html#c.FLAMEGPU_AGENT_FUNCTION" title="FLAMEGPU_AGENT_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code></a> macro can be used to declare and define the agent function, which can then be associated with the <a class="reference internal" href="../../api/classflamegpu_1_1AgentDescription.html#_CPPv4N8flamegpu16AgentDescriptionE" title="flamegpu::AgentDescription"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">AgentDescription</span></code></a> object using the <a class="reference internal" href="../../api/classflamegpu_1_1AgentDescription.html#_CPPv4I0EN8flamegpu16AgentDescription11newFunctionER24AgentFunctionDescriptionRKNSt6stringE13AgentFunction" title="flamegpu::AgentDescription::newFunction"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">newFunction()</span></code></a> method.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-0-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-0-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define an agent function called agent_fn1 - specified ahead of main function</span>
 <span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">agent_fn1</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -809,7 +813,7 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </pre></div>
 </div>
 </div></div>
-<p>When using the Run-Time Compiled (RTC) functions, optionally in the C++ interface or required by the Python interface, the function must be defined in a string and associated with the AgentDescription using the <code class="docutils literal notranslate"><span class="pre">newRTCFunction</span></code> method.</p>
+<p>When using the Run-Time Compiled (RTC) functions, optionally in the C++ interface or required by the Python interface, the function must be defined in a string and associated with the <cite>AgentDescription&lt;flamegpu::AgentDescription&gt;</cite> using the <a class="reference internal" href="../../api/classflamegpu_1_1AgentDescription.html#_CPPv4N8flamegpu16AgentDescription14newRTCFunctionERKNSt6stringERKNSt6stringE" title="flamegpu::AgentDescription::newRTCFunction"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">newRTCFunction()</span></code></a> method.</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">agent_fn1_source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">###(</span><span class="s"></span>
 <span class="s">// Define an agent function called agent_fn1 - specified ahead of main function</span>
@@ -848,7 +852,7 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </div>
 <div class="section" id="flamegpu-device-functions">
 <h2>FLAMEGPU Device Functions<a class="headerlink" href="#flamegpu-device-functions" title="Permalink to this headline"></a></h2>
-<p>If you wish to define regular functions which can be used within agent function definitions, you can use the <cite>FLAMEGPU_DEVICE_FUNCTION</cite> macro:</p>
+<p>If you wish to define regular functions which can be used within agent function definitions, you can use the <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a76f5ec2c762f0289e11d150131b80ef9.html#c.FLAMEGPU_DEVICE_FUNCTION" title="FLAMEGPU_DEVICE_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_DEVICE_FUNCTION</span></code></a> macro:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for adding two integers which can be called inside agent functions.</span>
 <span class="n">FLAMEGPU_DEVICE_FUNCTION</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -860,7 +864,7 @@ We will discuss messages in more detail later, so for now don’t worry about th
 </div>
 <div class="section" id="flamegpu-host-device-functions">
 <h2>FLAMEGPU Host Device Functions<a class="headerlink" href="#flamegpu-host-device-functions" title="Permalink to this headline"></a></h2>
-<p>If you wish to define regular functions which can be used within agent function definitions and in host code, you can use the <cite>FLAMEGPU_HOST_DEVICE_FUNCTION</cite> macro:</p>
+<p>If you wish to define regular functions which can be used within agent function definitions and in host code, you can use the <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a92ddd2311e736cc418e2ed1092485ca1.html#c.FLAMEGPU_HOST_DEVICE_FUNCTION" title="FLAMEGPU_HOST_DEVICE_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_HOST_DEVICE_FUNCTION</span></code></a> macro:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a function for subtracting two integers which can be called inside agent functions, or in host code</span>
 <span class="n">FLAMEGPU_HOST_DEVICE_FUNCTION</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">subtract</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -918,14 +922,9 @@ We will discuss messages in more detail later, so for now don’t worry about th
 <div class="section" id="more-info">
 <h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Related User Guide Pages</p>
-<ul>
-<li><p><a class="reference external" href="../3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a></p></li>
-<li><p><a class="reference external" href="../8-advanced-sim-management/2-rng-seeds.html">Random Number Generation</a></p></li>
-</ul>
-</li>
-<li><p>Full API documentation for the <code class="docutils literal notranslate"><span class="pre">EnvironmentDescription</span></code>: link</p></li>
-<li><p>Examples which demonstrate creating an environment</p>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html#c.FLAMEGPU_AGENT_FUNCTION" title="FLAMEGPU_AGENT_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1AgentDescription.html#_CPPv4N8flamegpu16AgentDescriptionE" title="flamegpu::AgentDescription"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">flamegpu::AgentDescription</span></code></a></p></li>
+<li><p>Examples which demonstrate creating agent functions</p>
 <ul>
 <li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
 <li><p>Ensemble (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/ensemble/src/main.cu">View on github</a>)</p></li>

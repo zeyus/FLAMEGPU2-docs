@@ -114,20 +114,26 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html">Host Functions</a><ul>
@@ -189,14 +195,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -1041,7 +1045,12 @@ int XMLStateReader::parse() {
         // Find agent state, use initial state if not set (means its old flame gpu 1 input file)
         tinyxml2::XMLElement* pStateElement = pElement-&gt;FirstChildElement(&quot;state&quot;);
         const std::string agentState = pStateElement ? std::string(pStateElement-&gt;GetText()) : getInitialState(agentName);
-        std::shared_ptr&lt;AgentVector&gt; &amp;agentVec = model_state.at({agentName, agentState });
+        const auto agentIt = model_state.find({ agentName, agentState });
+        if (agentIt == model_state.end()) {
+            THROW exception::InvalidAgentState(&quot;Agent &#39;%s&#39; with state &#39;%s&#39;, found in input file &#39;%s&#39;, is not part of the model description hierarchy, &quot;
+                &quot;in XMLStateReader::parse()\n Ensure the input file is for the correct model.\n&quot;, agentName, agentState.c_str(), inputFile.c_str());
+        }
+        std::shared_ptr&lt;AgentVector&gt; &amp;agentVec = agentIt-&gt;second;
         const VariableMap&amp; agentVariables = agentVec-&gt;getVariableMetaData();
         // Create instance to store variable data in
         agentVec-&gt;push_back();

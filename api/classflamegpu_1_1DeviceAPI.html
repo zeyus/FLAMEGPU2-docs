@@ -116,20 +116,26 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/2-modifying-agent-variables.html#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../guide/3-behaviour-definition/5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/3-behaviour-definition/6-host-functions.html">Host Functions</a><ul>
@@ -191,14 +197,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../guide/6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -793,15 +797,15 @@
 <span id="_CPPv3I00EN8flamegpu9DeviceAPIE"></span><span id="_CPPv2I00EN8flamegpu9DeviceAPIE"></span><span class="k"><span class="pre">template</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MessageIn</span></span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="k"><span class="pre">typename</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MessageOut</span></span></span><span class="p"><span class="pre">&gt;</span></span><br /><span class="target" id="classflamegpu_1_1DeviceAPI"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">flamegpu</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">DeviceAPI</span></span></span><a class="headerlink" href="#_CPPv4I00EN8flamegpu9DeviceAPIE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>A flame gpu api class for the device runtime only. </p>
 <p>This class provides access to model variables/state inside agent functions</p>
-<p>This class should only be used by the device and never created on the host. It is safe for each agent function to create a copy of this class on the device. Any singleton type behaviour is handled by the curveInstance class. This will ensure that initialisation of the curve (C) library is done only once. <dl class="field-list simple">
-<dt class="field-odd">tparam MessageIn</dt>
-<dd class="field-odd"><p>Input message type (the form found in flamegpu/runtime/messaging.h, <a class="reference internal" href="classflamegpu_1_1MessageNone.html#classflamegpu_1_1MessageNone"><span class="std std-ref">MessageNone</span></a> etc) </p>
-</dd>
-<dt class="field-even">tparam MessageOut</dt>
-<dd class="field-even"><p>Output message type (the form found in flamegpu/runtime/messaging.h, <a class="reference internal" href="classflamegpu_1_1MessageNone.html#classflamegpu_1_1MessageNone"><span class="std std-ref">MessageNone</span></a> etc) </p>
+<p>This class should only be used by the device and never created on the host. It is safe for each agent function to create a copy of this class on the device. Any singleton type behaviour is handled by the curveInstance class. This will ensure that initialisation of the curve (C) library is done only once. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Template Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>MessageIn</strong> – Input message type (the form found in flamegpu/runtime/messaging.h, <a class="reference internal" href="classflamegpu_1_1MessageNone.html#classflamegpu_1_1MessageNone"><span class="std std-ref">MessageNone</span></a> etc) </p></li>
+<li><p><strong>MessageOut</strong> – Output message type (the form found in flamegpu/runtime/messaging.h, <a class="reference internal" href="classflamegpu_1_1MessageNone.html#classflamegpu_1_1MessageNone"><span class="std std-ref">MessageNone</span></a> etc) </p></li>
+</ul>
 </dd>
 </dl>
-</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
 <dl class="cpp function">

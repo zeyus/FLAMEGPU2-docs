@@ -117,20 +117,26 @@
 <li class="toctree-l4"><a class="reference internal" href="1-defining-agent-functions.html#more-info">More Info</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifying Agent Variables</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Modifying Agent Variables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#more-info">More Info</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="3-interacting-with-environment.html">Interacting with the Environment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-properties">Environment Properties</a></li>
 <li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#environment-macro-properties">Environment Macro Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="3-interacting-with-environment.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="4-agent-communication.html">Agent Communication</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#defining-messages">Defining Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#sending-messages">Sending Messages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#reading-messages">Reading Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="4-agent-communication.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="5-conditional-behaviours.html">Conditional Behaviours</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#agent-function-conditions">Agent Function Conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="5-conditional-behaviours.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="6-host-functions.html">Host Functions</a><ul>
@@ -192,14 +198,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#creating-the-new-agent">Creating the New Agent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#full-example-code-from-this-page">Full Example Code From This Page</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/1-agent-birth-device.html#more-info">More Info</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/2-agent-birth-host.html">Agent Birth from Host Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html">Agent Death</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#enabling-agent-death">Enabling Agent Death</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#id1">Agent Death</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../6-agent-birth-death/3-agent-death.html#more-info">More Info</a></li>
 </ul>
 </li>
 </ul>
@@ -776,9 +780,9 @@
              
   <div class="section" id="modifying-agent-variables">
 <h1>Modifying Agent Variables<a class="headerlink" href="#modifying-agent-variables" title="Permalink to this headline"></a></h1>
-<p>Each instance of an agent will have its own copy of each of the agent variables specified in the agent type defintion.
+<p>Each instance of an agent will have its own copy of each of the agent variables specified in the agent type definition.
 These can be accessed and modified within agent functions.</p>
-<p>Within an agent function, variables can be read with <code class="docutils literal notranslate"><span class="pre">getVariable</span></code> and written to with <code class="docutils literal notranslate"><span class="pre">setVariable</span></code>.
+<p>Within an agent function, variables can be read via the <a class="reference internal" href="../../api/classflamegpu_1_1DeviceAPI.html#_CPPv4I00EN8flamegpu9DeviceAPIE" title="flamegpu::DeviceAPI"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceAPI</span></code></a> with <a class="reference internal" href="../../api/classflamegpu_1_1DeviceAPI.html#_CPPv4I0_jENK8flamegpu9DeviceAPI11getVariableE1TRA1N_Kc" title="flamegpu::DeviceAPI::getVariable"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">getVariable()</span></code></a> and written to with <a class="reference internal" href="../../api/classflamegpu_1_1DeviceAPI.html#_CPPv4I0_jEN8flamegpu9DeviceAPI11setVariableEvRA1N_Kc1T" title="flamegpu::DeviceAPI::setVariable"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">setVariable()</span></code></a>.
 These variables are accessed from higher latency device memory, so for the best performance, we recommended
 that you avoid multiple reads or writes to the same variable in any agent functions and do as much as possible
 with the local copy. The agent ID built-in variable can be accessed via the <cite>getID</cite> method.</p>
@@ -820,6 +824,19 @@ in a single function call, during agent functions, elements must be accessed ind
 </pre></div>
 </div>
 </div></div>
+<div class="section" id="more-info">
+<h2>More Info<a class="headerlink" href="#more-info" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Full API documentation for <a class="reference internal" href="../../api/classflamegpu_1_1DeviceAPI.html#_CPPv4I00EN8flamegpu9DeviceAPIE" title="flamegpu::DeviceAPI"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">DeviceAPI</span></code></a></p></li>
+<li><p>Full API documentation for <a class="reference internal" href="../../api/define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html#c.FLAMEGPU_AGENT_FUNCTION" title="FLAMEGPU_AGENT_FUNCTION"><code class="xref c c-macro docutils literal notranslate"><span class="pre">FLAMEGPU_AGENT_FUNCTION</span></code></a></p></li>
+<li><p>Examples which demonstrate creating agent functions</p>
+<ul>
+<li><p>Boids Brute Force (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/boids_bruteforce/src/main.cu">View on github</a>)</p></li>
+<li><p>Ensemble (<a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/blob/master/examples/ensemble/src/main.cu">View on github</a>)</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 
 

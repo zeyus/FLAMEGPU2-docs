@@ -494,6 +494,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter.html">Class In::VonNeumannFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter_1_1iterator.html">Class VonNeumannFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter_1_1Message.html">Class VonNeumannFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter.html">Class In::VonNeumannWrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter_1_1iterator.html">Class VonNeumannWrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter_1_1Message.html">Class VonNeumannWrapFilter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
@@ -506,6 +512,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter.html">Class In::VonNeumannFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter_1_1iterator.html">Class VonNeumannFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter_1_1Message.html">Class VonNeumannFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter.html">Class In::VonNeumannWrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter_1_1iterator.html">Class VonNeumannWrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter_1_1Message.html">Class VonNeumannWrapFilter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
@@ -786,7 +798,16 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.FLAMEGPU_HOST_CONDITION">
 <span class="target" id="HostAPI__macros_8h_1a1682b3b663340523820b7b1dc35ef180"></span><span class="sig-name descname"><span class="n"><span class="pre">FLAMEGPU_HOST_CONDITION</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">funcName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.FLAMEGPU_HOST_CONDITION" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Macro for defining host functions with the correct input. Ugly, but has same usage as device functions </p>
+<dd><p>Macro for defining host functions with the correct input. Ugly, but has same usage as device functions</p>
+<p>Saves users from manually defining host conditions, e.g.: <div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// User Implemented host condition behaviour</span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">CONDITION_RESULT</span><span class="w"> </span><span class="nf">SomeHostCondition_impl</span><span class="p">(</span><span class="n">flamegpu</span><span class="o">::</span><span class="n">HostAPI</span><span class="o">*</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// do something</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">CONTINUE</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">EXIT</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+<span class="n">flamegpu</span><span class="o">::</span><span class="n">FLAMEGPU_HOST_CONDITION_POINTER</span><span class="w"> </span><span class="n">SomeHostCondition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SomeHostCondition_impl</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+ </p>
 </dd></dl>
 
 </div>

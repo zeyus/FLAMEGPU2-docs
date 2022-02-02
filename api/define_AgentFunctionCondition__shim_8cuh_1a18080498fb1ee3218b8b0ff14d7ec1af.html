@@ -494,6 +494,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter.html">Class In::VonNeumannFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter_1_1iterator.html">Class VonNeumannFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannFilter_1_1Message.html">Class VonNeumannFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter.html">Class In::VonNeumannWrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter_1_1iterator.html">Class VonNeumannWrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1VonNeumannWrapFilter_1_1Message.html">Class VonNeumannWrapFilter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray2D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
@@ -506,6 +512,12 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1iterator.html">Class Filter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Filter_1_1Message.html">Class Filter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1Message.html">Class In::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter.html">Class In::VonNeumannFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter_1_1iterator.html">Class VonNeumannFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannFilter_1_1Message.html">Class VonNeumannFilter::Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter.html">Class In::VonNeumannWrapFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter_1_1iterator.html">Class VonNeumannWrapFilter::iterator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1VonNeumannWrapFilter_1_1Message.html">Class VonNeumannWrapFilter::Message</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter.html">Class In::WrapFilter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1iterator.html">Class WrapFilter::iterator</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1MessageArray3D_1_1In_1_1WrapFilter_1_1Message.html">Class WrapFilter::Message</a></li>
@@ -786,8 +798,21 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.FLAMEGPU_AGENT_FUNCTION_CONDITION">
 <span class="target" id="AgentFunctionCondition__shim_8cuh_1a18080498fb1ee3218b8b0ff14d7ec1af"></span><span class="sig-name descname"><span class="n"><span class="pre">FLAMEGPU_AGENT_FUNCTION_CONDITION</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">funcName</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.FLAMEGPU_AGENT_FUNCTION_CONDITION" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Macro for defining agent transition functions conditions with the correct input. Must always be a device function to be called by CUDA.</p>
-<p>struct SomeAgentFunctionCondition { // User Implemented agent function condition behaviour <strong>device</strong> <strong>forceinline</strong> bool operator()(ReadOnlyDeviceAPI *FLAMEGPU) const { // do something return something ? true : false; } // Returns a function pointer to the agent function condition wrapper for this function // Including it here, force instantiates the template, without requiring the user to specify the template args elsewhere static constexpr AgentFunctionConditionWrapper *fnPtr() { return &amp;agent_function_condition_wrapper&lt;SomeAgentFunctionCondition&gt;; } }; } </p>
+<dd><p>Macro for defining agent transition functions conditions. Must always be a device function to be called by CUDA.</p>
+<p>Saves users from manually defining agent function conditions, e.g.: <div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">SomeAgentFunctionCondition</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// User Implemented agent function condition behaviour</span>
+<span class="w">    </span><span class="kt">__device__</span><span class="w"> </span><span class="kr">__forceinline__</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">operator</span><span class="p">()(</span><span class="n">ReadOnlyDeviceAPI</span><span class="w"> </span><span class="o">*</span><span class="n">FLAMEGPU</span><span class="p">)</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// do something</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">something</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Returns a function pointer to the agent function condition wrapper for this function</span>
+<span class="w">    </span><span class="c1">// Including it here, force instantiates the template, without requiring the user to specify the template args elsewhere</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">constexpr</span><span class="w"> </span><span class="n">AgentFunctionConditionWrapper</span><span class="w"> </span><span class="o">*</span><span class="n">fnPtr</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="n">agent_function_condition_wrapper</span><span class="o">&lt;</span><span class="n">SomeAgentFunctionCondition</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+<span class="n">SomeAgentFunctionCondition_cdn_impl</span><span class="w"> </span><span class="n">SomeAgentFunctionCondition</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+ </p>
 </dd></dl>
 
 </div>

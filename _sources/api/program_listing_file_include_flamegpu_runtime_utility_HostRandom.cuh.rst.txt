@@ -86,6 +86,16 @@ Program Listing for File HostRandom.cuh
        std::uniform_int_distribution<int16_t> dist(min, max);
        return static_cast<signed char>(rng.getDistribution<int16_t>(dist));
    }
+   template<>
+   inline float HostRandom::uniform(const float& min, const float& max) const {
+       std::uniform_real_distribution<float> dist(min, max);
+       return rng.getDistribution<float>(dist);
+   }
+   template<>
+   inline double HostRandom::uniform(const double& min, const double& max) const {
+       std::uniform_real_distribution<double> dist(min, max);
+       return rng.getDistribution<double>(dist);
+   }
    
    }  // namespace flamegpu
    

@@ -64,6 +64,9 @@ Program Listing for File MessageArrayDevice.cuh
                __device__ size_type getX() const {
                    return (this->_parent.loc + relative_cell + this->_parent.length) % this->_parent.length;
                }
+               __device__ size_type getOffsetX() const {
+                   return relative_cell;
+               }
                template<typename T, unsigned int N>
                __device__ T getVariable(const char(&variable_name)[N]) const;
                template<typename T, MessageNone::size_type N, unsigned int M> __device__
@@ -136,6 +139,9 @@ Program Listing for File MessageArrayDevice.cuh
                __device__ inline Message& operator++();
                __device__ size_type getX() const {
                    return this->_parent.loc + relative_cell;
+               }
+               __device__ int getOffsetX() const {
+                   return this->relative_cell;
                }
                template<typename T, unsigned int N>
                __device__ T getVariable(const char(&variable_name)[N]) const;

@@ -196,7 +196,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#agent-creation-overview">Agent Creation Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#enabling-agent-creation">Enabling Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#creating-the-new-agent">Creating the New Agent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#conditional-agent-creation">Conditional Agent Creation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#full-example-code-from-this-page">Full Example Code From This Page</a></li>
 </ul>
 </li>
@@ -817,40 +816,12 @@ to create more than one agent for each existing agent, you should use the <a cla
 <h2>Creating the New Agent<a class="headerlink" href="#creating-the-new-agent" title="Permalink to this headline"></a></h2>
 <p>When agent output has been enabled for an agent function, the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;agent_out</span></code> object will become available within agent
 function definitions. This can be used to initialise the properties of the newly created agent.</p>
-<p>Agent Output from Device:</p>
+<p>Agent creation is always optional once enabled, a new agent will only be created when one of the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;agent_out</span></code> variables is set using <code class="docutils literal notranslate"><span class="pre">setVariable()</span></code> or <a class="reference internal" href="../../api/classflamegpu_1_1DeviceAPI.html#_CPPv4NK8flamegpu9DeviceAPI8AgentOut5getIDEv" title="flamegpu::DeviceAPI::AgentOut::getID"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;agent_out.getID()</span></code></a> is called.</p>
+<p>As an example:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleAgentOutputFn</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// The output agent&#39;s &#39;x&#39; variable is set</span>
-<span class="w">    </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent_out</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0f</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="c1">// Other agent function code</span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-</div></div>
-<p>Agent variables which are not manually set will be initialised with their default values.</p>
-</div>
-<div class="section" id="conditional-agent-creation">
-<h2>Conditional Agent Creation<a class="headerlink" href="#conditional-agent-creation" title="Permalink to this headline"></a></h2>
-<p>By default, agent creation is mandatory for an agent function which has agent output enabled. If you don’t want all the agents the
-function runs for to output an agent, you can enable optional agent output:</p>
-<div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// Enable optional agent output</span>
-<span class="n">agent_fn1_description</span><span class="p">.</span><span class="n">setAgentOutputOptional</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
-</pre></div>
-</div>
-</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable optional agent output</span>
-<span class="n">agent_fn1_description</span><span class="o">.</span><span class="n">setAgentOutputOptional</span><span class="p">(</span><span class="n">true</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></div>
-<p>With this set, a new agent will only be created if one of the <code class="docutils literal notranslate"><span class="pre">FLAMEGPU-&gt;agent_out</span></code> variables is set manually.
-As an example:</p>
-<div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-1-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-1-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// Fetch this agent&#39;s id</span>
-<span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="kt">id_t</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getID</span><span class="p">();</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// If its id is even, output a new agent, otherwise do nothing</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
@@ -864,11 +835,12 @@ As an example:</p>
 </pre></div>
 </div>
 </div></div>
+<p>Agent variables which are not manually set will be initialised with their default values.</p>
 </div>
 <div class="section" id="full-example-code-from-this-page">
 <h2>Full Example Code From This Page<a class="headerlink" href="#full-example-code-from-this-page" title="Permalink to this headline"></a></h2>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-4-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-4-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// The agent type &#39;example_agent&#39; is set as the agent output type</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-2-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-2-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="c1">// The agent type &#39;example_agent&#39; is set as the agent output type</span>
 <span class="n">agent_fn1_description</span><span class="p">.</span><span class="n">setAgentOutput</span><span class="p">(</span><span class="n">example_agent</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Enable optional agent output</span>
@@ -885,26 +857,18 @@ As an example:</p>
 </div>
 </div></div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-5-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-5-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">ExampleAgentOutputFn</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// The output agent&#39;s &#39;x&#39; variable is set</span>
-<span class="w">    </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent_out</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">12.0f</span><span class="p">);</span><span class="w"></span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-Q1VEQSBDKys=" aria-selected="true" class="sphinx-tabs-tab code-tab group-tab" id="tab-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tab" tabindex="0">CUDA C++</button></div><div aria-labelledby="tab-3-Q1VEQSBDKys=" class="sphinx-tabs-panel code-tab group-tab" id="panel-3-Q1VEQSBDKys=" name="Q1VEQSBDKys=" role="tabpanel" tabindex="0"><div class="highlight-cuda notranslate"><div class="highlight"><pre><span></span><span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Fetch this agent&#39;s id</span>
+<span class="w">    </span><span class="n">flamegpu</span><span class="o">::</span><span class="kt">id_t</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getID</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// If its id is even, output a new agent, otherwise do nothing</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Output a new agent with its &#39;x&#39; variable set to 500.0f</span>
+<span class="w">        </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent_out</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">500.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Other agent function code</span>
 <span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="n">FLAMEGPU_AGENT_FUNCTION</span><span class="p">(</span><span class="n">OptionalOutput</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">,</span><span class="w"> </span><span class="n">flamegpu</span><span class="o">::</span><span class="n">MessageNone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Fetch this agent&#39;s id</span>
-<span class="w">  </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">getVariable</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;id&quot;</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1">// If its id is even, output a new agent, otherwise do nothing</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Output a new agent with its &#39;x&#39; variable set to 500.0f</span>
-<span class="w">      </span><span class="n">FLAMEGPU</span><span class="o">-&gt;</span><span class="n">agent_out</span><span class="p">.</span><span class="n">setVariable</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">500.0f</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1">// Other agent function code</span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>

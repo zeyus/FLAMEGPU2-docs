@@ -48,23 +48,6 @@ Any of the objects can depend on multiple other objects:
 
 
 
-Accessing the DependencyGraph
------------------------------
-
-Each model has an associated dependency graph which is accessed via a ``ModelDescription`` as follows:
-
-.. tabs::
-  
-  .. code-tab:: cuda CUDA C++
-
-    // Access the DependencyGraph of model
-    flamegpu::DependencyGraph& graph = model.getDependencyGraph();
-
-  .. code-tab:: python
-
-    # Access the DependencyGraph of model
-    graph = model.getDependencyGraph()
-
 Specifying Roots
 ----------------
 
@@ -75,32 +58,19 @@ Any functions or submodels which have no dependencies are *roots*. These must be
   .. code-tab:: cuda CUDA C++
 
     // Add agent_fn1 as a root
-    graph.addRoot(agent_fn1);
+    model.addRoot(agent_fn1);
 
   .. code-tab:: python
 
     # Add agent_fn1 as a root
-    graph.addRoot(agent_fn1)
+    model.addRoot(agent_fn1)
 
 You do not need to manually add every function or submodel to the graph. Adding the roots is enough, as the others will be included
 as a result of the dependency specifications.
 
-Generating Layers
------------------
 
-When you have specified all your dependencies and roots, you must instruct the model to generate execution layers from the dependency graph:
-
-.. tabs::
-
-  .. code-tab:: cuda CUDA C++
-
-    // Generate the actual execution layers from the dependency graph
-    model.generateLayers();
-
-  .. code-tab:: python
-
-    # Generate the actual execution layers from the dependency graph
-    model.generateLayers()
+Utilities
+---------
 
 If you wish to see the actual layers generated, you can use the ``getConstructedLayersString()`` method of the dependency graph to obtain a
 string representation of the layers:
@@ -110,7 +80,7 @@ string representation of the layers:
   .. code-tab:: cuda CUDA C++
 
     // Get the constructed layers and store them in variable actualLayers
-    std::string actualLayers = graph.getConstructedLayersString();
+    std::string actualLayers = model.getConstructedLayersString();
 
     // Print the layers to the console
     std::cout << actualLayers << std::endl;
@@ -118,7 +88,7 @@ string representation of the layers:
   .. code-tab:: python
 
     # Get the constructed layers and store them in variable actualLayers
-    actualLayers = graph.getConstructedLayersString()
+    actualLayers = model.getConstructedLayersString()
 
     # Print the layers to the console
     print(actualLayers)
@@ -134,12 +104,12 @@ will be happening in the order you expect them to.
   .. code-tab:: cuda CUDA C++
 
     // Produce a diagram of the dependency graph, saved as graphdiagram.gv
-    graph.generateDOTDiagram("graphdiagram.gv");
+    model.generateDOTDiagram("graphdiagram.gv");
 
   .. code-tab:: python
 
     # Produce a diagram of the dependency graph, saved as graphdiagram.gv
-    graph.generateDOTDiagram("graphdiagram.gv")
+    model.generateDOTDiagram("graphdiagram.gv")
 
 As an example, the following code would produce the graph below in a file named *diamond.gv*:
 
@@ -150,9 +120,8 @@ As an example, the following code would produce the graph below in a file named 
     f2.dependsOn(f);
     f3.dependsOn(f);
     f4.dependsOn(f2, f3);
-    graph = model.getDependencyGraph();
-    graph.addRoot(f);
-    graph.generateDOTDiagram("diamond.gv");
+    model.addRoot(f);
+    model.generateDOTDiagram("diamond.gv");
 
   .. code-tab:: python
 
@@ -160,9 +129,8 @@ As an example, the following code would produce the graph below in a file named 
     f3.dependsOn(f)
     f4.dependsOn(f2)
     f4.dependsOn(f3)
-    graph = model.getDependencyGraph()
-    graph.addRoot(f)
-    graph.generateDOTDiagram("diamond.gv")
+    model.addRoot(f)
+    model.generateDOTDiagram("diamond.gv")
 
 .. graphviz::
 

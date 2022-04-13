@@ -21,6 +21,7 @@ Program Listing for File RunPlan.h
    
    #include "flamegpu/model/EnvironmentDescription.h"
    #include "flamegpu/util/Any.h"
+   #include "flamegpu/util/type_decode.h"
    #include "flamegpu/gpu/CUDAEnsemble.h"
    
    
@@ -101,18 +102,19 @@ Program Listing for File RunPlan.h
                "in RunPlan::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != 1) {
+       if (it->second.data.elements != type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' is an array with %u elements, array method should be used, "
                "in RunPlan::setProperty()\n",
                name.c_str(), it->second.data.elements);
        }
        // Store property
-       property_overrides.emplace(name, util::Any(&value, sizeof(T), typeid(T), 1));
+       property_overrides.erase(name);
+       property_overrides.emplace(name, util::Any(&value, sizeof(T), typeid(typename type_decode<T>::type_t), type_decode<T>::len_t));
    }
    template<typename T, EnvironmentManager::size_type N>
    void RunPlan::setProperty(const std::string &name, const std::array<T, N> &value) {
@@ -123,18 +125,19 @@ Program Listing for File RunPlan.h
                "in RunPlan::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != N) {
+       if (it->second.data.elements != N * type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u "
                "in RunPlan::setProperty()\n",
-               name.c_str(), it->second.data.elements, N);
+               name.c_str(), it->second.data.elements, N * type_decode<T>::len_t);
        }
        // Store property
-       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * N, typeid(T), N));
+       property_overrides.erase(name);
+       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * N, typeid(typename type_decode<T>::type_t), type_decode<T>::len_t * N));
    }
    template<typename T>
    void RunPlan::setProperty(const std::string &name, const EnvironmentManager::size_type &index, const T &value) {
@@ -145,13 +148,14 @@ Program Listing for File RunPlan.h
                "in RunPlan::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (index >= it->second.data.elements) {
-           throw std::out_of_range("Environment property array index out of bounds "
+       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
+       if (it->second.data.elements < t_index || t_index < index) {
+           throw exception::OutOfBoundsException("Environment property array index out of bounds "
                "in RunPlan::setProperty()\n");
        }
        // Check whether array already exists in property overrides
@@ -173,12 +177,12 @@ Program Listing for File RunPlan.h
                "in RunPlan::setPropertyArray()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::setPropertyArray()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != N) {
+       if (it->second.data.elements != type_decode<T>::len_t * N) {
            THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u, "
                "in RunPlan::setPropertyArray()\n",
                name.c_str(), it->second.data.elements, N);
@@ -189,7 +193,8 @@ Program Listing for File RunPlan.h
                name.c_str(), value.size(), N);
        }
        // Store property
-       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * N, typeid(T), N));
+       property_overrides.erase(name);
+       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * N, typeid(typename type_decode<T>::type_t), type_decode<T>::len_t * N));
    }
    #endif
    
@@ -202,12 +207,12 @@ Program Listing for File RunPlan.h
                "in RunPlan::getProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::getProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != 1) {
+       if (it->second.data.elements != type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' is an array with %u elements, array method should be used, "
                "in RunPlan::getProperty()\n",
                name.c_str(), it->second.data.elements);
@@ -231,12 +236,12 @@ Program Listing for File RunPlan.h
                "in RunPlan::getProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::getProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != N) {
+       if (it->second.data.elements != N * type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u "
                "in RunPlan::getProperty()\n",
                name.c_str(), it->second.data.elements, N);
@@ -262,13 +267,14 @@ Program Listing for File RunPlan.h
                "in RunPlan::getProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::getProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (index >= it->second.data.elements) {
-           throw std::out_of_range("Environment property array index out of bounds "
+       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
+       if (it->second.data.elements < t_index || t_index < index) {
+           throw exception::OutOfBoundsException("Environment property array index out of bounds "
                "in RunPlan::getProperty()\n");
        }
        // Check whether property already exists in property overrides
@@ -292,14 +298,19 @@ Program Listing for File RunPlan.h
                "in RunPlan::getProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlan::getProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
+       }
+       if (it->second.data.elements % type_decode<T>::len_t != 0) {
+           THROW exception::InvalidEnvPropertyType("Environmental property array '%s' length (%u) is not a multiple of vector length (%u), "
+               "in RunPlan::getPropertyArray().",
+                name.c_str(), type_decode<T>::len_t, it->second.data.elements, type_decode<T>::len_t);
        }
        // Check whether array already exists in property overrides
        const auto it2 = property_overrides.find(name);
-       std::vector<T> rtn(it->second.data.elements);
+       std::vector<T> rtn(it->second.data.elements / type_decode<T>::len_t);
        if (it2 != property_overrides.end()) {
            // The property has been overridden, return the override
            memcpy(rtn.data(), it2->second.ptr, it2->second.length);

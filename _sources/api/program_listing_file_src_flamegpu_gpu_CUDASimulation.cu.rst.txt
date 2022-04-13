@@ -38,6 +38,7 @@ Program Listing for File CUDASimulation.cu
    #include "flamegpu/sim/LoggingConfig.h"
    #include "flamegpu/sim/LogFrame.h"
    #include "flamegpu/sim/RunPlan.h"
+   #include "flamegpu/version.h"
    #ifdef VISUALISATION
    #include "flamegpu/visualiser/FLAMEGPU_Visualisation.h"
    #endif
@@ -186,6 +187,9 @@ Program Listing for File CUDASimulation.cu
        // Submodels all run quiet/not verbose by default
        SimulationConfig().verbose = false;
        SimulationConfig().steps = submodel_desc->max_steps;
+   
+       // Determine which agents will be spatially sorted
+       this->determineAgentsToSort();
    }
    
    CUDASimulation::~CUDASimulation() {
@@ -313,6 +317,47 @@ Program Listing for File CUDASimulation.cu
    };
    }
    
+   __global__ void calculateSpatialHashFloat3(float* xyz, unsigned int* binIndex, detail::Dims<float> envMin, detail::Dims<float> envWidth, detail::Dims<unsigned int> gridDim, unsigned int threadCount) {
+       const unsigned int TID = blockIdx.x * blockDim.x + threadIdx.x;
+       if (TID < threadCount) {
+           // Compute hash (effectivley an index for to a bin within the partitioning grid in this case)
+           int gridPos[3] = {
+               static_cast<int>(floorf(((xyz[TID * 3 + 0] - envMin.x) / envWidth.x) * gridDim.x)),
+               static_cast<int>(floorf(((xyz[TID * 3 + 1] - envMin.y) / envWidth.y) * gridDim.y)),
+               static_cast<int>(floorf(((xyz[TID * 3 + 2] - envMin.z) / envWidth.z) * gridDim.z))
+           };
+   
+           // Compute and set the bin index
+           unsigned int bindex;
+   
+           bindex = (unsigned int)(
+               (gridPos[2] * gridDim.x * gridDim.y +   // z
+                   (gridPos[1] * gridDim.x) +              // y
+                   gridPos[0]));                           // x
+   
+           binIndex[TID] = bindex;
+       }
+   }
+   __global__ void calculateSpatialHashFloat2(float* xy, unsigned int* binIndex, detail::Dims<float> envMin, detail::Dims<float> envWidth, detail::Dims<unsigned int> gridDim, unsigned int threadCount) {
+       const unsigned int TID = blockIdx.x * blockDim.x + threadIdx.x;
+       if (TID < threadCount) {
+           // Compute hash (effectivley an index for to a bin within the partitioning grid in this case)
+           int gridPos[3] = {
+               static_cast<int>(floorf(((xy[TID * 2 + 0] - envMin.x) / envWidth.x) * gridDim.x)),
+               static_cast<int>(floorf(((xy[TID * 2 + 1] - envMin.y) / envWidth.y) * gridDim.y)),
+               0
+           };
+   
+           // Compute and set the bin index
+           unsigned int bindex;
+   
+           bindex = (unsigned int)(
+               (gridPos[1] * gridDim.x) +              // y
+               gridPos[0]);                            // x
+   
+           binIndex[TID] = bindex;
+       }
+   }
    __global__ void calculateSpatialHash(float* x, float* y, float* z, unsigned int* binIndex, detail::Dims<float> envMin, detail::Dims<float> envWidth, detail::Dims<unsigned int> gridDim, unsigned int threadCount) {
        const unsigned int TID = blockIdx.x * blockDim.x + threadIdx.x;
        if (TID < threadCount) {
@@ -360,7 +405,19 @@ Program Listing for File CUDASimulation.cu
                        // Agent uses spatial, check it has correct variables
                        const auto& ad = *(it->second->description);
                        if (ad.hasVariable("x") && ad.hasVariable("y") && ad.hasVariable("z")) {
-                           sortTriggers3D.insert(it_f->first);
+                           auto& x = it->second->variables.at("x");
+                           auto& y = it->second->variables.at("y");
+                           auto& z = it->second->variables.at("z");
+                           if (x.type == std::type_index(typeid(float)) && x.elements == 1 &&
+                               y.type == std::type_index(typeid(float)) && y.elements == 1 &&
+                               z.type == std::type_index(typeid(float)) && z.elements == 1) {
+                               sortTriggers3D.insert(it_f->first);
+                           }
+                       } else if (ad.hasVariable("xyz")) {
+                           auto& xyz = it->second->variables.at("xyz");
+                           if (xyz.type == std::type_index(typeid(float)) && xyz.elements == 3) {
+                               sortTriggers3D.insert(it_f->first);
+                           }
                        }
                    }
    
@@ -369,7 +426,17 @@ Program Listing for File CUDASimulation.cu
                        // Agent uses spatial, check it has correct variables
                        const auto& ad = *(it->second->description);
                        if (ad.hasVariable("x") && ad.hasVariable("y")) {
-                           sortTriggers2D.insert(it_f->first);
+                           auto& x = it->second->variables.at("x");
+                           auto& y = it->second->variables.at("y");
+                           if (x.type == std::type_index(typeid(float)) && x.elements == 1 &&
+                               y.type == std::type_index(typeid(float)) && y.elements == 1) {
+                               sortTriggers2D.insert(it_f->first);
+                           }
+                       } else if (ad.hasVariable("xy")) {
+                           auto& xy = it->second->variables.at("xy");
+                           if (xy.type == std::type_index(typeid(float)) && xy.elements == 2) {
+                               sortTriggers2D.insert(it_f->first);
+                           }
                        }
                    }
                }
@@ -381,6 +448,12 @@ Program Listing for File CUDASimulation.cu
    void CUDASimulation::spatialSortAgent(const std::string& funcName, const std::string& agentName, const std::string& state, const int mode) {
        // Fetch the appropriate message name
        CUDAAgent& cuda_agent = getCUDAAgent(agentName);
+   
+       const unsigned int state_list_size = cuda_agent.getStateSize(state);
+       // Can't sort no agents
+       if (!state_list_size)
+           return;
+   
        auto& cudaAgentData = cuda_agent.getAgentDescription();
        auto& funcData = cudaAgentData.functions.at(funcName);
        std::string messageName;
@@ -411,24 +484,32 @@ Program Listing for File CUDASimulation.cu
            envMin = {0.0f, 0.0f, 0.0f};
            envMax = {0.0f, 0.0f, 0.0f};
        }
-       if (radius) {
+       if (radius > 0.0f) {
            envWidth = {(envMax.x-envMin.x), (envMax.y-envMin.y), (envMax.z-envMin.z)};
            gridDim = {static_cast<unsigned int>(ceilf(envWidth.x / radius)), static_cast<unsigned int>(ceilf(envWidth.y / radius)), static_cast<unsigned int>(ceilf(envWidth.z / radius))};
        }
    
    
-       // Any agent in this list is guaranteed to have x, y, z and _auto_sort_bin_index vars - used in the computation of spatial hash
+       // Any agent in this list is guaranteed to have x, y, z (or xyz vec versions) and _auto_sort_bin_index vars - used in the computation of spatial hash
        // TODO: User could supply alternatives to "x", "y", "z" to use alternative variables?
-       void* xPtr = cuda_agent.getStateVariablePtr(state, "x");
-       void* yPtr = cuda_agent.getStateVariablePtr(state, "y");
-       void* zPtr = mode == Agent3D ? cuda_agent.getStateVariablePtr(state, "z") : 0;
+       void* xPtr = nullptr, *yPtr = nullptr, *zPtr = nullptr;
+       void* xyPtr = nullptr, * xyzPtr = nullptr;
+       if (mode == Agent3D && cudaAgentData.variables.find("xyz") != cudaAgentData.variables.end()) {
+           xyzPtr = cuda_agent.getStateVariablePtr(state, "xyz");
+       } else if (mode == Agent2D && cudaAgentData.variables.find("xy") != cudaAgentData.variables.end()) {
+           xyPtr = cuda_agent.getStateVariablePtr(state, "xy");
+       } else {
+           xPtr = cuda_agent.getStateVariablePtr(state, "x");
+           yPtr = cuda_agent.getStateVariablePtr(state, "y");
+           zPtr = mode == Agent3D ? cuda_agent.getStateVariablePtr(state, "z") : 0;
+       }
+   
        void* binIndexPtr = cuda_agent.getStateVariablePtr(state, "_auto_sort_bin_index");
    
        // Compute occupancy
        int blockSize = 0;  // The launch configurator returned block size
        int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
        int gridSize = 0;  // The actual grid size needed, based on input size
-       const unsigned int state_list_size = cuda_agent.getStateSize(state);
        cudaOccupancyMaxPotentialBlockSize(&minGridSize, &blockSize, calculateSpatialHash, 0, state_list_size);
    
        gridSize = (state_list_size + blockSize - 1) / blockSize;
@@ -441,14 +522,31 @@ Program Listing for File CUDASimulation.cu
    #endif
    
        // Launch kernel
-       calculateSpatialHash<<<gridSize, blockSize, sm_size, this->getStream(streamIdx) >>> (reinterpret_cast<float*>(xPtr),
-       reinterpret_cast<float*>(yPtr),
-       reinterpret_cast<float*>(zPtr),
-       reinterpret_cast<unsigned int*>(binIndexPtr),
-       envMin,
-       envWidth,
-       gridDim,
-       state_list_size);
+       if (xyzPtr) {
+           calculateSpatialHashFloat3<<<gridSize, blockSize, sm_size, this->getStream(streamIdx)>>>(reinterpret_cast<float*>(xyzPtr),
+               reinterpret_cast<unsigned int*>(binIndexPtr),
+               envMin,
+               envWidth,
+               gridDim,
+               state_list_size);
+       } else if (xyPtr) {
+           calculateSpatialHashFloat2<<<gridSize, blockSize, sm_size, this->getStream(streamIdx)>>>(reinterpret_cast<float*>(xyPtr),
+               reinterpret_cast<unsigned int*>(binIndexPtr),
+               envMin,
+               envWidth,
+               gridDim,
+               state_list_size);
+       } else {
+           calculateSpatialHash<<<gridSize, blockSize, sm_size, this->getStream(streamIdx)>>>(reinterpret_cast<float*>(xPtr),
+               reinterpret_cast<float*>(yPtr),
+               reinterpret_cast<float*>(zPtr),
+               reinterpret_cast<unsigned int*>(binIndexPtr),
+               envMin,
+               envWidth,
+               gridDim,
+               state_list_size);
+       }
+       gpuErrchkLaunch();
    
        assert(host_api);
        host_api->agent(agentName).sort<unsigned int>("_auto_sort_bin_index", HostAgentAPI::Asc);
@@ -509,7 +607,7 @@ Program Listing for File CUDASimulation.cu
        // Update step count at the end of the step - when it has completed.
        incrementStepCounter();
        // Update the log for the step.
-       processStepLog();
+       processStepLog(this->elapsedSecondsPerStep.back());
        // Return false if any exit condition's passed.
        return !exitRequired;
    }
@@ -1174,7 +1272,7 @@ Program Listing for File CUDASimulation.cu
    
        // Reset and log initial state to step log 0
        resetLog();
-       processStepLog();
+       processStepLog(this->elapsedSecondsRTCInitialisation + this->elapsedSecondsInitFunctions);
    
        #ifdef VISUALISATION
        // Pre step-loop visualisation update
@@ -1188,7 +1286,6 @@ Program Listing for File CUDASimulation.cu
            // Run the step
            bool continueSimulation = step();
            if (!continueSimulation) {
-               processStepLog();
                break;
            }
            #ifdef VISUALISATION
@@ -1203,7 +1300,6 @@ Program Listing for File CUDASimulation.cu
    
        // Exit functions
        this->exitFunctions();
-       processExitLog();
    
        // Sync visualistaion after the exit functions
        #ifdef VISUALISATION
@@ -1219,13 +1315,15 @@ Program Listing for File CUDASimulation.cu
            // Resolution is 0.5 microseconds, so print to 1 us.
            fprintf(stdout, "Total Processing time: %.6f s\n", elapsedSecondsSimulation);
        }
+       processExitLog();
+   
        // Export logs
        if (!SimulationConfig().step_log_file.empty())
-           exportLog(SimulationConfig().step_log_file, true, false);
+           exportLog(SimulationConfig().step_log_file, true, false, step_log_config && step_log_config->log_timing, false);
        if (!SimulationConfig().exit_log_file.empty())
-           exportLog(SimulationConfig().exit_log_file, false, true);
+           exportLog(SimulationConfig().exit_log_file, false, true, false, exit_log_config && exit_log_config->log_timing);
        if (!SimulationConfig().common_log_file.empty())
-           exportLog(SimulationConfig().common_log_file, true, true);
+           exportLog(SimulationConfig().common_log_file, true, true, step_log_config && step_log_config->log_timing, exit_log_config && exit_log_config->log_timing);
    }
    
    
@@ -1821,12 +1919,29 @@ Program Listing for File CUDASimulation.cu
        env_init.clear();
    }
    void CUDASimulation::resetLog() {
+       // Track previous device id, so we can avoid costly request for device properties if not required
+       static int previous_device_id = -1;
        run_log->step.clear();
-       run_log->exit = LogFrame();
+       run_log->exit = ExitLogFrame();
        run_log->random_seed = SimulationConfig().random_seed;
        run_log->step_log_frequency = step_log_config ? step_log_config->frequency : 0;
+       if (run_log->performance_specs.device_name.empty() || CUDAConfig().device_id != previous_device_id) {
+           cudaDeviceProp d_props = {};
+           gpuErrchk(cudaGetDeviceProperties(&d_props, CUDAConfig().device_id));
+           run_log->performance_specs.device_name = d_props.name;
+           previous_device_id = CUDAConfig().device_id;
+       }
+       gpuErrchk(cudaDeviceGetAttribute(&run_log->performance_specs.device_cc_major, cudaDevAttrComputeCapabilityMajor, CUDAConfig().device_id));
+       gpuErrchk(cudaDeviceGetAttribute(&run_log->performance_specs.device_cc_minor,  cudaDevAttrComputeCapabilityMinor, CUDAConfig().device_id));
+       gpuErrchk(cudaRuntimeGetVersion(&run_log->performance_specs.cuda_version));
+   #if !defined(SEATBELTS) || SEATBELTS
+       run_log->performance_specs.seatbelts = true;
+   #else
+       run_log->performance_specs.seatbelts = false;
+   #endif
+       run_log->performance_specs.flamegpu_version = VERSION_FULL;
    }
-   void CUDASimulation::processStepLog() {
+   void CUDASimulation::processStepLog(const double &step_time_seconds) {
        if (!step_log_config)
            return;
        if (step_count % step_log_config->frequency != 0)
@@ -1858,7 +1973,8 @@ Program Listing for File CUDASimulation.cu
        }
    
        // Append to step log
-       run_log->step.push_back(LogFrame(std::move(environment_log), std::move(agents_log), step_count));
+       run_log->step.push_back(StepLogFrame(std::move(environment_log), std::move(agents_log), step_count));
+       run_log->step.back().step_time = step_time_seconds;
    }
    
    void CUDASimulation::processExitLog() {
@@ -1891,7 +2007,12 @@ Program Listing for File CUDASimulation.cu
        }
    
        // Set Log
-       run_log->exit = LogFrame(std::move(environment_log), std::move(agents_log), step_count);
+       run_log->exit = ExitLogFrame(std::move(environment_log), std::move(agents_log), step_count);
+       // Add the timing info
+       run_log->exit.rtc_time = getElapsedTimeRTCInitialisation();
+       run_log->exit.init_time = getElapsedTimeInitFunctions();
+       run_log->exit.exit_time = getElapsedTimeExitFunctions();
+       run_log->exit.total_time = getElapsedTimeSimulation();
    }
    const RunLog &CUDASimulation::getRunLog() const {
        return *run_log;

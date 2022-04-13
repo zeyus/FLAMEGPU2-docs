@@ -18,9 +18,11 @@ Program Listing for File RunPlanVector.h
    #include <unordered_map>
    #include <string>
    #include <memory>
+   #include <limits>
    
    #include "flamegpu/sim/RunPlan.h"
    #include "flamegpu/util/detail/StaticAssert.h"
+   #include "flamegpu/util/type_decode.h"
    
    
    namespace flamegpu {
@@ -109,12 +111,12 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlanVector::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != 1) {
+       if (it->second.data.elements != type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' is an array with %u elements, array method should be used, "
                "in RunPlanVector::setProperty()\n",
                name.c_str(), it->second.data.elements);
@@ -132,15 +134,15 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlanVector::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != N) {
+       if (it->second.data.elements != N * type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u "
                "in RunPlanVector::setProperty()\n",
-               name.c_str(), it->second.data.elements, N);
+               name.c_str(), it->second.data.elements, N * type_decode<T>::len_t);
        }
        for (auto &i : *this) {
            i.setProperty<T, N>(name, value);
@@ -155,13 +157,14 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setProperty()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlanVector::setProperty()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (index > it->second.data.elements) {
-           throw std::out_of_range("Environment property array index out of bounds "
+       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
+       if (t_index > it->second.data.elements || t_index < index) {
+           throw exception::OutOfBoundsException("Environment property array index out of bounds "
                "in RunPlanVector::setProperty()\n");
        }
        for (auto &i : *this) {
@@ -178,15 +181,15 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setPropertyArray()\n",
                name.c_str());
        }
-       if (it->second.data.type != std::type_index(typeid(T))) {
+       if (it->second.data.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
            THROW exception::InvalidEnvPropertyType("Environment property '%s' type mismatch '%s' != '%s', "
                "in RunPlanVector::setPropertyArray()\n",
-               name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
+               name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != N) {
+       if (it->second.data.elements != N * type_decode<T>::len_t) {
            THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u "
                "in RunPlanVector::setPropertyArray()\n",
-               name.c_str(), it->second.data.elements, N);
+               name.c_str(), it->second.data.elements, N * type_decode<T>::len_t);
        }
        if (value.size() != N) {
            THROW exception::InvalidEnvProperty("Environment property array length does not match the value provided, %u != %llu,"
@@ -203,7 +206,7 @@ Program Listing for File RunPlanVector.h
    void RunPlanVector::setPropertyUniformDistribution(const std::string &name, const T &min, const T &max) {
        // Validation
        if (this->size() < 2) {
-           THROW std::out_of_range("Unable to apply a property distribution a vector with less than 2 elements, "
+           THROW exception::OutOfBoundsException("Unable to apply a property distribution a vector with less than 2 elements, "
                "in RunPlanVector::setPropertyUniformDistribution()\n");
        }
        const auto it = environment->find(name);
@@ -225,15 +228,18 @@ Program Listing for File RunPlanVector.h
        unsigned int ct = 0;
        for (auto &i : *this) {
            const double a = static_cast<double>(ct++) / (this->size() - 1);
-           const T lerp = static_cast<T>(round(min * (1.0 - a) + max * a));
-           i.setProperty<T>(name, lerp);
+           double lerp = min * (1.0 - a) + max * a;
+           if (std::numeric_limits<T>::is_integer)
+               lerp = round(lerp);
+           const T lerp_t = static_cast<T>(lerp);
+           i.setProperty<T>(name, lerp_t);
        }
    }
    template<typename T>
    void RunPlanVector::setPropertyUniformDistribution(const std::string &name, const EnvironmentManager::size_type &index, const T &min, const T &max) {
        // Validation
        if (this->size() < 2) {
-           THROW std::out_of_range("Unable to apply a property distribution a vector with less than 2 elements, "
+           THROW exception::OutOfBoundsException("Unable to apply a property distribution a vector with less than 2 elements, "
                "in RunPlanVector::setPropertyUniformDistribution()\n");
        }
        const auto it = environment->find(name);
@@ -247,15 +253,19 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setPropertyUniformDistribution()\n",
                name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
        }
-       if (index > it->second.data.elements) {
-           throw std::out_of_range("Environment property array index out of bounds "
+       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
+       if (t_index > it->second.data.elements || t_index < index) {
+           throw exception::OutOfBoundsException("Environment property array index out of bounds "
                "in RunPlanVector::setPropertyUniformDistribution()\n");
        }
        unsigned int ct = 0;
        for (auto &i : *this) {
            const double a = static_cast<double>(ct++) / (this->size() - 1);
-           const T lerp = static_cast<T>(round(min * (1.0 - a) + max * a));
-           i.setProperty<T>(name, index, lerp);
+           double lerp = min * (1.0 - a) + max * a;
+           if (std::numeric_limits<T>::is_integer)
+               lerp = round(lerp);
+           const T lerp_t = static_cast<T>(lerp);
+           i.setProperty<T>(name, index, lerp_t);
        }
    }
    
@@ -263,7 +273,7 @@ Program Listing for File RunPlanVector.h
    void RunPlanVector::setPropertyRandom(const std::string &name, rand_dist &distribution) {
        // Validation
        if (this->size() < 2) {
-           THROW std::out_of_range("Unable to apply a property distribution a vector with less than 2 elements, "
+           THROW exception::OutOfBoundsException("Unable to apply a property distribution a vector with less than 2 elements, "
                "in RunPlanVector::setPropertyRandom()\n");
        }
        const auto it = environment->find(name);
@@ -290,7 +300,7 @@ Program Listing for File RunPlanVector.h
    void RunPlanVector::setPropertyRandom(const std::string &name, const EnvironmentManager::size_type &index, rand_dist &distribution) {
        // Validation
        if (this->size() < 2) {
-           THROW std::out_of_range("Unable to apply a property distribution a vector with less than 2 elements, "
+           THROW exception::OutOfBoundsException("Unable to apply a property distribution a vector with less than 2 elements, "
                "in RunPlanVector::setPropertyRandom()\n");
        }
        const auto it = environment->find(name);
@@ -304,8 +314,9 @@ Program Listing for File RunPlanVector.h
                "in RunPlanVector::setPropertyRandom()\n",
                name.c_str(), it->second.data.type.name(), std::type_index(typeid(T)).name());
        }
-       if (index > it->second.data.elements) {
-           throw std::out_of_range("Environment property array index out of bounds "
+       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
+       if (t_index > it->second.data.elements || t_index < index) {
+           throw exception::OutOfBoundsException("Environment property array index out of bounds "
                "in RunPlanVector::setPropertyRandom()\n");
        }
        for (auto &i : *this) {

@@ -60,6 +60,7 @@ Program Listing for File JitifyCache.h
        const std::vector<std::string> &template_args,
        const std::string &kernel_src,
        const std::string &dynamic_header);
+       static void getKnownHeaders(std::vector<std::string> &headers);
    
        std::map<std::string, CachedProgram> cache{};
        mutable std::mutex cache_mutex;

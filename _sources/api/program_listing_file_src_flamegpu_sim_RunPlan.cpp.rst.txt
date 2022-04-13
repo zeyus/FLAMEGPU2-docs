@@ -42,7 +42,7 @@ Program Listing for File RunPlan.cpp
    }
    void RunPlan::setSteps(const unsigned int &_steps) {
        if (_steps == 0 && !allow_0_steps) {
-           throw std::out_of_range("Model description requires atleast 1 exit condition to have unlimited steps, "
+           throw exception::OutOfBoundsException("Model description requires atleast 1 exit condition to have unlimited steps, "
                "in RunPlan::setSteps()");
        }
        steps = _steps;

@@ -28,6 +28,8 @@ Program Listing for File XMLLogger.h
    namespace flamegpu {
    
    struct RunLog;
+   struct StepLogFrame;
+   struct ExitLogFrame;
    struct LogFrame;
    class RunPlan;
    
@@ -35,16 +37,19 @@ Program Listing for File XMLLogger.h
    class XMLLogger : public Logger{
     public:
        XMLLogger(const std::string &outPath, bool prettyPrint, bool truncateFile);
-       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true) const override;
-       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true) const override;
+       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true, bool logStepTime = false, bool logExitTime = false) const override;
+       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true, bool logStepTime = false, bool logExitTime = false) const override;
    
     private:
-       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit, bool logStepTime, bool logExitTime) const;
        tinyxml2::XMLNode *logConfig(tinyxml2::XMLDocument &doc, const RunLog &log) const;
        tinyxml2::XMLNode *logConfig(tinyxml2::XMLDocument &doc, const RunPlan &plan) const;
-       tinyxml2::XMLNode *logSteps(tinyxml2::XMLDocument &doc, const RunLog &log) const;
-       tinyxml2::XMLNode *logExit(tinyxml2::XMLDocument &doc, const RunLog &log) const;
-       tinyxml2::XMLNode *writeLogFrame(tinyxml2::XMLDocument &doc, const LogFrame &log) const;
+       tinyxml2::XMLNode* logPerformanceSpecs(tinyxml2::XMLDocument& doc, const RunLog& log) const;
+       tinyxml2::XMLNode *logSteps(tinyxml2::XMLDocument &doc, const RunLog &log, bool logTime) const;
+       tinyxml2::XMLNode *logExit(tinyxml2::XMLDocument &doc, const RunLog &log, bool logTime) const;
+       tinyxml2::XMLNode *writeLogFrame(tinyxml2::XMLDocument &doc, const StepLogFrame &log, bool logTime) const;
+       tinyxml2::XMLNode* writeLogFrame(tinyxml2::XMLDocument& doc, const ExitLogFrame& log, bool logTime) const;
+       void writeCommonLogFrame(tinyxml2::XMLDocument& doc, tinyxml2::XMLElement* pFrameElement, const LogFrame& frame) const;
        void writeAny(tinyxml2::XMLElement *element, const util::Any &value, const unsigned int &elements = 1) const;
    
        std::string out_path;

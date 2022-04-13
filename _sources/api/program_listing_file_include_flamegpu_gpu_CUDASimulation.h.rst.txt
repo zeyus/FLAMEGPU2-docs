@@ -83,6 +83,8 @@ Program Listing for File CUDASimulation.h
        void setEnvironmentProperty(const std::string &property_name, const T& value);
        template<typename T, unsigned int N>
        void setEnvironmentProperty(const std::string &property_name, const std::array<T, N> &value);
+       template<typename T>
+       void setEnvironmentProperty(const std::string& property_name, const EnvironmentManager::size_type &index, const T& value);
    #ifdef SWIG
    
        template<typename T>
@@ -93,6 +95,8 @@ Program Listing for File CUDASimulation.h
        T getEnvironmentProperty(const std::string &property_name);
        template<typename T, unsigned int N>
        std::array<T, N> getEnvironmentProperty(const std::string &property_name);
+       template<typename T>
+       T getEnvironmentProperty(const std::string& property_name, const EnvironmentManager::size_type& index);
    #ifdef SWIG
    
        template<typename T>
@@ -156,7 +160,7 @@ Program Listing for File CUDASimulation.h
        std::shared_ptr<const LoggingConfig> exit_log_config;
        std::unique_ptr<RunLog> run_log;
        void resetLog();
-       void processStepLog();
+       void processStepLog(const double &step_time_seconds);
        void processExitLog();
        CUDAMessageMap message_map;
        CUDASubModelMap submodel_map;
@@ -259,6 +263,12 @@ Program Listing for File CUDASimulation.h
        singletons->environment.setProperty<T, N>({ instance_id, property_name }, value);
    }
    template<typename T>
+   void CUDASimulation::setEnvironmentProperty(const std::string& property_name, const EnvironmentManager::size_type& index, const T& value) {
+       if (!singletonsInitialised)
+           initialiseSingletons();
+       singletons->environment.setProperty<T>({ instance_id, property_name }, index, value);
+   }
+   template<typename T>
    T CUDASimulation::getEnvironmentProperty(const std::string& property_name) {
        if (!singletonsInitialised)
            initialiseSingletons();
@@ -269,6 +279,12 @@ Program Listing for File CUDASimulation.h
        if (!singletonsInitialised)
            initialiseSingletons();
        return singletons->environment.getProperty<T, N>({ instance_id, property_name });
+   }
+   template<typename T>
+   T CUDASimulation::getEnvironmentProperty(const std::string& property_name, const EnvironmentManager::size_type& index) {
+       if (!singletonsInitialised)
+           initialiseSingletons();
+       return singletons->environment.getProperty<T>({ instance_id, property_name }, index);
    }
    #ifdef SWIG
    template<typename T>

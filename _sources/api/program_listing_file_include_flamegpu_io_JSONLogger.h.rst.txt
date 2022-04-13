@@ -21,6 +21,8 @@ Program Listing for File JSONLogger.h
    
    namespace flamegpu {
    struct RunLog;
+   struct StepLogFrame;
+   struct ExitLogFrame;
    struct LogFrame;
    class RunPlan;
    
@@ -29,23 +31,29 @@ Program Listing for File JSONLogger.h
    class JSONLogger : public Logger{
     public:
        JSONLogger(const std::string &outPath, bool prettyPrint, bool truncateFile);
-       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true) const override;
-       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true) const override;
+       void log(const RunLog &log, const RunPlan &plan, bool logSteps = true, bool logExit = true, bool logStepTime = false, bool logExitTime = false) const override;
+       void log(const RunLog &log, bool logConfig = true, bool logSteps = true, bool logExit = true, bool logStepTime = false, bool logExitTime = false) const override;
    
     private:
-       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       void logCommon(const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit, bool logStepTime, bool logExitTime) const;
        template<typename T>
-       void logCommon(T &writer, const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit) const;
+       void logCommon(T &writer, const RunLog &log, const RunPlan *plan, bool logConfig, bool logSteps, bool logExit, bool logStepTime, bool logExitTime) const;
        template<typename T>
        void logConfig(T &writer, const RunLog &log) const;
        template<typename T>
        void logConfig(T &writer, const RunPlan &plan) const;
        template<typename T>
-       void logSteps(T &writer, const RunLog &log) const;
+       void logPerformanceSpecs(T& writer, const RunLog& log) const;
        template<typename T>
-       void logExit(T &writer, const RunLog &log) const;
+       void logSteps(T &writer, const RunLog &log, bool logTime) const;
        template<typename T>
-       void writeLogFrame(T &writer, const LogFrame &log) const;
+       void logExit(T &writer, const RunLog &log, bool logTime) const;
+       template<typename T>
+       void writeLogFrame(T &writer, const StepLogFrame&log, bool logTime) const;
+       template<typename T>
+       void writeLogFrame(T& writer, const ExitLogFrame& log, bool logTime) const;
+       template<typename T>
+       void writeCommonLogFrame(T& writer, const LogFrame& log) const;
        template<typename T>
        void writeAny(T &writer, const util::Any &value, const unsigned int &elements = 1) const;
    

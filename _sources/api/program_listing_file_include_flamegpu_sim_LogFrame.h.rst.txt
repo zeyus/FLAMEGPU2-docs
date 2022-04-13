@@ -28,12 +28,14 @@ Program Listing for File LogFrame.h
    namespace flamegpu {
    
    struct AgentLogFrame;
+   struct StepLogFrame;
+   struct ExitLogFrame;
    
    struct LogFrame {
        friend class CUDASimulation;
        LogFrame();
-       LogFrame(const std::map<std::string, util::Any> &&_environment,
-       const std::map<util::StringPair, std::pair<std::map<LoggingConfig::NameReductionFn, util::Any>, unsigned int>> &&_agents,
+       LogFrame(const std::map<std::string, util::Any> &_environment,
+       const std::map<util::StringPair, std::pair<std::map<LoggingConfig::NameReductionFn, util::Any>, unsigned int>> &_agents,
        const unsigned int &_step_count);
        unsigned int getStepCount() const { return step_count; }
        bool hasEnvironmentProperty(const std::string &property_name) const;
@@ -56,22 +58,64 @@ Program Listing for File LogFrame.h
        std::map<util::StringPair, std::pair<std::map<LoggingConfig::NameReductionFn, util::Any>, unsigned int>> agents;
        unsigned int step_count;
    };
-   struct RunLog {
+   
+   struct StepLogFrame : public LogFrame {
        friend class CUDASimulation;
-       RunLog() { }
-       RunLog(const LogFrame &_exit, const std::list<LogFrame> &_step)
-           : exit(_exit)
-           , step(_step) { }
-       const LogFrame &getExitLog() const { return exit; }
-       const std::list<LogFrame> &getStepLog() const {return step; }
-       uint64_t getRandomSeed() const { return random_seed; }
-       unsigned int getStepLogFrequency() const { return step_log_frequency; }
+       StepLogFrame();
+       StepLogFrame(const std::map<std::string, util::Any>&& _environment,
+           const std::map<util::StringPair, std::pair<std::map<LoggingConfig::NameReductionFn, util::Any>, unsigned int>>&& _agents,
+           const unsigned int& _step_count);
+   
+       double getStepTime() const { return step_time; }
    
     private:
-       LogFrame exit;
-       std::list<LogFrame> step;
+       double step_time;
+   };
+   
+   struct ExitLogFrame : public LogFrame {
+       friend class CUDASimulation;
+       ExitLogFrame();
+       ExitLogFrame(const std::map<std::string, util::Any>&& _environment,
+           const std::map<util::StringPair, std::pair<std::map<LoggingConfig::NameReductionFn, util::Any>, unsigned int>>&& _agents,
+           const unsigned int& _step_count);
+   
+       double getRTCTime() const { return rtc_time; }
+       double getInitTime() const { return init_time; }
+       double getExitTime() const { return exit_time; }
+       double getTotalTime() const { return total_time; }
+   
+    private:
+       double rtc_time;
+       double init_time;
+       double exit_time;
+       double total_time;
+   };
+   struct RunLog {
+       struct PerformanceSpecs {
+           std::string device_name;
+           int device_cc_major;
+           int device_cc_minor;
+           int cuda_version;
+           bool seatbelts;
+           std::string flamegpu_version;
+       };
+       friend class CUDASimulation;
+       RunLog() { }
+       RunLog(const ExitLogFrame &_exit, const std::list<StepLogFrame> &_step)
+           : exit(_exit)
+           , step(_step) { }
+       const ExitLogFrame &getExitLog() const { return exit; }
+       const std::list<StepLogFrame> &getStepLog() const {return step; }
+       uint64_t getRandomSeed() const { return random_seed; }
+       unsigned int getStepLogFrequency() const { return step_log_frequency; }
+       PerformanceSpecs getPerformanceSpecs() const { return performance_specs; }
+   
+    private:
+       ExitLogFrame exit;
+       std::list<StepLogFrame> step;
        uint64_t random_seed = 0;
        unsigned int step_log_frequency = 0;
+       PerformanceSpecs performance_specs;
    };
    struct AgentLogFrame {
        explicit AgentLogFrame(const std::map<LoggingConfig::NameReductionFn, util::Any> &data, const unsigned int &count);

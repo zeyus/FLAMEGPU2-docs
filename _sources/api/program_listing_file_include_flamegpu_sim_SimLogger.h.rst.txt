@@ -36,7 +36,9 @@ Program Listing for File SimLogger.h
            std::mutex &log_export_queue_mutex,
            std::condition_variable &log_export_queue_cdn,
            bool _export_step,
-           bool _export_exit);
+           bool _export_exit,
+           bool _export_step_time,
+           bool _export_exit_time);
        std::thread thread;
        void start();
        // External references
@@ -49,6 +51,8 @@ Program Listing for File SimLogger.h
        std::condition_variable &log_export_queue_cdn;
        bool export_step;
        bool export_exit;
+       bool export_step_time;
+       bool export_exit_time;
    };
    
    }  // namespace flamegpu

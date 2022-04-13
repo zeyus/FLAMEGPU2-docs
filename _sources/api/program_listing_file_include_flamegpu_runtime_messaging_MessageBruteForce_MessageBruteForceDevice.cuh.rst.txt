@@ -102,7 +102,11 @@ Program Listing for File MessageBruteForceDevice.cuh
        }
    #endif
        // get the value from curve using the stored hashes and message index.
+   #ifdef USE_GLM
+       T value = detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, index);
+   #else
        T value = detail::curve::Curve::getMessageVariable_ldg<T>(variable_name, this->_parent.combined_hash, index);
+   #endif
        return value;
    }
    template<typename T, MessageNone::size_type N, unsigned int M> __device__
@@ -117,7 +121,11 @@ Program Listing for File MessageBruteForceDevice.cuh
        }
    #endif
        // get the value from curve using the stored hashes and message index.
+   #ifdef USE_GLM
+       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, index, array_index);
+   #else
        T value = detail::curve::Curve::getMessageArrayVariable_ldg<T, N>(variable_name, this->_parent.combined_hash, index, array_index);
+   #endif
        return value;
    }
    

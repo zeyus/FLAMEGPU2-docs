@@ -35,6 +35,7 @@ Program Listing for File LoggingConfig.h
        friend void CUDAEnsemble::setStepLog(const StepLoggingConfig &);
        friend void CUDAEnsemble::setExitLog(const LoggingConfig &);
        friend class CUDASimulation;
+       friend void CUDAEnsemble::simulate(const RunPlanVector& plans);
    
     public:
        enum Reduction{ Mean, StandardDev, Min, Max, Sum };
@@ -65,11 +66,13 @@ Program Listing for File LoggingConfig.h
        explicit LoggingConfig(const LoggingConfig &other);
        AgentLoggingConfig agent(const std::string &agent_name, const std::string &agent_state = ModelData::DEFAULT_STATE);
        void logEnvironment(const std::string &property_name);
+       void logTiming(bool doLogTiming);
    
     private:
        std::shared_ptr<const ModelData> model;
        std::set<std::string> environment;
        std::map<util::StringPair, std::pair<std::shared_ptr<std::set<NameReductionFn>>, bool>> agents;
+       bool log_timing;
    };
    
    class StepLoggingConfig : public LoggingConfig {

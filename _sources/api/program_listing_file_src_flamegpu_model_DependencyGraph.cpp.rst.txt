@@ -14,10 +14,7 @@ Program Listing for File DependencyGraph.cpp
    
    namespace flamegpu {
    
-   DependencyGraph::DependencyGraph() {
-   }
-   
-   DependencyGraph::DependencyGraph(const ModelData* _model) : model(_model) {
+   DependencyGraph::DependencyGraph(ModelData* _model) : model(_model) {
    }
    
    DependencyGraph::DependencyGraph(const DependencyGraph& other) : model(other.model) {
@@ -71,26 +68,33 @@ Program Listing for File DependencyGraph.cpp
        roots.push_back(&root);
    }
    
-   bool DependencyGraph::validateDependencyGraph() {
-       functionStack.clear();
+   bool DependencyGraph::validateDependencyGraph() const {
+       std::vector<DependencyNode*> functionStack;
    
        if (roots.size() == 0) {
                THROW exception::InvalidDependencyGraph("Warning! Agent function dependency graph is empty!");
        }
-       for (auto& root : roots) {
+       for (const auto& root : roots) {
            if (root->getDependencies().size() != 0) {
                THROW exception::InvalidDependencyGraph("Warning! Root agent function has dependencies!");
            }
-           if (!validateSubTree(root)) {
+           if (!validateSubTree(root, functionStack)) {
                THROW exception::InvalidDependencyGraph("Warning! Dependency graph validation failed! Does the graph have a cycle?");
            }
        }
        return true;
    }
    
-   void DependencyGraph::generateLayers(ModelDescription& _model) {
+   LayerDescription& DependencyGraph::newModelLayer() {
+       std::shared_ptr<ModelData> modelDataAsShared = model->shared_from_this();
+       auto rtn = std::shared_ptr<LayerData>(new LayerData(modelDataAsShared, "", static_cast<unsigned int>(modelDataAsShared->layers.size())));
+       model->layers.push_back(rtn);
+       return *rtn->description;
+   }
+   
+   void DependencyGraph::generateLayers() {
        // Check model doesn't already have layers attached
-       if (_model.getLayersCount() > 0) {
+       if (model->layers.size() > 0) {
            THROW exception::InvalidDependencyGraph("DependencyGraph cannot generate layers on a model which already has layers attached!");
        }
    
@@ -151,7 +155,7 @@ Program Listing for File DependencyGraph.cpp
        constructedLayers.clear();
        for (auto idealLayer : idealLayers) {
            // Request a new layer from the model
-           LayerDescription* layer = &_model.newLayer();
+           LayerDescription& layer = newModelLayer();
            constructedLayers.emplace_back();
            // Attempt to add each node in the idealLayer to the layer
            for (auto node : idealLayer) {
@@ -159,18 +163,18 @@ Program Listing for File DependencyGraph.cpp
                // Agent function
                if (AgentFunctionDescription* afd = dynamic_cast<AgentFunctionDescription*>(node)) {
                    try {
-                       layer->addAgentFunction(*afd);
+                       layer.addAgentFunction(*afd);
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(afd));
                    } catch (const exception::InvalidAgentFunc&) {
                        // Conflict, create new layer and add to that instead
-                       layer = &_model.newLayer();
-                       layer->addAgentFunction(*afd);
+                       LayerDescription& newLayer = newModelLayer();
+                       newLayer.addAgentFunction(*afd);
                        constructedLayers.emplace_back();
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(afd));
                        // printf("New function execution layer created - exception::InvalidAgentFunc exception\n");
                    } catch (const exception::InvalidLayerMember&) {
-                       layer = &_model.newLayer();
-                       layer->addAgentFunction(*afd);
+                       LayerDescription& newLayer = newModelLayer();
+                       newLayer.addAgentFunction(*afd);
                        constructedLayers.emplace_back();
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(afd));
                        // printf("New function execution layer created - exception::InvalidLayerMember exception\n");
@@ -180,17 +184,17 @@ Program Listing for File DependencyGraph.cpp
                // Submodel
                if (SubModelDescription* smd = dynamic_cast<SubModelDescription*>(node)) {
                    try {
-                       layer->addSubModel(*smd);
+                       layer.addSubModel(*smd);
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(smd));
                    } catch (const exception::InvalidLayerMember&) {
-                       layer = &_model.newLayer();
-                       layer->addSubModel(*smd);
+                       LayerDescription& newLayer = newModelLayer();
+                       newLayer.addSubModel(*smd);
                        constructedLayers.emplace_back();
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(smd));
                        // printf("New submodel layer created - exception::InvalidLayerMember exception\n");
                    } catch (const exception::InvalidSubModel&) {
-                       layer = &_model.newLayer();
-                       layer->addSubModel(*smd);
+                       LayerDescription& newLayer = newModelLayer();
+                       newLayer.addSubModel(*smd);
                        constructedLayers.emplace_back();
                        constructedLayers.back().emplace_back(DependencyGraph::getNodeName(smd));
                        // printf("New submodel layer created - exception::InvalidSubModel exception\n");
@@ -203,22 +207,22 @@ Program Listing for File DependencyGraph.cpp
                    // If ptr is available, use that
                    if (hdf->getFunctionPtr() != nullptr) {
                        try {
-                           layer->addHostFunction(hdf->getFunctionPtr());
+                           layer.addHostFunction(hdf->getFunctionPtr());
                            constructedLayers.back().emplace_back(DependencyGraph::getNodeName(hdf));
                        } catch (const exception::InvalidLayerMember&) {
-                           layer = &_model.newLayer();
-                           layer->addHostFunction(hdf->getFunctionPtr());
+                           LayerDescription& newLayer = newModelLayer();
+                           newLayer.addHostFunction(hdf->getFunctionPtr());
                            constructedLayers.emplace_back();
                            constructedLayers.back().emplace_back(DependencyGraph::getNodeName(hdf));
                            // printf("New host function layer created - exception::InvalidLayerMember exception\n");
                        }
                    } else {
                        try {
-                           layer->_addHostFunctionCallback(hdf->getCallbackObject());
+                           layer._addHostFunctionCallback(hdf->getCallbackObject());
                            constructedLayers.back().emplace_back(DependencyGraph::getNodeName(hdf));
                        } catch (const exception::InvalidLayerMember&) {
-                           layer = &_model.newLayer();
-                           layer->_addHostFunctionCallback(hdf->getCallbackObject());
+                           LayerDescription& newLayer = newModelLayer();
+                           newLayer._addHostFunctionCallback(hdf->getCallbackObject());
                            constructedLayers.emplace_back();
                            constructedLayers.back().emplace_back(DependencyGraph::getNodeName(hdf));
                            // printf("New host function layer created - exception::InvalidLayerMember exception\n");
@@ -229,16 +233,16 @@ Program Listing for File DependencyGraph.cpp
        }
    }
    
-   bool DependencyGraph::validateSubTree(DependencyNode* node) {
+   bool DependencyGraph::validateSubTree(DependencyNode* node, std::vector<DependencyNode*>& functionStack) const {
        // Check if the function we are looking at already exists on the stack - if so we have a cycle
-       if (doesFunctionExistInStack(node)) {
+       if (doesFunctionExistInStack(node, functionStack)) {
            return false;
        }
    
        // No cycle detected, check if all child nodes form valid subtrees
        functionStack.push_back(node);
        for (auto child : node->getDependents()) {
-           if (!validateSubTree(child))
+           if (!validateSubTree(child, functionStack))
                return false;
        }
    
@@ -248,9 +252,9 @@ Program Listing for File DependencyGraph.cpp
        return true;
    }
    
-   bool DependencyGraph::doesFunctionExistInStack(DependencyNode* function) {
+   bool DependencyGraph::doesFunctionExistInStack(DependencyNode* function, std::vector<DependencyNode*>& functionStack) const {
        // Iterating vector probably faster than using constant lookup structure for likely number of elements
-       for (auto fn : functionStack) {
+       for (const auto fn : functionStack) {
            if (fn == function) {
                return true;
            }
@@ -301,7 +305,7 @@ Program Listing for File DependencyGraph.cpp
        }
    }
    
-   void DependencyGraph::generateDOTDiagram(std::string outputFileName) {
+   void DependencyGraph::generateDOTDiagram(std::string outputFileName) const {
        validateDependencyGraph();
        std::ofstream DOTFile(outputFileName);
        if (DOTFile.is_open()) {
@@ -353,14 +357,14 @@ Program Listing for File DependencyGraph.cpp
        }
    }
    
-   std::string DependencyGraph::getConstructedLayersString() {
+   std::string DependencyGraph::getConstructedLayersString() const {
        std::stringstream ss;
        unsigned int layerCount = 0;
-       for (auto layer : constructedLayers) {
+       for (const auto& layer : constructedLayers) {
            ss << "--------------------" << std::endl;
            ss << "Layer " << layerCount << std::endl;
            ss << "--------------------" << std::endl;
-           for (auto item : layer) {
+           for (const auto& item : layer) {
                ss << item << std::endl;
            }
            ss << std::endl;

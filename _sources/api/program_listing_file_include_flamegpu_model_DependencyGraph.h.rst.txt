@@ -27,25 +27,24 @@ Program Listing for File DependencyGraph.h
    
    class DependencyGraph {
     public:
-       DependencyGraph();
-       explicit DependencyGraph(const ModelData* _model);
+       explicit DependencyGraph(ModelData* _model);
        explicit DependencyGraph(const DependencyGraph& other);
        bool operator==(const DependencyGraph& rhs);
        void addRoot(DependencyNode& root);
-       bool validateDependencyGraph();
-       void generateLayers(ModelDescription& model);
-       void generateDOTDiagram(std::string outputFileName);
-       std::string getConstructedLayersString();
+       void generateLayers();
+       void generateDOTDiagram(std::string outputFileName) const;
+       bool validateDependencyGraph() const;
+       std::string getConstructedLayersString() const;
    
     private:
        std::vector<DependencyNode*> roots;
-       std::vector<DependencyNode*> functionStack;
-       bool doesFunctionExistInStack(DependencyNode* function);
-       bool validateSubTree(DependencyNode* node);
+       bool doesFunctionExistInStack(DependencyNode* function, std::vector<DependencyNode*>& functionStack) const;
+       bool validateSubTree(DependencyNode* node, std::vector<DependencyNode*>& functionStack) const;
        void checkForUnattachedFunctions();
+       LayerDescription& newModelLayer();
        static std::string getNodeName(DependencyNode* node);
        std::vector<std::vector<std::string>> constructedLayers;
-       const ModelData* model;
+       ModelData* model;
    };
    
    }  // namespace flamegpu

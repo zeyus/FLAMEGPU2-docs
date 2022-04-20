@@ -171,11 +171,15 @@ Program Listing for File ModelDescription.cpp
        model->exitConditions.push_back(func_p);
    }
    
-   void ModelDescription::generateLayers() {
-       model->dependencyGraph->generateLayers(*this);
+   void ModelDescription::addExecutionRoot(DependencyNode& root) {
+       model->dependencyGraph->addRoot(root);
    }
    
-   DependencyGraph& ModelDescription::getDependencyGraph() const {
+   void ModelDescription::generateLayers() {
+       model->dependencyGraph->generateLayers();
+   }
+   
+   const DependencyGraph& ModelDescription::getDependencyGraph() const {
        return *(model->dependencyGraph);
    }
    
@@ -248,6 +252,13 @@ Program Listing for File ModelDescription.cpp
    }
    bool ModelDescription::hasLayer(const ModelData::size_type &layer_index) const {
        return layer_index < model->layers.size();
+   }
+   
+   void ModelDescription::generateDependencyGraphDOTDiagram(std::string outputFileName) const {
+       model->dependencyGraph->generateDOTDiagram(outputFileName);
+   }
+   std::string ModelDescription::getConstructedLayersString() const {
+       return model->dependencyGraph->getConstructedLayersString();
    }
    
    ModelData::size_type ModelDescription::getAgentsCount() const {

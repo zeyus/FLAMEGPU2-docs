@@ -29,6 +29,7 @@ Program Listing for File ModelDescription.h
    class AgentDescription;
    class LayerDescription;
    class SubModelDescription;
+   class DependencyNode;
    struct ModelData;
    
    class ModelDescription {
@@ -102,8 +103,11 @@ Program Listing for File ModelDescription.h
    #endif
    
        std::string getName() const;
-       DependencyGraph& getDependencyGraph() const;
+       const DependencyGraph& getDependencyGraph() const;
+       void addExecutionRoot(DependencyNode& root);
        void generateLayers();
+       void generateDependencyGraphDOTDiagram(std::string outputFileName) const;
+       std::string getConstructedLayersString() const;
        const AgentDescription& getAgent(const std::string &agent_name) const;
        template<typename MessageType>
        const typename MessageType::Description& getMessage(const std::string &message_name) const {

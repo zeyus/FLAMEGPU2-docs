@@ -326,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -730,10 +730,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_JitifyCache_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUException_8h_1a3782b4c58365dfbff74733193c5b886e.html">Define DERIVED_FLAMEGPUException</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a9e2b87f2547583d337b7db1b3abdf501.html">Define DTHROW</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html">Define FLAMEGPU_AGENT_FUNCTION</a></li>
@@ -862,22 +858,22 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;filesystem&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/io/Logger.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/io/JSONLogger.h&quot;</span><span class="cp"></span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/io/XMLLogger.h&quot;</span><span class="cp"></span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;flamegpu/util/detail/filesystem.h&quot;</span><span class="cp"></span>
 
 <span class="k">namespace</span><span class="w"> </span><span class="nn">flamegpu</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="k">namespace</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="k">class</span><span class="w"> </span><span class="nc">LoggerFactory</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w"> </span><span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Logger</span><span class="o">&gt;</span><span class="w"> </span><span class="n">createLogger</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">prettyPrint</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">truncateFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">extension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">util</span><span class="o">::</span><span class="n">detail</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">getFileExt</span><span class="p">(</span><span class="n">output_path</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">extension</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="p">(</span><span class="n">output_path</span><span class="p">).</span><span class="n">extension</span><span class="p">().</span><span class="n">string</span><span class="p">();</span><span class="w"></span>
 
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">extension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;xml&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">extension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;.xml&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">XMLLogger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="n">prettyPrint</span><span class="p">,</span><span class="w"> </span><span class="n">truncateFile</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">extension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;json&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">extension</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;.json&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">JSONLogger</span><span class="o">&gt;</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span><span class="w"> </span><span class="n">prettyPrint</span><span class="p">,</span><span class="w"> </span><span class="n">truncateFile</span><span class="p">);</span><span class="w"></span>
 <span class="w">        </span><span class="p">}</span><span class="w"></span>
 <span class="w">        </span><span class="n">THROW</span><span class="w"> </span><span class="n">exception</span><span class="o">::</span><span class="n">UnsupportedFileType</span><span class="p">(</span><span class="s">&quot;File &#39;%s&#39; is not a type which can be written &quot;</span><span class="w"></span>

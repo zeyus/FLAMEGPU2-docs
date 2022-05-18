@@ -326,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -730,10 +730,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_JitifyCache_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUException_8h_1a3782b4c58365dfbff74733193c5b886e.html">Define DERIVED_FLAMEGPUException</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a9e2b87f2547583d337b7db1b3abdf501.html">Define DTHROW</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html">Define FLAMEGPU_AGENT_FUNCTION</a></li>
@@ -864,6 +860,7 @@
 #include &lt;queue&gt;
 #include &lt;mutex&gt;
 #include &lt;condition_variable&gt;
+#include &lt;filesystem&gt;
 
 #include &quot;flamegpu/version.h&quot;
 #include &quot;flamegpu/model/ModelDescription.h&quot;
@@ -872,7 +869,6 @@
 #include &quot;flamegpu/util/detail/SteadyClockTimer.h&quot;
 #include &quot;flamegpu/gpu/CUDASimulation.h&quot;
 #include &quot;flamegpu/io/StateWriterFactory.h&quot;
-#include &quot;flamegpu/util/detail/filesystem.h&quot;
 #include &quot;flamegpu/sim/LoggingConfig.h&quot;
 #include &quot;flamegpu/sim/SimRunner.h&quot;
 #include &quot;flamegpu/sim/LogFrame.h&quot;
@@ -905,17 +901,17 @@ unsigned int CUDAEnsemble::simulate(const RunPlanVector &amp;plans) {
         }
         // Create any missing directories
         try {
-            util::detail::filesystem::recursive_create_dir(config.out_directory);
+            std::filesystem::create_directories(config.out_directory);
         } catch (const std::exception &amp;e) {
             THROW exception::InvalidArgument(&quot;Unable to use output directory &#39;%s&#39;, in CUDAEnsemble::simulate(): %s&quot;, config.out_directory.c_str(), e.what());
         }
         for (const auto &amp;p : plans) {
             const auto subdir = p.getOutputSubdirectory();
             if (!subdir.empty()) {
-                path sub_path = config.out_directory;
+                std::filesystem::path sub_path = config.out_directory;
                 try {
                     sub_path.append(subdir);
-                    util::detail::filesystem::recursive_create_dir(sub_path);
+                    std::filesystem::create_directories(sub_path);
                 } catch (const std::exception &amp;e) {
                     THROW exception::InvalidArgument(&quot;Unable to use output subdirectory &#39;%s&#39;, in CUDAEnsemble::simulate(): %s&quot;, sub_path.generic_string().c_str(), e.what());
                 }
@@ -1117,8 +1113,8 @@ int CUDAEnsemble::checkArgs(int argc, const char** argv) {
             }
             // Validate output directory is valid (and recursively create it if necessary)
             try {
-                path out_directory = argv[++i];
-                util::detail::filesystem::recursive_create_dir(out_directory);
+                std::filesystem::path out_directory = argv[++i];
+                std::filesystem::create_directories(out_directory);
                 config.out_directory = out_directory.generic_string();
             } catch (const std::exception &amp;e) {
                 // Catch any exceptions, probably std::filesystem::filesystem_error, but other implementation defined errors also possible

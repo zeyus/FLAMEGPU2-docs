@@ -326,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -730,10 +730,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
-<li class="toctree-l4"><a class="reference internal" href="define_JitifyCache_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUException_8h_1a3782b4c58365dfbff74733193c5b886e.html">Define DERIVED_FLAMEGPUException</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a9e2b87f2547583d337b7db1b3abdf501.html">Define DTHROW</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction__shim_8cuh_1a1c067606a392fd111d240d55377e79a9.html">Define FLAMEGPU_AGENT_FUNCTION</a></li>
@@ -861,30 +857,12 @@
 #include &lt;cassert&gt;
 #include &lt;regex&gt;
 #include &lt;array&gt;
+#include &lt;filesystem&gt;
 
 #include &quot;flamegpu/version.h&quot;
 #include &quot;flamegpu/exception/FLAMEGPUException.h&quot;
 #include &quot;flamegpu/util/detail/compute_capability.cuh&quot;
 #include &quot;flamegpu/util/nvtx.h&quot;
-
-// If MSVC earlier than VS 2019
-#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1920
-#include &lt;filesystem&gt;
-using std::tr2::sys::temp_directory_path;
-using std::tr2::sys::exists;
-using std::tr2::sys::current_path;
-using std::tr2::sys::path;
-using std::tr2::sys::directory_iterator;
-#else
-// VS2019 requires this macro, as building pre c++17 cant use std::filesystem
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
-#include &lt;experimental/filesystem&gt;
-using std::experimental::filesystem::v1::temp_directory_path;
-using std::experimental::filesystem::v1::exists;
-using std::experimental::filesystem::v1::current_path;
-using std::experimental::filesystem::v1::path;
-using std::experimental::filesystem::v1::directory_iterator;
-#endif
 
 using jitify::detail::hash_combine;
 using jitify::detail::hash_larson64;
@@ -894,36 +872,36 @@ namespace util {
 namespace detail {
 
 namespace {
-path getTMP() {
-    static path result;
+std::filesystem::path getTMP() {
+    static std::filesystem::path result;
     if (result.empty()) {
-        path tmp =  std::getenv(&quot;FLAMEGPU_TMP_DIR&quot;) ? std::getenv(&quot;FLAMEGPU_TMP_DIR&quot;) : temp_directory_path();
+        std::filesystem::path tmp =  std::getenv(&quot;FLAMEGPU_TMP_DIR&quot;) ? std::getenv(&quot;FLAMEGPU_TMP_DIR&quot;) : std::filesystem::temp_directory_path();
         // Create the $tmp/flamegpu/jitifycache(/debug) folder hierarchy
-        if (!::exists(tmp) &amp;&amp; !create_directory(tmp)) {
+        if (!std::filesystem::exists(tmp) &amp;&amp; !std::filesystem::create_directories(tmp)) {
             THROW exception::InvalidFilePath(&quot;Directory &#39;%s&#39; does not exist and cannot be created by JitifyCache.&quot;, tmp.generic_string().c_str());
         }
         if (!std::getenv(&quot;FLAMEGPU_TMP_DIR&quot;)) {
             tmp /= &quot;flamegpu&quot;;
-            if (!::exists(tmp)) {
-                create_directory(tmp);
+            if (!std::filesystem::exists(tmp)) {
+                std::filesystem::create_directories(tmp);
             }
         }
         tmp /= &quot;jitifycache&quot;;
-        if (!::exists(tmp)) {
-            create_directory(tmp);
+        if (!std::filesystem::exists(tmp)) {
+            std::filesystem::create_directories(tmp);
         }
 #ifdef _DEBUG
         tmp /= &quot;debug&quot;;
-        if (!::exists(tmp)) {
-            create_directory(tmp);
+        if (!std::filesystem::exists(tmp)) {
+            std::filesystem::create_directories(tmp);
         }
 #endif
         result = tmp;
     }
     return result;
 }
-std::vector&lt;path&gt; getIncludeDirs() {
-    static std::vector&lt;path&gt; rtn;
+std::vector&lt;std::filesystem::path&gt; getIncludeDirs() {
+    static std::vector&lt;std::filesystem::path&gt; rtn;
     if (rtn.empty()) {
         if (std::getenv(&quot;FLAMEGPU_RTC_INCLUDE_DIRS&quot;)) {
             const std::string s = std::getenv(&quot;FLAMEGPU_RTC_INCLUDE_DIRS&quot;);
@@ -936,19 +914,19 @@ std::vector&lt;path&gt; getIncludeDirs() {
             size_t start = 0, end = s.find(delimiter);
             std::string token;
             do {
-                path p = s.substr(start, end - start);
+                std::filesystem::path p = s.substr(start, end - start);
                 if (!p.empty()) {
                     rtn.push_back(p);
                 }
                 start = end + delimiter.length();
             } while ((end = s.find(delimiter, start))!= std::string::npos);
         } else {
-            rtn.push_back(current_path());
+            rtn.push_back(std::filesystem::current_path());
         }
     }
     return rtn;
 }
-std::string loadFile(const path &amp;filepath) {
+std::string loadFile(const std::filesystem::path &amp;filepath) {
     std::ifstream ifs;
     ifs.open(filepath, std::ifstream::binary);
     if (!ifs)
@@ -972,10 +950,10 @@ std::string getCUDAIncludeDir() {
     for (const auto&amp; env_var : ENV_VARS) {
         std::string env_value = std::getenv(env_var.c_str()) ? std::getenv(env_var.c_str()) : &quot;&quot;;
         if (!env_value.empty()) {
-            path check_path = path(env_value) / &quot;include/&quot;;
+            std::filesystem::path check_path = std::filesystem::path(env_value) / &quot;include/&quot;;
             // Use try catch to suppress file permission exceptions etc
             try {
-                if (exists(check_path)) {
+                if (std::filesystem::exists(check_path)) {
                     cuda_include_dir_str = check_path.string();
                     break;
                 }
@@ -1001,10 +979,10 @@ std::string getFLAMEGPUIncludeDir(std::string &amp;env_var_used) {
         std::string env_value = std::getenv(env_var.c_str()) ? std::getenv(env_var.c_str()) : &quot;&quot;;
         // If it&#39;s a value, check if the path exists, and if any expected files are found.
         if (!env_value.empty()) {
-            path check_file = path(env_value) / &quot;flamegpu/flamegpu.h&quot;;
+            std::filesystem::path check_file = std::filesystem::path(env_value) / &quot;flamegpu/flamegpu.h&quot;;
             // Use try catch to suppress file permission exceptions etc
             try {
-                if (exists(check_file)) {
+                if (std::filesystem::exists(check_file)) {
                     include_dir_str = env_value;
                     env_var_used = env_var;
                     break;
@@ -1018,20 +996,20 @@ std::string getFLAMEGPUIncludeDir(std::string &amp;env_var_used) {
     // If no appropriate environmental variables were found, check upwards for N levels (assuming the default filestructure is in use)
     if (include_dir_str.empty()) {
         // Start with the current working directory
-        path test_dir(&quot;.&quot;);
+        std::filesystem::path test_dir(&quot;.&quot;);
         // Try multiple levels of directory, to see if we can find include/flamegpu/flamegpu.h
         const unsigned int LEVELS = 5;
         for (unsigned int level = 0; level &lt; LEVELS; level++) {
             // If break out the loop if the test_dir directory does not exist.
-            if (!exists(test_dir)) {
+            if (!std::filesystem::exists(test_dir)) {
                 break;
             }
             // Check file assuming flamegpu is the root cmake project
-            path check_file = test_dir;
+            std::filesystem::path check_file = test_dir;
             check_file /= &quot;include/flamegpu/flamegpu.h&quot;;
             // Use try catch to suppress file permission exceptions etc
             try {
-                if (exists(check_file)) {
+                if (std::filesystem::exists(check_file)) {
                     test_dir /= &quot;include&quot;;
                     include_dir_str = test_dir.string();
                     break;
@@ -1039,8 +1017,8 @@ std::string getFLAMEGPUIncludeDir(std::string &amp;env_var_used) {
             } catch (...) { }
             // Check file assuming a standalone example is the root cmake project
             // We want to see if we can find the build directory
-            for (auto&amp; p : directory_iterator(test_dir)) {
-                if (is_directory(p)) {
+            for (auto&amp; p : std::filesystem::directory_iterator(test_dir)) {
+                if (std::filesystem::is_directory(p)) {
                     check_file = p.path();
                     check_file /= &quot;_deps/flamegpu2-src/include/flamegpu/version.h&quot;;
                     // Use try catch to suppress file permission exceptions etc
@@ -1075,7 +1053,7 @@ bool confirmFLAMEGPUHeaderVersion(const std::string flamegpuIncludeDir, const st
         std::string fileVersionMacro;
         std::string fileVersionPrerelease;
         // Open version.h
-        path version_file = path(flamegpuIncludeDir) /= &quot;flamegpu/version.h&quot;;
+        std::filesystem::path version_file = std::filesystem::path(flamegpuIncludeDir) /= &quot;flamegpu/version.h&quot;;
         std::ifstream vFile(version_file);
         if (vFile.is_open()) {
             // Use a regular expression to match the FLAMEGPU_VERSION number macro against lines in the file.
@@ -1188,8 +1166,6 @@ std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::compileKernel(const std:
 // pass the c++ language dialect. It may be better to explicitly pass this from CMake.
 #if defined(__cplusplus) &amp;&amp; __cplusplus &gt; 201700L &amp;&amp; defined(__CUDACC_VER_MAJOR__) &amp;&amp; __CUDACC_VER_MAJOR__ &gt;= 11
     options.push_back(&quot;--std=c++17&quot;);
-#elif defined(__cplusplus) &amp;&amp; __cplusplus &gt; 201400L
-    options.push_back(&quot;--std=c++14&quot;);
 #endif
 
     // If SEATBELTS is defined and false, forward it as off, otherwise forward it as on.
@@ -1332,9 +1308,9 @@ std::unique_ptr&lt;KernelInstantiation&gt; JitifyCache::loadKernel(const std::st
         }
     }
     // Does a copy with the right reference exist on disk?
-    const path cache_file = getTMP() / short_reference;
-    const path reference_file = cache_file.parent_path() / path(cache_file.filename().string() + &quot;.ref&quot;);
-    if (use_disk_cache &amp;&amp; exists(cache_file)) {
+    const std::filesystem::path cache_file = getTMP() / short_reference;
+    const std::filesystem::path reference_file = cache_file.parent_path() / std::filesystem::path(cache_file.filename().string() + &quot;.ref&quot;);
+    if (use_disk_cache &amp;&amp; std::filesystem::exists(cache_file)) {
         // Load the long reference for the cache file
         const std::string file_long_reference = loadFile(reference_file);
         if (file_long_reference == long_reference) {
@@ -1395,9 +1371,9 @@ void JitifyCache::clearMemoryCache() {
 }
 void JitifyCache::clearDiskCache() {
     std::lock_guard&lt;std::mutex&gt; lock(cache_mutex);
-    const path tmp_dir = getTMP();
-    for (const auto &amp; entry : directory_iterator(tmp_dir)) {
-        if (is_regular_file(entry.path())) {
+    const std::filesystem::path tmp_dir = getTMP();
+    for (const auto &amp; entry : std::filesystem::directory_iterator(tmp_dir)) {
+        if (std::filesystem::is_regular_file(entry.path())) {
             remove(entry.path());
         }
     }

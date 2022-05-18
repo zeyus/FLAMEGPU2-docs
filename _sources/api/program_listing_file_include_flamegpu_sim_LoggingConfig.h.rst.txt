@@ -35,7 +35,7 @@ Program Listing for File LoggingConfig.h
        friend void CUDAEnsemble::setStepLog(const StepLoggingConfig &);
        friend void CUDAEnsemble::setExitLog(const LoggingConfig &);
        friend class CUDASimulation;
-       friend void CUDAEnsemble::simulate(const RunPlanVector& plans);
+       friend unsigned int CUDAEnsemble::simulate(const RunPlanVector& plans);
    
     public:
        enum Reduction{ Mean, StandardDev, Min, Max, Sum };

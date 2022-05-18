@@ -12,6 +12,7 @@ Program Listing for File CUDAScanCompaction.h
 
    #ifndef INCLUDE_FLAMEGPU_GPU_CUDASCANCOMPACTION_H_
    #define INCLUDE_FLAMEGPU_GPU_CUDASCANCOMPACTION_H_
+   #include <driver_types.h>
    
    namespace flamegpu {
    
@@ -25,21 +26,15 @@ Program Listing for File CUDAScanCompaction.h
    struct CUDAScanCompactionConfig {
        CUDAScanCompactionConfig()
            : scan_flag_len(0)
-           , hd_cub_temp(nullptr)
-           , cub_temp_size(0)
-           , cub_temp_size_max_list_size(0)
        { }
        ~CUDAScanCompactionConfig();
        CUDAScanCompactionConfig(CUDAScanCompactionConfig const&) = delete;
        void operator=(CUDAScanCompactionConfig const&) = delete;
        unsigned int scan_flag_len = 0;
        CUDAScanCompactionPtrs d_ptrs;
-       void* hd_cub_temp = nullptr;
-       size_t cub_temp_size = 0;
-       unsigned int cub_temp_size_max_list_size = 0;
        void free_scan_flag();
        void resize_scan_flag(const unsigned int& count);
-       void zero_scan_flag();
+       void zero_scan_flag_async(cudaStream_t stream);
    };
    
    class CUDAScanCompaction {
@@ -56,7 +51,7 @@ Program Listing for File CUDAScanCompaction.h
        void operator=(CUDAScanCompaction const&) = delete;
        void purge();
        void resize(const unsigned int& newCount, const Type& type, const unsigned int& streamId);
-       void zero(const Type& type, const unsigned int& streamId);
+       void zero_async(const Type& type, cudaStream_t stream, unsigned int streamId);
        const CUDAScanCompactionConfig &getConfig(const Type& type, const unsigned int& streamId);
        CUDAScanCompactionConfig &Config(const Type& type, const unsigned int& streamId);
    

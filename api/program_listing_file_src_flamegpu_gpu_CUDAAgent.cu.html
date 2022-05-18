@@ -263,6 +263,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -325,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -365,7 +366,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -390,6 +390,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -468,6 +469,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -694,7 +696,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -754,6 +755,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -1039,7 +1041,7 @@ void CUDAAgent::setPopulationData(const AgentVector&amp; population, const std::
     our_state-&gt;second-&gt;setAgentData(population, scatter, streamId, stream);
     fat_agent-&gt;markIDsUnset();
     // Validate that there are no ID collisions
-    validateIDCollisions();
+    validateIDCollisions(stream);
 }
 void CUDAAgent::getPopulationData(AgentVector&amp; population, const std::string&amp; state_name) const {
     // Validate agent state
@@ -1069,7 +1071,7 @@ __global__ void generateCollisionFlags(const id_t* d_sortedKeys, id_t* d_flagsOu
         }
     }
 }
-void CUDAAgent::validateIDCollisions() const {
+void CUDAAgent::validateIDCollisions(cudaStream_t stream) const {
     NVTX_RANGE(&quot;CUDAAgent::validateIDCollisions&quot;);
     // All data is on device, so use a device technique to check for collisions
     // Sort agent IDs, have a simple kernel check for neighbouring ID collisions to set a flag
@@ -1091,33 +1093,33 @@ void CUDAAgent::validateIDCollisions() const {
     ptrdiff_t buffOffset = 0;
     for (const auto&amp; s : state_map) {
         const unsigned int t_size = s.second-&gt;getSize();
-        gpuErrchk(cudaMemcpy(d_keysIn + buffOffset, s.second-&gt;getVariablePointer(ID_VARIABLE_NAME), t_size * sizeof(id_t), cudaMemcpyDeviceToDevice));
+        gpuErrchk(cudaMemcpyAsync(d_keysIn + buffOffset, s.second-&gt;getVariablePointer(ID_VARIABLE_NAME), t_size * sizeof(id_t), cudaMemcpyDeviceToDevice, stream));
         buffOffset += t_size;
     }
     // Sort agent ids into d_keysOut
     void* d_temp_storage = nullptr;
     size_t temp_storage_bytes = 0;
-    gpuErrchk(cub::DeviceRadixSort::SortKeys(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount));
+    gpuErrchk(cub::DeviceRadixSort::SortKeys(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount, 0, sizeof(id_t) * 8, stream));
     gpuErrchk(cudaMalloc(&amp;d_temp_storage, temp_storage_bytes));
-    gpuErrchk(cub::DeviceRadixSort::SortKeys(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount));
+    gpuErrchk(cub::DeviceRadixSort::SortKeys(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount, 0, sizeof(id_t) * 8, stream));
     // Reset d_keysIn
-    gpuErrchk(cudaMemset(d_keysIn, 0, sizeof(id_t) * agentCount));
+    gpuErrchk(cudaMemsetAsync(d_keysIn, 0, sizeof(id_t) * agentCount, stream));
     // Launch a kernel to set flags if keys overlap their neighbour
     const unsigned int blockSize = 1024;
     const unsigned int blocks = ((agentCount-1) / blockSize) + 1;
-    generateCollisionFlags&lt;&lt;&lt;blocks, blockSize&gt;&gt;&gt;(d_keysOut, d_keysIn, agentCount-1, ID_NOT_SET);
+    generateCollisionFlags&lt;&lt;&lt;blocks, blockSize, 0, stream&gt;&gt;&gt;(d_keysOut, d_keysIn, agentCount-1, ID_NOT_SET);
     gpuErrchkLaunch();
     // Check whether any flags were set
     size_t temp_storage_bytes2 = 0;
-    gpuErrchk(cub::DeviceReduce::Sum(nullptr, temp_storage_bytes2, d_keysIn, d_keysOut, agentCount - 1));
+    gpuErrchk(cub::DeviceReduce::Sum(nullptr, temp_storage_bytes2, d_keysIn, d_keysOut, agentCount - 1, stream));
     if (temp_storage_bytes2 &gt; temp_storage_bytes) {
         gpuErrchk(cudaFree(d_temp_storage));
         temp_storage_bytes = temp_storage_bytes2;
         gpuErrchk(cudaMalloc(&amp;d_temp_storage, temp_storage_bytes));
     }
-    gpuErrchk(cub::DeviceReduce::Sum(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount - 1));
+    gpuErrchk(cub::DeviceReduce::Sum(d_temp_storage, temp_storage_bytes, d_keysIn, d_keysOut, agentCount - 1, stream));
     id_t flagsSet = 0;
-    gpuErrchk(cudaMemcpy(&amp;flagsSet, d_keysOut, sizeof(id_t), cudaMemcpyDeviceToHost));
+    gpuErrchk(cudaMemcpyAsync(&amp;flagsSet, d_keysOut, sizeof(id_t), cudaMemcpyDeviceToHost, stream));
     // Cleanup
     gpuErrchk(cudaFree(d_temp_storage));
     gpuErrchk(cudaFree(d_keysIn));
@@ -1128,6 +1130,7 @@ void CUDAAgent::validateIDCollisions() const {
             &quot;in CUDAAgent::validateIDCollisions()\n&quot;,
             static_cast&lt;unsigned int&gt;(flagsSet), agent_description.name.c_str());
     }
+    gpuErrchk(cudaStreamSynchronize(stream));
 }
 unsigned int CUDAAgent::getStateSize(const std::string &amp;state) const {
     // check the cuda agent state map to find the correct state list for functions starting state
@@ -1151,7 +1154,7 @@ unsigned int CUDAAgent::getStateAllocatedSize(const std::string &amp;state) cons
     }
     return sm-&gt;second-&gt;getAllocatedSize();
 }
-void CUDAAgent::resizeState(const std::string&amp; state, const unsigned int&amp; minimumSize, const bool&amp; retainData) {
+void CUDAAgent::resizeState(const std::string&amp; state, const unsigned int minimumSize, const bool retainData, const cudaStream_t stream) {
     // check the cuda agent state map to find the correct state list
     const auto&amp; sm = state_map.find(state);
 
@@ -1160,7 +1163,7 @@ void CUDAAgent::resizeState(const std::string&amp; state, const unsigned int&amp
             &quot;in CUDAAgent::getStateAllocatedSize()&quot;,
             agent_description.name.c_str(), state.c_str());
     }
-    sm-&gt;second-&gt;resize(minimumSize, retainData);
+    sm-&gt;second-&gt;resize(minimumSize, retainData, stream);
 }
 
 void CUDAAgent::setStateAgentCount(const std::string&amp; state, const unsigned int&amp; newSize) {
@@ -1215,16 +1218,16 @@ void CUDAAgent::scatterHostCreation(const std::string &amp;state_name, const uns
     }
     sm-&gt;second-&gt;scatterHostCreation(newSize, d_inBuff, offsets, scatter, streamId, stream);
 }
-void CUDAAgent::scatterSort(const std::string &amp;state_name, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const cudaStream_t &amp;stream) {
+void CUDAAgent::scatterSort_async(const std::string &amp;state_name, CUDAScatter &amp;scatter, unsigned int streamId, cudaStream_t stream) {
     auto sm = state_map.find(state_name);
     if (sm == state_map.end()) {
         THROW exception::InvalidCudaAgentState(&quot;Error: Agent (&#39;%s&#39;) state (&#39;%s&#39;) was not found &quot;
             &quot;in CUDAAgent::scatterHostCreation()&quot;,
             agent_description.name.c_str(), state_name.c_str());
     }
-    sm-&gt;second-&gt;scatterSort(scatter, streamId, stream);
+    sm-&gt;second-&gt;scatterSort_async(scatter, streamId, stream);
 }
-void CUDAAgent::mapNewRuntimeVariables(const CUDAAgent&amp; func_agent, const AgentFunctionData&amp; func, const unsigned int &amp;maxLen, CUDAScatter &amp;scatter, const unsigned int &amp;instance_id, const unsigned int &amp;streamId) {
+void CUDAAgent::mapNewRuntimeVariables_async(const CUDAAgent&amp; func_agent, const AgentFunctionData&amp; func, unsigned int maxLen, CUDAScatter &amp;scatter, unsigned int instance_id, cudaStream_t stream, unsigned int streamId) {
     // Confirm agent output is set
     if (auto oa = func.agent_output.lock()) {
         // check the cuda agent state map to find the correct state list for functions starting state
@@ -1239,7 +1242,7 @@ void CUDAAgent::mapNewRuntimeVariables(const CUDAAgent&amp; func_agent, const Ag
         // We need a 3rd array, because a function might combine agent birth, agent death and message output
         scatter.Scan().resize(maxLen, CUDAScanCompaction::AGENT_OUTPUT, streamId);
         // Ensure the scan flag is zeroed
-        scatter.Scan().zero(CUDAScanCompaction::AGENT_OUTPUT, streamId);
+        scatter.Scan().zero_async(CUDAScanCompaction::AGENT_OUTPUT, stream, streamId);
 
         // Request a buffer for new
         char *d_new_buffer = static_cast&lt;char*&gt;(fat_agent-&gt;allocNewBuffer(TOTAL_AGENT_VARIABLE_SIZE, maxLen, agent_description.variables.size()));
@@ -1254,12 +1257,13 @@ void CUDAAgent::mapNewRuntimeVariables(const CUDAAgent&amp; func_agent, const Ag
         }
 
         // Init the buffer to default values for variables
-        scatter.broadcastInit(
+        scatter.broadcastInit_async(
             streamId,
-            0,
+            stream,
             agent_description.variables,
             d_new_buffer,
             maxLen, 0);
+        // No sync, use of the buffer should be in the same stream
 
         // Map variables to curve
         const detail::curve::Curve::VariableHash _agent_birth_hash = detail::curve::Curve::variableRuntimeHash(&quot;_agent_birth&quot;);
@@ -1563,8 +1567,8 @@ id_t CUDAAgent::nextID(unsigned int count) {
 id_t* CUDAAgent::getDeviceNextID() {
     return fat_agent-&gt;getDeviceNextID();
 }
-void CUDAAgent::assignIDs(HostAPI&amp; hostapi) {
-    fat_agent-&gt;assignIDs(hostapi);
+void CUDAAgent::assignIDs(HostAPI&amp; hostapi, CUDAScatter &amp;scatter, cudaStream_t stream, const unsigned int streamId) {
+    fat_agent-&gt;assignIDs(hostapi, scatter, stream, streamId);
 }
 
 void CUDAAgent::setPopulationVec(const std::string&amp; state_name, const std::shared_ptr&lt;DeviceAgentVector_impl&gt;&amp; d_vec) {

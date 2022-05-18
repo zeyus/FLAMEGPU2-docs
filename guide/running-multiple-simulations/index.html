@@ -266,6 +266,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -328,7 +329,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -368,7 +369,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -393,6 +393,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -471,6 +472,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -697,7 +699,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -757,6 +758,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../api/define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api/define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -1012,9 +1014,9 @@
 <p>Now you can execute the <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsembleE" title="flamegpu::CUDAEnsemble"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">CUDAEnsemble</span></code></a> from the command line, using the below parameters, it will execute the runs and log the collected data to file.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 22%" />
-<col style="width: 54%" />
+<col style="width: 17%" />
+<col style="width: 16%" />
+<col style="width: 67%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Long Argument</p></th>
@@ -1049,6 +1051,11 @@ By default 4 concurrent simulations will run per GPU.</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">-t</span></code></p></td>
 <td><p>Output timing information to console at exit.</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--error</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-e</span></code> &lt;error level&gt;</p></td>
+<td><p>The <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE" title="flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ErrorLevel</span></code></a> to use: 0, 1, 2, “off”, “slow” or “fast”.
+By default the <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE" title="flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">ErrorLevel</span></code></a> will be set to “slow” (1).</p></td>
+</tr>
 </tbody>
 </table>
 <p>You may also wish to specify your own defaults, by setting the values prior to calling <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble10initialiseEiPPKc" title="flamegpu::CUDAEnsemble::initialise"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">initialise()</span></code></a>:</p>
@@ -1072,7 +1079,7 @@ By default 4 concurrent simulations will run per GPU.</p></td>
 <span class="n">cuda_ensemble</span><span class="p">.</span><span class="n">setExitLog</span><span class="p">(</span><span class="n">exit_log_cfg</span><span class="p">);</span><span class="w"></span>
 
 <span class="c1">// Execute the ensemble using the specified RunPlans</span>
-<span class="n">ensemble</span><span class="p">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">runs</span><span class="p">);</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">errs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ensemble</span><span class="p">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">runs</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-3-UHl0aG9u" class="sphinx-tabs-panel code-tab group-tab" hidden="true" id="panel-3-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fully declare a ModelDescription, RunPlanVector and LoggingConfig/StepLoggingConfig</span>
@@ -1094,7 +1101,7 @@ By default 4 concurrent simulations will run per GPU.</p></td>
 <span class="n">cuda_ensemble</span><span class="o">.</span><span class="n">setExitLog</span><span class="p">(</span><span class="n">exit_log_cfg</span><span class="p">)</span>
 
 <span class="c1"># Execute the ensemble using the specified RunPlans</span>
-<span class="n">ensemble</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
+<span class="n">errs</span> <span class="o">=</span> <span class="n">ensemble</span><span class="o">.</span><span class="n">simulate</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -1102,6 +1109,39 @@ By default 4 concurrent simulations will run per GPU.</p></td>
 <p class="admonition-title">Note</p>
 <p>At current <a class="reference internal" href="../../api/classflamegpu_1_1CUDASimulation.html#_CPPv4N8flamegpu14CUDASimulationE" title="flamegpu::CUDASimulation"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">CUDASimulation</span></code></a> differs to <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsembleE" title="flamegpu::CUDAEnsemble"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">CUDAEnsemble</span></code></a>, it is not currently possible to specify your own defaults for the <a class="reference internal" href="../../api/classflamegpu_1_1CUDASimulation.html#_CPPv4N8flamegpu14CUDASimulationE" title="flamegpu::CUDASimulation"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">CUDASimulation</span></code></a> command line interface. Calling <a class="reference internal" href="../../api/classflamegpu_1_1Simulation.html#_CPPv4N8flamegpu10Simulation10initialiseEiPPKc" title="flamegpu::Simulation::initialise"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">initialise()</span></code></a> resets the configuration before parsing command line arguments. <a class="reference external" href="https://github.com/FLAMEGPU/FLAMEGPU2/issues/755">(issue)</a></p>
 </div>
+</div>
+<div class="section" id="error-handling-within-ensembles">
+<h2>Error Handling Within Ensembles<a class="headerlink" href="#error-handling-within-ensembles" title="Permalink to this headline"></a></h2>
+<p><a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsembleE" title="flamegpu::CUDAEnsemble"><code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">CUDAEnsemble</span></code></a> has three supported levels of error handling.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 3%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Level</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Off</p></td>
+<td><p>Runs which fail do not cause an exception to be raised.</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Slow</p></td>
+<td><p>If any runs fail, an <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">EnsembleException</span></code> will be raised after all runs have been attempted.</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Fast</p></td>
+<td><p>An <code class="xref cpp cpp-class docutils literal notranslate"><span class="pre">EnsembleException</span></code> will be raised as soon as a failed run is detected, cancelling remaining runs.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The default error level is “Slow” (1), which will cause an exception to be raised if any of the simulations fail to complete. However, all simulations will be attempted first, so partial results will be available.</p>
+<p>Alternatively, calls to <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector" title="flamegpu::CUDAEnsemble::simulate"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">simulate()</span></code></a> return the number of errors, when the error level is set to “Off” (0). Therefore, failed runs can be probed manually via checking that the return value of <a class="reference internal" href="../../api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector" title="flamegpu::CUDAEnsemble::simulate"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">simulate()</span></code></a> does not equal zero.</p>
 </div>
 <div class="section" id="related-links">
 <h2>Related Links<a class="headerlink" href="#related-links" title="Permalink to this headline"></a></h2>

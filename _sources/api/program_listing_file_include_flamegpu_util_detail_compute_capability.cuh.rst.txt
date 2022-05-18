@@ -13,6 +13,8 @@ Program Listing for File compute_capability.cuh
    #ifndef INCLUDE_FLAMEGPU_UTIL_DETAIL_COMPUTE_CAPABILITY_CUH_
    #define INCLUDE_FLAMEGPU_UTIL_DETAIL_COMPUTE_CAPABILITY_CUH_
    
+   #include <vector>
+   
    #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
    
    namespace flamegpu {
@@ -26,6 +28,10 @@ Program Listing for File compute_capability.cuh
    
    bool checkComputeCapability(int deviceIndex);
    
+   std::vector<int> getNVRTCSupportedComputeCapabilties();
+   
+   
+   int selectAppropraiteComputeCapability(const int target, const std::vector<int>& architectures);
    }  // namespace compute_capability
    }  // namespace detail
    }  // namespace util

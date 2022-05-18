@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Struct HostAPI::key_hash &mdash; FLAME GPU 2 0 documentation</title>
+  <title>Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_ &mdash; FLAME GPU 2 0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -26,8 +26,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Struct HostMacroProperty_MetaData" href="structflamegpu_1_1HostMacroProperty__MetaData.html" />
-    <link rel="prev" title="Struct ExitLogFrame" href="structflamegpu_1_1ExitLogFrame.html" /> 
+    <link rel="next" title="Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html" />
+    <link rel="prev" title="Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -265,6 +265,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -327,7 +328,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -338,7 +339,7 @@
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__visualiser__Stock__Palettes.html">Namespace flamegpu::visualiser::Stock::Palettes</a></li>
 </ul>
 </li>
-<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="library_root.html#classes-and-structs">Classes and Structs</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentData.html">Struct AgentData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentFunctionData.html">Struct AgentFunctionData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1AgentLogFrame.html">Struct AgentLogFrame</a></li>
@@ -367,7 +368,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -392,6 +392,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -470,6 +471,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -696,7 +698,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -730,7 +731,7 @@
 <li class="toctree-l4"><a class="reference internal" href="variable_namespaceflamegpu_1_1visualiser_1_1Stock_1_1Palettes_1a0cfc07ba486999d845c4db0e8b74f152.html">Variable flamegpu::visualiser::Stock::Palettes::YLORRD</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="library_root.html#defines">Defines</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="library_root.html#defines">Defines</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="define_filesystem_8h_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAAgent_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_SimLogger_8cu_1aab6af62131aad81d17d3b4afd9db334f.html">Define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING</a></li>
@@ -756,6 +757,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -842,9 +844,9 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="library_root.html">Library API</a> &raquo;</li>
-      <li>Struct HostAPI::key_hash</li>
+      <li>Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/api/structflamegpu_1_1HostAPI_1_1key__hash.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/api/define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -852,30 +854,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="struct-hostapi-key-hash">
-<span id="exhale-struct-structflamegpu-1-1hostapi-1-1key-hash"></span><h1>Struct HostAPI::key_hash<a class="headerlink" href="#struct-hostapi-key-hash" title="Permalink to this headline"></a></h1>
+  <div class="section" id="define-include-flamegpu-gpu-detail-cubtemporarymemory-cuh">
+<span id="exhale-define-cubtemporarymemory-8cuh-1a79c5453e9dd7b41cf1305ce08f0103e9"></span><h1>Define <a href="#id1"><span class="problematic" id="id2">INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</span></a><a class="headerlink" href="#define-include-flamegpu-gpu-detail-cubtemporarymemory-cuh" title="Permalink to this headline"></a></h1>
 <ul class="simple">
-<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_runtime_HostAPI.h.html#file-include-flamegpu-runtime-hostapi-h"><span class="std std-ref">File HostAPI.h</span></a></p></li>
+<li><p>Defined in <a class="reference internal" href="file_include_flamegpu_gpu_detail_CubTemporaryMemory.cuh.html#file-include-flamegpu-gpu-detail-cubtemporarymemory-cuh"><span class="std std-ref">File CubTemporaryMemory.cuh</span></a></p></li>
 </ul>
-<div class="section" id="nested-relationships">
-<h2>Nested Relationships<a class="headerlink" href="#nested-relationships" title="Permalink to this headline"></a></h2>
-<p>This struct is a nested type of <a class="reference internal" href="classflamegpu_1_1HostAPI.html#exhale-class-classflamegpu-1-1hostapi"><span class="std std-ref">Class HostAPI</span></a>.</p>
-</div>
-<div class="section" id="struct-documentation">
-<h2>Struct Documentation<a class="headerlink" href="#struct-documentation" title="Permalink to this headline"></a></h2>
-<dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu7HostAPI8key_hashE">
-<span id="_CPPv3N8flamegpu7HostAPI8key_hashE"></span><span id="_CPPv2N8flamegpu7HostAPI8key_hashE"></span><span id="flamegpu::HostAPI::key_hash"></span><span class="target" id="structflamegpu_1_1HostAPI_1_1key__hash"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">flamegpu</span></span><span class="p"><span class="pre">::</span></span><a class="reference internal" href="classflamegpu_1_1HostAPI.html#_CPPv4N8flamegpu7HostAPIE" title="flamegpu::HostAPI"><span class="n"><span class="pre">HostAPI</span></span></a><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">key_hash</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu7HostAPI8key_hashE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Need to define a hash_fn for tuple </p>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4NK8flamegpu7HostAPI8key_hashclERK10CUB_Config">
-<span id="_CPPv3NK8flamegpu7HostAPI8key_hashclERK10CUB_Config"></span><span id="_CPPv2NK8flamegpu7HostAPI8key_hashclERK10CUB_Config"></span><span id="flamegpu::HostAPI::key_hash::call-operator__CUB_ConfigCRC"></span><span class="target" id="structflamegpu_1_1HostAPI_1_1key__hash_1a8ca4daf8c79538d51d8a20e27d4b7651"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">()</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">CUB_Config</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">k</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu7HostAPI8key_hashclERK10CUB_Config" title="Permalink to this definition"></a><br /></dt>
+<div class="section" id="define-documentation">
+<h2>Define Documentation<a class="headerlink" href="#define-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_">
+<span class="target" id="CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9"></span><span class="sig-name descname"><span class="n"><span class="pre">INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</span></span></span><a class="headerlink" href="#c.INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
-
-</div>
-</dd></dl>
 
 </div>
 </div>
@@ -884,8 +873,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="structflamegpu_1_1ExitLogFrame.html" class="btn btn-neutral float-left" title="Struct ExitLogFrame" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="structflamegpu_1_1HostMacroProperty__MetaData.html" class="btn btn-neutral float-right" title="Struct HostMacroProperty_MetaData" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html" class="btn btn-neutral float-left" title="Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html" class="btn btn-neutral float-right" title="Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

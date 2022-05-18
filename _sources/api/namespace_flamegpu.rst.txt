@@ -17,6 +17,8 @@ Detailed Description
 
 THIS CLASS SHOULD NOT BE INCLUDED DIRECTLY Include :ref:`file_include_flamegpu_pop_AgentVector.h` instead Use AgentVector::CAgent instead of :ref:`exhale_class_classflamegpu_1_1AgentVector__CAgent` Use AgentVector::Agent instead of :ref:`exhale_class_classflamegpu_1_1AgentVector__Agent`
 
+CUDA does not implement atomicAdd(double*, double) for pre-pascal GPUs, which do not have the underlying hardware instruction. A CAS based software implementation is required instead, which will be much slower. This implementation is based on the reference implementation prodived by the CUDA toolkit documentation.
+
 Utility namespace for handling of NVTX profiling markers/ranges, wrapped in macros to avoid performance impact if not enabled.
 
 Macro ``USE_NVTX`` must be defined to be enabled. Use NVTX_PUSH, NVTX_POP, NVTX_RANGE macros to use.
@@ -31,7 +33,7 @@ Namespaces
 ----------
 
 
-- :ref:`namespace_flamegpu__@156`
+- :ref:`namespace_flamegpu__@157`
 
 - :ref:`namespace_flamegpu__exception`
 
@@ -100,8 +102,6 @@ Classes
 
 - :ref:`exhale_struct_structflamegpu_1_1ExitLogFrame`
 
-- :ref:`exhale_struct_structflamegpu_1_1HostAPI_1_1key__hash`
-
 - :ref:`exhale_struct_structflamegpu_1_1HostMacroProperty__MetaData`
 
 - :ref:`exhale_struct_structflamegpu_1_1LayerData`
@@ -149,6 +149,8 @@ Classes
 - :ref:`exhale_struct_structflamegpu_1_1RunLog`
 
 - :ref:`exhale_struct_structflamegpu_1_1RunLog_1_1PerformanceSpecs`
+
+- :ref:`exhale_struct_structflamegpu_1_1SimRunner_1_1ErrorDetail`
 
 - :ref:`exhale_struct_structflamegpu_1_1Simulation_1_1Config`
 
@@ -549,8 +551,6 @@ Functions
 - :ref:`exhale_function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c`
 
 - :ref:`exhale_function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60`
-
-- :ref:`exhale_function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9`
 
 
 Typedefs

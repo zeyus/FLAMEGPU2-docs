@@ -43,15 +43,15 @@ Program Listing for File CUDAMessage.h
        unsigned int getMaximumListSize() const;
        unsigned int getMessageCount() const;
        void setMessageCount(const unsigned int &_message_count);
-       void init(CUDAScatter &scatter, const unsigned int &streamId);
-       void resize(unsigned int newSize, CUDAScatter &scatter, const unsigned int &streamId, const unsigned int &keepLen = 0);
+       void init(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream);
+       void resize(unsigned int newSize, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId, unsigned int keepLen = 0);
        void mapReadRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &instance_id) const;
-       void mapWriteRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &writeLen, const unsigned int &instance_id) const;
+       void mapWriteRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &writeLen, const unsigned int &instance_id, cudaStream_t stream) const;
        void unmapRuntimeVariables(const AgentFunctionData& func, const unsigned int &instance_id) const;
        void *getReadPtr(const std::string &var_name);
        const CUDAMessageMap &getReadList() { return message_list->getReadList(); }
        const CUDAMessageMap &getWriteList() { return message_list->getWriteList(); }
-       void swap(bool isOptional, const unsigned int &newMessageCount, CUDAScatter &scatter, const unsigned int &streamId);
+       void swap(bool isOptional, unsigned int newMessageCount, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId);
        void swap();
        bool getTruncateMessageListFlag() const { return truncate_messagelist_flag; }
        void setTruncateMessageListFlag() { truncate_messagelist_flag = true; }
@@ -63,7 +63,7 @@ Program Listing for File CUDAMessage.h
        const void *getMetaDataDevicePtr() const;
    
     protected:
-       void zeroAllMessageData();
+       void zeroAllMessageData(cudaStream_t stream);
    
     private:
        const MessageBruteForce::Data& message_description;

@@ -109,38 +109,31 @@ Program Listing for File CUDAFatAgent.cu
    
        CUDAScanCompactionConfig &scanCfg = scatter.Scan().Config(CUDAScanCompaction::Type::AGENT_DEATH, streamId);
        const unsigned int agent_count = sm->second->getSize();
-       // Resize cub (if required)
-       if (agent_count > scanCfg.cub_temp_size_max_list_size) {
-           if (scanCfg.hd_cub_temp) {
-               gpuErrchk(cudaFree(scanCfg.hd_cub_temp));
-           }
-           scanCfg.cub_temp_size = 0;
-           gpuErrchk(cub::DeviceScan::ExclusiveSum(
-               nullptr,
-               scanCfg.cub_temp_size,
-               scanCfg.d_ptrs.scan_flag,
-               scanCfg.d_ptrs.position,
-               sm->second->getAllocatedSize() + 1,
-               stream));
-           gpuErrchk(cudaStreamSynchronize(stream));
-           gpuErrchk(cudaMalloc(&scanCfg.hd_cub_temp,
-               scanCfg.cub_temp_size));
-           scanCfg.cub_temp_size_max_list_size = sm->second->getAllocatedSize();
-       }
+       // Check if we need to resize cub storage
+       auto& cub_temp = scatter.CubTemp(streamId);
+       size_t tempByte = 0;
        gpuErrchk(cub::DeviceScan::ExclusiveSum(
-           scanCfg.hd_cub_temp,
-           scanCfg.cub_temp_size,
+           nullptr,
+           tempByte,
+           scanCfg.d_ptrs.scan_flag,
+           scanCfg.d_ptrs.position,
+           sm->second->getAllocatedSize() + 1,
+           stream));
+       cub_temp.resize(tempByte);
+       gpuErrchk(cub::DeviceScan::ExclusiveSum(
+           cub_temp.getPtr(),
+           cub_temp.getSize(),
            scanCfg.d_ptrs.scan_flag,
            scanCfg.d_ptrs.position,
            agent_count + 1,
            stream));
-       gpuErrchk(cudaStreamSynchronize(stream));
+       gpuErrchk(cudaStreamSynchronize(stream));  // Redundant? scatter occurs in same stream
    
        // Scatter
        sm->second->scatterDeath(scatter, streamId, stream);
    }
    
-   void CUDAFatAgent::transitionState(const unsigned int &agent_fat_id, const std::string &_src, const std::string &_dest, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream) {
+   void CUDAFatAgent::transitionState(unsigned int agent_fat_id, const std::string &_src, const std::string &_dest, CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream) {
        // Optionally process state transition
        if (_src != _dest) {
            auto src = states.find({agent_fat_id, _src});
@@ -165,7 +158,7 @@ Program Listing for File CUDAFatAgent.cu
            } else {
                // Otherwise we must perform a scatter all operation
                // Resize destination list
-               dest->second->resize(src->second->getSize() + dest->second->getSizeWithDisabled(), true);
+               dest->second->resize(src->second->getSize() + dest->second->getSizeWithDisabled(), true, stream);
                // Build scatter data
                // It's assumed that each CUDAFatAgentStatelist has it's unique variables list in the same order, so we can map across from 1 to other
                auto &src_v = src->second->getUniqueVariables();
@@ -197,26 +190,20 @@ Program Listing for File CUDAFatAgent.cu
    
        CUDAScanCompactionConfig &scanCfg = scatter.Scan().Config(CUDAScanCompaction::Type::AGENT_DEATH, streamId);
        unsigned int agent_count = sm->second->getSize();
-       // Resize cub (if required)
-       if (agent_count > scanCfg.cub_temp_size_max_list_size) {
-           if (scanCfg.hd_cub_temp) {
-               gpuErrchk(cudaFree(scanCfg.hd_cub_temp));
-           }
-           scanCfg.cub_temp_size = 0;
-           gpuErrchk(cub::DeviceScan::ExclusiveSum(
-               nullptr,
-               scanCfg.cub_temp_size,
-               scanCfg.d_ptrs.scan_flag,
-               scanCfg.d_ptrs.position,
-               sm->second->getAllocatedSize() + 1));
-           gpuErrchk(cudaMalloc(&scanCfg.hd_cub_temp,
-               scanCfg.cub_temp_size));
-           scanCfg.cub_temp_size_max_list_size = sm->second->getAllocatedSize();
-       }
+       // Check if we need to resize cub storage
+       auto& cub_temp = scatter.CubTemp(streamId);
+       size_t tempByte = 0;
+       gpuErrchk(cub::DeviceScan::ExclusiveSum(
+           nullptr,
+           tempByte,
+           scanCfg.d_ptrs.scan_flag,
+           scanCfg.d_ptrs.position,
+           sm->second->getAllocatedSize() + 1));
+       cub_temp.resize(tempByte);
        // Perform scan (agent function conditions use death flag scan compact arrays as there is no overlap in use)
        gpuErrchk(cub::DeviceScan::ExclusiveSum(
-           scanCfg.hd_cub_temp,
-           scanCfg.cub_temp_size,
+           cub_temp.getPtr(),
+           cub_temp.getSize(),
            scanCfg.d_ptrs.scan_flag,
            scanCfg.d_ptrs.position,
            agent_count + 1,
@@ -229,8 +216,8 @@ Program Listing for File CUDAFatAgent.cu
        CUDAScatter::InversionIterator ii = CUDAScatter::InversionIterator(scanCfg.d_ptrs.scan_flag);
        cudaMemsetAsync(scanCfg.d_ptrs.position, 0, sizeof(unsigned int)*(agent_count + 1), stream);
        gpuErrchk(cub::DeviceScan::ExclusiveSum(
-           scanCfg.hd_cub_temp,
-           scanCfg.cub_temp_size,
+           cub_temp.getPtr(),
+           cub_temp.getSize(),
            ii,
            scanCfg.d_ptrs.position,
            agent_count + 1,
@@ -351,7 +338,7 @@ Program Listing for File CUDAFatAgent.cu
        assert(t == _nextID);  // At the end of device birth they should be equal, as no host birth can occur between pre and post processing agent fn
    #endif
    }
-   void CUDAFatAgent::assignIDs(HostAPI& hostapi) {
+   void CUDAFatAgent::assignIDs(HostAPI& hostapi, CUDAScatter &scatter, cudaStream_t stream, const unsigned int streamId) {
        NVTX_RANGE("CUDAFatAgent::assignIDs");
        if (agent_ids_have_init) return;
        id_t h_max = ID_NOT_SET;
@@ -363,18 +350,16 @@ Program Listing for File CUDAFatAgent.cu
            assert(s->getSizeWithDisabled() == s->getSize());
            auto vb = s->getVariableBuffer(0, ID_VARIABLE_NAME);  // _id always belongs to the root agent
            if (vb && vb->data) {
-               // Reduce for max
-               HostAPI::CUB_Config cc = { HostAPI::MAX, typeid(id_t).hash_code() };
-               if (hostapi.tempStorageRequiresResize(cc, s->getSize())) {
-                   // Resize cub storage
-                   size_t tempByte = 0;
-                   gpuErrchk(cub::DeviceReduce::Max(nullptr, tempByte, static_cast<id_t*>(vb->data), reinterpret_cast<id_t*>(hostapi.d_output_space), s->getSize()));
-                   gpuErrchkLaunch();
-                   hostapi.resizeTempStorage(cc, s->getSize(), tempByte);
-               }
+               // Check if we need to resize cub storage
+               auto& cub_temp = scatter.CubTemp(streamId);
+               size_t tempByte = 0;
+               gpuErrchk(cub::DeviceReduce::Max(nullptr, tempByte, static_cast<id_t*>(vb->data), reinterpret_cast<id_t*>(hostapi.d_output_space), s->getSize(), stream));
+               cub_temp.resize(tempByte);
                hostapi.resizeOutputSpace<id_t>();
-               gpuErrchk(cub::DeviceReduce::Max(hostapi.d_cub_temp, hostapi.d_cub_temp_size, static_cast<id_t*>(vb->data), reinterpret_cast<id_t*>(hostapi.d_output_space), s->getSize()));
-               gpuErrchk(cudaMemcpy(&h_max, hostapi.d_output_space, sizeof(id_t), cudaMemcpyDeviceToHost));
+               // Reduce for max
+               gpuErrchk(cub::DeviceReduce::Max(cub_temp.getPtr(), cub_temp.getSize(), static_cast<id_t*>(vb->data), reinterpret_cast<id_t*>(hostapi.d_output_space), s->getSize(), stream));
+               gpuErrchk(cudaMemcpyAsync(&h_max, hostapi.d_output_space, sizeof(id_t), cudaMemcpyDeviceToHost, stream));
+               gpuErrchk(cudaStreamSynchronize(stream));
                _nextID = std::max(_nextID, h_max + 1);
            }
        }
@@ -389,13 +374,14 @@ Program Listing for File CUDAFatAgent.cu
            if (vb && vb->data && s->getSize()) {
                const unsigned int blockSize = 1024;
                const unsigned int blocks = ((s->getSize() - 1) / blockSize) + 1;
-               allocateIDs<< <blocks, blockSize >> > (static_cast<id_t*>(vb->data), s->getSize(), ID_NOT_SET, _nextID);
+               allocateIDs<< <blocks, blockSize, 0, stream>> > (static_cast<id_t*>(vb->data), s->getSize(), ID_NOT_SET, _nextID);
                gpuErrchkLaunch();
            }
            _nextID += s->getSizeWithDisabled();
        }
    
        agent_ids_have_init = true;
+       gpuErrchk(cudaStreamSynchronize(stream));
    }
    void CUDAFatAgent::resetIDCounter() {
        // Resetting ID whilst agents exist is a bad idea, so fail silently

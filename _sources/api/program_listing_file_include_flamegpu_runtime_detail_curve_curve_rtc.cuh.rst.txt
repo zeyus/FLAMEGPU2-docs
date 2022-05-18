@@ -13,6 +13,7 @@ Program Listing for File curve_rtc.cuh
    #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_RTC_CUH_
    #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_RTC_CUH_
    
+   #include <driver_types.h>
    #include <array>
    #include <cstring>
    #include <string>
@@ -59,7 +60,7 @@ Program Listing for File curve_rtc.cuh
    
        static std::string demangle(const std::type_index& type);
        void updateEnvCache(const char* env_ptr);
-       void updateDevice(const jitify::experimental::KernelInstantiation& instance);
+       void updateDevice_async(const jitify::experimental::KernelInstantiation& instance, cudaStream_t stream);
    
     protected:
        void setHeaderPlaceholder(std::string placeholder, std::string dst);

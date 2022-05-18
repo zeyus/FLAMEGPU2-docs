@@ -265,6 +265,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -327,7 +328,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -367,7 +368,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -392,6 +392,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -470,6 +471,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -696,7 +698,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -756,6 +757,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -907,9 +909,18 @@
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig14zero_scan_flagEv">
-<span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig14zero_scan_flagEv"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig14zero_scan_flagEv"></span><span id="flamegpu::CUDAScanCompactionConfig::zero_scan_flag"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1a9cfef9d25b0351e814ed9c5d7e317d42"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">zero_scan_flag</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig14zero_scan_flagEv" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig20zero_scan_flag_asyncE12cudaStream_t">
+<span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig20zero_scan_flag_asyncE12cudaStream_t"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig20zero_scan_flag_asyncE12cudaStream_t"></span><span id="flamegpu::CUDAScanCompactionConfig::zero_scan_flag_async__cudaStream_t"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1a0ccf7e080ee060ff1a1aa4686287307f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">zero_scan_flag_async</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">cudaStream_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stream</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig20zero_scan_flag_asyncE12cudaStream_t" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Reset all data inside the two scan buffers to 0 </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is async, the cuda stream is not synchronised </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream</strong> – The CUDA stream used to execute the memset </p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -924,24 +935,6 @@
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig6d_ptrsE">
 <span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig6d_ptrsE"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig6d_ptrsE"></span><span id="flamegpu::CUDAScanCompactionConfig::d_ptrs__CUDAScanCompactionPtrs"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1a45a353bfe72c6836315bd067eea9fd2c"></span><a class="reference internal" href="structflamegpu_1_1CUDAScanCompactionPtrs.html#_CPPv4N8flamegpu22CUDAScanCompactionPtrsE" title="flamegpu::CUDAScanCompactionPtrs"><span class="n"><span class="pre">CUDAScanCompactionPtrs</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">d_ptrs</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig6d_ptrsE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Structure of scan flag buffers </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig11hd_cub_tempE">
-<span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig11hd_cub_tempE"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig11hd_cub_tempE"></span><span id="flamegpu::CUDAScanCompactionConfig::hd_cub_temp__voidP"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1abeca91229bf6a666d3bdfe8ac5b3d1c1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">hd_cub_temp</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">nullptr</span></span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig11hd_cub_tempE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Host copy of device pointer to cub temp memory </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig13cub_temp_sizeE">
-<span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig13cub_temp_sizeE"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig13cub_temp_sizeE"></span><span id="flamegpu::CUDAScanCompactionConfig::cub_temp_size__s"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1ab31734aec8055a090488172d1d7c5fc0"></span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cub_temp_size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig13cub_temp_sizeE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Size of the device memory pointed to by hd_cub_temp; </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu24CUDAScanCompactionConfig27cub_temp_size_max_list_sizeE">
-<span id="_CPPv3N8flamegpu24CUDAScanCompactionConfig27cub_temp_size_max_list_sizeE"></span><span id="_CPPv2N8flamegpu24CUDAScanCompactionConfig27cub_temp_size_max_list_sizeE"></span><span id="flamegpu::CUDAScanCompactionConfig::cub_temp_size_max_list_size__unsigned-i"></span><span class="target" id="structflamegpu_1_1CUDAScanCompactionConfig_1a45ab34e19c22f5a00c486526d22c702d"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cub_temp_size_max_list_size</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0</span></span><a class="headerlink" href="#_CPPv4N8flamegpu24CUDAScanCompactionConfig27cub_temp_size_max_list_sizeE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>The size of the list that hd_cub_temp was allocated for This is a proxy for ensuring cub_temp_size is suitable. </p>
 </dd></dl>
 
 </div>

@@ -30,18 +30,19 @@ Program Listing for File CUDAEnsemble.h
    class CUDAEnsemble {
     public:
        struct EnsembleConfig {
-           // std::string in = "";
            std::string out_directory = "";
            std::string out_format = "json";
            unsigned int concurrent_runs = 4;
            std::set<int> devices;
            bool quiet = false;
            bool timing = false;
+           enum ErrorLevel { Off = 0, Slow = 1, Fast = 2 };
+           ErrorLevel error_level = Slow;
        };
        explicit CUDAEnsemble(const ModelDescription& model, int argc = 0, const char** argv = nullptr);
        ~CUDAEnsemble();
    
-       void simulate(const RunPlanVector &plan);
+       unsigned int simulate(const RunPlanVector &plan);
    
        EnsembleConfig &Config() { return config; }
        const EnsembleConfig &getConfig() const { return config; }

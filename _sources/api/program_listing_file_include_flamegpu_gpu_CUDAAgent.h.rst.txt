@@ -62,8 +62,8 @@ Program Listing for File CUDAAgent.h
        void transitionState(const std::string &_src, const std::string &_dest, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        void processFunctionCondition(const AgentFunctionData& func, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        void scatterHostCreation(const std::string &state_name, const unsigned int &newSize, char *const d_inBuff, const VarOffsetStruct &offsets, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
-       void scatterSort(const std::string &state_name, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
-       void mapNewRuntimeVariables(const CUDAAgent& func_agent, const AgentFunctionData& func, const unsigned int &maxLen, CUDAScatter &scatter, const unsigned int &instance_id, const unsigned int &streamId);
+       void scatterSort_async(const std::string &state_name, CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream);
+       void mapNewRuntimeVariables_async(const CUDAAgent& func_agent, const AgentFunctionData& func, unsigned int maxLen, CUDAScatter &scatter, unsigned int instance_id, cudaStream_t stream, unsigned int streamId);
        void unmapNewRuntimeVariables(const AgentFunctionData& func, const unsigned int &instance_id);
        void scatterNew(const AgentFunctionData& func, const unsigned int &newSize, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        void clearFunctionCondition(const std::string &state);
@@ -75,18 +75,18 @@ Program Listing for File CUDAAgent.h
        void initExcludedVars(const std::string& state, const unsigned int& count, const unsigned int& offset, CUDAScatter& scatter, const unsigned int& streamId, const cudaStream_t& stream);
        void cullAllStates();
        void cullUnmappedStates();
-       void resizeState(const std::string &state, const unsigned int& minSize, const bool& retainData);
+       void resizeState(const std::string &state, unsigned int minSize, bool retainData, cudaStream_t stream);
        void setStateAgentCount(const std::string& state, const unsigned int &newSize);
        std::list<std::shared_ptr<VariableBuffer>> getUnboundVariableBuffers(const std::string& state);
        id_t nextID(unsigned int count = 1) override;
        id_t* getDeviceNextID();
-       void assignIDs(HostAPI &hostapi);
+       void assignIDs(HostAPI &hostapi, CUDAScatter& scatter, cudaStream_t stream, unsigned int streamId);
        void setPopulationVec(const std::string& state_name, const std::shared_ptr<DeviceAgentVector_impl>& d_vec);
        std::shared_ptr<DeviceAgentVector_impl> getPopulationVec(const std::string& state_name);
        void resetPopulationVecs();
    
     private:
-       void validateIDCollisions() const;
+       void validateIDCollisions(cudaStream_t stream) const;
        static size_t calcTotalVarSize(const AgentData &agent) {
            size_t rtn = 0;
            for (const auto &v : agent.variables) {

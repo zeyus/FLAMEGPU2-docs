@@ -20,6 +20,7 @@ Program Listing for File SimRunner.h
    #include <condition_variable>
    #include <thread>
    #include <vector>
+   #include <string>
    #include "flamegpu/sim/LogFrame.h"
    
    namespace flamegpu {
@@ -31,6 +32,12 @@ Program Listing for File SimRunner.h
    
    class SimRunner {
        friend class CUDAEnsemble;
+       struct ErrorDetail {
+           unsigned int run_id;
+           unsigned int device_id;
+           unsigned int runner_id;
+           std::string exception_string;
+       };
        SimRunner(const std::shared_ptr<const ModelData> _model,
            std::atomic<unsigned int> &_err_ct,
            std::atomic<unsigned int> &_next_run,
@@ -40,15 +47,18 @@ Program Listing for File SimRunner.h
            int _device_id,
            unsigned int _runner_id,
            bool _verbose,
+           bool _fail_fast,
            std::vector<RunLog> &run_logs,
            std::queue<unsigned int> &log_export_queue,
            std::mutex &log_export_queue_mutex,
-           std::condition_variable &log_export_queue_cdn);
+           std::condition_variable &log_export_queue_cdn,
+           ErrorDetail &fast_err_detail);
        const std::shared_ptr<const ModelData> model;
        unsigned int run_id;
        const int device_id;
        const unsigned int runner_id;
        const bool verbose;
+       const bool fail_fast;
        std::thread thread;
        void start();
        // External references
@@ -61,6 +71,7 @@ Program Listing for File SimRunner.h
        std::queue<unsigned int> &log_export_queue;
        std::mutex &log_export_queue_mutex;
        std::condition_variable &log_export_queue_cdn;
+       ErrorDetail& fast_err_detail;
    };
    
    }  // namespace flamegpu

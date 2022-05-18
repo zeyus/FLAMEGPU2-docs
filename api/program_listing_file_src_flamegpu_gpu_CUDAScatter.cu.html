@@ -263,6 +263,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -325,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -365,7 +366,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -390,6 +390,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -468,6 +469,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -694,7 +696,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -754,6 +755,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -1025,11 +1027,20 @@ unsigned int CUDAScatter::scatter(
     return rtn + scatter_all_count;
 }
 void CUDAScatter::scatterPosition(
-    const unsigned int &amp;streamResourceId,
-    const cudaStream_t &amp;stream,
-    const Type &amp;messageOrAgent,
+    unsigned int streamResourceId,
+    cudaStream_t stream,
+    Type messageOrAgent,
+    const std::vector&lt;ScatterData&gt;&amp; sd,
+    unsigned int itemCount) {
+    scatterPosition_async(streamResourceId, stream, messageOrAgent, sd, itemCount);
+    gpuErrchk(cudaStreamSynchronize(stream));
+}
+void CUDAScatter::scatterPosition_async(
+    unsigned int streamResourceId,
+    cudaStream_t stream,
+    Type messageOrAgent,
     const std::vector&lt;ScatterData&gt; &amp;sd,
-    const unsigned int &amp;itemCount) {
+    unsigned int itemCount) {
     int blockSize = 0;  // The launch configurator returned block size
     int minGridSize = 0;  // The minimum grid size needed to achieve the // maximum occupancy for a full device // launch
     int gridSize = 0;  // The actual grid size needed, based on input size
@@ -1045,7 +1056,6 @@ void CUDAScatter::scatterPosition(
         scan.Config(messageOrAgent, streamResourceId).d_ptrs.position,
         streamResources[streamResourceId].d_data, static_cast&lt;unsigned int&gt;(sd.size()));
     gpuErrchkLaunch();
-    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
 }
 unsigned int CUDAScatter::scatterCount(
     const unsigned int &amp;streamResourceId,
@@ -1231,11 +1241,20 @@ __global__ void broadcastInitKernel(
     memcpy(out_ptr, in_ptr, type_len);
 }
 void CUDAScatter::broadcastInit(
-    const unsigned int &amp;streamResourceId,
-    const cudaStream_t &amp;stream,
+    unsigned int streamResourceId,
+    cudaStream_t stream,
     const std::list&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt; &amp;vars,
-    const unsigned int &amp;inCount,
-    const unsigned int outIndexOffset) {
+    unsigned int inCount,
+    unsigned int outIndexOffset) {
+    broadcastInit_async(streamResourceId, stream, vars, inCount, outIndexOffset);
+    gpuErrchk(cudaStreamSynchronize(stream));
+}
+void CUDAScatter::broadcastInit_async(
+    unsigned int streamResourceId,
+    cudaStream_t stream,
+    const std::list&lt;std::shared_ptr&lt;VariableBuffer&gt;&gt;&amp; vars,
+    unsigned int inCount,
+    unsigned int outIndexOffset) {
     // No variables means no work to do
     if (vars.size() == 0) return;
     // 1 thread per agent variable
@@ -1276,15 +1295,24 @@ void CUDAScatter::broadcastInit(
         streamResources[streamResourceId].d_data + offset, static_cast&lt;unsigned int&gt;(sd.size()),
         outIndexOffset);
     gpuErrchkLaunch();
-    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
 }
 void CUDAScatter::broadcastInit(
-    const unsigned int &amp;streamResourceId,
-    const cudaStream_t &amp;stream,
+    unsigned int streamResourceId,
+    cudaStream_t stream,
+    const VariableMap&amp; vars,
+    void* const d_newBuff,
+    unsigned int inCount,
+    unsigned int outIndexOffset) {
+    broadcastInit_async(streamResourceId, stream, vars, d_newBuff, inCount, outIndexOffset);
+    gpuErrchk(cudaStreamSynchronize(stream));
+}
+void CUDAScatter::broadcastInit_async(
+    unsigned int streamResourceId,
+    cudaStream_t stream,
     const VariableMap &amp;vars,
     void * const d_newBuff,
-    const unsigned int &amp;inCount,
-    const unsigned int outIndexOffset) {
+    unsigned int inCount,
+    unsigned int outIndexOffset) {
     // 1 thread per agent variable
     const unsigned int threadCount = static_cast&lt;unsigned int&gt;(vars.size()) * inCount;
     int blockSize = 0;  // The launch configurator returned block size
@@ -1326,7 +1354,6 @@ void CUDAScatter::broadcastInit(
         streamResources[streamResourceId].d_data + offset, static_cast&lt;unsigned int&gt;(sd.size()),
         outIndexOffset);
     gpuErrchkLaunch();
-    gpuErrchk(cudaStreamSynchronize(stream));  // @todo - async + sync variants.
 }
 __global__ void reorder_array_messages(
     const unsigned int threadCount,

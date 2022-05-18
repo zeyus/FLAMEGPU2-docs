@@ -265,6 +265,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -327,7 +328,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -367,7 +368,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -392,6 +392,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -470,6 +471,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -696,7 +698,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -756,6 +757,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -897,11 +899,18 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector">
-<span id="_CPPv3N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector"></span><span id="flamegpu::CUDAEnsemble::simulate__RunPlanVectorCR"></span><span class="target" id="classflamegpu_1_1CUDAEnsemble_1a2e0960234478eb78662f304accc3fb74"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">simulate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classflamegpu_1_1RunPlanVector.html#_CPPv4N8flamegpu13RunPlanVectorE" title="flamegpu::RunPlanVector"><span class="n"><span class="pre">RunPlanVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">plan</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Execute the ensemble of simulations. This call will block until all simulations have completed or MAX_ERRORS simulations exit with an error </p>
+<span id="_CPPv3N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector"></span><span id="flamegpu::CUDAEnsemble::simulate__RunPlanVectorCR"></span><span class="target" id="classflamegpu_1_1CUDAEnsemble_1a430911c8b6820e2e31bdcd8ee02c2652"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">simulate</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="classflamegpu_1_1RunPlanVector.html#_CPPv4N8flamegpu13RunPlanVectorE" title="flamegpu::RunPlanVector"><span class="n"><span class="pre">RunPlanVector</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">plan</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble8simulateERK13RunPlanVector" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Execute the ensemble of simulations. This call will normally block until all simulations have completed, however may exit early if an error occurs with the error_level configuration set to Fast <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a1b288ef4c1a806f49839e1b7aa00a393"><span class="std std-ref">CUDAEnsemble::EnsembleConfig::error_level</span></a> </p>
+</div>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>plan</strong> – The plan of individual runs to execute during the ensemble </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>0 on success, otherwise the number of runs which reported errors and failed </p>
 </dd>
 </dl>
 </dd></dl>
@@ -964,13 +973,13 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4NK8flamegpu12CUDAEnsemble22getEnsembleElapsedTimeEv">
 <span id="_CPPv3NK8flamegpu12CUDAEnsemble22getEnsembleElapsedTimeEv"></span><span id="_CPPv2NK8flamegpu12CUDAEnsemble22getEnsembleElapsedTimeEv"></span><span id="flamegpu::CUDAEnsemble::getEnsembleElapsedTimeC"></span><span class="target" id="classflamegpu_1_1CUDAEnsemble_1aae467c39cf8add5e9e5018bba0592397"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">getEnsembleElapsedTime</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK8flamegpu12CUDAEnsemble22getEnsembleElapsedTimeEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Get the duration of the last call to <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a2e0960234478eb78662f304accc3fb74"><span class="std std-ref">simulate()</span></a> in milliseconds. </p>
+<dd><p>Get the duration of the last call to <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a430911c8b6820e2e31bdcd8ee02c2652"><span class="std std-ref">simulate()</span></a> in milliseconds. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble7getLogsEv">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble7getLogsEv"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble7getLogsEv"></span><span id="flamegpu::CUDAEnsemble::getLogs"></span><span class="target" id="classflamegpu_1_1CUDAEnsemble_1a75f1beecbd3f63c0abee752383baa6dc"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="structflamegpu_1_1RunLog.html#_CPPv4N8flamegpu6RunLogE" title="flamegpu::RunLog"><span class="n"><span class="pre">RunLog</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">getLogs</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble7getLogsEv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Return the list of logs collected from the last call to <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a2e0960234478eb78662f304accc3fb74"><span class="std std-ref">simulate()</span></a> </p>
+<dd><p>Return the list of logs collected from the last call to <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a430911c8b6820e2e31bdcd8ee02c2652"><span class="std std-ref">simulate()</span></a> </p>
 </dd></dl>
 
 </div>
@@ -979,41 +988,71 @@
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfigE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfigE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">EnsembleConfig</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfigE" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Execution config for running a <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble"><span class="std std-ref">CUDAEnsemble</span></a> </p>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE">
+<span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a9bdd14a314ebedc48388948c39273916"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ErrorLevel</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE" title="Permalink to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE">
+<span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a9bdd14a314ebedc48388948c39273916ab1b5779b6c7b12ff0680d26c76421764"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Off</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE">
+<span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a9bdd14a314ebedc48388948c39273916a54749c46fdf7b299103c66e9e7963e9d"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Slow</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE">
+<span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a9bdd14a314ebedc48388948c39273916a933010cf3ecbea112182c56b07459b5f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Fast</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::out_directory__ss"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a672c9ba25d11f571d2aa68667aa32c64"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">out_directory</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;&quot;</span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Directory to store output data (primarily logs) </p>
+<dd><p>Directory to store output data (primarily logs) Defaults to “” (the working directory, no subdirectory) </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10out_formatE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig10out_formatE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig10out_formatE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::out_format__ss"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a7107eeaa1057bdf796408accbcd35186"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">out_format</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;json&quot;</span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10out_formatE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Output format This must be a supported format e.g.: “json” or “xml” </p>
+<dd><p>Output format This must be a supported format e.g.: “json” or “xml” Defaults to “json” </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::concurrent_runs__unsigned-i"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a7f9cdd7b73ca159e022a11391f4e56fd"></span><span class="kt"><span class="pre">unsigned</span> <span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">concurrent_runs</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>The maximum number of concurrent runs </p>
+<dd><p>The maximum number of concurrent runs Defaults to 4 </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::devices__std::set:i:"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a3cb0e3936c85d8e695587ee8fc0be29a"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">set</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">devices</span></span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>The CUDA device ids of devices to be used If this is left empty, all available devices will be used </p>
+<dd><p>The CUDA device ids of devices to be used If this is left empty, all available devices will be used Defaults to empty set (all available devices) </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig5quietE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig5quietE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig5quietE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::quiet__b"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1ac448289d953040fcb3241d266c902c8d"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">quiet</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig5quietE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>If true progress logging to stdout will be suppressed </p>
+<dd><p>If true progress logging to stdout will be suppressed Defaults to false </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig6timingE">
 <span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig6timingE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig6timingE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::timing__b"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1adc16e304695861ea342a6d959f33321a"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timing</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig6timingE" title="Permalink to this definition"></a><br /></dt>
-<dd><p>If true, the total runtime for the ensemble will be printed to stdout at completion This is independent of the <a class="reference internal" href="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1ac448289d953040fcb3241d266c902c8d"><span class="std std-ref">EnsembleConfig::quiet</span></a> </p>
+<dd><p>If true, the total runtime for the ensemble will be printed to stdout at completion This is independent of the <a class="reference internal" href="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1ac448289d953040fcb3241d266c902c8d"><span class="std std-ref">EnsembleConfig::quiet</span></a> Defaults to false </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE">
+<span id="_CPPv3N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE"></span><span id="_CPPv2N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE"></span><span id="flamegpu::CUDAEnsemble::EnsembleConfig::error_level__ErrorLevel"></span><span class="target" id="structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig_1a1b288ef4c1a806f49839e1b7aa00a393"></span><a class="reference internal" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE" title="flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel"><span class="n"><span class="pre">ErrorLevel</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">error_level</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE" title="flamegpu::CUDAEnsemble::EnsembleConfig::Slow"><span class="n"><span class="pre">Slow</span></span></a><a class="headerlink" href="#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Off: Runs which fail do not cause an exception to be raised. Failed runs must be probed manually via checking the return value of calls to <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a430911c8b6820e2e31bdcd8ee02c2652"><span class="std std-ref">CUDAEnsemble::simulate()</span></a> Slow: If any runs fail, an EnsembleException will be raised after all runs have been attempted, before <a class="reference internal" href="#classflamegpu_1_1CUDAEnsemble_1a430911c8b6820e2e31bdcd8ee02c2652"><span class="std std-ref">CUDAEnsemble::simulate()</span></a> returns. Fast: An EnsembleException will be raised as soon as a failed run is detected, cancelling remaining runs. Defaults to Slow </p>
 </dd></dl>
 
 </div>

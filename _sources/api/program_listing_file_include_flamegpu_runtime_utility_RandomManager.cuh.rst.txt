@@ -36,7 +36,7 @@ Program Listing for File RandomManager.cuh
         ~RandomManager();
        uint64_t seedFromTime();
        void reseed(const uint64_t &seed);
-       curandState *resize(const size_type &_length);
+       curandState *resize(size_type _length, cudaStream_t stream);
        void setGrowthModifier(float);
        float getGrowthModifier();
        void setShrinkModifier(float);
@@ -54,7 +54,7 @@ Program Listing for File RandomManager.cuh
        const size_type min_length = 1024;
        float shrinkModifier = 1.0f;
        float growthModifier = 1.5f;
-       void resizeDeviceArray(const size_type &_length);
+       void resizeDeviceArray(const size_type &_length, cudaStream_t stream);
        curandState *h_max_random_state = nullptr;
        size_type h_max_random_size = 0;
        std::mt19937_64 host_rng;

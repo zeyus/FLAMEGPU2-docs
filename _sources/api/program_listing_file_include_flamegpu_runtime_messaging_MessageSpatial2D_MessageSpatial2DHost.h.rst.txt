@@ -28,14 +28,14 @@ Program Listing for File MessageSpatial2DHost.h
     public:
         explicit CUDAModelHandler(CUDAMessage &a);
         ~CUDAModelHandler() override;
-       void init(CUDAScatter &scatter, const unsigned int &streamId) override;
-       void buildIndex(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream) override;
-       void allocateMetaDataDevicePtr() override;
+       void init(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream) override;
+       void buildIndex(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream) override;
+       void allocateMetaDataDevicePtr(cudaStream_t stream) override;
        void freeMetaDataDevicePtr() override;
        const void *getMetaDataDevicePtr() const override { return d_data; }
    
     private:
-       void resizeCubTemp();
+       void resizeCubTemp(cudaStream_t stream);
        void resizeKeysVals(const unsigned int &newSize);
        unsigned int binCount = 0;
        size_t d_CUB_temp_storage_bytes = 0;

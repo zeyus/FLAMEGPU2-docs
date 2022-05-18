@@ -98,7 +98,7 @@ Program Listing for File CUDAFatAgentStateList.h
          const unsigned int &sub_fat_index,
          const std::shared_ptr<SubAgentData> &mapping);
        std::shared_ptr<VariableBuffer> getVariableBuffer(const unsigned int &fat_index, const std::string &name);
-       void resize(const unsigned int &minSize, const bool &retainData);
+       void resize(unsigned int minSize, bool retainData, cudaStream_t stream);
        unsigned int getSize() const;
        unsigned int getSizeWithDisabled() const;
        unsigned int getAllocatedSize() const;
@@ -106,7 +106,7 @@ Program Listing for File CUDAFatAgentStateList.h
        unsigned int scatterDeath(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        unsigned int scatterAgentFunctionConditionFalse(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        unsigned int scatterAgentFunctionConditionTrue(const unsigned int &conditionFailCount, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
-       void scatterSort(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void scatterSort_async(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream);
        void setDisabledAgents(const unsigned int &numberOfDisabled);
        void initVariables(std::set<std::shared_ptr<VariableBuffer>> &exclusionSet, const unsigned int initCount, const unsigned initOffset, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        std::list<std::shared_ptr<VariableBuffer>> &getUniqueVariables();

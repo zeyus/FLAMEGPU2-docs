@@ -52,7 +52,7 @@ Program Listing for File CUDAFatAgent.h
          const std::shared_ptr<SubAgentData> &mapping);
        std::unordered_map<std::string, std::shared_ptr<CUDAFatAgentStateList>> getStateMap(const unsigned int &fat_index);
        void processDeath(const unsigned int &agent_fat_id, const std::string &state_name, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
-       void transitionState(const unsigned int &agent_fat_id, const std::string &_src, const std::string &_dest, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
+       void transitionState(unsigned int agent_fat_id, const std::string &_src, const std::string &_dest, CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream);
        void processFunctionCondition(const unsigned int &agent_fat_id, const std::string &state_name, CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream);
        void setConditionState(const unsigned int &agent_fat_id, const std::string &state_name, const unsigned int numberOfDisabled);
        void *allocNewBuffer(const size_t &total_agent_size, const unsigned int &new_agents, const size_t &varCount);
@@ -61,7 +61,7 @@ Program Listing for File CUDAFatAgent.h
        id_t nextID(unsigned int count = 1);
        id_t *getDeviceNextID();
        void notifyDeviceBirths(unsigned int newCount);
-       void assignIDs(HostAPI& hostapi);
+       void assignIDs(HostAPI& hostapi, CUDAScatter& scatter, cudaStream_t stream, unsigned int streamId);
        void markIDsUnset() { agent_ids_have_init = false; }
        void resetIDCounter();
    

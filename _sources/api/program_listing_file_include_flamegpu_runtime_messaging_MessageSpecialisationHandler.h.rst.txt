@@ -22,9 +22,9 @@ Program Listing for File MessageSpecialisationHandler.h
     public:
        MessageSpecialisationHandler() { }
        virtual ~MessageSpecialisationHandler() { }
-       virtual void init(CUDAScatter &scatter, const unsigned int &streamId) = 0;
-       virtual void buildIndex(CUDAScatter &scatter, const unsigned int &streamId, const cudaStream_t &stream) { }
-       virtual void allocateMetaDataDevicePtr() { }
+       virtual void init(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream) = 0;
+       virtual void buildIndex(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream) { }
+       virtual void allocateMetaDataDevicePtr(cudaStream_t stream) { }
        virtual void freeMetaDataDevicePtr() { }
        virtual const void *getMetaDataDevicePtr() const { return nullptr; }
    };

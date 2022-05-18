@@ -263,6 +263,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -325,7 +326,7 @@
 <li class="toctree-l2"><a class="reference internal" href="library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -365,7 +366,6 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -390,6 +390,7 @@
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -468,6 +469,7 @@
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -694,7 +696,6 @@
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -754,6 +755,7 @@
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -898,7 +900,7 @@ const MessageBruteForce::Data&amp; CUDAMessage::getMessageDescription() const {
     return message_description;
 }
 
-void CUDAMessage::resize(unsigned int newSize, CUDAScatter &amp;scatter, const unsigned int &amp;streamId, const unsigned int&amp; keepLen) {
+void CUDAMessage::resize(unsigned int newSize, CUDAScatter &amp;scatter, cudaStream_t stream, unsigned int streamId, unsigned int keepLen) {
     // Only grow currently
     if (newSize &gt; max_list_size) {
         const unsigned int _keep_len = std::min(max_list_size, keepLen);
@@ -907,10 +909,10 @@ void CUDAMessage::resize(unsigned int newSize, CUDAScatter &amp;scatter, const u
             max_list_size = static_cast&lt;unsigned int&gt;(max_list_size * 1.5);
         }
         if (message_list) {
-            message_list-&gt;resize(scatter, streamId, _keep_len);
+            message_list-&gt;resize(scatter, stream, streamId, _keep_len);
         } else {
             // If the list has not already been allocated, create a new
-            message_list = std::unique_ptr&lt;CUDAMessageList&gt;(new CUDAMessageList(*this, scatter, streamId));
+            message_list = std::unique_ptr&lt;CUDAMessageList&gt;(new CUDAMessageList(*this, scatter, stream, streamId));
         }
         scatter.Scan().resize(max_list_size, CUDAScanCompaction::MESSAGE_OUTPUT, streamId);
     }
@@ -929,14 +931,14 @@ void CUDAMessage::setMessageCount(const unsigned int &amp;_message_count) {
     }
     message_count = _message_count;
 }
-void CUDAMessage::init(CUDAScatter &amp;scatter, const unsigned int &amp;streamId) {
-    specialisation_handler-&gt;init(scatter, streamId);
+void CUDAMessage::init(CUDAScatter &amp;scatter, unsigned int streamId, cudaStream_t stream) {
+    specialisation_handler-&gt;init(scatter, streamId, stream);
 }
-void CUDAMessage::zeroAllMessageData() {
+void CUDAMessage::zeroAllMessageData(cudaStream_t stream) {
     if (!message_list) {
         THROW exception::InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
     }
-    message_list-&gt;zeroMessageData();
+    message_list-&gt;zeroMessageData(stream);
 }
 
 void CUDAMessage::mapReadRuntimeVariables(const AgentFunctionData&amp; func, const CUDAAgent&amp; cuda_agent, const unsigned int &amp;instance_id) const {
@@ -993,7 +995,7 @@ void *CUDAMessage::getReadPtr(const std::string &amp;var_name) {
     }
     return message_list-&gt;getReadMessageListVariablePointer(var_name);
 }
-void CUDAMessage::mapWriteRuntimeVariables(const AgentFunctionData&amp; func, const CUDAAgent&amp; cuda_agent, const unsigned int &amp;writeLen, const unsigned int &amp;instance_id) const {
+void CUDAMessage::mapWriteRuntimeVariables(const AgentFunctionData&amp; func, const CUDAAgent&amp; cuda_agent, const unsigned int &amp;writeLen, const unsigned int &amp;instance_id, cudaStream_t stream) const {
     // check that the message list has been allocated
     if (!message_list) {
         THROW exception::InvalidMessageData(&quot;Error: Initial message list for message &#39;%s&#39; has not been allocated, &quot;
@@ -1038,7 +1040,7 @@ void CUDAMessage::mapWriteRuntimeVariables(const AgentFunctionData&amp; func, co
     }
 
     // Allocate the metadata if required. (This call should now be redundant)
-    specialisation_handler-&gt;allocateMetaDataDevicePtr();
+    specialisation_handler-&gt;allocateMetaDataDevicePtr(stream);
 }
 
 void CUDAMessage::unmapRuntimeVariables(const AgentFunctionData&amp; func, const unsigned int &amp;instance_id) const {
@@ -1063,36 +1065,33 @@ void CUDAMessage::unmapRuntimeVariables(const AgentFunctionData&amp; func, const
         curve.unregisterVariableByHash(var_hash + agent_hash + func_hash + message_hash + instance_id);
     }
 }
-void CUDAMessage::swap(bool isOptional, const unsigned int &amp;newMessageCount, CUDAScatter &amp;scatter, const unsigned int &amp;streamId) {
+void CUDAMessage::swap(bool isOptional, unsigned int newMessageCount, CUDAScatter &amp;scatter, cudaStream_t stream, unsigned int streamId) {
     if (!message_list) {
         THROW exception::InvalidMessageData(&quot;MessageList &#39;%s&#39; is not yet allocated, in CUDAMessage::swap()\n&quot;, message_description.name.c_str());
     }
     if (isOptional &amp;&amp; message_description.optional_outputs &gt; 0) {
-        CUDAScanCompactionConfig &amp;scanCfg = scatter.Scan().Config(CUDAScanCompaction::Type::MESSAGE_OUTPUT, streamId);
-        if (newMessageCount &gt; scanCfg.cub_temp_size_max_list_size) {
-            if (scanCfg.hd_cub_temp) {
-                gpuErrchk(cudaFree(scanCfg.hd_cub_temp));
-            }
-            scanCfg.cub_temp_size = 0;
-            gpuErrchk(cub::DeviceScan::ExclusiveSum(
-                nullptr,
-                scanCfg.cub_temp_size,
-                scanCfg.d_ptrs.scan_flag,
-                scanCfg.d_ptrs.position,
-                max_list_size + 1));
-            gpuErrchk(cudaMalloc(&amp;scanCfg.hd_cub_temp,
-                scanCfg.cub_temp_size));
-            scanCfg.cub_temp_size_max_list_size = max_list_size;
-        }
+        auto &amp;scanCfg = scatter.Scan().getConfig(CUDAScanCompaction::MESSAGE_OUTPUT, streamId);
+        // Check if we need to resize cub storage
+        auto&amp; cub_temp = scatter.CubTemp(streamId);
+        size_t tempByte = 0;
         gpuErrchk(cub::DeviceScan::ExclusiveSum(
-            scanCfg.hd_cub_temp,
-            scanCfg.cub_temp_size,
+            nullptr,
+            tempByte,
             scanCfg.d_ptrs.scan_flag,
             scanCfg.d_ptrs.position,
-            newMessageCount + 1));
+            max_list_size + 1,
+            stream));
+        cub_temp.resize(tempByte);
+        gpuErrchk(cub::DeviceScan::ExclusiveSum(
+            cub_temp.getPtr(),
+            cub_temp.getSize(),
+            scanCfg.d_ptrs.scan_flag,
+            scanCfg.d_ptrs.position,
+            newMessageCount + 1,
+            stream));
         // Scatter
         // Update count
-        message_count = message_list-&gt;scatter(newMessageCount, scatter, streamId, !this-&gt;truncate_messagelist_flag);
+        message_count = message_list-&gt;scatter(newMessageCount, scatter, stream, streamId, !this-&gt;truncate_messagelist_flag);
     } else {
         if (this-&gt;truncate_messagelist_flag) {
             message_count = newMessageCount;
@@ -1100,7 +1099,7 @@ void CUDAMessage::swap(bool isOptional, const unsigned int &amp;newMessageCount,
         } else {
             assert(message_count + newMessageCount &lt;= max_list_size);
             // We&#39;re appending so use our scatter kernel
-            message_count = message_list-&gt;scatterAll(newMessageCount, scatter, streamId);
+            message_count = message_list-&gt;scatterAll(newMessageCount, scatter, stream, streamId);
         }
     }
 }

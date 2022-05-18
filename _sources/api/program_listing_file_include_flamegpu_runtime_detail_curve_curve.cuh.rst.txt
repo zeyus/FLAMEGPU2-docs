@@ -140,9 +140,9 @@ Program Listing for File curve.cuh
        std::unique_lock<std::shared_timed_mutex> getUniqueLock() const { return std::unique_lock<std::shared_timed_mutex>(mutex); }
    #endif
    
-       void initialiseDevice();
+       void initialiseDevice(cudaStream_t stream);
        friend class flamegpu::CUDASimulation;
-       __host__ void purge();
+       __host__ void purge(cudaStream_t stream);
    
     protected:
        Curve();

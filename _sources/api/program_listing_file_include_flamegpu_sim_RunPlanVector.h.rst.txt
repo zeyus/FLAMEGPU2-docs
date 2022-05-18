@@ -33,7 +33,7 @@ Program Listing for File RunPlanVector.h
    class RunPlanVector : private std::vector<RunPlan>  {
        friend class RunPlan;
        friend class SimRunner;
-       friend void CUDAEnsemble::simulate(const RunPlanVector &plans);
+       friend unsigned int CUDAEnsemble::simulate(const RunPlanVector &plans);
    
     public:
        explicit RunPlanVector(const ModelDescription &model, unsigned int initial_length);

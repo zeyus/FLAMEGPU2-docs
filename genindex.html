@@ -264,6 +264,7 @@
 <li class="toctree-l3"><a class="reference internal" href="guide/running-multiple-simulations/index.html#creating-a-runplanvector">Creating a RunPlanVector</a></li>
 <li class="toctree-l3"><a class="reference internal" href="guide/running-multiple-simulations/index.html#creating-a-logging-configuration">Creating a Logging Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="guide/running-multiple-simulations/index.html#configuring-running-the-ensemble">Configuring &amp; Running the Ensemble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="guide/running-multiple-simulations/index.html#error-handling-within-ensembles">Error Handling Within Ensembles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="guide/running-multiple-simulations/index.html#related-links">Related Links</a></li>
 </ul>
 </li>
@@ -326,7 +327,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/library_root.html#full-api">Full API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="api/library_root.html#namespaces">Namespaces</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu.html">Namespace flamegpu</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__%40156.html">Namespace flamegpu::&#64;156</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__%40157.html">Namespace flamegpu::&#64;157</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__exception.html">Namespace flamegpu::exception</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__io.html">Namespace flamegpu::io</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/namespace_flamegpu__util.html">Namespace flamegpu::util</a></li>
@@ -366,7 +367,6 @@
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1EnvironmentManager_1_1RTCEnvPropCache.html">Struct EnvironmentManager::RTCEnvPropCache</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1exception_1_1DeviceExceptionBuffer.html">Struct DeviceExceptionBuffer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1ExitLogFrame.html">Struct ExitLogFrame</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1HostAPI_1_1key__hash.html">Struct HostAPI::key_hash</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1HostMacroProperty__MetaData.html">Struct HostMacroProperty_MetaData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1LayerData.html">Struct LayerData</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1LogFrame.html">Struct LogFrame</a></li>
@@ -391,6 +391,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1NewAgentStorage.html">Struct NewAgentStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1RunLog.html">Struct RunLog</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1RunLog_1_1PerformanceSpecs.html">Struct RunLog::PerformanceSpecs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html">Struct SimRunner::ErrorDetail</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1Simulation_1_1Config.html">Struct Simulation::Config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1StepLogFrame.html">Struct StepLogFrame</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/structflamegpu_1_1SubAgentData.html">Struct SubAgentData</a></li>
@@ -469,6 +470,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1DeviceExceptionManager.html">Class DeviceExceptionManager</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1DifferentModel.html">Class DifferentModel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1DuplicateEnvProperty.html">Class DuplicateEnvProperty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1EnsembleError.html">Class EnsembleError</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html">Class EnvDescriptionAlreadyLoaded</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1ExpiredWeakPtr.html">Class ExpiredWeakPtr</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/classflamegpu_1_1exception_1_1FLAMEGPUException.html">Class FLAMEGPUException</a></li>
@@ -695,7 +697,6 @@
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a234b5ec14c0009cdce8001a6bc08bf85.html">Function flamegpu::scatter_new_agents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1aca5e4a678eafc6ca26d5ff6e3239503c.html">Function flamegpu::scatter_position_generic</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html">Function flamegpu::sortBuffer_kernel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html">Function flamegpu::spatialSortInitToThreadIndex</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1_1util_1_1nvtx_1af0b150530f56beedbdd1b0dff603f869.html">Function flamegpu::util::nvtx::pop</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/function_namespaceflamegpu_1_1util_1_1nvtx_1ae4d84b8b9f557577d74b2545dc8213f1.html">Function flamegpu::util::nvtx::push</a></li>
 </ul>
@@ -755,6 +756,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api/define_FLAMEGPUDeviceException_8cuh_1a1a757b8c1e833b86bfca9a577aed08c8.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html">Define INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html">Define INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html">Define INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/define_AgentFunctionData_8cuh_1abcd20b720bdde9dae536097d9b59ce83.html">Define INCLUDE_FLAMEGPU_MODEL_AGENTFUNCTIONDATA_CUH_</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api/define_AgentFunction_8cuh_1affe4f5c251678f8cb6a9da167dabbcb4.html">Define INCLUDE_FLAMEGPU_RUNTIME_AGENTFUNCTION_CUH_</a></li>
@@ -1386,7 +1388,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent26addInstantitateRTCFunctionERK17AgentFunctionDataRK20CUDAMacroEnvironmentb">flamegpu::CUDAAgent::addInstantitateRTCFunction (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent9assignIDsER7HostAPI">flamegpu::CUDAAgent::assignIDs (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent9assignIDsER7HostAPIR11CUDAScatter12cudaStream_tj">flamegpu::CUDAAgent::assignIDs (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent22clearFunctionConditionERKNSt6stringE">flamegpu::CUDAAgent::clearFunctionCondition (C++ function)</a>
 </li>
@@ -1428,7 +1430,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgent::initUnmappedVars (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent22mapNewRuntimeVariablesERK9CUDAAgentRK17AgentFunctionDataRKjR11CUDAScatterRKjRKj">flamegpu::CUDAAgent::mapNewRuntimeVariables (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent28mapNewRuntimeVariables_asyncERK9CUDAAgentRK17AgentFunctionDatajR11CUDAScatterj12cudaStream_tj">flamegpu::CUDAAgent::mapNewRuntimeVariables_async (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4NK8flamegpu9CUDAAgent19mapRuntimeVariablesERK17AgentFunctionDataRKj">flamegpu::CUDAAgent::mapRuntimeVariables (C++ function)</a>
 </li>
@@ -1440,13 +1442,13 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent19resetPopulationVecsEv">flamegpu::CUDAAgent::resetPopulationVecs (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent11resizeStateERKNSt6stringERKjRKb">flamegpu::CUDAAgent::resizeState (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent11resizeStateERKNSt6stringEjb12cudaStream_t">flamegpu::CUDAAgent::resizeState (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent19scatterHostCreationERKNSt6stringERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgent::scatterHostCreation (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent10scatterNewERK17AgentFunctionDataRKjR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgent::scatterNew (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent11scatterSortERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgent::scatterSort (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent17scatterSort_asyncERKNSt6stringER11CUDAScatterj12cudaStream_t">flamegpu::CUDAAgent::scatterSort_async (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgent.html#_CPPv4N8flamegpu9CUDAAgent17setPopulationDataERK11AgentVectorRKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgent::setPopulationData (C++ function)</a>
 </li>
@@ -1482,17 +1484,17 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList16initUnmappedVarsER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgentStateList::initUnmappedVars (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList6resizeERKjRKb">flamegpu::CUDAAgentStateList::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList6resizeEjb12cudaStream_t">flamegpu::CUDAAgentStateList::resize (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList19scatterHostCreationERKjPCcRK15VarOffsetStructR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgentStateList::scatterHostCreation (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList19scatterHostCreationEjPCcRK15VarOffsetStructR11CUDAScatterj12cudaStream_t">flamegpu::CUDAAgentStateList::scatterHostCreation (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList10scatterNewEPvRKjR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgentStateList::scatterNew (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList10scatterNewEPvjR11CUDAScatterj12cudaStream_t">flamegpu::CUDAAgentStateList::scatterNew (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList11scatterSortER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgentStateList::scatterSort (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList17scatterSort_asyncER11CUDAScatterj12cudaStream_t">flamegpu::CUDAAgentStateList::scatterSort_async (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList13setAgentCountERKj">flamegpu::CUDAAgentStateList::setAgentCount (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList12setAgentDataERK11AgentVectorR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAAgentStateList::setAgentData (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAAgentStateList.html#_CPPv4N8flamegpu18CUDAAgentStateList12setAgentDataERK11AgentVectorR11CUDAScatterj12cudaStream_t">flamegpu::CUDAAgentStateList::setAgentData (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsembleE">flamegpu::CUDAEnsemble (C++ class)</a>
 </li>
@@ -1505,6 +1507,16 @@
       <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE">flamegpu::CUDAEnsemble::EnsembleConfig::concurrent_runs (C++ member)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig15concurrent_runsE">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE">flamegpu::CUDAEnsemble::EnsembleConfig::devices (C++ member)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig7devicesE">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE">flamegpu::CUDAEnsemble::EnsembleConfig::error_level (C++ member)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig11error_levelE">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE">flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel (C++ enum)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevelE">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE">flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel::Fast (C++ enumerator)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4FastE">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE">flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel::Off (C++ enumerator)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel3OffE">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE">flamegpu::CUDAEnsemble::EnsembleConfig::ErrorLevel::Slow (C++ enumerator)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig10ErrorLevel4SlowE">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAEnsemble.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE">flamegpu::CUDAEnsemble::EnsembleConfig::out_directory (C++ member)</a>, <a href="api/structflamegpu_1_1CUDAEnsemble_1_1EnsembleConfig.html#_CPPv4N8flamegpu12CUDAEnsemble14EnsembleConfig13out_directoryE">[1]</a>
 </li>
@@ -1548,7 +1560,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent14allocNewBufferERK6size_tRKjRK6size_t">flamegpu::CUDAFatAgent::allocNewBuffer (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent9assignIDsER7HostAPI">flamegpu::CUDAFatAgent::assignIDs (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent9assignIDsER7HostAPIR11CUDAScatter12cudaStream_tj">flamegpu::CUDAFatAgent::assignIDs (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent12CUDAFatAgentERK9AgentData">flamegpu::CUDAFatAgent::CUDAFatAgent (C++ function)</a>
 </li>
@@ -1584,7 +1596,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent17setConditionStateERKjRKNSt6stringEKj">flamegpu::CUDAFatAgent::setConditionState (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent15transitionStateERKjRKNSt6stringERKNSt6stringER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAFatAgent::transitionState (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgent15transitionStateEjRKNSt6stringERKNSt6stringER11CUDAScatterj12cudaStream_t">flamegpu::CUDAFatAgent::transitionState (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgent.html#_CPPv4N8flamegpu12CUDAFatAgentD0Ev">flamegpu::CUDAFatAgent::~CUDAFatAgent (C++ function)</a>
 </li>
@@ -1608,7 +1620,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList13initVariablesERNSt3setINSt10shared_ptrI14VariableBufferEEEEKjKjR11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAFatAgentStateList::initVariables (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList6resizeERKjRKb">flamegpu::CUDAFatAgentStateList::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList6resizeEjb12cudaStream_t">flamegpu::CUDAFatAgentStateList::resize (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList34scatterAgentFunctionConditionFalseER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAFatAgentStateList::scatterAgentFunctionConditionFalse (C++ function)</a>
 </li>
@@ -1616,7 +1628,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList12scatterDeathER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAFatAgentStateList::scatterDeath (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList11scatterSortER11CUDAScatterRKjRK12cudaStream_t">flamegpu::CUDAFatAgentStateList::scatterSort (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList17scatterSort_asyncER11CUDAScatterj12cudaStream_t">flamegpu::CUDAFatAgentStateList::scatterSort_async (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAFatAgentStateList.html#_CPPv4N8flamegpu21CUDAFatAgentStateList13setAgentCountERKjRKb">flamegpu::CUDAFatAgentStateList::setAgentCount (C++ function)</a>
 </li>
@@ -1640,7 +1652,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMacroEnvironment.html#_CPPv4I0_j_j_j_jEN8flamegpu20CUDAMacroEnvironment11getPropertyE17HostMacroPropertyI1T1I1J1K1WERKNSt6stringE">flamegpu::CUDAMacroEnvironment::getProperty (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMacroEnvironment.html#_CPPv4N8flamegpu20CUDAMacroEnvironment4initERK18SubEnvironmentDataRK20CUDAMacroEnvironment">flamegpu::CUDAMacroEnvironment::init (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAMacroEnvironment.html#_CPPv4N8flamegpu20CUDAMacroEnvironment4initEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1CUDAMacroEnvironment.html#_CPPv4N8flamegpu20CUDAMacroEnvironment4initE12cudaStream_t">flamegpu::CUDAMacroEnvironment::init (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAMacroEnvironment.html#_CPPv4N8flamegpu20CUDAMacroEnvironment4initERK18SubEnvironmentDataRK20CUDAMacroEnvironment12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAMacroEnvironment_1_1MacroEnvProp.html#_CPPv4N8flamegpu20CUDAMacroEnvironment12MacroEnvPropE">flamegpu::CUDAMacroEnvironment::MacroEnvProp (C++ struct)</a>
 </li>
@@ -1698,13 +1710,13 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage12getWriteListEv">flamegpu::CUDAMessage::getWriteList (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4initER11CUDAScatterRKj">flamegpu::CUDAMessage::init (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4initER11CUDAScatterj12cudaStream_t">flamegpu::CUDAMessage::init (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4NK8flamegpu11CUDAMessage23mapReadRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKj">flamegpu::CUDAMessage::mapReadRuntimeVariables (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4NK8flamegpu11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj">flamegpu::CUDAMessage::mapWriteRuntimeVariables (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4NK8flamegpu11CUDAMessage24mapWriteRuntimeVariablesERK17AgentFunctionDataRK9CUDAAgentRKjRKj12cudaStream_t">flamegpu::CUDAMessage::mapWriteRuntimeVariables (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage6resizeEjR11CUDAScatterRKjRKj">flamegpu::CUDAMessage::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage6resizeEjR11CUDAScatter12cudaStream_tjj">flamegpu::CUDAMessage::resize (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage15setMessageCountERKj">flamegpu::CUDAMessage::setMessageCount (C++ function)</a>
 </li>
@@ -1712,11 +1724,11 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage26setTruncateMessageListFlagEv">flamegpu::CUDAMessage::setTruncateMessageListFlag (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4swapEbRKjR11CUDAScatterRKj">flamegpu::CUDAMessage::swap (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4swapEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4swapEbjR11CUDAScatter12cudaStream_tj">flamegpu::CUDAMessage::swap (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage4swapEv">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4NK8flamegpu11CUDAMessage21unmapRuntimeVariablesERK17AgentFunctionDataRKj">flamegpu::CUDAMessage::unmapRuntimeVariables (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage18zeroAllMessageDataEv">flamegpu::CUDAMessage::zeroAllMessageData (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessage18zeroAllMessageDataE12cudaStream_t">flamegpu::CUDAMessage::zeroAllMessageData (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessage.html#_CPPv4N8flamegpu11CUDAMessageD0Ev">flamegpu::CUDAMessage::~CUDAMessage (C++ function)</a>
 </li>
@@ -1726,7 +1738,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList20cleanupAllocatedDataEv">flamegpu::CUDAMessageList::cleanupAllocatedData (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList15CUDAMessageListER11CUDAMessageR11CUDAScatterRKj">flamegpu::CUDAMessageList::CUDAMessageList (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList15CUDAMessageListER11CUDAMessageR11CUDAScatter12cudaStream_tj">flamegpu::CUDAMessageList::CUDAMessageList (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList11getReadListEv">flamegpu::CUDAMessageList::getReadList (C++ function)</a>
 </li>
@@ -1738,17 +1750,17 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList24releaseDeviceMessageListER14CUDAMessageMap">flamegpu::CUDAMessageList::releaseDeviceMessageList (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList6resizeER11CUDAScatterRKjRKj">flamegpu::CUDAMessageList::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList6resizeER11CUDAScatter12cudaStream_tjj">flamegpu::CUDAMessageList::resize (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList7scatterERKjR11CUDAScatterRKjRKb">flamegpu::CUDAMessageList::scatter (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList7scatterEjR11CUDAScatter12cudaStream_tjb">flamegpu::CUDAMessageList::scatter (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList10scatterAllERKjR11CUDAScatterRKj">flamegpu::CUDAMessageList::scatterAll (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList10scatterAllEjR11CUDAScatter12cudaStream_tj">flamegpu::CUDAMessageList::scatterAll (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList4swapEv">flamegpu::CUDAMessageList::swap (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList21zeroDeviceMessageListER14CUDAMessageMapRKj">flamegpu::CUDAMessageList::zeroDeviceMessageList (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList27zeroDeviceMessageList_asyncER14CUDAMessageMap12cudaStream_tj">flamegpu::CUDAMessageList::zeroDeviceMessageList_async (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList15zeroMessageDataEv">flamegpu::CUDAMessageList::zeroMessageData (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageList15zeroMessageDataE12cudaStream_t">flamegpu::CUDAMessageList::zeroMessageData (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAMessageList.html#_CPPv4N8flamegpu15CUDAMessageListD0Ev">flamegpu::CUDAMessageList::~CUDAMessageList (C++ function)</a>
 </li>
@@ -1782,13 +1794,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAScanCompaction.html#_CPPv4N8flamegpu18CUDAScanCompaction4Type14MESSAGE_OUTPUTE">flamegpu::CUDAScanCompaction::Type::MESSAGE_OUTPUT (C++ enumerator)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAScanCompaction.html#_CPPv4N8flamegpu18CUDAScanCompaction4zeroERK4TypeRKj">flamegpu::CUDAScanCompaction::zero (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAScanCompaction.html#_CPPv4N8flamegpu18CUDAScanCompaction10zero_asyncERK4Type12cudaStream_tj">flamegpu::CUDAScanCompaction::zero_async (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfigE">flamegpu::CUDAScanCompactionConfig (C++ struct)</a>
-</li>
-      <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig13cub_temp_sizeE">flamegpu::CUDAScanCompactionConfig::cub_temp_size (C++ member)</a>
-</li>
-      <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig27cub_temp_size_max_list_sizeE">flamegpu::CUDAScanCompactionConfig::cub_temp_size_max_list_size (C++ member)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig24CUDAScanCompactionConfigERK24CUDAScanCompactionConfig">flamegpu::CUDAScanCompactionConfig::CUDAScanCompactionConfig (C++ function)</a>, <a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig24CUDAScanCompactionConfigEv">[1]</a>
 </li>
@@ -1796,15 +1804,13 @@
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig14free_scan_flagEv">flamegpu::CUDAScanCompactionConfig::free_scan_flag (C++ function)</a>
 </li>
-      <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig11hd_cub_tempE">flamegpu::CUDAScanCompactionConfig::hd_cub_temp (C++ member)</a>
-</li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfigaSERK24CUDAScanCompactionConfig">flamegpu::CUDAScanCompactionConfig::operator= (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig16resize_scan_flagERKj">flamegpu::CUDAScanCompactionConfig::resize_scan_flag (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig13scan_flag_lenE">flamegpu::CUDAScanCompactionConfig::scan_flag_len (C++ member)</a>
 </li>
-      <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig14zero_scan_flagEv">flamegpu::CUDAScanCompactionConfig::zero_scan_flag (C++ function)</a>
+      <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfig20zero_scan_flag_asyncE12cudaStream_t">flamegpu::CUDAScanCompactionConfig::zero_scan_flag_async (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScanCompactionConfig.html#_CPPv4N8flamegpu24CUDAScanCompactionConfigD0Ev">flamegpu::CUDAScanCompactionConfig::~CUDAScanCompactionConfig (C++ function)</a>
 </li>
@@ -1818,7 +1824,11 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter19arrayMessageReorderERKjRK12cudaStream_tRK11VariableMapRKNSt3mapINSt6stringEPvEERKNSt3mapINSt6stringEPvEERKjRKjPj">flamegpu::CUDAScatter::arrayMessageReorder (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter13broadcastInitERKjRK12cudaStream_tRK11VariableMapPCvRKjKj">flamegpu::CUDAScatter::broadcastInit (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter13broadcastInitERKjRK12cudaStream_tRKNSt4listINSt10shared_ptrI14VariableBufferEEEERKjKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter13broadcastInitEj12cudaStream_tRK11VariableMapPCvjj">flamegpu::CUDAScatter::broadcastInit (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter13broadcastInitEj12cudaStream_tRKNSt4listINSt10shared_ptrI14VariableBufferEEEEjj">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter19broadcastInit_asyncEj12cudaStream_tRK11VariableMapPCvjj">flamegpu::CUDAScatter::broadcastInit_async (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter19broadcastInit_asyncEj12cudaStream_tRKNSt4listINSt10shared_ptrI14VariableBufferEEEEjj">[1]</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter7CubTempEKj">flamegpu::CUDAScatter::CubTemp (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter11CUDAScatterERK11CUDAScatter">flamegpu::CUDAScatter::CUDAScatter (C++ function)</a>, <a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter11CUDAScatterEv">[1]</a>
 </li>
@@ -1870,7 +1880,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter16scatterNewAgentsERKjRK12cudaStream_tRKNSt6vectorI11ScatterDataEERK6size_tRKjRKj">flamegpu::CUDAScatter::scatterNewAgents (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter15scatterPositionERKjRK12cudaStream_tRK4TypeRKNSt6vectorI11ScatterDataEERKj">flamegpu::CUDAScatter::scatterPosition (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter15scatterPositionEj12cudaStream_t4TypeRKNSt6vectorI11ScatterDataEEj">flamegpu::CUDAScatter::scatterPosition (C++ function)</a>
+</li>
+      <li><a href="api/classflamegpu_1_1CUDAScatter.html#_CPPv4N8flamegpu11CUDAScatter21scatterPosition_asyncEj12cudaStream_t4TypeRKNSt6vectorI11ScatterDataEEj">flamegpu::CUDAScatter::scatterPosition_async (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1CUDAScatter_1_1StreamData.html#_CPPv4N8flamegpu11CUDAScatter10StreamDataE">flamegpu::CUDAScatter::StreamData (C++ struct)</a>
 </li>
@@ -2442,6 +2454,10 @@
 </li>
       <li><a href="api/classflamegpu_1_1exception_1_1DuplicateEnvProperty.html#_CPPv4N8flamegpu9exception20DuplicateEnvProperty20DuplicateEnvPropertyEPKc">flamegpu::exception::DuplicateEnvProperty::DuplicateEnvProperty (C++ function)</a>
 </li>
+      <li><a href="api/classflamegpu_1_1exception_1_1EnsembleError.html#_CPPv4N8flamegpu9exception13EnsembleErrorE">flamegpu::exception::EnsembleError (C++ class)</a>
+</li>
+      <li><a href="api/classflamegpu_1_1exception_1_1EnsembleError.html#_CPPv4N8flamegpu9exception13EnsembleError13EnsembleErrorEPKc">flamegpu::exception::EnsembleError::EnsembleError (C++ function)</a>
+</li>
       <li><a href="api/classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html#_CPPv4N8flamegpu9exception27EnvDescriptionAlreadyLoadedE">flamegpu::exception::EnvDescriptionAlreadyLoaded (C++ class)</a>
 </li>
       <li><a href="api/classflamegpu_1_1exception_1_1EnvDescriptionAlreadyLoaded.html#_CPPv4N8flamegpu9exception27EnvDescriptionAlreadyLoaded27EnvDescriptionAlreadyLoadedEPKc">flamegpu::exception::EnvDescriptionAlreadyLoaded::EnvDescriptionAlreadyLoaded (C++ function)</a>
@@ -2704,11 +2720,11 @@
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPIE">flamegpu::HostAgentAPI (C++ class)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0EN8flamegpu12HostAgentAPI5countEjRKNSt6stringERK3InT">flamegpu::HostAgentAPI::count (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI5countEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0ENK8flamegpu12HostAgentAPI5countEjRKNSt6stringE3InT">flamegpu::HostAgentAPI::count (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI5countEv">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI17getPopulationDataEv">flamegpu::HostAgentAPI::getPopulationData (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00ENK8flamegpu12HostAgentAPI13histogramEvenENSt6vectorI4OutTEERKNSt6stringERKjRK3InTRK3InT">flamegpu::HostAgentAPI::histogramEven (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0ENK8flamegpu12HostAgentAPI13histogramEvenENSt6vectorIjEERKNSt6stringERKjRK3InTRK3InT">[1]</a>
+      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00ENK8flamegpu12HostAgentAPI13histogramEvenENSt6vectorI4OutTEERKNSt6stringEj3InT3InT">flamegpu::HostAgentAPI::histogramEven (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0ENK8flamegpu12HostAgentAPI13histogramEvenENSt6vectorIjEERKNSt6stringEj3InT3InT">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI12HostAgentAPIER7HostAPIR14AgentInterfaceRKNSt6stringERK15VarOffsetStructRN7HostAPI15AgentDataBufferE">flamegpu::HostAgentAPI::HostAgentAPI (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI12HostAgentAPIERK12HostAgentAPI">[1]</a>
 </li>
@@ -2726,13 +2742,13 @@
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4N8flamegpu12HostAgentAPI5Order4DescE">flamegpu::HostAgentAPI::Order::Desc (C++ enumerator)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00ENK8flamegpu12HostAgentAPI6reduceE3InTRKNSt6stringE18reductionOperatorTRK3InT">flamegpu::HostAgentAPI::reduce (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00ENK8flamegpu12HostAgentAPI6reduceE3InTRKNSt6stringE18reductionOperatorT3InT">flamegpu::HostAgentAPI::reduce (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00EN8flamegpu12HostAgentAPI4sortEvRKNSt6stringE5OrderRKNSt6stringE5Order">flamegpu::HostAgentAPI::sort (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0EN8flamegpu12HostAgentAPI4sortEvRKNSt6stringE5Orderii">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I00ENK8flamegpu12HostAgentAPI3sumE4OutTRKNSt6stringE">flamegpu::HostAgentAPI::sum (C++ function)</a>, <a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0ENK8flamegpu12HostAgentAPI3sumE3InTRKNSt6stringE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0000ENK8flamegpu12HostAgentAPI15transformReduceE4OutTRKNSt6stringE18transformOperatorT18reductionOperatorTRK4OutT">flamegpu::HostAgentAPI::transformReduce (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1HostAgentAPI.html#_CPPv4I0000ENK8flamegpu12HostAgentAPI15transformReduceE4OutTRKNSt6stringE18transformOperatorT18reductionOperatorT4OutT">flamegpu::HostAgentAPI::transformReduce (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAPI.html#_CPPv4N8flamegpu7HostAPIE">flamegpu::HostAPI (C++ class)</a>
 </li>
@@ -2751,10 +2767,6 @@
       <li><a href="api/classflamegpu_1_1HostAPI.html#_CPPv4NK8flamegpu7HostAPI14getStepCounterEv">flamegpu::HostAPI::getStepCounter (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAPI.html#_CPPv4N8flamegpu7HostAPI7HostAPIER14CUDASimulationR13RandomManagerR11CUDAScatterRK14AgentOffsetMapR12AgentDataMapR20CUDAMacroEnvironmentRKj12cudaStream_t">flamegpu::HostAPI::HostAPI (C++ function)</a>
-</li>
-      <li><a href="api/structflamegpu_1_1HostAPI_1_1key__hash.html#_CPPv4N8flamegpu7HostAPI8key_hashE">flamegpu::HostAPI::key_hash (C++ struct)</a>
-</li>
-      <li><a href="api/structflamegpu_1_1HostAPI_1_1key__hash.html#_CPPv4NK8flamegpu7HostAPI8key_hashclERK10CUB_Config">flamegpu::HostAPI::key_hash::operator() (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1HostAPI.html#_CPPv4N8flamegpu7HostAPI6randomE">flamegpu::HostAPI::random (C++ member)</a>
 </li>
@@ -3166,9 +3178,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandlerE">flamegpu::MessageArray2D::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageArray2D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageArray2D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageArray2D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray2D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageArray2D::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -3176,7 +3188,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4NK8flamegpu14MessageArray2D16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageArray2D::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu14MessageArray2D16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageArray2D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray2D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray2D.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandlerD0Ev">flamegpu::MessageArray2D::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray2D16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -3436,9 +3448,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandlerE">flamegpu::MessageArray3D::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageArray3D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageArray3D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageArray3D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray3D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageArray3D::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -3446,7 +3458,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4NK8flamegpu14MessageArray3D16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageArray3D::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu14MessageArray3D16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageArray3D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray3D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray3D.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandlerD0Ev">flamegpu::MessageArray3D::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu14MessageArray3D16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -3722,9 +3734,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandlerE">flamegpu::MessageArray::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageArray::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageArray::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageArray::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageArray::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -3732,7 +3744,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4NK8flamegpu12MessageArray16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageArray::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu12MessageArray16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageArray::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageArray::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageArray.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandlerD0Ev">flamegpu::MessageArray::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageArray_1_1CUDAModelHandler.html#_CPPv4N8flamegpu12MessageArray16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -3884,9 +3896,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandlerE">flamegpu::MessageBruteForce::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageBruteForce::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageBruteForce::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageBruteForce::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageBruteForce::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageBruteForce::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -3894,7 +3906,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4NK8flamegpu17MessageBruteForce16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageBruteForce::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu17MessageBruteForce16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageBruteForce::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageBruteForce::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageBruteForce.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandlerD0Ev">flamegpu::MessageBruteForce::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBruteForce_1_1CUDAModelHandler.html#_CPPv4N8flamegpu17MessageBruteForce16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -4008,9 +4020,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandlerE">flamegpu::MessageBucket::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageBucket::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageBucket::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageBucket::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageBucket::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageBucket::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -4018,7 +4030,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4NK8flamegpu13MessageBucket16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageBucket::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu13MessageBucket16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageBucket::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageBucket::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageBucket.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandlerD0Ev">flamegpu::MessageBucket::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageBucket_1_1CUDAModelHandler.html#_CPPv4N8flamegpu13MessageBucket16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -4144,9 +4156,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerE">flamegpu::MessageSpatial2D::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageSpatial2D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageSpatial2D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageSpatial2D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpatial2D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageSpatial2D::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -4154,7 +4166,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4NK8flamegpu16MessageSpatial2D16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageSpatial2D::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu16MessageSpatial2D16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageSpatial2D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpatial2D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial2D.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerD0Ev">flamegpu::MessageSpatial2D::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial2D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial2D16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -4286,9 +4298,9 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandlerE">flamegpu::MessageSpatial3D::CUDAModelHandler (C++ class)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandlerE">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageSpatial3D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler25allocateMetaDataDevicePtrEv">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageSpatial3D::CUDAModelHandler::allocateMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler25allocateMetaDataDevicePtrE12cudaStream_t">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageSpatial3D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpatial3D::CUDAModelHandler::buildIndex (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler10buildIndexER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">flamegpu::MessageSpatial3D::CUDAModelHandler::CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler16CUDAModelHandlerER11CUDAMessage">[1]</a>
 </li>
@@ -4296,7 +4308,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4NK8flamegpu16MessageSpatial3D16CUDAModelHandler20getMetaDataDevicePtrEv">flamegpu::MessageSpatial3D::CUDAModelHandler::getMetaDataDevicePtr (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4NK8flamegpu16MessageSpatial3D16CUDAModelHandler20getMetaDataDevicePtrEv">[1]</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler4initER11CUDAScatterRKj">flamegpu::MessageSpatial3D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler4initER11CUDAScatterRKj">[1]</a>
+      <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpatial3D::CUDAModelHandler::init (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandler4initER11CUDAScatterj12cudaStream_t">[1]</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpatial3D.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandlerD0Ev">flamegpu::MessageSpatial3D::CUDAModelHandler::~CUDAModelHandler (C++ function)</a>, <a href="api/classflamegpu_1_1MessageSpatial3D_1_1CUDAModelHandler.html#_CPPv4N8flamegpu16MessageSpatial3D16CUDAModelHandlerD0Ev">[1]</a>
 </li>
@@ -4430,15 +4442,15 @@
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandlerE">flamegpu::MessageSpecialisationHandler (C++ class)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler25allocateMetaDataDevicePtrEv">flamegpu::MessageSpecialisationHandler::allocateMetaDataDevicePtr (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler25allocateMetaDataDevicePtrE12cudaStream_t">flamegpu::MessageSpecialisationHandler::allocateMetaDataDevicePtr (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler10buildIndexER11CUDAScatterRKjRK12cudaStream_t">flamegpu::MessageSpecialisationHandler::buildIndex (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler10buildIndexER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpecialisationHandler::buildIndex (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler21freeMetaDataDevicePtrEv">flamegpu::MessageSpecialisationHandler::freeMetaDataDevicePtr (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4NK8flamegpu28MessageSpecialisationHandler20getMetaDataDevicePtrEv">flamegpu::MessageSpecialisationHandler::getMetaDataDevicePtr (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler4initER11CUDAScatterRKj">flamegpu::MessageSpecialisationHandler::init (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler4initER11CUDAScatterj12cudaStream_t">flamegpu::MessageSpecialisationHandler::init (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1MessageSpecialisationHandler.html#_CPPv4N8flamegpu28MessageSpecialisationHandler28MessageSpecialisationHandlerEv">flamegpu::MessageSpecialisationHandler::MessageSpecialisationHandler (C++ function)</a>
 </li>
@@ -4614,7 +4626,7 @@
 </li>
       <li><a href="api/classflamegpu_1_1RandomManager.html#_CPPv4N8flamegpu13RandomManager6reseedERK8uint64_t">flamegpu::RandomManager::reseed (C++ function)</a>
 </li>
-      <li><a href="api/classflamegpu_1_1RandomManager.html#_CPPv4N8flamegpu13RandomManager6resizeERK9size_type">flamegpu::RandomManager::resize (C++ function)</a>
+      <li><a href="api/classflamegpu_1_1RandomManager.html#_CPPv4N8flamegpu13RandomManager6resizeE9size_type12cudaStream_t">flamegpu::RandomManager::resize (C++ function)</a>
 </li>
       <li><a href="api/classflamegpu_1_1RandomManager.html#_CPPv4N8flamegpu13RandomManager4seedEv">flamegpu::RandomManager::seed (C++ function)</a>
 </li>
@@ -4782,6 +4794,16 @@
 </li>
       <li><a href="api/classflamegpu_1_1SimRunner.html#_CPPv4N8flamegpu9SimRunnerE">flamegpu::SimRunner (C++ class)</a>
 </li>
+      <li><a href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html#_CPPv4N8flamegpu9SimRunner11ErrorDetailE">flamegpu::SimRunner::ErrorDetail (C++ struct)</a>
+</li>
+      <li><a href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html#_CPPv4N8flamegpu9SimRunner11ErrorDetail9device_idE">flamegpu::SimRunner::ErrorDetail::device_id (C++ member)</a>
+</li>
+      <li><a href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html#_CPPv4N8flamegpu9SimRunner11ErrorDetail16exception_stringE">flamegpu::SimRunner::ErrorDetail::exception_string (C++ member)</a>
+</li>
+      <li><a href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html#_CPPv4N8flamegpu9SimRunner11ErrorDetail6run_idE">flamegpu::SimRunner::ErrorDetail::run_id (C++ member)</a>
+</li>
+      <li><a href="api/structflamegpu_1_1SimRunner_1_1ErrorDetail.html#_CPPv4N8flamegpu9SimRunner11ErrorDetail9runner_idE">flamegpu::SimRunner::ErrorDetail::runner_id (C++ member)</a>
+</li>
       <li><a href="api/classflamegpu_1_1Simulation.html#_CPPv4N8flamegpu10SimulationE">flamegpu::Simulation (C++ class)</a>
 </li>
       <li><a href="api/classflamegpu_1_1Simulation.html#_CPPv4N8flamegpu10Simulation11applyConfigEv">flamegpu::Simulation::applyConfig (C++ function)</a>
@@ -4879,8 +4901,6 @@
       <li><a href="api/classflamegpu_1_1Simulation.html#_CPPv4N8flamegpu10SimulationD0Ev">flamegpu::Simulation::~Simulation (C++ function)</a>
 </li>
       <li><a href="api/function_namespaceflamegpu_1a39c5c7fb5befdc5ea64afdb4e97f0e60.html#_CPPv4N8flamegpu17sortBuffer_kernelEPcPcPj6size_tj">flamegpu::sortBuffer_kernel (C++ function)</a>
-</li>
-      <li><a href="api/function_namespaceflamegpu_1a44d39ffe8c5917018e1090545cf6cbf9.html#_CPPv4N8flamegpu28spatialSortInitToThreadIndexEPjj">flamegpu::spatialSortInitToThreadIndex (C++ function)</a>
 </li>
       <li><a href="api/structflamegpu_1_1StepLogFrame.html#_CPPv4N8flamegpu12StepLogFrameE">flamegpu::StepLogFrame (C++ struct)</a>
 </li>
@@ -5835,6 +5855,8 @@
       <li><a href="api/define_FLAMEGPUDeviceException__device_8cuh_1a8970b890bde138df77fa8531f6166660.html#c.INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_">INCLUDE_FLAMEGPU_EXCEPTION_FLAMEGPUDEVICEEXCEPTION_DEVICE_CUH_ (C macro)</a>
 </li>
       <li><a href="api/define_CUDAScatter_8cuh_1a95124ede6afa81fd979fd65cd77b4b95.html#c.INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_">INCLUDE_FLAMEGPU_GPU_CUDASCATTER_CUH_ (C macro)</a>
+</li>
+      <li><a href="api/define_CubTemporaryMemory_8cuh_1a79c5453e9dd7b41cf1305ce08f0103e9.html#c.INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_">INCLUDE_FLAMEGPU_GPU_DETAIL_CUBTEMPORARYMEMORY_CUH_ (C macro)</a>
 </li>
       <li><a href="api/define_CUDAErrorChecking_8cuh_1a57686b7f62e6545a194aa078947f020c.html#c.INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_">INCLUDE_FLAMEGPU_GPU_DETAIL_CUDAERRORCHECKING_CUH_ (C macro)</a>
 </li>

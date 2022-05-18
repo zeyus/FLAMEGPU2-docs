@@ -55,20 +55,27 @@ Program Listing for File CUDASimulation.h
    class CUDASimulation : public Simulation {
        friend class HostAgentAPI;
        friend class SimRunner;
+       friend class CUDAEnsemble;
        typedef std::unordered_map<std::string, std::unique_ptr<CUDAAgent>> CUDAAgentMap;
        typedef std::unordered_map<std::string, std::unique_ptr<CUDAMessage>> CUDAMessageMap;
        typedef std::map<std::string, std::unique_ptr<CUDASimulation>> CUDASubModelMap;
    
     public:
        struct Config {
+           friend class SimRunner;
+           friend class CUDASimulation;
            int device_id = 0;
            bool inLayerConcurrency = true;
+   
+        private:
+           bool is_ensemble = false;
        };
        explicit CUDASimulation(const ModelDescription& model, int argc = 0, const char** argv = nullptr);
    
     private:
        explicit CUDASimulation(const std::shared_ptr<const ModelData> &model);
        CUDASimulation(const std::shared_ptr<SubModelData>& submodel_desc, CUDASimulation *master_model);
+       static void purgeSingletons();
    
     public:
        virtual ~CUDASimulation();
@@ -180,7 +187,7 @@ Program Listing for File CUDASimulation.h
        void stepStepFunctions();
        bool stepExitConditions();
    
-       void spatialSortAgent(const std::string& funcName, const std::string& agentName, const std::string& state, const int mode);
+       void spatialSortAgent_async(const std::string& funcName, const std::string& agentName, const std::string& state, const int mode, cudaStream_t stream, unsigned int streamId);
    
        constexpr static int Agent2D = 0;
        constexpr static int Agent3D = 1;

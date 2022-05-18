@@ -27,24 +27,24 @@ Program Listing for File CUDAMessageList.h
    
    class CUDAMessageList {
     public:
-       explicit CUDAMessageList(CUDAMessage& cuda_message, CUDAScatter &scatter, const unsigned int &streamId);
+       explicit CUDAMessageList(CUDAMessage& cuda_message, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId);
        virtual ~CUDAMessageList();
    
        void cleanupAllocatedData();
        void* getReadMessageListVariablePointer(std::string variable_name);
        void* getWriteMessageListVariablePointer(std::string variable_name);
-       void resize(CUDAScatter& scatter, const unsigned int& streamId = 0, const unsigned int& keep_len = 0);
-       void zeroMessageData();
+       void resize(CUDAScatter& scatter, cudaStream_t stream, unsigned int streamId = 0, unsigned int keep_len = 0);
+       void zeroMessageData(cudaStream_t stream);
        virtual void swap();
-       virtual unsigned int scatter(const unsigned int &newCount, CUDAScatter &scatter, const unsigned int &streamId, const bool &append);
-       virtual unsigned int scatterAll(const unsigned int &newCount, CUDAScatter &scatter, const unsigned int &streamId);
+       virtual unsigned int scatter(unsigned int newCount, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId, bool append);
+       virtual unsigned int scatterAll(unsigned int newCount, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId);
        const CUDAMessageMap &getReadList() { return d_list; }
        const CUDAMessageMap &getWriteList() { return d_swap_list; }
    
     protected:
-        void allocateDeviceMessageList(CUDAMessageMap &memory_map);
-        void releaseDeviceMessageList(CUDAMessageMap &memory_map);
-        void zeroDeviceMessageList(CUDAMessageMap &memory_map, const unsigned int& skip_offset = 0);
+       void allocateDeviceMessageList(CUDAMessageMap &memory_map);
+       void releaseDeviceMessageList(CUDAMessageMap &memory_map);
+       void zeroDeviceMessageList_async(CUDAMessageMap &memory_map, cudaStream_t stream, unsigned int skip_offset = 0);
    
     private:
        CUDAMessageMap d_list;

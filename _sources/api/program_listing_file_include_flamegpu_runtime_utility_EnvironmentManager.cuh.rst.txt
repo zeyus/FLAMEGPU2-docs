@@ -15,678 +15,290 @@ Program Listing for File EnvironmentManager.cuh
    
    #include <cuda_runtime.h>
    
-   #include <cstddef>
-   #include <unordered_map>
-   #include <array>
-   #include <string>
-   #include <type_traits>
-   #include <list>
-   #include <utility>
-   #include <typeindex>
-   #include <set>
-   #include <vector>
-   #include <mutex>
-   #include <shared_mutex>
    #include <map>
-   #include <functional>
+   #include <string>
    #include <memory>
+   #include <set>
+   #include <unordered_map>
+   #include <functional>
+   #include <utility>
+   #include <vector>
    
    #include "flamegpu/exception/FLAMEGPUException.h"
-   #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
-   #include "flamegpu/runtime/detail/curve/curve.cuh"
-   #include "flamegpu/util/Any.h"
+   #include "flamegpu/runtime/detail/curve/HostCurve.cuh"
    #include "flamegpu/util/type_decode.h"
+   #include "flamegpu/util/Any.h"
    
    namespace flamegpu {
-   
    struct SubEnvironmentData;
    class EnvironmentDescription;
    class CUDASimulation;
-   class CUDAAgent;
    
-   namespace io {
-   class XMLStateWriter;
-   class XMLStateReader;
-   class JSONStateWriter;
-   class JSONStateReader;
-   class JSONStateReader_impl;
-   }  // namespace io
-   
-   class EnvironmentManager {
-       friend class CUDAAgent;
+   class EnvironmentManager : public std::enable_shared_from_this<EnvironmentManager> {
        friend class CUDASimulation;
-       friend class HostEnvironment;
-       friend class DefragProp;
-       friend class io::XMLStateWriter;
-       friend class io::XMLStateReader;
-       friend class io::JSONStateWriter;
-       friend class io::JSONStateReader;
-       friend class io::JSONStateReader_impl;
-       typedef std::pair<unsigned int, std::string> NamePair;
-       struct NamePairHash {
-           size_t operator()(const NamePair& k) const {
-               return std::hash<unsigned int>()(k.first) ^
-                   (std::hash<std::string>()(k.second) << 1);
-           }
-       };
    
     public:
-       static const size_t MAX_BUFFER_SIZE = 10 * 1024;  // 10KB
        typedef unsigned int size_type;
-       typedef std::pair<ptrdiff_t, size_t> OffsetLen;
-       enum OL {
-           OFFSET = 0,
-           LEN = 1,
-       };
+   
+    private:
        struct EnvProp {
-           EnvProp(const ptrdiff_t &_offset, const size_t &_length, const bool &_isConst, const size_type &_elements, const std::type_index &_type, const ptrdiff_t &_rtc_offset = 0)
+           EnvProp(const ptrdiff_t& _offset, const size_t& _length, const bool& _isConst, const size_type& _elements, const std::type_index& _type)
                : offset(_offset),
                length(_length),
                isConst(_isConst),
                elements(_elements),
-               type(_type),
-               rtc_offset(_rtc_offset) {}
+               type(_type) {}
            ptrdiff_t offset;
            size_t length;
            bool isConst;
            size_type elements;
            const std::type_index type;
-           ptrdiff_t rtc_offset;  // This is set by buildRTCOffsets();
        };
        struct MappedProp {
-           MappedProp(const NamePair &_masterProp, const bool &_isConst)
-               : masterProp(_masterProp),
-               isConst(_isConst) {}
-           const NamePair masterProp;
+           MappedProp(const std::string& _remoteName, const std::shared_ptr<EnvironmentManager> &_remoteEnv, bool _isConst = false)
+               : remoteName(_remoteName)
+               , remoteEnv(_remoteEnv)
+               , isConst(_isConst) {}
+           const std::string remoteName;
+           const std::weak_ptr<EnvironmentManager> remoteEnv;
            const bool isConst;
        };
        struct DefragProp {
-           explicit DefragProp(const EnvProp &ep)
-               :data(EnvironmentManager::getInstance().hc_buffer + ep.offset),
-               length(ep.length),
-               isConst(ep.isConst),
-               elements(ep.elements),
-               type(ep.type),
-               rtc_offset(ep.rtc_offset) { }
-           DefragProp(void *_data, const size_t &_length, const bool &_isConst, const size_type &_elements, const std::type_index &_type, const ptrdiff_t &_rtc_offset = 0)
+           DefragProp(void *_data, const size_t &_length, const bool &_isConst, const size_type &_elements, const std::type_index &_type)
                : data(_data),
                length(_length),
                isConst(_isConst),
                elements(_elements),
                type(_type),
-               rtc_offset(_rtc_offset) { }
+               offset(0) { }
            void *data;
            size_t length;
            bool isConst;
            size_type elements;
            const std::type_index type;
-           ptrdiff_t rtc_offset;
+           ptrdiff_t offset;
        };
-       struct RTCEnvPropCache {
-           char hc_buffer[MAX_BUFFER_SIZE];
-           ptrdiff_t nextFree = 0;
-       };
-       friend bool operator<(const std::pair<size_t, const NamePair>& fk, const size_t& lk) { return fk.first < lk; }
-       friend bool operator<(const size_t& lk, const std::pair<size_t, const NamePair>& fk) { return lk < fk.first; }
-       friend bool operator<(const std::pair<size_t, const NamePair>& fk1, const std::pair<size_t, const NamePair>& fk2) {
+       friend bool operator<(const std::pair<size_t, std::string>& fk, const size_t& lk) { return fk.first < lk; }
+       friend bool operator<(const size_t& lk, const std::pair<size_t, std::string>& fk) { return lk < fk.first; }
+       friend bool operator<(const std::pair<size_t, std::string>& fk1, const std::pair<size_t, std::string>& fk2) {
            if (fk1.first == fk2.first) {
-               // If size equal, order by instance_id
-               if (fk1.second.first == fk2.second.first) {
-                   // If instance id is equal, order by name
-                   return fk1.second.second < fk2.second.second;
-               }
-               return fk1.second.first < fk2.second.first;
+               // If size is equal, order by name
+               return fk1.second < fk2.second;
            }
            return fk1.first < fk2.first;
        }
-       typedef std::multimap<std::pair<size_t, const NamePair>, DefragProp, std::less<>> DefragMap;
-       void init(const unsigned int &instance_id, const EnvironmentDescription &desc, bool isPureRTC);
-       void init(const unsigned int &instance_id, const EnvironmentDescription &desc, bool isPureRTC, const unsigned int &master_instance_id, const SubEnvironmentData &mapping);
-       void initRTC(const CUDASimulation &cudaSimulation);
-       void free(detail::curve::Curve &curve, const unsigned int &instance_id);
-       template<typename T>
-       void newProperty(const NamePair &name, const T &value, const bool &isConst = false);
-       template<typename T>
-       void newProperty(const unsigned int &instance_id, const std::string &var_name, const T &value, const bool &isConst = false);
-       template<typename T, size_type N>
-       void newProperty(const NamePair &name, const std::array<T, N> &value, const bool &isConst = false);
-       template<typename T, size_type N>
-       void newProperty(const unsigned int &instance_id, const std::string &var_name, const std::array<T, N> &value, const bool &isConst = false);
-       template<typename T>
-       T setProperty(const NamePair &name, const T &value);
-       template<typename T>
-       T setProperty(const unsigned int &instance_id, const std::string &var_name, const T &value);
-       void setProperty(const unsigned int& instance_id, const std::string& var_name, void *data, size_t len);
-       template<typename T, size_type N>
-       std::array<T, N> setProperty(const NamePair &name, const std::array<T, N> &value);
-       template<typename T, size_type N>
-       std::array<T, N> setProperty(const unsigned int &instance_id, const std::string &var_name, const std::array<T, N> &value);
-   #ifdef SWIG
-   
-       template<typename T>
-       std::vector<T> setPropertyArray(const NamePair &name, const std::vector<T> &value);
-   #endif
-   
-       template<typename T>
-       T setProperty(const NamePair &name, const size_type &index, const T &value);
-       template<typename T>
-       T setProperty(const unsigned int &instance_id, const std::string &var_name, const size_type &index, const T &value);
-       template<typename T>
-       T getProperty(const NamePair &name);
-       template<typename T>
-       T getProperty(const unsigned int &instance_id, const std::string &var_name);
-       template<typename T, size_type N>
-       std::array<T, N> getProperty(const NamePair &name);
-       template<typename T, size_type N>
-       std::array<T, N> getProperty(const unsigned int &instance_id, const std::string &var_name);
-       template<typename T>
-       T getProperty(const NamePair &name, const size_type &index);
-   #ifdef SWIG
-   
-       template<typename T>
-       std::vector<T> getPropertyArray(const NamePair& name);
-   #endif
-   
-       template<typename T>
-       T getProperty(const unsigned int &instance_id, const std::string &var_name, const size_type &index);
-       util::Any getPropertyAny(const unsigned int &instance_id, const std::string &var_name) const;
-       void removeProperty(const NamePair &name);
-       void removeProperty(const unsigned int &instance_id, const std::string &var_name);
-       void resetModel(const unsigned int &instance_id, const EnvironmentDescription &desc);
-       inline bool containsProperty(const NamePair &name) const {
-           std::shared_lock<std::shared_timed_mutex> lock(mutex);
-           return properties.find(name) != properties.end() || mapped_properties.find(name) != mapped_properties.end();
-       }
-       inline bool containsProperty(const unsigned int &instance_id, const std::string &var_name) const { return containsProperty(toName(instance_id, var_name)); }
-       inline bool isConst(const NamePair &name) const {
-           std::shared_lock<std::shared_timed_mutex> lock(mutex);
-           const auto a = properties.find(name);
-           if (a != properties.end())
-               return a->second.isConst;
-           const auto b = mapped_properties.find(name);
-           if (b != mapped_properties.end()) {
-               return b->second.isConst;
-           }
-           THROW exception::InvalidEnvProperty("Environmental property with name '%u:%s' does not exist, "
-               "in EnvironmentManager::isConst().",
-               name.first, name.second.c_str());
-       }
-       inline bool isConst(const unsigned int &instance_id, const std::string &var_name) const { return isConst(toName(instance_id, var_name)); }
-       inline size_type length(const NamePair &name) const {
-           std::shared_lock<std::shared_timed_mutex> lock(mutex);
-           auto a = properties.find(name);
-           if (a != properties.end())
-               return a->second.elements;
-           const auto b = mapped_properties.find(name);
-           if (b != mapped_properties.end()) {
-               a = properties.find(b->second.masterProp);
-               if (a != properties.end())
-                   return a->second.elements;
-               THROW exception::InvalidEnvProperty("Mapped environmental property with name '%u:%s' maps to missing property with name '%u:%s', "
-                   "in EnvironmentManager::length().",
-                   name.first, name.second.c_str(), b->second.masterProp.first, b->second.masterProp.second.c_str());
-           }
-           THROW exception::InvalidEnvProperty("Environmental property with name '%u:%s' does not exist, "
-               "in EnvironmentManager::length().",
-               name.first, name.second.c_str());
-       }
-       inline size_type length(const unsigned int &instance_id, const std::string &var_name) const { return length(toName(instance_id, var_name)); }
-       inline std::type_index type(const NamePair &name) const {
-           std::shared_lock<std::shared_timed_mutex> lock(mutex);
-           auto a = properties.find(name);
-           if (a != properties.end())
-               return a->second.type;
-           const auto b = mapped_properties.find(name);
-           if (b != mapped_properties.end()) {
-               a = properties.find(b->second.masterProp);
-               if (a != properties.end())
-                   return a->second.type;
-               THROW exception::InvalidEnvProperty("Mapped environmental property with name '%u:%s' maps to missing property with name '%u:%s', "
-                   "in EnvironmentManager::type().",
-                   name.first, name.second.c_str(), b->second.masterProp.first, b->second.masterProp.second.c_str());
-           }
-           THROW exception::InvalidEnvProperty("Environmental property with name '%u:%s' does not exist, "
-               "in EnvironmentManager::type().",
-               name.first, name.second.c_str());
-       }
-       inline std::type_index type(const unsigned int &instance_id, const std::string &var_name) const { return type(toName(instance_id, var_name)); }
-       inline size_t type_size(const NamePair& name) const {
-           std::shared_lock<std::shared_timed_mutex> lock(mutex);
-           auto a = properties.find(name);
-           if (a != properties.end())
-               return a->second.length;
-           const auto b = mapped_properties.find(name);
-           if (b != mapped_properties.end()) {
-               a = properties.find(b->second.masterProp);
-               if (a != properties.end())
-                   return a->second.length;
-               THROW exception::InvalidEnvProperty("Mapped environmental property with name '%u:%s' maps to missing property with name '%u:%s', "
-                   "in EnvironmentManager::type_size().",
-                   name.first, name.second.c_str(), b->second.masterProp.first, b->second.masterProp.second.c_str());
-           }
-           THROW exception::InvalidEnvProperty("Environmental property with name '%u:%s' does not exist, "
-               "in EnvironmentManager::type_size().",
-               name.first, name.second.c_str());
-       }
-       inline size_t freeSpace() const { std::shared_lock<std::shared_timed_mutex> lock(mutex); return m_freeSpace; }
-       static const char CURVE_NAMESPACE_STRING[23];
-       const detail::curve::Curve::NamespaceHash CURVE_NAMESPACE_HASH;
-       const std::unordered_map<NamePair, EnvProp, NamePairHash> &getPropertiesMap() const {
-           return properties;
-       }
-       const std::unordered_map<NamePair, MappedProp, NamePairHash> &getMappedProperties() const {
-           return mapped_properties;
-       }
-       const void * getHostBuffer() const {
-           return hc_buffer;
-       }
-       void updateDevice(const unsigned int &instance_id);
-   
-    private:
-       static NamePair toName(const unsigned int &instance_id, const std::string &var_name);
-       detail::curve::Curve::VariableHash toHash(const NamePair &name) const;
-       void newProperty(const NamePair &name, const char *ptr, const size_t &len, const bool &isConst, const size_type &elements, const std::type_index &type);
-       void defragment(detail::curve::Curve &curve, const DefragMap * mergeProps = nullptr, std::set<NamePair> newmaps = {}, bool isPureRTC = false);
-       void buildRTCOffsets(const unsigned int &instance_id, const unsigned int &master_instance_id, const DefragMap &mergeProperties);
-       char* getRTCCache(const unsigned int& instance_id);
-       void addRTCOffset(const NamePair &name);
-       const char *c_buffer;
-       char hc_buffer[MAX_BUFFER_SIZE];
-       ptrdiff_t nextFree;
-       size_t m_freeSpace;
-       std::list<OffsetLen> freeFragments;
-       std::unordered_map<NamePair, EnvProp, NamePairHash> properties;
-       std::unordered_map<NamePair, MappedProp, NamePairHash> mapped_properties;
-       std::unordered_map<unsigned int, const CUDASimulation&> cuda_agent_models;
-       std::unordered_map<unsigned int, std::shared_ptr<RTCEnvPropCache>> rtc_caches;
-       bool deviceInitialised;
-       /*
-        * Convenience fn for managing deviceRequiresUpdate
-        * @param instance_id Sim instance id, UINT_MAX sets all
-        */
-       void setDeviceRequiresUpdateFlag(const unsigned int &instance_id = UINT_MAX);
-       struct EnvUpdateFlags {
-           bool c_update_required = true;
-           bool rtc_update_required = true;
-           bool curve_registration_required = false;
-       };
-       std::unordered_map<unsigned int, EnvUpdateFlags> deviceRequiresUpdate;
-       void initialiseDevice();
-       mutable std::shared_timed_mutex mutex;
-       std::shared_lock<std::shared_timed_mutex> getSharedLock() const { return std::shared_lock<std::shared_timed_mutex>(mutex); }
-       std::unique_lock<std::shared_timed_mutex> getUniqueLock() const { return std::unique_lock<std::shared_timed_mutex>(mutex); }
-       mutable std::shared_timed_mutex device_mutex;
-       std::shared_lock<std::shared_timed_mutex> getDeviceSharedLock() const { return std::shared_lock<std::shared_timed_mutex>(device_mutex); }
-       std::unique_lock<std::shared_timed_mutex> getDeviceUniqueLock() const { return std::unique_lock<std::shared_timed_mutex>(device_mutex); }
-       mutable std::shared_timed_mutex deviceRequiresUpdate_mutex;
-       EnvironmentManager();
-       void purge();
-   
-    protected:
-       static EnvironmentManager& getInstance();
-       static std::mutex instance_mutex;
-   
-       const CUDASimulation& getCUDASimulation(const unsigned int &instance_id);
-       void updateRTCValue(const NamePair &name);
+       typedef std::multimap<std::pair<size_t, std::string>, DefragProp, std::less<>> DefragMap;
    
     public:
-       // Public deleted creates better compiler errors
+        [[nodiscard]] static std::shared_ptr<EnvironmentManager> create(const EnvironmentDescription& desc) {
+           std::shared_ptr<EnvironmentManager> rtn(new EnvironmentManager());  // Can't use make_shared with private constructor!
+           rtn->init(desc);
+           return rtn;
+       }
+        [[nodiscard]] static std::shared_ptr<EnvironmentManager> create(const EnvironmentDescription& desc, const std::shared_ptr<EnvironmentManager>& parent_environment, const SubEnvironmentData& mapping) {
+           std::shared_ptr<EnvironmentManager> rtn(new EnvironmentManager());  // Can't use make_shared with private constructor!
+           rtn->init(desc, parent_environment, mapping);
+           return rtn;
+       }
+       ~EnvironmentManager();
        EnvironmentManager(EnvironmentManager const&) = delete;
        void operator=(EnvironmentManager const&) = delete;
+       template<typename T>
+       T setProperty(const std::string& name, T value);
+       template<typename T, size_type N>
+       std::array<T, N> setProperty(const std::string& name, const std::array<T, N>& value);
+       template<typename T, size_type N = 0>
+       T setProperty(const std::string& name,  size_type index, T value);
+   #ifdef SWIG
+   
+       template<typename T>
+       std::vector<T> setPropertyArray(const std::string& name, const std::vector<T>& value);
+   #endif
+   
+       template<typename T>
+       T getProperty(const std::string& name);
+       template<typename T, size_type N>
+       std::array<T, N> getProperty(const std::string& name);
+       template<typename T, size_type N = 0>
+       T getProperty(const std::string& name, size_type index);
+   #ifdef SWIG
+   
+       template<typename T>
+       std::vector<T> getPropertyArray(const std::string& name);
+   #endif
+   
+       void resetModel(const EnvironmentDescription& desc);
+       void updateDevice_async(cudaStream_t stream) const;
+       size_t getBufferLen() const { return h_buffer_len; }
+       const void* getHostBuffer() const {
+           return h_buffer;
+       }
+       const void* getDeviceBuffer() const {
+           return d_buffer;
+       }
+       const std::unordered_map<std::string, EnvProp> &getPropertiesMap() const {
+           return properties;
+       }
+   
+    private:
+       void init(const EnvironmentDescription& desc);
+       void init(const EnvironmentDescription& desc, const std::shared_ptr<EnvironmentManager>& parent_environment, const SubEnvironmentData& mapping);
+       void linkMappedProperty(const std::string &parent_name, const std::string& sub_name, const std::shared_ptr<EnvironmentManager>& sub_environment);
+       void propagateMappedPropertyValue(const std::string &property_name, const char *src_ptr);
+       void setPropertyDirect(const std::string& property_name, const char * src_ptr);
+       template<typename T>
+       const EnvProp &findProperty(const std::string& property_name, bool setter, size_type length) const;
+       util::Any getPropertyAny(const std::string &property_name) const;
+       char *h_buffer = nullptr;
+       char *d_buffer = nullptr;
+       mutable bool d_buffer_ready = false;
+       size_t h_buffer_len = 0;
+       std::unordered_map<std::string, EnvProp> properties{};
+       std::multimap<std::string, MappedProp> mapped_child_properties{};
+       std::map<std::string, MappedProp> mapped_parent_properties{};
+       EnvironmentManager() = default;
    };
    
    template<typename T>
-   void EnvironmentManager::newProperty(const NamePair &name, const T &value, const bool &isConst) {
+   const EnvironmentManager::EnvProp& EnvironmentManager::findProperty(const std::string& property_name, const bool setter, const size_type length) const {
        // Limited to Arithmetic types
        // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
+       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value || std::is_void<typename type_decode<T>::type_t>::value,
            "Only arithmetic types can be used as environmental properties");
-       if (containsProperty(name)) {
-           THROW exception::DuplicateEnvProperty("Environmental property with name '%u:%s' already exists, "
-               "in EnvironmentManager::add().",
-               name.first, name.second.c_str());
-       }
-       newProperty(name, reinterpret_cast<const char*>(&value), sizeof(T), isConst, 1, typeid(T));
-   }
-   template<typename T>
-   void EnvironmentManager::newProperty(const unsigned int &instance_id, const std::string &var_name, const T &value, const bool &isConst) {
-       newProperty<T>(toName(instance_id, var_name), value, isConst);
-   }
-   template<typename T, EnvironmentManager::size_type N>
-   void EnvironmentManager::newProperty(const NamePair &name, const std::array<T, N> &value, const bool &isConst) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       if (containsProperty(name)) {
-           THROW exception::DuplicateEnvProperty("Environmental property with name '%u:%s' already exists, "
-               "in EnvironmentManager::add().",
-               name.first, name.second.c_str());
-       }
-       newProperty(name, reinterpret_cast<const char*>(value.data()), N * sizeof(T), isConst, N, typeid(T));
-   }
-   template<typename T, EnvironmentManager::size_type N>
-   void EnvironmentManager::newProperty(const unsigned int &instance_id, const std::string &var_name, const std::array<T, N> &value, const bool &isConst) {
-       newProperty<T, N>(toName(instance_id, var_name), value, isConst);
-   }
-   
-   template<typename T>
-   T EnvironmentManager::setProperty(const NamePair &name, const T &value) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       const size_type array_len = length(name);
-       if (array_len != type_decode<T>::len_t) {
-           THROW exception::InvalidEnvPropertyType("Named environmental property is an array of length %u, the array function or appropriate vector type must be used! "
-               "in EnvironmentManager::setProperty().",
-               array_len);
-       }
-       if (isConst(name)) {
-           THROW exception::ReadOnlyEnvProperty("Environmental property ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str());
-       }
-       // Copy old data to return
-       T rtn = getProperty<T>(name);
-       std::unique_lock<std::shared_timed_mutex> lock(mutex);
-       // Find property offset
-       ptrdiff_t buffOffset = 0;
-       const auto a = properties.find(name);
+       const auto a = properties.find(property_name);
        if (a != properties.end()) {
-           buffOffset = a->second.offset;
-       } else {
-           buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
+           if (std::type_index(typeid(T)) != std::type_index(typeid(void)) && a->second.type != std::type_index(typeid(typename type_decode<T>::type_t))) {
+               THROW exception::InvalidEnvPropertyType("Environmental property with name '%s', type (%s) does not match template argument T (%s), "
+                   "in EnvironmentManager::setProperty().",
+                   property_name.c_str(), a->second.type.name(), typeid(typename type_decode<T>::type_t).name());
+           } else if (length && a->second.elements != type_decode<T>::len_t * length) {
+               THROW exception::OutOfBoundsException("Environmental property with name '%s', base length (%u) does not match provided base length (%u), "
+                   "in EnvironmentManager::setProperty().",
+                   property_name.c_str(), a->second.elements, type_decode<T>::len_t * length);
+           } else if (setter && a->second.isConst) {
+               THROW exception::ReadOnlyEnvProperty("Environmental property with name '%s' is marked as const and cannot be changed, "
+                   "in EnvironmentManager::setProperty().",
+                   property_name.c_str());
+           }
+           // Check this here, rather than in 4 separate methods
+           if (setter)
+               d_buffer_ready = false;
+           return a->second;
        }
-       // Store data
-       memcpy(hc_buffer + buffOffset, &value, sizeof(T));
-       // Do rtc too
-       updateRTCValue(name);
-       // Set device update flag
-       setDeviceRequiresUpdateFlag(name.first);
-   
-       return rtn;
+       THROW exception::InvalidEnvProperty("Environmental property with name '%s' does not exist, "
+           "in EnvironmentManager::find().",
+           property_name.c_str());
    }
    template<typename T>
-   T EnvironmentManager::setProperty(const unsigned int &instance_id, const std::string &var_name, const T &value) {
-       return setProperty<T>(toName(instance_id, var_name), value);
-   }
-   template<typename T, EnvironmentManager::size_type N>
-   std::array<T, N> EnvironmentManager::setProperty(const NamePair &name, const std::array<T, N> &value) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       if (isConst(name)) {
-           THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str());
-       }
-       const size_type array_len = length(name);
-       if (array_len != type_decode<T>::len_t * N) {
-           THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match template argument N (%u)! "
-               "in EnvironmentManager::setProperty().",
-               array_len, type_decode<T>::len_t * N);
-       }
+   T EnvironmentManager::setProperty(const std::string &name, const T value) {
+       const EnvProp &prop = findProperty<T>(name, true, 1);
        // Copy old data to return
-       std::array<T, N> rtn = getProperty<T, N>(name);
-       std::unique_lock<std::shared_timed_mutex> lock(mutex);
-       // Find property offset
-       ptrdiff_t buffOffset = 0;
-       const auto a = properties.find(name);
-       if (a != properties.end()) {
-           buffOffset = a->second.offset;
-       } else {
-           buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
-       }
+       T rtn;
+       char* const dest_ptr = h_buffer + prop.offset;
+       memcpy(&rtn, dest_ptr, sizeof(T));
        // Store data
-       memcpy(hc_buffer + buffOffset, value.data(), N * sizeof(T));
-       // Do rtc too
-       updateRTCValue(name);
-       // Set device update flag
-       setDeviceRequiresUpdateFlag(name.first);
-   
+       memcpy(dest_ptr, &value, sizeof(T));
+       // Notify children
+       propagateMappedPropertyValue(name, dest_ptr);
        return rtn;
    }
    template<typename T, EnvironmentManager::size_type N>
-   std::array<T, N> EnvironmentManager::setProperty(const unsigned int &instance_id, const std::string &var_name, const std::array<T, N> &value) {
-       return setProperty<T, N>(toName(instance_id, var_name), value);
-   }
-   #ifdef SWIG
-   template<typename T>
-   std::vector<T> EnvironmentManager::setPropertyArray(const NamePair& name, const std::vector<T>& value) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::setPropertyArray().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       if (isConst(name)) {
-           THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::setPropertyArray().",
-               name.first, name.second.c_str());
-       }
-       const size_type array_len = length(name);
-       if (array_len != type_decode<T>::len_t * value.size()) {
-           THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match length of provided array (%llu)! "
-               "in EnvironmentManager::setPropertyArray().",
-               array_len, type_decode<T>::len_t * value.size());
-       }
-       std::unique_lock<std::shared_timed_mutex> lock(mutex);
-       // Find property offset
-       ptrdiff_t buffOffset = 0;
-       const auto a = properties.find(name);
-       if (a != properties.end()) {
-           buffOffset = a->second.offset;
-       } else {
-           buffOffset = properties.at(mapped_properties.at(name).masterProp).offset;
-       }
-       // Copy old data to return
-       std::vector<T> rtn(value.size());
-       if (a != properties.end()) {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + buffOffset), array_len * sizeof(T));
-       } else {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + buffOffset), array_len * sizeof(T));
-       }
-       // Store data
-       memcpy(hc_buffer + buffOffset, value.data(), value.size() * sizeof(T));
-       // Do rtc too
-       updateRTCValue(name);
-       // Set device update flag
-       setDeviceRequiresUpdateFlag(name.first);
-   
-       return rtn;
-   }
-   #endif
-   template<typename T>
-   T EnvironmentManager::setProperty(const NamePair &name, const size_type &index, const T &value) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       if (isConst(name)) {
-           THROW exception::ReadOnlyEnvProperty("Environmental property array ('%u:%s') is marked as const and cannot be changed, "
-               "in EnvironmentManager::setProperty().",
-               name.first, name.second.c_str());
-       }
-       const size_type array_len = length(name);
-       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
-       if (t_index > array_len || t_index < index) {
-           THROW exception::OutOfBoundsException("Index(%u) exceeds named environmental property array's length (%u), "
-               "in EnvironmentManager::setProperty().",
-               index, array_len);
-       }
-       std::unique_lock<std::shared_timed_mutex> lock(mutex);
-       // Find property offset
-       ptrdiff_t buffOffset = 0;
-       const auto a = properties.find(name);
-       if (a != properties.end()) {
-           buffOffset = a->second.offset + index * sizeof(T);
-       } else {
-           const auto &master_name = mapped_properties.at(name).masterProp;
-           buffOffset = properties.at(master_name).offset + index * sizeof(T);
-       }
-       // Copy old data to return
-       T rtn = *reinterpret_cast<T*>(hc_buffer + buffOffset);
-       // Store data
-       memcpy(hc_buffer + buffOffset, &value, sizeof(T));
-       // Do rtc too
-       updateRTCValue(name);
-       // Set device update flag
-       setDeviceRequiresUpdateFlag(name.first);
-   
-       return rtn;
-   }
-   template<typename T>
-   T EnvironmentManager::setProperty(const unsigned int &instance_id, const std::string &var_name, const size_type &index, const T &value) {
-       return setProperty<T>(toName(instance_id, var_name), index, value);
-   }
-   
-   template<typename T>
-   T EnvironmentManager::getProperty(const NamePair &name) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::getProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       const size_type array_len = length(name);
-       if (array_len != type_decode<T>::len_t) {
-           THROW exception::InvalidEnvPropertyType("Named environmental property is an array of length %u, the array function or appropriate vector type must be used! "
-               "in EnvironmentManager::getProperty().",
-               array_len);
-       }
-       std::shared_lock<std::shared_timed_mutex> lock(mutex);
-       // Copy old data to return
-       const auto a = properties.find(name);
-       if (a != properties.end())
-           return *reinterpret_cast<T*>(hc_buffer + a->second.offset);
-       return *reinterpret_cast<T*>(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset);
-   }
-   template<typename T>
-   T EnvironmentManager::getProperty(const unsigned int &instance_id, const std::string &var_name) {
-       return getProperty<T>(toName(instance_id, var_name));
-   }
-   template<typename T, EnvironmentManager::size_type N>
-   std::array<T, N> EnvironmentManager::getProperty(const NamePair &name) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::getProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       const size_type array_len = length(name);
-       if (array_len != N * type_decode<T>::len_t) {
-           THROW exception::OutOfBoundsException("Length of named environmental property array (%u) does not match templated length (%u)! "
-               "in EnvironmentManager::getProperty().",
-               array_len, N * type_decode<T>::len_t);
-       }
+   std::array<T, N> EnvironmentManager::setProperty(const std::string &name, const std::array<T, N> &value) {
+       const EnvProp& prop = findProperty<T>(name, true, N);
        // Copy old data to return
        std::array<T, N> rtn;
-       std::shared_lock<std::shared_timed_mutex> lock(mutex);
-       const auto a = properties.find(name);
-       if (a != properties.end()) {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + a->second.offset), N * sizeof(T));
-       } else {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset), N * sizeof(T));
-       }
+       char* const dest_ptr = h_buffer + prop.offset;
+       memcpy(rtn.data(), dest_ptr, sizeof(T) * N);
+       // Store data
+       memcpy(dest_ptr, value.data(), sizeof(T) * N);
+       // Notify children
+       propagateMappedPropertyValue(name, dest_ptr);
        return rtn;
    }
    template<typename T, EnvironmentManager::size_type N>
-   std::array<T, N> EnvironmentManager::getProperty(const unsigned int &instance_id, const std::string &var_name) {
-       return getProperty<T, N>(toName(instance_id, var_name));
-   }
-   template<typename T>
-   T EnvironmentManager::getProperty(const NamePair &name, const size_type &index) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::getProperty().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
+   T EnvironmentManager::setProperty(const std::string &name, const size_type index, const T value) {
+       const EnvProp& prop = findProperty<T>(name, true, 0);
+       if (N && N != prop.elements / type_decode<T>::len_t) {
+           THROW exception::OutOfBoundsException("Environmental property with name '%s', array length mismatch (%u != %u), "
+               "in EnvironmentManager::setProperty().",
+               name.c_str(), N, prop.elements / type_decode<T>::len_t);
+       } else if (index >= prop.elements / type_decode<T>::len_t) {
+           THROW exception::OutOfBoundsException("Environmental property with name '%s', index (%u) exceeds named environmental property array's length (%u), "
+               "in EnvironmentManager::setProperty().",
+               name.c_str(), index, prop.elements / type_decode<T>::len_t);
        }
-       const size_type array_len = length(name);
-       const unsigned int t_index = type_decode<T>::len_t * index + type_decode<T>::len_t;
-       if (t_index > array_len || t_index < index) {
-           THROW exception::OutOfBoundsException("Index(%u) exceeds named environmental property array's length (%u), "
-               "in EnvironmentManager::getProperty().",
-               type_decode<T>::len_t * index, array_len);
-       }
-       std::shared_lock<std::shared_timed_mutex> lock(mutex);
        // Copy old data to return
-       const auto a = properties.find(name);
-       if (a != properties.end())
-           return *reinterpret_cast<T*>(hc_buffer + a->second.offset + index * sizeof(T));
-       return *reinterpret_cast<T*>(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset + index * sizeof(T));
+       T rtn;
+       char* const dest_ptr = h_buffer + prop.offset;
+       memcpy(&rtn, dest_ptr + index * sizeof(T), sizeof(T));
+       // Store data
+       memcpy(dest_ptr + index * sizeof(T), &value, sizeof(T));
+       // Notify children
+       propagateMappedPropertyValue(name, dest_ptr);
+       return rtn;
    }
    #ifdef SWIG
    template<typename T>
-   std::vector<T> EnvironmentManager::getPropertyArray(const NamePair& name) {
-       // Limited to Arithmetic types
-       // Compound types would allow host pointers inside structs to be passed
-       static_assert(std::is_arithmetic<typename type_decode<T>::type_t>::value || std::is_enum<typename type_decode<T>::type_t>::value,
-           "Only arithmetic types can be used as environmental properties");
-       const std::type_index typ_id = type(name);
-       if (typ_id != std::type_index(typeid(typename type_decode<T>::type_t))) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') type (%s) does not match template argument T (%s), "
-               "in EnvironmentManager::getPropertyArray().",
-               name.first, name.second.c_str(), typ_id.name(), typeid(typename type_decode<T>::type_t).name());
-       }
-       const size_type array_len = length(name);
-       if (array_len % type_decode<T>::len_t != 0) {
-           THROW exception::InvalidEnvPropertyType("Environmental property array ('%u:%s') length (%u) is not a multiple of vector length (%d), "
-               "in EnvironmentManager::getPropertyArray().",
-               name.first, name.second.c_str(), array_len, type_decode<T>::len_t);
-       }
+   std::vector<T> EnvironmentManager::setPropertyArray(const std::string& name, const std::vector<T>& value) {
+       const EnvProp& prop = findProperty<T>(name, true, static_cast<unsigned int>(value.size()));
        // Copy old data to return
-       std::vector<T> rtn(static_cast<size_t>(array_len / type_decode<T>::len_t));
-       std::shared_lock<std::shared_timed_mutex> lock(mutex);
-       const auto a = properties.find(name);
-       if (a != properties.end()) {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + a->second.offset), array_len * sizeof(typename type_decode<T>::type_t));
-       } else {
-           memcpy(rtn.data(), reinterpret_cast<T*>(hc_buffer + properties.at(mapped_properties.at(name).masterProp).offset), array_len * sizeof(typename type_decode<T>::type_t));
-       }
+       std::vector<T> rtn;
+       rtn.resize(value.size());
+       char* const dest_ptr = h_buffer + prop.offset;
+       memcpy(rtn.data(), dest_ptr, sizeof(T) * value.size());
+       // Store data
+       memcpy(dest_ptr, value.data(), sizeof(T) * value.size());
+       // Notify children
+       propagateMappedPropertyValue(name, dest_ptr);
        return rtn;
    }
    #endif
+   
    template<typename T>
-   T EnvironmentManager::getProperty(const unsigned int &instance_id, const std::string &var_name, const size_type &index) {
-       return getProperty<T>(toName(instance_id, var_name), index);
+   T EnvironmentManager::getProperty(const std::string &name) {
+       const EnvProp& prop = findProperty<T>(name, false, 1);
+       // Copy data to return
+       T rtn;
+       memcpy(&rtn, h_buffer + prop.offset, sizeof(T));
+       return rtn;
    }
+   template<typename T, EnvironmentManager::size_type N>
+   std::array<T, N> EnvironmentManager::getProperty(const std::string &name) {
+       const EnvProp& prop = findProperty<T>(name, false, N);
+       // Copy old data to return
+       std::array<T, N> rtn;
+       memcpy(rtn.data(), h_buffer + prop.offset, sizeof(T) * N);
+       return rtn;
+   }
+   template<typename T, EnvironmentManager::size_type N>
+   T EnvironmentManager::getProperty(const std::string &name, const size_type index) {
+       const EnvProp& prop = findProperty<T>(name, false, 0);
+       if (N && N != prop.elements / type_decode<T>::len_t) {
+           THROW exception::OutOfBoundsException("Environmental property with name '%s', array length mismatch (%u != %u), "
+               "in EnvironmentManager::getProperty().",
+               name.c_str(), N, prop.elements / type_decode<T>::len_t);
+       } else if (index >= prop.elements / type_decode<T>::len_t) {
+           THROW exception::OutOfBoundsException("Environmental property with name '%s', index (%u) exceeds named environmental property array's length (%u), "
+               "in EnvironmentManager::getProperty().",
+               name.c_str(), index, prop.elements / type_decode<T>::len_t);
+       }
+       // Copy old data to return
+       T rtn;
+       memcpy(&rtn, h_buffer + prop.offset + index * sizeof(T), sizeof(T));
+       return rtn;
+   }
+   #ifdef SWIG
+   template<typename T>
+   std::vector<T> EnvironmentManager::getPropertyArray(const std::string &name) {
+       const EnvProp& prop = findProperty<T>(name, false, 0);
+       // Copy old data to return
+       const unsigned int N = prop.elements / type_decode<T>::len_t;
+       std::vector<T> rtn;
+       rtn.resize(N);
+       memcpy(rtn.data(), h_buffer + prop.offset, sizeof(T) * N);
+       return rtn;
+   }
+   #endif
    
    }  // namespace flamegpu
    

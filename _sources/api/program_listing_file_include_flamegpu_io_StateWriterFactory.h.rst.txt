@@ -36,7 +36,7 @@ Program Listing for File StateWriterFactory.h
     public:
        static StateWriter* createWriter(
            const std::string& model_name,
-           const unsigned int& sim_instance_id,
+           const std::shared_ptr<EnvironmentManager>& env_manager,
            const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>>& model_state,
            const unsigned int& iterations,
            const std::string& output_file,
@@ -44,9 +44,9 @@ Program Listing for File StateWriterFactory.h
            const std::string extension = std::filesystem::path(output_file).extension().string();
    
            if (extension == ".xml") {
-               return new XMLStateWriter(model_name, sim_instance_id, model_state, iterations, output_file, sim_instance);
+               return new XMLStateWriter(model_name, env_manager, model_state, iterations, output_file, sim_instance);
            } else if (extension == ".json") {
-               return new JSONStateWriter(model_name, sim_instance_id, model_state, iterations, output_file, sim_instance);
+               return new JSONStateWriter(model_name, env_manager, model_state, iterations, output_file, sim_instance);
            }
            THROW exception::UnsupportedFileType("File '%s' is not a type which can be written "
                "by StateWriterFactory::createWriter().",

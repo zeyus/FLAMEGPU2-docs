@@ -20,7 +20,6 @@ Program Listing for File Simulation.h
    #include <unordered_map>
    
    #include "flamegpu/sim/AgentInterface.h"
-   #include "flamegpu/util/StringUint32Pair.h"
    
    
    namespace flamegpu {
@@ -105,6 +104,7 @@ Program Listing for File Simulation.h
        virtual void printHelp_derived() = 0;
        virtual void resetDerivedConfig() = 0;
        unsigned int getInstanceID() const { return instance_id; }
+       virtual std::shared_ptr<EnvironmentManager> getEnvironment() const = 0;
    
        unsigned int getMaximumLayerWidth() const { return maxLayerWidth; }
    
@@ -116,7 +116,7 @@ Program Listing for File Simulation.h
        Config config;
        std::string loaded_input_file;
        const unsigned int instance_id;
-       util::StringUint32PairUnorderedMap<util::Any> env_init;
+       std::unordered_map<std::string, util::Any> env_init;
        unsigned int maxLayerWidth;
    
     private:

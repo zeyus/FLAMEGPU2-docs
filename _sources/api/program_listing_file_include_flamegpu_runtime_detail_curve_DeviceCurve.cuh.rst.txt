@@ -1,0 +1,256 @@
+
+.. _program_listing_file_include_flamegpu_runtime_detail_curve_DeviceCurve.cuh:
+
+Program Listing for File DeviceCurve.cuh
+========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_detail_curve_DeviceCurve.cuh>` (``include/flamegpu/runtime/detail/curve/DeviceCurve.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_DEVICECURVE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_DEVICECURVE_CUH_
+   
+   #include "flamegpu/runtime/detail/SharedBlock.h"
+   #include "flamegpu/runtime/detail/curve/Curve.cuh"
+   #include "flamegpu/exception/FLAMEGPUDeviceException_device.cuh"
+   
+   #ifdef USE_GLM
+   #ifdef __CUDACC__
+   #ifdef __NVCC_DIAG_PRAGMA_SUPPORT__
+   #pragma nv_diag_suppress = esa_on_defaulted_function_ignored
+   #else
+   #pragma diag_suppress = esa_on_defaulted_function_ignored
+   #endif  // __NVCC_DIAG_PRAGMA_SUPPORT__
+   #endif  // __CUDACC__
+   #include <glm/glm.hpp>
+   #endif  // USE_GLM
+   
+   namespace flamegpu {
+   namespace detail {
+   namespace curve {
+   
+   class DeviceCurve {
+    public:
+       typedef Curve::Variable          Variable;                    // !< Typedef for cuRVE variable handle
+       typedef Curve::VariableHash      VariableHash;                // !< Typedef for cuRVE variable name string hash
+       typedef Curve::NamespaceHash     NamespaceHash;               // !< Typedef for cuRVE variable namespace string hash
+       static const int MAX_VARIABLES = Curve::MAX_VARIABLES;        // !< Default maximum number of cuRVE variables (must be a power of 2)static const VariableHash EMPTY_FLAG = Curve::EMPTY_FLAG;
+       static const VariableHash EMPTY_FLAG = Curve::EMPTY_FLAG;
+       static const int UNKNOWN_VARIABLE = -1;                       // !< value returned as a Variable if an API function encounters an error
+   
+    private:
+   
+       __device__ __forceinline__ static Variable getVariableIndex(VariableHash variable_hash);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static char* getVariablePtr(const char(&variableName)[M], VariableHash namespace_hash, unsigned int offset);
+   
+       template <typename T, unsigned int N = 1, unsigned int M>
+       __device__ __forceinline__ static T getVariable(const char(&variableName)[M], VariableHash namespace_hash, unsigned int agent_index = 0, unsigned int array_index = 0);
+       template <typename T, unsigned int N = 1, unsigned int M>
+       __device__ __forceinline__ static T getVariable_ldg(const char(&variableName)[M], VariableHash namespace_hash, unsigned int agent_index = 0, unsigned int array_index = 0);
+       template <typename T, unsigned int N = 1, unsigned int M>
+       __device__ __forceinline__ static void setVariable(const char(&variableName)[M], VariableHash namespace_hash, T value, unsigned int agent_index = 0, unsigned int array_index = 0);
+   
+    public:
+        __device__ __forceinline__ static void init(const CurveTable* __restrict__ d_curve_table) {
+            using detail::sm;
+            for (int idx = threadIdx.x; idx < Curve::MAX_VARIABLES; idx += blockDim.x) {
+                sm()->curve_variables[idx] = d_curve_table->variables[idx];
+                sm()->curve_hashes[idx] = d_curve_table->hashes[idx];
+   #if !defined(SEATBELTS) || SEATBELTS
+                sm()->curve_type_size[idx] = d_curve_table->type_size[idx];
+                sm()->curve_elements[idx] = d_curve_table->elements[idx];
+                sm()->curve_count[idx] = d_curve_table->count[idx];
+   #endif
+            }
+       }
+   
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static T getAgentVariable(const char(&variableName)[M], unsigned int index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static T getMessageVariable(const char(&variableName)[M], unsigned int index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static T getAgentVariable_ldg(const char(&variableName)[M], unsigned int index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static T getMessageVariable_ldg(const char(&variableName)[M], unsigned int index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static T getAgentArrayVariable(const char(&variableName)[M], unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static T getMessageArrayVariable(const char(&variableName)[M], unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static T getAgentArrayVariable_ldg(const char(&variableName)[M], unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static T getMessageArrayVariable_ldg(const char(&variableName)[M], unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static void setAgentVariable(const char(&variableName)[M], T variable, unsigned int index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static void setMessageVariable(const char(&variableName)[M], T variable, unsigned int index);
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static void setNewAgentVariable(const char(&variableName)[M], T variable, unsigned int index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static void setAgentArrayVariable(const char(&variableName)[M], T variable, unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static void setMessageArrayVariable(const char(&variableName)[M], T variable, unsigned int variable_index, unsigned int array_index);
+       template <typename T, unsigned int N, unsigned int M>
+       __device__ __forceinline__ static void setNewAgentArrayVariable(const char(&variableName)[M], T variable, unsigned int variable_index, unsigned int array_index);
+   
+       template <typename T, unsigned int M>
+       __device__ __forceinline__ static T getEnvironmentProperty(const char(&propertyName)[M]);
+       template <typename T, unsigned int N = 0, unsigned int M>
+       __device__ __forceinline__ static T getEnvironmentArrayProperty(const char(&propertyName)[M], unsigned int array_index);
+   
+       template<typename T, unsigned int I = 1, unsigned int J = 1, unsigned int K = 1, unsigned int W = 1, unsigned int M>
+       __device__ __forceinline__ static char *getEnvironmentMacroProperty(const char(&name)[M]);
+   };
+   
+   __device__ __forceinline__ DeviceCurve::Variable DeviceCurve::getVariableIndex(const VariableHash variable_hash) {
+       using detail::sm;
+       // loop unrolling of hash collision detection
+       // (This may inflate register usage based on the max number of iterations in some cases)
+       for (unsigned int x = 0; x< MAX_VARIABLES; x++) {
+           const Variable i = (variable_hash + x) & (MAX_VARIABLES - 1);
+           if (sm()->curve_hashes[i] == variable_hash)
+               return i;
+       }
+       return UNKNOWN_VARIABLE;
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ char* DeviceCurve::getVariablePtr(const char(&variableName)[M], const VariableHash namespace_hash, const unsigned int offset) {
+       using detail::sm;
+       const Variable cv = getVariableIndex(Curve::variableHash(variableName) + namespace_hash);
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (cv == UNKNOWN_VARIABLE) {
+           DTHROW("Curve variable with name '%s' was not found.\n", variableName);
+           return nullptr;
+       } else if (sm()->curve_type_size[cv] != sizeof(typename type_decode<T>::type_t)) {
+           DTHROW("Curve variable with name '%s', type size mismatch %u != %llu.\n", variableName, sm()->curve_type_size[cv], sizeof(typename type_decode<T>::type_t));
+           return nullptr;
+       } else if (!(sm()->curve_elements[cv] == type_decode<T>::len_t * N || (namespace_hash == Curve::variableHash("_environment") && N == 0))) {  // Special case, environment can avoid specifying N
+           DTHROW("Curve variable with name '%s', variable array length mismatch %u != %u.\n", variableName, sm()->curve_elements[cv], type_decode<T>::len_t);
+           return nullptr;
+       } else if (offset >= sm()->curve_type_size[cv] * sm()->curve_elements[cv] * sm()->curve_count[cv]) {  // Note : offset is basically index * sizeof(T)
+           DTHROW("Curve variable with name '%s', offset exceeds buffer length  %u >= %u.\n", offset, sm()->curve_type_size[cv] * sm()->curve_elements[cv] * sm()->curve_count[cv]);
+           return nullptr;
+       }
+   #endif
+       // return a generic pointer to variable address for given offset
+       return sm()->curve_variables[cv] + offset;
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getVariable(const char(&variableName)[M], const VariableHash namespace_hash, const unsigned int agent_index, const unsigned int array_index) {
+       using detail::sm;
+       const unsigned int buffer_offset = agent_index * static_cast<unsigned int>(sizeof(T)) * N + array_index * sizeof(typename type_decode<T>::type_t);
+       T *value_ptr = reinterpret_cast<T*>(getVariablePtr<T, N>(variableName, namespace_hash, buffer_offset));
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (!value_ptr)
+           return {};
+   #endif
+       return *value_ptr;
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getVariable_ldg(const char(&variableName)[M], const VariableHash namespace_hash, const unsigned int agent_index, const unsigned int array_index) {
+       const unsigned int buffer_offset = agent_index * static_cast<unsigned int>(sizeof(T)) * N + array_index * sizeof(typename type_decode<T>::type_t);
+       T *value_ptr = reinterpret_cast<T*>(getVariablePtr<T, N>(variableName, namespace_hash, buffer_offset));
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (!value_ptr)
+           return {};
+   #endif
+       return __ldg(value_ptr);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setVariable(const char(&variableName)[M], const VariableHash namespace_hash, const T variable, const unsigned int agent_index, const unsigned int array_index) {
+       const unsigned int buffer_offset = agent_index * static_cast<unsigned int>(sizeof(T)) * N + array_index * sizeof(typename type_decode<T>::type_t);
+       T* value_ptr = reinterpret_cast<T*>(getVariablePtr<T, N>(variableName, namespace_hash, buffer_offset));
+   
+   #if !defined(SEATBELTS) || SEATBELTS
+       if (!value_ptr)
+           return;
+   #endif
+       *value_ptr = variable;
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getAgentVariable(const char (&variableName)[M], unsigned int index) {
+       using detail::sm;
+       return getVariable<T>(variableName, 0, index);
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getMessageVariable(const char (&variableName)[M], unsigned int index) {
+       return getVariable<T>(variableName, Curve::variableHash("_message_in"), index);
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getAgentVariable_ldg(const char (&variableName)[M], unsigned int index) {
+       return getVariable_ldg<T>(variableName, 0, index);
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getMessageVariable_ldg(const char (&variableName)[M], unsigned int index) {
+       return getVariable_ldg<T>(variableName, Curve::variableHash("_message_in"), index);
+   }
+   
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getAgentArrayVariable(const char(&variableName)[M], unsigned int agent_index, unsigned int array_index) {
+       return getVariable<T, N>(variableName, 0, agent_index, array_index);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getMessageArrayVariable(const char(&variableName)[M], unsigned int message_index, unsigned int array_index) {
+       return getVariable<T, N>(variableName, Curve::variableHash("_message_in"), message_index, array_index);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getAgentArrayVariable_ldg(const char(&variableName)[M], unsigned int agent_index, unsigned int array_index) {
+       return getVariable_ldg<T, N>(variableName, 0, agent_index, array_index);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getMessageArrayVariable_ldg(const char(&variableName)[M], unsigned int message_index, unsigned int array_index) {
+       return getVariable_ldg<T, N>(variableName, Curve::variableHash("_message_in"), message_index, array_index);
+   }
+   
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setAgentVariable(const char(&variableName)[M], T variable, unsigned int index) {
+       setVariable<T>(variableName, 0, variable, index);
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setMessageVariable(const char(&variableName)[M], T variable, unsigned int index) {
+       setVariable<T>(variableName, Curve::variableHash("_message_out"), variable, index);
+   }
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setNewAgentVariable(const char(&variableName)[M], T variable, unsigned int index) {
+       setVariable<T>(variableName, Curve::variableHash("_agent_birth"), variable, index);
+   }
+   
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setAgentArrayVariable(const char(&variableName)[M], T variable, unsigned int agent_index, unsigned int array_index) {
+       setVariable<T, N>(variableName, 0, variable, agent_index, array_index);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setMessageArrayVariable(const char(&variableName)[M], T variable, unsigned int message_index, unsigned int array_index) {
+       setVariable<T, N>(variableName, Curve::variableHash("_message_out"), variable, message_index, array_index);
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ void DeviceCurve::setNewAgentArrayVariable(const char(&variableName)[M], T variable, unsigned int agent_index, unsigned int array_index) {
+       setVariable<T, N>(variableName, Curve::variableHash("_agent_birth"), variable, agent_index, array_index);
+   }
+   
+   template <typename T, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getEnvironmentProperty(const char(&propertyName)[M]) {
+       using detail::sm;
+       return  *reinterpret_cast<const T*>(sm()->env_buffer + reinterpret_cast<ptrdiff_t>(getVariablePtr<T, 1>(propertyName, Curve::variableHash("_environment"), 0)));
+   }
+   template <typename T, unsigned int N, unsigned int M>
+   __device__ __forceinline__ T DeviceCurve::getEnvironmentArrayProperty(const char(&propertyName)[M], unsigned int array_index) {
+       using detail::sm;
+       return *reinterpret_cast<const T*>(sm()->env_buffer + reinterpret_cast<ptrdiff_t>(getVariablePtr<T, N>(propertyName, Curve::variableHash("_environment"), array_index * sizeof(T))));
+   }
+   
+   template<typename T, unsigned int I, unsigned int J, unsigned int K, unsigned int W, unsigned int M>
+   __device__ __forceinline__ char* DeviceCurve::getEnvironmentMacroProperty(const char(&name)[M]) {
+       return getVariablePtr<T, I*J*K*W>(name, Curve::variableHash("_macro_environment"), 0);
+   }
+   }  // namespace curve
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_DEVICECURVE_CUH_

@@ -1,0 +1,70 @@
+
+.. _program_listing_file_include_flamegpu_runtime_detail_curve_Curve.cuh:
+
+Program Listing for File Curve.cuh
+==================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_detail_curve_Curve.cuh>` (``include/flamegpu/runtime/detail/curve/Curve.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_CUH_
+   
+   #ifndef __CUDACC_RTC__
+   #include <string>
+   #endif
+   
+   namespace flamegpu {
+   namespace detail {
+   namespace curve {
+   
+   class Curve {
+    public:
+       typedef int                      Variable;           // !< Typedef for cuRVE variable handle
+       typedef unsigned int             VariableHash;       // !< Typedef for cuRVE variable name string hash
+       typedef unsigned int             NamespaceHash;      // !< Typedef for cuRVE variable namespace string hash
+       static const int MAX_VARIABLES = 512;                // !< Default maximum number of cuRVE variables (must be a power of 2)
+       static const VariableHash EMPTY_FLAG = 0;
+       template <unsigned int N>
+       __device__ __host__ __forceinline__ static VariableHash variableHash(const char(&str)[N]);
+   #ifndef __CUDACC_RTC__
+   
+       __host__ static VariableHash variableRuntimeHash(const std::string &str);
+       __host__ static VariableHash variableRuntimeHash(unsigned int num);
+   #endif
+   };
+   struct CurveTable {
+       Curve::VariableHash hashes[Curve::MAX_VARIABLES];            // Device array of the hash values of registered variables
+       char* variables[Curve::MAX_VARIABLES];                // Device array of pointer to device memory addresses for variable storage
+       unsigned int type_size[Curve::MAX_VARIABLES];         // Device array of the types of registered variables
+       unsigned int elements[Curve::MAX_VARIABLES];
+       unsigned int count[Curve::MAX_VARIABLES];
+   };
+   
+   /* TEMPLATE HASHING FUNCTIONS */
+   
+   template <unsigned int N, unsigned int I> struct CurveStringHash {
+       __device__ __host__ inline static Curve::VariableHash Hash(const char(&str)[N]) {
+           return (CurveStringHash<N, I - 1>::Hash(str) ^ str[I - 1]) * 16777619u;
+       }
+   };
+   template <unsigned int N> struct CurveStringHash<N, 1> {
+       __device__ __host__ inline static Curve::VariableHash Hash(const char(&str)[N]) {
+           return (2166136261u ^ str[0]) * 16777619u;
+       }
+   };
+   
+   template <unsigned int N>
+   __device__ __host__ __forceinline__ Curve::VariableHash Curve::variableHash(const char(&str)[N]) {
+       return CurveStringHash<N, N>::Hash(str);
+   }
+   
+   
+   }  // namespace curve
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_CURVE_CUH_

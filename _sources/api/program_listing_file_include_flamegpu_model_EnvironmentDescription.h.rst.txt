@@ -103,7 +103,7 @@ Program Listing for File EnvironmentDescription.h
    #ifdef SWIG
    
        template<typename T>
-       void newPropertyArray(const std::string &name, const EnvironmentManager::size_type length, const std::vector<T> &value, const bool isConst = false);
+       void newPropertyArray(const std::string &name, const std::vector<T> &value, const bool isConst = false);
    #endif
    
        template<typename T, EnvironmentManager::size_type I = 1, EnvironmentManager::size_type J = 1, EnvironmentManager::size_type K = 1, EnvironmentManager::size_type W = 1>
@@ -186,16 +186,12 @@ Program Listing for File EnvironmentDescription.h
    }
    #ifdef SWIG
    template<typename T>
-   void EnvironmentDescription::newPropertyArray(const std::string &name, EnvironmentManager::size_type N, const std::vector<T> &value, bool isConst) {
+   void EnvironmentDescription::newPropertyArray(const std::string &name, const std::vector<T> &value, bool isConst) {
        if (!name.empty() && name[0] == '_') {
            THROW exception::ReservedName("Environment property names cannot begin with '_', this is reserved for internal usage, "
                "in EnvironmentDescription::newPropertyArray().");
        }
-       if (value.size() != N) {
-           THROW exception::InvalidEnvProperty("Environment property array length does not match the value provided, %u != %llu,"
-               "in EnvironmentDescription::newPropertyArray().", N, value.size());
-       }
-       if (N == 0) {
+       if (value.size() == 0) {
            THROW exception::InvalidEnvProperty("Environment property arrays must have a length greater than 0."
                "in EnvironmentDescription::newPropertyArray().");
        }
@@ -208,7 +204,7 @@ Program Listing for File EnvironmentDescription.h
                "in EnvironmentDescription::newPropertyArray().",
                name.c_str());
        }
-       newProperty(name, reinterpret_cast<const char*>(value.data()), N * sizeof(T), isConst, type_decode<T>::len_t * N, typeid(typename type_decode<T>::type_t));
+       newProperty(name, reinterpret_cast<const char*>(value.data()), value.size() * sizeof(T), isConst, type_decode<T>::len_t * value.size(), typeid(typename type_decode<T>::type_t));
    }
    #endif
    

@@ -1,0 +1,74 @@
+
+.. _program_listing_file_include_flamegpu_runtime_detail_curve_HostCurve.cuh:
+
+Program Listing for File HostCurve.cuh
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_detail_curve_HostCurve.cuh>` (``include/flamegpu/runtime/detail/curve/HostCurve.cuh``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_HOSTCURVE_CUH_
+   #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_HOSTCURVE_CUH_
+   
+   #include <cstring>
+   #include <cstdio>
+   #include <mutex>
+   #include <shared_mutex>
+   #include <typeindex>
+   #include <string>
+   
+   #include "flamegpu/runtime/detail/curve/Curve.cuh"
+   #include "flamegpu/exception/FLAMEGPUDeviceException.cuh"
+   
+   namespace flamegpu {
+   // forward declare classes from other modules
+   class CUDAAgent;
+   namespace detail {
+   namespace curve {
+   
+   class HostCurve {
+    public:
+       typedef Curve::Variable          Variable;                    // !< Typedef for cuRVE variable handle
+       typedef Curve::VariableHash      VariableHash;                // !< Typedef for cuRVE variable name string hash
+       typedef Curve::NamespaceHash     NamespaceHash;               // !< Typedef for cuRVE variable namespace string hash
+       static const int MAX_VARIABLES = Curve::MAX_VARIABLES;        // !< Default maximum number of cuRVE variables (must be a power of 2)
+       static const VariableHash EMPTY_FLAG = Curve::EMPTY_FLAG;
+   
+       void registerAgentVariable(const std::string& variable_name, std::type_index type, size_t type_size, unsigned int elements);
+       void registerMessageInputVariable(const std::string& variable_name, std::type_index type, size_t type_size, unsigned int elements);
+       void registerMessageOutputVariable(const std::string &variable_name, std::type_index type, size_t type_size, unsigned int elements);
+       void registerAgentOutputVariable(const std::string& variable_name, std::type_index type, size_t type_size, unsigned int elements);
+       void registerSetEnvironmentProperty(const std::string &variable_name, std::type_index type, size_t type_size, unsigned int elements, ptrdiff_t offset);
+       void registerSetMacroEnvironmentProperty(const std::string &variable_name, std::type_index type, size_t type_size, unsigned int elements, void* d_ptr);
+       void setAgentVariable(const std::string& variable_name, void* d_ptr, unsigned int agent_count);
+       void setMessageInputVariable(const std::string& variable_name, void *d_ptr, unsigned int message_in_count);
+       void setMessageOutputVariable(const std::string& variable_name, void *d_ptr, unsigned int message_out_count);
+       void setAgentOutputVariable(const std::string& variable_name, void *d_ptr, unsigned int agent_count);
+       int size() const;
+       void updateDevice_async(cudaStream_t stream);
+   
+    private:
+        void registerVariable(VariableHash variable_hash, std::type_index type, size_t type_size, unsigned int elements);
+        void setVariable(VariableHash variable_hash, void* d_ptr, unsigned int count = 0);
+   
+       void initialiseDevice();
+       friend class flamegpu::CUDAAgent;
+       CurveTable h_curve_table, *d_curve_table;
+       // std::type_index h_curve_table_ext_type[MAX_VARIABLES]; //@todo How to init this safely?
+       unsigned int h_curve_table_ext_count[MAX_VARIABLES];
+       const NamespaceHash message_in_hash, message_out_hash, agent_out_hash, environment_hash, macro_environment_hash;
+   
+    public:
+        HostCurve();
+        ~HostCurve();
+        const CurveTable* getDevicePtr() const;
+   };
+   
+   }  // namespace curve
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_DETAIL_CURVE_HOSTCURVE_CUH_

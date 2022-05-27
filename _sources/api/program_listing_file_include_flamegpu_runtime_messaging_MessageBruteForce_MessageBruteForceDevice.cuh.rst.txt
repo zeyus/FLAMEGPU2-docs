@@ -16,6 +16,9 @@ Program Listing for File MessageBruteForceDevice.cuh
    #include "flamegpu/defines.h"
    #include "flamegpu/runtime/messaging/MessageNone.h"
    #include "flamegpu/runtime/messaging/MessageBruteForce.h"
+   #ifndef __CUDACC_RTC__
+   #include "flamegpu/runtime/detail/curve/DeviceCurve.cuh"
+   #endif  // __CUDACC_RTC__
    
    struct ModelData;
    
@@ -26,9 +29,8 @@ Program Listing for File MessageBruteForceDevice.cuh
        class Message;      // Forward declare inner classes
        class iterator;     // Forward declare inner classes
    
-       __device__ In(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *metadata)
-           : combined_hash(agentfn_hash + message_hash)
-           , len(reinterpret_cast<const MetaData*>(metadata)->length)
+       __device__ In(const void *metadata)
+           : len(reinterpret_cast<const MetaData*>(metadata)->length)
        { }
        __device__ size_type size(void) const {
            return len;
@@ -70,7 +72,6 @@ Program Listing for File MessageBruteForceDevice.cuh
        };
    
     private:
-       detail::curve::Curve::NamespaceHash combined_hash;
        size_type len;
    };
    
@@ -78,9 +79,8 @@ Program Listing for File MessageBruteForceDevice.cuh
    
    class MessageBruteForce::Out {
     public:
-       __device__ Out(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *, unsigned int *scan_flag_messageOutput)
-           : combined_hash(agentfn_hash + message_hash)
-           , scan_flag(scan_flag_messageOutput)
+       __device__ Out(const void *, unsigned int *scan_flag_messageOutput)
+           : scan_flag(scan_flag_messageOutput)
        { }
        template<typename T, unsigned int N>
        __device__ void setVariable(const char(&variable_name)[N], T value) const;
@@ -88,7 +88,6 @@ Program Listing for File MessageBruteForceDevice.cuh
        __device__ void setVariable(const char(&variable_name)[M], const unsigned int& index, T value) const;
    
     protected:
-       detail::curve::Curve::NamespaceHash combined_hash;
        unsigned int *scan_flag;
    };
    
@@ -101,11 +100,11 @@ Program Listing for File MessageBruteForceDevice.cuh
            return static_cast<T>(0);
        }
    #endif
-       // get the value from curve using the stored hashes and message index.
+       // get the value from curve using the message index.
    #ifdef USE_GLM
-       T value = detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, index);
+       T value = detail::curve::DeviceCurve::getMessageVariable<T>(variable_name, index);
    #else
-       T value = detail::curve::Curve::getMessageVariable_ldg<T>(variable_name, this->_parent.combined_hash, index);
+       T value = detail::curve::DeviceCurve::getMessageVariable_ldg<T>(variable_name, index);
    #endif
        return value;
    }
@@ -120,11 +119,11 @@ Program Listing for File MessageBruteForceDevice.cuh
            return static_cast<T>(0);
        }
    #endif
-       // get the value from curve using the stored hashes and message index.
+       // get the value from curve using the message index.
    #ifdef USE_GLM
-       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, index, array_index);
+       T value = detail::curve::DeviceCurve::getMessageArrayVariable<T, N>(variable_name, index, array_index);
    #else
-       T value = detail::curve::Curve::getMessageArrayVariable_ldg<T, N>(variable_name, this->_parent.combined_hash, index, array_index);
+       T value = detail::curve::DeviceCurve::getMessageArrayVariable_ldg<T, N>(variable_name, index, array_index);
    #endif
        return value;
    }
@@ -142,7 +141,7 @@ Program Listing for File MessageBruteForceDevice.cuh
        // Todo: checking if the output message type is single or optional?  (d_message_type)
    
        // set the variable using curve
-       detail::curve::Curve::setMessageVariable<T>(variable_name, combined_hash, value, index);
+       detail::curve::DeviceCurve::setMessageVariable<T>(variable_name, value, index);
    
        // Set scan flag incase the message is optional
        this->scan_flag[index] = 1;
@@ -160,7 +159,7 @@ Program Listing for File MessageBruteForceDevice.cuh
        // Todo: checking if the output message type is single or optional?  (d_message_type)
    
        // set the variable using curve
-       detail::curve::Curve::setMessageArrayVariable<T, N>(variable_name, combined_hash, value, index, array_index);
+       detail::curve::DeviceCurve::setMessageArrayVariable<T, N>(variable_name, value, index, array_index);
    
        // Set scan flag incase the message is optional
        this->scan_flag[index] = 1;

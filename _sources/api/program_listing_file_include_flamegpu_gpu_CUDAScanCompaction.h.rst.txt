@@ -49,7 +49,6 @@ Program Listing for File CUDAScanCompaction.h
        CUDAScanCompaction() { }
        CUDAScanCompaction(CUDAScanCompaction const&) = delete;
        void operator=(CUDAScanCompaction const&) = delete;
-       void purge();
        void resize(const unsigned int& newCount, const Type& type, const unsigned int& streamId);
        void zero_async(const Type& type, cudaStream_t stream, unsigned int streamId);
        const CUDAScanCompactionConfig &getConfig(const Type& type, const unsigned int& streamId);

@@ -1,0 +1,50 @@
+
+.. _program_listing_file_include_flamegpu_runtime_detail_SharedBlock.h:
+
+Program Listing for File SharedBlock.h
+======================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_flamegpu_runtime_detail_SharedBlock.h>` (``include/flamegpu/runtime/detail/SharedBlock.h``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #ifndef INCLUDE_FLAMEGPU_RUNTIME_DETAIL_SHAREDBLOCK_H_
+   #define INCLUDE_FLAMEGPU_RUNTIME_DETAIL_SHAREDBLOCK_H_
+   
+   #include "flamegpu/runtime/detail/curve/Curve.cuh"
+   
+   namespace flamegpu {
+   namespace exception {
+   struct DeviceExceptionBuffer;
+   }  // namespace exception
+   namespace detail {
+   struct SharedBlock {
+   #ifndef __CUDACC_RTC__
+       curve::Curve::VariableHash curve_hashes[curve::Curve::MAX_VARIABLES];
+       char* curve_variables[curve::Curve::MAX_VARIABLES];
+   #if !defined(SEATBELTS) || SEATBELTS
+       unsigned int curve_type_size[curve::Curve::MAX_VARIABLES];
+       unsigned int curve_elements[curve::Curve::MAX_VARIABLES];
+       unsigned int curve_count[curve::Curve::MAX_VARIABLES];
+   #endif
+       const char* env_buffer;
+   #endif
+   #if !defined(SEATBELTS) || SEATBELTS
+       exception::DeviceExceptionBuffer *device_exception;
+   #endif
+   };
+   __forceinline__ __device__ SharedBlock *sm() {
+   #ifdef __CUDACC__
+       __shared__ SharedBlock _sm;
+       return &_sm;
+   #else
+       // GCC causes this function to warn, as it believes a ptr to local memory is being returned (return-local-addr)
+       return nullptr;
+   #endif
+   }
+   }  // namespace detail
+   }  // namespace flamegpu
+   
+   #endif  // INCLUDE_FLAMEGPU_RUNTIME_DETAIL_SHAREDBLOCK_H_

@@ -59,7 +59,7 @@ Program Listing for File RunPlan.h
    #ifdef SWIG
    
        template<typename T>
-       void setPropertyArray(const std::string &name, const EnvironmentManager::size_type &length, const std::vector<T> &value);
+       void setPropertyArray(const std::string &name, const std::vector<T> &value);
    #endif
    
        uint64_t getRandomSimulationSeed() const;
@@ -169,7 +169,7 @@ Program Listing for File RunPlan.h
    }
    #ifdef SWIG
    template<typename T>
-   void RunPlan::setPropertyArray(const std::string &name, const EnvironmentManager::size_type &N, const std::vector<T> &value) {
+   void RunPlan::setPropertyArray(const std::string &name, const std::vector<T> &value) {
        // Validation
        const auto it = environment->find(name);
        if (it == environment->end()) {
@@ -182,19 +182,14 @@ Program Listing for File RunPlan.h
                "in RunPlan::setPropertyArray()\n",
                name.c_str(), it->second.data.type.name(), std::type_index(typeid(typename type_decode<T>::type_t)).name());
        }
-       if (it->second.data.elements != type_decode<T>::len_t * N) {
-           THROW exception::InvalidEnvPropertyType("Environment property array '%s' length mismatch %u != %u, "
-               "in RunPlan::setPropertyArray()\n",
-               name.c_str(), it->second.data.elements, N);
-       }
-       if (value.size() != N) {
+       if (type_decode<T>::len_t * value.size() != it->second.data.elements) {
            THROW exception::InvalidEnvPropertyType("Environment property array length does not match the value provided, %u != %llu,"
                "in RunPlan::setPropertyArray()\n",
-               name.c_str(), value.size(), N);
+               name.c_str(), type_decode<T>::len_t * value.size(), it->second.data.elements);
        }
        // Store property
        property_overrides.erase(name);
-       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * N, typeid(typename type_decode<T>::type_t), type_decode<T>::len_t * N));
+       property_overrides.emplace(name, util::Any(value.data(), sizeof(T) * value.size(), typeid(typename type_decode<T>::type_t), type_decode<T>::len_t * value.size()));
    }
    #endif
    

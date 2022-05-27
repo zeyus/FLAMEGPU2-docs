@@ -16,9 +16,13 @@ Program Listing for File AgentFunction.cuh
    #include <cuda_runtime.h>
    #include <curand_kernel.h>
    
+   #include "flamegpu/runtime/detail/SharedBlock.h"
    #include "flamegpu/defines.h"
    #include "flamegpu/exception/FLAMEGPUDeviceException.cuh"
    #include "flamegpu/runtime/AgentFunction_shim.cuh"
+   #ifndef __CUDACC_RTC__
+   #include "flamegpu/runtime/detail/curve/DeviceCurve.cuh"
+   #endif
    
    namespace flamegpu {
    
@@ -29,11 +33,10 @@ Program Listing for File AgentFunction.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        exception::DeviceExceptionBuffer *error_buffer,
    #endif
-       detail::curve::Curve::NamespaceHash instance_id_hash,
-       detail::curve::Curve::NamespaceHash agent_func_name_hash,
-       detail::curve::Curve::NamespaceHash messagename_inp_hash,
-       detail::curve::Curve::NamespaceHash messagename_outp_hash,
-       detail::curve::Curve::NamespaceHash agent_output_hash,
+   #ifndef __CUDACC_RTC__
+       const detail::curve::CurveTable *d_curve_table,
+       const char* d_env_buffer,
+   #endif
        id_t *d_agent_output_nextID,
        const unsigned int popNo,
        const void *in_messagelist_metadata,
@@ -48,11 +51,10 @@ Program Listing for File AgentFunction.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        exception::DeviceExceptionBuffer *error_buffer,
    #endif
-       detail::curve::Curve::NamespaceHash instance_id_hash,
-       detail::curve::Curve::NamespaceHash agent_func_name_hash,
-       detail::curve::Curve::NamespaceHash messagename_inp_hash,
-       detail::curve::Curve::NamespaceHash messagename_outp_hash,
-       detail::curve::Curve::NamespaceHash agent_output_hash,
+   #ifndef __CUDACC_RTC__
+       const detail::curve::CurveTable* __restrict__ d_curve_table,
+       const char* d_env_buffer,
+   #endif
        id_t *d_agent_output_nextID,
        const unsigned int popNo,
        const void *in_messagelist_metadata,
@@ -61,31 +63,34 @@ Program Listing for File AgentFunction.cuh
        unsigned int *scanFlag_agentDeath,
        unsigned int *scanFlag_messageOutput,
        unsigned int *scanFlag_agentOutput) {
-   #if !defined(SEATBELTS) || SEATBELTS
-       // We place this at the start of shared memory, so we can locate it anywhere in device code without a reference
-       extern __shared__ exception::DeviceExceptionBuffer *buff[];
+       // We place these at the start of shared memory, so we can locate it anywhere in device code without a reference
+       using detail::sm;
        if (threadIdx.x == 0) {
-           buff[0] = error_buffer;
+   #if !defined(SEATBELTS) || SEATBELTS
+           sm()->device_exception = error_buffer;
+   #endif
+   #ifndef __CUDACC_RTC__
+           sm()->env_buffer = d_env_buffer;
+   #endif
        }
+   #ifndef __CUDACC_RTC__
+       detail::curve::DeviceCurve::init(d_curve_table);
+   #endif
    
        #if defined(__CUDACC__)  // @todo - This should not be required. This template should only ever be processed by a CUDA compiler.
        // Sync the block after Thread 0 has written to shared.
        __syncthreads();
        #endif  // __CUDACC__
-   #endif
        // Must be terminated here, else AgentRandom has bounds issues inside DeviceAPI constructor
        if (DeviceAPI<MessageIn, MessageOut>::getThreadIndex() >= popNo)
            return;
        // create a new device FLAME_GPU instance
        DeviceAPI<MessageIn, MessageOut> api = DeviceAPI<MessageIn, MessageOut>(
-           instance_id_hash,
-           agent_func_name_hash,
-           agent_output_hash,
            d_agent_output_nextID,
            d_rng,
            scanFlag_agentOutput,
-           MessageIn::In(agent_func_name_hash, messagename_inp_hash, in_messagelist_metadata),
-           MessageOut::Out(agent_func_name_hash, messagename_outp_hash, out_messagelist_metadata, scanFlag_messageOutput));
+           MessageIn::In(in_messagelist_metadata),
+           MessageOut::Out(out_messagelist_metadata, scanFlag_messageOutput));
    
        // call the user specified device function
        AGENT_STATUS flag = AgentFunction()(&api);

@@ -19,6 +19,7 @@ Program Listing for File HostAPI.h
    #include <functional>
    #include <unordered_map>
    #include <vector>
+   #include <memory>
    
    #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
    #include "flamegpu/runtime/utility/HostRandom.cuh"
@@ -49,6 +50,7 @@ Program Listing for File HostAPI.h
              CUDAScatter &scatter,
              const AgentOffsetMap &agentOffsets,
              AgentDataMap &agentData,
+             const std::shared_ptr<EnvironmentManager> &env,
              CUDAMacroEnvironment &macro_env,
              const unsigned int &streamId,
             cudaStream_t stream);

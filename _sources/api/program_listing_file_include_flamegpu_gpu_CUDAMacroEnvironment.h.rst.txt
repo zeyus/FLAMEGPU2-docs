@@ -24,7 +24,7 @@ Program Listing for File CUDAMacroEnvironment.h
    #include <memory>
    
    #include "detail/CUDAErrorChecking.cuh"
-   #include "flamegpu/runtime/detail/curve/curve.cuh"
+   #include "flamegpu/runtime/detail/curve/HostCurve.cuh"
    #include "flamegpu/runtime/utility/HostMacroProperty.cuh"
    
    // forward declare classes from other modules
@@ -42,8 +42,6 @@ Program Listing for File CUDAMacroEnvironment.h
    class CUDASimulation;
    
    class CUDAMacroEnvironment {
-       static const char MACRO_NAMESPACE_STRING[18];
-       const detail::curve::Curve::NamespaceHash MACRO_NAMESPACE_HASH;
        struct MacroEnvProp {
            MacroEnvProp(const std::type_index& _type, const size_t &_type_size, const std::array<unsigned int, 4> &_elements)
                : type(_type)
@@ -84,11 +82,9 @@ Program Listing for File CUDAMacroEnvironment.h
        void init(cudaStream_t stream);
        void init(const SubEnvironmentData& mapping, const CUDAMacroEnvironment& master_macro_env, cudaStream_t stream);
        void free();
-       void purge();
-       void mapRuntimeVariables() const;
-       void unmapRuntimeVariables() const;
        void mapRTCVariables(detail::curve::CurveRTCHost& curve_header) const;
        void unmapRTCVariables(detail::curve::CurveRTCHost& curve_header) const;
+       void registerCurveVariables(detail::curve::HostCurve &curve) const;
    
    #if !defined(SEATBELTS) || SEATBELTS
    

@@ -26,10 +26,12 @@ Program Listing for File CUDAMessage.h
    namespace flamegpu {
    
    class CUDAScatter;
+   class CUDASimulation;
    struct AgentFunctionData;
    struct MessageData;
    namespace detail {
    namespace curve {
+   class HostCurve;
    class Curve;
    }  // namespace curve
    }  // namespace detail
@@ -45,9 +47,8 @@ Program Listing for File CUDAMessage.h
        void setMessageCount(const unsigned int &_message_count);
        void init(CUDAScatter &scatter, unsigned int streamId, cudaStream_t stream);
        void resize(unsigned int newSize, CUDAScatter &scatter, cudaStream_t stream, unsigned int streamId, unsigned int keepLen = 0);
-       void mapReadRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &instance_id) const;
-       void mapWriteRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &writeLen, const unsigned int &instance_id, cudaStream_t stream) const;
-       void unmapRuntimeVariables(const AgentFunctionData& func, const unsigned int &instance_id) const;
+       void mapReadRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent) const;
+       void mapWriteRuntimeVariables(const AgentFunctionData& func, const CUDAAgent& cuda_agent, const unsigned int &writeLen, cudaStream_t stream) const;
        void *getReadPtr(const std::string &var_name);
        const CUDAMessageMap &getReadList() { return message_list->getReadList(); }
        const CUDAMessageMap &getWriteList() { return message_list->getWriteList(); }

@@ -19,7 +19,7 @@ Program Listing for File DeviceAPI.cuh
    #include <limits>
    
    #ifndef __CUDACC_RTC__
-   #include "flamegpu/runtime/detail/curve/curve.cuh"
+   #include "flamegpu/runtime/detail/curve/DeviceCurve.cuh"
    #include "flamegpu/runtime/messaging_device.h"
    #else
    #include "dynamic/curve_rtc_dynamic.h"
@@ -48,22 +48,19 @@ Program Listing for File DeviceAPI.cuh
        template<typename AgentFunctionCondition>
        friend __global__ void agent_function_condition_wrapper(
    #if !defined(SEATBELTS) || SEATBELTS
-           exception::DeviceExceptionBuffer *error_buffer,
+           exception::DeviceExceptionBuffer *,
    #endif
-           detail::curve::Curve::NamespaceHash,
-           detail::curve::Curve::NamespaceHash,
+   #ifndef __CUDACC_RTC__
+           const detail::curve::CurveTable *,
+   #endif
            const unsigned int,
            curandState *,
            unsigned int *);
    
     public:
-       __device__ ReadOnlyDeviceAPI(
-           const detail::curve::Curve::NamespaceHash &instance_id_hash,
-           const detail::curve::Curve::NamespaceHash &agentfuncname_hash,
-           curandState *&d_rng)
+       __device__ ReadOnlyDeviceAPI(curandState *&d_rng)
            : random(AgentRandom(&d_rng[getThreadIndex()]))
-           , environment(DeviceEnvironment(instance_id_hash))
-           , agent_func_name_hash(agentfuncname_hash) { }
+           , environment(DeviceEnvironment()) { }
        template<typename T, unsigned int N> __device__
        T getVariable(const char(&variable_name)[N]) const;
        template<typename T, unsigned int N, unsigned int M> __device__
@@ -97,9 +94,6 @@ Program Listing for File DeviceAPI.cuh
    #endif
            return blockIdx.x * blockDim.x + threadIdx.x;
        }
-   
-    protected:
-       detail::curve::Curve::NamespaceHash agent_func_name_hash;
    };
    
    template<typename MessageIn, typename MessageOut>
@@ -108,13 +102,11 @@ Program Listing for File DeviceAPI.cuh
        template<typename AgentFunction, typename _MessageIn, typename _MessageOut>
        friend __global__ void agent_function_wrapper(
    #if !defined(SEATBELTS) || SEATBELTS
-           exception::DeviceExceptionBuffer *error_buffer,
+           exception::DeviceExceptionBuffer *,
    #endif
-           detail::curve::Curve::NamespaceHash,
-           detail::curve::Curve::NamespaceHash,
-           detail::curve::Curve::NamespaceHash,
-           detail::curve::Curve::NamespaceHash,
-           detail::curve::Curve::NamespaceHash,
+   #ifndef __CUDACC_RTC__
+           const detail::curve::CurveTable *,
+   #endif
            id_t*,
            const unsigned int,
            const void *,
@@ -127,9 +119,8 @@ Program Listing for File DeviceAPI.cuh
     public:
        class AgentOut {
         public:
-           __device__ AgentOut(const detail::curve::Curve::NamespaceHash &aoh, id_t *&d_agent_output_nextID, unsigned int *&scan_flag_agentOutput)
-               : agent_output_hash(aoh)
-               , scan_flag(scan_flag_agentOutput)
+           __device__ AgentOut(id_t *&d_agent_output_nextID, unsigned int *&scan_flag_agentOutput)
+               : scan_flag(scan_flag_agentOutput)
                , nextID(d_agent_output_nextID) { }
            template<typename T, unsigned int N>
            __device__ void setVariable(const char(&variable_name)[N], T value) const;
@@ -139,15 +130,11 @@ Program Listing for File DeviceAPI.cuh
    
         private:
            __device__ void genID() const;
-           const detail::curve::Curve::NamespaceHash agent_output_hash;
            unsigned int* const scan_flag;
            mutable id_t id = ID_NOT_SET;
            id_t *nextID;
        };
        __device__ DeviceAPI(
-           const detail::curve::Curve::NamespaceHash &instance_id_hash,
-           const detail::curve::Curve::NamespaceHash &agentfuncname_hash,
-           const detail::curve::Curve::NamespaceHash &_agent_output_hash,
            id_t *&d_agent_output_nextID,
            curandState *&d_rng,
            unsigned int *&scanFlag_agentOutput,
@@ -155,10 +142,9 @@ Program Listing for File DeviceAPI.cuh
            typename MessageOut::Out &&message_out)
            : message_in(message_in)
            , message_out(message_out)
-           , agent_out(AgentOut(_agent_output_hash, d_agent_output_nextID, scanFlag_agentOutput))
+           , agent_out(AgentOut(d_agent_output_nextID, scanFlag_agentOutput))
            , random(AgentRandom(&d_rng[getThreadIndex()]))
-           , environment(DeviceEnvironment(instance_id_hash))
-           , agent_func_name_hash(agentfuncname_hash)
+           , environment(DeviceEnvironment())
        { }
        template<typename T, unsigned int N> __device__
        T getVariable(const char(&variable_name)[N]) const;
@@ -200,9 +186,6 @@ Program Listing for File DeviceAPI.cuh
        const AgentOut agent_out;
        const AgentRandom random;
        const DeviceEnvironment environment;
-   
-    protected:
-        detail::curve::Curve::NamespaceHash agent_func_name_hash;
    };
    
    
@@ -214,7 +197,7 @@ Program Listing for File DeviceAPI.cuh
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
        // get the value from curve
-       T value = detail::curve::Curve::getAgentVariable<T>(variable_name, agent_func_name_hash , index);
+       T value = detail::curve::DeviceCurve::getAgentVariable<T>(variable_name, index);
    
        // return the variable from curve
        return value;
@@ -225,7 +208,7 @@ Program Listing for File DeviceAPI.cuh
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
        // get the value from curve
-       T value = detail::curve::Curve::getAgentArrayVariable<T, N>(variable_name, agent_func_name_hash , index, array_index);
+       T value = detail::curve::DeviceCurve::getAgentArrayVariable<T, N>(variable_name, index, array_index);
    
        // return the variable from curve
        return value;
@@ -234,11 +217,12 @@ Program Listing for File DeviceAPI.cuh
    template<typename MessageIn, typename MessageOut>
    template<typename T, unsigned int N>
    __device__ T DeviceAPI<MessageIn, MessageOut>::getVariable(const char(&variable_name)[N]) const {
+       using detail::sm;
        // simple indexing assumes index is the thread number (this may change later)
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
        // get the value from curve
-       T value = detail::curve::Curve::getAgentVariable<T>(variable_name, agent_func_name_hash , index);
+       T value = detail::curve::DeviceCurve::getAgentVariable<T>(variable_name, index);
    
        // return the variable from curve
        return value;
@@ -251,7 +235,7 @@ Program Listing for File DeviceAPI.cuh
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
        // get the value from curve
-       T value = detail::curve::Curve::getAgentArrayVariable<T, N>(variable_name, agent_func_name_hash , index, array_index);
+       T value = detail::curve::DeviceCurve::getAgentArrayVariable<T, N>(variable_name, index, array_index);
    
        // return the variable from curve
        return value;
@@ -269,7 +253,7 @@ Program Listing for File DeviceAPI.cuh
        // simple indexing assumes index is the thread number (this may change later)
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
        // set the variable using curve
-       detail::curve::Curve::setAgentVariable<T>(variable_name, agent_func_name_hash, value, index);
+       detail::curve::DeviceCurve::setAgentVariable<T>(variable_name, value, index);
    }
    template<typename MessageIn, typename MessageOut>
    template<typename T, unsigned int N, unsigned int M>
@@ -284,39 +268,13 @@ Program Listing for File DeviceAPI.cuh
        const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
        // set the variable using curve
-       detail::curve::Curve::setAgentArrayVariable<T, N>(variable_name , agent_func_name_hash,  value, index, array_index);
+       detail::curve::DeviceCurve::setAgentArrayVariable<T, N>(variable_name, value, index, array_index);
    }
    
    template<typename MessageIn, typename MessageOut>
    template<typename T, unsigned int N>
    __device__ void DeviceAPI<MessageIn, MessageOut>::AgentOut::setVariable(const char(&variable_name)[N], T value) const {
-       if (agent_output_hash) {
-           if (variable_name[0] == '_') {
-   #if !defined(SEATBELTS) || SEATBELTS
-               DTHROW("Variable names starting with '_' are reserved for internal use, with '%s', in AgentOut::setVariable().\n", variable_name);
-   #endif
-               return;  // Fail silently
-           }
-           if (agent_output_hash) {
-               // simple indexing assumes index is the thread number (this may change later)
-               const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
-   
-               // set the variable using curve
-               detail::curve::Curve::setNewAgentVariable<T>(variable_name, agent_output_hash, value, index);
-   
-               // Mark scan flag
-               genID();
-           }
-   #if !defined(SEATBELTS) || SEATBELTS
-       } else {
-           DTHROW("Agent output must be enabled per agent function when defining the model.\n");
-   #endif
-       }
-   }
-   template<typename MessageIn, typename MessageOut>
-   template<typename T, unsigned int N, unsigned int M>
-   __device__ void DeviceAPI<MessageIn, MessageOut>::AgentOut::setVariable(const char(&variable_name)[M], const unsigned int &array_index, T value) const {
-       if (agent_output_hash) {
+       if (nextID) {
            if (variable_name[0] == '_') {
    #if !defined(SEATBELTS) || SEATBELTS
                DTHROW("Variable names starting with '_' are reserved for internal use, with '%s', in AgentOut::setVariable().\n", variable_name);
@@ -327,7 +285,31 @@ Program Listing for File DeviceAPI.cuh
            const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
    
            // set the variable using curve
-           detail::curve::Curve::setNewAgentArrayVariable<T, N>(variable_name, agent_output_hash, value, index, array_index);
+           detail::curve::DeviceCurve::setNewAgentVariable<T>(variable_name, value, index);
+   
+           // Mark scan flag
+           genID();
+   #if !defined(SEATBELTS) || SEATBELTS
+       } else {
+           DTHROW("Agent output must be enabled per agent function when defining the model.\n");
+   #endif
+       }
+   }
+   template<typename MessageIn, typename MessageOut>
+   template<typename T, unsigned int N, unsigned int M>
+   __device__ void DeviceAPI<MessageIn, MessageOut>::AgentOut::setVariable(const char(&variable_name)[M], const unsigned int &array_index, T value) const {
+       if (nextID) {
+           if (variable_name[0] == '_') {
+   #if !defined(SEATBELTS) || SEATBELTS
+               DTHROW("Variable names starting with '_' are reserved for internal use, with '%s', in AgentOut::setVariable().\n", variable_name);
+   #endif
+               return;  // Fail silently
+           }
+           // simple indexing assumes index is the thread number (this may change later)
+           const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
+   
+           // set the variable using curve
+           detail::curve::DeviceCurve::setNewAgentArrayVariable<T, N>(variable_name, value, index, array_index);
    
            // Mark scan flag
            genID();
@@ -340,7 +322,7 @@ Program Listing for File DeviceAPI.cuh
    
    template<typename MessageIn, typename MessageOut>
    __device__ id_t DeviceAPI<MessageIn, MessageOut>::AgentOut::getID() const {
-       if (agent_output_hash) {
+       if (nextID) {
            genID();
            return this->id;
        }
@@ -352,11 +334,12 @@ Program Listing for File DeviceAPI.cuh
    #ifdef __CUDACC__
    template<typename MessageIn, typename MessageOut>
    __device__ void DeviceAPI<MessageIn, MessageOut>::AgentOut::genID() const {
+       // Only called internally, so no need to check nextID != nullptr
        // Only assign id and scan flag once
        if (this->id == ID_NOT_SET) {
            this->id = atomicInc(this->nextID, std::numeric_limits<id_t>().max());
            const unsigned int index = (blockDim.x * blockIdx.x) + threadIdx.x;
-           detail::curve::Curve::setNewAgentVariable<id_t>("_id", agent_output_hash, this->id, index);  // Can't use ID_VARIABLE_NAME inline, as it isn't of char[N] type
+           detail::curve::DeviceCurve::setNewAgentVariable<id_t>("_id", this->id, index);  // Can't use ID_VARIABLE_NAME inline, as it isn't of char[N] type
            this->scan_flag[index] = 1;
        }
    }

@@ -22,6 +22,7 @@ Program Listing for File HostEnvironment.cuh
    #include <utility>
    #include <set>
    #include <vector>
+   #include <memory>
    
    #include "flamegpu/gpu/CUDAMacroEnvironment.h"
    #include "flamegpu/gpu/detail/CUDAErrorChecking.cuh"
@@ -34,8 +35,8 @@ Program Listing for File HostEnvironment.cuh
        friend class HostAPI;
    
     protected:
-       explicit HostEnvironment(const unsigned int &instance_id, CUDAMacroEnvironment &_macro_env);
-       EnvironmentManager &env_mgr;
+       explicit HostEnvironment(const unsigned int &instance_id, const std::shared_ptr<EnvironmentManager> &env, CUDAMacroEnvironment &_macro_env);
+       const std::shared_ptr<EnvironmentManager> env_mgr;
        CUDAMacroEnvironment& macro_env;
        const unsigned int instance_id;
    
@@ -44,10 +45,12 @@ Program Listing for File HostEnvironment.cuh
        T getProperty(const std::string &name) const;
        template<typename T, EnvironmentManager::size_type N>
        std::array<T, N> getProperty(const std::string &name) const;
-       template<typename T>
+   #ifndef SWIG
+       template<typename T, EnvironmentManager::size_type N = 0>
        T getProperty(const std::string &name, const EnvironmentManager::size_type &index) const;
-   #ifdef SWIG
-   
+   #else
+       template<typename T>
+       T getProperty(const std::string& name, const EnvironmentManager::size_type& index) const;
        template<typename T>
        std::vector<T> getPropertyArray(const std::string &name) const;
    #endif
@@ -56,10 +59,12 @@ Program Listing for File HostEnvironment.cuh
        T setProperty(const std::string &name, const T &value) const;
        template<typename T, EnvironmentManager::size_type N>
        std::array<T, N> setProperty(const std::string &name, const std::array<T, N> &value) const;
-       template<typename T>
+   #ifndef SWIG
+       template<typename T, EnvironmentManager::size_type N = 0>
        T setProperty(const std::string &name, const EnvironmentManager::size_type &index, const T &value) const;
-   #ifdef SWIG
-   
+   #else
+       template<typename T>
+       T setProperty(const std::string& name, const EnvironmentManager::size_type& index, const T& value) const;
        template<typename T>
        std::vector<T> setPropertyArray(const std::string &name, const std::vector<T> &value) const;
    #endif
@@ -79,7 +84,7 @@ Program Listing for File HostEnvironment.cuh
            THROW exception::ReservedName("Environment property names cannot begin with '_', this is reserved for internal usage, "
                "in HostEnvironment::set().");
        }
-       return env_mgr.setProperty<T>({ instance_id, name }, value);
+       return env_mgr->setProperty<T>(name, value);
    }
    template<typename T, EnvironmentManager::size_type N>
    std::array<T, N> HostEnvironment::setProperty(const std::string &name, const std::array<T, N> &value) const {
@@ -87,15 +92,21 @@ Program Listing for File HostEnvironment.cuh
            THROW exception::ReservedName("Environment property names cannot begin with '_', this is reserved for internal usage, "
                "in HostEnvironment::set().");
        }
-       return env_mgr.setProperty<T, N>({ instance_id, name }, value);
+       return env_mgr->setProperty<T, N>(name, value);
    }
+   #ifdef SWIG
    template<typename T>
+   T HostEnvironment::setProperty(const std::string& name, const EnvironmentManager::size_type& index, const T& value) const {
+       const EnvironmentManager::size_type N = 0;
+   #else
+   template<typename T, EnvironmentManager::size_type N>
    T HostEnvironment::setProperty(const std::string &name, const EnvironmentManager::size_type &index, const T &value) const {
+   #endif
        if (!name.empty() && name[0] == '_') {
            THROW exception::ReservedName("Environment property names cannot begin with '_', this is reserved for internal usage, "
                "in HostEnvironment::set().");
        }
-       return env_mgr.setProperty<T>({ instance_id, name }, index, value);
+       return env_mgr->setProperty<T, N>(name, index, value);
    }
    #ifdef SWIG
    template<typename T>
@@ -104,26 +115,32 @@ Program Listing for File HostEnvironment.cuh
            THROW exception::ReservedName("Environment property names cannot begin with '_', this is reserved for internal usage, "
                "in HostEnvironment::setArray().");
        }
-       return env_mgr.setPropertyArray<T>({ instance_id, name }, value);
+       return env_mgr->setPropertyArray<T>(name, value);
    }
    #endif  // SWIG
    
    template<typename T>
    T HostEnvironment::getProperty(const std::string &name) const  {
-       return env_mgr.getProperty<T>({ instance_id, name });
+       return env_mgr->getProperty<T>(name);
    }
    template<typename T, EnvironmentManager::size_type N>
    std::array<T, N> HostEnvironment::getProperty(const std::string &name) const  {
-       return env_mgr.getProperty<T, N>({ instance_id, name });
+       return env_mgr->getProperty<T, N>(name);
    }
+   #ifdef SWIG
    template<typename T>
+   T HostEnvironment::getProperty(const std::string& name, const EnvironmentManager::size_type& index) const {
+       const EnvironmentManager::size_type N = 0;
+   #else
+   template<typename T, EnvironmentManager::size_type N>
    T HostEnvironment::getProperty(const std::string &name, const EnvironmentManager::size_type &index) const  {
-       return env_mgr.getProperty<T>({ instance_id, name }, index);
+   #endif
+       return env_mgr->getProperty<T, N>(name, index);
    }
    #ifdef SWIG
    template<typename T>
    std::vector<T> HostEnvironment::getPropertyArray(const std::string& name) const {
-       return env_mgr.getPropertyArray<T>({instance_id, name});
+       return env_mgr->getPropertyArray<T>(name);
    }
    #endif  // SWIG
    

@@ -17,6 +17,9 @@ Program Listing for File AgentFunctionCondition.cuh
    
    #include "flamegpu/runtime/DeviceAPI.cuh"
    #include "flamegpu/runtime/AgentFunctionCondition_shim.cuh"
+   #ifndef __CUDACC_RTC__
+   #include "flamegpu/runtime/detail/curve/DeviceCurve.cuh"
+   #endif
    
    namespace flamegpu {
    
@@ -25,8 +28,10 @@ Program Listing for File AgentFunctionCondition.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        exception::DeviceExceptionBuffer *error_buffer,
    #endif
-       detail::curve::Curve::NamespaceHash instance_id_hash,
-       detail::curve::Curve::NamespaceHash agent_func_name_hash,
+   #ifndef __CUDACC_RTC__
+       const detail::curve::CurveTable* d_curve_table,
+       const char* d_env_buffer,
+   #endif
        const unsigned int popNo,
        curandState *d_rng,
        unsigned int *scanFlag_conditionResult);  // Can't put __global__ in a typedef
@@ -36,30 +41,36 @@ Program Listing for File AgentFunctionCondition.cuh
    #if !defined(SEATBELTS) || SEATBELTS
        exception::DeviceExceptionBuffer *error_buffer,
    #endif
-       detail::curve::Curve::NamespaceHash instance_id_hash,
-       detail::curve::Curve::NamespaceHash agent_func_name_hash,
+   #ifndef __CUDACC_RTC__
+       const detail::curve::CurveTable* __restrict__ d_curve_table,
+       const char* d_env_buffer,
+   #endif
        const unsigned int popNo,
        curandState *d_rng,
        unsigned int *scanFlag_conditionResult) {
-   #if !defined(SEATBELTS) || SEATBELTS
-       // We place this at the start of shared memory, so we can locate it anywhere in device code without a reference
-       extern __shared__ exception::DeviceExceptionBuffer *shared_mem[];
+       // We place these at the start of shared memory, so we can locate it anywhere in device code without a reference
+       using detail::sm;
        if (threadIdx.x == 0) {
-           shared_mem[0] = error_buffer;
-       }
-       // @todo - this tempalte should onyl ever be seen by a cuda compiler.
-       #if defined(__CUDACC__)
-           __syncthreads();
-       #endif
+   #if !defined(SEATBELTS) || SEATBELTS
+           sm()->device_exception = error_buffer;
    #endif
+   #ifndef __CUDACC_RTC__
+           sm()->env_buffer = d_env_buffer;
+   #endif
+       }
+   #ifndef __CUDACC_RTC__
+       detail::curve::DeviceCurve::init(d_curve_table);
+   #endif
+   
+   #if defined(__CUDACC__)  // @todo - This should not be required. This template should only ever be processed by a CUDA compiler.
+       // Sync the block after Thread 0 has written to shared.
+       __syncthreads();
+   #endif  // __CUDACC__
        // Must be terminated here, else AgentRandom has bounds issues inside DeviceAPI constructor
        if (ReadOnlyDeviceAPI::getThreadIndex() >= popNo)
            return;
        // create a new device FLAME_GPU instance
-       ReadOnlyDeviceAPI api = ReadOnlyDeviceAPI(
-           instance_id_hash,
-           agent_func_name_hash,
-           d_rng);
+       ReadOnlyDeviceAPI api = ReadOnlyDeviceAPI(d_rng);
    
        // call the user specified device function
        {

@@ -53,13 +53,13 @@ Program Listing for File curve_rtc.cuh
        void registerEnvMacroProperty(const char* propertyName, void* d_ptr, const char* type, size_t type_size, const std::array<unsigned int, 4>& dimensions);
        void unregisterEnvMacroProperty(const char* propertyName);
        void setFileName(const std::string& filename);
-       std::string getDynamicHeader();
+       std::string getDynamicHeader(size_t env_buffer_len);
        static std::string getVariableSymbolName();
    
        static std::string demangle(const char* verbose_name);
    
        static std::string demangle(const std::type_index& type);
-       void updateEnvCache(const char* env_ptr);
+       void updateEnvCache(const void* d_env_ptr, const size_t bufferLen);
        void updateDevice_async(const jitify::experimental::KernelInstantiation& instance, cudaStream_t stream);
    
     protected:
@@ -87,7 +87,7 @@ Program Listing for File curve_rtc.cuh
        };
    
     private:
-       void initHeaderEnvironment();
+       void initHeaderEnvironment(size_t env_buffer_len);
        void initHeaderSetters();
        void initHeaderGetters();
        void initDataBuffer();

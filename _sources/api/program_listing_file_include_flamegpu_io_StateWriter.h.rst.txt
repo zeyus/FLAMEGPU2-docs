@@ -30,7 +30,7 @@ Program Listing for File StateWriter.h
    class StateWriter {
     public:
        StateWriter(const std::string &_model_name,
-           const unsigned int &_sim_instance_id,
+           const std::shared_ptr<EnvironmentManager>& _env_manager,
            const util::StringPairUnorderedMap<std::shared_ptr<AgentVector>> &_model_state,
            const unsigned int &_iterations,
            const std::string &output_file,
@@ -39,7 +39,7 @@ Program Listing for File StateWriter.h
        , iterations(_iterations)
        , outputFile(output_file)
        , model_name(_model_name)
-       , sim_instance_id(_sim_instance_id)
+       , env_manager(_env_manager)
        , sim_instance(_sim_instance) {}
        virtual ~StateWriter() {}
    
@@ -53,7 +53,7 @@ Program Listing for File StateWriter.h
        unsigned int iterations;
        std::string outputFile;
        const std::string model_name;
-       const unsigned int sim_instance_id;
+       const std::shared_ptr<EnvironmentManager> env_manager;
        const Simulation *sim_instance;
    };
    }  // namespace io

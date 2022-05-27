@@ -62,7 +62,7 @@ Program Listing for File MessageBucketDevice.cuh
                __device__ Message& operator*() { return _message; }
                __device__ Message* operator->() { return &_message; }
            };
-           inline __device__ Filter(const MetaData *_metadata, const detail::curve::Curve::NamespaceHash &combined_hash, const IntT &beginKey, const IntT &endKey);
+           inline __device__ Filter(const MetaData *_metadata, const IntT &beginKey, const IntT &endKey);
    #if !defined(SEATBELTS) || SEATBELTS
    
            inline __device__ Filter();
@@ -83,11 +83,9 @@ Program Listing for File MessageBucketDevice.cuh
         private:
            IntT bucket_begin, bucket_end;
            const MetaData *metadata;
-           detail::curve::Curve::NamespaceHash combined_hash;
        };
-       __device__ In(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *_metadata)
-           : combined_hash(agentfn_hash + message_hash)
-           , metadata(reinterpret_cast<const MetaData*>(_metadata))
+       __device__ In(const void *_metadata)
+           : metadata(reinterpret_cast<const MetaData*>(_metadata))
        { }
        inline __device__ Filter operator() (const IntT &key) const {
    #if !defined(SEATBELTS) || SEATBELTS
@@ -101,7 +99,7 @@ Program Listing for File MessageBucketDevice.cuh
                }
            }
    #endif
-           return Filter(metadata, combined_hash, key, key + 1);
+           return Filter(metadata, key, key + 1);
        }
        inline __device__ Filter operator() (const IntT &beginKey, const IntT &endKey) const {
    #if !defined(SEATBELTS) || SEATBELTS
@@ -118,18 +116,17 @@ Program Listing for File MessageBucketDevice.cuh
                }
            }
    #endif
-           return Filter(metadata, combined_hash, beginKey, endKey);
+           return Filter(metadata, beginKey, endKey);
        }
    
     private:
-       detail::curve::Curve::NamespaceHash combined_hash;
        const MetaData *metadata;
    };
    
    class MessageBucket::Out : public MessageBruteForce::Out {
     public:
-       __device__ Out(detail::curve::Curve::NamespaceHash agentfn_hash, detail::curve::Curve::NamespaceHash message_hash, const void *_metadata, unsigned int *scan_flag_messageOutput)
-           : MessageBruteForce::Out(agentfn_hash, message_hash, nullptr, scan_flag_messageOutput)
+       __device__ Out(const void *_metadata, unsigned int *scan_flag_messageOutput)
+           : MessageBruteForce::Out(nullptr, scan_flag_messageOutput)
    #if !defined(SEATBELTS) || SEATBELTS
            , metadata(reinterpret_cast<const MetaData*>(_metadata))
    #else
@@ -140,11 +137,10 @@ Program Listing for File MessageBucketDevice.cuh
        const MetaData * const metadata;
    };
    
-   __device__ MessageBucket::In::Filter::Filter(const MetaData* _metadata, const detail::curve::Curve::NamespaceHash &_combined_hash, const IntT& beginKey, const IntT& endKey)
+   __device__ MessageBucket::In::Filter::Filter(const MetaData* _metadata, const IntT& beginKey, const IntT& endKey)
        : bucket_begin(0)
        , bucket_end(0)
-       , metadata(_metadata)
-       , combined_hash(_combined_hash) {
+       , metadata(_metadata) {
        // If key is in bounds
        if (beginKey >= metadata->min && endKey < metadata->max && beginKey <= endKey) {
            bucket_begin = metadata->PBM[beginKey - metadata->min];
@@ -155,8 +151,7 @@ Program Listing for File MessageBucketDevice.cuh
    __device__ MessageBucket::In::Filter::Filter()
        : bucket_begin(0)
        , bucket_end(0)
-       , metadata(nullptr)
-       , combined_hash(0) { }
+       , metadata(nullptr) { }
    #endif
    
    __device__ void MessageBucket::Out::setKey(const IntT &key) const {
@@ -169,7 +164,7 @@ Program Listing for File MessageBucketDevice.cuh
        }
    #endif
        // set the variables using curve
-       detail::curve::Curve::setMessageVariable<IntT>("_key", combined_hash, key, index);
+       detail::curve::DeviceCurve::setMessageVariable<IntT>("_key", key, index);
    
        // Set scan flag incase the message is optional
        this->scan_flag[index] = 1;
@@ -184,8 +179,8 @@ Program Listing for File MessageBucketDevice.cuh
            return static_cast<T>(0);
        }
    #endif
-       // get the value from curve using the stored hashes and message index.
-       T value = detail::curve::Curve::getMessageVariable<T>(variable_name, this->_parent.combined_hash, cell_index);
+       // get the value from curve using the message index.
+       T value = detail::curve::DeviceCurve::getMessageVariable<T>(variable_name, cell_index);
        return value;
    }
    template<typename T, MessageNone::size_type N, unsigned int M> __device__
@@ -197,8 +192,8 @@ Program Listing for File MessageBucketDevice.cuh
            return {};
        }
    #endif
-       // get the value from curve using the stored hashes and message index.
-       T value = detail::curve::Curve::getMessageArrayVariable<T, N>(variable_name, this->_parent.combined_hash, cell_index, array_index);
+       // get the value from curve using the message index.
+       T value = detail::curve::DeviceCurve::getMessageArrayVariable<T, N>(variable_name, cell_index, array_index);
        return value;
    }
    }  // namespace flamegpu

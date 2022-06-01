@@ -75,6 +75,7 @@ Program Listing for File CUDASimulation.cu
        , elapsedSecondsExitFunctions(0.)
        , elapsedSecondsRTCInitialisation(0.)
        , macro_env(*_model->environment, *this)
+       , config({})
        , run_log(std::make_unique<RunLog>())
        , streams(std::vector<cudaStream_t>())
        , singletons(nullptr)
@@ -1613,14 +1614,6 @@ Program Listing for File CUDASimulation.cu
            }
        }
    }
-   
-   void CUDASimulation::resetDerivedConfig() {
-       bool is_ensemble = getCUDAConfig().is_ensemble;
-       this->config = CUDASimulation::Config();
-       CUDAConfig().is_ensemble = is_ensemble;
-       resetStepCounter();
-   }
-   
    
    CUDASimulation::Config &CUDASimulation::CUDAConfig() {
        return config;

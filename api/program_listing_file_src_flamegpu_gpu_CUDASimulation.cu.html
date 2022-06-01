@@ -910,6 +910,7 @@ CUDASimulation::CUDASimulation(const std::shared_ptr&lt;const ModelData&gt; &amp
     , elapsedSecondsExitFunctions(0.)
     , elapsedSecondsRTCInitialisation(0.)
     , macro_env(*_model-&gt;environment, *this)
+    , config({})
     , run_log(std::make_unique&lt;RunLog&gt;())
     , streams(std::vector&lt;cudaStream_t&gt;())
     , singletons(nullptr)
@@ -2448,14 +2449,6 @@ void CUDASimulation::initialiseRTC() {
         }
     }
 }
-
-void CUDASimulation::resetDerivedConfig() {
-    bool is_ensemble = getCUDAConfig().is_ensemble;
-    this-&gt;config = CUDASimulation::Config();
-    CUDAConfig().is_ensemble = is_ensemble;
-    resetStepCounter();
-}
-
 
 CUDASimulation::Config &amp;CUDASimulation::CUDAConfig() {
     return config;

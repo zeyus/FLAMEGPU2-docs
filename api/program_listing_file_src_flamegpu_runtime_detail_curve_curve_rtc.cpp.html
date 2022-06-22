@@ -1254,7 +1254,7 @@ void CurveRTCHost::initHeaderEnvironment(const size_t env_buffer_len) {
                 getEnvArrayVariableImpl &lt;&lt; &quot;        if(sizeof(type_decode&lt;T&gt;::type_t) != &quot; &lt;&lt; element.second.type_size &lt;&lt; &quot;) {\n&quot;;
                 getEnvArrayVariableImpl &lt;&lt; &quot;            DTHROW(\&quot;Environment array property &#39;%s&#39; type mismatch.\\n\&quot;, name);\n&quot;;
                 getEnvArrayVariableImpl &lt;&lt; &quot;            return {};\n&quot;;
-                getEnvArrayVariableImpl &lt;&lt; &quot;        } else if (type_decode&lt;T&gt;::len_t * N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot;) {\n&quot;;
+                getEnvArrayVariableImpl &lt;&lt; &quot;        } else if (type_decode&lt;T&gt;::len_t * N != &quot; &lt;&lt; element.second.elements &lt;&lt; &quot; &amp;&amp; N != 0) {\n&quot;;  // Special case, env array specifying length is optional as it&#39;s not actually required
                 getEnvArrayVariableImpl &lt;&lt; &quot;            DTHROW(\&quot;Environment array property &#39;%s&#39; length mismatch.\\n\&quot;, name);\n&quot;;
                 getEnvArrayVariableImpl &lt;&lt; &quot;            return {};\n&quot;;
                 getEnvArrayVariableImpl &lt;&lt; &quot;        } else if (t_index &gt; &quot; &lt;&lt; element.second.elements &lt;&lt; &quot; || t_index &lt; index) {\n&quot;;

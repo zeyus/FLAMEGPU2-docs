@@ -850,6 +850,7 @@
 
 #include &quot;flamegpu/exception/FLAMEGPUException.h&quot;
 #include &quot;flamegpu/visualiser/AgentVis.h&quot;
+#include &quot;flamegpu/model/AgentData.h&quot;
 #include &quot;flamegpu/visualiser/color/ColorFunction.h&quot;
 
 namespace flamegpu {
@@ -889,6 +890,20 @@ void AgentStateVis::setModelScale(float maxLen) {
     configFlags.model_scale = 1;
 }
 void AgentStateVis::setColor(const ColorFunction&amp; cf) {
+    // Validate agent variable exists
+    if (!cf.getAgentVariableName().empty()) {
+        auto it = parent.agentData.variables.find(cf.getAgentVariableName());
+        if (it == parent.agentData.variables.end()) {
+            THROW exception::InvalidAgentVar(&quot;Variable &#39;%s&#39; bound to color function was not found within agent &#39;%s&#39;, &quot;
+                &quot;in AgentStateVis::setColor()\n&quot;,
+                cf.getAgentVariableName().c_str(), parent.agentData.name.c_str());
+        }
+        if (it-&gt;second.type != cf.getAgentVariableRequiredType() || it-&gt;second.elements != 1) {
+            THROW exception::InvalidAgentVar(&quot;Visualisation color function variable must be type %s[1], agent &#39;%s&#39; variable &#39;%s&#39; is type %s[%u], &quot;
+                &quot;in AgentStateVis::setColor()\n&quot;,
+                cf.getAgentVariableRequiredType().name(), parent.agentData.name.c_str(), cf.getAgentVariableName().c_str(), it-&gt;second.type.name(), it-&gt;second.elements);
+        }
+    }
     // Remove old, we only ever want 1 color value
     config.tex_buffers.erase(TexBufferConfig::Color);
     if (!cf.getAgentVariableName().empty() &amp;&amp; !cf.getSamplerName().empty())

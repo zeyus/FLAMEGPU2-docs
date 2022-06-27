@@ -244,7 +244,7 @@ Spatial messaging will return all messages within the radius specified at the mo
               float x21 = x2 - x1;
               float y21 = y2 - y1;
               float z21 = z2 - z1;
-              const float separation = cbrt(x21*x21 + y21*y21 + z21*z21);
+              const float separation = sqrt(x21*x21 + y21*y21 + z21*z21);
               if (separation < RADIUS && separation > 0.0f) {
                   // Process the message's variables e.g.
                   // const T var = message.getVariable<T>(...);
@@ -270,8 +270,11 @@ Spatial messaging will return all messages within the radius specified at the mo
               const float y2 = message.getVirtualY();
               const float z2 = message.getVirtualZ();
               // Calculate the distance to check the message is in range
-              const float separation = message.getDistance();
-              if (separation > 0.0f) {  // The maximum value of separation will be RADIUS
+              float x21 = x2 - x1;
+              float y21 = y2 - y1;
+              float z21 = z2 - z1;
+              const float separation = sqrt(x21*x21 + y21*y21 + z21*z21);
+              if (separation < RADIUS && separation > 0.0f) {
                   // Process the message's variables e.g.
                   // const T var = message.getVariable<T>(...);
                   ...
